@@ -1,12 +1,11 @@
 import {ComponentClass} from 'react'
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-//@ts-ignore
 import {SignInPage} from "../../../global";
-import Homepage from './home/homepage';
-import Classpage from './class/classpage';
-import Prefecturepage from './prefecture/prefecturepage';
-import Minepage from './mine/minepage';
+import Businesscard from './businesscard/businesscard';
+import Radarscan from './radarscan/radarscan';
+import Customer from './customer/customer';
+import Mine from './mine/mine';
 import CustomTabBar from "../custom-tab-bar";
 import {View} from "@tarojs/components";
 import {styleAssign} from "../utils/datatool";
@@ -61,13 +60,13 @@ class Index extends Component<Props, State> {
     let childShowView;
 
     if (currentIndex === 0) {
-      childShowView = <Homepage/>;
+      childShowView = <Businesscard/>;
     } else if (currentIndex === 1) {
-      childShowView = <Classpage/>;
+      childShowView = <Radarscan/>;
     } else if (currentIndex === 2) {
-      childShowView = <Prefecturepage/>;
+      childShowView = <Customer/>;
     } else if (currentIndex === 3) {
-      childShowView = <Minepage/>;
+      childShowView = <Mine/>;
     }
 
     return (

@@ -10,7 +10,7 @@
 import '@tarojs/async-await'
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Provider} from '@tarojs/redux'
-import Index from './pages/home/homepage'
+import Index from './pages/businesscard/businesscard'
 
 import configStore from './store'
 

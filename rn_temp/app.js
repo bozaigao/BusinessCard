@@ -75,7 +75,7 @@ let App = (_temp = _class = class App extends Component {
   // 请勿修改此函数
   render() {
     return <Provider store={store}>
-                  
+
                 <TCRNProvider>
                   <RootStack />
                 </TCRNProvider>
@@ -105,19 +105,19 @@ let App = (_temp = _class = class App extends Component {
     backgroundColor: "white",
     borderStyle: 'white',
     list: [{
-      pagePath: "pages/home/homepage",
+      pagePath: "pages/businesscard/homepage",
       iconPath: assetsIcoTabarHomeNormalPng,
       selectedIconPath: assetsIcoTabarHomePressedPng,
 
       text: "首页"
     }, {
-      pagePath: "pages/class/classpage",
+      pagePath: "pages/radarscan/classpage",
       iconPath: assetsIcoTabarClassNormalPng,
       selectedIconPath: assetsIcoTabarClassPressedPng,
 
       text: "云学术"
     }, {
-      pagePath: "pages/prefecture/prefecturepage",
+      pagePath: "pages/customer/prefecturepage",
       iconPath: assetsIcoTabarPrefectureNormalPng,
       selectedIconPath: assetsIcoTabarPrefecturePressedPng,
 
@@ -131,7 +131,7 @@ let App = (_temp = _class = class App extends Component {
     }]
   }
 }, _temp);
-const RootStack = TaroRouter.initRouter([['pages/home/homepage', pagesHomeHomepage], ['pages/class/classpage', pagesClassClasspage], ['pages/prefecture/prefecturepage', pagesPrefecturePrefecturepage], ['pages/mine/minepage', pagesMineMinepage]], Taro, App.config);
+const RootStack = TaroRouter.initRouter([['pages/businesscard/homepage', pagesHomeHomepage], ['pages/radarscan/classpage', pagesClassClasspage], ['pages/customer/prefecturepage', pagesPrefecturePrefecturepage], ['pages/mine/minepage', pagesMineMinepage]], Taro, App.config);
 Taro.initNativeApi(Taro);
 Taro.initPxTransform({
   "designWidth": 750,

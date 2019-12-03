@@ -98,42 +98,42 @@ export default class CustomTabBar extends Component<Props, State> {
           customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
             bgColor(commonStyles.whiteColor)])}
           onClick={() => {
-            console.log('首页')
+            console.log('名片')
             onPress(0);
             this.setState({currentIndex: 0});
           }}>
           <View style={styleAssign([styles.uac])}>
             <Image src={currentIndex === 0 ? iconTabarHomePressed : iconTabarHomeNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 0 ? '#34b0b0' : '#9b9b9b')])}>首页</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 0 ? '#34b0b0' : '#9b9b9b')])}>名片</Text>
           </View>
         </TouchableButton>
         <TouchableButton
           customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
             bgColor(commonStyles.whiteColor)])}
           onClick={() => {
-            console.log('课程')
+            console.log('雷达')
             onPress(1);
             this.setState({currentIndex: 1});
           }}>
           <View style={styleAssign([styles.uac])}>
             <Image src={currentIndex === 1 ? iconTabarClassPressed : iconTabarClassNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 1 ? '#34b0b0' : '#9b9b9b')])}>云学术</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 1 ? '#34b0b0' : '#9b9b9b')])}>雷达</Text>
           </View>
         </TouchableButton>
         <TouchableButton
           customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
             bgColor(commonStyles.whiteColor)])}
           onClick={() => {
-            console.log('专区')
+            console.log('客户')
             onPress(2);
             this.setState({currentIndex: 2});
           }}>
           <View style={styleAssign([styles.uac])}>
             <Image src={currentIndex === 2 ? iconTabarPrefecturePressed : iconTabarPrefectureNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 2 ? '#34b0b0' : '#9b9b9b')])}>专区</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 2 ? '#34b0b0' : '#9b9b9b')])}>客户</Text>
           </View>
         </TouchableButton>
         <TouchableButton

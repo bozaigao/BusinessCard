@@ -1,13 +1,8 @@
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Image, ScrollView, Text, View} from '@tarojs/components'
+import {ScrollView, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
-import styles, {bgColor, color, commonStyles, fSize, h, iphoneX, ml, mt, pl, pr, w, wRatio} from "../../utils/style";
-import TouchableButton from "../../compoments/touchable-button";
-//@ts-ignore
-import icoNext from '../../assets/ico_next.png';
-import RwztItem from "./renwu-zhitong-item";
-
+import styles, {h, iphoneX, wRatio} from "../../utils/style";
 // #region 书写注意
 //
 // 目前 typescript 版本还无法在装饰器模式下将 Props 注入到 Taro.Component 中的 props 属性
@@ -23,10 +18,9 @@ interface Props {
 }
 
 interface State {
-  rewuList: any[];
 }
 
-class Classpage extends Component<Props, State> {
+class Radarscan extends Component<Props, State> {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -42,9 +36,6 @@ class Classpage extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.state = {
-      rewuList: [1, 2, 3, 4, 5, 6],
-    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -61,26 +52,13 @@ class Classpage extends Component<Props, State> {
   }
 
   render() {
-    let {rewuList} = this.state;
 
     return (
       <CustomSafeAreaView>
         <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 640 : 560)])}
                     scrollY>
           <View style={styleAssign([styles.uf1])}>
-            <TouchableButton
-              customStyle={styleAssign([styles.uac, styles.ujb, styles.udr, wRatio(100), h(50), pl(15), pr(15), bgColor(commonStyles.whiteColor), mt(5)])}>
-              <Text style={styleAssign([fSize(18), color('#333333')])}>任务直通车</Text>
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([color('#999999'), fSize(14)])}>更多</Text>
-                <Image style={styleAssign([w(7), h(12), ml(7)])}
-                       src={icoNext}/>
-              </View>
-            </TouchableButton>
-            {rewuList.map((item, index) => {
-              return (
-                <RwztItem item={item} key={index}/>);
-            })}
+
           </View>
         </ScrollView>
       </CustomSafeAreaView>
@@ -95,4 +73,4 @@ class Classpage extends Component<Props, State> {
 //
 // #endregion
 
-export default Classpage;
+export default Radarscan;

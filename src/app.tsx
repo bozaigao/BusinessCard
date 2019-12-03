@@ -1,7 +1,7 @@
 import '@tarojs/async-await'
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Provider} from '@tarojs/redux'
-import Index from './pages/home/homepage'
+import Index from './pages/businesscard/businesscard'
 import configStore from './store'
 import './app.scss'
 import {Global} from "../global";
@@ -65,10 +65,10 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/home/homepage",
-      "pages/class/classpage",
-      "pages/prefecture/prefecturepage",
-      "pages/mine/minepage",
+      "pages/businesscard/businesscard",
+      "pages/radarscan/radarscan",
+      "pages/customer/customer",
+      "pages/mine/mine",
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -84,22 +84,22 @@ class App extends Component {
       backgroundColor: "white",
       borderStyle: 'white',
       list: [{
-        pagePath: "pages/home/homepage",
+        pagePath: "pages/businesscard/businesscard",
         iconPath: "./assets/ico_tabar_home_normal.png",
         selectedIconPath: "./assets/ico_tabar_home_pressed.png",
-        text: "首页",
+        text: "名片",
       }, {
-        pagePath: "pages/class/classpage",
+        pagePath: "pages/radarscan/radarscan",
         iconPath: "./assets/ico_tabar_class_normal.png",
         selectedIconPath: "./assets/ico_tabar_class_pressed.png",
-        text: "云学术",
+        text: "雷达",
       }, {
-        pagePath: "pages/prefecture/prefecturepage",
+        pagePath: "pages/customer/customer",
         iconPath: "./assets/ico_tabar_prefecture_normal.png",
         selectedIconPath: "./assets/ico_tabar_prefecture_pressed.png",
-        text: "专区",
+        text: "客户",
       }, {
-        pagePath: "pages/mine/minepage",
+        pagePath: "pages/mine/mine",
         iconPath: "./assets/ico_tabar_mine_normal.png",
         selectedIconPath: "./assets/ico_tabar_mine_pressed.png",
         text: "我的",

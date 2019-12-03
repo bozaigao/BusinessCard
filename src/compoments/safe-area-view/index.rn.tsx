@@ -4,7 +4,7 @@ import {Component} from "react";
 import {styleAssign} from "../../utils/datatool";
 import {bgColor, commonStyles, hRatio, wRatio} from "../../utils/style";
 import {View} from "@tarojs/components";
-import SignAlert from "../../pages/home/sign-alert";
+import SignAlert from "../../pages/businesscard/sign-alert";
 import Loading from "../loading";
 
 interface Props {

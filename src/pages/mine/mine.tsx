@@ -38,7 +38,7 @@ interface State {
   dataList: any;
 }
 
-class Minepage extends Component<Props, State> {
+class Mine extends Component<Props, State> {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -210,4 +210,4 @@ class Minepage extends Component<Props, State> {
 //
 // #endregion
 
-export default Minepage;
+export default Mine;
