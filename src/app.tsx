@@ -5,6 +5,7 @@ import Index from './pages/businesscard/businesscard'
 import configStore from './store'
 import './app.scss'
 import {Global} from "../global";
+import {commonStyles} from "./utils/style";
 
 declare let global: Global;
 // 如果需要在 h5 环境中开启 React Devtools
@@ -80,7 +81,7 @@ class App extends Component {
     tabBar: {
       custom: false,
       color: "#9b9b9b",
-      selectedColor: "#34b0b0",
+      selectedColor: commonStyles.colorTheme,
       backgroundColor: "white",
       borderStyle: 'white',
       list: [{

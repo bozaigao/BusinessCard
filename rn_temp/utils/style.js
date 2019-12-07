@@ -258,7 +258,7 @@ export const commonStyles = {
   lightThemeColor: '#ecf5ff',
   // 粗体字
   fontWeight: 'bold',
-  colorTheme: 'rgb(90,174,175)',
+  colorTheme: '#313137',
   blueColor: '#2F8BE7',
   blueColorTwo: '#153971',
   deepBlueColor: '#4E95FF',

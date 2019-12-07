@@ -14,7 +14,7 @@ import React from 'react';
 import '@tarojs/async-await';
 import { Component } from "@tarojs/taro-rn";
 import { Provider } from "@tarojs/taro-redux-rn";
-import Index from "./pages/home/homepage";
+import Index from "./pages/businesscard/businesscard";
 import configStore from "./store/index";
 import app_weappStyleSheet from "./app.weapp_styles";
 // 如果需要在 h5 环境中开启 React Devtools

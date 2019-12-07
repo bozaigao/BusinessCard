@@ -40,7 +40,6 @@ class Customer extends Component<Props, State> {
     navigationBarTitleText: '首页',
     disableScroll: true
   }
-  private viewRef;
 
   constructor(props) {
     super(props);
@@ -66,9 +65,7 @@ class Customer extends Component<Props, State> {
   render() {
 
     return (
-      <CustomSafeAreaView ref={(ref) => {
-        this.viewRef = ref;
-      }}>
+      <CustomSafeAreaView>
         {/*以下组件代码没有抽离出单独的组件进行引用，只是简单的演示作用*/}
         {/*政策解读*/}
         <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 600 : 500), bgColor('blue')])}

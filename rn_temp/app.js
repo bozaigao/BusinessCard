@@ -4,16 +4,16 @@ import { Provider as TCRNProvider } from '@tarojs/components-rn';
 import TaroRouter from '@tarojs/taro-router-rn';
 import assetsIcoTabarMinePressedPng from '././assets/ico_tabar_mine_pressed.png';
 import assetsIcoTabarMineNormalPng from '././assets/ico_tabar_mine_normal.png';
-import assetsIcoTabarPrefecturePressedPng from '././assets/ico_tabar_prefecture_pressed.png';
-import assetsIcoTabarPrefectureNormalPng from '././assets/ico_tabar_prefecture_normal.png';
-import assetsIcoTabarClassPressedPng from '././assets/ico_tabar_class_pressed.png';
-import assetsIcoTabarClassNormalPng from '././assets/ico_tabar_class_normal.png';
-import assetsIcoTabarHomePressedPng from '././assets/ico_tabar_home_pressed.png';
-import assetsIcoTabarHomeNormalPng from '././assets/ico_tabar_home_normal.png';
-import pagesMineMinepage from './pages/mine/minepage';
-import pagesPrefecturePrefecturepage from './pages/prefecture/prefecturepage';
-import pagesClassClasspage from './pages/class/classpage';
-import pagesHomeHomepage from './pages/home/homepage';
+import assetsIcoTabarCustomerPressedPng from '././assets/ico_tabar_customer_pressed.png';
+import assetsIcoTabarCustomerNormalPng from '././assets/ico_tabar_customer_normal.png';
+import assetsIcoTabarRadarscanPressedPng from '././assets/ico_tabar_radarscan_pressed.png';
+import assetsIcoTabarRadarscanNormalPng from '././assets/ico_tabar_radarscan_normal.png';
+import assetsIcoTabarBusinesscardPressedPng from '././assets/ico_tabar_businesscard_pressed.png';
+import assetsIcoTabarBusinesscardNormalPng from '././assets/ico_tabar_businesscard_normal.png';
+import pagesMineMine from './pages/mine/mine';
+import pagesCustomerCustomer from './pages/customer/customer';
+import pagesRadarscanRadarscan from './pages/radarscan/radarscan';
+import pagesBusinesscardBusinesscard from './pages/businesscard/businesscard';
 import Taro from '@tarojs/taro-rn';
 import React from 'react';
 import '@tarojs/async-await';
@@ -22,6 +22,7 @@ import { Provider } from "@tarojs/taro-redux-rn";
 
 import configStore from "./store/index";
 import appStyleSheet from "./app_styles";
+import { commonStyles } from "./utils/style";
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -40,6 +41,7 @@ let App = (_temp = _class = class App extends Component {
      * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
      */
 
+    console.log('呵呵', global);
     global.debug = true;
     Taro.getSystemInfo({
       success: res => {
@@ -75,7 +77,7 @@ let App = (_temp = _class = class App extends Component {
   // 请勿修改此函数
   render() {
     return <Provider store={store}>
-
+                  
                 <TCRNProvider>
                   <RootStack />
                 </TCRNProvider>
@@ -101,29 +103,29 @@ let App = (_temp = _class = class App extends Component {
   tabBar: {
     custom: false,
     color: "#9b9b9b",
-    selectedColor: "#34b0b0",
+    selectedColor: commonStyles.colorTheme,
     backgroundColor: "white",
     borderStyle: 'white',
     list: [{
-      pagePath: "pages/businesscard/homepage",
-      iconPath: assetsIcoTabarHomeNormalPng,
-      selectedIconPath: assetsIcoTabarHomePressedPng,
+      pagePath: "pages/businesscard/businesscard",
+      iconPath: assetsIcoTabarBusinesscardNormalPng,
+      selectedIconPath: assetsIcoTabarBusinesscardPressedPng,
 
-      text: "首页"
+      text: "名片"
     }, {
-      pagePath: "pages/radarscan/classpage",
-      iconPath: assetsIcoTabarClassNormalPng,
-      selectedIconPath: assetsIcoTabarClassPressedPng,
+      pagePath: "pages/radarscan/radarscan",
+      iconPath: assetsIcoTabarRadarscanNormalPng,
+      selectedIconPath: assetsIcoTabarRadarscanPressedPng,
 
-      text: "云学术"
+      text: "雷达"
     }, {
-      pagePath: "pages/customer/prefecturepage",
-      iconPath: assetsIcoTabarPrefectureNormalPng,
-      selectedIconPath: assetsIcoTabarPrefecturePressedPng,
+      pagePath: "pages/customer/customer",
+      iconPath: assetsIcoTabarCustomerNormalPng,
+      selectedIconPath: assetsIcoTabarCustomerPressedPng,
 
-      text: "专区"
+      text: "客户"
     }, {
-      pagePath: "pages/mine/minepage",
+      pagePath: "pages/mine/mine",
       iconPath: assetsIcoTabarMineNormalPng,
       selectedIconPath: assetsIcoTabarMinePressedPng,
 
@@ -131,7 +133,7 @@ let App = (_temp = _class = class App extends Component {
     }]
   }
 }, _temp);
-const RootStack = TaroRouter.initRouter([['pages/businesscard/homepage', pagesHomeHomepage], ['pages/radarscan/classpage', pagesClassClasspage], ['pages/customer/prefecturepage', pagesPrefecturePrefecturepage], ['pages/mine/minepage', pagesMineMinepage]], Taro, App.config);
+const RootStack = TaroRouter.initRouter([['pages/businesscard/businesscard', pagesBusinesscardBusinesscard], ['pages/radarscan/radarscan', pagesRadarscanRadarscan], ['pages/customer/customer', pagesCustomerCustomer], ['pages/mine/mine', pagesMineMine]], Taro, App.config);
 Taro.initNativeApi(Taro);
 Taro.initPxTransform({
   "designWidth": 750,

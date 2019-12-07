@@ -8,18 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
-const index_1 = require("./home-search-top/index");
 //@ts-ignore
 const safe_area_view_1 = require("../../compoments/safe-area-view");
 //@ts-ignore
-const jifen_and_qiandao_1 = require("./jifen-and-qiandao");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/home");
-const index_2 = require("../../compoments/text/index");
-//@ts-ignore
-const react_native_swiper_fix_viewpager_1 = require("react-native-swiper-fix-viewpager");
+const business_card_1 = require("./business-card");
 let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -92,116 +88,16 @@ let Businesscard = class Businesscard extends taro_1.Component {
         console.log('componentWillUnmount');
     }
     render() {
-        let { signInPageDetail, bannerList } = this.state;
+        let { signInPageDetail } = this.state;
         if (typeof signInPageDetail.signInCount === 'undefined') {
             signInPageDetail.signInCount = 0;
         }
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-        
-        <index_1.default leftClick={() => {
-            taro_1.default.showToast({ title: '开发中' });
-        }} rightClick={() => {
-            taro_1.default.showToast({ title: '开发中' });
-        }}/>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? 600 : 500)])} scrollY>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(150)])}>
-            {
-        //这里针对rn端 swiper android底层需要依赖ViewPager,而不是android和iOS通用官方ScrollView，主要是解决
-        //android端在ScrollView里面包含Swiper时，由于外层捕捉到并消费用户的左右滑动事件会导致Swiper无法滑动
-        //详情请见：https://github.com/bozaigao/react-native-swiper-fix-viewpager
-        process.env.TARO_ENV === 'rn' ?
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(150)])}>
-                  <react_native_swiper_fix_viewpager_1.default loop showsPagination={false}>
-                    {bannerList.map((value, index) => {
-                return <components_1.Image key={index} mode='scaleToFill' src={value} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])}/>;
-            })}
-                  </react_native_swiper_fix_viewpager_1.default>
-                </components_1.View> :
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(150)])}>
-                  <components_1.Swiper style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(150)])} autoplay>
-                    {bannerList.map((value, index) => {
-                return <components_1.SwiperItem>
-                          <components_1.Image key={index} mode='scaleToFill' src={value} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])}/>
-                        </components_1.SwiperItem>;
-            })}
-                  </components_1.Swiper>
-                </components_1.View>}
-          </components_1.View>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? 600 : 500), style_1.default.uac])} scrollY>
           
-          <jifen_and_qiandao_1.default />
-          
-          
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.ml(5)])}>政策解读</components_1.Text>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.wRatio(100), style_1.h(180)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(50), style_1.hRatio(100), style_1.pa(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80)])} mode={'scaleToFill'} src={'https://gzol.oss-cn-qingdao.aliyuncs.com/20190828104641.png'}/>
-                <index_2.default customStyle={datatool_1.styleAssign([style_1.fSize(15), style_1.mt(5), {
-                overflow: 'hidden',
-            }])} numberOfLines={1}>快速室性心律失律失常的</index_2.default>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.wRatio(100), style_1.default.ujb, style_1.mt(5)])}>
-                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.h(9), style_1.w(9)])} src={require('../../assets/ico_homepage_eye_gray.png')}/>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.textGrayColor), style_1.fSize(12), style_1.ml(2)])}>8200浏览</components_1.Text>
-                  </components_1.View>
-                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.h(9), style_1.w(9)])} src={require('../../assets/ico_homepage_comment_gray.png')}/>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.textGrayColor), style_1.fSize(12), style_1.ml(2)])}>1023条发言</components_1.Text>
-                  </components_1.View>
-                </components_1.View>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(50), style_1.hRatio(100), style_1.pa(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80)])} mode={'scaleToFill'} src={'https://gzol.oss-cn-qingdao.aliyuncs.com/20190828104714.png'}/>
-                <index_2.default customStyle={datatool_1.styleAssign([style_1.fSize(15), style_1.mt(5), {
-                overflow: 'hidden'
-            }])} numberOfLines={1}>医药领域专业人才和专业人才和</index_2.default>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.wRatio(100), style_1.default.ujb, style_1.mt(5)])}>
-                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.h(9), style_1.w(9)])} src={require('../../assets/ico_homepage_eye_gray.png')}/>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.textGrayColor), style_1.fSize(12), style_1.ml(2)])}>8200浏览</components_1.Text>
-                  </components_1.View>
-                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.h(9), style_1.w(9)])} src={require('../../assets/ico_homepage_comment_gray.png')}/>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.textGrayColor), style_1.fSize(12), style_1.ml(2)])}>1023条发言</components_1.Text>
-                  </components_1.View>
-                </components_1.View>
-              </components_1.View>
-            </components_1.View>
-          </components_1.View>
-          
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.ml(5)])}>健康生活</components_1.Text>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.wRatio(100), style_1.h(140)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(50), style_1.hRatio(100), style_1.pa(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} src={'https://gzol.oss-cn-qingdao.aliyuncs.com/20190926141414.png'}/>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.mt(5)])}>二级页</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(50), style_1.hRatio(100), style_1.pa(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} src={'https://gzol.oss-cn-qingdao.aliyuncs.com/20190926141351.png'}/>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.mt(5)])}>课程</components_1.Text>
-              </components_1.View>
-            </components_1.View>
-          </components_1.View>
-          
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.ml(5)])}>大家都在看</components_1.Text>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.wRatio(100), style_1.h(120)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(50), style_1.hRatio(100), style_1.pa(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} src={'https://gzol.oss-cn-qingdao.aliyuncs.com/20190926142858.png'}/>
-              </components_1.View>
-            </components_1.View>
-          </components_1.View>
+          <business_card_1.default />
         </components_1.ScrollView>
       </safe_area_view_1.default>);
     }

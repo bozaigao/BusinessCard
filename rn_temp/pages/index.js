@@ -2,10 +2,10 @@ var _class, _temp;
 
 import React from 'react';
 import { Component } from "@tarojs/taro-rn";
-import Homepage from "./home/homepage";
-import Classpage from "./class/classpage";
-import Prefecturepage from "./prefecture/prefecturepage";
-import Minepage from "./mine/minepage";
+import Businesscard from "./businesscard/businesscard";
+import Radarscan from "./radarscan/radarscan";
+import Customer from "./customer/customer";
+import Mine from "./mine/mine";
 import CustomTabBar from "../custom-tab-bar/index";
 import { View } from "@tarojs/components-rn";
 import { styleAssign } from "../utils/datatool";
@@ -29,13 +29,13 @@ let Index = (_temp = _class = class Index extends Component {
     let { currentIndex } = this.state;
     let childShowView;
     if (currentIndex === 0) {
-      childShowView = <Homepage />;
+      childShowView = <Businesscard />;
     } else if (currentIndex === 1) {
-      childShowView = <Classpage />;
+      childShowView = <Radarscan />;
     } else if (currentIndex === 2) {
-      childShowView = <Prefecturepage />;
+      childShowView = <Customer />;
     } else if (currentIndex === 3) {
-      childShowView = <Minepage />;
+      childShowView = <Mine />;
     }
     return <View style={styleAssign([wRatio(100), hRatio(100)])}>
         {childShowView}

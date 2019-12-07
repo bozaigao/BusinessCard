@@ -1,8 +1,8 @@
 {
-  "name": "YaoRenDangGui_Taro",
+  "name": "BuseinessCard_Taro",
   "version": "1.0.0",
   "private": true,
-  "description": "YaoRenDangGui_Taro",
+  "description": "BuseinessCard_Taro",
   "templateInfo": {
     "name": "redux",
     "typescript": true,
