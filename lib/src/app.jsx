@@ -6,6 +6,7 @@ const redux_1 = require("@tarojs/redux");
 const businesscard_1 = require("./pages/businesscard/businesscard");
 const store_1 = require("./store");
 require("./app.scss");
+const style_1 = require("./utils/style");
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -39,7 +40,7 @@ class App extends taro_1.Component {
             tabBar: {
                 custom: false,
                 color: "#9b9b9b",
-                selectedColor: "#34b0b0",
+                selectedColor: style_1.commonStyles.colorTheme,
                 backgroundColor: "white",
                 borderStyle: 'white',
                 list: [{

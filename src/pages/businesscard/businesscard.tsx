@@ -9,6 +9,7 @@ import {bgColor, commonStyles, default as styles, h, iphoneX, wRatio} from "../.
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import Card from "./business-card";
+import PersonalInfo from "./personal-info";
 
 //@ts-ignore
 
@@ -122,10 +123,13 @@ class Businesscard extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-        <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 600 : 500), styles.uac])}
-                    scrollY>
+        <ScrollView
+          style={styleAssign([wRatio(100), h(iphoneX() ? 640 : 550), styles.uac])}
+          scrollY>
           {/*个人名片*/}
           <Card/>
+          {/*我的个人简介*/}
+          <PersonalInfo/>
         </ScrollView>
       </CustomSafeAreaView>
     )
