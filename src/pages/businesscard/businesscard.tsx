@@ -1,30 +1,18 @@
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {ScrollView} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {SignInPage} from "../../../global";
-import {
-  bgColor,
-  color,
-  commonStyles,
-  default as styles,
-  fSize,
-  h,
-  iphoneX,
-  ml,
-  mt,
-  pa, radiusA,
-  w,
-  wRatio
-} from "../../utils/style";
+import {bgColor, commonStyles, default as styles, h, iphoneX, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import Card from "./business-card";
 import PersonalInfo from "./personal-info";
 import MyPerson from "./my-person";
 import MyGoods from "./my-goods";
+import JiZhiCard from "./jizhi-card";
 
 //@ts-ignore
 
@@ -149,6 +137,8 @@ class Businesscard extends Component<Props, State> {
           <MyPerson/>
           {/*我的商品*/}
           <MyGoods/>
+          {/*极致名片*/}
+          <JiZhiCard/>
         </ScrollView>
       </CustomSafeAreaView>
     )
