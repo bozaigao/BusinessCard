@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("@tarojs/async-await");
 const taro_1 = require("@tarojs/taro");
 const redux_1 = require("@tarojs/redux");
-const homepage_1 = require("./pages/home/homepage");
+const businesscard_1 = require("./pages/businesscard/businesscard");
 const store_1 = require("./store");
 require("./app.scss");
 // 如果需要在 h5 环境中开启 React Devtools
@@ -24,10 +24,10 @@ class App extends taro_1.Component {
          */
         this.config = {
             pages: [
-                "pages/home/homepage",
-                "pages/class/classpage",
-                "pages/prefecture/prefecturepage",
-                "pages/mine/minepage",
+                "pages/businesscard/businesscard",
+                "pages/radarscan/radarscan",
+                "pages/customer/customer",
+                "pages/mine/mine",
             ],
             window: {
                 backgroundTextStyle: 'light',
@@ -43,22 +43,22 @@ class App extends taro_1.Component {
                 backgroundColor: "white",
                 borderStyle: 'white',
                 list: [{
-                        pagePath: "pages/home/homepage",
+                        pagePath: "pages/businesscard/businesscard",
                         iconPath: "./assets/ico_tabar_home_normal.png",
                         selectedIconPath: "./assets/ico_tabar_home_pressed.png",
-                        text: "首页",
+                        text: "名片",
                     }, {
-                        pagePath: "pages/class/classpage",
+                        pagePath: "pages/radarscan/radarscan",
                         iconPath: "./assets/ico_tabar_class_normal.png",
                         selectedIconPath: "./assets/ico_tabar_class_pressed.png",
-                        text: "云学术",
+                        text: "雷达",
                     }, {
-                        pagePath: "pages/prefecture/prefecturepage",
+                        pagePath: "pages/customer/customer",
                         iconPath: "./assets/ico_tabar_prefecture_normal.png",
                         selectedIconPath: "./assets/ico_tabar_prefecture_pressed.png",
-                        text: "专区",
+                        text: "客户",
                     }, {
-                        pagePath: "pages/mine/minepage",
+                        pagePath: "pages/mine/mine",
                         iconPath: "./assets/ico_tabar_mine_normal.png",
                         selectedIconPath: "./assets/ico_tabar_mine_pressed.png",
                         text: "我的",
@@ -112,7 +112,7 @@ class App extends taro_1.Component {
     // 请勿修改此函数
     render() {
         return (<redux_1.Provider store={store}>
-        <homepage_1.default />
+        <businesscard_1.default />
       </redux_1.Provider>);
     }
 }

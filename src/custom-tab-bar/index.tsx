@@ -4,17 +4,17 @@ import {styleAssign} from "../utils/datatool";
 import TouchableButton from "../compoments/touchable-button";
 import {SignInPage} from "../../global";
 //@ts-ignore
-import iconTabarHomeNormal from '../assets/ico_tabar_home_normal.png';
+import iconBusinesscardNormal from '../assets/ico_tabar_businesscard_normal.png';
 //@ts-ignore
-import iconTabarHomePressed from '../assets/ico_tabar_home_pressed.png';
+import iconBusinesscardPressed from '../assets/ico_tabar_businesscard_pressed.png';
 //@ts-ignore
-import iconTabarClassNormal from '../assets/ico_tabar_class_normal.png';
+import iconTabarradarscanNormal from '../assets/ico_tabar_radarscan_normal.png';
 //@ts-ignore
-import iconTabarClassPressed from '../assets/ico_tabar_class_pressed.png';
+import iconTabarRadarscanPressed from '../assets/ico_tabar_radarscan_pressed.png';
 //@ts-ignore
-import iconTabarPrefectureNormal from '../assets/ico_tabar_prefecture_normal.png';
+import iconTabarCustomerNormal from '../assets/ico_tabar_customer_normal.png';
 //@ts-ignore
-import iconTabarPrefecturePressed from '../assets/ico_tabar_prefecture_pressed.png';
+import iconTabarCustomerPressed from '../assets/ico_tabar_customer_pressed.png';
 //@ts-ignore
 import iconTabarMineNormal from '../assets/ico_tabar_mine_normal.png';
 //@ts-ignore
@@ -103,9 +103,9 @@ export default class CustomTabBar extends Component<Props, State> {
             this.setState({currentIndex: 0});
           }}>
           <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 0 ? iconTabarHomePressed : iconTabarHomeNormal}
+            <Image src={currentIndex === 0 ? iconBusinesscardPressed : iconBusinesscardNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 0 ? '#34b0b0' : '#9b9b9b')])}>名片</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 0 ? commonStyles.colorTheme : '#9b9b9b')])}>名片</Text>
           </View>
         </TouchableButton>
         <TouchableButton
@@ -117,9 +117,9 @@ export default class CustomTabBar extends Component<Props, State> {
             this.setState({currentIndex: 1});
           }}>
           <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 1 ? iconTabarClassPressed : iconTabarClassNormal}
+            <Image src={currentIndex === 1 ? iconTabarRadarscanPressed : iconTabarradarscanNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 1 ? '#34b0b0' : '#9b9b9b')])}>雷达</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 1 ? commonStyles.colorTheme : '#9b9b9b')])}>雷达</Text>
           </View>
         </TouchableButton>
         <TouchableButton
@@ -131,9 +131,9 @@ export default class CustomTabBar extends Component<Props, State> {
             this.setState({currentIndex: 2});
           }}>
           <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 2 ? iconTabarPrefecturePressed : iconTabarPrefectureNormal}
+            <Image src={currentIndex === 2 ? iconTabarCustomerPressed : iconTabarCustomerNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 2 ? '#34b0b0' : '#9b9b9b')])}>客户</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 2 ? commonStyles.colorTheme : '#9b9b9b')])}>客户</Text>
           </View>
         </TouchableButton>
         <TouchableButton
@@ -147,7 +147,7 @@ export default class CustomTabBar extends Component<Props, State> {
           <View style={styleAssign([styles.uac])}>
             <Image src={currentIndex === 3 ? iconTabarMinePressed : iconTabarMineNormal}
                    style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 3 ? '#34b0b0' : '#9b9b9b')])}>我的</Text>
+            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 3 ? commonStyles.colorTheme : '#9b9b9b')])}>我的</Text>
           </View>
         </TouchableButton>
       </View>

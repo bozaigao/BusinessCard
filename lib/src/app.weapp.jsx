@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("@tarojs/async-await");
 const taro_1 = require("@tarojs/taro");
 const redux_1 = require("@tarojs/redux");
-const homepage_1 = require("./pages/home/homepage");
+const businesscard_1 = require("./pages/businesscard/businesscard");
 const store_1 = require("./store");
 require("./app.scss");
 // 如果需要在 h5 环境中开启 React Devtools
@@ -88,7 +88,7 @@ class App extends taro_1.Component {
     // 请勿修改此函数
     render() {
         return (<redux_1.Provider store={store}>
-        <homepage_1.default />
+        <businesscard_1.default />
       </redux_1.Provider>);
     }
 }

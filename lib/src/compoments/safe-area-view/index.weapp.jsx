@@ -4,7 +4,7 @@ const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
-const sign_alert_1 = require("../../pages/home/sign-alert");
+const sign_alert_1 = require("../../pages/businesscard/sign-alert");
 const loading_1 = require("../loading");
 class CustomSafeAreaView extends taro_1.Component {
     constructor(props) {

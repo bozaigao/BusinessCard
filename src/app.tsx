@@ -85,18 +85,18 @@ class App extends Component {
       borderStyle: 'white',
       list: [{
         pagePath: "pages/businesscard/businesscard",
-        iconPath: "./assets/ico_tabar_home_normal.png",
-        selectedIconPath: "./assets/ico_tabar_home_pressed.png",
+        iconPath: "./assets/ico_tabar_businesscard_normal.png",
+        selectedIconPath: "./assets/ico_tabar_businesscard_pressed.png",
         text: "名片",
       }, {
         pagePath: "pages/radarscan/radarscan",
-        iconPath: "./assets/ico_tabar_class_normal.png",
-        selectedIconPath: "./assets/ico_tabar_class_pressed.png",
+        iconPath: "./assets/ico_tabar_radarscan_normal.png",
+        selectedIconPath: "./assets/ico_tabar_radarscan_pressed.png",
         text: "雷达",
       }, {
         pagePath: "pages/customer/customer",
-        iconPath: "./assets/ico_tabar_prefecture_normal.png",
-        selectedIconPath: "./assets/ico_tabar_prefecture_pressed.png",
+        iconPath: "./assets/ico_tabar_customer_normal.png",
+        selectedIconPath: "./assets/ico_tabar_customer_pressed.png",
         text: "客户",
       }, {
         pagePath: "pages/mine/mine",

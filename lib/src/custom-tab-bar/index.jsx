@@ -65,35 +65,35 @@ class CustomTabBar extends taro_1.Component {
         ])}>
         <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
-            console.log('首页');
+            console.log('名片');
             onPress(0);
             this.setState({ currentIndex: 0 });
         }}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
             <components_1.Image src={currentIndex === 0 ? ico_tabar_home_pressed_png_1.default : ico_tabar_home_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 0 ? '#34b0b0' : '#9b9b9b')])}>首页</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 0 ? '#34b0b0' : '#9b9b9b')])}>名片</components_1.Text>
           </components_1.View>
         </touchable_button_1.default>
         <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
-            console.log('课程');
+            console.log('雷达');
             onPress(1);
             this.setState({ currentIndex: 1 });
         }}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
             <components_1.Image src={currentIndex === 1 ? ico_tabar_class_pressed_png_1.default : ico_tabar_class_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 1 ? '#34b0b0' : '#9b9b9b')])}>云学术</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 1 ? '#34b0b0' : '#9b9b9b')])}>雷达</components_1.Text>
           </components_1.View>
         </touchable_button_1.default>
         <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
-            console.log('专区');
+            console.log('客户');
             onPress(2);
             this.setState({ currentIndex: 2 });
         }}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
             <components_1.Image src={currentIndex === 2 ? ico_tabar_prefecture_pressed_png_1.default : ico_tabar_prefecture_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 2 ? '#34b0b0' : '#9b9b9b')])}>专区</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 2 ? '#34b0b0' : '#9b9b9b')])}>客户</components_1.Text>
           </components_1.View>
         </touchable_button_1.default>
         <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,

@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const taro_1 = require("@tarojs/taro");
-const homepage_1 = require("./home/homepage");
-const classpage_1 = require("./class/classpage");
-const prefecturepage_1 = require("./prefecture/prefecturepage");
-const minepage_1 = require("./mine/minepage");
+const businesscard_1 = require("./businesscard/businesscard");
+const radarscan_1 = require("./radarscan/radarscan");
+const customer_1 = require("./customer/customer");
+const mine_1 = require("./mine/mine");
 const custom_tab_bar_1 = require("../custom-tab-bar");
 const components_1 = require("@tarojs/components");
 const datatool_1 = require("../utils/datatool");
@@ -31,16 +31,16 @@ class Index extends taro_1.Component {
         let { currentIndex } = this.state;
         let childShowView;
         if (currentIndex === 0) {
-            childShowView = <homepage_1.default />;
+            childShowView = <businesscard_1.default />;
         }
         else if (currentIndex === 1) {
-            childShowView = <classpage_1.default />;
+            childShowView = <radarscan_1.default />;
         }
         else if (currentIndex === 2) {
-            childShowView = <prefecturepage_1.default />;
+            childShowView = <customer_1.default />;
         }
         else if (currentIndex === 3) {
-            childShowView = <minepage_1.default />;
+            childShowView = <mine_1.default />;
         }
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])}>
         {childShowView}
