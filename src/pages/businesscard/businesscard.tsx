@@ -1,11 +1,22 @@
 import Taro, {Component, Config} from '@tarojs/taro'
-import {ScrollView} from "@tarojs/components";
+import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {SignInPage} from "../../../global";
-import {bgColor, commonStyles, default as styles, h, screenHeight, wRatio} from "../../utils/style";
+import {
+  bgColor,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h, ml, mr,
+  mt, radiusA,
+  screenHeight,
+  w,
+  wRatio
+} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import Card from "./business-card";
@@ -140,12 +151,31 @@ class Businesscard extends Component<Props, State> {
           <MyPerson/>
           {/*我的商品*/}
           <MyGoods/>
-          {/*极致名片*/}
-          <JiZhiCard/>
           {/*我的企业*/}
           <MyBusiness/>
           {/*我的照片*/}
           <MyPhoto/>
+          {/*极致名片*/}
+          <JiZhiCard/>
+          {/*slogan*/}
+          <View style={styleAssign([wRatio(100), styles.ujc, styles.uac, mt(74)])}>
+            <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
+          </View>
+          {/*关注公众号*/}
+          <View
+            style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(57), bgColor(commonStyles.whiteColor)])}>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
+                     src={require('../../assets/ico_default.jpeg')}/>
+              <View style={styleAssign([ml(5)])}>
+                <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>关注极致信息公众号</Text>
+                <Text style={styleAssign([fSize(12), color('#D2D2D2')])}>最新资讯、升级更新早知道！</Text>
+              </View>
+            </View>
+            <View style={styleAssign([styles.uac, styles.ujc, bgColor('#FAF1E5'), w(76), h(27), radiusA(30), mr(11)])}>
+              <Text style={styleAssign([color('#825D22'), fSize(14)])}>马上关注</Text>
+            </View>
+          </View>
         </ScrollView>
       </CustomSafeAreaView>
     )
