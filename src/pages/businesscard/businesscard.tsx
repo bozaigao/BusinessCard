@@ -1,3 +1,10 @@
+/**
+ * @filename businesscard.tsx
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/8
+ * @Description: 名片首页
+*/
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore

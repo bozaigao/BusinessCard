@@ -1,8 +1,16 @@
+/**
+ * @filename radarscan.tsx
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/8
+ * @Description: 雷达
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {ScrollView, View} from '@tarojs/components'
+import {ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
-import styles, {h, iphoneX, wRatio} from "../../utils/style";
+import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, w, wRatio} from "../../utils/style";
+import RadarItem from "./radar-item";
 // #region 书写注意
 //
 // 目前 typescript 版本还无法在装饰器模式下将 Props 注入到 Taro.Component 中的 props 属性
@@ -54,13 +62,38 @@ class Radarscan extends Component<Props, State> {
   render() {
 
     return (
-      <CustomSafeAreaView>
-        <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 640 : 560)])}
-                    scrollY>
-          <View style={styleAssign([styles.uf1])}>
-
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+        <View style={styleAssign([styles.uf1])}>
+          {/*雷达、访客切换*/}
+          <View style={styleAssign([wRatio(100), h(85), styles.uac])}>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <View style={styleAssign([styles.uac])}>
+                <Text style={styleAssign([fSize(18)])}>雷达</Text>
+                <View style={styleAssign([mt(5), w(25), h(2), bgColor(commonStyles.transparent)])}/>
+              </View>
+              <View style={styleAssign([styles.uac, ml(23)])}>
+                <Text style={styleAssign([fSize(18), color('#0F56C5')])}>访客</Text>
+                <View style={styleAssign([mt(5), w(25), h(2), bgColor('#0F56C5')])}/>
+              </View>
+            </View>
+            {/*雷达、访客条件筛选*/}
+            <View style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mt(10)])}>
+              <Text style={styleAssign([fSize(14), color('#787878'), ml(20)])}>共3位访客</Text>
+              <Text style={styleAssign([fSize(14), color('#787878')])}>新增访客（2）</Text>
+              <Text style={styleAssign([fSize(14), color('#787878'), mr(20)])}>筛选</Text>
+            </View>
           </View>
-        </ScrollView>
+          <ScrollView
+            style={styleAssign([wRatio(100), h(550), styles.uac])}
+            scrollY>
+            {
+              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+                console.log(value);
+                return (<RadarItem key={index}/>);
+              })
+            }
+          </ScrollView>
+        </View>
       </CustomSafeAreaView>
     )
   }
