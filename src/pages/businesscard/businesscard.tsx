@@ -5,7 +5,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {SignInPage} from "../../../global";
-import {bgColor, commonStyles, default as styles, h, iphoneX, wRatio} from "../../utils/style";
+import {bgColor, commonStyles, default as styles, h, screenHeight, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import Card from "./business-card";
@@ -13,6 +13,7 @@ import PersonalInfo from "./personal-info";
 import MyPerson from "./my-person";
 import MyGoods from "./my-goods";
 import JiZhiCard from "./jizhi-card";
+import MyBusiness from "./my-business";
 
 //@ts-ignore
 
@@ -115,6 +116,7 @@ class Businesscard extends Component<Props, State> {
 
 
   render() {
+    console.log(screenHeight());
 
     let {signInPageDetail} = this.state;
 
@@ -127,7 +129,7 @@ class Businesscard extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
         <ScrollView
-          style={styleAssign([wRatio(100), h(iphoneX() ? 635 : 550), styles.uac])}
+          style={styleAssign([wRatio(100), h(635), styles.uac])}
           scrollY>
           {/*个人名片*/}
           <Card/>
@@ -139,6 +141,8 @@ class Businesscard extends Component<Props, State> {
           <MyGoods/>
           {/*极致名片*/}
           <JiZhiCard/>
+          {/*我的企业*/}
+          <MyBusiness/>
         </ScrollView>
       </CustomSafeAreaView>
     )

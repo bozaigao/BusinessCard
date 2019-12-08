@@ -45,7 +45,7 @@ export default class JiZhiCard extends PureComponent<Props, State> {
             console.log(value);
             return (<View style={styleAssign([wRatio(100)])} key={index}>
               <View
-                style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(200), bgColor(commonStyles.whiteColor),])}>
+                style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(200), bgColor(commonStyles.whiteColor)])}>
                 <View style={styleAssign([styles.udr, styles.ujb, pa(16)])}>
                   <View style={styleAssign([])}>
                     <Text style={styleAssign([fSize(18), color(commonStyles.colorTheme)])}>尹龙海</Text>

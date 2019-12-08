@@ -1,6 +1,6 @@
 import {pxTransform} from "@tarojs/taro";
 
-let defaultPixel = 2;//iphone6的像素密度
+export let defaultPixel = 2;//iphone6的像素密度
 
 /**
  * @author 何晏波
