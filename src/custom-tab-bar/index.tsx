@@ -21,13 +21,14 @@ import iconTabarMineNormal from '../assets/ico_tabar_mine_normal.png';
 import iconTabarMinePressed from '../assets/ico_tabar_mine_pressed.png';
 import {
   absB,
-  absL, bdColor,
+  absL,
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio,
+  h,
+  hRatio,
   iphoneX,
   mt,
   pb,

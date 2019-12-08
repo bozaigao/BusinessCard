@@ -12,16 +12,6 @@ import {styleAssign} from "../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, w, wRatio} from "../../utils/style";
 import RadarItem from "./radar-item";
 import TopHeader from "../../compoments/top-header";
-// #region 书写注意
-//
-// 目前 typescript 版本还无法在装饰器模式下将 Props 注入到 Taro.Component 中的 props 属性
-// 需要显示声明 connect 的参数类型并通过 interface 的方式指定 Taro.Component 子类的 props
-// 这样才能完成类型检查和 IDE 的自动提示
-// 使用函数模式则无此限制
-// ref: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20796
-//
-// #endregion
-
 
 interface Props {
 }
@@ -65,7 +55,7 @@ class Radarscan extends Component<Props, State> {
     return (
       <CustomSafeAreaView
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader/>
+        <TopHeader title={'雷达'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           {/*雷达、访客切换*/}
           <View style={styleAssign([wRatio(100), h(85), styles.uac, bgColor(commonStyles.whiteColor)])}>
@@ -87,7 +77,7 @@ class Radarscan extends Component<Props, State> {
             </View>
           </View>
           <ScrollView
-            style={styleAssign([wRatio(100), h(536), styles.uac])}
+            style={styleAssign([wRatio(100), h(541), styles.uac])}
             scrollY>
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
@@ -101,12 +91,5 @@ class Radarscan extends Component<Props, State> {
     )
   }
 }
-
-// #region 导出注意
-//
-// 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性
-// 这样在使用这个子类时 Ts 才不会提示缺少 JSX 类型参数错误
-//
-// #endregion
 
 export default Radarscan;

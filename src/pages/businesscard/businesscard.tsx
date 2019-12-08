@@ -4,7 +4,7 @@
  * @QQ 1054539528
  * @date 2019/12/8
  * @Description: 名片首页
-*/
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
@@ -33,8 +33,6 @@ import MyGoods from "./my-goods";
 import JiZhiCard from "./jizhi-card";
 import MyBusiness from "./my-business";
 import MyPhoto from "./my-photo";
-
-//@ts-ignore
 
 interface Props {
   dispatchLogin?: any;
@@ -146,9 +144,18 @@ class Businesscard extends Component<Props, State> {
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
-      }} customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        <View
+          style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
+          <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_switch.png')}/>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <Text style={styleAssign([fSize(19)])}>名片</Text>
+            <Image style={styleAssign([w(18), h(18), ml(5)])} src={require('../../assets/ico_down.png')}/>
+          </View>
+          <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+        </View>
         <ScrollView
-          style={styleAssign([wRatio(100), h(665), styles.uac])}
+          style={styleAssign([wRatio(100), h(670), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <Card/>
@@ -188,12 +195,5 @@ class Businesscard extends Component<Props, State> {
     )
   }
 }
-
-// #region 导出注意
-//
-// 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性
-// 这样在使用这个子类时 Ts 才不会提示缺少 JSX 类型参数错误
-//
-// #endregion
 
 export default Businesscard;
