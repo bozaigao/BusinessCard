@@ -21,13 +21,13 @@ import iconTabarMineNormal from '../assets/ico_tabar_mine_normal.png';
 import iconTabarMinePressed from '../assets/ico_tabar_mine_pressed.png';
 import {
   absB,
-  absL,
+  absL, bdColor,
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, hRatio,
   iphoneX,
   mt,
   pb,
@@ -84,72 +84,78 @@ export default class CustomTabBar extends Component<Props, State> {
     return (
       <View style={styleAssign([
         wRatio(100),
-        styles.udr,
         styles.upa,
         absL(0),
         absB(0),
-        h(iphoneX() ? 94 : 60),
+        h(iphoneX() ? 96 : 62),
         styles.uac,
         styles.uac,
         pb(iphoneX() ? 34 : 0),
-        bgColor(commonStyles.whiteColor)
+        bgColor(commonStyles.whiteColor),
       ])}>
-        <TouchableButton
-          customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
-            bgColor(commonStyles.whiteColor)])}
-          onClick={() => {
-            console.log('名片')
-            onPress(0);
-            this.setState({currentIndex: 0});
-          }}>
-          <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 0 ? iconBusinesscardPressed : iconBusinesscardNormal}
-                   style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 0 ? commonStyles.colorTheme : '#9b9b9b')])}>名片</Text>
-          </View>
-        </TouchableButton>
-        <TouchableButton
-          customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
-            bgColor(commonStyles.whiteColor)])}
-          onClick={() => {
-            console.log('雷达')
-            onPress(1);
-            this.setState({currentIndex: 1});
-          }}>
-          <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 1 ? iconTabarRadarscanPressed : iconTabarradarscanNormal}
-                   style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 1 ? commonStyles.colorTheme : '#9b9b9b')])}>雷达</Text>
-          </View>
-        </TouchableButton>
-        <TouchableButton
-          customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
-            bgColor(commonStyles.whiteColor)])}
-          onClick={() => {
-            console.log('客户')
-            onPress(2);
-            this.setState({currentIndex: 2});
-          }}>
-          <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 2 ? iconTabarCustomerPressed : iconTabarCustomerNormal}
-                   style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 2 ? commonStyles.colorTheme : '#9b9b9b')])}>客户</Text>
-          </View>
-        </TouchableButton>
-        <TouchableButton
-          customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
-            bgColor(commonStyles.whiteColor)])}
-          onClick={() => {
-            console.log('我的')
-            onPress(3);
-            this.setState({currentIndex: 3});
-          }}>
-          <View style={styleAssign([styles.uac])}>
-            <Image src={currentIndex === 3 ? iconTabarMinePressed : iconTabarMineNormal}
-                   style={styleAssign([w(22), h(22), mt(4)])}/>
-            <Text style={styleAssign([fSize(12), mt(2), color(currentIndex === 3 ? commonStyles.colorTheme : '#9b9b9b')])}>我的</Text>
-          </View>
-        </TouchableButton>
+        <View style={styleAssign([wRatio(100), h(2), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+        <View style={styleAssign([wRatio(100), hRatio(100), styles.udr])}>
+          <TouchableButton
+            customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
+              bgColor(commonStyles.whiteColor)])}
+            onClick={() => {
+              console.log('名片')
+              onPress(0);
+              this.setState({currentIndex: 0});
+            }}>
+            <View style={styleAssign([styles.uac])}>
+              <Image src={currentIndex === 0 ? iconBusinesscardPressed : iconBusinesscardNormal}
+                     style={styleAssign([w(22), h(22), mt(4)])}/>
+              <Text
+                style={styleAssign([fSize(12), mt(2), color(currentIndex === 0 ? commonStyles.colorTheme : '#9b9b9b')])}>名片</Text>
+            </View>
+          </TouchableButton>
+          <TouchableButton
+            customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
+              bgColor(commonStyles.whiteColor)])}
+            onClick={() => {
+              console.log('雷达')
+              onPress(1);
+              this.setState({currentIndex: 1});
+            }}>
+            <View style={styleAssign([styles.uac])}>
+              <Image src={currentIndex === 1 ? iconTabarRadarscanPressed : iconTabarradarscanNormal}
+                     style={styleAssign([w(22), h(22), mt(4)])}/>
+              <Text
+                style={styleAssign([fSize(12), mt(2), color(currentIndex === 1 ? commonStyles.colorTheme : '#9b9b9b')])}>雷达</Text>
+            </View>
+          </TouchableButton>
+          <TouchableButton
+            customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
+              bgColor(commonStyles.whiteColor)])}
+            onClick={() => {
+              console.log('客户')
+              onPress(2);
+              this.setState({currentIndex: 2});
+            }}>
+            <View style={styleAssign([styles.uac])}>
+              <Image src={currentIndex === 2 ? iconTabarCustomerPressed : iconTabarCustomerNormal}
+                     style={styleAssign([w(22), h(22), mt(4)])}/>
+              <Text
+                style={styleAssign([fSize(12), mt(2), color(currentIndex === 2 ? commonStyles.colorTheme : '#9b9b9b')])}>客户</Text>
+            </View>
+          </TouchableButton>
+          <TouchableButton
+            customStyle={styleAssign([w(95), h(60), styles.uac, styles.ujc,
+              bgColor(commonStyles.whiteColor)])}
+            onClick={() => {
+              console.log('我的')
+              onPress(3);
+              this.setState({currentIndex: 3});
+            }}>
+            <View style={styleAssign([styles.uac])}>
+              <Image src={currentIndex === 3 ? iconTabarMinePressed : iconTabarMineNormal}
+                     style={styleAssign([w(22), h(22), mt(4)])}/>
+              <Text
+                style={styleAssign([fSize(12), mt(2), color(currentIndex === 3 ? commonStyles.colorTheme : '#9b9b9b')])}>我的</Text>
+            </View>
+          </TouchableButton>
+        </View>
       </View>
     )
   }

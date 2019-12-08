@@ -8,6 +8,7 @@ interface Props {
   customStyle?: any;
   children?: any;
   notNeedSafe?: boolean;
+  topMarginZero?: boolean;
 }
 
 interface State {

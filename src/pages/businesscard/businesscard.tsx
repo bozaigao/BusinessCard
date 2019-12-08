@@ -148,7 +148,7 @@ class Businesscard extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
         <ScrollView
-          style={styleAssign([wRatio(100), h(635), styles.uac])}
+          style={styleAssign([wRatio(100), h(665), styles.uac])}
           scrollY>
           {/*个人名片*/}
           <Card/>

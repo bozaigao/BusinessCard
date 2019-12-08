@@ -8,6 +8,7 @@ interface Props {
   customStyle?: any;
   children?: any;
   notNeedSafe?: boolean;
+  topMarginZero?: boolean;
 }
 
 interface State {
@@ -31,9 +32,9 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   componentWillMount() {
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
-      this.setState({paddingTop: 78, paddingBottom: 94});
+      this.setState({paddingTop: 50, paddingBottom: 94});
     } else {
-      this.setState({paddingTop: 55,paddingBottom: 64});
+      this.setState({paddingTop: 25, paddingBottom: 64});
     }
 
   }

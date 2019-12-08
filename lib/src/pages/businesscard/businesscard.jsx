@@ -6,6 +6,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @filename businesscard.tsx
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/8
+ * @Description: 名片首页
+*/
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 //@ts-ignore
@@ -16,6 +23,12 @@ const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/home");
 const business_card_1 = require("./business-card");
+const personal_info_1 = require("./personal-info");
+const my_person_1 = require("./my-person");
+const my_goods_1 = require("./my-goods");
+const jizhi_card_1 = require("./jizhi-card");
+const my_business_1 = require("./my-business");
+const my_photo_1 = require("./my-photo");
 let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -88,6 +101,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
         console.log('componentWillUnmount');
     }
     render() {
+        console.log(style_1.screenHeight());
         let { signInPageDetail } = this.state;
         if (typeof signInPageDetail.signInCount === 'undefined') {
             signInPageDetail.signInCount = 0;
@@ -95,9 +109,38 @@ let Businesscard = class Businesscard extends taro_1.Component {
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? 600 : 500), style_1.default.uac])} scrollY>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(635), style_1.default.uac])} scrollY>
           
           <business_card_1.default />
+          
+          <personal_info_1.default />
+          
+          <my_person_1.default />
+          
+          <my_goods_1.default />
+          
+          <my_business_1.default />
+          
+          <my_photo_1.default />
+          
+          <jizhi_card_1.default />
+          
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.ujc, style_1.default.uac, style_1.mt(74)])}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极致名片 给您极致服务</components_1.Text>
+          </components_1.View>
+          
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(59), style_1.default.uac, style_1.default.ujb, style_1.default.udr, style_1.mt(57), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(32), style_1.h(32), style_1.radiusA(4), style_1.ml(21)])} src={require('../../assets/ico_default.jpeg')}/>
+              <components_1.View style={datatool_1.styleAssign([style_1.ml(5)])}>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme)])}>关注极致信息公众号</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#D2D2D2')])}>最新资讯、升级更新早知道！</components_1.Text>
+              </components_1.View>
+            </components_1.View>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.bgColor('#FAF1E5'), style_1.w(76), style_1.h(27), style_1.radiusA(30), style_1.mr(11)])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.color('#825D22'), style_1.fSize(14)])}>马上关注</components_1.Text>
+            </components_1.View>
+          </components_1.View>
         </components_1.ScrollView>
       </safe_area_view_1.default>);
     }

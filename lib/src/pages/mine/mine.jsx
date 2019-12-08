@@ -1,5 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @filename mine.tsx
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/8
+ * @Description: 我的
+*/
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 const safe_area_view_1 = require("../../compoments/safe-area-view");

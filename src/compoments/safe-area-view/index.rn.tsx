@@ -11,6 +11,7 @@ interface Props {
   onClick?: any;
   children?: any;
   notNeedSafe?: boolean;
+  topMarginZero?: boolean;
 }
 
 interface State {

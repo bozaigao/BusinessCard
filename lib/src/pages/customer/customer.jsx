@@ -6,6 +6,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * @filename customer.tsx
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/8
+ * @Description: 客户
+*/
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 const safe_area_view_1 = require("../../compoments/safe-area-view");

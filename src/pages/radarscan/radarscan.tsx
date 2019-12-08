@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, w, wRatio} from "../../utils/style";
 import RadarItem from "./radar-item";
+import TopHeader from "../../compoments/top-header";
 // #region 书写注意
 //
 // 目前 typescript 版本还无法在装饰器模式下将 Props 注入到 Taro.Component 中的 props 属性
@@ -62,10 +63,12 @@ class Radarscan extends Component<Props, State> {
   render() {
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-        <View style={styleAssign([styles.uf1])}>
+      <CustomSafeAreaView
+        customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        <TopHeader/>
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           {/*雷达、访客切换*/}
-          <View style={styleAssign([wRatio(100), h(85), styles.uac])}>
+          <View style={styleAssign([wRatio(100), h(85), styles.uac, bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View style={styleAssign([styles.uac])}>
                 <Text style={styleAssign([fSize(18)])}>雷达</Text>
@@ -84,7 +87,7 @@ class Radarscan extends Component<Props, State> {
             </View>
           </View>
           <ScrollView
-            style={styleAssign([wRatio(100), h(550), styles.uac])}
+            style={styleAssign([wRatio(100), h(536), styles.uac])}
             scrollY>
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
