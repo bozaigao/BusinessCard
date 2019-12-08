@@ -14,6 +14,7 @@ import MyPerson from "./my-person";
 import MyGoods from "./my-goods";
 import JiZhiCard from "./jizhi-card";
 import MyBusiness from "./my-business";
+import MyPhoto from "./my-photo";
 
 //@ts-ignore
 
@@ -143,6 +144,8 @@ class Businesscard extends Component<Props, State> {
           <JiZhiCard/>
           {/*我的企业*/}
           <MyBusiness/>
+          {/*我的照片*/}
+          <MyPhoto/>
         </ScrollView>
       </CustomSafeAreaView>
     )
