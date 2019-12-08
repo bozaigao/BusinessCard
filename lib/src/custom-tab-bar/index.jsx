@@ -53,60 +53,62 @@ class CustomTabBar extends taro_1.Component {
         }
         return (<components_1.View style={datatool_1.styleAssign([
             style_1.wRatio(100),
-            style_1.default.udr,
             style_1.default.upa,
             style_1.absL(0),
             style_1.absB(0),
-            style_1.h(style_1.iphoneX() ? 94 : 60),
+            style_1.h(style_1.iphoneX() ? 96 : 62),
             style_1.default.uac,
             style_1.default.uac,
             style_1.pb(style_1.iphoneX() ? 34 : 0),
-            style_1.bgColor(style_1.commonStyles.whiteColor)
+            style_1.bgColor(style_1.commonStyles.whiteColor),
         ])}>
-        <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(2), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.udr])}>
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             console.log('名片');
             onPress(0);
             this.setState({ currentIndex: 0 });
         }}>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-            <components_1.Image src={currentIndex === 0 ? ico_tabar_businesscard_pressed_png_1.default : ico_tabar_businesscard_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 0 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>名片</components_1.Text>
-          </components_1.View>
-        </touchable_button_1.default>
-        <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+              <components_1.Image src={currentIndex === 0 ? ico_tabar_businesscard_pressed_png_1.default : ico_tabar_businesscard_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 0 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>名片</components_1.Text>
+            </components_1.View>
+          </touchable_button_1.default>
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             console.log('雷达');
             onPress(1);
             this.setState({ currentIndex: 1 });
         }}>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-            <components_1.Image src={currentIndex === 1 ? ico_tabar_radarscan_pressed_png_1.default : ico_tabar_radarscan_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 1 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>雷达</components_1.Text>
-          </components_1.View>
-        </touchable_button_1.default>
-        <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+              <components_1.Image src={currentIndex === 1 ? ico_tabar_radarscan_pressed_png_1.default : ico_tabar_radarscan_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 1 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>雷达</components_1.Text>
+            </components_1.View>
+          </touchable_button_1.default>
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             console.log('客户');
             onPress(2);
             this.setState({ currentIndex: 2 });
         }}>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-            <components_1.Image src={currentIndex === 2 ? ico_tabar_customer_pressed_png_1.default : ico_tabar_customer_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 2 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>客户</components_1.Text>
-          </components_1.View>
-        </touchable_button_1.default>
-        <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+              <components_1.Image src={currentIndex === 2 ? ico_tabar_customer_pressed_png_1.default : ico_tabar_customer_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 2 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>客户</components_1.Text>
+            </components_1.View>
+          </touchable_button_1.default>
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(95), style_1.h(60), style_1.default.uac, style_1.default.ujc,
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             console.log('我的');
             onPress(3);
             this.setState({ currentIndex: 3 });
         }}>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-            <components_1.Image src={currentIndex === 3 ? ico_tabar_mine_pressed_png_1.default : ico_tabar_mine_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 3 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>我的</components_1.Text>
-          </components_1.View>
-        </touchable_button_1.default>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+              <components_1.Image src={currentIndex === 3 ? ico_tabar_mine_pressed_png_1.default : ico_tabar_mine_normal_png_1.default} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mt(4)])}/>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(2), style_1.color(currentIndex === 3 ? style_1.commonStyles.colorTheme : '#9b9b9b')])}>我的</components_1.Text>
+            </components_1.View>
+          </touchable_button_1.default>
+        </components_1.View>
       </components_1.View>);
     }
 }

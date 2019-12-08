@@ -72,13 +72,13 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
-    // 监听一个事件，接受参数
-    Taro.eventCenter.on('showJiFenModal', () => {
-      console.log('显示对话框');
-      this.viewRef && this.viewRef.showSignAlert()
-    });
-    this.getBannerData();
+    // console.log('componentDidMount');
+    // // 监听一个事件，接受参数
+    // Taro.eventCenter.on('showJiFenModal', () => {
+    //   console.log('显示对话框');
+    //   this.viewRef && this.viewRef.showSignAlert()
+    // });
+    // this.getBannerData();
   }
 
 
@@ -155,7 +155,7 @@ class Businesscard extends Component<Props, State> {
           <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
         </View>
         <ScrollView
-          style={styleAssign([wRatio(100), h(670), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100), h(630), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <Card/>

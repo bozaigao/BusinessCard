@@ -4,15 +4,32 @@
  * @QQ 1054539528
  * @date 2019/12/8
  * @Description: 客户
-*/
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {ScrollView} from '@tarojs/components'
+import {Image, Input, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
-import {bgColor, h, iphoneX, wRatio} from "../../utils/style";
+import {
+  bgColor,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h,
+  mb,
+  ml,
+  mr,
+  op,
+  radiusA,
+  w,
+  wRatio
+} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/home";
+import TopHeader from "../../compoments/top-header";
+import CustomItem from "./custom-item";
+import TouchableButton from "../../compoments/touchable-button";
 
 interface Props {
   //获取banner信息
@@ -62,12 +79,40 @@ class Customer extends Component<Props, State> {
   render() {
 
     return (
-      <CustomSafeAreaView>
-        {/*以下组件代码没有抽离出单独的组件进行引用，只是简单的演示作用*/}
-        {/*政策解读*/}
-        <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 600 : 500), bgColor('blue')])}
-                    scrollY>
-        </ScrollView>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        <TopHeader title={'客户'}/>
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+          <View style={styleAssign([wRatio(100), h(99), bgColor(commonStyles.whiteColor), styles.ujb])}>
+            <View style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
+              radiusA(26), styles.uac, styles.udr])}>
+              <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
+              <Input type='text' placeholder='搜索客户姓名' focus style={styleAssign([ml(16), fSize(14)])}/>
+            </View>
+            {/*条件筛选*/}
+            <View
+              style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mb(10)])}>
+              <Text style={styleAssign([fSize(14), color('#787878'), ml(20)])}>共2位客户</Text>
+              <Text style={styleAssign([fSize(14), color('#787878')])}>最后跟进时间</Text>
+              <Text style={styleAssign([fSize(14), color('#787878'), mr(20)])}>筛选</Text>
+            </View>
+          </View>
+          <ScrollView
+            style={styleAssign([wRatio(100), h(440), styles.uac])}
+            scrollY>
+            {
+              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+                console.log(value);
+                return (<CustomItem key={index}/>);
+              })
+            }
+          </ScrollView>
+          <View style={styleAssign([wRatio(100), h(80), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
+            <TouchableButton customStyle={styleAssign([w(335), h(44), radiusA(4), bgColor('#0F56C5'),
+              styles.uac, styles.ujc])}>
+              <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>新增客户</Text>
+            </TouchableButton>
+          </View>
+        </View>
       </CustomSafeAreaView>
     )
   }

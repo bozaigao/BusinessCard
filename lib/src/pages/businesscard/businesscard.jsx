@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @QQ 1054539528
  * @date 2019/12/8
  * @Description: 名片首页
-*/
+ */
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 //@ts-ignore
@@ -108,8 +108,16 @@ let Businesscard = class Businesscard extends taro_1.Component {
         }
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
-        }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(635), style_1.default.uac])} scrollY>
+        }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={require('../../assets/ico_switch.png')}/>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19)])}>名片</components_1.Text>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.ml(5)])} src={require('../../assets/ico_down.png')}/>
+          </components_1.View>
+          <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.bgColor(style_1.commonStyles.transparent), style_1.mr(20)])}/>
+        </components_1.View>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(670), style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <business_card_1.default />
           
@@ -148,11 +156,5 @@ let Businesscard = class Businesscard extends taro_1.Component {
 Businesscard = __decorate([
     redux_1.connect(state => state.home, Object.assign({}, actions))
 ], Businesscard);
-// #region 导出注意
-//
-// 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性
-// 这样在使用这个子类时 Ts 才不会提示缺少 JSX 类型参数错误
-//
-// #endregion
 exports.default = Businesscard;
 //# sourceMappingURL=businesscard.jsx.map

@@ -13,6 +13,7 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const radar_item_1 = require("./radar-item");
+const top_header_1 = require("../../compoments/top-header");
 class Radarscan extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -38,10 +39,11 @@ class Radarscan extends taro_1.Component {
     componentDidHide() {
     }
     render() {
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-        <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor('red')])}>
+        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+        <top_header_1.default title={'雷达'}/>
+        <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(85), style_1.default.uac])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(85), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>雷达</components_1.Text>
@@ -59,7 +61,7 @@ class Radarscan extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878'), style_1.mr(20)])}>筛选</components_1.Text>
             </components_1.View>
           </components_1.View>
-          <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(550), style_1.default.uac])} scrollY>
+          <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(541), style_1.default.uac])} scrollY>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
             console.log(value);
             return (<radar_item_1.default key={index}/>);
@@ -69,11 +71,5 @@ class Radarscan extends taro_1.Component {
       </safe_area_view_1.default>);
     }
 }
-// #region 导出注意
-//
-// 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性
-// 这样在使用这个子类时 Ts 才不会提示缺少 JSX 类型参数错误
-//
-// #endregion
 exports.default = Radarscan;
 //# sourceMappingURL=radarscan.jsx.map

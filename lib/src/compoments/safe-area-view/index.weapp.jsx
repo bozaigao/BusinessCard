@@ -35,10 +35,10 @@ class CustomSafeAreaView extends taro_1.Component {
     componentWillMount() {
         //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
         if (style_1.iphoneX()) {
-            this.setState({ paddingTop: 78, paddingBottom: 94 });
+            this.setState({ paddingTop: 45, paddingBottom: 94 });
         }
         else {
-            this.setState({ paddingTop: 55, paddingBottom: 64 });
+            this.setState({ paddingTop: 20, paddingBottom: 64 });
         }
     }
     render() {

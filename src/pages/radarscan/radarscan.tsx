@@ -77,7 +77,7 @@ class Radarscan extends Component<Props, State> {
             </View>
           </View>
           <ScrollView
-            style={styleAssign([wRatio(100), h(541), styles.uac])}
+            style={styleAssign([wRatio(100), h(543), styles.uac])}
             scrollY>
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
