@@ -12,6 +12,7 @@ import styles, {bgColor, commonStyles, fSize, h, ml, mr, w, wRatio} from "../../
 
 interface Props {
   title: string;
+  isBack?: boolean;
 }
 
 interface State {
@@ -27,12 +28,18 @@ export default class TopHeader extends Component<Props, State> {
 
   render() {
 
-    let {title} = this.props;
+    let {title, isBack} = this.props;
 
     return (
       <View
         style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
-        <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_switch.png')}/>
+        <Image style={styleAssign([w(22), h(22), ml(20)])}
+               src={isBack ? require('../../assets/ico_back.png') : require('../../assets/ico_switch.png')}
+               onClick={() => {
+                 if (isBack) {
+                   Taro.navigateBack();
+                 }
+               }}/>
         <Text style={styleAssign([fSize(19)])}>{title}</Text>
         <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
       </View>

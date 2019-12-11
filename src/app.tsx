@@ -5,7 +5,6 @@ import Index from './pages/businesscard/businesscard'
 import configStore from './store'
 import './app.scss'
 import {Global} from "../global";
-import {commonStyles} from "./utils/style";
 
 declare let global: Global;
 // 如果需要在 h5 环境中开启 React Devtools
@@ -69,6 +68,7 @@ class App extends Component {
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
       "pages/customer/customer",
+      "pages/customer/customer_detail",
       "pages/mine/mine",
     ],
     window: {
@@ -80,10 +80,9 @@ class App extends Component {
       navigationStyle: 'custom'
     },
     tabBar: {
-      custom: false,
       color: "#9b9b9b",
-      selectedColor: commonStyles.colorTheme,
-      backgroundColor: commonStyles.whiteColor,
+      selectedColor: '#313137',
+      backgroundColor: '#FFFFFF',
       borderStyle: 'white',
       list: [{
         pagePath: "pages/businesscard/businesscard",

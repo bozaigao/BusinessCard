@@ -61,7 +61,7 @@ class Radarscan extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878'), style_1.mr(20)])}>筛选</components_1.Text>
             </components_1.View>
           </components_1.View>
-          <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(541), style_1.default.uac])} scrollY>
+          <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(543), style_1.default.uac])} scrollY>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
             console.log(value);
             return (<radar_item_1.default key={index}/>);

@@ -102,7 +102,12 @@ class Customer extends Component<Props, State> {
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
                 console.log(value);
-                return (<CustomItem key={index}/>);
+                return (<CustomItem key={index} onClick={() => {
+                  Taro.navigateTo({
+                    url: `/pages/customer/customer_detail`
+                  });
+                }
+                }/>);
               })
             }
           </ScrollView>

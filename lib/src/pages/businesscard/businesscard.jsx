@@ -88,13 +88,13 @@ let Businesscard = class Businesscard extends taro_1.Component {
         };
     }
     componentDidMount() {
-        console.log('componentDidMount');
-        // 监听一个事件，接受参数
-        taro_1.default.eventCenter.on('showJiFenModal', () => {
-            console.log('显示对话框');
-            this.viewRef && this.viewRef.showSignAlert();
-        });
-        this.getBannerData();
+        // console.log('componentDidMount');
+        // // 监听一个事件，接受参数
+        // Taro.eventCenter.on('showJiFenModal', () => {
+        //   console.log('显示对话框');
+        //   this.viewRef && this.viewRef.showSignAlert()
+        // });
+        // this.getBannerData();
     }
     componentWillUnmount() {
         taro_1.default.eventCenter.off('showJiFenModal');
@@ -117,7 +117,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.bgColor(style_1.commonStyles.transparent), style_1.mr(20)])}/>
         </components_1.View>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(670), style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <business_card_1.default />
           

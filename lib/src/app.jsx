@@ -34,14 +34,15 @@ class App extends taro_1.Component {
                 backgroundTextStyle: 'light',
                 navigationBarBackgroundColor: '#fff',
                 navigationBarTitleText: 'WeChat',
-                navigationBarTextStyle: 'black',
+                navigationBarTextStyle: 'white',
+                pageOrientation: 'portrait',
                 navigationStyle: 'custom'
             },
             tabBar: {
                 custom: false,
                 color: "#9b9b9b",
-                selectedColor: style_1.commonStyles.colorTheme,
-                backgroundColor: "white",
+                selectedColor: 'red',
+                backgroundColor: style_1.commonStyles.whiteColor,
                 borderStyle: 'white',
                 list: [{
                         pagePath: "pages/businesscard/businesscard",
