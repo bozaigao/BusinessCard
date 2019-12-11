@@ -155,7 +155,7 @@ class Businesscard extends Component<Props, State> {
           <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
         </View>
         <ScrollView
-          style={styleAssign([wRatio(100), h(630), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <Card/>

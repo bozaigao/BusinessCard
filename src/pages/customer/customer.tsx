@@ -86,7 +86,7 @@ class Customer extends Component<Props, State> {
             <View style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
               radiusA(26), styles.uac, styles.udr])}>
               <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
-              <Input type='text' placeholder='搜索客户姓名' focus style={styleAssign([ml(16), fSize(14)])}/>
+              <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
             </View>
             {/*条件筛选*/}
             <View
@@ -97,7 +97,7 @@ class Customer extends Component<Props, State> {
             </View>
           </View>
           <ScrollView
-            style={styleAssign([wRatio(100), h(440), styles.uac])}
+            style={styleAssign([styles.uf1, styles.uac])}
             scrollY>
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {

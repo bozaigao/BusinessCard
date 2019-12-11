@@ -21,7 +21,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    console.log('呵呵',global);
+    console.log('呵呵', global);
 
     global.debug = true;
     Taro.getSystemInfo({
@@ -75,14 +75,15 @@ class App extends Component {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black',
+      navigationBarTextStyle: 'white',
+      pageOrientation: 'portrait',
       navigationStyle: 'custom'
     },
     tabBar: {
       custom: false,
       color: "#9b9b9b",
       selectedColor: commonStyles.colorTheme,
-      backgroundColor: "white",
+      backgroundColor: commonStyles.whiteColor,
       borderStyle: 'white',
       list: [{
         pagePath: "pages/businesscard/businesscard",

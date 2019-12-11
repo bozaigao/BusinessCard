@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename app.weapp.tsx
+ * @filename test.weapp.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/9/23
