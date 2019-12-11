@@ -42,7 +42,6 @@ interface Props {
 
 interface State {
   signInPageDetail: SignInPage;
-  bannerList: string[];
 }
 
 @connect(state => state.home, {...actions})
@@ -59,7 +58,6 @@ class Businesscard extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页',
     disableScroll: true
   }
 
@@ -67,7 +65,6 @@ class Businesscard extends Component<Props, State> {
     super(props);
     this.state = {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
-      bannerList: []
     }
   }
 
@@ -88,25 +85,25 @@ class Businesscard extends Component<Props, State> {
    * @date 2019/10/8
    * @function: 获取banner数据
    */
-  getBannerData = () => {
-    this.viewRef.showLoading();
-    this.props.dispatchBannerInfo().then((res) => {
-      this.viewRef.hideLoading();
-      this.setState({bannerList: res.urls});
-
-    }).catch(e => {
-      this.viewRef.hideLoading();
-      //android模拟器无法访问mock的本地服务所以这里处理下，在真实网络请求中不存在该问题
-      this.setState({
-        bannerList: ["https://gzol.oss-cn-qingdao.aliyuncs.com/20190906161007.png",
-          "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926100637.png",
-          "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926103054.png",
-          "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926115113.png"
-        ]
-      });
-      console.log('报错啦', e);
-    });
-  }
+  // getBannerData = () => {
+  //   this.viewRef.showLoading();
+  //   this.props.dispatchBannerInfo().then((res) => {
+  //     this.viewRef.hideLoading();
+  //     this.setState({bannerList: res.urls});
+  //
+  //   }).catch(e => {
+  //     this.viewRef.hideLoading();
+  //     //android模拟器无法访问mock的本地服务所以这里处理下，在真实网络请求中不存在该问题
+  //     this.setState({
+  //       bannerList: ["https://gzol.oss-cn-qingdao.aliyuncs.com/20190906161007.png",
+  //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926100637.png",
+  //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926103054.png",
+  //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926115113.png"
+  //       ]
+  //     });
+  //     console.log('报错啦', e);
+  //   });
+  // }
 
 
   componentWillUnmount() {

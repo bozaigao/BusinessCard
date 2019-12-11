@@ -69,12 +69,12 @@ class App extends Component {
       "pages/radarscan/radarscan",
       "pages/customer/customer",
       "pages/customer/customer_detail",
+      "pages/customer/add_customer",
       "pages/mine/mine",
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'white',
       pageOrientation: 'portrait',
       navigationStyle: 'custom'

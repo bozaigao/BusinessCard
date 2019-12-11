@@ -4,15 +4,16 @@
  * @QQ 1054539528
  * @date 2019/12/11
  * @Description: 客户详情界面
-*/
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
-import {bgColor, commonStyles} from "../../utils/style";
+import {bgColor, commonStyles, default as styles} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/home";
 import TopHeader from "../../compoments/top-header";
+import {View} from "@tarojs/components";
 
 interface Props {
   //获取banner信息
@@ -20,7 +21,6 @@ interface Props {
 }
 
 interface State {
-  bannerList: string[];
 }
 
 @connect(state => state.home, {...actions})
@@ -34,14 +34,12 @@ class CustomerDetail extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页',
     disableScroll: true
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      bannerList: []
     }
   }
 
@@ -64,6 +62,9 @@ class CustomerDetail extends Component<Props, State> {
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={''} isBack={true}/>
+        <View style={styleAssign([styles.uf1,bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+
+        </View>
       </CustomSafeAreaView>
     )
   }

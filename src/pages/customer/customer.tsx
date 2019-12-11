@@ -5,7 +5,7 @@
  * @date 2019/12/8
  * @Description: 客户
  */
-import Taro, {Component, Config} from '@tarojs/taro'
+import Taro, {Component} from '@tarojs/taro'
 import {Image, Input, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
@@ -37,28 +37,14 @@ interface Props {
 }
 
 interface State {
-  bannerList: string[];
 }
 
 @connect(state => state.home, {...actions})
 class Customer extends Component<Props, State> {
 
-  /**
-   * 指定config的类型声明为: Taro.Config
-   *
-   * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-   * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-   * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-   */
-  config: Config = {
-    navigationBarTitleText: '首页',
-    disableScroll: true
-  }
-
   constructor(props) {
     super(props);
     this.state = {
-      bannerList: []
     }
   }
 
@@ -113,7 +99,12 @@ class Customer extends Component<Props, State> {
           </ScrollView>
           <View style={styleAssign([wRatio(100), h(80), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
             <TouchableButton customStyle={styleAssign([w(335), h(44), radiusA(4), bgColor('#0F56C5'),
-              styles.uac, styles.ujc])}>
+              styles.uac, styles.ujc])}
+            onClick={()=>{
+              Taro.navigateTo({
+                url: `/pages/customer/add_customer`
+              });
+            }}>
               <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>新增客户</Text>
             </TouchableButton>
           </View>

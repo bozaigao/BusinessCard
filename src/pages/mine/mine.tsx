@@ -45,7 +45,6 @@ class Mine extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页',
     disableScroll: true
   }
 
@@ -115,8 +114,7 @@ class Mine extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}>
             {
               ['商城', '海报', '工具箱', '名片夹', '任务中心'].map((value, index) => {
-                return (<View style={styleAssign([wRatio(100), styles.uac])}><View
-                  key={index}
+                return (<View style={styleAssign([wRatio(100), styles.uac])}  key={index}><View
                   style={styleAssign([wRatio(100), h(60), pl(20), pr(20), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb])}>
                   <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>{value}</Text>
                   <Image style={styleAssign([w(6), h(12), ml(6)])} src={require('../../assets/ico_next.png')}/>

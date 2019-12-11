@@ -22,6 +22,7 @@ import styles, {
   w,
   wRatio
 } from "../../../utils/style";
+import TouchableButton from "../../../compoments/touchable-button";
 
 
 interface Props {
@@ -36,8 +37,8 @@ export default class RadarItem extends PureComponent<Props, State> {
   render() {
 
     return (
-      <View
-        style={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(154), bgColor(commonStyles.whiteColor), mt(8)])}>
+      <TouchableButton
+        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(154), bgColor(commonStyles.whiteColor), mt(8)])}>
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
             <Image style={styleAssign([w(43), h(43), radiusA(21.5), ml(16)])}
@@ -68,7 +69,7 @@ export default class RadarItem extends PureComponent<Props, State> {
             </View>
           </View>
         </View>
-      </View>
+      </TouchableButton>
     );
   }
 }

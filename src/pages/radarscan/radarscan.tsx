@@ -29,7 +29,6 @@ class Radarscan extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页',
     disableScroll: true
   }
 
@@ -76,7 +75,7 @@ class Radarscan extends Component<Props, State> {
           </View>
         </View>
         <ScrollView
-          style={styleAssign([styles.uf1, styles.uac,bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {
             [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
