@@ -7,8 +7,8 @@ import Loading from "../loading";
 interface Props {
   customStyle?: any;
   children?: any;
-  notNeedSafe?: boolean;
-  topMarginZero?: boolean;
+  notNeedTopPadding?: boolean;
+  notNeedBottomPadding?: boolean;
 }
 
 interface State {
@@ -32,21 +32,21 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   componentWillMount() {
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
-      this.setState({paddingTop: 78});
+      this.setState({paddingTop: 78, paddingBottom: 44});
     } else {
       this.setState({paddingTop: 55});
     }
   }
 
   render() {
-    let {customStyle, children, notNeedSafe} = this.props;
+    let {customStyle, children, notNeedTopPadding, notNeedBottomPadding} = this.props;
     let {paddingTop, showLoading, paddingBottom} = this.state;
 
     console.log('距离顶部', paddingTop)
 
     return (
       <View
-        style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor), pt(notNeedSafe ? 0 : paddingTop), pb(paddingBottom), customStyle])}>
+        style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor), pt(notNeedTopPadding ? 0 : paddingTop), pb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
         {
           children
         }

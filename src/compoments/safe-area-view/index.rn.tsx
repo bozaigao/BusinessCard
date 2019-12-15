@@ -3,15 +3,14 @@ import {SafeAreaView} from 'react-native';
 import {Component} from "react";
 import {styleAssign} from "../../utils/datatool";
 import {bgColor, commonStyles, hRatio, wRatio} from "../../utils/style";
-import {View} from "@tarojs/components";
 import Loading from "../loading";
 
 interface Props {
   style?: any;
   onClick?: any;
   children?: any;
-  notNeedSafe?: boolean;
-  topMarginZero?: boolean;
+  notNeedTopPadding?: boolean;
+  notNeedBottomPadding?: boolean;
 }
 
 interface State {
@@ -28,18 +27,9 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   }
 
   render() {
-    let {style, children, notNeedSafe} = this.props;
+    let {style, children} = this.props;
     let {showLoading} = this.state;
 
-    if (notNeedSafe) {
-      return (
-        <View
-          style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor), style])}
-        >
-          {children}
-        </View>
-      )
-    }
     return (
       <SafeAreaView
         style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor), style])}
@@ -50,6 +40,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
         }
       </SafeAreaView>
     )
+
   }
 
 

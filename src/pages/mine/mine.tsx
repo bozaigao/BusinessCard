@@ -70,7 +70,8 @@ class Mine extends Component<Props, State> {
   render() {
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          notNeedBottomPadding={true}>
         <TopHeader title={'我的'}/>
         <ScrollView
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}

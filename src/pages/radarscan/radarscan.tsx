@@ -53,7 +53,8 @@ class Radarscan extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView
-        customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+        notNeedBottomPadding={true}>
         <TopHeader title={'雷达'}/>
         {/*雷达、访客切换*/}
         <View style={styleAssign([wRatio(100), h(85), styles.uac, bgColor(commonStyles.whiteColor)])}>

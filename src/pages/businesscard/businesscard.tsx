@@ -18,9 +18,11 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h, ml, mr,
-  mt, radiusA,
-  screenHeight,
+  h,
+  ml,
+  mr,
+  mt,
+  radiusA,
   w,
   wRatio
 } from "../../utils/style";
@@ -130,7 +132,7 @@ class Businesscard extends Component<Props, State> {
 
 
   render() {
-    console.log(screenHeight());
+    console.log(this.viewRef);
 
     let {signInPageDetail} = this.state;
 
@@ -141,7 +143,9 @@ class Businesscard extends Component<Props, State> {
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
-      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          notNeedBottomPadding={true}
+      >
         <View
           style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_switch.png')}/>

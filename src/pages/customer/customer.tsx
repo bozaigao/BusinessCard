@@ -65,7 +65,8 @@ class Customer extends Component<Props, State> {
   render() {
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          notNeedBottomPadding={true}>
         <TopHeader title={'客户'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100), h(99), bgColor(commonStyles.whiteColor), styles.ujb])}>

@@ -7,8 +7,8 @@ import Loading from "../loading";
 interface Props {
   customStyle?: any;
   children?: any;
-  notNeedSafe?: boolean;
-  topMarginZero?: boolean;
+  notNeedTopPadding?: boolean;
+  notNeedBottomPadding?: boolean;
 }
 
 interface State {
