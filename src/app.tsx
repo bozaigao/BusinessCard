@@ -74,6 +74,7 @@ class App extends Component {
       "pages/businesscard/add_businesscard",
       "pages/businesscard/qiehuan_businesscard",
       "pages/businesscard/mingpian_haibao",
+      "pages/businesscard/more_goods",
       //客户子页面
       "pages/customer/customer_detail",
       "pages/customer/add_customer",

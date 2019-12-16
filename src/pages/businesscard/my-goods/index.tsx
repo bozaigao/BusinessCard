@@ -8,10 +8,11 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, pa, radiusA, w, wRatio} from "../../../utils/style";
+import TouchableButton from "../../../compoments/touchable-button";
 
 
 interface Props {
-  // navigation: Navigation;
+  goToMoreGoods: any;
 }
 
 interface State {
@@ -20,6 +21,8 @@ interface State {
 export default class MyGoods extends PureComponent<Props, State> {
 
   render() {
+
+    let {goToMoreGoods} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -42,6 +45,11 @@ export default class MyGoods extends PureComponent<Props, State> {
             })
           }
         </View>
+        {/*查看更多*/}
+        <TouchableButton customStyle={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(16)])}
+        onClick={goToMoreGoods}>
+          <Text style={styleAssign([fSize(12), color('#979797')])}>查看更多</Text>
+        </TouchableButton>
       </View>
     );
   }
