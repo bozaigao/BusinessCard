@@ -8,7 +8,8 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
-  absL, absT,
+  absL,
+  absT,
   bdColor,
   bgColor,
   bo,
@@ -23,10 +24,11 @@ import styles, {
   w,
   wRatio
 } from "../../../utils/style";
+import TouchableButton from "../../../compoments/touchable-button";
 
 
 interface Props {
-  // navigation: Navigation;
+  shareClick: any;
 }
 
 interface State {
@@ -35,6 +37,8 @@ interface State {
 export default class Card extends PureComponent<Props, State> {
 
   render() {
+
+    let {shareClick} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac])}>
@@ -69,15 +73,17 @@ export default class Card extends PureComponent<Props, State> {
           <View
             style={styleAssign([wRatio(95), styles.uac, styles.udr, h(44), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac])}>
-              <View
-                style={styleAssign([styles.uf1, radiusA(4), styles.uac, styles.ujc, bo(1), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme),
+              <TouchableButton
+                customStyle={styleAssign([w(160), radiusA(4), styles.uac, styles.ujc, bo(1), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme),
                   bgColor(commonStyles.whiteColor), h(44)])}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>完善名片</Text>
-              </View>
-              <View style={styleAssign([styles.uf1, radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),
-                bdColor(commonStyles.colorTheme), bgColor(commonStyles.colorTheme)])}>
+              </TouchableButton>
+              <TouchableButton
+                customStyle={styleAssign([w(160), radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),
+                  bdColor(commonStyles.colorTheme), bgColor(commonStyles.colorTheme)])}
+                onClick={shareClick}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>分享名片</Text>
-              </View>
+              </TouchableButton>
             </View>
           </View>
           {/*加微信、联系地址*/}

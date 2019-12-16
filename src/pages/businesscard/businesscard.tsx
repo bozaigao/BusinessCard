@@ -39,6 +39,7 @@ import JiZhiCard from "./jizhi-card";
 import MyBusiness from "./my-business";
 import MyPhoto from "./my-photo";
 import TouchableButton from "../../compoments/touchable-button";
+import ShareModal from "./share-modal";
 
 interface Props {
   dispatchLogin?: any;
@@ -48,6 +49,7 @@ interface Props {
 
 interface State {
   signInPageDetail: SignInPage;
+  showShare: boolean;
 }
 
 @connect(state => state.home, {...actions})
@@ -71,6 +73,7 @@ class Businesscard extends Component<Props, State> {
     super(props);
     this.state = {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
+      showShare: false
     }
   }
 
@@ -138,7 +141,7 @@ class Businesscard extends Component<Props, State> {
   render() {
     console.log(this.viewRef);
 
-    let {signInPageDetail} = this.state;
+    let {signInPageDetail, showShare} = this.state;
 
     if (typeof signInPageDetail.signInCount === 'undefined') {
       signInPageDetail.signInCount = 0
@@ -170,7 +173,9 @@ class Businesscard extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
-          <Card/>
+          <Card shareClick={() => {
+            this.setState({showShare: true});
+          }}/>
           {/*我的个人简介*/}
           <PersonalInfo/>
           {/*我的人脉*/}
@@ -218,6 +223,12 @@ class Businesscard extends Component<Props, State> {
             <Text style={styleAssign([color(commonStyles.colorTheme), fSize(10), mt(2)])}>创建</Text>
           </View>
         </TouchableButton>
+        {
+          showShare && <ShareModal cancle={() => {
+            this.setState({showShare: false});
+          }
+          }/>
+        }
       </CustomSafeAreaView>
     )
   }
