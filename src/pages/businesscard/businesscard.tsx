@@ -13,6 +13,9 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
 import {SignInPage} from "../../../global";
 import {
+  absB,
+  absR,
+  absT,
   bgColor,
   color,
   commonStyles,
@@ -35,6 +38,7 @@ import MyGoods from "./my-goods";
 import JiZhiCard from "./jizhi-card";
 import MyBusiness from "./my-business";
 import MyPhoto from "./my-photo";
+import TouchableButton from "../../compoments/touchable-button";
 
 interface Props {
   dispatchLogin?: any;
@@ -192,6 +196,21 @@ class Businesscard extends Component<Props, State> {
             </View>
           </View>
         </ScrollView>
+        {/*创建名片*/}
+        <TouchableButton
+          onClick={()=>{
+            Taro.navigateTo({
+              url: `/pages/businesscard/add_businesscard`
+            });
+          }}
+          customStyle={styleAssign([w(70), h(70), styles.uac, styles.ujc, styles.upa, absR(10), absB(5)])}>
+          <Image style={styleAssign([styles.uac, w(70), h(70), styles.upa, absT(0), absR(0)])}
+                 src={require('../../assets/ico_add_card_bg.png')}/>
+          <View style={styleAssign([styles.uac])}>
+            <Image style={styleAssign([w(26), h(19)])} src={require('../../assets/ico_add_card_img.png')}/>
+            <Text style={styleAssign([color(commonStyles.colorTheme), fSize(10), mt(2)])}>创建</Text>
+          </View>
+        </TouchableButton>
       </CustomSafeAreaView>
     )
   }

@@ -87,7 +87,7 @@ class AddCustomer extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={''} isBack={true}/>
+        <TopHeader title={''}/>
         <ScrollView
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>

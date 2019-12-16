@@ -65,6 +65,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/businesscard/add_businesscard",
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
       "pages/customer/customer",
