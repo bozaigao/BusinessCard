@@ -181,9 +181,13 @@ class Businesscard extends Component<Props, State> {
           {/*我的人脉*/}
           <MyPerson/>
           {/*我的商品*/}
-          <MyGoods goToMoreGoods={()=>{
+          <MyGoods goToMoreGoods={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/more_goods`
+            });
+          }} goToGoodsDetail={() => {
+            Taro.navigateTo({
+              url: `/pages/businesscard/goods_detail`
             });
           }}/>
           {/*我的企业*/}

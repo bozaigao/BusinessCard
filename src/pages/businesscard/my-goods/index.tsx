@@ -13,6 +13,7 @@ import TouchableButton from "../../../compoments/touchable-button";
 
 interface Props {
   goToMoreGoods: any;
+  goToGoodsDetail: any;
 }
 
 interface State {
@@ -22,7 +23,7 @@ export default class MyGoods extends PureComponent<Props, State> {
 
   render() {
 
-    let {goToMoreGoods} = this.props;
+    let {goToMoreGoods,goToGoodsDetail} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -35,13 +36,14 @@ export default class MyGoods extends PureComponent<Props, State> {
             [1, 2, 3, 4].map((value, index) => {
               console.log(value);
               return (
-                <View style={styleAssign([w(163), h(233), pa(8), bgColor(commonStyles.whiteColor)])} key={index}>
+                <TouchableButton customStyle={styleAssign([w(163), h(233), pa(8), bgColor(commonStyles.whiteColor)])} key={index}
+                onClick={goToGoodsDetail}>
                   <Image style={styleAssign([w(147), h(152), radiusA(4)])}
                          src={require('../../../assets/ico_default.jpeg')}/>
                   <Text
                     style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(8), mt(12)])}>现代简约双人木床</Text>
                   <Text style={styleAssign([fSize(10), color('#FA6B57'), ml(8), mt(12), mt(8)])}>￥688</Text>
-                </View>);
+                </TouchableButton>);
             })
           }
         </View>
