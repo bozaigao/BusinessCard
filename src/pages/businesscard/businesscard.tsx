@@ -227,6 +227,13 @@ class Businesscard extends Component<Props, State> {
           showShare && <ShareModal cancle={() => {
             this.setState({showShare: false});
           }
+          } wechatShare={() => {
+          }
+          } haibao={() => {
+            Taro.navigateTo({
+              url: `/pages/businesscard/mingpian_haibao`
+            });
+          }
           }/>
         }
       </CustomSafeAreaView>
