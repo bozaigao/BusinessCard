@@ -150,13 +150,20 @@ class Businesscard extends Component<Props, State> {
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           notNeedBottomPadding={true}
       >
+        {/*切换名片*/}
         <View
           style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_switch.png')}/>
-          <View style={styleAssign([styles.uac, styles.udr])}>
+          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
+                           onClick={() => {
+                             console.log('点击了哦');
+                             Taro.navigateTo({
+                               url: `/pages/businesscard/qiehuan_businesscard`
+                             });
+                           }}>
             <Text style={styleAssign([fSize(19)])}>名片</Text>
             <Image style={styleAssign([w(18), h(18), ml(5)])} src={require('../../assets/ico_down.png')}/>
-          </View>
+          </TouchableButton>
           <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
         </View>
         <ScrollView
@@ -198,7 +205,7 @@ class Businesscard extends Component<Props, State> {
         </ScrollView>
         {/*创建名片*/}
         <TouchableButton
-          onClick={()=>{
+          onClick={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/add_businesscard`
             });

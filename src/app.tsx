@@ -65,13 +65,17 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/businesscard/add_businesscard",
+      //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
       "pages/customer/customer",
+      "pages/mine/mine",
+      //名片子页面
+      "pages/businesscard/add_businesscard",
+      "pages/businesscard/qiehuan_businesscard",
+      //客户子页面
       "pages/customer/customer_detail",
       "pages/customer/add_customer",
-      "pages/mine/mine",
     ],
     window: {
       backgroundTextStyle: 'light',
