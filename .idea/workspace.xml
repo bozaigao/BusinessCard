@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -47,13 +43,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+            <state relative-caret-position="447">
+              <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="more_goods.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="71" column="105" selection-start-line="71" selection-start-column="105" selection-end-line="71" selection-end-column="105" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#256#305#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -156,12 +165,12 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/share-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my-photo/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" />
         <option value="$PROJECT_DIR$/src/app.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" />
       </list>
     </option>
   </component>
@@ -380,12 +389,12 @@
       <workItem from="1576069957140" duration="7374000" />
       <workItem from="1576379260619" duration="9375000" />
       <workItem from="1576453622896" duration="10885000" />
-      <workItem from="1576512840980" duration="5826000" />
+      <workItem from="1576512840980" duration="5999000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411101000" />
+    <option name="totallyTimeSpent" value="411274000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -797,17 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="77" column="37" lean-forward="true" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#256#305#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -855,10 +853,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+        <state relative-caret-position="447">
+          <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="71" column="105" selection-start-line="71" selection-start-column="105" selection-end-line="71" selection-end-column="105" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#256#305#0" expanded="true" />
           </folding>
         </state>
       </provider>

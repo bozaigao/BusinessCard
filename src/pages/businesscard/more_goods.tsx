@@ -68,29 +68,27 @@ class MoreGoods extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'更多商品'}/>
-        <View style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <ScrollView
-            style={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor), wRatio(100), mt(16)])}
-            scrollY>
-            <View style={styleAssign([styles.uWrap, styles.udr, pl(14), pr(14)])}>
-              {
-                [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
-                  console.log(value);
-                  return (
-                    <View style={styleAssign([ma(5), w(163), h(233), pa(8), bgColor(commonStyles.whiteColor),
+        <ScrollView
+          style={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor), wRatio(100), hRatio(100), mt(16)])}
+          scrollY>
+          <View style={styleAssign([styles.uWrap, styles.udr, pl(14), pr(14)])}>
+            {
+              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+                console.log(value);
+                return (
+                  <View style={styleAssign([ma(5), w(163), h(233), pa(8), bgColor(commonStyles.whiteColor),
                     radiusA(4)])}
-                          key={index}>
-                      <Image style={styleAssign([w(147), h(152), radiusA(4)])}
-                             src={require('../../assets/ico_default.jpeg')}/>
-                      <Text
-                        style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(8), mt(12)])}>现代简约双人木床</Text>
-                      <Text style={styleAssign([fSize(10), color('#FA6B57'), ml(8), mt(12), mt(8)])}>￥688</Text>
-                    </View>);
-                })
-              }
-            </View>
-          </ScrollView>
-        </View>
+                        key={index}>
+                    <Image style={styleAssign([w(147), h(152), radiusA(4)])}
+                           src={require('../../assets/ico_default.jpeg')}/>
+                    <Text
+                      style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(8), mt(12)])}>现代简约双人木床</Text>
+                    <Text style={styleAssign([fSize(10), color('#FA6B57'), ml(8), mt(12), mt(8)])}>￥688</Text>
+                  </View>);
+              })
+            }
+          </View>
+        </ScrollView>
       </CustomSafeAreaView>);
   }
 }
