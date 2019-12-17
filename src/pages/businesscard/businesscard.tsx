@@ -193,7 +193,9 @@ class Businesscard extends Component<Props, State> {
               });
 
             } else if (value === '海报') {
-
+              Taro.navigateTo({
+                url: `/pages/businesscard/haibao`
+              });
             }
           }}/>
           {/*我的商品*/}
