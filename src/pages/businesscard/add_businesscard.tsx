@@ -98,7 +98,8 @@ class AddBusinesscard extends Component<Props, State> {
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.colorTheme)])}
                     scrollY>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), mt(60)])}/>
-          <View style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(10), absR(0), styles.uac,bgColor(commonStyles.whiteColor)])}>
+          <View
+            style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(10), absR(0), styles.uac, bgColor(commonStyles.whiteColor)])}>
             {/*名片信息头部*/}
             <View
               style={styleAssign([w(335), h(197), radiusA(5), bgColor(commonStyles.whiteColor), {boxShadow: '0px 2px 4px 0px rgba(230,230,230,0.5'}])}>
@@ -150,14 +151,14 @@ class AddBusinesscard extends Component<Props, State> {
             <View style={styleAssign([wRatio(100)])}>
               <View style={styleAssign([wRatio(100), h(50), pl(20), pr(20), styles.uac, styles.udr, styles.ujb])}>
                 <Text style={styleAssign([fSize(14), color('#343434')])}>名片展示邮箱号</Text>
-                <Switch color={'#E2BB7B'} style={styleAssign([w(46), h(26)])}/>
+                <Switch color={'#E2BB7B'}/>
               </View>
               <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
             </View>
             <View style={styleAssign([wRatio(100)])}>
               <View style={styleAssign([wRatio(100), h(50), pl(20), pr(20), styles.uac, styles.udr, styles.ujb])}>
                 <Text style={styleAssign([fSize(14), color('#343434')])}>分享自己的名片给朋友时展示手机号</Text>
-                <Switch color={'#E2BB7B'} style={styleAssign([w(46), h(26)])}/>
+                <Switch color={'#E2BB7B'}/>
               </View>
               <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
             </View>

@@ -40,6 +40,7 @@ import MyBusiness from "./my-business";
 import MyPhoto from "./my-photo";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
+import BianJieTool from "./bianjie-tool";
 
 interface Props {
   dispatchLogin?: any;
@@ -180,6 +181,16 @@ class Businesscard extends Component<Props, State> {
           <PersonalInfo/>
           {/*我的人脉*/}
           <MyPerson/>
+          {/*便捷功能*/}
+          <BianJieTool itemClick={(value) => {
+            if (value === '任务中心') {
+
+            } else if (value === '工具箱') {
+
+            } else if (value === '海报') {
+
+            }
+          }}/>
           {/*我的商品*/}
           <MyGoods goToMoreGoods={() => {
             Taro.navigateTo({
