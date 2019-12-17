@@ -184,7 +184,9 @@ class Businesscard extends Component<Props, State> {
           {/*便捷功能*/}
           <BianJieTool itemClick={(value) => {
             if (value === '任务中心') {
-
+              Taro.navigateTo({
+                url: `/pages/businesscard/task_center`
+              });
             } else if (value === '工具箱') {
 
             } else if (value === '海报') {
