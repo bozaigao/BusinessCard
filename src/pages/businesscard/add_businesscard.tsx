@@ -35,7 +35,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import TopHeader from "../../compoments/top-header";
 import {Image, Input, ScrollView, Switch, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
   dispatchLogin?: any;
@@ -164,12 +164,10 @@ class AddBusinesscard extends Component<Props, State> {
             </View>
             <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             {/*创建名片*/}
-            <View style={styleAssign([wRatio(100), h(80), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-              <TouchableButton
-                customStyle={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), w(336), h(44), radiusA(4)])}>
-                <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>创建名片</Text>
-              </TouchableButton>
-            </View>
+            {/*新建任务*/}
+            <BottomButon title={'创建名片'} onClick={() => {
+
+            }}/>
           </View>
         </ScrollView>
       </CustomSafeAreaView>);

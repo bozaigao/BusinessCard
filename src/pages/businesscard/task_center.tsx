@@ -32,6 +32,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import TaskItem from "./task-item";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
 }
@@ -144,12 +145,9 @@ class TaskCenter extends Component<Props, State> {
           }
         </ScrollView>
         {/*新建任务*/}
-        <View style={styleAssign([wRatio(100), h(64), styles.uac, styles.ujc])}>
-          <TouchableButton customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(commonStyles.colorTheme),
-            styles.uac, styles.ujc])}>
-            <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>新建任务</Text>
-          </TouchableButton>
-        </View>
+        <BottomButon title={'新建任务'} onClick={() => {
+
+        }}/>
       </CustomSafeAreaView>
     );
   }
