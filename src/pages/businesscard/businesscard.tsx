@@ -188,6 +188,9 @@ class Businesscard extends Component<Props, State> {
                 url: `/pages/businesscard/task_center`
               });
             } else if (value === '工具箱') {
+              Taro.navigateTo({
+                url: `/pages/businesscard/tool_box`
+              });
 
             } else if (value === '海报') {
 

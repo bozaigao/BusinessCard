@@ -77,6 +77,7 @@ class App extends Component {
       "pages/businesscard/more_goods",
       "pages/businesscard/goods_detail",
       "pages/businesscard/task_center",
+      "pages/businesscard/tool_box",
       //客户子页面
       "pages/customer/customer_detail",
       "pages/customer/add_customer",
