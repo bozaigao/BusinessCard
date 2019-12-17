@@ -29,7 +29,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import TopHeader from "../../compoments/top-header";
-import {Image, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import TaskItem from "./task-item";
 
@@ -92,7 +92,8 @@ class TaskCenter extends Component<Props, State> {
           <Image style={styleAssign([w(18), h(18), mr(20)])} src={require('../../assets/ico_date.png')}/>
         </View>
         {/*任务列表*/}
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+        <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+                    scrollY>
           {/*正在进行*/}
           {
             [{title: '正在进行', num: 2}, {title: '已完成', num: 2}].map((value, index) => {
@@ -141,7 +142,7 @@ class TaskCenter extends Component<Props, State> {
               </View>);
             })
           }
-        </View>
+        </ScrollView>
         {/*新建任务*/}
         <View style={styleAssign([wRatio(100), h(64), styles.uac, styles.ujc])}>
           <TouchableButton customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(commonStyles.colorTheme),
