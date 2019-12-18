@@ -94,7 +94,9 @@ class GoodsManage extends Component<Props, State> {
         </ScrollView>
         {/*新增商品*/}
         <BottomButon title={'新增商品'} onClick={() => {
-
+          Taro.navigateTo({
+            url: `/pages/businesscard/add_goods`
+          });
         }}/>
       </CustomSafeAreaView>
     );
