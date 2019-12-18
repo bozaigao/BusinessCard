@@ -32,9 +32,9 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   componentWillMount() {
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
-      this.setState({paddingTop: 38, paddingBottom: 44});
+      this.setState({paddingTop: 43, paddingBottom: 44});
     } else {
-      this.setState({paddingTop: 55});
+      this.setState({paddingTop: 15});
     }
   }
 

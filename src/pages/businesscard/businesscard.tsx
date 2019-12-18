@@ -200,6 +200,10 @@ class Businesscard extends Component<Props, State> {
               Taro.navigateTo({
                 url: `/pages/businesscard/mingpianjia`
               });
+            } else if (value === '商城') {
+              Taro.navigateTo({
+                url: `/pages/businesscard/goods_manage`
+              });
             }
           }}/>
           {/*我的商品*/}
