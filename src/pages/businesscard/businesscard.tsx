@@ -196,6 +196,10 @@ class Businesscard extends Component<Props, State> {
               Taro.navigateTo({
                 url: `/pages/businesscard/haibao`
               });
+            } else if (value === '名片夹') {
+              Taro.navigateTo({
+                url: `/pages/businesscard/mingpianjia`
+              });
             }
           }}/>
           {/*我的商品*/}
