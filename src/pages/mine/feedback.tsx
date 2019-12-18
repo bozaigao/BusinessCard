@@ -1,21 +1,21 @@
 /**
- * @filename setting_page.tsx
+ * @filename feedback.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/19
- * @Description: 设置界面
-*/
+ * @Description: 用户反馈界面
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
-import {bgColor, color, commonStyles, default as styles, fSize, mt, wRatio} from "../../utils/style";
+import {bgColor, commonStyles, default as styles, h, mt, pa, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import TopHeader from "../../compoments/top-header";
-import {Text, View} from "@tarojs/components";
-import ListItem from "../../compoments/list-item";
+import {Textarea, View} from "@tarojs/components";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
 }
@@ -25,7 +25,7 @@ interface State {
 }
 
 @connect(state => state.home, {...actions})
-class SettingPage extends Component<Props, State> {
+class Feedback extends Component<Props, State> {
 
   private viewRef;
 
@@ -53,25 +53,20 @@ class SettingPage extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'设置'}/>
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <View style={styleAssign([wRatio(100), mt(10)])}>
-            {
-              [{title: '使用小技巧'},
-                {title: '投诉与建议'},
-                {title: '关于极致名片'}].map((value, index) => {
-                return (<ListItem title={value.title} key={index}/>);
-              })
-            }
-          </View>
-          {/*slogan*/}
-          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(283)])}>
-            <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
-          </View>
+        <TopHeader title={'投诉与建议'}/>
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor)])}>
+         <Textarea
+           style={styleAssign([wRatio(80), {marginLeft: '5%'}, h(160), pa(20), bgColor(commonStyles.pageDefaultBackgroundColor),
+             mt(20)])}
+           value={''} placeholder={'请输入你的反馈意见'}/>
         </View>
+        {/*提交*/}
+        <BottomButon title={'提交'} onClick={() => {
+
+        }}/>
       </CustomSafeAreaView>
     );
   }
 }
 
-export default SettingPage;
+export default Feedback;
