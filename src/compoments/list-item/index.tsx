@@ -34,7 +34,7 @@ export default class ListItem extends Component<Props> {
           }}
           customStyle={styleAssign([wRatio(100), h(55), bgColor(commonStyles.whiteColor), styles.udr, styles.uac,
             styles.ujb, pl(20), pr(20)])}>
-          <Text style={styleAssign([fSize(14), color('#727272')])}>{title}</Text>
+          <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{title}</Text>
           {
             hasEdit ? <Input type='text' value={''}
                              placeholder={subTitle}
