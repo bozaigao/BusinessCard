@@ -9,13 +9,15 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
-import {bgColor, commonStyles, default as styles} from "../../utils/style";
+import {scaleSize, styleAssign} from "../../utils/datatool";
+import {bgColor, color, commonStyles, default as styles, fSize, h, pl, pr, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/home';
 import TopHeader from "../../compoments/top-header";
-import {View} from "@tarojs/components";
-import MingPianJiaItem from "./mingpianjia-item";
+import {ScrollView, Text, View} from "@tarojs/components";
+import TouchableButton from "../../compoments/touchable-button";
+import GoodsManageItem from "./goods-manage-item";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
 }
@@ -55,14 +57,45 @@ class GoodsManage extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'商品管理'}/>
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+        {/*筛选*/}
+        <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
+          pl(20), pr(20)])}>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
+            <Text style={styleAssign([fSize(14), color('#787878')])}>(共4件商品)</Text>
+          </View>
+          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}>
+            <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>全部</Text>
+            <View style={{
+              marginLeft: scaleSize(8),
+              width: 0,
+              height: 0,
+              borderTopWidth: scaleSize(6),
+              borderTopColor: '#787878',
+              borderRightWidth: scaleSize(6),
+              borderRightColor: 'transparent',
+              borderLeftWidth: scaleSize(6),
+              borderLeftColor: 'transparent',
+              borderBottomWidth: 0,
+              borderBottomColor: 'transparent',
+              borderStyle: 'solid',
+            }}/>
+          </TouchableButton>
+        </View>
+        <ScrollView
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          scrollY>
           {
-            [1, 2, 3, 4].map((value, index) => {
+            [1, 2, 3, 4, 5].map((value, index) => {
               console.log(value);
-              return (<MingPianJiaItem key={index}/>);
+              return (<GoodsManageItem key-={index}/>);
             })
           }
-        </View>
+        </ScrollView>
+        {/*新增商品*/}
+        <BottomButon title={'新增商品'} onClick={() => {
+
+        }}/>
       </CustomSafeAreaView>
     );
   }
