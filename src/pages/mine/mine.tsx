@@ -106,7 +106,7 @@ class Mine extends Component<Props, State> {
                 <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
               </View>
             </View>
-            <View style={styleAssign([wRatio(100), h(220), bgColor(commonStyles.whiteColor)])}/>
+            <View style={styleAssign([wRatio(100), h(210), bgColor(commonStyles.whiteColor)])}/>
             {/*个人信息展示*/}
             <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absB(10)])}>
               <View style={styleAssign([w(120), h(120)])}>
@@ -150,17 +150,17 @@ class Mine extends Component<Props, State> {
           </View>
           {/*个人简介*/}
           <View style={styleAssign([wRatio(100)])}>
-            <View
-              style={styleAssign([wRatio(100), h(80), mt(10), styles.ujb, styles.udr, bgColor(commonStyles.whiteColor)])}>
+            <TouchableButton
+              customStyle={styleAssign([wRatio(100), h(80), mt(10), styles.ujb, styles.udr, bgColor(commonStyles.whiteColor)])}
+              onClick={() => {
+                this.setState({showPersonalInfo: !this.state.showPersonalInfo});
+              }}>
               <View style={styleAssign([ml(20), mt(17)])}>
                 <Text style={styleAssign([fSize(16), color('#343434')])}>个人简介</Text>
                 <Text style={styleAssign([fSize(14), color('#979797')])}>完善个人简介，拥有精美名片</Text>
               </View>
-              <Image style={styleAssign([w(12), h(5), mr(20), mt(40)])} src={require('../../assets/ico_down2.png')}
-                     onClick={() => {
-                       this.setState({showPersonalInfo: !this.state.showPersonalInfo});
-                     }}/>
-            </View>
+              <Image style={styleAssign([w(12), h(5), mr(20), mt(40)])} src={require('../../assets/ico_down2.png')}/>
+            </TouchableButton>
             {
               showPersonalInfo && [{
                 title: '我的家乡',
@@ -213,31 +213,44 @@ class Mine extends Component<Props, State> {
                 subtitle2: '让客户更全面了解你',
                 ico: require('../../assets/ico_play.png')
               }].map((value, index) => {
-              return (<View key={index}
-                            style={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}>
+              return (<TouchableButton key={index}
+                                       customStyle={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
+                                       onClick={() => {
+                                         if (index === 0) {
+                                           Taro.chooseImage({count: 9}).then(() => {
+
+                                           });
+                                         } else {
+                                           Taro.chooseVideo({compressed: true}).then(() => {
+
+                                           });
+                                         }
+                                       }}>
                 <View style={styleAssign([wRatio(100)])}>
                   <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20), mt(17)])}>{value.title}</Text>
                 </View>
                 <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 <View
                   style={styleAssign([w(335), h(176), mt(16), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-                  <View style={styleAssign([styles.uac])}>
-                    <TouchableButton
-                      customStyle={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
-                        styles.uac, styles.ujc])}>
-                      <Image style={styleAssign([w(21), h(19)])} src={require('../../assets/ico_camera.png')}/>
-                    </TouchableButton>
-                    <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>{value.subtitle1}</Text>
-                    <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>{value.subtitle2}</Text>
+                  <View
+                    style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
+                      styles.uac, styles.ujc])}>
+                    <Image style={styleAssign([w(21), h(19)])} src={require('../../assets/ico_camera.png')}/>
                   </View>
+                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>{value.subtitle1}</Text>
+                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>{value.subtitle2}</Text>
                 </View>
-              </View>);
+              </TouchableButton>);
             })
           }
           {/*企业信息*/}
-          <View
-            style={styleAssign([wRatio(100), h(80), mt(10), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc,
-              pl(20), pr(20)])}>
+          <TouchableButton
+            customStyle={styleAssign([wRatio(100), h(80), mt(10), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc,
+              pl(20), pr(20)])} onClick={() => {
+            Taro.navigateTo({
+              url: `/pages/mine/company_info`
+            });
+          }}>
             <View style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr])}>
               <View>
                 <Text style={styleAssign([fSize(16), color('#0C0C0C'), mt(4)])}>企业信息</Text>
@@ -248,7 +261,7 @@ class Mine extends Component<Props, State> {
                 <Image style={styleAssign([w(7), h(12), ml(6)])} src={require('../../assets/ico_next.png')}/>
               </TouchableButton>
             </View>
-          </View>
+          </TouchableButton>
         </ScrollView>
       </CustomSafeAreaView>
     );
