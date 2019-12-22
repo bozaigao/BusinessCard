@@ -123,7 +123,7 @@ class MyTags extends Component<Props, State> {
             </View>
           </View>
         </View>
-        {/*提交*/}
+        {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
 
         }}/>

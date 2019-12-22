@@ -183,7 +183,19 @@ class Mine extends Component<Props, State> {
                   chooseTitle: '添加'
                 }].map((value, index) => {
                 return (
-                  <View key={index} style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}>
+                  <TouchableButton key={index}
+                                   customStyle={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
+                                   onClick={() => {
+                                     if (value.title === '教育经历') {
+                                       Taro.navigateTo({
+                                         url: `/pages/mine/my_edu`
+                                       });
+                                     }else if (value.title === '自我描述') {
+                                       Taro.navigateTo({
+                                         url: `/pages/mine/self_intro`
+                                       });
+                                     }
+                                   }}>
                     <View style={styleAssign([wRatio(100), h(68), styles.udr, styles.uac, styles.ujb])}>
                       <View style={styleAssign([ml(20)])}>
                         <Text style={styleAssign([fSize(16), color('#343434')])}>{value.title}</Text>
@@ -195,7 +207,7 @@ class Mine extends Component<Props, State> {
                       </TouchableButton>
                     </View>
                     <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-                  </View>);
+                  </TouchableButton>);
               })
             }
           </View>

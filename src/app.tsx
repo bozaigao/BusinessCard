@@ -93,6 +93,8 @@ class App extends Component {
       "pages/mine/feedback",
       "pages/mine/my_tags",
       "pages/mine/company_info",
+      "pages/mine/my_edu",
+      "pages/mine/self_intro",
     ],
     window: {
       backgroundTextStyle: 'light',
