@@ -190,9 +190,13 @@ class Mine extends Component<Props, State> {
                                        Taro.navigateTo({
                                          url: `/pages/mine/my_edu`
                                        });
-                                     }else if (value.title === '自我描述') {
+                                     } else if (value.title === '自我描述') {
                                        Taro.navigateTo({
                                          url: `/pages/mine/self_intro`
+                                       });
+                                     } else if (value.title === '我的语音') {
+                                       Taro.navigateTo({
+                                         url: `/pages/mine/audio_recorder`
                                        });
                                      }
                                    }}>
