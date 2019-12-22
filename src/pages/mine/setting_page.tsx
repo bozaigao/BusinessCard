@@ -4,7 +4,7 @@
  * @QQ 1054539528
  * @date 2019/12/19
  * @Description: 设置界面
-*/
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
@@ -60,7 +60,16 @@ class SettingPage extends Component<Props, State> {
               [{title: '使用小技巧'},
                 {title: '投诉与建议'},
                 {title: '关于极致名片'}].map((value, index) => {
-                return (<ListItem title={value.title} key={index}/>);
+                return (<ListItem title={value.title} key={index}
+                                  onCLick={(title) => {
+                                    if (title === '投诉与建议') {
+                                      Taro.navigateTo({
+                                        url: `/pages/mine/feedback`
+                                      });
+                                    } else if (title === '关于极致名片') {
+                                    }
+                                  }
+                                  }/>);
               })
             }
           </View>

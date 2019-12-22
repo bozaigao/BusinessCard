@@ -83,7 +83,15 @@ class PersonalInfo extends Component<Props, State> {
                 {title: '行业', subtitle: '选择'},
                 {title: '职位', subtitle: '必填'}].map((value, index) => {
                 return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
-                                  hasEdit={value.hasEdit}/>);
+                                  hasEdit={value.hasEdit}
+                                  onCLick={(title) => {
+                                    if (title === '联系方式') {
+                                      Taro.navigateTo({
+                                        url: `/pages/mine/contact_way`
+                                      });
+                                    }
+                                  }
+                                  }/>);
               })
             }
           </View>
@@ -96,7 +104,15 @@ class PersonalInfo extends Component<Props, State> {
                 {title: '地区', subtitle: '选择'},
                 {title: '地址', subtitle: '选填'}].map((value: any, index) => {
                 return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
-                                  hasEdit={value.hasEdit}/>);
+                                  hasEdit={value.hasEdit}
+                                  onCLick={(title) => {
+                                    if (title === '我的标签') {
+                                      Taro.navigateTo({
+                                        url: `/pages/mine/my_tags`
+                                      });
+                                    }
+                                  }
+                                  }/>);
               })
             }
           </View>

@@ -29,7 +29,7 @@ export default class ListItem extends Component<Props> {
         <TouchableButton
           onClick={() => {
             if (onCLick) {
-              onCLick();
+              onCLick(title);
             }
           }}
           customStyle={styleAssign([wRatio(100), h(55), bgColor(commonStyles.whiteColor), styles.udr, styles.uac,
