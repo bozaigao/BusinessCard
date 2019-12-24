@@ -6,7 +6,6 @@ const redux_1 = require("@tarojs/redux");
 const businesscard_1 = require("./pages/businesscard/businesscard");
 const store_1 = require("./store");
 require("./app.scss");
-const style_1 = require("./utils/style");
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
 // if (process.env.NODE_ENV !== 'production' && process.env.TARO_ENV === 'h5')  {
@@ -25,24 +24,49 @@ class App extends taro_1.Component {
          */
         this.config = {
             pages: [
+                //主界面
                 "pages/businesscard/businesscard",
                 "pages/radarscan/radarscan",
                 "pages/customer/customer",
                 "pages/mine/mine",
+                //名片模块子页面
+                "pages/businesscard/add_businesscard",
+                "pages/businesscard/qiehuan_businesscard",
+                "pages/businesscard/mingpian_haibao",
+                "pages/businesscard/more_goods",
+                "pages/businesscard/goods_detail",
+                "pages/businesscard/task_center",
+                "pages/businesscard/tool_box",
+                "pages/businesscard/haibao",
+                "pages/businesscard/add_task",
+                "pages/businesscard/mingpianjia",
+                "pages/businesscard/goods_manage",
+                "pages/businesscard/add_goods",
+                //客户模块子页面
+                "pages/customer/customer_detail",
+                "pages/customer/add_customer",
+                //我的模块子页面
+                "pages/mine/personal_info",
+                "pages/mine/contact_way",
+                "pages/mine/setting_page",
+                "pages/mine/feedback",
+                "pages/mine/my_tags",
+                "pages/mine/company_info",
+                "pages/mine/my_edu",
+                "pages/mine/self_intro",
+                "pages/mine/audio_recorder",
             ],
             window: {
                 backgroundTextStyle: 'light',
                 navigationBarBackgroundColor: '#fff',
-                navigationBarTitleText: 'WeChat',
                 navigationBarTextStyle: 'white',
                 pageOrientation: 'portrait',
                 navigationStyle: 'custom'
             },
             tabBar: {
-                custom: false,
                 color: "#9b9b9b",
-                selectedColor: 'red',
-                backgroundColor: style_1.commonStyles.whiteColor,
+                selectedColor: '#313137',
+                backgroundColor: '#FFFFFF',
                 borderStyle: 'white',
                 list: [{
                         pagePath: "pages/businesscard/businesscard",

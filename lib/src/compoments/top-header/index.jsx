@@ -16,10 +16,12 @@ class TopHeader extends taro_1.Component {
         super(props);
     }
     render() {
-        let { title } = this.props;
-        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={require('../../assets/ico_switch.png')}/>
-        <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19)])}>{title}</components_1.Text>
+        let { title, textColor, backgroundColor } = this.props;
+        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac, style_1.bgColor(backgroundColor ? backgroundColor : style_1.commonStyles.whiteColor)])}>
+        <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={textColor ? require('../../assets/ico_back_white.png') : require('../../assets/ico_back.png')} onClick={() => {
+            taro_1.default.navigateBack();
+        }}/>
+        <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19), style_1.color(textColor ? textColor : style_1.commonStyles.colorTheme)])}>{title}</components_1.Text>
         <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.bgColor(style_1.commonStyles.transparent), style_1.mr(20)])}/>
       </components_1.View>);
     }

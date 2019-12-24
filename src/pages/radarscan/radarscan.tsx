@@ -11,7 +11,6 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, w, wRatio} from "../../utils/style";
 import RadarItem from "./radar-item";
-import TopHeader from "../../compoments/top-header";
 
 interface Props {
 }
@@ -55,9 +54,8 @@ class Radarscan extends Component<Props, State> {
       <CustomSafeAreaView
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
         notNeedBottomPadding={true}>
-        <TopHeader title={'雷达'}/>
         {/*雷达、访客切换*/}
-        <View style={styleAssign([wRatio(100), h(85), styles.uac, bgColor(commonStyles.whiteColor)])}>
+        <View style={styleAssign([wRatio(100), h(85), styles.uac,mt(15)])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([styles.uac])}>
               <Text style={styleAssign([fSize(18)])}>雷达</Text>

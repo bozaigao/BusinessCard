@@ -28,23 +28,24 @@ class CustomSafeAreaView extends taro_1.Component {
         };
         this.state = {
             paddingTop: 0,
+            paddingBottom: 0,
             showLoading: false,
         };
     }
     componentWillMount() {
         //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
         if (style_1.iphoneX()) {
-            this.setState({ paddingTop: 47 });
+            this.setState({ paddingTop: 43, paddingBottom: 44 });
         }
         else {
-            this.setState({ paddingTop: 16 });
+            this.setState({ paddingTop: 15 });
         }
     }
     render() {
-        let { customStyle, children, notNeedSafe } = this.props;
-        let { paddingTop, showLoading } = this.state;
+        let { customStyle, children, notNeedTopPadding, notNeedBottomPadding } = this.props;
+        let { paddingTop, showLoading, paddingBottom } = this.state;
         console.log('距离顶部', paddingTop);
-        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pt(notNeedSafe ? 0 : paddingTop), customStyle])}>
+        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pt(notNeedTopPadding ? 0 : paddingTop), style_1.pb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
         {children}
         {showLoading && <loading_1.default />}
       </components_1.View>);

@@ -30,7 +30,7 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/home';
+import * as actions from '../../actions/login';
 import Card from "./business-card";
 import PersonalInfo from "./personal-info";
 import MyPerson from "./my-person";
@@ -44,8 +44,8 @@ import BianJieTool from "./bianjie-tool";
 
 interface Props {
   dispatchLogin?: any;
-  //获取banner信息
-  dispatchBannerInfo?: any;
+  //用户登录
+  userLogin?: any;
 }
 
 interface State {
@@ -53,7 +53,7 @@ interface State {
   showShare: boolean;
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class Businesscard extends Component<Props, State> {
 
   private viewRef;
@@ -85,7 +85,41 @@ class Businesscard extends Component<Props, State> {
     //   console.log('显示对话框');
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
-    // this.getBannerData();
+    this.userLogin();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/24
+   * @function: 用户登录
+   */
+  userLogin = () => {
+    let that = this;
+
+    Taro.login({
+      success(res) {
+        if (res.code) {
+          console.log(that.props);
+          this.viewRef && this.viewRef.showLoading();
+          that.props.userLogin({code: res.code}).then((res) => {
+            this.viewRef && this.viewRef.hideLoading();
+            console.log('用户登录', res);
+          }).catch(e => {
+            this.viewRef && this.viewRef.hideLoading();
+            console.log('报错啦', e);
+          });
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }, fail() {
+        Taro.showToast({title: '请允许微信授权，不然无法正常使用小程序功能'});
+      }
+    }).then(
+
+    );
+
   }
 
 

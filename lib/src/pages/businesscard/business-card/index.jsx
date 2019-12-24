@@ -10,8 +10,10 @@ const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 const datatool_1 = require("../../../utils/datatool");
 const style_1 = require("../../../utils/style");
+const touchable_button_1 = require("../../../compoments/touchable-button");
 class Card extends taro_1.PureComponent {
     render() {
+        let { shareClick } = this.props;
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
@@ -39,14 +41,14 @@ class Card extends taro_1.PureComponent {
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(44), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.radiusA(4), style_1.default.uac, style_1.default.ujc, style_1.bo(1), { borderStyle: 'solid' }, style_1.bdColor(style_1.commonStyles.colorTheme),
+              <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(160), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc, style_1.bo(1), { borderStyle: 'solid' }, style_1.bdColor(style_1.commonStyles.colorTheme),
             style_1.bgColor(style_1.commonStyles.whiteColor), style_1.h(44)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme)])}>完善名片</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.radiusA(4), style_1.ml(15), style_1.default.uac, style_1.default.ujc, style_1.bo(1), style_1.h(44),
-            style_1.bdColor(style_1.commonStyles.colorTheme), style_1.bgColor(style_1.commonStyles.colorTheme)])}>
+              </touchable_button_1.default>
+              <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(160), style_1.radiusA(4), style_1.ml(15), style_1.default.uac, style_1.default.ujc, style_1.bo(1), style_1.h(44),
+            style_1.bdColor(style_1.commonStyles.colorTheme), style_1.bgColor(style_1.commonStyles.colorTheme)])} onClick={shareClick}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.whiteColor)])}>分享名片</components_1.Text>
-              </components_1.View>
+              </touchable_button_1.default>
             </components_1.View>
           </components_1.View>
           

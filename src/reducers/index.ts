@@ -1,8 +1,14 @@
 import {combineReducers} from 'redux'
 import login from "../actions/login";
-import home from "../actions/home";
+import taskCenter from "../actions/task_center";
+import Dict from "../actions/dict";
+import File from "../actions/file";
+import Goods from "../actions/goods";
 
 export default combineReducers({
   login,
-  home
+  taskCenter,
+  Dict,
+  File,
+  Goods
 })

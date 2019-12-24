@@ -27,20 +27,7 @@ const touchable_button_1 = require("../../compoments/touchable-button");
 let Customer = class Customer extends taro_1.Component {
     constructor(props) {
         super(props);
-        /**
-         * 指定config的类型声明为: Taro.Config
-         *
-         * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-         * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-         * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-         */
-        this.config = {
-            navigationBarTitleText: '首页',
-            disableScroll: true
-        };
-        this.state = {
-            bannerList: []
-        };
+        this.state = {};
     }
     componentWillReceiveProps(nextProps) {
         console.log(this.props, nextProps);
@@ -52,7 +39,7 @@ let Customer = class Customer extends taro_1.Component {
     componentDidHide() {
     }
     render() {
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         <top_header_1.default title={'客户'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(99), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.ujb])}>
@@ -71,12 +58,20 @@ let Customer = class Customer extends taro_1.Component {
           <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac])} scrollY>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
             console.log(value);
-            return (<custom_item_1.default key={index}/>);
+            return (<custom_item_1.default key={index} onClick={() => {
+                taro_1.default.navigateTo({
+                    url: `/pages/customer/customer_detail`
+                });
+            }}/>);
         })}
           </components_1.ScrollView>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(44), style_1.radiusA(4), style_1.bgColor('#0F56C5'),
-            style_1.default.uac, style_1.default.ujc])}>
+            style_1.default.uac, style_1.default.ujc])} onClick={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/customer/add_customer`
+            });
+        }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>新增客户</components_1.Text>
             </touchable_button_1.default>
           </components_1.View>

@@ -11,9 +11,11 @@ const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 const datatool_1 = require("../../../utils/datatool");
 const style_1 = require("../../../utils/style");
+const touchable_button_1 = require("../../../compoments/touchable-button");
 class CustomItem extends taro_1.PureComponent {
     render() {
-        return (<components_1.View style={datatool_1.styleAssign([style_1.radiusA(4), { width: '95%' }, { marginLeft: '2.5%' }, style_1.h(154), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(8)])}>
+        let { onClick } = this.props;
+        return (<touchable_button_1.default onClick={onClick} customStyle={datatool_1.styleAssign([style_1.radiusA(4), { width: '95%' }, { marginLeft: '2.5%' }, style_1.h(154), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(8)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(20)])}>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(43), style_1.h(43), style_1.radiusA(21.5), style_1.ml(16)])} src={require('../../../assets/ico_default.jpeg')}/>
@@ -42,7 +44,7 @@ class CustomItem extends taro_1.PureComponent {
             </components_1.View>
           </components_1.View>
         </components_1.View>
-      </components_1.View>);
+      </touchable_button_1.default>);
     }
 }
 exports.default = CustomItem;

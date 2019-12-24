@@ -29,6 +29,9 @@ const my_goods_1 = require("./my-goods");
 const jizhi_card_1 = require("./jizhi-card");
 const my_business_1 = require("./my-business");
 const my_photo_1 = require("./my-photo");
+const touchable_button_1 = require("../../compoments/touchable-button");
+const share_modal_1 = require("./share-modal");
+const bianjie_tool_1 = require("./bianjie-tool");
 let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -40,32 +43,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            navigationBarTitleText: '首页',
             disableScroll: true
-        };
-        /**
-         * @author 何晏波
-         * @QQ 1054539528
-         * @date 2019/10/8
-         * @function: 获取banner数据
-         */
-        this.getBannerData = () => {
-            this.viewRef.showLoading();
-            this.props.dispatchBannerInfo().then((res) => {
-                this.viewRef.hideLoading();
-                this.setState({ bannerList: res.urls });
-            }).catch(e => {
-                this.viewRef.hideLoading();
-                //android模拟器无法访问mock的本地服务所以这里处理下，在真实网络请求中不存在该问题
-                this.setState({
-                    bannerList: ["https://gzol.oss-cn-qingdao.aliyuncs.com/20190906161007.png",
-                        "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926100637.png",
-                        "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926103054.png",
-                        "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926115113.png"
-                    ]
-                });
-                console.log('报错啦', e);
-            });
         };
         /**
          * @author 何晏波
@@ -84,7 +62,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
         };
         this.state = {
             signInPageDetail: { dateIntegrals: [], signInCount: 0 },
-            bannerList: []
+            showShare: false
         };
     }
     componentDidMount() {
@@ -96,36 +74,105 @@ let Businesscard = class Businesscard extends taro_1.Component {
         // });
         // this.getBannerData();
     }
+    /**
+     * @author 何晏波
+     * @QQ 1054539528
+     * @date 2019/10/8
+     * @function: 获取banner数据
+     */
+    // getBannerData = () => {
+    //   this.viewRef.showLoading();
+    //   this.props.dispatchBannerInfo().then((res) => {
+    //     this.viewRef.hideLoading();
+    //     this.setState({bannerList: res.urls});
+    //
+    //   }).catch(e => {
+    //     this.viewRef.hideLoading();
+    //     //android模拟器无法访问mock的本地服务所以这里处理下，在真实网络请求中不存在该问题
+    //     this.setState({
+    //       bannerList: ["https://gzol.oss-cn-qingdao.aliyuncs.com/20190906161007.png",
+    //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926100637.png",
+    //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926103054.png",
+    //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926115113.png"
+    //       ]
+    //     });
+    //     console.log('报错啦', e);
+    //   });
+    // }
     componentWillUnmount() {
         taro_1.default.eventCenter.off('showJiFenModal');
         console.log('componentWillUnmount');
     }
     render() {
-        console.log(style_1.screenHeight());
-        let { signInPageDetail } = this.state;
+        console.log(this.viewRef);
+        let { signInPageDetail, showShare } = this.state;
         if (typeof signInPageDetail.signInCount === 'undefined') {
             signInPageDetail.signInCount = 0;
         }
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
-        }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+        }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
+        
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={require('../../assets/ico_switch.png')}/>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
+            console.log('点击了哦');
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/qiehuan_businesscard`
+            });
+        }}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19)])}>名片</components_1.Text>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.ml(5)])} src={require('../../assets/ico_down.png')}/>
-          </components_1.View>
+          </touchable_button_1.default>
           <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.bgColor(style_1.commonStyles.transparent), style_1.mr(20)])}/>
         </components_1.View>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
-          <business_card_1.default />
+          <business_card_1.default shareClick={() => {
+            this.setState({ showShare: true });
+        }}/>
           
           <personal_info_1.default />
           
           <my_person_1.default />
           
-          <my_goods_1.default />
+          <bianjie_tool_1.default itemClick={(value) => {
+            if (value === '任务中心') {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/task_center`
+                });
+            }
+            else if (value === '工具箱') {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/tool_box`
+                });
+            }
+            else if (value === '海报') {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/haibao`
+                });
+            }
+            else if (value === '名片夹') {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/mingpianjia`
+                });
+            }
+            else if (value === '商城') {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/goods_manage`
+                });
+            }
+        }}/>
+          
+          <my_goods_1.default goToMoreGoods={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/more_goods`
+            });
+        }} goToGoodsDetail={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/goods_detail`
+            });
+        }}/>
           
           <my_business_1.default />
           
@@ -150,6 +197,26 @@ let Businesscard = class Businesscard extends taro_1.Component {
             </components_1.View>
           </components_1.View>
         </components_1.ScrollView>
+        
+        <touchable_button_1.default onClick={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/add_businesscard`
+            });
+        }} customStyle={datatool_1.styleAssign([style_1.w(70), style_1.h(70), style_1.default.uac, style_1.default.ujc, style_1.default.upa, style_1.absR(10), style_1.absB(5)])}>
+          <components_1.Image style={datatool_1.styleAssign([style_1.default.uac, style_1.w(70), style_1.h(70), style_1.default.upa, style_1.absT(0), style_1.absR(0)])} src={require('../../assets/ico_add_card_bg.png')}/>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(26), style_1.h(19)])} src={require('../../assets/ico_add_card_img.png')}/>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(10), style_1.mt(2)])}>创建</components_1.Text>
+          </components_1.View>
+        </touchable_button_1.default>
+        {showShare && <share_modal_1.default cancle={() => {
+            this.setState({ showShare: false });
+        }} wechatShare={() => {
+        }} haibao={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/mingpian_haibao`
+            });
+        }}/>}
       </safe_area_view_1.default>);
     }
 };

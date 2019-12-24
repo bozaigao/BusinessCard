@@ -27,7 +27,7 @@ class MyBusiness extends taro_1.PureComponent {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
-            <components_1.Video style={datatool_1.styleAssign([style_1.wRatio(90), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src='http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400' controls={true} autoplay={false} poster='http://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg' initialTime={0} id='video' loop={false} muted={false}/>
+            <components_1.Video style={datatool_1.styleAssign([style_1.wRatio(90), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src='http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400' controls={true} autoplay={false} poster='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3466612495,3967902081&fm=26&gp=0.jpg' initialTime={0} id='video' loop={false} muted={false}/>
           </components_1.View>
         </components_1.View>
       </components_1.View>);

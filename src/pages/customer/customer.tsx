@@ -17,7 +17,7 @@ import {
   h,
   mb,
   ml,
-  mr,
+  mr, mt,
   op,
   radiusA,
   w,
@@ -27,7 +27,6 @@ import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/home";
-import TopHeader from "../../compoments/top-header";
 import CustomItem from "./custom-item";
 import TouchableButton from "../../compoments/touchable-button";
 
@@ -67,11 +66,10 @@ class Customer extends Component<Props, State> {
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           notNeedBottomPadding={true}>
-        <TopHeader title={'客户'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100), h(99), bgColor(commonStyles.whiteColor), styles.ujb])}>
-            <View style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
-              radiusA(26), styles.uac, styles.udr])}>
+            <View style={styleAssign([{width: '68%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
+              radiusA(26), styles.uac, styles.udr,mt(10)])}>
               <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
               <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
             </View>
