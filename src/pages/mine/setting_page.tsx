@@ -12,7 +12,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, mt, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/home';
+import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Text, View} from "@tarojs/components";
 import ListItem from "../../compoments/list-item";

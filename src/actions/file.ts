@@ -29,7 +29,7 @@ export default function File(state = INITIAL_STATE, action) {
 export const uploadPicture = payload => createAction({
   url: FileController.uploadPicture,
   payload,
-  method: 'post'
+  method: 'POST'
 });
 
 
@@ -42,7 +42,7 @@ export const uploadPicture = payload => createAction({
 export const uploadVideo = payload => createAction({
   url: FileController.uploadVideo,
   payload,
-  method: 'post'
+  method: 'POST'
 });
 
 
@@ -55,7 +55,7 @@ export const uploadVideo = payload => createAction({
 export const uploadVoice = payload => createAction({
   url: FileController.uploadVoice,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 
 

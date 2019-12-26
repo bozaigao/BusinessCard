@@ -26,7 +26,7 @@ import {
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/home";
+import * as actions from "../../actions/login";
 import CustomItem from "./custom-item";
 import TouchableButton from "../../compoments/touchable-button";
 

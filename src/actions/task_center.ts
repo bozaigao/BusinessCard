@@ -29,7 +29,7 @@ export default function taskCenter(state = INITIAL_STATE, action) {
 export const addTask = payload => createAction({
   url: TaskController.addTask,
   payload,
-  method: 'post'
+  method: 'POST'
 });
 
 
@@ -42,7 +42,7 @@ export const addTask = payload => createAction({
 export const getTask = payload => createAction({
   url: TaskController.getTask,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 
 
@@ -55,7 +55,7 @@ export const getTask = payload => createAction({
 export const getTaskList = payload => createAction({
   url: TaskController.getTaskList,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 
 
@@ -68,6 +68,6 @@ export const getTaskList = payload => createAction({
 export const updateTask = payload => createAction({
   url: TaskController.updateTask,
   payload,
-  method: 'post'
+  method: 'POST'
 });
 

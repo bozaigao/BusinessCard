@@ -1,5 +1,5 @@
 //内网测试地址
-let StagingUrl = 'http://api-test.rczhizhi.com/';
+let StagingUrl = 'http://api.rczhizhi.com/';
 //线上发布地址
 // let ProductionUrl = 'http://api-test.rczhizhi.com/';
 

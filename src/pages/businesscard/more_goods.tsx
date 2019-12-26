@@ -26,7 +26,7 @@ import styles, {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/home';
+import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 

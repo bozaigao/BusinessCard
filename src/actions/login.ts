@@ -29,7 +29,7 @@ export default function login(state = INITIAL_STATE, action) {
 export const userLogin = payload => createAction({
   url: UserController.login,
   payload,
-  method:'post'
+  method:'POST'
 });
 
 
@@ -42,7 +42,7 @@ export const userLogin = payload => createAction({
 export const getUserInfo = payload => createAction({
   url: UserController.getUserInfo,
   payload,
-  method:'get'
+  method:'GET'
 });
 
 
@@ -55,6 +55,6 @@ export const getUserInfo = payload => createAction({
 export const updateUserInfo = payload => createAction({
   url: UserController.updateUserInfo,
   payload,
-  method:'post'
+  method:'POST'
 });
 

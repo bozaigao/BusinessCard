@@ -25,9 +25,11 @@ export default async function fetch(options) {
 
   const header = token ? {'WX-PIN-SESSION': token, 'X-WX-3RD-Session': token} : {};
 
-  header['Content-type'] = 'application/json';
+  header['Content-type'] = 'application/x-www-form-urlencoded';
   header['Accept'] = 'application/json';
   header['Connection'] = 'close';
+
+  console.log(`😁😁😁😁😁😁请求接口:${url} 方式:${method} 参数:`,payload)
 
   return Taro.request({
     url,
@@ -36,7 +38,7 @@ export default async function fetch(options) {
     header
   }).then(async (res) => {
     console.log('返回的数据', res);
-    const {code, data, message} = res.data;
+    const {code, data, msg} = res.data;
 
     if (code === NetworkState.NEDD_LOGIN && autoLogin) {
       console.log(('自动登录'));
@@ -44,9 +46,9 @@ export default async function fetch(options) {
       // Taro.navigateTo({
       //   url: '/pages/user-login/user-login'
       // });
-    } else if (showToast && message) {
+    } else if (showToast && msg) {
       Taro.showToast({
-        title: message,
+        title: msg,
         icon: 'none'
       });
     }

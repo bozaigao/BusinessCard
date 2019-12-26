@@ -29,7 +29,7 @@ export default function Goods(state = INITIAL_STATE, action) {
 export const addGoods = payload => createAction({
   url: GoodsController.addGoods,
   payload,
-  method: 'post'
+  method: 'POST'
 });
 
 
@@ -42,7 +42,7 @@ export const addGoods = payload => createAction({
 export const getGoods = payload => createAction({
   url: GoodsController.getGoods,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 
 
@@ -55,7 +55,7 @@ export const getGoods = payload => createAction({
 export const getGoodsList = payload => createAction({
   url: GoodsController.getGoodsList,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 
 
@@ -68,6 +68,6 @@ export const getGoodsList = payload => createAction({
 export const updateGoods = payload => createAction({
   url: GoodsController.updateGoods,
   payload,
-  method: 'post'
+  method: 'POST'
 });
 

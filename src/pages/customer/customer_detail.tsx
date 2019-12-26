@@ -11,7 +11,7 @@ import {bgColor, commonStyles, default as styles} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/home";
+import * as actions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
 import {View} from "@tarojs/components";
 

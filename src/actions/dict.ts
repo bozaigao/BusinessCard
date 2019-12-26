@@ -29,7 +29,7 @@ export default function Dict(state = INITIAL_STATE, action) {
 export const getDictItemList = payload => createAction({
   url: DictController.getDictItemList,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 
 
@@ -42,6 +42,6 @@ export const getDictItemList = payload => createAction({
 export const getProvinceCity = payload => createAction({
   url: DictController.getProvinceCity,
   payload,
-  method: 'get'
+  method: 'GET'
 });
 

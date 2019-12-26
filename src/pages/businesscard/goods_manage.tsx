@@ -12,7 +12,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {scaleSize, styleAssign} from "../../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, pl, pr, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/home';
+import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
