@@ -9,14 +9,14 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {get, styleAssign} from "../../utils/datatool";
 import {
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, ml, mr,
   mt,
   pl,
   pr,
@@ -25,17 +25,34 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/file';
 import TopHeader from "../../compoments/top-header";
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
+import TouchableButton from "../../compoments/touchable-button";
+import {FileController} from "../../api/httpurl";
+import {Enum} from "../../const/global";
 
 interface Props {
+  //上传文件
+  uploadPicture: any;
 }
 
 interface State {
-
+  avatar: string;
+  name: string;
+  sex: string;
+  phone: string;
+  industry: string;
+  position: string;
+  wechat: string;
+  email: string;
+  birthday: string;
+  province: string;
+  detailAddress: string;
+  titleList1: { title: string, subtitle?: string, hasEdit?: boolean }[];
+  titleList2: { title: string, subtitle?: string, hasEdit?: boolean }[];
 }
 
 @connect(state => state.home, {...actions})
@@ -58,10 +75,61 @@ class PersonalInfo extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
+    this.state = {
+      avatar: '',
+      name: '',
+      sex: '',
+      phone: '',
+      industry: '',
+      position: '',
+      wechat: '',
+      email: '',
+      birthday: '',
+      province: '',
+      detailAddress: '',
+      titleList1: [{title: '姓名', subtitle: '必填', hasEdit: true},
+        {title: '性别'},
+        {title: '联系方式', subtitle: '15982468866'},
+        {title: '行业', subtitle: '选择'},
+        {title: '职位', subtitle: '必填'}],
+      titleList2: [{title: '我的标签', subtitle: '添加'},
+        {title: '微信&微信二维码', subtitle: '15982468866'},
+        {title: '邮箱', subtitle: '选填', hasEdit: true},
+        {title: '生日', subtitle: '选填'},
+        {title: '地区', subtitle: '选择'},
+        {title: '地址', subtitle: '选填', hasEdit: true}],
+    }
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 将文件上传到微信服务
+   */
+  uploadFileTpWx = (path) => {
+    get(Enum.USERINFO,(res)=>{
+      console.log('获取用户数据', res);
+      if (res.data.token) {
+        Taro.uploadFile({
+          url: FileController.uploadPicture,
+          filePath: path,
+          name: 'file',
+          header: {
+            'token': res.data.token
+          },
+          success(res) {
+            console.log('上传文件', res);
+          }
+        });
+      }
+    });
   }
 
 
   render() {
+    let {avatar, titleList1, titleList2} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -71,17 +139,54 @@ class PersonalInfo extends Component<Props, State> {
         {/*任务列表*/}
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                     scrollY>
-          <View style={styleAssign([wRatio(100), h(86), styles.uac, styles.udr, styles.ujb,
-            bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
+          <TouchableButton customStyle={styleAssign([wRatio(100), h(86), styles.uac, styles.udr, styles.ujb,
+            bgColor(commonStyles.whiteColor), pl(20), pr(20)])}
+                           onClick={() => {
+                             Taro.chooseImage({count: 1}).then((res) => {
+                               console.log('图片路径', res.tempFiles[0].path)
+                               this.setState({avatar: res.tempFiles[0].path})
+                               this.uploadFileTpWx(res.tempFiles[0].path);
+                             });
+                           }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
-            <Image style={styleAssign([w(60), h(60), radiusA(30)])} src={require('../../assets/ico_default.jpeg')}/>
-          </View>
+            <Image style={styleAssign([w(60), h(60), radiusA(30)])}
+                   src={avatar.length !== 0 ? avatar : require('../../assets/ico_default.jpeg')}/>
+          </TouchableButton>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {
-              [{title: '姓名', subtitle: '必填', hasEdit: true},
-                {title: '联系方式', subtitle: '15982468866'},
-                {title: '行业', subtitle: '选择'},
-                {title: '职位', subtitle: '必填'}].map((value, index) => {
+              titleList1.map((value, index) => {
+                if (value.title === '性别') {
+                  return (
+                    <View style={styleAssign([wRatio(100)])}>
+                      <View
+                        style={styleAssign([wRatio(100), h(51), styles.uac, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+                        <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20)])}>性别</Text>
+                        <View style={styleAssign([styles.uac, styles.udr])}>
+                          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
+                                           onClick={() => {
+                                             console.log('男')
+                                           }}>
+                            <Image
+                              style={styleAssign([w(18), h(18), radiusA(9)])}
+                              src={require('../../assets/ico_default.jpeg')}/>
+                            <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>男</Text>
+                          </TouchableButton>
+                          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
+                                           onClick={() => {
+                                             console.log('女')
+                                           }}>
+                            <Image
+                              style={styleAssign([w(18), h(18), radiusA(9)])}
+                              src={require('../../assets/ico_default.jpeg')}/>
+                            <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>女</Text>
+                          </TouchableButton>
+                        </View>
+                      </View>
+                      <View
+                        style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), {marginLeft: '5%'}])}/>
+                    </View>
+                  );
+                }
                 return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
                                   hasEdit={value.hasEdit}
                                   onCLick={(title) => {
@@ -97,12 +202,30 @@ class PersonalInfo extends Component<Props, State> {
           </View>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {
-              [{title: '我的标签', subtitle: '添加'},
-                {title: '微信&微信二维码', subtitle: '15982468866'},
-                {title: '邮箱', subtitle: '选填', haEdit: true},
-                {title: '生日', subtitle: '必填'},
-                {title: '地区', subtitle: '选择'},
-                {title: '地址', subtitle: '选填'}].map((value: any, index) => {
+              titleList2.map((value: any, index) => {
+
+                if (value.title === '生日') {
+                  return (<Picker mode='date' onChange={(e) => {
+                    titleList2[3].subtitle = e.detail.value;
+                    this.setState({
+                      titleList2
+                    })
+                  }} value={''}>
+                    <ListItem title={value.title} subTitle={value.subtitle} key={index}
+                              hasEdit={value.hasEdit}/>
+                  </Picker>);
+                } else if (value.title === '地区') {
+                  return (<Picker mode='region' onChange={(e) => {
+                    console.log(e.detail)
+                    titleList2[4].subtitle = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                    this.setState({
+                      titleList2
+                    })
+                  }} value={[]}>
+                    <ListItem title={value.title} subTitle={value.subtitle} key={index}
+                              hasEdit={value.hasEdit}/>
+                  </Picker>);
+                }
                 return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
                                   hasEdit={value.hasEdit}
                                   onCLick={(title) => {

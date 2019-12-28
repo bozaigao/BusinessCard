@@ -10,7 +10,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
-import {SignInPage} from "../../../global";
+import {SignInPage} from "../../const/global";
 import {
   absR,
   absT,

@@ -1,5 +1,5 @@
 //内网测试地址
-let StagingUrl = 'http://api.rczhizhi.com/';
+let StagingUrl = 'https://api.rczhizhi.com/';
 //线上发布地址
 // let ProductionUrl = 'http://api-test.rczhizhi.com/';
 
@@ -7,7 +7,7 @@ const BASE_URL = StagingUrl,
   //网络请求返回状态码
   NetworkState = {
     //返回成功
-    SUCCESS: 0,
+    SUCCESS: 1,
     //需要登录
     NEDD_LOGIN: -2,
   },

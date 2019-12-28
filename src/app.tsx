@@ -4,7 +4,7 @@ import {Provider} from '@tarojs/redux'
 import Index from './pages/businesscard/businesscard'
 import configStore from './store'
 import './app.scss'
-import {Global} from "../global";
+import {Global} from "./const/global";
 
 declare let global: Global;
 // 如果需要在 h5 环境中开启 React Devtools
@@ -65,6 +65,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      // "pages/mine/personal_info",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
@@ -87,7 +88,7 @@ class App extends Component {
       "pages/customer/customer_detail",
       "pages/customer/add_customer",
       //我的模块子页面
-      "pages/mine/personal_info",
+      // "pages/mine/personal_info",
       "pages/mine/contact_way",
       "pages/mine/setting_page",
       "pages/mine/feedback",

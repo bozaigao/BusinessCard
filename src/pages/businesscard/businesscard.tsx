@@ -10,8 +10,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
-import {SignInPage} from "../../../global";
+import {get, save, styleAssign} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -41,6 +40,7 @@ import MyPhoto from "./my-photo";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
 import BianJieTool from "./bianjie-tool";
+import {Enum} from "../../const/global";
 
 interface Props {
   dispatchLogin?: any;
@@ -49,7 +49,6 @@ interface Props {
 }
 
 interface State {
-  signInPageDetail: SignInPage;
   showShare: boolean;
 }
 
@@ -73,7 +72,6 @@ class Businesscard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      signInPageDetail: {dateIntegrals: [], signInCount: 0},
       showShare: false
     }
   }
@@ -85,6 +83,10 @@ class Businesscard extends Component<Props, State> {
     //   console.log('显示对话框');
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
+    get(Enum.USERINFO,(res)=>{
+      console.log('获取用户数据', res);
+      console.log(res.data)
+    });
     this.userLogin();
   }
 
@@ -102,12 +104,15 @@ class Businesscard extends Component<Props, State> {
       success(res) {
         if (res.code) {
           console.log(that.props);
-          this.viewRef && this.viewRef.showLoading();
+          that.viewRef && that.viewRef.showLoading();
           that.props.userLogin({code: res.code}).then((res) => {
-            this.viewRef && this.viewRef.hideLoading();
+            //缓存用户数据
+            console.log('缓存用户数据', res);
+            save(Enum.USERINFO, res);
+            that.viewRef && that.viewRef.hideLoading();
             console.log('用户登录', res);
           }).catch(e => {
-            this.viewRef && this.viewRef.hideLoading();
+            that.viewRef && that.viewRef.hideLoading();
             console.log('报错啦', e);
           });
         } else {
@@ -156,31 +161,10 @@ class Businesscard extends Component<Props, State> {
   }
 
 
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/9/18
-   * @function: 获取签到数据
-   */
-  getSignInPage = async () => {
-    // let res = (await this.props.getSignInPage()).data;
-    //
-    // if (res.code === api.NetworkState.SUCCESS) {
-    //   this.setState({
-    //     signInPageDetail: res.data
-    //   });
-    // }
-  };
-
-
   render() {
     console.log(this.viewRef);
 
-    let {signInPageDetail, showShare} = this.state;
-
-    if (typeof signInPageDetail.signInCount === 'undefined') {
-      signInPageDetail.signInCount = 0
-    }
+    let {showShare} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {

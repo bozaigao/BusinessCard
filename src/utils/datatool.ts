@@ -1,5 +1,4 @@
-import {pxTransform} from "@tarojs/taro";
-
+import Taro, {pxTransform} from "@tarojs/taro";
 export let defaultPixel = 2;//iphone6的像素密度
 
 /**
@@ -61,4 +60,30 @@ export function debounce(fn, wait) {
       fn.apply(that, args);
     }, wait)
   }
+}
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/28
+ * @function: 缓存保存
+ */
+export function save(key, value) {
+  Taro.setStorage({key, data: value});
+}
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/28
+ * @function: 缓存保存
+ */
+export function get(key, callback) {
+  Taro.getStorage({key})
+    .then((res: any) => {
+      console.log('获取用户数据', res.data);
+      callback(res.data);
+    });
 }

@@ -7,7 +7,7 @@
  */
 
 import Taro from '@tarojs/taro';
-import {Global} from "../../global";
+import {Global} from "../const/global";
 import {scaleSize, setSpText} from "./datatool";
 
 declare let global: Global;

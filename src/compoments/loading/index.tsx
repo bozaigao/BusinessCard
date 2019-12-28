@@ -35,8 +35,7 @@ export class Loading extends Component {
 
     return (
       <View
-        style={styleAssign([styles.uac, styles.ujc, styles.udf, zIndex(1000), absL(0), absB(0), absR(0), absT(0),
-          bgColor('rgba(0,0,0,0.3)')])}>
+        style={styleAssign([styles.uac, styles.ujc, styles.udf, zIndex(1000), absL(0), absB(0), absR(0), absT(0)])}>
         <View style={styleAssign([
           styles.uac,
           styles.ujc,
