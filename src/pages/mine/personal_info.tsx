@@ -55,13 +55,14 @@ interface State {
   wechat: string;
   email: string;
   birthday: string;
-  zone: string;
+  province: string;
+  city: string;
   detailAddress: string;
   titleList1: { title: string, subtitle?: string, hasEdit?: boolean }[];
   titleList2: { title: string, subtitle?: string, hasEdit?: boolean }[];
 }
 
-@connect(state => state.home, {...fileActions, ...loginActions})
+@connect(state => state.login, {...fileActions, ...loginActions})
 class PersonalInfo extends Component<Props, State> {
 
   private viewRef;
@@ -92,7 +93,8 @@ class PersonalInfo extends Component<Props, State> {
       wechat: '17311239269',
       email: '1054539528@qq.com',
       birthday: '',
-      zone: '',
+      province: '',
+      city: '',
       detailAddress: '',
       titleList1: [{title: '姓名', subtitle: '必填', hasEdit: true},
         {title: '性别'},
@@ -144,7 +146,8 @@ class PersonalInfo extends Component<Props, State> {
    * @function: 更新用户信息
    */
   updateUserInfo = () => {
-    let {avatar, name, sex, phone, industry, position, yangshi, wechat} = this.state;
+    console.log('函数', this.props)
+    let {avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city} = this.state;
 
     console.log('呵呵', avatar, avatar.length);
     if (avatar.length === 0) {
@@ -190,8 +193,22 @@ class PersonalInfo extends Component<Props, State> {
       return;
     }
 
+    let paramas = {
+      avatar,
+      name,
+      sex,
+      phone,
+      industry,
+      position,
+      yangshi,
+      wechat,
+      birthday,
+      province,
+      city
+    };
+
     this.viewRef && this.viewRef.showLoading();
-    this.props.updateUserInfo({avatar, name, sex, phone, industry, position, yangshi, wechat}).then((res) => {
+    this.props.updateUserInfo(paramas).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
     }).catch(e => {
@@ -285,7 +302,8 @@ class PersonalInfo extends Component<Props, State> {
                   return (<Picker mode='date' onChange={(e) => {
                     titleList2[3].subtitle = e.detail.value;
                     this.setState({
-                      titleList2
+                      titleList2,
+                      birthday: e.detail.value
                     })
                   }} value={''}>
                     <ListItem title={value.title} subTitle={value.subtitle} key={index}
@@ -296,11 +314,22 @@ class PersonalInfo extends Component<Props, State> {
                     console.log(e.detail)
                     titleList2[4].subtitle = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
                     this.setState({
-                      titleList2
+                      titleList2,
+                      province: e.detail.value[0],
+                      city: e.detail.value[1]
                     })
                   }} value={[]}>
                     <ListItem title={value.title} subTitle={value.subtitle} key={index}
-                              hasEdit={value.hasEdit}/>
+                              hasEdit={value.hasEdit}
+                              onTextChange={(e) => {
+                                console.log(e);
+                                if (value.subtitle === '邮箱') {
+                                  this.setState({email: e.detail.value});
+                                } else if (value.subtitle === '地址') {
+                                  this.setState({detailAddress: e.detail.value});
+                                }
+                              }
+                              }/>
                   </Picker>);
                 }
                 return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
