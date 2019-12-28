@@ -47,7 +47,7 @@ interface Props {
 interface State {
   avatar: string;
   name: string;
-  sex: string;
+  sex: number;
   phone: string;
   industry: string;
   position: string;
@@ -85,7 +85,7 @@ class PersonalInfo extends Component<Props, State> {
     this.state = {
       avatar: '',
       name: '',
-      sex: '男',
+      sex: 1,
       phone: '17311239269',
       industry: 'IT行业',
       position: 'IT工程师',
@@ -160,13 +160,6 @@ class PersonalInfo extends Component<Props, State> {
     if (name.length === 0) {
       Taro.showToast({
         title: '姓名不能为空',
-        icon: 'none'
-      });
-      return;
-    }
-    if (sex.length === 0) {
-      Taro.showToast({
-        title: '性别不能为空',
         icon: 'none'
       });
       return;
@@ -255,6 +248,7 @@ class PersonalInfo extends Component<Props, State> {
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                                            onClick={() => {
                                              console.log('男')
+                                             this.setState({sex:1})
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
@@ -264,6 +258,7 @@ class PersonalInfo extends Component<Props, State> {
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
                                            onClick={() => {
                                              console.log('女')
+                                             this.setState({sex:2})
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}

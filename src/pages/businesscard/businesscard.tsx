@@ -83,10 +83,6 @@ class Businesscard extends Component<Props, State> {
     //   console.log('显示对话框');
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
-    get(Enum.USERINFO,(res)=>{
-      console.log('获取用户数据', res);
-      console.log(res.data)
-    });
     this.userLogin();
   }
 
@@ -105,12 +101,13 @@ class Businesscard extends Component<Props, State> {
         if (res.code) {
           console.log(that.props);
           that.viewRef && that.viewRef.showLoading();
-          that.props.userLogin({code: res.code}).then((res) => {
+          that.props.userLogin({code: res.code}).then((data) => {
             //缓存用户数据
-            console.log('缓存用户数据', res);
-            save(Enum.USERINFO, res);
+            console.log('返回的用户数据', data);
+            if (res) {
+              save(Enum.USERINFO, data);
+            }
             that.viewRef && that.viewRef.hideLoading();
-            console.log('用户登录', res);
           }).catch(e => {
             that.viewRef && that.viewRef.hideLoading();
             console.log('报错啦', e);

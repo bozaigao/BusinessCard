@@ -35,7 +35,6 @@ export default class BianJieTool extends PureComponent<Props, State> {
             styles.udr, styles.uac, styles.uja])}>
             {
               ['商城', '海报', '工具箱', '名片夹', '任务中心'].map((value, index) => {
-                console.log(value);
                 return (<TouchableButton customStyle={styleAssign([styles.uac])} key={index}
                                          onClick={() => {
                                            itemClick(value);
