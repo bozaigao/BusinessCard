@@ -87,3 +87,14 @@ export function get(key, callback) {
       callback(res.data);
     });
 }
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/28
+ * @function: json数据转化
+*/
+export function parseData(jsonData) {
+  return typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
+}

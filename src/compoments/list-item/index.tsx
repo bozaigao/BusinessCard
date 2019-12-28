@@ -17,12 +17,13 @@ interface Props {
   hasEdit?: boolean;
   onCLick?: any;
   notHasUnderline?: boolean;
+  onTextChange?:any;
 }
 
 export default class ListItem extends Component<Props> {
 
   render() {
-    let {title, subTitle, hasEdit, onCLick, notHasUnderline} = this.props;
+    let {title, subTitle, hasEdit, onCLick, notHasUnderline,onTextChange} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -38,7 +39,8 @@ export default class ListItem extends Component<Props> {
           {
             hasEdit ? <Input type='text' value={''}
                              placeholder={subTitle}
-                             style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}/> :
+                             style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
+              onInput={onTextChange}/> :
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(14), color('#979797')])}>{subTitle ? subTitle : ''}</Text>
                 <Image style={styleAssign([w(8), h(14), ml(9)])} src={require('../../assets/ico_next.png')}/>

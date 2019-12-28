@@ -9,14 +9,16 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, styleAssign} from "../../utils/datatool";
+import {get, parseData, styleAssign} from "../../utils/datatool";
 import {
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, ml, mr,
+  h,
+  ml,
+  mr,
   mt,
   pl,
   pr,
@@ -25,7 +27,8 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/file';
+import * as fileActions from '../../actions/file';
+import * as loginActions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
@@ -37,6 +40,8 @@ import {Enum} from "../../const/global";
 interface Props {
   //上传文件
   uploadPicture: any;
+  //更新用户信息
+  updateUserInfo: any;
 }
 
 interface State {
@@ -46,16 +51,17 @@ interface State {
   phone: string;
   industry: string;
   position: string;
+  yangshi: string;
   wechat: string;
   email: string;
   birthday: string;
-  province: string;
+  zone: string;
   detailAddress: string;
   titleList1: { title: string, subtitle?: string, hasEdit?: boolean }[];
   titleList2: { title: string, subtitle?: string, hasEdit?: boolean }[];
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.home, {...fileActions, ...loginActions})
 class PersonalInfo extends Component<Props, State> {
 
   private viewRef;
@@ -78,21 +84,22 @@ class PersonalInfo extends Component<Props, State> {
     this.state = {
       avatar: '',
       name: '',
-      sex: '',
-      phone: '',
-      industry: '',
-      position: '',
-      wechat: '',
-      email: '',
+      sex: '男',
+      phone: '17311239269',
+      industry: 'IT行业',
+      position: 'IT工程师',
+      yangshi: '名片样式',
+      wechat: '17311239269',
+      email: '1054539528@qq.com',
       birthday: '',
-      province: '',
+      zone: '',
       detailAddress: '',
       titleList1: [{title: '姓名', subtitle: '必填', hasEdit: true},
         {title: '性别'},
         {title: '联系方式', subtitle: '15982468866'},
         {title: '行业', subtitle: '选择'},
         {title: '职位', subtitle: '必填'}],
-      titleList2: [{title: '我的标签', subtitle: '添加'},
+      titleList2: [{title: '名片样式', subtitle: '编辑'},
         {title: '微信&微信二维码', subtitle: '15982468866'},
         {title: '邮箱', subtitle: '选填', hasEdit: true},
         {title: '生日', subtitle: '选填'},
@@ -109,21 +116,87 @@ class PersonalInfo extends Component<Props, State> {
    * @function: 将文件上传到微信服务
    */
   uploadFileTpWx = (path) => {
-    get(Enum.USERINFO,(res)=>{
-      console.log('获取用户数据', res);
-      if (res.data.token) {
+    let that = this;
+
+    get(Enum.USERINFO, (res) => {
+      if (res.token) {
         Taro.uploadFile({
           url: FileController.uploadPicture,
           filePath: path,
           name: 'file',
           header: {
-            'token': res.data.token
+            'token': res.token
           },
           success(res) {
-            console.log('上传文件', res);
+            that.setState({avatar: parseData(res.data).data});
+            console.log('上传文件', parseData(res.data).data);
           }
         });
       }
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 更新用户信息
+   */
+  updateUserInfo = () => {
+    let {avatar, name, sex, phone, industry, position, yangshi, wechat} = this.state;
+
+    console.log('呵呵', avatar, avatar.length);
+    if (avatar.length === 0) {
+      Taro.showToast({
+        title: '头像不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (name.length === 0) {
+      Taro.showToast({
+        title: '姓名不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (sex.length === 0) {
+      Taro.showToast({
+        title: '性别不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (phone.length === 0) {
+      Taro.showToast({
+        title: '电话不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (industry.length === 0) {
+      Taro.showToast({
+        title: '行业不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    if (position.length === 0) {
+      Taro.showToast({
+        title: '职位不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+
+    this.viewRef && this.viewRef.showLoading();
+    this.props.updateUserInfo({avatar, name, sex, phone, industry, position, yangshi, wechat}).then((res) => {
+      console.log('更新用户信息', res);
+      this.viewRef && this.viewRef.hideLoading();
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
     });
   }
 
@@ -196,7 +269,11 @@ class PersonalInfo extends Component<Props, State> {
                                       });
                                     }
                                   }
-                                  }/>);
+                                  } onTextChange={(e) => {
+                  this.setState({name: e.detail.value});
+                  console.log(e);
+                }
+                }/>);
               })
             }
           </View>
@@ -242,7 +319,7 @@ class PersonalInfo extends Component<Props, State> {
         </ScrollView>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-
+          this.updateUserInfo();
         }}/>
       </CustomSafeAreaView>
     );

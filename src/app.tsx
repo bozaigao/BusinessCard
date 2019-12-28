@@ -88,7 +88,7 @@ class App extends Component {
       "pages/customer/customer_detail",
       "pages/customer/add_customer",
       //我的模块子页面
-      // "pages/mine/personal_info",
+      "pages/mine/personal_info",
       "pages/mine/contact_way",
       "pages/mine/setting_page",
       "pages/mine/feedback",
