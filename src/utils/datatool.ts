@@ -1,4 +1,5 @@
 import Taro, {pxTransform} from "@tarojs/taro";
+
 export let defaultPixel = 2;//iphone6的像素密度
 
 /**
@@ -70,7 +71,7 @@ export function debounce(fn, wait) {
  * @function: 缓存保存
  */
 export function save(key, value) {
-  Taro.setStorageSync(key,value);
+  Taro.setStorageSync(key, value);
 }
 
 
@@ -90,7 +91,21 @@ export function get(key) {
  * @QQ 1054539528
  * @date 2019/12/28
  * @function: json数据转化
-*/
+ */
 export function parseData(jsonData) {
   return typeof jsonData === 'string' ? JSON.parse(jsonData) : jsonData;
 }
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/29
+ * @function: 显示toast
+ */
+export function toast(msg) {
+  Taro.showToast({
+    title: msg,
+    icon: 'none'
+  });
+}
+

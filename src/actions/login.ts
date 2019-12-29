@@ -8,11 +8,19 @@
 import {createAction} from "../utils/redux";
 import {UserController} from "../api/httpurl";
 
-const INITIAL_STATE = {}
+const INITIAL_STATE = {
+  userInfo:{}
+}
 
 export default function login(state = INITIAL_STATE, action) {
+  console.log('登录模块',action);
   if (action.type) {
     switch (action.type) {
+      case 'getUserInfo':
+        return {
+          ...state,
+          userInfo: action.payload
+        };
       default:
         return state;
     }
@@ -42,7 +50,8 @@ export const userLogin = payload => createAction({
 export const getUserInfo = payload => createAction({
   url: UserController.getUserInfo,
   payload,
-  method:'GET'
+  method:'GET',
+  type:'getUserInfo'
 });
 
 

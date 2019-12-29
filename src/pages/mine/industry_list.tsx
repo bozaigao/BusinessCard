@@ -96,7 +96,6 @@ class IndustryList extends Component<Props, State> {
                   <TouchableButton key={index}
                                    customStyle={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}
                                    onClick={() => {
-                                     console.log('哈哈', value.children);
                                      this.setState({currentIndex: index});
                                    }}>
                     <View style={styleAssign([wRatio(100), h(50), bgColor(commonStyles.whiteColor), styles.ujc])}>
@@ -106,7 +105,6 @@ class IndustryList extends Component<Props, State> {
                   </TouchableButton>
                   {
                     currentIndex === index && value.children.map((item, itemIndex) => {
-                      console.log('哈哈1', value);
                       return (<TouchableButton key={itemIndex}
                                                customStyle={styleAssign([wRatio(100), styles.uac, bgColor('#F7F7F7')])}
                                                onClick={() => {

@@ -32,18 +32,19 @@ import {styleAssign} from "../../utils/datatool";
 import TouchableButton from "../../compoments/touchable-button";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
+import {User} from "../../const/global";
 
 
 interface Props {
   //获取用户信息
-  getUserInfo:any;
+  getUserInfo: any;
+  userInfo: User;
 }
 
 interface State {
   marginTop: any;
   showPersonalInfo: boolean;
 }
-
 
 @connect(state => state.login, {...actions})
 class Mine extends Component<Props, State> {
@@ -67,10 +68,6 @@ class Mine extends Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
-  }
-
   componentWillMount() {
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
@@ -78,6 +75,7 @@ class Mine extends Component<Props, State> {
     } else {
       this.setState({marginTop: 15});
     }
+    this.getUserInfo();
   }
 
   componentWillUnmount() {
@@ -95,10 +93,11 @@ class Mine extends Component<Props, State> {
    * @QQ 1054539528
    * @date 2019/12/29
    * @function: 获取用户信息
-  */
-  getUserInfo = ()=>{
-    this.props.getUserInfo({id: 1}).then((res) => {
-      console.log('获取任务信息', res);
+   */
+  getUserInfo = () => {
+    this.props.getUserInfo().then((res) => {
+      console.log('获取用户信息', res);
+      console.log('属性', this.props.userInfo);
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -107,6 +106,7 @@ class Mine extends Component<Props, State> {
   render() {
 
     let {marginTop, showPersonalInfo} = this.state;
+    let {userInfo} = this.props;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -130,13 +130,14 @@ class Mine extends Component<Props, State> {
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
-                  src={require('../../assets/ico_default.png')}/>
+                  src={userInfo.avatar}/>
                 <Image
                   style={styleAssign([w(23), h(23), radiusA(11.5), styles.upa, absB(2), absR(2)])}
-                  src={require('../../assets/ico_nv.png')}/>
+                  src={userInfo.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
               </View>
-              <Text style={styleAssign([fSize(20), color('#343434'), mt(15)])}>王嘉怡</Text>
-              <Text style={styleAssign([fSize(16), color('#727272'), mt(4)])}>美克美家家居股份有限公司</Text>
+              <Text style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name}</Text>
+              <Text
+                style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{userInfo.company ? userInfo.company : ''}</Text>
               <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>四川美术学院</Text>
               <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>四川 成都</Text>
               <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>耐用消耗品</Text>

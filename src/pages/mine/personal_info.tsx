@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, parseData, styleAssign} from "../../utils/datatool";
+import {get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -161,38 +161,23 @@ class PersonalInfo extends Component<Props, State> {
 
     console.log('呵呵', avatar, avatar.length);
     if (avatar.length === 0) {
-      Taro.showToast({
-        title: '头像不能为空',
-        icon: 'none'
-      });
+      toast('头像不能为空');
       return;
     }
     if (name.length === 0) {
-      Taro.showToast({
-        title: '姓名不能为空',
-        icon: 'none'
-      });
+      toast('姓名不能为空');
       return;
     }
     if (phone.length === 0) {
-      Taro.showToast({
-        title: '电话不能为空',
-        icon: 'none'
-      });
+      toast('电话不能为空');
       return;
     }
     if (industry.length === 0) {
-      Taro.showToast({
-        title: '行业不能为空',
-        icon: 'none'
-      });
+      toast('行业不能为空');
       return;
     }
     if (position.length === 0) {
-      Taro.showToast({
-        title: '职位不能为空',
-        icon: 'none'
-      });
+      toast('职位不能为空');
       return;
     }
 

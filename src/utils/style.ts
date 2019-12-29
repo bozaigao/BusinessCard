@@ -6,9 +6,8 @@
  * @Description: 样式工具类
  */
 
-import Taro from '@tarojs/taro';
 import {Global} from "../const/global";
-import {scaleSize, setSpText} from "./datatool";
+import {scaleSize, setSpText, toast} from "./datatool";
 
 declare let global: Global;
 
@@ -105,7 +104,7 @@ function padding(paddingArr: any) {
       paddingLeft: scaleSize(paddingArr[3])
     };
   }
-  Taro.showToast({title: 'padding方法第一个参数为数组,四个参数的时候分别代表上右下左,也可以传递3,2,1个参数'})
+  toast('padding方法第一个参数为数组,四个参数的时候分别代表上右下左,也可以传递3,2,1个参数');
   return {};
 }
 
@@ -140,7 +139,7 @@ function border(borderWidthArr: any) {
       borderLeftWidth: scaleSize(borderWidthArr[3])
     };
   }
-  Taro.showToast({title: 'border方法第一个参数为数组,四个参数的时候分别代表上右下ø左,也可以传递3,2,1个参数'})
+  toast('border方法第一个参数为数组,四个参数的时候分别代表上右下ø左,也可以传递3,2,1个参数');
   return {};
 }
 
@@ -175,7 +174,7 @@ function margin(marginArr: any) {
       marginLeft: scaleSize(marginArr[3])
     };
   }
-  Taro.showToast({title: 'radius方法中第一个数组参数必须为四个元素,默认左上为第一个参数,顺时针旋转'})
+  toast('radius方法中第一个数组参数必须为四个元素,默认左上为第一个参数,顺时针旋转');
   return {};
 }
 
@@ -210,7 +209,7 @@ function borderRadius(borderRadiusArr: any) {
       borderBottomLeftRadius: scaleSize(borderRadiusArr[3])
     };
   }
-  Taro.showToast({title: 'radius方法中第一个数组参数必须为四个元素,默认左上为第一个参数,顺时针旋转'})
+  toast('radius方法中第一个数组参数必须为四个元素,默认左上为第一个参数,顺时针旋转');
   return {};
 }
 
@@ -242,7 +241,7 @@ function abs(absolutePositionArr: any) {
       left: scaleSize(absolutePositionArr[3])
     };
   }
-  Taro.showToast({title: 'abs方法第一个参数为数组,四个参数的时候分别代表上右下左,也可以传递3,2,1个参数'})
+  toast('abs方法第一个参数为数组,四个参数的时候分别代表上右下左,也可以传递3,2,1个参数');
   return {};
 }
 

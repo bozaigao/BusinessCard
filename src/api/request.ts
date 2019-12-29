@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import {NetworkState, UserController} from "./httpurl";
 import {Enum} from "../const/global";
-import {get, save} from "../utils/datatool";
+import {get, save, toast} from "../utils/datatool";
 
 const CODE_SUCCESS = '200';
 let isRefreshing = true;
@@ -72,10 +72,7 @@ export default async function fetch(options) {
     }
     //服务接口报错
     else if (showToast && code !== NetworkState.SUCCESS) {
-      Taro.showToast({
-        title: msg,
-        icon: 'none'
-      });
+      toast(msg);
     }
   }).catch((err) => {
 
@@ -125,10 +122,7 @@ async function wxLogin() {
           }
           //服务接口报错
           else if (code !== NetworkState.SUCCESS) {
-            Taro.showToast({
-              title: msg,
-              icon: 'none'
-            });
+            toast(msg);
           }
         }).catch((err) => {
           console.log('爆错了', err)
@@ -144,7 +138,7 @@ async function wxLogin() {
         console.log('登录失败！' + res.errMsg)
       }
     }, fail() {
-      Taro.showToast({title: '请允许微信授权，不然无法正常使用小程序功能'});
+      toast('请允许微信授权，不然无法正常使用小程序功能');
     }
   });
 }
