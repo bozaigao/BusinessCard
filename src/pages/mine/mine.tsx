@@ -11,9 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
   absR,
-  bdColor,
   bgColor,
-  bo,
   color,
   commonStyles,
   default as styles,
@@ -111,7 +109,7 @@ class Mine extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absB(10)])}>
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
-                  style={styleAssign([w(120), h(120), radiusA(60), bo(3), bdColor(commonStyles.whiteColor), {borderStyle: 'solid'}])}
+                  style={styleAssign([w(120), h(120), radiusA(60)])}
                   src={require('../../assets/ico_default.png')}/>
                 <Image
                   style={styleAssign([w(23), h(23), radiusA(11.5), styles.upa, absB(2), absR(2)])}

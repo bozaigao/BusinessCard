@@ -34,8 +34,8 @@ import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
 import TouchableButton from "../../compoments/touchable-button";
-import {FileController} from "../../api/httpurl";
 import {Enum} from "../../const/global";
+import {FileController} from "../../api/httpurl";
 
 interface Props {
   //上传文件
@@ -82,6 +82,7 @@ class PersonalInfo extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
+    // let test = this.$router.params.itemId;
     this.state = {
       avatar: '',
       name: '',
@@ -110,6 +111,18 @@ class PersonalInfo extends Component<Props, State> {
     }
   }
 
+  componentDidMount() {
+    Taro.eventCenter.on('industry', (industry) => {
+      console.log('参数回调', industry);
+      this.state.titleList1[3].subtitle = industry;
+
+      this.setState({industry, titleList1: this.state.titleList1});
+    })
+  }
+
+  componentWillUnmount() {
+    Taro.eventCenter.off();
+  }
 
   /**
    * @author 何晏波
@@ -119,23 +132,20 @@ class PersonalInfo extends Component<Props, State> {
    */
   uploadFileTpWx = (path) => {
     let that = this;
+    let token = get(Enum.TOKEN);
 
-    // get(Enum.TOKEN, (res) => {
-    //   if (res.token) {
-    //     Taro.uploadFile({
-    //       url: FileController.uploadPicture,
-    //       filePath: path,
-    //       name: 'file',
-    //       header: {
-    //         'token': res.token
-    //       },
-    //       success(res) {
-    //         that.setState({avatar: parseData(res.data).data});
-    //         console.log('上传文件', parseData(res.data).data);
-    //       }
-    //     });
-    //   }
-    // });
+    Taro.uploadFile({
+      url: FileController.uploadPicture,
+      filePath: path,
+      name: 'file',
+      header: {
+        'token': token
+      },
+      success(res) {
+        that.setState({avatar: parseData(res.data).data});
+        console.log('上传文件', parseData(res.data).data);
+      }
+    });
   }
 
 
@@ -248,7 +258,7 @@ class PersonalInfo extends Component<Props, State> {
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                                            onClick={() => {
                                              console.log('男')
-                                             this.setState({sex:1})
+                                             this.setState({sex: 1})
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
@@ -258,7 +268,7 @@ class PersonalInfo extends Component<Props, State> {
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
                                            onClick={() => {
                                              console.log('女')
-                                             this.setState({sex:2})
+                                             this.setState({sex: 2})
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
@@ -278,6 +288,13 @@ class PersonalInfo extends Component<Props, State> {
                                     if (title === '联系方式') {
                                       Taro.navigateTo({
                                         url: `/pages/mine/contact_way`
+                                      });
+                                    } else if (title === '行业') {
+                                      Taro.navigateTo({
+                                        url: `/pages/mine/industry_list`,
+                                        success: (e) => {
+                                          console.log('参数回传1', e);
+                                        }
                                       });
                                     }
                                   }
