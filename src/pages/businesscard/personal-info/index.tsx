@@ -47,7 +47,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
         <View
           style={styleAssign([wRatio(95), h(307), bgColor(commonStyles.whiteColor), radiusA(4),
             {marginLeft: '2.5%'}, mt(16), pa(16)])}>
-          <Image style={styleAssign([w(40), h(40), radiusA(20)])} src={require('../../../assets/ico_default.jpeg')}/>
+          <Image style={styleAssign([w(40), h(40), radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
           <Text
             style={styleAssign([fSize(14), color('#343434'), mt(16)])}>Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！</Text>
           {/*家乡*/}

@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, save, styleAssign} from "../../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -29,7 +29,7 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/task_center';
 import Card from "./business-card";
 import PersonalInfo from "./personal-info";
 import MyPerson from "./my-person";
@@ -40,19 +40,16 @@ import MyPhoto from "./my-photo";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
 import BianJieTool from "./bianjie-tool";
-import {Enum} from "../../const/global";
 
 interface Props {
-  dispatchLogin?: any;
-  //用户登录
-  userLogin?: any;
+  getTask: any;
 }
 
 interface State {
   showShare: boolean;
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.taskCenter, {...actions})
 class Businesscard extends Component<Props, State> {
 
   private viewRef;
@@ -83,73 +80,16 @@ class Businesscard extends Component<Props, State> {
     //   console.log('显示对话框');
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
-    this.userLogin();
+    this.getTask();
   }
 
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/12/24
-   * @function: 用户登录
-   */
-  userLogin = () => {
-    let that = this;
-
-    Taro.login({
-      success(res) {
-        if (res.code) {
-          console.log(that.props);
-          that.viewRef && that.viewRef.showLoading();
-          that.props.userLogin({code: res.code}).then((data) => {
-            //缓存用户数据
-            console.log('返回的用户数据', data);
-            if (res) {
-              save(Enum.USERINFO, data);
-            }
-            that.viewRef && that.viewRef.hideLoading();
-          }).catch(e => {
-            that.viewRef && that.viewRef.hideLoading();
-            console.log('报错啦', e);
-          });
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }, fail() {
-        Taro.showToast({title: '请允许微信授权，不然无法正常使用小程序功能'});
-      }
-    }).then(
-
-    );
-
+  getTask = () => {
+    this.props.getTask({id: 1}).then((res) => {
+      console.log('获取任务信息', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
-
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/10/8
-   * @function: 获取banner数据
-   */
-  // getBannerData = () => {
-  //   this.viewRef.showLoading();
-  //   this.props.dispatchBannerInfo().then((res) => {
-  //     this.viewRef.hideLoading();
-  //     this.setState({bannerList: res.urls});
-  //
-  //   }).catch(e => {
-  //     this.viewRef.hideLoading();
-  //     //android模拟器无法访问mock的本地服务所以这里处理下，在真实网络请求中不存在该问题
-  //     this.setState({
-  //       bannerList: ["https://gzol.oss-cn-qingdao.aliyuncs.com/20190906161007.png",
-  //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926100637.png",
-  //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926103054.png",
-  //         "https://gzol.oss-cn-qingdao.aliyuncs.com/20190926115113.png"
-  //       ]
-  //     });
-  //     console.log('报错啦', e);
-  //   });
-  // }
 
 
   componentWillUnmount() {
@@ -246,7 +186,7 @@ class Businesscard extends Component<Props, State> {
             style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(57), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
-                     src={require('../../assets/ico_default.jpeg')}/>
+                     src={require('../../assets/ico_default.png')}/>
               <View style={styleAssign([ml(5)])}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>关注极致信息公众号</Text>
                 <Text style={styleAssign([fSize(12), color('#D2D2D2')])}>最新资讯、升级更新早知道！</Text>

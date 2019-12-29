@@ -44,7 +44,7 @@ export default class CustomItem extends PureComponent<Props, State> {
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
             <Image style={styleAssign([w(43), h(43), radiusA(21.5), ml(16)])}
-                   src={require('../../../assets/ico_default.jpeg')}/>
+                   src={require('../../../assets/ico_default.png')}/>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme)])}>刘思雨</Text>
               <Text style={styleAssign([fSize(10), color('#979797')])}>来自名片扫码2019-11-20</Text>

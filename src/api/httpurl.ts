@@ -9,16 +9,16 @@ const BASE_URL = StagingUrl,
     //返回成功
     SUCCESS: 1,
     //需要登录
-    NEDD_LOGIN: -2,
+    NEED_LOGIN: 0,
   },
   //用户登录模块
   UserController = {
     //用户登录
     login: BASE_URL + 'user/login',
     //获取用户详细信息
-    getUserInfo: BASE_URL + 'user/getUserInfo',
+    getTOKEN: BASE_URL + 'user/getTOKEN',
     //更新用户信息
-    updateUserInfo: BASE_URL + 'user/update',
+    updateTOKEN: BASE_URL + 'user/update',
   },
   //数据字典
   DictController = {

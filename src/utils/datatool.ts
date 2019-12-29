@@ -70,7 +70,7 @@ export function debounce(fn, wait) {
  * @function: 缓存保存
  */
 export function save(key, value) {
-  Taro.setStorage({key, data: value});
+  Taro.setStorageSync(key,value);
 }
 
 
@@ -80,12 +80,8 @@ export function save(key, value) {
  * @date 2019/12/28
  * @function: 缓存保存
  */
-export function get(key, callback) {
-  Taro.getStorage({key})
-    .then((res: any) => {
-      console.log('获取用户数据', res.data);
-      callback(res.data);
-    });
+export function get(key) {
+  return Taro.getStorageSync(key);
 }
 
 

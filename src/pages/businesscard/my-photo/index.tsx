@@ -32,17 +32,17 @@ export default class MyPhoto extends PureComponent<Props, State> {
           <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
             <Image
               style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={require('../../../assets/ico_default.jpeg')}/>
+              src={require('../../../assets/ico_default.png')}/>
           </View>
           <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
             <Image
               style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={require('../../../assets/ico_default.jpeg')}/>
+              src={require('../../../assets/ico_default.png')}/>
           </View>
           <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
             <Image
               style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={require('../../../assets/ico_default.jpeg')}/>
+              src={require('../../../assets/ico_default.png')}/>
           </View>
         </View>
       </View>

@@ -41,7 +41,7 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
     return (
       <View style={styleAssign([wRatio(100), h(189), bgColor(commonStyles.whiteColor), mt(10)])}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
-          <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={require('../../../assets/ico_default.jpeg')}/>
+          <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={require('../../../assets/ico_default.png')}/>
           <View style={styleAssign([ml(12)])}>
             <Text style={styleAssign([fSize(18), color('#343434')])}>现代简约双人木床</Text>
             <View style={styleAssign([styles.uac, styles.udr, mt(16)])}>

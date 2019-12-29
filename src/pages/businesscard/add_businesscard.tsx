@@ -105,7 +105,7 @@ class AddBusinesscard extends Component<Props, State> {
               style={styleAssign([w(335), h(197), radiusA(5), bgColor(commonStyles.whiteColor), {boxShadow: '0px 2px 4px 0px rgba(230,230,230,0.5'}])}>
               <View style={styleAssign([styles.uac, styles.udr, ma(20)])}>
                 <Image style={styleAssign([w(71), h(71), radiusA(4)])}
-                       src={require('../../assets/ico_default.jpeg')}/>
+                       src={require('../../assets/ico_default.png')}/>
                 <View style={styleAssign([ml(13)])}>
                   <Text style={styleAssign([fSize(18), color(commonStyles.colorTheme)])}>JY-W</Text>
                   <Text style={styleAssign([fSize(14), color('#727272'), mt(8)])}>公司</Text>

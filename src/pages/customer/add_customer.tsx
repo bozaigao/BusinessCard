@@ -97,7 +97,7 @@ class AddCustomer extends Component<Props, State> {
               pl(20), pr(20)])}>
             <Text style={styleAssign([fSize(14), color('#CECECE')])}>头像</Text>
             <Image style={styleAssign([w(66), h(66), radiusA(33)])}
-                   src={require('../../assets/ico_default.jpeg')}/>
+                   src={require('../../assets/ico_default.png')}/>
           </View>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {

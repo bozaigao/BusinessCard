@@ -28,7 +28,7 @@ export default class MingPianJiaItem extends PureComponent<Props, State> {
         <View style={styleAssign([w(335), h(106), bgColor(commonStyles.whiteColor), radiusA(4),
           styles.uac, styles.udr])}>
           <Image style={styleAssign([w(66), h(66), radiusA(33), ml(16)])}
-                 src={require('../../../assets/ico_default.jpeg')}/>
+                 src={require('../../../assets/ico_default.png')}/>
           <View style={styleAssign([styles.uf1, styles.udr, styles.uac, styles.ujb])}>
             <View style={styleAssign([ml(12)])}>
               <Text style={styleAssign([color('#343434'), fSize(16)])}>卢志刚</Text>

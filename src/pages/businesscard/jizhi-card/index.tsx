@@ -53,7 +53,7 @@ export default class JiZhiCard extends PureComponent<Props, State> {
                     <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme), mt(4)])}>四川极致信息技术有限公司</Text>
                   </View>
                   <Image style={styleAssign([w(66), h(66), radiusA(33)])}
-                         src={require('../../../assets/ico_default.jpeg')}/>
+                         src={require('../../../assets/ico_default.png')}/>
                 </View>
                 <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme), mt(8), ml(16)])}>18980668468</Text>
                 <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(16)])}>LY8866321</Text>

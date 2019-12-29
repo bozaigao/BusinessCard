@@ -82,7 +82,7 @@ class GoodsDetail extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), h(366)])}>
               <View style={styleAssign([wRatio(100), h(313)])}>
                 <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(0)])}
-                       src={require('../../assets/ico_default.jpeg')}/>
+                       src={require('../../assets/ico_default.png')}/>
                 <View style={styleAssign([bgColor('rgba(84,84,84,0.6)'), w(48), h(22), radiusA(10),
                   styles.uac, styles.ujc, styles.upa, absR(19), absB(8)])}>
                   <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>1/5</Text>
@@ -111,7 +111,7 @@ class GoodsDetail extends Component<Props, State> {
                   return (<Image
                     key={index}
                     style={styleAssign([w(336), h(245), mt(8)])}
-                    src={require('../../assets/ico_default.jpeg')}/>);
+                    src={require('../../assets/ico_default.png')}/>);
                 })
               }
             </View>

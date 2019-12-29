@@ -102,7 +102,7 @@ class Haibao extends Component<Props, State> {
                       radiusA(4)])}
                           key={index}>
                       <Image style={styleAssign([w(97), h(186), radiusA(4)])}
-                             src={require('../../assets/ico_default.jpeg')}/>
+                             src={require('../../assets/ico_default.png')}/>
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                         <TouchableButton
                           customStyle={styleAssign([w(72), h(28), bo(1), bdColor(commonStyles.colorTheme), {borderStyle: 'solid'},

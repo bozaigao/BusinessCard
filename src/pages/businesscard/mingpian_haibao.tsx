@@ -74,7 +74,7 @@ class MingpianHaibao extends Component<Props, State> {
             <View style={styleAssign([mt(20), wRatio(95), h(204), bgColor('rgb(211,199,195)'), radiusA(10),
               styles.udr, styles.uje])}>
               <Image style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}
-                     src={require('../../assets/ico_default.jpeg')}/>
+                     src={require('../../assets/ico_default.png')}/>
               <View style={styleAssign([ma(20)])}>
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text style={styleAssign([fSize(18)])}>王嘉怡</Text>

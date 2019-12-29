@@ -147,5 +147,5 @@ export interface Good {
 
 
 export enum Enum {
-  USERINFO = 'userInfo'
+  TOKEN = 'token'
 }

@@ -41,7 +41,7 @@ interface Props {
   //上传文件
   uploadPicture: any;
   //更新用户信息
-  updateUserInfo: any;
+  updateTOKEN: any;
 }
 
 interface State {
@@ -120,22 +120,22 @@ class PersonalInfo extends Component<Props, State> {
   uploadFileTpWx = (path) => {
     let that = this;
 
-    get(Enum.USERINFO, (res) => {
-      if (res.token) {
-        Taro.uploadFile({
-          url: FileController.uploadPicture,
-          filePath: path,
-          name: 'file',
-          header: {
-            'token': res.token
-          },
-          success(res) {
-            that.setState({avatar: parseData(res.data).data});
-            console.log('上传文件', parseData(res.data).data);
-          }
-        });
-      }
-    });
+    // get(Enum.TOKEN, (res) => {
+    //   if (res.token) {
+    //     Taro.uploadFile({
+    //       url: FileController.uploadPicture,
+    //       filePath: path,
+    //       name: 'file',
+    //       header: {
+    //         'token': res.token
+    //       },
+    //       success(res) {
+    //         that.setState({avatar: parseData(res.data).data});
+    //         console.log('上传文件', parseData(res.data).data);
+    //       }
+    //     });
+    //   }
+    // });
   }
 
 
@@ -145,7 +145,7 @@ class PersonalInfo extends Component<Props, State> {
    * @date 2019/12/28
    * @function: 更新用户信息
    */
-  updateUserInfo = () => {
+  updateTOKEN = () => {
     console.log('函数', this.props)
     let {avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city} = this.state;
 
@@ -201,7 +201,7 @@ class PersonalInfo extends Component<Props, State> {
     };
 
     this.viewRef && this.viewRef.showLoading();
-    this.props.updateUserInfo(paramas).then((res) => {
+    this.props.updateTOKEN(paramas).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
     }).catch(e => {
@@ -233,7 +233,7 @@ class PersonalInfo extends Component<Props, State> {
                            }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
             <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                   src={avatar.length !== 0 ? avatar : require('../../assets/ico_default.jpeg')}/>
+                   src={avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
           </TouchableButton>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {
@@ -252,7 +252,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={require('../../assets/ico_default.jpeg')}/>
+                              src={require('../../assets/ico_default.png')}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>男</Text>
                           </TouchableButton>
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
@@ -262,7 +262,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={require('../../assets/ico_default.jpeg')}/>
+                              src={require('../../assets/ico_default.png')}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>女</Text>
                           </TouchableButton>
                         </View>
@@ -343,7 +343,7 @@ class PersonalInfo extends Component<Props, State> {
         </ScrollView>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-          this.updateUserInfo();
+          this.updateTOKEN();
         }}/>
       </CustomSafeAreaView>
     );

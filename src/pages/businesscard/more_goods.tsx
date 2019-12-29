@@ -80,7 +80,7 @@ class MoreGoods extends Component<Props, State> {
                     radiusA(4)])}
                         key={index}>
                     <Image style={styleAssign([w(147), h(152), radiusA(4)])}
-                           src={require('../../assets/ico_default.jpeg')}/>
+                           src={require('../../assets/ico_default.png')}/>
                     <Text
                       style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(8), mt(12)])}>现代简约双人木床</Text>
                     <Text style={styleAssign([fSize(10), color('#FA6B57'), ml(8), mt(12), mt(8)])}>￥688</Text>
