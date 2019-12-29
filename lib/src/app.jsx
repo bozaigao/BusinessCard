@@ -55,6 +55,7 @@ class App extends taro_1.Component {
                 "pages/mine/my_edu",
                 "pages/mine/self_intro",
                 "pages/mine/audio_recorder",
+                "pages/mine/industry_list",
             ],
             window: {
                 backgroundTextStyle: 'light',

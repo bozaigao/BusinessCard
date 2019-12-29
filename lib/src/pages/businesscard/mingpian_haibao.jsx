@@ -20,7 +20,7 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const touchable_button_1 = require("../../compoments/touchable-button");
@@ -49,7 +49,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
             
             <components_1.View style={datatool_1.styleAssign([style_1.mt(20), style_1.wRatio(95), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../assets/ico_default.jpeg')}/>
+              <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../assets/ico_default.png')}/>
               <components_1.View style={datatool_1.styleAssign([style_1.ma(20)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>王嘉怡</components_1.Text>

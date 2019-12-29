@@ -27,11 +27,16 @@ import iconLoadingBg from '../../assets/ico_loading_bg.png';
 //@ts-ignore
 import gifLoading from '../../assets/loading.gif';
 
+interface Props {
+  title?: string;
+}
 
-export class Loading extends Component {
+export class Loading extends Component<Props> {
 
 
   render() {
+
+    let {title} = this.props;
 
     return (
       <View
@@ -50,7 +55,8 @@ export class Loading extends Component {
           />
           <View style={styleAssign([styles.upa, styles.uac, absL(10), absT(25), bgColor(commonStyles.whiteColor)])}>
             <Image style={styleAssign([w(100), h(40)])} src={gifLoading}/>
-            <Text style={styleAssign([color(commonStyles.textGrayColor), fSize(14)])}>加载中...</Text>
+            <Text
+              style={styleAssign([color(commonStyles.textGrayColor), fSize(14)])}>{`${title && title.length !== 0 ? title : '加载中'}...`}</Text>
           </View>
         </View>
       </View>

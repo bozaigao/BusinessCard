@@ -19,7 +19,7 @@ const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 let CustomerDetail = class CustomerDetail extends taro_1.Component {
@@ -48,7 +48,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
     }
     render() {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={''} isBack={true}/>
+        <top_header_1.default title={''}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
 
         </components_1.View>

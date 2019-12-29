@@ -20,8 +20,7 @@ const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
-const top_header_1 = require("../../compoments/top-header");
+const actions = require("../../actions/login");
 const custom_item_1 = require("./custom-item");
 const touchable_button_1 = require("../../compoments/touchable-button");
 let Customer = class Customer extends taro_1.Component {
@@ -40,11 +39,10 @@ let Customer = class Customer extends taro_1.Component {
     }
     render() {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
-        <top_header_1.default title={'客户'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(99), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.ujb])}>
-            <components_1.View style={datatool_1.styleAssign([{ width: '95%' }, { marginLeft: '2.5%' }, style_1.h(31), style_1.op(0.7), style_1.bgColor('#F5F5F5'),
-            style_1.radiusA(26), style_1.default.uac, style_1.default.udr])}>
+            <components_1.View style={datatool_1.styleAssign([{ width: '68%' }, { marginLeft: '2.5%' }, style_1.h(31), style_1.op(0.7), style_1.bgColor('#F5F5F5'),
+            style_1.radiusA(26), style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(21), style_1.ml(16)])} src={require('../../assets/ico_search.png')}/>
               <components_1.Input type='text' placeholder='搜索客户姓名' style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14)])}/>
             </components_1.View>

@@ -18,7 +18,7 @@ class CustomItem extends taro_1.PureComponent {
         return (<touchable_button_1.default onClick={onClick} customStyle={datatool_1.styleAssign([style_1.radiusA(4), { width: '95%' }, { marginLeft: '2.5%' }, style_1.h(154), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(8)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(20)])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(43), style_1.h(43), style_1.radiusA(21.5), style_1.ml(16)])} src={require('../../../assets/ico_default.jpeg')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(43), style_1.h(43), style_1.radiusA(21.5), style_1.ml(16)])} src={require('../../../assets/ico_default.png')}/>
             <components_1.View style={datatool_1.styleAssign([style_1.ml(16)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.colorTheme)])}>刘思雨</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color('#979797')])}>来自名片扫码2019-11-20</components_1.Text>

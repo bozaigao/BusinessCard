@@ -20,7 +20,7 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const touchable_button_1 = require("../../compoments/touchable-button");
@@ -50,7 +50,7 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
             
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(366)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(313)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(0)])} src={require('../../assets/ico_default.jpeg')}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(0)])} src={require('../../assets/ico_default.png')}/>
                 <components_1.View style={datatool_1.styleAssign([style_1.bgColor('rgba(84,84,84,0.6)'), style_1.w(48), style_1.h(22), style_1.radiusA(10),
             style_1.default.uac, style_1.default.ujc, style_1.default.upa, style_1.absR(19), style_1.absB(8)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>1/5</components_1.Text>
@@ -74,7 +74,7 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
               
               {[1, 2, 3, 4, 5].map((value, index) => {
             console.log(value);
-            return (<components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(336), style_1.h(245), style_1.mt(8)])} src={require('../../assets/ico_default.jpeg')}/>);
+            return (<components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(336), style_1.h(245), style_1.mt(8)])} src={require('../../assets/ico_default.png')}/>);
         })}
             </components_1.View>
           </components_1.ScrollView>

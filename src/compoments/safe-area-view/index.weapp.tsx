@@ -16,6 +16,7 @@ interface State {
   //是否显示进度条
   showLoading: boolean;
   paddingBottom: number;
+  title: string;
 }
 
 export default class CustomSafeAreaView extends Component<Props, State> {
@@ -26,6 +27,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
       paddingTop: 0,
       paddingBottom: 0,
       showLoading: false,
+      title: ''
     }
   }
 
@@ -40,7 +42,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
 
   render() {
     let {customStyle, children, notNeedTopPadding, notNeedBottomPadding} = this.props;
-    let {paddingTop, showLoading, paddingBottom} = this.state;
+    let {paddingTop, showLoading, paddingBottom, title} = this.state;
 
     console.log('距离顶部', paddingTop)
 
@@ -51,7 +53,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
           children
         }
         {
-          showLoading && <Loading/>
+          showLoading && <Loading title={title}/>
         }
       </View>
     )
@@ -64,8 +66,8 @@ export default class CustomSafeAreaView extends Component<Props, State> {
    * @date 2019/9/25
    * @function: 显示进度条
    */
-  showLoading = () => {
-    this.setState({showLoading: true});
+  showLoading = (title?: string) => {
+    this.setState({showLoading: true, title: title ? title : ''});
   }
 
 

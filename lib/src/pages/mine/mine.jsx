@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * @filename mine.tsx
@@ -13,7 +19,9 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 const touchable_button_1 = require("../../compoments/touchable-button");
-class Mine extends taro_1.Component {
+const redux_1 = require("@tarojs/redux");
+const actions = require("../../actions/login");
+let Mine = class Mine extends taro_1.Component {
     constructor(props) {
         super(props);
         /**
@@ -26,13 +34,24 @@ class Mine extends taro_1.Component {
         this.config = {
             disableScroll: true
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/29
+         * @function: 获取用户信息
+         */
+        this.getUserInfo = () => {
+            this.props.getUserInfo().then((res) => {
+                console.log('获取用户信息', res);
+                console.log('属性', this.props.userInfo);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
         this.state = {
             marginTop: 0,
             showPersonalInfo: true
         };
-    }
-    componentWillReceiveProps(nextProps) {
-        console.log(this.props, nextProps);
     }
     componentWillMount() {
         //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
@@ -42,6 +61,7 @@ class Mine extends taro_1.Component {
         else {
             this.setState({ marginTop: 15 });
         }
+        this.getUserInfo();
     }
     componentWillUnmount() {
     }
@@ -51,6 +71,7 @@ class Mine extends taro_1.Component {
     }
     render() {
         let { marginTop, showPersonalInfo } = this.state;
+        let { userInfo } = this.props;
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} notNeedBottomPadding={true} notNeedTopPadding={true}>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
@@ -66,11 +87,11 @@ class Mine extends taro_1.Component {
             
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absB(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(120), style_1.h(120)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60), style_1.bo(3), style_1.bdColor(style_1.commonStyles.whiteColor), { borderStyle: 'solid' }])} src={require('../../assets/ico_default.jpeg')}/>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(23), style_1.h(23), style_1.radiusA(11.5), style_1.default.upa, style_1.absB(2), style_1.absR(2)])} src={require('../../assets/ico_nv.png')}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60)])} src={userInfo.avatar}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(23), style_1.h(23), style_1.radiusA(11.5), style_1.default.upa, style_1.absB(2), style_1.absR(2)])} src={userInfo.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
               </components_1.View>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434'), style_1.mt(15)])}>王嘉怡</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#727272'), style_1.mt(4)])}>美克美家家居股份有限公司</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434'), style_1.mt(15)])}>{userInfo.name}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.company ? userInfo.company : ''}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>四川美术学院</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>四川 成都</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>耐用消耗品</components_1.Text>
@@ -217,6 +238,9 @@ class Mine extends taro_1.Component {
         </components_1.ScrollView>
       </safe_area_view_1.default>);
     }
-}
+};
+Mine = __decorate([
+    redux_1.connect(state => state.login, Object.assign({}, actions))
+], Mine);
 exports.default = Mine;
 //# sourceMappingURL=mine.jsx.map

@@ -61,7 +61,7 @@ class CustomerDetail extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={''} isBack={true}/>
+        <TopHeader title={''}/>
         <View style={styleAssign([styles.uf1,bgColor(commonStyles.pageDefaultBackgroundColor)])}>
 
         </View>

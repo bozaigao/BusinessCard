@@ -106,12 +106,20 @@ class AddGoods extends Component<Props, State> {
       toast('简介不能为空');
       return;
     }
-    this.viewRef && this.viewRef.showLoading();
+    if (this.carouselUrls.length === 0) {
+      toast('请选择轮播图');
+      return;
+    }
+    if (this.detailUrls.length === 0) {
+      toast('请选择详情图');
+      return;
+    }
+    this.viewRef && this.viewRef.showLoading('上传中');
     this.props.addGoods({
       name,
       price,
-      carouselUrl: this.carouselUrls,
-      detailUrl: this.detailUrls,
+      carouselUrl: JSON.stringify(this.carouselUrls),
+      detailUrl: JSON.stringify(this.detailUrls),
       introduction
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
@@ -160,11 +168,11 @@ class AddGoods extends Component<Props, State> {
       },
       success(res) {
         that.uploadCount++;
+        that.uploadResultArr.push(parseData(res.data).data);
         if (that.uploadCount === length) {
           that.uploading = false;
-          callback(that.uploadResultArr);
+          callback();
         }
-        that.uploadResultArr.push(parseData(res.data).data);
         console.log('上传文件', parseData(res.data).data);
       }
     });
@@ -240,9 +248,9 @@ class AddGoods extends Component<Props, State> {
                       Taro.chooseImage({count: 5 - carouselUrlsLocal.length}).then((res) => {
                         console.log('本地上传图片', res.tempFiles);
                         this.setState({carouselUrlsLocal: this.state.carouselUrlsLocal.concat(res.tempFiles)});
-                        this.uploadFileList(res.tempFiles, (paths) => {
-                          this.carouselUrls.concat(paths);
-                          console.log('上传成功后的图片列表', this.uploadResultArr);
+                        this.uploadFileList(res.tempFiles, () => {
+                          this.carouselUrls.push(...this.uploadResultArr);
+                          console.log('上传成功后的图片列表', this.carouselUrls);
                         });
                       });
                     }}
@@ -299,9 +307,9 @@ class AddGoods extends Component<Props, State> {
                   onClick={() => {
                     Taro.chooseImage({count: 9 - detailUrlsLocal.length}).then((res) => {
                       this.setState({detailUrlsLocal: this.state.detailUrlsLocal.concat(res.tempFiles)});
-                      this.uploadFileList(res.tempFiles, (paths) => {
-                        this.detailUrls.concat(paths);
-                        console.log('上传成功后的图片列表', this.uploadResultArr);
+                      this.uploadFileList(res.tempFiles, () => {
+                        this.detailUrls.push(...this.uploadResultArr);
+                        console.log('上传成功后的图片列表', this.detailUrls);
                       });
                     });
                   }}

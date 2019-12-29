@@ -19,13 +19,13 @@ class MyPhoto extends taro_1.PureComponent {
         </components_1.View>
         <components_1.View style={datatool_1.styleAssign([{ width: '95%' }, { marginLeft: '2.5%' }, style_1.mt(16), style_1.h(720), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.radiusA(4), style_1.wRatio(95), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={require('../../../assets/ico_default.jpeg')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.radiusA(4), style_1.wRatio(95), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={require('../../../assets/ico_default.png')}/>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.radiusA(4), style_1.wRatio(95), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={require('../../../assets/ico_default.jpeg')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.radiusA(4), style_1.wRatio(95), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={require('../../../assets/ico_default.png')}/>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.radiusA(4), style_1.wRatio(95), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={require('../../../assets/ico_default.jpeg')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.radiusA(4), style_1.wRatio(95), style_1.hRatio(90), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={require('../../../assets/ico_default.png')}/>
           </components_1.View>
         </components_1.View>
       </components_1.View>);

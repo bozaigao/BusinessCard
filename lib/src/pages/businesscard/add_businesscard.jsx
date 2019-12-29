@@ -20,7 +20,7 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
@@ -63,7 +63,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             
             <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(197), style_1.radiusA(5), style_1.bgColor(style_1.commonStyles.whiteColor), { boxShadow: '0px 2px 4px 0px rgba(230,230,230,0.5' }])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ma(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(71), style_1.h(71), style_1.radiusA(4)])} src={require('../../assets/ico_default.jpeg')}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(71), style_1.h(71), style_1.radiusA(4)])} src={require('../../assets/ico_default.png')}/>
                 <components_1.View style={datatool_1.styleAssign([style_1.ml(13)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.colorTheme)])}>JY-W</components_1.Text>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(8)])}>公司</components_1.Text>

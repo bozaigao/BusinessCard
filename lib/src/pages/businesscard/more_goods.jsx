@@ -20,7 +20,7 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 let MoreGoods = class MoreGoods extends taro_1.Component {
@@ -49,7 +49,7 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
             console.log(value);
             return (<components_1.View style={datatool_1.styleAssign([style_1.ma(5), style_1.w(163), style_1.h(233), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor),
                 style_1.radiusA(4)])} key={index}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.w(147), style_1.h(152), style_1.radiusA(4)])} src={require('../../assets/ico_default.jpeg')}/>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(147), style_1.h(152), style_1.radiusA(4)])} src={require('../../assets/ico_default.png')}/>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(8), style_1.mt(12)])}>现代简约双人木床</components_1.Text>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color('#FA6B57'), style_1.ml(8), style_1.mt(12), style_1.mt(8)])}>￥688</components_1.Text>
                   </components_1.View>);

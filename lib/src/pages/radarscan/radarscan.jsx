@@ -13,7 +13,6 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const radar_item_1 = require("./radar-item");
-const top_header_1 = require("../../compoments/top-header");
 class Radarscan extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -39,9 +38,8 @@ class Radarscan extends taro_1.Component {
     }
     render() {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
-        <top_header_1.default title={'雷达'}/>
         
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(85), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(85), style_1.default.uac, style_1.mt(15)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>雷达</components_1.Text>

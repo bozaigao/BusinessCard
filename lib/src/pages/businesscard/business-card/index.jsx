@@ -17,7 +17,7 @@ class Card extends taro_1.PureComponent {
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
-          <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../../assets/ico_default.jpeg')}/>
+          <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../../assets/ico_default.png')}/>
           <components_1.View style={datatool_1.styleAssign([style_1.ma(20)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>王嘉怡</components_1.Text>

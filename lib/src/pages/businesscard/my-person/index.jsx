@@ -23,7 +23,7 @@ class MyPerson extends taro_1.PureComponent {
             return (<components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.w(134), style_1.h(191), style_1.ml(index !== 0 ? 10 : 0), style_1.bgColor(style_1.commonStyles.whiteColor),
                 { display: 'inline-block' }])} key={index}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(58), style_1.h(58), style_1.radiusA(29), style_1.mt(20)])} src={require('../../../assets/ico_default.jpeg')}/>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(58), style_1.h(58), style_1.radiusA(29), style_1.mt(20)])} src={require('../../../assets/ico_default.png')}/>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme), style_1.mt(8)])}>卢志刚</components_1.Text>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.mt(4)])}>软件开发</components_1.Text>
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(28)])}>

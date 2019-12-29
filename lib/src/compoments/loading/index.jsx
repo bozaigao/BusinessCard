@@ -17,8 +17,7 @@ const ico_loading_bg_png_1 = require("../../assets/ico_loading_bg.png");
 const loading_gif_1 = require("../../assets/loading.gif");
 class Loading extends taro_1.Component {
     render() {
-        return (<components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.udf, style_1.zIndex(1000), style_1.absL(0), style_1.absB(0), style_1.absR(0), style_1.absT(0),
-            style_1.bgColor('rgba(0,0,0,0.3)')])}>
+        return (<components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.udf, style_1.zIndex(1000), style_1.absL(0), style_1.absB(0), style_1.absR(0), style_1.absT(0)])}>
         <components_1.View style={datatool_1.styleAssign([
             style_1.default.uac,
             style_1.default.ujc,

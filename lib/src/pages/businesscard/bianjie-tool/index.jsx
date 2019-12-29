@@ -24,7 +24,6 @@ class BianJieTool extends taro_1.PureComponent {
           <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(88), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4),
             style_1.default.udr, style_1.default.uac, style_1.default.uja])}>
             {['商城', '海报', '工具箱', '名片夹', '任务中心'].map((value, index) => {
-            console.log(value);
             return (<touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac])} key={index} onClick={() => {
                 itemClick(value);
             }}>

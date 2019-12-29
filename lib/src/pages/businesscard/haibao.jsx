@@ -20,7 +20,7 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const touchable_button_1 = require("../../compoments/touchable-button");
@@ -64,7 +64,7 @@ let Haibao = class Haibao extends taro_1.Component {
             console.log(value);
             return (<components_1.View style={datatool_1.styleAssign([style_1.ma(5), style_1.w(105), style_1.h(267), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor),
                 style_1.radiusA(4)])} key={index}>
-                      <components_1.Image style={datatool_1.styleAssign([style_1.w(97), style_1.h(186), style_1.radiusA(4)])} src={require('../../assets/ico_default.jpeg')}/>
+                      <components_1.Image style={datatool_1.styleAssign([style_1.w(97), style_1.h(186), style_1.radiusA(4)])} src={require('../../assets/ico_default.png')}/>
                       <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
                         <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(72), style_1.h(28), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme), { borderStyle: 'solid' },
                 style_1.default.uac, style_1.default.ujc, style_1.radiusA(4)])}>

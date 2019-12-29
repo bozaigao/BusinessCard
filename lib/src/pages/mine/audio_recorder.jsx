@@ -19,7 +19,7 @@ const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");

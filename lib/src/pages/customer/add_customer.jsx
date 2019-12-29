@@ -19,7 +19,7 @@ const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/home");
+const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const touchable_button_1 = require("../../compoments/touchable-button");
@@ -65,7 +65,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.h(86), style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac,
             style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#CECECE')])}>头像</components_1.Text>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.radiusA(33)])} src={require('../../assets/ico_default.jpeg')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.radiusA(33)])} src={require('../../assets/ico_default.png')}/>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10)])}>
             {top1List.map((value, index) => {

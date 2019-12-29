@@ -27,7 +27,7 @@ class JiZhiCard extends taro_1.PureComponent {
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme), style_1.mt(4)])}>项目经理</components_1.Text>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.mt(4)])}>四川极致信息技术有限公司</components_1.Text>
                   </components_1.View>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.radiusA(33)])} src={require('../../../assets/ico_default.jpeg')}/>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.radiusA(33)])} src={require('../../../assets/ico_default.png')}/>
                 </components_1.View>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.mt(8), style_1.ml(16)])}>18980668468</components_1.Text>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(16)])}>LY8866321</components_1.Text>

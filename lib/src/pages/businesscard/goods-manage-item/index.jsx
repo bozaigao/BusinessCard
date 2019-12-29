@@ -16,7 +16,7 @@ class GoodsManageItem extends taro_1.PureComponent {
     render() {
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(189), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(16)])}>
-          <components_1.Image style={datatool_1.styleAssign([style_1.w(90), style_1.h(90), style_1.radiusA(4)])} src={require('../../../assets/ico_default.jpeg')}/>
+          <components_1.Image style={datatool_1.styleAssign([style_1.w(90), style_1.h(90), style_1.radiusA(4)])} src={require('../../../assets/ico_default.png')}/>
           <components_1.View style={datatool_1.styleAssign([style_1.ml(12)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434')])}>现代简约双人木床</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(16)])}>

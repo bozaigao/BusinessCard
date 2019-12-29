@@ -10,7 +10,6 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
-import {SignInPage} from "../../const/global";
 import {
   bgColor,
   color,
@@ -38,7 +37,7 @@ interface Props {
 }
 
 interface State {
-  signInPageDetail: SignInPage;
+  signInPageDetail: any;
 }
 
 @connect(state => state.home, {...actions})

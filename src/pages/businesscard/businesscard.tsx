@@ -42,7 +42,6 @@ import ShareModal from "./share-modal";
 import BianJieTool from "./bianjie-tool";
 
 interface Props {
-  getTask: any;
 }
 
 interface State {
@@ -80,15 +79,6 @@ class Businesscard extends Component<Props, State> {
     //   console.log('显示对话框');
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
-    this.getTask();
-  }
-
-  getTask = () => {
-    this.props.getTask({id: 1}).then((res) => {
-      console.log('获取任务信息', res);
-    }).catch(e => {
-      console.log('报错啦', e);
-    });
   }
 
 

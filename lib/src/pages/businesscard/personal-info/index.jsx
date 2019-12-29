@@ -21,7 +21,7 @@ class PersonalInfo extends taro_1.PureComponent {
         </components_1.View>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(307), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4),
             { marginLeft: '2.5%' }, style_1.mt(16), style_1.pa(16)])}>
-          <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40), style_1.radiusA(20)])} src={require('../../../assets/ico_default.jpeg')}/>
+          <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40), style_1.radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
           <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434'), style_1.mt(16)])}>Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！</components_1.Text>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(24)])}>
