@@ -15,14 +15,16 @@ import * as actions from "../../actions/dict";
 import TopHeader from "../../compoments/top-header";
 import {ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
+import {IndustryModel} from "../../const/global";
 
 interface Props {
   //获取行业列表
-  getDictItemList: any;
+  getIndustryList: any;
 }
 
 interface State {
-  industryList: [];
+  industryList: IndustryModel[];
+  currentIndex: number;
 }
 
 @connect(state => state.Dict, {...actions})
@@ -42,9 +44,10 @@ class IndustryList extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      industryList: []
+      industryList: [],
+      currentIndex: -1
     }
-    console.log('收到参数了',this.$router.params.id);
+    console.log('收到参数了', this.$router.params.id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -55,12 +58,12 @@ class IndustryList extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.getDictItemList();
+    this.getIndustryList();
   }
 
-  getDictItemList = () => {
+  getIndustryList = () => {
     this.viewRef && this.viewRef.showLoading();
-    this.props.getDictItemList({dictCode: 'industry'}).then((res) => {
+    this.props.getIndustryList().then((res) => {
       console.log('获取行业信息', res);
       this.viewRef && this.viewRef.hideLoading();
       this.setState({industryList: res});
@@ -75,7 +78,7 @@ class IndustryList extends Component<Props, State> {
 
 
   render() {
-    let {industryList} = this.state;
+    let {industryList, currentIndex} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -87,19 +90,37 @@ class IndustryList extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {
-            industryList.map((value: any, index) => {
+            industryList.map((value: IndustryModel, index) => {
               return (
-                <TouchableButton key={index}
-                                 customStyle={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}
-                                 onClick={() => {
-                                   Taro.eventCenter.trigger('industry', value.itemText);
-                                   Taro.navigateBack();
-                                 }}>
-                  <View style={styleAssign([wRatio(100), h(50), bgColor(commonStyles.whiteColor), styles.ujc])}>
-                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>{value.itemText}</Text>
-                  </View>
-                  <View style={styleAssign([wRatio(90), h(1), bgColor('#EAEAEA')])}/>
-                </TouchableButton>);
+                <View style={styleAssign([wRatio(100)])}>
+                  <TouchableButton key={index}
+                                   customStyle={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}
+                                   onClick={() => {
+                                     console.log('哈哈', value.children);
+                                     this.setState({currentIndex: index});
+                                   }}>
+                    <View style={styleAssign([wRatio(100), h(50), bgColor(commonStyles.whiteColor), styles.ujc])}>
+                      <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>{value.name}</Text>
+                    </View>
+                    <View style={styleAssign([wRatio(90), h(1), bgColor('#EAEAEA')])}/>
+                  </TouchableButton>
+                  {
+                    currentIndex === index && value.children.map((item, itemIndex) => {
+                      console.log('哈哈1', value);
+                      return (<TouchableButton key={itemIndex}
+                                               customStyle={styleAssign([wRatio(100), styles.uac, bgColor('#F7F7F7')])}
+                                               onClick={() => {
+                                                 Taro.eventCenter.trigger('industry', `${value.name }/${item.name}`);
+                                                 Taro.navigateBack();
+                                               }}>
+                        <View style={styleAssign([wRatio(100), h(50), bgColor('#F7F7F7'), styles.ujc])}>
+                          <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>{item.name}</Text>
+                        </View>
+                        <View style={styleAssign([wRatio(90), h(1), bgColor('#EAEAEA')])}/>
+                      </TouchableButton>);
+                    })
+                  }
+                </View>);
             })
           }
         </ScrollView>

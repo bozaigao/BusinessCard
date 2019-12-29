@@ -149,3 +149,8 @@ export interface Good {
 export enum Enum {
   TOKEN = 'token'
 }
+
+export interface IndustryModel {
+  name: string;
+  children: { name: string; }[];
+}

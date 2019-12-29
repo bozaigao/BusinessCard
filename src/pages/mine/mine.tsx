@@ -30,9 +30,13 @@ import {
 } from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 import TouchableButton from "../../compoments/touchable-button";
+import {connect} from "@tarojs/redux";
+import * as actions from "../../actions/login";
 
 
 interface Props {
+  //获取用户信息
+  getUserInfo:any;
 }
 
 interface State {
@@ -40,6 +44,8 @@ interface State {
   showPersonalInfo: boolean;
 }
 
+
+@connect(state => state.login, {...actions})
 class Mine extends Component<Props, State> {
 
   /**
@@ -83,6 +89,20 @@ class Mine extends Component<Props, State> {
   componentDidHide() {
   }
 
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+  */
+  getUserInfo = ()=>{
+    this.props.getUserInfo({id: 1}).then((res) => {
+      console.log('获取任务信息', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
 
   render() {
 

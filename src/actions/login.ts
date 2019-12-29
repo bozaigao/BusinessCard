@@ -39,8 +39,8 @@ export const userLogin = payload => createAction({
  * @date 2019/12/25
  * @function: 获取用户详细信息
 */
-export const getTOKEN = payload => createAction({
-  url: UserController.getTOKEN,
+export const getUserInfo = payload => createAction({
+  url: UserController.getUserInfo,
   payload,
   method:'GET'
 });
@@ -52,8 +52,8 @@ export const getTOKEN = payload => createAction({
  * @date 2019/12/25
  * @function: 更新用户信息
  */
-export const updateTOKEN = payload => createAction({
-  url: UserController.updateTOKEN,
+export const update = payload => createAction({
+  url: UserController.update,
   payload,
   method:'POST'
 });

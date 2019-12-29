@@ -41,7 +41,7 @@ interface Props {
   //上传文件
   uploadPicture: any;
   //更新用户信息
-  updateTOKEN: any;
+  update: any;
 }
 
 interface State {
@@ -155,7 +155,7 @@ class PersonalInfo extends Component<Props, State> {
    * @date 2019/12/28
    * @function: 更新用户信息
    */
-  updateTOKEN = () => {
+  update = () => {
     console.log('函数', this.props)
     let {avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city} = this.state;
 
@@ -211,7 +211,7 @@ class PersonalInfo extends Component<Props, State> {
     };
 
     this.viewRef && this.viewRef.showLoading();
-    this.props.updateTOKEN(paramas).then((res) => {
+    this.props.update(paramas).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
     }).catch(e => {
@@ -222,7 +222,7 @@ class PersonalInfo extends Component<Props, State> {
 
 
   render() {
-    let {avatar, titleList1, titleList2} = this.state;
+    let {avatar, titleList1, titleList2, sex} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -262,7 +262,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={require('../../assets/ico_default.png')}/>
+                              src={sex === 1 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>男</Text>
                           </TouchableButton>
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
@@ -272,7 +272,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={require('../../assets/ico_default.png')}/>
+                              src={sex === 2 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>女</Text>
                           </TouchableButton>
                         </View>
@@ -360,7 +360,7 @@ class PersonalInfo extends Component<Props, State> {
         </ScrollView>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-          this.updateTOKEN();
+          this.update();
         }}/>
       </CustomSafeAreaView>
     );

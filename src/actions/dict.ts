@@ -45,3 +45,16 @@ export const getProvinceCity = payload => createAction({
   method: 'GET'
 });
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2019/12/29
+ * @function: 查询行业信息
+*/
+export const getIndustryList = payload => createAction({
+  url: DictController.getIndustryList,
+  payload,
+  method: 'GET'
+});
+

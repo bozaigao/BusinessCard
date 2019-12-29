@@ -9,16 +9,16 @@ const BASE_URL = StagingUrl,
     //返回成功
     SUCCESS: 1,
     //需要登录
-    NEED_LOGIN: 0,
+    NEED_LOGIN: 401,
   },
   //用户登录模块
   UserController = {
     //用户登录
     login: BASE_URL + 'user/login',
     //获取用户详细信息
-    getTOKEN: BASE_URL + 'user/getTOKEN',
+    getUserInfo: BASE_URL + 'user/getUserInfo',
     //更新用户信息
-    updateTOKEN: BASE_URL + 'user/update',
+    update: BASE_URL + 'user/update',
   },
   //数据字典
   DictController = {
@@ -26,6 +26,8 @@ const BASE_URL = StagingUrl,
     getDictItemList: BASE_URL + 'dict/getDictItemList',
     //查询省份和城市信息
     getProvinceCity: BASE_URL + 'dict/getProvinceCity',
+    //查询行业信息
+    getIndustryList: BASE_URL + 'dict/getIndustryList',
   },
   //文件上传
   FileController = {

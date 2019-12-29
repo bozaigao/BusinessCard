@@ -42,7 +42,7 @@ export const dispatchLogin = payload => createAction({
  * @date 2019/9/27
  * @function: 手动更新用户信息
  */
-export const dispatchUpdateTOKEN = payload => createAction({
+export const dispatchupdate = payload => createAction({
   url: UserLogin.login,
   payload
 });
