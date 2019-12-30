@@ -54,7 +54,7 @@ let QiehuanBusinesscard = class QiehuanBusinesscard extends taro_1.Component {
         <top_header_1.default title={'切换名片'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <qiehuan_item_1.default />
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.mt(16), style_1.default.uac, style_1.default.ujc, style_1.default.udr, style_1.w(335), style_1.h(128), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.padding([20, 16, 20, 16])])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
@@ -67,7 +67,7 @@ let QiehuanBusinesscard = class QiehuanBusinesscard extends taro_1.Component {
     }
 };
 QiehuanBusinesscard = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], QiehuanBusinesscard);
 exports.default = QiehuanBusinesscard;
 //# sourceMappingURL=qiehuan_businesscard.jsx.map

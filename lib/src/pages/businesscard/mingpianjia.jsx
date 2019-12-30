@@ -55,7 +55,7 @@ let Mingpianjia = class Mingpianjia extends taro_1.Component {
     }
 };
 Mingpianjia = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], Mingpianjia);
 exports.default = Mingpianjia;
 //# sourceMappingURL=mingpianjia.jsx.map

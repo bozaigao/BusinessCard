@@ -25,7 +25,7 @@ interface State {
   list: { title: string; value: string; }[];
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class MyEdu extends Component<Props, State> {
 
   /**

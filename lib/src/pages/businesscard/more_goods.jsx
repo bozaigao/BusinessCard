@@ -60,7 +60,7 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
     }
 };
 MoreGoods = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], MoreGoods);
 exports.default = MoreGoods;
 //# sourceMappingURL=more_goods.jsx.map

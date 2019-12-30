@@ -46,7 +46,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
         <top_header_1.default title={'名片海报'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.default.uac])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(434), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(20), style_1.radiusA(4), style_1.default.uac])}>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.mt(20), style_1.wRatio(95), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../assets/ico_default.png')}/>
@@ -59,7 +59,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(5)])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</components_1.Text>
               </components_1.View>
             </components_1.View>
-            
+
             <components_1.Text style={datatool_1.styleAssign([style_1.w(294), style_1.mt(23), style_1.fSize(14), style_1.color('#343434')])}>您好， 我是美克美家家居集团股份有限公司成都分部的 销售经理王嘉怡
               这是我的名片，请惠存。
               谢谢！</components_1.Text>
@@ -69,7 +69,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#E2BB7B'), style_1.ml(11)])}>长按识别二维码 收下名片</components_1.Text>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(56), style_1.default.upa, style_1.absB(0), style_1.default.uac, style_1.default.ujc])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc,
             style_1.w(335), style_1.h(56), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.colorTheme)])}>
@@ -81,7 +81,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
     }
 };
 MingpianHaibao = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], MingpianHaibao);
 exports.default = MingpianHaibao;
 //# sourceMappingURL=mingpian_haibao.jsx.map

@@ -77,7 +77,7 @@ let Homepage = (_temp = _class = class Homepage extends Component {
     return <CustomSafeAreaView ref={ref => {
       this.viewRef = ref;
     }}>
-        
+
         <HomeSearchTop leftClick={() => {
         Taro.showToast({ title: '开发中' });
       }} rightClick={() => {
@@ -98,11 +98,11 @@ let Homepage = (_temp = _class = class Homepage extends Component {
                   </RNSwiper>
                 </View>}
           </View>
-          
+
           <JiFenAndQianDao />
           <View style={styleAssign([wRatio(100), h(10), bgColor('#f8f8f8')])} />
-          
-          
+
+
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([styles.uac, styles.udr, mt(10)])}>
               <View style={styleAssign([w(5), h(15), bgColor(commonStyles.colorTheme), ml(20)])} />
@@ -143,7 +143,7 @@ let Homepage = (_temp = _class = class Homepage extends Component {
               </View>
             </View>
           </View>
-          
+
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([styles.uac, styles.udr, mt(10)])}>
               <View style={styleAssign([w(5), h(15), bgColor(commonStyles.colorTheme), ml(20)])} />
@@ -160,7 +160,7 @@ let Homepage = (_temp = _class = class Homepage extends Component {
               </View>
             </View>
           </View>
-          
+
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([styles.uac, styles.udr, mt(10)])}>
               <View style={styleAssign([w(5), h(15), bgColor(commonStyles.colorTheme), ml(20)])} />
@@ -179,7 +179,7 @@ let Homepage = (_temp = _class = class Homepage extends Component {
   navigationBarTitleText: '首页',
   disableScroll: true
 }, _temp);
-Homepage = __decorate([connect(state => state.home, { ...actions })], Homepage);
+Homepage = __decorate([connect(state => state.login, { ...actions })], Homepage);
 // #region 导出注意
 //
 // 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性

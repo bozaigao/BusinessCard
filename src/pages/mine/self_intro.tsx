@@ -24,7 +24,7 @@ interface State {
 
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class SelfIntro extends Component<Props, State> {
 
   private viewRef;

@@ -56,18 +56,18 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'语音录制'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10), style_1.h(140), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(48), style_1.color('#979797')])}>00:00</components_1.Text>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434'), style_1.ml(20), style_1.mt(20)])}>录制小贴士：</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(20), style_1.mr(20), style_1.mt(20)])}> 按住录音按钮，贴近手机话筒录制介绍语请在1分钟内，简明扼要地介绍您的公司、职位及个人信息。</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mr(20), style_1.mt(20)])}>例如：Hi！欢迎来到我的极致名片，我叫…,在…公司担任…一职，希望能与您进一步建立友好的合作关系，请收下我的名片~</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mr(20), style_1.mt(20)])}>温馨提示：请在安静的环境下录制，效果会更好哦~</components_1.Text>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.udr, style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pt(53)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(56), style_1.h(56)])} src={require('../../assets/ico_record_delete.png')}/>
@@ -77,14 +77,14 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
 
           </components_1.View>
         </components_1.View>
-        
+
         <bottom_buton_1.default title={'保存'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);
     }
 };
 AudioRecorder = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], AudioRecorder);
 exports.default = AudioRecorder;
 //# sourceMappingURL=audio_recorder.jsx.map

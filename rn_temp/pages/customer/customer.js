@@ -33,8 +33,8 @@ let Customer = (_temp = _class = class Customer extends Component {
   componentDidHide() {}
   render() {
     return <CustomSafeAreaView>
-        
-        
+
+
         <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 600 : 500), bgColor('blue')])} scrollY>
         </ScrollView>
       </CustomSafeAreaView>;
@@ -43,7 +43,7 @@ let Customer = (_temp = _class = class Customer extends Component {
   navigationBarTitleText: '首页',
   disableScroll: true
 }, _temp);
-Customer = __decorate([connect(state => state.home, { ...actions })], Customer);
+Customer = __decorate([connect(state => state.login, { ...actions })], Customer);
 // #region 导出注意
 //
 // 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性

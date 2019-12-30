@@ -72,8 +72,8 @@ let Prefecturepage = class Prefecturepage extends taro_1.Component {
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }}>
-        
-        
+
+
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? 600 : 500)])} scrollY>
           {
         //这里针对rn端 swiper android底层需要依赖ViewPager,而不是android和iOS通用官方ScrollView，主要是解决
@@ -138,7 +138,7 @@ let Prefecturepage = class Prefecturepage extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
@@ -155,7 +155,7 @@ let Prefecturepage = class Prefecturepage extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
@@ -172,7 +172,7 @@ let Prefecturepage = class Prefecturepage extends taro_1.Component {
     }
 };
 Prefecturepage = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], Prefecturepage);
 // #region 导出注意
 //

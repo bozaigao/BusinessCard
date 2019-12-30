@@ -49,7 +49,7 @@ interface State {
   introduction: string;
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.Goods, {...actions})
 class AddGoods extends Component<Props, State> {
 
   private viewRef;
@@ -106,14 +106,14 @@ class AddGoods extends Component<Props, State> {
       toast('简介不能为空');
       return;
     }
-    if (this.carouselUrls.length === 0) {
-      toast('请选择轮播图');
-      return;
-    }
-    if (this.detailUrls.length === 0) {
-      toast('请选择详情图');
-      return;
-    }
+    // if (this.carouselUrls.length === 0) {
+    //   toast('请选择轮播图');
+    //   return;
+    // }
+    // if (this.detailUrls.length === 0) {
+    //   toast('请选择详情图');
+    //   return;
+    // }
     this.viewRef && this.viewRef.showLoading('上传中');
     this.props.addGoods({
       name,
@@ -122,9 +122,9 @@ class AddGoods extends Component<Props, State> {
       detailUrl: JSON.stringify(this.detailUrls),
       introduction
     }).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
       toast('商品添加成功');
       console.log('添加商品信息', res);
+      this.viewRef && this.viewRef.hideLoading();
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);

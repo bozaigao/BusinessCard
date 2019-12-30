@@ -61,7 +61,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={''}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.h(86), style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac,
             style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#CECECE')])}>头像</components_1.Text>
@@ -89,7 +89,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                 </components_1.View>);
         })}
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(83), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#CECECE'), style_1.ml(20), style_1.mt(28)])}>备注</components_1.Text>
             <components_1.Input type='text' value={'合作机会比较大，可以重点关注，积极跟进'} style={datatool_1.styleAssign([style_1.ml(20), style_1.fSize(14), style_1.mt(4)])}/>
@@ -102,7 +102,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
     }
 };
 AddCustomer = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], AddCustomer);
 exports.default = AddCustomer;
 //# sourceMappingURL=add_customer.jsx.map

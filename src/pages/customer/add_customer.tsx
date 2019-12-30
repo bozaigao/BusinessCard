@@ -39,7 +39,7 @@ interface State {
   top2List: { title: string; value: string; }[];
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class AddCustomer extends Component<Props, State> {
 
   /**

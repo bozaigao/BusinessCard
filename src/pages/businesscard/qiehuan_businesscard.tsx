@@ -40,7 +40,7 @@ interface State {
   signInPageDetail: any;
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class QiehuanBusinesscard extends Component<Props, State> {
 
   private viewRef;

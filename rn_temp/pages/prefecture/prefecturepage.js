@@ -54,8 +54,8 @@ let Prefecturepage = (_temp = _class = class Prefecturepage extends Component {
     return <CustomSafeAreaView ref={ref => {
       this.viewRef = ref;
     }}>
-        
-        
+
+
         <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 600 : 500)])} scrollY>
           {
         //这里针对rn端 swiper android底层需要依赖ViewPager,而不是android和iOS通用官方ScrollView，主要是解决
@@ -110,7 +110,7 @@ let Prefecturepage = (_temp = _class = class Prefecturepage extends Component {
               </View>
             </View>
           </View>
-          
+
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([styles.uac, styles.udr, mt(10)])}>
               <View style={styleAssign([w(5), h(15), bgColor(commonStyles.colorTheme), ml(20)])} />
@@ -127,7 +127,7 @@ let Prefecturepage = (_temp = _class = class Prefecturepage extends Component {
               </View>
             </View>
           </View>
-          
+
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([styles.uac, styles.udr, mt(10)])}>
               <View style={styleAssign([w(5), h(15), bgColor(commonStyles.colorTheme), ml(20)])} />
@@ -146,7 +146,7 @@ let Prefecturepage = (_temp = _class = class Prefecturepage extends Component {
   navigationBarTitleText: '首页',
   disableScroll: true
 }, _temp);
-Prefecturepage = __decorate([connect(state => state.home, { ...actions })], Prefecturepage);
+Prefecturepage = __decorate([connect(state => state.login, { ...actions })], Prefecturepage);
 // #region 导出注意
 //
 // 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性

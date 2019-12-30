@@ -48,14 +48,14 @@ let Feedback = class Feedback extends taro_1.Component {
          <components_1.Textarea style={datatool_1.styleAssign([style_1.wRatio(80), { marginLeft: '5%' }, style_1.h(160), style_1.pa(20), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor),
             style_1.mt(20)])} value={''} placeholder={'请输入你的反馈意见'}/>
         </components_1.View>
-        
+
         <bottom_buton_1.default title={'提交'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);
     }
 };
 Feedback = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], Feedback);
 exports.default = Feedback;
 //# sourceMappingURL=feedback.jsx.map

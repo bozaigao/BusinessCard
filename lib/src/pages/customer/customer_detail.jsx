@@ -56,7 +56,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
     }
 };
 CustomerDetail = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], CustomerDetail);
 exports.default = CustomerDetail;
 //# sourceMappingURL=customer_detail.jsx.map

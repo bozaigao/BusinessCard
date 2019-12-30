@@ -38,7 +38,7 @@ interface Props {
 interface State {
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class Customer extends Component<Props, State> {
 
   constructor(props) {

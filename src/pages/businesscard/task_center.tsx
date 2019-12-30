@@ -42,7 +42,7 @@ interface State {
   showOnlyToday: boolean;
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class TaskCenter extends Component<Props, State> {
 
   private viewRef;

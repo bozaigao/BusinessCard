@@ -68,7 +68,7 @@ let MyEdu = class MyEdu extends taro_1.Component {
                 </components_1.View>);
         })}
           </components_1.View>
-          
+
           <bottom_buton_1.default title={'保存'} onClick={() => {
         }}/>
         </components_1.View>
@@ -76,7 +76,7 @@ let MyEdu = class MyEdu extends taro_1.Component {
     }
 };
 MyEdu = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], MyEdu);
 exports.default = MyEdu;
 //# sourceMappingURL=my_edu.jsx.map

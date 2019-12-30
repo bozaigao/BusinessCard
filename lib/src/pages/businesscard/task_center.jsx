@@ -51,7 +51,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'任务中心'}/>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.mt(10)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.ml(20)])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
@@ -66,9 +66,9 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
           </components_1.View>
           <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.mr(20)])} src={require('../../assets/ico_date.png')}/>
         </components_1.View>
-        
+
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           {[{ title: '正在进行', num: 2 }, { title: '已完成', num: 2 }].map((value, index) => {
             let showItem = false;
             if (index === 0) {
@@ -111,7 +111,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
               </components_1.View>);
         })}
         </components_1.ScrollView>
-        
+
         <bottom_buton_1.default title={'新建任务'} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/add_task`
@@ -121,7 +121,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
     }
 };
 TaskCenter = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], TaskCenter);
 exports.default = TaskCenter;
 //# sourceMappingURL=task_center.jsx.map

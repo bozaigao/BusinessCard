@@ -46,7 +46,7 @@ let ContactWay = class ContactWay extends taro_1.Component {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'联系方式'}/>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.pl(20), style_1.pr(20),
@@ -60,14 +60,14 @@ let ContactWay = class ContactWay extends taro_1.Component {
           <list_item_1.default title={'更改展示手机号'} subTitle={'选填'} hasEdit={true}/>
           <switch_item_1.default title={'只对已交换名片的客户展示'}/>
         </components_1.View>
-        
+
         <bottom_buton_1.default title={'确定'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);
     }
 };
 ContactWay = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], ContactWay);
 exports.default = ContactWay;
 //# sourceMappingURL=contact_way.jsx.map

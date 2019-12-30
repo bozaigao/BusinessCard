@@ -47,7 +47,7 @@ let GoodsManage = class GoodsManage extends taro_1.Component {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'商品管理'}/>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(36), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
             style_1.pl(20), style_1.pr(20)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
@@ -78,7 +78,7 @@ let GoodsManage = class GoodsManage extends taro_1.Component {
             return (<goods_manage_item_1.default key-={index}/>);
         })}
         </components_1.ScrollView>
-        
+
         <bottom_buton_1.default title={'新增商品'} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/add_goods`
@@ -88,7 +88,7 @@ let GoodsManage = class GoodsManage extends taro_1.Component {
     }
 };
 GoodsManage = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], GoodsManage);
 exports.default = GoodsManage;
 //# sourceMappingURL=goods_manage.jsx.map

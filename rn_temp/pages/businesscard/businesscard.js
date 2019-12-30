@@ -76,7 +76,7 @@ let Businesscard = (_temp = _class = class Businesscard extends Component {
       this.viewRef = ref;
     }} customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}>
         <ScrollView style={styleAssign([wRatio(100), h(iphoneX() ? 600 : 500), styles.uac])} scrollY>
-          
+
           <Card />
         </ScrollView>
       </CustomSafeAreaView>;
@@ -85,7 +85,7 @@ let Businesscard = (_temp = _class = class Businesscard extends Component {
   navigationBarTitleText: '首页',
   disableScroll: true
 }, _temp);
-Businesscard = __decorate([connect(state => state.home, { ...actions })], Businesscard);
+Businesscard = __decorate([connect(state => state.login, { ...actions })], Businesscard);
 // #region 导出注意
 //
 // 经过上面的声明后需要将导出的 Taro.Component 子类修改为子类本身的 props 属性

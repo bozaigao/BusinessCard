@@ -23,7 +23,7 @@ interface Props {
 interface State {
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class CustomerDetail extends Component<Props, State> {
 
   /**

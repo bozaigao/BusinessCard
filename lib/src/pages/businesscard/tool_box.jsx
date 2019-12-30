@@ -45,7 +45,7 @@ let ToolBox = class ToolBox extends taro_1.Component {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'工具箱'}/>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(193), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(20), style_1.mt(20)])}>名片引导语</components_1.Text>
@@ -53,13 +53,13 @@ let ToolBox = class ToolBox extends taro_1.Component {
             style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.pa(16)])}/>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#E2BB7B'), style_1.ml(20), style_1.mt(16), style_1.mb(16)])}>查看模板</components_1.Text>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(56), style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.pl(20), style_1.pr(20), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>雷达提醒</components_1.Text>
             <components_1.Switch color={'#E2BB7B'}/>
           </components_1.View>
         </components_1.View>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(64), style_1.default.uac, style_1.default.ujc])}>
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.radiusA(2), style_1.bgColor(style_1.commonStyles.colorTheme),
             style_1.default.uac, style_1.default.ujc])}>
@@ -70,7 +70,7 @@ let ToolBox = class ToolBox extends taro_1.Component {
     }
 };
 ToolBox = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], ToolBox);
 exports.default = ToolBox;
 //# sourceMappingURL=tool_box.jsx.map

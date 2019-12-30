@@ -37,7 +37,7 @@ interface Props {
 interface State {
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class AddTask extends Component<Props, State> {
 
   private viewRef;

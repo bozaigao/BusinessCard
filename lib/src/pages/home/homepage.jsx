@@ -99,7 +99,7 @@ let Homepage = class Homepage extends taro_1.Component {
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-        
+
         <index_1.default leftClick={() => {
             taro_1.default.showToast({ title: '开发中' });
         }} rightClick={() => {
@@ -129,10 +129,10 @@ let Homepage = class Homepage extends taro_1.Component {
                   </components_1.Swiper>
                 </components_1.View>}
           </components_1.View>
-          
+
           <jifen_and_qiandao_1.default />
-          
-          
+
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
@@ -173,7 +173,7 @@ let Homepage = class Homepage extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
@@ -190,7 +190,7 @@ let Homepage = class Homepage extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(5), style_1.h(15), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.ml(20)])}/>
@@ -207,7 +207,7 @@ let Homepage = class Homepage extends taro_1.Component {
     }
 };
 Homepage = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], Homepage);
 // #region 导出注意
 //

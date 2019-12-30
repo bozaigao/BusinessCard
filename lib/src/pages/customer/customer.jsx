@@ -46,7 +46,7 @@ let Customer = class Customer extends taro_1.Component {
               <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(21), style_1.ml(16)])} src={require('../../assets/ico_search.png')}/>
               <components_1.Input type='text' placeholder='搜索客户姓名' style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14)])}/>
             </components_1.View>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujb, style_1.default.udr, style_1.mb(10)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878'), style_1.ml(20)])}>共2位客户</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>最后跟进时间</components_1.Text>
@@ -78,7 +78,7 @@ let Customer = class Customer extends taro_1.Component {
     }
 };
 Customer = __decorate([
-    redux_1.connect(state => state.home, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions))
 ], Customer);
 exports.default = Customer;
 //# sourceMappingURL=customer.jsx.map

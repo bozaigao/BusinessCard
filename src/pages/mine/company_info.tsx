@@ -25,7 +25,7 @@ interface State {
 
 }
 
-@connect(state => state.home, {...actions})
+@connect(state => state.login, {...actions})
 class CompanyInfo extends Component<Props, State> {
 
   private viewRef;
