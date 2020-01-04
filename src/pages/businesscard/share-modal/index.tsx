@@ -61,7 +61,7 @@ export default class ShareModal extends PureComponent<Props, State> {
             </TouchableButton>
             <TouchableButton customStyle={styleAssign([w(187.5), styles.uac])}
                              onClick={haibao}>
-              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_haibao.png')}/>
+              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_mingpian_haibao.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>名片海报</Text>
             </TouchableButton>
           </View>

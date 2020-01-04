@@ -10,11 +10,27 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
-import {bgColor, color, commonStyles, default as styles, fSize, h, pl, pr, wRatio} from "../../utils/style";
+import {
+  absT,
+  bgColor,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h,
+  hRatio,
+  ml,
+  mr,
+  mt,
+  op,
+  pl,
+  pr,
+  w,
+  wRatio
+} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/goods';
-import TopHeader from "../../compoments/top-header";
-import {ScrollView, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import GoodsManageItem from "./goods-manage-item";
 import BottomButon from "../../compoments/bottom-buton";
@@ -29,6 +45,8 @@ interface Props {
 interface State {
   goodsList: Goods[];
   totalGoods: number;
+  showChoose: boolean;
+  state: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -37,6 +55,7 @@ class GoodsManage extends Component<Props, State> {
   private viewRef;
   private pageNo;
   private pageSize;
+  private goodsListTmp: Goods[];
 
 
   /**
@@ -55,10 +74,13 @@ class GoodsManage extends Component<Props, State> {
     console.log(this.viewRef);
     this.state = {
       goodsList: [],
-      totalGoods: 0
+      totalGoods: 0,
+      showChoose: false,
+      state: '全部'
     };
     this.pageNo = 1;
     this.pageSize = 10;
+    this.goodsListTmp = [];
   }
 
 
@@ -100,9 +122,13 @@ class GoodsManage extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
         Taro.stopPullDownRefresh();
-        this.setState({goodsList: res.records, totalGoods: res.total});
+        this.setState({goodsList: res.records, totalGoods: res.total}, () => {
+          this.goodsListTmp = this.state.goodsList;
+        });
       } else if (res.records && res.records.length !== 0) {
-        this.setState({goodsList: this.state.goodsList.concat(res.records), totalGoods: res.total});
+        this.setState({goodsList: this.state.goodsList.concat(res.records), totalGoods: res.total}, () => {
+          this.goodsListTmp = this.state.goodsList;
+        });
       } else {
         toast('没有商品了');
       }
@@ -114,13 +140,22 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods} = this.state;
+    let {goodsList, totalGoods, showChoose, state} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'商品管理'}/>
+        <View
+          style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
+          <Image style={styleAssign([w(22), h(22), ml(20)])}
+                 src={require('../../assets/ico_back.png')}
+                 onClick={() => {
+                   Taro.navigateBack();
+                 }}/>
+          <Text style={styleAssign([fSize(19), color(commonStyles.colorTheme)])}>商品管理</Text>
+          <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+        </View>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20)])}>
@@ -128,8 +163,11 @@ class GoodsManage extends Component<Props, State> {
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
             <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${totalGoods}件商品)`}</Text>
           </View>
-          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}>
-            <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>全部</Text>
+          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
+                           onClick={() => {
+                             this.setState({showChoose: !this.state.showChoose});
+                           }}>
+            <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>{state}</Text>
             <View style={{
               marginLeft: scaleSize(8),
               width: 0,
@@ -171,6 +209,42 @@ class GoodsManage extends Component<Props, State> {
             url: `/pages/businesscard/add_goods`
           });
         }}/>
+        {
+          showChoose && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}>
+            <View style={styleAssign([wRatio(100), mt(130), bgColor(commonStyles.whiteColor)])}>
+              {
+                ['全部', '已上架', '已下架'].map((value, index) => {
+                  return (<TouchableButton key={index}
+                                           customStyle={styleAssign([wRatio(100), h(44), styles.udr, styles.uac])}
+                                           onClick={() => {
+                                             this.setState({state: value, showChoose: false}, () => {
+                                               let tmp: Goods[] = [];
+
+                                               for (let i = 0; i < this.goodsListTmp.length; i++) {
+                                                 if (value === '已上架' && this.goodsListTmp[i].status === 1) {
+                                                   tmp.push(this.goodsListTmp[i]);
+                                                 }
+                                                 if (value === '已下架' && this.goodsListTmp[i].status === 0) {
+                                                   tmp.push(this.goodsListTmp[i]);
+                                                 }
+                                                 if (value === '全部') {
+                                                   tmp.push(this.goodsListTmp[i]);
+                                                 }
+                                               }
+                                               console.log('筛选', tmp)
+                                               this.setState({goodsList: tmp});
+                                             });
+                                             console.log(value)
+                                           }}>
+                    <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20)])}>{value}</Text>
+                  </TouchableButton>);
+                })
+              }
+            </View>
+            <View
+              style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
+          </View>
+        }
       </CustomSafeAreaView>
     );
   }

@@ -65,19 +65,19 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/businesscard/task_center",
+      "pages/mine/mine",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
       "pages/customer/customer",
-      "pages/mine/mine",
+      // "pages/mine/mine",
       //名片模块子页面
       "pages/businesscard/add_businesscard",
       "pages/businesscard/qiehuan_businesscard",
       "pages/businesscard/mingpian_haibao",
       "pages/businesscard/more_goods",
       "pages/businesscard/goods_detail",
-      // "pages/businesscard/task_center",
+      "pages/businesscard/task_center",
       "pages/businesscard/tool_box",
       "pages/businesscard/haibao",
       "pages/businesscard/add_task",
