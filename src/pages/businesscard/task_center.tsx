@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
+import {scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -42,8 +42,7 @@ interface Props {
 interface State {
   showAllTask: boolean;
   showOnlyToday: boolean;
-  finishedTaskList: TaskModel[];
-  ingTaskList: TaskModel[];
+  taskItem: { title: string, children: TaskModel[] }[];
 }
 
 @connect(state => state.login, {...actions})
@@ -72,8 +71,7 @@ class TaskCenter extends Component<Props, State> {
     this.state = {
       showAllTask: true,
       showOnlyToday: true,
-      finishedTaskList: [],
-      ingTaskList: []
+      taskItem: []
     }
     this.pageNo = 1;
     this.pageSize = 1000;
@@ -124,9 +122,11 @@ class TaskCenter extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
         Taro.stopPullDownRefresh();
-        this.setState({ingTaskList: res.records});
+        if (res.records.length !== 0) {
+          this.state.taskItem.push({title: '正在进行中', children: res.records});
+        }
+        this.setState({taskItem: this.state.taskItem});
       } else if (res.records && res.records.length !== 0) {
-        this.setState({ingTaskList: this.state.ingTaskList.concat(res.records)});
       } else {
         toast('没有商品了');
       }
@@ -154,9 +154,11 @@ class TaskCenter extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
         Taro.stopPullDownRefresh();
-        this.setState({finishedTaskList: res.records});
+        if (res.records.length !== 0) {
+          this.state.taskItem.push({title: '已完成', children: res.records});
+        }
+        this.setState({taskItem: this.state.taskItem});
       } else if (res.records && res.records.length !== 0) {
-        this.setState({finishedTaskList: this.state.finishedTaskList.concat(res.records)});
       } else {
         toast('没有商品了');
       }
@@ -168,7 +170,7 @@ class TaskCenter extends Component<Props, State> {
 
 
   render() {
-    let {showAllTask, showOnlyToday, finishedTaskList, ingTaskList} = this.state;
+    let {showAllTask, showOnlyToday, taskItem} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -204,7 +206,7 @@ class TaskCenter extends Component<Props, State> {
                     }}>
           {/*正在进行*/}
           {
-            [{title: '正在进行', children: ingTaskList}, {title: '已完成', children: finishedTaskList}].map((value, index) => {
+            taskItem.map((value, index) => {
               let showItem = false;
 
               if (index === 0) {
