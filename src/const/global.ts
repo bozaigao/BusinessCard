@@ -154,3 +154,16 @@ export interface IndustryModel {
   name: string;
   children: { name: string; }[];
 }
+
+export interface TaskModel {
+  createTime: string;
+  date: string;
+  id: number;
+  remark: string;
+  status: number;
+  theme: string;
+  updateTime: string;
+  userId: number;
+  userIds: string;
+  userList: []
+}

@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {scaleSize, styleAssign} from "../../utils/datatool";
+import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -33,20 +33,27 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import TaskItem from "./task-item";
 import BottomButon from "../../compoments/bottom-buton";
+import {TaskModel} from "../../const/global";
 
 interface Props {
+  getTaskList: any;
 }
 
 interface State {
   showAllTask: boolean;
   showOnlyToday: boolean;
+  finishedTaskList: TaskModel[];
+  ingTaskList: TaskModel[];
 }
 
 @connect(state => state.login, {...actions})
 class TaskCenter extends Component<Props, State> {
 
   private viewRef;
-
+  private pageNo;
+  private pageSize;
+  private pageNo1;
+  private pageSize1;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -65,12 +72,103 @@ class TaskCenter extends Component<Props, State> {
     this.state = {
       showAllTask: true,
       showOnlyToday: true,
+      finishedTaskList: [],
+      ingTaskList: []
     }
+    this.pageNo = 1;
+    this.pageSize = 1000;
+    this.pageNo1 = 1;
+    this.pageSize1 = 1000;
+  }
+
+  componentDidMount() {
+    this.refresh();
+    this.refresh1();
+  }
+
+
+  refresh = () => {
+    this.pageNo = 1;
+    this.getIngTaskList(true);
+  }
+
+  refresh1 = () => {
+    this.pageNo1 = 1;
+    this.getFinishedTaskList(true);
+  }
+
+  loadMore = () => {
+    this.pageNo++;
+    this.getIngTaskList();
+  }
+
+  loadMore1 = () => {
+    this.pageNo1++;
+    this.getFinishedTaskList();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 获取正在进行的任务列表
+   */
+  getIngTaskList = (refresh?: boolean) => {
+    this.viewRef && this.viewRef.showLoading('加载中');
+    this.props.getTaskList({
+      pageNo: this.pageNo,
+      pageSize: this.pageSize,
+      status: 0
+    }).then((res) => {
+      console.log('获取正在进行的任务列表', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (refresh) {
+        Taro.stopPullDownRefresh();
+        this.setState({ingTaskList: res.records});
+      } else if (res.records && res.records.length !== 0) {
+        this.setState({ingTaskList: this.state.ingTaskList.concat(res.records)});
+      } else {
+        toast('没有商品了');
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 获取已完成的任务列表
+   */
+  getFinishedTaskList = (refresh?: boolean) => {
+    this.viewRef && this.viewRef.showLoading('加载中');
+    this.props.getTaskList({
+      pageNo: this.pageNo1,
+      pageSize: this.pageSize1,
+      status: 1
+    }).then((res) => {
+      console.log('获取已完成的任务列表', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (refresh) {
+        Taro.stopPullDownRefresh();
+        this.setState({finishedTaskList: res.records});
+      } else if (res.records && res.records.length !== 0) {
+        this.setState({finishedTaskList: this.state.finishedTaskList.concat(res.records)});
+      } else {
+        toast('没有商品了');
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
   render() {
-    let {showAllTask, showOnlyToday} = this.state;
+    let {showAllTask, showOnlyToday, finishedTaskList, ingTaskList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -94,10 +192,19 @@ class TaskCenter extends Component<Props, State> {
         </View>
         {/*任务列表*/}
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-                    scrollY>
+                    scrollY
+                    onScrollToUpper={() => {
+                      // Taro.startPullDownRefresh();
+                      // debounce(() => {
+                      //   this.refresh();
+                      // }, 400);
+                    }}
+                    onScrollToLower={() => {
+                      // this.loadMore();
+                    }}>
           {/*正在进行*/}
           {
-            [{title: '正在进行', num: 2}, {title: '已完成', num: 2}].map((value, index) => {
+            [{title: '正在进行', children: ingTaskList}, {title: '已完成', children: finishedTaskList}].map((value, index) => {
               let showItem = false;
 
               if (index === 0) {
@@ -132,12 +239,15 @@ class TaskCenter extends Component<Props, State> {
                     }}/>
                     <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(10)])}>{value.title}</Text>
                   </View>
-                  <Text style={styleAssign([fSize(14), color('#787878')])}>{`(${value.num})`}</Text>
+                  <Text style={styleAssign([fSize(14), color('#787878')])}>{`(${value.children.length})`}</Text>
                 </TouchableButton>
                 {
                   showItem && <View>
-                    <TaskItem/>
-                    <TaskItem/>
+                    {
+                      value.children.map((itemValue, itemIndex) => {
+                        return (<TaskItem key={itemIndex} itemData={itemValue}/>);
+                      })
+                    }
                   </View>
                 }
               </View>);

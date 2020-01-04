@@ -101,6 +101,7 @@ class AddTask extends Component<Props, State> {
 
     this.viewRef && this.viewRef.showLoading();
     this.props.addTask(paramas).then((res) => {
+      console.log(res);
       this.viewRef && this.viewRef.hideLoading();
       toast('任务添加成功');
     }).catch(e => {
