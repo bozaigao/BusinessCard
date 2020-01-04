@@ -29,7 +29,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
 import TopHeader from "../../compoments/top-header";
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import TaskItem from "./task-item";
 import BottomButon from "../../compoments/bottom-buton";
@@ -43,6 +43,7 @@ interface State {
   showAllTask: boolean;
   showOnlyToday: boolean;
   taskItem: { title: string, children: TaskModel[] }[];
+  date: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -71,7 +72,8 @@ class TaskCenter extends Component<Props, State> {
     this.state = {
       showAllTask: true,
       showOnlyToday: true,
-      taskItem: []
+      taskItem: [],
+      date: ''
     }
     this.pageNo = 1;
     this.pageSize = 1000;
@@ -116,7 +118,8 @@ class TaskCenter extends Component<Props, State> {
     this.props.getTaskList({
       pageNo: this.pageNo,
       pageSize: this.pageSize,
-      status: 0
+      status: 0,
+      date: this.state.date
     }).then((res) => {
       console.log('获取正在进行的任务列表', res);
       this.viewRef && this.viewRef.hideLoading();
@@ -148,7 +151,8 @@ class TaskCenter extends Component<Props, State> {
     this.props.getTaskList({
       pageNo: this.pageNo1,
       pageSize: this.pageSize1,
-      status: 1
+      status: 1,
+      date: this.state.date
     }).then((res) => {
       console.log('获取已完成的任务列表', res);
       this.viewRef && this.viewRef.hideLoading();
@@ -170,7 +174,7 @@ class TaskCenter extends Component<Props, State> {
 
 
   render() {
-    let {showAllTask, showOnlyToday, taskItem} = this.state;
+    let {showAllTask, showOnlyToday, taskItem, date} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -190,7 +194,14 @@ class TaskCenter extends Component<Props, State> {
               <View style={styleAssign([w(25), h(2), bgColor(commonStyles.whiteColor), mt(10), radiusA(1)])}/>
             </View>
           </View>
-          <Image style={styleAssign([w(18), h(18), mr(20)])} src={require('../../assets/ico_date.png')}/>
+          <Picker mode='date' onChange={(e) => {
+            this.setState({date: e.detail.value, taskItem: []}, () => {
+              this.refresh();
+              this.refresh1();
+            });
+          }} value={date}>
+            <Image style={styleAssign([w(18), h(18), mr(20)])} src={require('../../assets/ico_date.png')}/>
+          </Picker>
         </View>
         {/*任务列表*/}
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -254,6 +265,14 @@ class TaskCenter extends Component<Props, State> {
                 }
               </View>);
             })
+          }
+
+          {
+            taskItem.length === 0 &&
+            <View style={styleAssign([styles.uac, mt(48)])}>
+              <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+              <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无任务</Text>
+            </View>
           }
         </ScrollView>
         {/*新建任务*/}
