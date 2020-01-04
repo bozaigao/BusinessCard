@@ -9,6 +9,7 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {parseData, styleAssign, transformTime} from "../../../utils/datatool";
 import styles, {
+  absL, absT,
   bdColor,
   bgColor,
   bo,
@@ -48,7 +49,12 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
                          });
                        }}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
-          <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={parseData(itemData.carouselUrl)[0]}/>
+          <View style={styleAssign([w(90), h(90)])}>
+            <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={parseData(itemData.carouselUrl)[0]}/>
+            {
+              itemData.showHomepage === 1&&<Image style={styleAssign([w(36), h(36), styles.upa, absL(0), absT(0)])} src={require('../../../assets/ico_top.png')}/>
+            }
+          </View>
           <View style={styleAssign([ml(12)])}>
             <Text style={styleAssign([fSize(18), color('#343434')])}>{itemData.name}</Text>
             <View style={styleAssign([styles.uac, styles.udr, mt(16)])}>

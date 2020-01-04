@@ -51,8 +51,6 @@ interface State {
 @connect(state => state.login, {...actions})
 class GoodsDetail extends Component<Props, State> {
 
-  private viewRef;
-
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -84,9 +82,7 @@ class GoodsDetail extends Component<Props, State> {
     let {itemData, currentIndex, carouselUrls,detailUrls} = this.state;
 
     return (
-      <CustomSafeAreaView ref={(ref) => {
-        this.viewRef = ref;
-      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'商品详情'}/>
         <View style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.pageDefaultBackgroundColor),
           pt(5)])}>

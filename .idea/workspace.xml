@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/ico_top.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" afterDir="false" />
@@ -21,8 +22,8 @@
       <file leaf-file-name="goods_manage.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="120" column="40" lean-forward="true" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
+            <state relative-caret-position="272">
+              <caret line="153" column="33" lean-forward="true" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#258#318#0" expanded="true" />
@@ -31,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="52" column="84" selection-start-line="52" selection-start-column="69" selection-end-line="52" selection-end-column="84" />
+            <state relative-caret-position="366">
+              <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#110#159#0" expanded="true" />
@@ -47,17 +48,17 @@
       <file leaf-file-name="global.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/const/global.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="128" column="11" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="11" />
+            <state relative-caret-position="442">
+              <caret line="138" column="14" selection-start-line="138" selection-start-column="2" selection-end-line="138" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="goods_detail.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="goods_detail.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="139" column="31" lean-forward="true" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
+            <state relative-caret-position="196">
+              <caret line="76" column="5" lean-forward="true" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#258#318#0" expanded="true" />
@@ -212,8 +213,8 @@
         <option value="$PROJECT_DIR$/src/utils/date.ts" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" />
       </list>
     </option>
   </component>
@@ -262,6 +263,12 @@
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="const" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -299,8 +306,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/pages/mine/list-item" />
       <recent name="$PROJECT_DIR$/src/compoments/switch-item" />
       <recent name="$PROJECT_DIR$/src/compoments/list-item" />
@@ -433,12 +440,12 @@
       <workItem from="1577520867521" duration="44890000" />
       <workItem from="1577666427248" duration="1429000" />
       <workItem from="1577718197651" duration="1735000" />
-      <workItem from="1578064088338" duration="9316000" />
+      <workItem from="1578064088338" duration="10100000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="528381000" />
+    <option name="totallyTimeSpent" value="529165000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -458,7 +465,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" weight="0.26564103" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.26564103" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -897,17 +904,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="120" column="40" lean-forward="true" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#258#318#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="82">
@@ -916,17 +912,6 @@
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#112#164#0" expanded="true" />
             <element signature="e#323#372#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="52" column="84" selection-start-line="52" selection-start-column="69" selection-end-line="52" selection-end-column="84" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#110#159#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -945,20 +930,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="128" column="11" selection-start-line="128" selection-start-column="2" selection-end-line="128" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="139" column="31" lean-forward="true" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
+        <state relative-caret-position="196">
+          <caret line="76" column="5" lean-forward="true" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#258#318#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="153" column="33" lean-forward="true" selection-start-line="153" selection-start-column="33" selection-end-line="153" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#258#318#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="138" column="14" selection-start-line="138" selection-start-column="2" selection-end-line="138" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="59" column="38" lean-forward="true" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#110#159#0" expanded="true" />
           </folding>
         </state>
       </provider>
