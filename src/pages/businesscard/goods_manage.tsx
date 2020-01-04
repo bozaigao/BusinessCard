@@ -124,7 +124,47 @@ class GoodsManage extends Component<Props, State> {
       id: this.itemData.id,
       status: -1
     }).then((res) => {
+      console.log(res);
       toast('删除成功');
+      this.refresh();
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 下架商品
+   */
+  xiajiaGoods = () => {
+    this.props.updateGoods({
+      id: this.itemData.id,
+      status: 0
+    }).then((res) => {
+      console.log(res);
+      toast('操作成功');
+      this.refresh();
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 取消置顶
+   */
+  notTopGoods = () => {
+    this.props.updateGoods({
+      id: this.itemData.id,
+      showHomepage: 0
+    }).then((res) => {
+      console.log(res);
+      toast('操作成功');
       this.refresh();
     }).catch(e => {
       console.log('报错啦', e);
@@ -234,6 +274,12 @@ class GoodsManage extends Component<Props, State> {
                                        }
                                        xiajiaCallback={(itemData) => {
                                          this.itemData = itemData;
+                                         this.xiajiaGoods();
+                                       }
+                                       }
+                                       notTopGoodsCallback={(itemData) => {
+                                         this.itemData = itemData;
+                                         this.notTopGoods();
                                        }
                                        }/>);
             })
