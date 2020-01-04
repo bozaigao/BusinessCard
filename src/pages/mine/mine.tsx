@@ -138,7 +138,12 @@ class Mine extends Component<Props, State> {
                 {/*完善名片*/}
                 <View style={styleAssign([mr(20)])}>
                   <View>
-                    <TouchableButton customStyle={styleAssign([styles.udr, styles.uac])}>
+                    <TouchableButton customStyle={styleAssign([styles.udr, styles.uac])}
+                                     onClick={() => {
+                                       Taro.navigateTo({
+                                         url: `/pages/mine/perform_info`
+                                       });
+                                     }}>
                       <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>完善名片</Text>
                       <Image style={styleAssign([w(7), h(12), ml(8)])}
                              src={require('../../assets/ico_next_white.png')}/>

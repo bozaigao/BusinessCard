@@ -119,14 +119,17 @@ class PerformInfo extends Component<Props, State> {
               {/*我的*/}
               <View
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(22), h(14), ml(20)])} src={require('../../assets/ico_switch_white.png')}/>
-                <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>我的</Text>
+                <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
+                       onClick={() => {
+                         Taro.navigateBack();
+                       }}/>
+                <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>
                 <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
               </View>
             </View>
-            <View style={styleAssign([wRatio(100), h(210), bgColor(commonStyles.whiteColor)])}/>
+            <View style={styleAssign([wRatio(100), h(190), bgColor(commonStyles.whiteColor)])}/>
             {/*个人信息展示*/}
-            <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absB(10)])}>
+            <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absB(15)])}>
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
@@ -142,14 +145,8 @@ class PerformInfo extends Component<Props, State> {
               <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>四川 成都</Text>
               <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>耐用消耗品</Text>
             </View>
-            {/*设置*/}
-            <View style={styleAssign([styles.uac, styles.upa, absR(10), absB(180)])}>
-              <Image style={styleAssign([w(19), h(19)])} src={require('../../assets/ico_setting.png')}
-                     onClick={() => {
-                       Taro.navigateTo({
-                         url: `/pages/mine/setting_page`
-                       });
-                     }}/>
+            {/*编辑*/}
+            <View style={styleAssign([styles.uac, styles.upa, absR(10), absB(150)])}>
               <Image style={styleAssign([w(21), h(19), mt(70)])} src={require('../../assets/ico_edit.png')}
                      onClick={() => {
                        Taro.navigateTo({
