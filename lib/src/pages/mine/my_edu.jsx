@@ -68,7 +68,7 @@ let MyEdu = class MyEdu extends taro_1.Component {
                 </components_1.View>);
         })}
           </components_1.View>
-
+          
           <bottom_buton_1.default title={'保存'} onClick={() => {
         }}/>
         </components_1.View>

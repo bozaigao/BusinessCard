@@ -66,7 +66,7 @@ let AddTask = class AddTask extends taro_1.Component {
           </components_1.View>
           <components_1.Textarea style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(128), style_1.pa(20), style_1.bgColor(style_1.commonStyles.whiteColor)])} value={''} placeholder={'备注'}/>
         </components_1.View>
-
+        
         <bottom_buton_1.default title={'保存'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);

@@ -60,7 +60,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#B7B7B7'), style_1.mt(14)])}>建议尺寸：350px*350px</components_1.Text>
             </components_1.View>
           </components_1.View>
-
+          
           <list_item_1.default title={'企业视频'}/>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(193), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mb(10)])}>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(305), style_1.h(160)])} src={require('../../assets/ico_upload_video.png')} onClick={() => {
@@ -69,7 +69,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
         }}/>
           </components_1.View>
         </components_1.ScrollView>
-
+        
         <bottom_buton_1.default title={'提交'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);

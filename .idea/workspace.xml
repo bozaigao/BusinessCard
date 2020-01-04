@@ -2,8 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/actions/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/actions/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/actions/login.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/actions/login.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/app.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/app.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/app.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/compoments/loading/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/compoments/loading/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/compoments/loading/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/compoments/loading/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.weapp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.weapp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.weapp.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.weapp.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_businesscard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_businesscard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_businesscard.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_businesscard.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_goods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_goods.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_goods.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_goods.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_detail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_detail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_detail.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_detail.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/haibao.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/haibao.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/haibao.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/haibao.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpian_haibao.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpian_haibao.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpian_haibao.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpian_haibao.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/more_goods.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/more_goods.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/more_goods.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/more_goods.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan_businesscard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan_businesscard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan_businesscard.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan_businesscard.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/tool_box.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/tool_box.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/tool_box.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/tool_box.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_customer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/customer/add_customer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_customer.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/customer/add_customer.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/customer/customer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/customer/customer.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_detail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/customer/customer_detail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_detail.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/customer/customer_detail.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/audio_recorder.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/audio_recorder.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/audio_recorder.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/audio_recorder.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/company_info.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/company_info.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/company_info.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/company_info.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/contact_way.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/contact_way.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/contact_way.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/contact_way.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/feedback.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/feedback.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/feedback.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/feedback.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_edu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/my_edu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_edu.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/my_edu.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_tags.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/my_tags.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_tags.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/my_tags.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/self_intro.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/self_intro.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/self_intro.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/self_intro.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/setting_page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/setting_page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/setting_page.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/setting_page.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/utils/datatool.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/datatool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/utils/datatool.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/datatool.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,11 +78,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="goods_manage.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="goods_manage.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+            <state relative-caret-position="566">
+              <caret line="155" column="20" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#258#318#0" expanded="true" />
@@ -44,14 +104,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_goods.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_goods.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="104" column="46" lean-forward="true" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+            <state relative-caret-position="374">
+              <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#255#327#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -197,8 +256,8 @@
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx" />
       </list>
     </option>
   </component>
@@ -437,12 +496,12 @@
       <workItem from="1577520867521" duration="44890000" />
       <workItem from="1577666427248" duration="1429000" />
       <workItem from="1577718197651" duration="1735000" />
-      <workItem from="1578064088338" duration="13241000" />
+      <workItem from="1578064088338" duration="13713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="532306000" />
+    <option name="totallyTimeSpent" value="532778000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -945,24 +1004,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="48" column="20" lean-forward="true" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+        <state relative-caret-position="374">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#258#318#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_manage.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="104" column="46" lean-forward="true" selection-start-line="104" selection-start-column="46" selection-end-line="104" selection-end-column="46" />
+        <state relative-caret-position="566">
+          <caret line="155" column="20" selection-start-line="155" selection-start-column="20" selection-end-line="155" selection-end-column="20" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#255#327#0" expanded="true" />
+            <element signature="e#258#318#0" expanded="true" />
           </folding>
         </state>
       </provider>

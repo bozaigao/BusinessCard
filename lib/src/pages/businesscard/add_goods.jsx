@@ -42,6 +42,48 @@ let AddGoods = class AddGoods extends taro_1.Component {
         /**
          * @author 何晏波
          * @QQ 1054539528
+         * @date 2020/1/4
+         * @function: 更新商品
+         */
+        this.updateGoods = () => {
+            let { name, price, introduction } = this.state;
+            if (name.length === 0) {
+                datatool_1.toast('名字不能为空');
+                return;
+            }
+            if (introduction.length === 0) {
+                datatool_1.toast('简介不能为空');
+                return;
+            }
+            if (this.carouselUrls.length === 0) {
+                datatool_1.toast('请选择轮播图');
+                return;
+            }
+            if (this.detailUrls.length === 0) {
+                datatool_1.toast('请选择详情图');
+                return;
+            }
+            this.viewRef && this.viewRef.showLoading('更新中');
+            this.props.updateGoods({
+                id: this.itemData.id,
+                name,
+                price,
+                carouselUrl: JSON.stringify(this.carouselUrls),
+                detailUrl: JSON.stringify(this.detailUrls),
+                introduction
+            }).then((res) => {
+                datatool_1.toast('商品更新成功');
+                taro_1.default.eventCenter.trigger('goodsListRefresh');
+                console.log('更新商品信息', res);
+                this.viewRef && this.viewRef.hideLoading();
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
          * @date 2019/12/29
          * @function: 添加任务
          */
@@ -55,17 +97,26 @@ let AddGoods = class AddGoods extends taro_1.Component {
                 datatool_1.toast('简介不能为空');
                 return;
             }
-            this.viewRef && this.viewRef.showLoading();
+            if (this.carouselUrls.length === 0) {
+                datatool_1.toast('请选择轮播图');
+                return;
+            }
+            if (this.detailUrls.length === 0) {
+                datatool_1.toast('请选择详情图');
+                return;
+            }
+            this.viewRef && this.viewRef.showLoading('上传中');
             this.props.addGoods({
                 name,
                 price,
-                carouselUrl: this.carouselUrls,
-                detailUrl: this.detailUrls,
+                carouselUrl: JSON.stringify(this.carouselUrls),
+                detailUrl: JSON.stringify(this.detailUrls),
                 introduction
             }).then((res) => {
-                this.viewRef && this.viewRef.hideLoading();
                 datatool_1.toast('商品添加成功');
+                taro_1.default.eventCenter.trigger('goodsListRefresh');
                 console.log('添加商品信息', res);
+                this.viewRef && this.viewRef.hideLoading();
             }).catch(e => {
                 this.viewRef && this.viewRef.hideLoading();
                 console.log('报错啦', e);
@@ -105,35 +156,47 @@ let AddGoods = class AddGoods extends taro_1.Component {
                 },
                 success(res) {
                     that.uploadCount++;
+                    that.uploadResultArr.push(datatool_1.parseData(res.data).data);
                     if (that.uploadCount === length) {
                         that.uploading = false;
-                        callback(that.uploadResultArr);
+                        callback();
                     }
-                    that.uploadResultArr.push(datatool_1.parseData(res.data).data);
                     console.log('上传文件', datatool_1.parseData(res.data).data);
                 }
             });
         };
         console.log(this.viewRef);
+        let carouselUrlsLocalTmp = [], detailUrlsLocalTmp = [];
+        this.itemData = datatool_1.parseData(this.$router.params.itemData);
+        if (this.itemData) {
+            datatool_1.parseData(this.itemData.carouselUrl).forEach((item) => {
+                carouselUrlsLocalTmp.push({ path: item });
+            });
+            datatool_1.parseData(this.itemData.detailUrl).forEach((item) => {
+                detailUrlsLocalTmp.push({ path: item });
+            });
+        }
+        console.log('传递参数', this.itemData);
         this.state = {
-            name: '',
-            price: '',
-            introduction: '',
-            carouselUrlsLocal: [],
-            detailUrlsLocal: []
+            name: this.itemData ? this.itemData.name : '',
+            price: this.itemData ? '' + this.itemData.price : '0',
+            introduction: this.itemData ? this.itemData.introduction : '',
+            carouselUrlsLocal: carouselUrlsLocalTmp,
+            detailUrlsLocal: detailUrlsLocalTmp,
+            edit: datatool_1.parseData(this.$router.params.edit)
         };
-        this.carouselUrls = [];
-        this.detailUrls = [];
+        this.carouselUrls = this.itemData ? datatool_1.parseData(this.itemData.carouselUrl) : [];
+        this.detailUrls = this.itemData ? datatool_1.parseData(this.itemData.detailUrl) : [];
         this.uploading = false;
         this.uploadCount = 0;
         this.uploadResultArr = [];
     }
     render() {
-        let { carouselUrlsLocal, detailUrlsLocal } = this.state;
+        let { carouselUrlsLocal, detailUrlsLocal, edit, introduction, name, price } = this.state;
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={'添加商品'}/>
+        <top_header_1.default title={edit ? '编辑商品' : '添加商品'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.pb(5), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
@@ -142,7 +205,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
             return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])} key={index}>
                     <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.pl(20), style_1.pr(20), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
                       <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>{value.title}</components_1.Text>
-                      <components_1.Input type={value.title === '商品名称' ? 'text' : 'number'} value={''} style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14), { textAlign: 'right' }])} placeholder={value.placeHolder} onInput={(e) => {
+                      <components_1.Input type={value.title === '商品名称' ? 'text' : 'number'} value={value.title === '商品名称' ? name : price} style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14), { textAlign: 'right' }])} placeholder={value.placeHolder} onInput={(e) => {
                 if (value.title === '商品名称') {
                     this.setState({ name: e.detail.value });
                 }
@@ -176,9 +239,9 @@ let AddGoods = class AddGoods extends taro_1.Component {
             taro_1.default.chooseImage({ count: 5 - carouselUrlsLocal.length }).then((res) => {
                 console.log('本地上传图片', res.tempFiles);
                 this.setState({ carouselUrlsLocal: this.state.carouselUrlsLocal.concat(res.tempFiles) });
-                this.uploadFileList(res.tempFiles, (paths) => {
-                    this.carouselUrls.concat(paths);
-                    console.log('上传成功后的图片列表', this.uploadResultArr);
+                this.uploadFileList(res.tempFiles, () => {
+                    this.carouselUrls.push(...this.uploadResultArr);
+                    console.log('上传成功后的图片列表', this.carouselUrls);
                 });
             });
         }} customStyle={datatool_1.styleAssign([style_1.ml(10), style_1.mb(20), style_1.w(105), style_1.h(105), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc])}>
@@ -193,7 +256,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>商品简介</components_1.Text>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            <components_1.Textarea value={''} placeholder={'请输入公司简介'} style={datatool_1.styleAssign([style_1.w(300), style_1.h(140), style_1.fSize(16), style_1.mt(10), style_1.ml(20),
+            <components_1.Textarea value={introduction} placeholder={'请输入公司简介'} style={datatool_1.styleAssign([style_1.w(300), style_1.h(140), style_1.fSize(16), style_1.mt(10), style_1.ml(20),
             style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.pa(16)])} onInput={(e) => {
             this.setState({ introduction: e.detail.value });
         }}/>
@@ -218,9 +281,9 @@ let AddGoods = class AddGoods extends taro_1.Component {
               {detailUrlsLocal.length < 9 && <touchable_button_1.default onClick={() => {
             taro_1.default.chooseImage({ count: 9 - detailUrlsLocal.length }).then((res) => {
                 this.setState({ detailUrlsLocal: this.state.detailUrlsLocal.concat(res.tempFiles) });
-                this.uploadFileList(res.tempFiles, (paths) => {
-                    this.detailUrls.concat(paths);
-                    console.log('上传成功后的图片列表', this.uploadResultArr);
+                this.uploadFileList(res.tempFiles, () => {
+                    this.detailUrls.push(...this.uploadResultArr);
+                    console.log('上传成功后的图片列表', this.detailUrls);
                 });
             });
         }} customStyle={datatool_1.styleAssign([style_1.ml(10), style_1.mb(20), style_1.w(105), style_1.h(105), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc])}>
@@ -232,24 +295,32 @@ let AddGoods = class AddGoods extends taro_1.Component {
         
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(63), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.default.uac, style_1.default.ujc])}>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-            <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(162), style_1.h(47), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme),
-            { borderStyle: 'solid' }, style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])} onClick={() => {
-            this.addGoods();
+          {edit ? <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.ml(10), style_1.w(335), style_1.h(47), style_1.bgColor(style_1.commonStyles.colorTheme),
+            style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])} onClick={() => {
+            this.updateGoods();
         }}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434')])}>保存商品</components_1.Text>
-            </touchable_button_1.default>
-            <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.ml(10), style_1.w(162), style_1.h(47), style_1.bgColor(style_1.commonStyles.colorTheme),
-            style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>立即上架</components_1.Text>
-            </touchable_button_1.default>
-          </components_1.View>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>保存</components_1.Text>
+                </touchable_button_1.default>
+              </components_1.View> :
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(162), style_1.h(47), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme),
+                { borderStyle: 'solid' }, style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])} onClick={() => {
+                this.addGoods();
+            }}>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434')])}>保存商品</components_1.Text>
+                </touchable_button_1.default>
+                <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.ml(10), style_1.w(162), style_1.h(47), style_1.bgColor(style_1.commonStyles.colorTheme),
+                style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])}>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>立即上架</components_1.Text>
+                </touchable_button_1.default>
+              </components_1.View>}
         </components_1.View>
       </safe_area_view_1.default>);
     }
 };
 AddGoods = __decorate([
-    redux_1.connect(state => state.login, Object.assign({}, actions))
+    redux_1.connect(state => state.Goods, Object.assign({}, actions))
 ], AddGoods);
 exports.default = AddGoods;
 //# sourceMappingURL=add_goods.jsx.map

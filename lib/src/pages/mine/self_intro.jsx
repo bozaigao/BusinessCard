@@ -49,7 +49,7 @@ let SelfIntro = class SelfIntro extends taro_1.Component {
             style_1.mt(20), style_1.fSize(14)])} value={''} placeholder={'Hi，您好，我是…公司的…,我在…行业已有…年，主要负责…工作，有着丰富的…经验以及非常专业的相关知识，如果您有意向与我司合作，请直接联系我。'}/>
           <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#313137'), style_1.ml(20), style_1.mt(20)])}>查看模板</components_1.Text>
         </components_1.View>
-
+        
         <bottom_buton_1.default title={'保存'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);

@@ -60,7 +60,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.colorTheme)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(60)])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(10), style_1.absR(0), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-
+            
             <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(197), style_1.radiusA(5), style_1.bgColor(style_1.commonStyles.whiteColor), { boxShadow: '0px 2px 4px 0px rgba(230,230,230,0.5' }])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ma(20)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(71), style_1.h(71), style_1.radiusA(4)])} src={require('../../assets/ico_default.png')}/>
@@ -71,18 +71,18 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                 </components_1.View>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.w(295), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20)])}/>
-
+              
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(19)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(9), style_1.h(12)])} src={require('../../assets/ico_phone.png')} mode={'aspectFit'}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.ml(15), style_1.fSize(12), style_1.color('#727272')])}>15982468866</components_1.Text>
               </components_1.View>
-
+              
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(10)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(9), style_1.h(12)])} src={require('../../assets/ico_location.png')} mode={'aspectFit'}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.ml(15), style_1.fSize(12), style_1.color('#727272')])}>四川成都</components_1.Text>
               </components_1.View>
             </components_1.View>
-
+            
             {listData.map((item, index) => {
             console.log(item);
             return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])} key={index}>
@@ -98,7 +98,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                 </components_1.View>);
         })}
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-
+            
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.pl(20), style_1.pr(20), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>名片展示邮箱号</components_1.Text>
@@ -114,8 +114,8 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
               <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-
-
+            
+            
             <bottom_buton_1.default title={'创建名片'} onClick={() => {
         }}/>
           </components_1.View>

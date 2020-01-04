@@ -45,7 +45,7 @@ let Haibao = class Haibao extends taro_1.Component {
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'海报'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.default.uac])}>
-
+          
           <components_1.ScrollView style={datatool_1.styleAssign([{ whiteSpace: 'nowrap' }, style_1.wRatio(100), style_1.h(41), { paddingLeft: '5%' },
             style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollX>
             {['热点话题', '早晚问候', '业绩催单', '人才招聘', '节日海报', '热点话题', '早晚问候', '业绩催单', '人才招聘', '节日海报'].map((value, index) => {

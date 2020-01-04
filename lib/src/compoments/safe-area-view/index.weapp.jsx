@@ -14,8 +14,8 @@ class CustomSafeAreaView extends taro_1.Component {
          * @date 2019/9/25
          * @function: 显示进度条
          */
-        this.showLoading = () => {
-            this.setState({ showLoading: true });
+        this.showLoading = (title) => {
+            this.setState({ showLoading: true, title: title ? title : '' });
         };
         /**
          * @author 何晏波
@@ -30,6 +30,7 @@ class CustomSafeAreaView extends taro_1.Component {
             paddingTop: 0,
             paddingBottom: 0,
             showLoading: false,
+            title: ''
         };
     }
     componentWillMount() {
@@ -43,11 +44,11 @@ class CustomSafeAreaView extends taro_1.Component {
     }
     render() {
         let { customStyle, children, notNeedTopPadding, notNeedBottomPadding } = this.props;
-        let { paddingTop, showLoading, paddingBottom } = this.state;
+        let { paddingTop, showLoading, paddingBottom, title } = this.state;
         console.log('距离顶部', paddingTop);
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pt(notNeedTopPadding ? 0 : paddingTop), style_1.pb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
         {children}
-        {showLoading && <loading_1.default />}
+        {showLoading && <loading_1.default title={title}/>}
       </components_1.View>);
     }
 }

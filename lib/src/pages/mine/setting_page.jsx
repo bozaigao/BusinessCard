@@ -60,7 +60,7 @@ let SettingPage = class SettingPage extends taro_1.Component {
             }}/>);
         })}
           </components_1.View>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.mt(283)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极致名片 给您极致服务</components_1.Text>
           </components_1.View>

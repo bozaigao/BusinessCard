@@ -46,7 +46,7 @@ let MyTags = class MyTags extends taro_1.Component {
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'我的标签'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(153), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(16)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>我的标签</components_1.Text>
@@ -74,7 +74,7 @@ let MyTags = class MyTags extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(14)])}>（仅限于兴趣爱好）</components_1.Text>
             </components_1.View>
           </components_1.View>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(20), style_1.mt(16)])}>常用标签</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8),
@@ -89,7 +89,7 @@ let MyTags = class MyTags extends taro_1.Component {
             </components_1.View>
           </components_1.View>
         </components_1.View>
-
+        
         <bottom_buton_1.default title={'保存'} onClick={() => {
         }}/>
       </safe_area_view_1.default>);

@@ -17,6 +17,7 @@ const ico_loading_bg_png_1 = require("../../assets/ico_loading_bg.png");
 const loading_gif_1 = require("../../assets/loading.gif");
 class Loading extends taro_1.Component {
     render() {
+        let { title } = this.props;
         return (<components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.udf, style_1.zIndex(1000), style_1.absL(0), style_1.absB(0), style_1.absR(0), style_1.absT(0)])}>
         <components_1.View style={datatool_1.styleAssign([
             style_1.default.uac,
@@ -31,7 +32,7 @@ class Loading extends taro_1.Component {
         ])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.default.upa, style_1.default.uac, style_1.absL(10), style_1.absT(25), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(100), style_1.h(40)])} src={loading_gif_1.default}/>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.textGrayColor), style_1.fSize(14)])}>加载中...</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.textGrayColor), style_1.fSize(14)])}>{`${title && title.length !== 0 ? title : '加载中'}...`}</components_1.Text>
           </components_1.View>
         </components_1.View>
       </components_1.View>);

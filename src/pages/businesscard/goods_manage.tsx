@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {scaleSize, styleAssign, toast} from "../../utils/datatool";
+import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, pl, pr, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/goods';
@@ -64,7 +64,7 @@ class GoodsManage extends Component<Props, State> {
 
   componentDidMount() {
     this.refresh();
-    Taro.eventCenter.on('goodsListRefresh',()=>{
+    Taro.eventCenter.on('goodsListRefresh', () => {
       this.refresh();
     });
   }
@@ -99,6 +99,7 @@ class GoodsManage extends Component<Props, State> {
       console.log('获取商品列表', res);
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
+        Taro.stopPullDownRefresh();
         this.setState({goodsList: res.records, totalGoods: res.total});
       } else if (res.records && res.records.length !== 0) {
         this.setState({goodsList: this.state.goodsList.concat(res.records), totalGoods: res.total});
@@ -149,7 +150,10 @@ class GoodsManage extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY
           onScrollToUpper={() => {
-            this.refresh();
+            Taro.startPullDownRefresh();
+            debounce(() => {
+              this.refresh();
+            }, 400);
           }}
           onScrollToLower={() => {
             this.loadMore();

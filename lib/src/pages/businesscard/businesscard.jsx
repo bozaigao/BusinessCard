@@ -31,7 +31,6 @@ const my_business_1 = require("./my-business");
 const my_photo_1 = require("./my-photo");
 const touchable_button_1 = require("../../compoments/touchable-button");
 const share_modal_1 = require("./share-modal");
-const bianjie_tool_1 = require("./bianjie-tool");
 let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -90,34 +89,6 @@ let Businesscard = class Businesscard extends taro_1.Component {
           <personal_info_1.default />
           
           <my_person_1.default />
-          
-          <bianjie_tool_1.default itemClick={(value) => {
-            if (value === '任务中心') {
-                taro_1.default.navigateTo({
-                    url: `/pages/businesscard/task_center`
-                });
-            }
-            else if (value === '工具箱') {
-                taro_1.default.navigateTo({
-                    url: `/pages/businesscard/tool_box`
-                });
-            }
-            else if (value === '海报') {
-                taro_1.default.navigateTo({
-                    url: `/pages/businesscard/haibao`
-                });
-            }
-            else if (value === '名片夹') {
-                taro_1.default.navigateTo({
-                    url: `/pages/businesscard/mingpianjia`
-                });
-            }
-            else if (value === '商城') {
-                taro_1.default.navigateTo({
-                    url: `/pages/businesscard/goods_manage`
-                });
-            }
-        }}/>
           
           <my_goods_1.default goToMoreGoods={() => {
             taro_1.default.navigateTo({
