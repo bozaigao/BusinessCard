@@ -11,19 +11,26 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
-  absR, absT,
+  absR,
+  absT,
   bdColor,
-  bgColor, bo,
+  bgColor,
+  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
   h,
-  hRatio, mb,
+  hRatio,
+  mb,
   ml,
-  mt, pa, pb,
+  mt,
+  pa,
+  pb,
   pl,
-  pr, radiusA, w,
+  pr,
+  radiusA,
+  w,
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
@@ -32,11 +39,13 @@ import TopHeader from "../../compoments/top-header";
 import {Image, Input, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import {FileController} from "../../api/httpurl";
-import {Enum} from "../../const/global";
+import {Enum, Goods} from "../../const/global";
 
 interface Props {
   //添加商品
   addGoods: any;
+  //更新商品
+  updateGoods: any;
 }
 
 interface State {
@@ -47,6 +56,7 @@ interface State {
   name: string;
   price: string;
   introduction: string;
+  edit: boolean;
 }
 
 @connect(state => state.Goods, {...actions})
@@ -58,6 +68,7 @@ class AddGoods extends Component<Props, State> {
   private uploadResultArr;
   private carouselUrls: string[];
   private detailUrls: string[];
+  private itemData: Goods;
 
 
   /**
@@ -74,18 +85,77 @@ class AddGoods extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
-    this.state = {
-      name: '',
-      price: '',
-      introduction: '',
-      carouselUrlsLocal: [],
-      detailUrlsLocal: []
+    let carouselUrlsLocalTmp: { path: string }[] = [], detailUrlsLocalTmp: { path: string }[] = [];
+
+    this.itemData = parseData(this.$router.params.itemData);
+    if (this.itemData) {
+      parseData(this.itemData.carouselUrl).forEach((item) => {
+        carouselUrlsLocalTmp.push({path: item});
+      });
+      parseData(this.itemData.detailUrl).forEach((item) => {
+        detailUrlsLocalTmp.push({path: item});
+      });
     }
-    this.carouselUrls = [];
-    this.detailUrls = [];
+    console.log('传递参数', this.itemData);
+
+    this.state = {
+      name: this.itemData ? this.itemData.name : '',
+      price: this.itemData ? '' + this.itemData.price : '0',
+      introduction: this.itemData ? this.itemData.introduction : '',
+      carouselUrlsLocal: carouselUrlsLocalTmp,
+      detailUrlsLocal: detailUrlsLocalTmp,
+      edit: parseData(this.$router.params.edit)
+    }
+    this.carouselUrls = this.itemData ? parseData(this.itemData.carouselUrl) : [];
+    this.detailUrls = this.itemData ? parseData(this.itemData.detailUrl) : [];
     this.uploading = false;
     this.uploadCount = 0;
     this.uploadResultArr = [];
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 更新商品
+   */
+  updateGoods = () => {
+    let {name, price, introduction} = this.state;
+
+    if (name.length === 0) {
+      toast('名字不能为空');
+      return;
+    }
+    if (introduction.length === 0) {
+      toast('简介不能为空');
+      return;
+    }
+    if (this.carouselUrls.length === 0) {
+      toast('请选择轮播图');
+      return;
+    }
+    if (this.detailUrls.length === 0) {
+      toast('请选择详情图');
+      return;
+    }
+    this.viewRef && this.viewRef.showLoading('更新中');
+    this.props.updateGoods({
+      id: this.itemData.id,
+      name,
+      price,
+      carouselUrl: JSON.stringify(this.carouselUrls),
+      detailUrl: JSON.stringify(this.detailUrls),
+      introduction
+    }).then((res) => {
+      toast('商品更新成功');
+      Taro.eventCenter.trigger('goodsListRefresh');
+      console.log('更新商品信息', res);
+      this.viewRef && this.viewRef.hideLoading();
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -106,14 +176,14 @@ class AddGoods extends Component<Props, State> {
       toast('简介不能为空');
       return;
     }
-    // if (this.carouselUrls.length === 0) {
-    //   toast('请选择轮播图');
-    //   return;
-    // }
-    // if (this.detailUrls.length === 0) {
-    //   toast('请选择详情图');
-    //   return;
-    // }
+    if (this.carouselUrls.length === 0) {
+      toast('请选择轮播图');
+      return;
+    }
+    if (this.detailUrls.length === 0) {
+      toast('请选择详情图');
+      return;
+    }
     this.viewRef && this.viewRef.showLoading('上传中');
     this.props.addGoods({
       name,
@@ -123,6 +193,7 @@ class AddGoods extends Component<Props, State> {
       introduction
     }).then((res) => {
       toast('商品添加成功');
+      Taro.eventCenter.trigger('goodsListRefresh');
       console.log('添加商品信息', res);
       this.viewRef && this.viewRef.hideLoading();
     }).catch(e => {
@@ -181,13 +252,13 @@ class AddGoods extends Component<Props, State> {
 
   render() {
 
-    let {carouselUrlsLocal, detailUrlsLocal} = this.state;
+    let {carouselUrlsLocal, detailUrlsLocal, edit, introduction, name, price} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'添加商品'}/>
+        <TopHeader title={edit ? '编辑商品' : '添加商品'}/>
         <ScrollView
           style={styleAssign([wRatio(100), hRatio(100), pb(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
@@ -200,16 +271,18 @@ class AddGoods extends Component<Props, State> {
                     <View
                       style={styleAssign([wRatio(100), h(55), pl(20), pr(20), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
                       <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{value.title}</Text>
-                      <Input type={value.title === '商品名称' ? 'text' : 'number'} value={''}
-                             style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
-                             placeholder={value.placeHolder}
-                             onInput={(e) => {
-                               if (value.title === '商品名称') {
-                                 this.setState({name: e.detail.value});
-                               } else {
-                                 this.setState({price: e.detail.value});
-                               }
-                             }}/>
+                      <Input
+                        type={value.title === '商品名称' ? 'text' : 'number'}
+                        value={value.title === '商品名称' ? name : price}
+                        style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
+                        placeholder={value.placeHolder}
+                        onInput={(e) => {
+                          if (value.title === '商品名称') {
+                            this.setState({name: e.detail.value});
+                          } else {
+                            this.setState({price: e.detail.value});
+                          }
+                        }}/>
                     </View>
                     <View style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                   </View>);
@@ -268,7 +341,7 @@ class AddGoods extends Component<Props, State> {
               <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>商品简介</Text>
             </View>
             <View style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <Textarea value={''}
+            <Textarea value={introduction}
                       placeholder={'请输入公司简介'}
                       style={styleAssign([w(300), h(140), fSize(16), mt(10), ml(20),
                         bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}
@@ -323,19 +396,31 @@ class AddGoods extends Component<Props, State> {
         {/*保存和上架*/}
         <View style={styleAssign([wRatio(100), h(63), bgColor(commonStyles.whiteColor),
           styles.uac, styles.ujc])}>
-          <View style={styleAssign([styles.uac, styles.udr])}>
-            <TouchableButton customStyle={styleAssign([w(162), h(47), bo(1), bdColor(commonStyles.colorTheme),
-              {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
-                             onClick={() => {
-                               this.addGoods();
-                             }}>
-              <Text style={styleAssign([fSize(20), color('#343434')])}>保存商品</Text>
-            </TouchableButton>
-            <TouchableButton customStyle={styleAssign([ml(10), w(162), h(47), bgColor(commonStyles.colorTheme),
-              radiusA(2), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>立即上架</Text>
-            </TouchableButton>
-          </View>
+          {
+            edit ? <View style={styleAssign([styles.uac, styles.udr])}>
+                <TouchableButton customStyle={styleAssign([ml(10), w(335), h(47), bgColor(commonStyles.colorTheme),
+                  radiusA(2), styles.uac, styles.ujc])}
+                                 onClick={() => {
+                                   this.updateGoods();
+                                 }
+                                 }>
+                  <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>保存</Text>
+                </TouchableButton>
+              </View> :
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <TouchableButton customStyle={styleAssign([w(162), h(47), bo(1), bdColor(commonStyles.colorTheme),
+                  {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
+                                 onClick={() => {
+                                   this.addGoods();
+                                 }}>
+                  <Text style={styleAssign([fSize(20), color('#343434')])}>保存商品</Text>
+                </TouchableButton>
+                <TouchableButton customStyle={styleAssign([ml(10), w(162), h(47), bgColor(commonStyles.colorTheme),
+                  radiusA(2), styles.uac, styles.ujc])}>
+                  <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>立即上架</Text>
+                </TouchableButton>
+              </View>
+          }
         </View>
       </CustomSafeAreaView>
     );

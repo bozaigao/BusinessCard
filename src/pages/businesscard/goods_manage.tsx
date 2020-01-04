@@ -63,9 +63,15 @@ class GoodsManage extends Component<Props, State> {
 
 
   componentDidMount() {
-    this.getGoodsList();
+    this.refresh();
+    Taro.eventCenter.on('goodsListRefresh',()=>{
+      this.refresh();
+    });
   }
 
+  componentWillUnmount() {
+    Taro.eventCenter.off('goodsListRefresh');
+  }
 
   refresh = () => {
     this.pageNo = 1;

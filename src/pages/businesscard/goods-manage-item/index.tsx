@@ -52,7 +52,8 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
           <View style={styleAssign([w(90), h(90)])}>
             <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={parseData(itemData.carouselUrl)[0]}/>
             {
-              itemData.showHomepage === 1&&<Image style={styleAssign([w(36), h(36), styles.upa, absL(0), absT(0)])} src={require('../../../assets/ico_top.png')}/>
+              itemData.showHomepage === 1 && <Image style={styleAssign([w(36), h(36), styles.upa, absL(0), absT(0)])}
+                                                    src={require('../../../assets/ico_top.png')}/>
             }
           </View>
           <View style={styleAssign([ml(12)])}>
@@ -74,7 +75,12 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
             {/*更多*/}
             <TouchableButton
               customStyle={styleAssign([w(52), h(28), radiusA(4), bo(1), bdColor(commonStyles.colorTheme),
-                {borderStyle: 'solid'}, styles.uac, styles.ujc])}>
+                {borderStyle: 'solid'}, styles.uac, styles.ujc])}
+              onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/businesscard/add_goods?edit=true&itemData=${JSON.stringify(itemData)}`
+                });
+              }}>
               <Text style={styleAssign([fSize(12), color('#343434')])}>更多</Text>
             </TouchableButton>
             {/*下架商品*/}
