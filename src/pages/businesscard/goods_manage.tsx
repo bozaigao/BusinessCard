@@ -9,17 +9,21 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {scaleSize, styleAssign} from "../../utils/datatool";
+import {scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, pl, pr, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/goods';
 import TopHeader from "../../compoments/top-header";
 import {ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import GoodsManageItem from "./goods-manage-item";
 import BottomButon from "../../compoments/bottom-buton";
+import {User} from "../../const/global";
 
 interface Props {
+  //获取商品列表
+  getGoodsList: any;
+  userInfo: User;
 }
 
 interface State {
@@ -47,6 +51,33 @@ class GoodsManage extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {}
+  }
+
+
+  componentDidMount() {
+    this.getGoodsList();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/31
+   * @function: 获取商品列表
+   */
+  getGoodsList = () => {
+    this.viewRef && this.viewRef.showLoading('加载中');
+    this.props.getGoodsList({
+      userId: this.props.userInfo.id,
+      pageNo: 1,
+      pageSize: 20
+    }).then((res) => {
+      console.log('获取商品列表', res);
+      this.viewRef && this.viewRef.hideLoading();
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 

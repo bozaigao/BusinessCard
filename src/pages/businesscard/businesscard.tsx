@@ -39,7 +39,6 @@ import MyBusiness from "./my-business";
 import MyPhoto from "./my-photo";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
-import BianJieTool from "./bianjie-tool";
 
 interface Props {
 }
@@ -126,31 +125,6 @@ class Businesscard extends Component<Props, State> {
           <PersonalInfo/>
           {/*我的人脉*/}
           <MyPerson/>
-          {/*便捷功能*/}
-          <BianJieTool itemClick={(value) => {
-            if (value === '任务中心') {
-              Taro.navigateTo({
-                url: `/pages/businesscard/task_center`
-              });
-            } else if (value === '工具箱') {
-              Taro.navigateTo({
-                url: `/pages/businesscard/tool_box`
-              });
-
-            } else if (value === '海报') {
-              Taro.navigateTo({
-                url: `/pages/businesscard/haibao`
-              });
-            } else if (value === '名片夹') {
-              Taro.navigateTo({
-                url: `/pages/businesscard/mingpianjia`
-              });
-            } else if (value === '商城') {
-              Taro.navigateTo({
-                url: `/pages/businesscard/goods_manage`
-              });
-            }
-          }}/>
           {/*我的商品*/}
           <MyGoods goToMoreGoods={() => {
             Taro.navigateTo({

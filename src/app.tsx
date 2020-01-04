@@ -65,11 +65,12 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/mine/mine",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
       "pages/customer/customer",
-      "pages/mine/mine",
+      // "pages/mine/mine",
       //名片模块子页面
       "pages/businesscard/add_businesscard",
       "pages/businesscard/qiehuan_businesscard",
@@ -97,6 +98,7 @@ class App extends Component {
       "pages/mine/self_intro",
       "pages/mine/audio_recorder",
       "pages/mine/industry_list",
+      "pages/mine/perform_info",
     ],
     window: {
       backgroundTextStyle: 'light',

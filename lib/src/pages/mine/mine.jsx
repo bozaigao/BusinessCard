@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename mine.tsx
+ * @filename perform_info.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/8
@@ -76,7 +76,7 @@ let Mine = class Mine extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(182), style_1.bgColor(style_1.commonStyles.colorTheme)])}>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.mt(marginTop), style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(14), style_1.ml(20)])} src={require('../../assets/ico_switch_white.png')}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19), style_1.color(style_1.commonStyles.whiteColor)])}>我的</components_1.Text>
@@ -84,7 +84,7 @@ let Mine = class Mine extends taro_1.Component {
               </components_1.View>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(210), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absB(10)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(120), style_1.h(120)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60)])} src={userInfo.avatar}/>
@@ -96,7 +96,7 @@ let Mine = class Mine extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>四川 成都</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>耐用消耗品</components_1.Text>
             </components_1.View>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.upa, style_1.absR(10), style_1.absB(180)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(19), style_1.h(19)])} src={require('../../assets/ico_setting.png')} onClick={() => {
             taro_1.default.navigateTo({
@@ -110,7 +110,7 @@ let Mine = class Mine extends taro_1.Component {
         }}/>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(101), style_1.mt(10), style_1.default.ujb, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.h(20), style_1.ml(20), style_1.mt(17)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>名片竞争力：</components_1.Text>
@@ -118,7 +118,7 @@ let Mine = class Mine extends taro_1.Component {
             </components_1.View>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(5), style_1.mr(20), style_1.mt(20)])} src={require('../../assets/ico_down2.png')}/>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80), style_1.mt(10), style_1.default.ujb, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             this.setState({ showPersonalInfo: !this.state.showPersonalInfo });
@@ -180,7 +180,7 @@ let Mine = class Mine extends taro_1.Component {
                   </touchable_button_1.default>);
         })}
           </components_1.View>
-          
+
           {[{
                 title: '我的照片',
                 subtitle1: '添加照片',
@@ -217,7 +217,7 @@ let Mine = class Mine extends taro_1.Component {
                 </components_1.View>
               </touchable_button_1.default>);
         })}
-          
+
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.default.ujc,
             style_1.pl(20), style_1.pr(20)])} onClick={() => {
             taro_1.default.navigateTo({
