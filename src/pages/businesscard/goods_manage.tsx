@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {
+  absB,
   absT,
   bgColor,
   color,
@@ -24,7 +25,7 @@ import {
   mt,
   op,
   pl,
-  pr,
+  pr, radiusTL, radiusTR,
   w,
   wRatio
 } from "../../utils/style";
@@ -47,6 +48,7 @@ interface State {
   totalGoods: number;
   showChoose: boolean;
   state: string;
+  showOperate: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -56,6 +58,7 @@ class GoodsManage extends Component<Props, State> {
   private pageNo;
   private pageSize;
   private goodsListTmp: Goods[];
+  private itemData;
 
 
   /**
@@ -76,7 +79,8 @@ class GoodsManage extends Component<Props, State> {
       goodsList: [],
       totalGoods: 0,
       showChoose: false,
-      state: '全部'
+      state: '全部',
+      showOperate: false
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -140,7 +144,7 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -165,6 +169,7 @@ class GoodsManage extends Component<Props, State> {
           </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                            onClick={() => {
+                             console.log(showChoose)
                              this.setState({showChoose: !this.state.showChoose});
                            }}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>{state}</Text>
@@ -199,7 +204,16 @@ class GoodsManage extends Component<Props, State> {
           {
             goodsList.map((value, index) => {
               console.log(value);
-              return (<GoodsManageItem key={index} itemData={value}/>);
+              return (<GoodsManageItem key={index} itemData={value}
+                                       moreCallback={(itemData) => {
+                                         this.itemData = itemData;
+                                         this.setState({showOperate: true});
+                                       }
+                                       }
+                                       xiajiaCallback={(itemData) => {
+                                         this.itemData = itemData;
+                                       }
+                                       }/>);
             })
           }
         </ScrollView>
@@ -209,8 +223,12 @@ class GoodsManage extends Component<Props, State> {
             url: `/pages/businesscard/add_goods`
           });
         }}/>
+        {/*选择展示商品*/}
         {
-          showChoose && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}>
+          showChoose && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                              onClick={() => {
+                                this.setState({showChoose: false});
+                              }}>
             <View style={styleAssign([wRatio(100), mt(130), bgColor(commonStyles.whiteColor)])}>
               {
                 ['全部', '已上架', '已下架'].map((value, index) => {
@@ -243,6 +261,40 @@ class GoodsManage extends Component<Props, State> {
             </View>
             <View
               style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
+          </View>
+        }
+        {
+          showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                               onClick={() => {
+                                 this.setState({showOperate: false});
+                               }}>
+            <View
+              style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
+            <View
+              style={styleAssign([wRatio(100), h(242), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
+                styles.upa, absB(0)])}>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>立即分享</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      this.setState({showChoose: false});
+                      Taro.navigateTo({
+                        url: `/pages/businesscard/add_goods?edit=true&itemData=${JSON.stringify(this.itemData)}`
+                      });
+                    }}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>编辑商品</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>删除</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
+              </View>
+            </View>
           </View>
         }
       </CustomSafeAreaView>

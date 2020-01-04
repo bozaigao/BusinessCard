@@ -15,11 +15,12 @@ export default class TouchableButton extends Component<Props> {
     let {customStyle, onClick, children} = this.props;
 
     return (
-      <View style={customStyle} onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-      }}>
+      <View style={customStyle}
+            onClick={() => {
+              if (onClick) {
+                onClick();
+              }
+            }}>
         {
           children
         }

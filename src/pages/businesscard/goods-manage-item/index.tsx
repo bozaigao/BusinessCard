@@ -31,6 +31,8 @@ import {Goods} from "../../../const/global";
 
 interface Props {
   itemData: Goods;
+  moreCallback: any;
+  xiajiaCallback: any;
 }
 
 interface State {
@@ -39,15 +41,10 @@ interface State {
 export default class GoodsManageItem extends PureComponent<Props, State> {
 
   render() {
-    let {itemData} = this.props;
+    let {itemData, moreCallback, xiajiaCallback} = this.props;
 
     return (
-      <TouchableButton customStyle={styleAssign([wRatio(100), h(189), bgColor(commonStyles.whiteColor), mt(10)])}
-                       onClick={() => {
-                         Taro.navigateTo({
-                           url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(itemData)}`
-                         });
-                       }}>
+      <View style={styleAssign([wRatio(100), h(189), bgColor(commonStyles.whiteColor), mt(10)])}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
           <View style={styleAssign([w(90), h(90)])}>
             <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={parseData(itemData.carouselUrl)[0]}/>
@@ -66,6 +63,12 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
               style={styleAssign([fSize(12), color('#A6A6A6'), mt(4)])}>{`创建时间：${transformTime(itemData.createTime)}`}</Text>
           </View>
         </View>
+        <View style={styleAssign([wRatio(100), h(120), styles.upa, absT(0)])}
+              onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(itemData)}`
+                });
+              }}/>
         <View
           style={styleAssign([wRatio(95), h(1), {marginLeft: '2.5%'}, bgColor(commonStyles.pageDefaultBackgroundColor), mt(20)])}/>
         {/*底部操作栏*/}
@@ -77,14 +80,15 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
               customStyle={styleAssign([w(52), h(28), radiusA(4), bo(1), bdColor(commonStyles.colorTheme),
                 {borderStyle: 'solid'}, styles.uac, styles.ujc])}
               onClick={() => {
-                Taro.navigateTo({
-                  url: `/pages/businesscard/add_goods?edit=true&itemData=${JSON.stringify(itemData)}`
-                });
+                moreCallback(itemData);
               }}>
               <Text style={styleAssign([fSize(12), color('#343434')])}>更多</Text>
             </TouchableButton>
             {/*下架商品*/}
             <TouchableButton
+              onClick={() => {
+                xiajiaCallback(itemData);
+              }}
               customStyle={styleAssign([ml(32), w(72), h(28), radiusA(4), bo(1), bdColor(commonStyles.colorTheme),
                 {borderStyle: 'solid'}, styles.uac, styles.ujc])}>
               <Text style={styleAssign([fSize(12), color('#343434')])}>下架商品</Text>
@@ -96,7 +100,7 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>取消展示</Text>
           </TouchableButton>
         </View>
-      </TouchableButton>
+      </View>
     );
   }
 }
