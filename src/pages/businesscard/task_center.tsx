@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {scaleSize, styleAssign, toast} from "../../utils/datatool";
+import {getToday, scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -44,6 +44,8 @@ interface State {
   showOnlyToday: boolean;
   taskItem: { title: string, children: TaskModel[] }[];
   date: string;
+  currentIndex: number;
+  todayTask: TaskModel[];
 }
 
 @connect(state => state.login, {...actions})
@@ -73,7 +75,9 @@ class TaskCenter extends Component<Props, State> {
       showAllTask: true,
       showOnlyToday: true,
       taskItem: [],
-      date: ''
+      date: '',
+      currentIndex: 0,
+      todayTask: []
     }
     this.pageNo = 1;
     this.pageSize = 1000;
@@ -128,7 +132,7 @@ class TaskCenter extends Component<Props, State> {
         if (res.records.length !== 0) {
           this.state.taskItem.push({title: '正在进行中', children: res.records});
         }
-        this.setState({taskItem: this.state.taskItem});
+        this.setState({taskItem: this.state.taskItem, todayTask: res.records});
       } else if (res.records && res.records.length !== 0) {
       } else {
         toast('没有商品了');
@@ -174,7 +178,7 @@ class TaskCenter extends Component<Props, State> {
 
 
   render() {
-    let {showAllTask, showOnlyToday, taskItem, date} = this.state;
+    let {showAllTask, showOnlyToday, taskItem, date, currentIndex, todayTask} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -185,14 +189,28 @@ class TaskCenter extends Component<Props, State> {
         <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb, mt(10)])}>
           <View style={styleAssign([w(18), h(18), ml(20)])}/>
           <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
-            <View style={styleAssign([styles.uac])}>
-              <Text style={styleAssign([fSize(16), color('#E2BB7B')])}>全部任务</Text>
-              <View style={styleAssign([w(25), h(2), bgColor('#E2BB7B'), mt(10), radiusA(1)])}/>
-            </View>
-            <View style={styleAssign([styles.uac, ml(23)])}>
-              <Text style={styleAssign([fSize(16)])}>今日任务</Text>
-              <View style={styleAssign([w(25), h(2), bgColor(commonStyles.whiteColor), mt(10), radiusA(1)])}/>
-            </View>
+            <TouchableButton customStyle={styleAssign([styles.uac])}
+                             onClick={() => {
+                               this.setState({currentIndex: 0}, () => {
+                                 this.refresh();
+                                 this.refresh1();
+                               });
+                             }}>
+              <Text style={styleAssign([fSize(16), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</Text>
+              <View
+                style={styleAssign([w(25), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
+            </TouchableButton>
+            <TouchableButton customStyle={styleAssign([styles.uac, ml(23)])}
+                             onClick={() => {
+                               this.setState({currentIndex: 1, date: getToday()}, () => {
+                                 console.log(this.state.date)
+                                 this.refresh();
+                               });
+                             }}>
+              <Text style={styleAssign([fSize(16), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</Text>
+              <View
+                style={styleAssign([w(25), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
+            </TouchableButton>
           </View>
           <Picker mode='date' onChange={(e) => {
             this.setState({date: e.detail.value, taskItem: []}, () => {
@@ -215,64 +233,82 @@ class TaskCenter extends Component<Props, State> {
                     onScrollToLower={() => {
                       // this.loadMore();
                     }}>
-          {/*正在进行*/}
           {
-            taskItem.map((value, index) => {
-              let showItem = false;
-
-              if (index === 0) {
-                showItem = showAllTask;
-              } else {
-                showItem = showOnlyToday;
-              }
-
-              return (<View key={index}>
-                <TouchableButton
-                  onClick={() => {
-                    if (index === 0) {
-                      this.setState({showAllTask: !this.state.showAllTask});
-                    } else {
-                      this.setState({showOnlyToday: !this.state.showOnlyToday});
-                    }
-                  }}
-                  customStyle={styleAssign([wRatio(100), h(40), styles.udr, styles.uac, styles.ujb, pl(20), pr(20), bgColor(commonStyles.whiteColor), mt(10)])}>
-                  <View style={styleAssign([styles.uac, styles.udr, bgColor(commonStyles.whiteColor)])}>
-                    <View style={{
-                      width: 0,
-                      height: 0,
-                      borderTopWidth: scaleSize(8),
-                      borderTopColor: showItem ? '#787878' : 'transparent',
-                      borderRightWidth: showItem ? scaleSize(8) : 0,
-                      borderRightColor: showItem ? 'transparent' : '#787878',
-                      borderLeftWidth: scaleSize(8),
-                      borderLeftColor: showItem ? 'transparent' : '#787878',
-                      borderBottomWidth: showItem ? 0 : scaleSize(8),
-                      borderBottomColor: 'transparent',
-                      borderStyle: 'solid',
-                    }}/>
-                    <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(10)])}>{value.title}</Text>
-                  </View>
-                  <Text style={styleAssign([fSize(14), color('#787878')])}>{`(${value.children.length})`}</Text>
-                </TouchableButton>
+            currentIndex === 0 ?
+              <View style={styleAssign([styles.uf1])}>
+                {/*正在进行*/}
                 {
-                  showItem && <View>
-                    {
-                      value.children.map((itemValue, itemIndex) => {
-                        return (<TaskItem key={itemIndex} itemData={itemValue}/>);
-                      })
+                  taskItem.map((value, index) => {
+                    let showItem = false;
+
+                    if (index === 0) {
+                      showItem = showAllTask;
+                    } else {
+                      showItem = showOnlyToday;
                     }
+
+                    return (<View key={index}>
+                      <TouchableButton
+                        onClick={() => {
+                          if (index === 0) {
+                            this.setState({showAllTask: !this.state.showAllTask});
+                          } else {
+                            this.setState({showOnlyToday: !this.state.showOnlyToday});
+                          }
+                        }}
+                        customStyle={styleAssign([wRatio(100), h(40), styles.udr, styles.uac, styles.ujb, pl(20), pr(20), bgColor(commonStyles.whiteColor), mt(10)])}>
+                        <View style={styleAssign([styles.uac, styles.udr, bgColor(commonStyles.whiteColor)])}>
+                          <View style={{
+                            width: 0,
+                            height: 0,
+                            borderTopWidth: scaleSize(8),
+                            borderTopColor: showItem ? '#787878' : 'transparent',
+                            borderRightWidth: showItem ? scaleSize(8) : 0,
+                            borderRightColor: showItem ? 'transparent' : '#787878',
+                            borderLeftWidth: scaleSize(8),
+                            borderLeftColor: showItem ? 'transparent' : '#787878',
+                            borderBottomWidth: showItem ? 0 : scaleSize(8),
+                            borderBottomColor: 'transparent',
+                            borderStyle: 'solid',
+                          }}/>
+                          <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(10)])}>{value.title}</Text>
+                        </View>
+                        <Text style={styleAssign([fSize(14), color('#787878')])}>{`(${value.children.length})`}</Text>
+                      </TouchableButton>
+                      {
+                        showItem && <View>
+                          {
+                            value.children.map((itemValue, itemIndex) => {
+                              return (<TaskItem key={itemIndex} itemData={itemValue}/>);
+                            })
+                          }
+                        </View>
+                      }
+                    </View>);
+                  })
+                }
+                {
+                  taskItem.length === 0 &&
+                  <View style={styleAssign([styles.uac, mt(48)])}>
+                    <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                    <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无任务</Text>
                   </View>
                 }
-              </View>);
-            })
-          }
-
-          {
-            taskItem.length === 0 &&
-            <View style={styleAssign([styles.uac, mt(48)])}>
-              <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
-              <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无任务</Text>
-            </View>
+              </View> :
+              <View style={styleAssign([styles.uf1])}>
+                {
+                  todayTask.map((itemValue, itemIndex) => {
+                    return (<TaskItem key={itemIndex} itemData={itemValue}/>);
+                  })
+                }
+                {
+                  todayTask.length === 0 &&
+                  <View style={styleAssign([styles.uac, mt(48)])}>
+                    <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                    <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无任务</Text>
+                  </View>
+                }
+              </View>
           }
         </ScrollView>
         {/*新建任务*/}
