@@ -65,12 +65,12 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/mine/mine",
+      "pages/businesscard/add_task",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
       "pages/customer/customer",
-      // "pages/mine/mine",
+      "pages/mine/mine",
       //名片模块子页面
       "pages/businesscard/add_businesscard",
       "pages/businesscard/qiehuan_businesscard",
@@ -80,7 +80,7 @@ class App extends Component {
       "pages/businesscard/task_center",
       "pages/businesscard/tool_box",
       "pages/businesscard/haibao",
-      "pages/businesscard/add_task",
+      // "pages/businesscard/add_task",
       "pages/businesscard/mingpianjia",
       "pages/businesscard/goods_manage",
       "pages/businesscard/add_goods",

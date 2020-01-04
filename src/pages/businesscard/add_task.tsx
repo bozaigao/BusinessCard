@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -26,15 +26,20 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/task_center';
 import TopHeader from "../../compoments/top-header";
 import BottomButon from "../../compoments/bottom-buton";
-import {Image, Text, Textarea, View} from "@tarojs/components";
+import {Image, Picker, Text, Textarea, View} from "@tarojs/components";
+import TouchableButton from "../../compoments/touchable-button";
 
 interface Props {
+  addTask: any;
 }
 
 interface State {
+  theme: string;
+  date: string;
+  remark: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -58,13 +63,55 @@ class AddTask extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
-      showAllTask: true,
-      showOnlyToday: true,
+      theme: '',
+      date: '',
+      remark: '',
     }
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 添加任务
+   */
+  addTask = () => {
+    let {theme, date, remark} = this.state;
+
+    if (theme.length === 0) {
+      toast('主题不能为空');
+      return;
+    }
+    if (date.length === 0) {
+      toast('日期不能为空');
+      return;
+    }
+    if (remark.length === 0) {
+      toast('备注不能为空');
+      return;
+    }
+
+    let paramas = {
+      theme,
+      date,
+      userIds: JSON.stringify([1]),
+      remark
+    };
+
+    this.viewRef && this.viewRef.showLoading();
+    this.props.addTask(paramas).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      toast('任务添加成功');
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
+    let {theme, date, remark} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -74,27 +121,41 @@ class AddTask extends Component<Props, State> {
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac])}>
           <Textarea style={styleAssign([wRatio(95), h(128), pa(20), bgColor(commonStyles.whiteColor),
             mt(10)])}
-                    value={''} placeholder={'例如：电话回访客户'}/>
+                    value={theme} placeholder={'例如：电话回访客户'}
+                    onInput={(e) => {
+                      this.setState({theme: e.detail.value});
+                    }}/>
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-          <View
-            style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, h(51), pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(14), color('#787878')])}>日期及时间</Text>
-            <View style={styleAssign([styles.uac, styles.udr])}>
-              <Text style={styleAssign([fSize(14), color('#787878')])}>选择</Text>
-              <Image style={styleAssign([w(7), h(13), ml(5)])} src={require('../../assets/ico_next.png')}/>
-            </View>
-          </View>
+          <Picker mode='date' onChange={(e) => {
+            this.setState({date: e.detail.value});
+          }} value={date} style={styleAssign([wRatio(100)])}>
+            <TouchableButton
+              customStyle={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, h(51), pl(20), pr(20), bgColor(commonStyles.whiteColor)])}
+              onClick={() => {
+
+              }
+              }>
+              <Text style={styleAssign([fSize(14), color('#787878')])}>日期及时间</Text>
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <Text style={styleAssign([fSize(14), color('#787878')])}>{date ? date : '选择'}</Text>
+                <Image style={styleAssign([w(7), h(13), ml(5)])} src={require('../../assets/ico_next.png')}/>
+              </View>
+            </TouchableButton>
+          </Picker>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
             <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={require('../../assets/ico_add_task.png')}/>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
           <Textarea style={styleAssign([wRatio(95), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
-                    value={''} placeholder={'备注'}/>
+                    value={remark} placeholder={'备注'}
+                    onInput={(e) => {
+                      this.setState({remark: e.detail.value});
+                    }}/>
         </View>
         {/*新建任务*/}
         <BottomButon title={'保存'} onClick={() => {
-
+          this.addTask();
         }}/>
       </CustomSafeAreaView>
     );
