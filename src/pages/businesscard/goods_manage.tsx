@@ -25,7 +25,9 @@ import {
   mt,
   op,
   pl,
-  pr, radiusTL, radiusTR,
+  pr,
+  radiusTL,
+  radiusTR,
   w,
   wRatio
 } from "../../utils/style";
@@ -40,6 +42,8 @@ import {Goods, User} from "../../const/global";
 interface Props {
   //获取商品列表
   getGoodsList: any;
+  //删除商品
+  updateGoods: any;
   userInfo: User;
 }
 
@@ -107,6 +111,24 @@ class GoodsManage extends Component<Props, State> {
   loadMore = () => {
     this.pageNo++;
     this.getGoodsList();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/4
+   * @function: 删除商品
+   */
+  deleteGoods = () => {
+    this.props.updateGoods({
+      id: this.itemData.id,
+      status: -1
+    }).then((res) => {
+      toast('删除成功');
+      this.refresh();
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
   /**
@@ -287,7 +309,11 @@ class GoodsManage extends Component<Props, State> {
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>编辑商品</Text>
               </View>
               <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      this.setState({showOperate: false});
+                      this.deleteGoods();
+                    }}>
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>删除</Text>
               </View>
               <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
