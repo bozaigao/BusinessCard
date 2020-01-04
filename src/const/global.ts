@@ -58,7 +58,7 @@ export interface User {
   //企业官网地址
   enterpriseWebsite: string;
   //用户的商品列表
-  goodsList: Good[],
+  goodsList: Goods[],
   //名片引导语
   guideLanguage: string;
   //家乡城市
@@ -120,7 +120,7 @@ export interface User {
 }
 
 //商品
-export interface Good {
+export interface Goods {
   //轮播图地址(json数组) ,
   carouselUrl: string;
   //创建时间

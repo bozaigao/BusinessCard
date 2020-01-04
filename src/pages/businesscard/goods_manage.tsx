@@ -18,7 +18,7 @@ import {ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import GoodsManageItem from "./goods-manage-item";
 import BottomButon from "../../compoments/bottom-buton";
-import {User} from "../../const/global";
+import {Goods, User} from "../../const/global";
 
 interface Props {
   //获取商品列表
@@ -27,13 +27,16 @@ interface Props {
 }
 
 interface State {
-
+  goodsList: Goods[];
+  totalGoods: number;
 }
 
 @connect(state => state.login, {...actions})
 class GoodsManage extends Component<Props, State> {
 
   private viewRef;
+  private pageNo;
+  private pageSize;
 
 
   /**
@@ -50,7 +53,12 @@ class GoodsManage extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
-    this.state = {}
+    this.state = {
+      goodsList: [],
+      totalGoods: 0
+    };
+    this.pageNo = 1;
+    this.pageSize = 10;
   }
 
 
@@ -59,21 +67,38 @@ class GoodsManage extends Component<Props, State> {
   }
 
 
+  refresh = () => {
+    this.pageNo = 1;
+    this.getGoodsList(true);
+  }
+
+  loadMore = () => {
+    this.pageNo++;
+    this.getGoodsList();
+  }
+
   /**
    * @author 何晏波
    * @QQ 1054539528
    * @date 2019/12/31
    * @function: 获取商品列表
    */
-  getGoodsList = () => {
+  getGoodsList = (refresh?: boolean) => {
     this.viewRef && this.viewRef.showLoading('加载中');
     this.props.getGoodsList({
       userId: this.props.userInfo.id,
-      pageNo: 1,
-      pageSize: 20
+      pageNo: this.pageNo,
+      pageSize: this.pageSize
     }).then((res) => {
       console.log('获取商品列表', res);
       this.viewRef && this.viewRef.hideLoading();
+      if (refresh) {
+        this.setState({goodsList: res.records, totalGoods: res.total});
+      } else if (res.records && res.records.length !== 0) {
+        this.setState({goodsList: this.state.goodsList.concat(res.records), totalGoods: res.total});
+      } else {
+        toast('没有商品了');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -82,6 +107,7 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
+    let {goodsList, totalGoods} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -93,7 +119,7 @@ class GoodsManage extends Component<Props, State> {
           pl(20), pr(20)])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
-            <Text style={styleAssign([fSize(14), color('#787878')])}>(共4件商品)</Text>
+            <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${totalGoods}件商品)`}</Text>
           </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>全部</Text>
@@ -115,11 +141,17 @@ class GoodsManage extends Component<Props, State> {
         </View>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-          scrollY>
+          scrollY
+          onScrollToUpper={() => {
+            this.refresh();
+          }}
+          onScrollToLower={() => {
+            this.loadMore();
+          }}>
           {
-            [1, 2, 3, 4, 5].map((value, index) => {
+            goodsList.map((value, index) => {
               console.log(value);
-              return (<GoodsManageItem key-={index}/>);
+              return (<GoodsManageItem key={index} itemData={value}/>);
             })
           }
         </ScrollView>

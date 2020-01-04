@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {styleAssign, transformTime} from "../../../utils/datatool";
 import styles, {
   bdColor,
   bgColor,
@@ -25,10 +25,11 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
+import {Goods} from "../../../const/global";
 
 
 interface Props {
-  // navigation: Navigation;
+  itemData: Goods;
 }
 
 interface State {
@@ -37,18 +38,19 @@ interface State {
 export default class GoodsManageItem extends PureComponent<Props, State> {
 
   render() {
+    let {itemData} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), h(189), bgColor(commonStyles.whiteColor), mt(10)])}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
           <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={require('../../../assets/ico_default.png')}/>
           <View style={styleAssign([ml(12)])}>
-            <Text style={styleAssign([fSize(18), color('#343434')])}>现代简约双人木床</Text>
+            <Text style={styleAssign([fSize(18), color('#343434')])}>{itemData.name}</Text>
             <View style={styleAssign([styles.uac, styles.udr, mt(16)])}>
               <Text style={styleAssign([fSize(12), color('#A6A6A6')])}>参考价格：</Text>
-              <Text style={styleAssign([fSize(18), color('#FA541C')])}>￥600</Text>
+              <Text style={styleAssign([fSize(18), color('#FA541C')])}>{`¥${itemData.price}`}</Text>
             </View>
-            <Text style={styleAssign([fSize(12), color('#A6A6A6'), mt(4)])}>创建时间：2019-11-20</Text>
+            <Text style={styleAssign([fSize(12), color('#A6A6A6'), mt(4)])}>{`创建时间：${transformTime(itemData.createTime)}`}</Text>
           </View>
         </View>
         <View

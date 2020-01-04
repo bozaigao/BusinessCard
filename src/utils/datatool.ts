@@ -1,4 +1,5 @@
 import Taro, {pxTransform} from "@tarojs/taro";
+let moment = require('moment');
 
 export let defaultPixel = 2;//iphone6的像素密度
 
@@ -109,3 +110,13 @@ export function toast(msg) {
   });
 }
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/1/4
+ * @function: 时间转换
+*/　
+export function transformTime(time: string) {
+  return moment(time).format('YYYY-MM-DD');
+}
