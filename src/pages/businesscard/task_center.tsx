@@ -191,7 +191,7 @@ class TaskCenter extends Component<Props, State> {
           <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
             <TouchableButton customStyle={styleAssign([styles.uac])}
                              onClick={() => {
-                               this.setState({currentIndex: 0, taskItem: []}, () => {
+                               this.setState({currentIndex: 0, taskItem: [], date: ''}, () => {
                                  this.refresh();
                                  this.refresh1();
                                });
