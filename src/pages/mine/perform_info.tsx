@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
-  absB, absL,
+  absB,
   absR,
   absT,
   bgColor,
@@ -25,7 +25,7 @@ import {
   mt,
   pl,
   pr,
-  radiusA, screenWidth,
+  radiusA,
   w,
   wRatio
 } from "../../utils/style";
