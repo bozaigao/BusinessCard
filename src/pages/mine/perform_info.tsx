@@ -9,8 +9,9 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
-  absB,
-  absR, absT,
+  absB, absL,
+  absR,
+  absT,
   bgColor,
   color,
   commonStyles,
@@ -24,7 +25,7 @@ import {
   mt,
   pl,
   pr,
-  radiusA,
+  radiusA, screenWidth,
   w,
   wRatio
 } from "../../utils/style";
@@ -33,6 +34,7 @@ import TouchableButton from "../../compoments/touchable-button";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import {User} from "../../const/global";
+import {LinearGradientView} from "../../compoments/linear-gradient-view";
 
 
 interface Props {
@@ -163,13 +165,31 @@ class PerformInfo extends Component<Props, State> {
             </View>
           </View>
           {/*名片竞争力*/}
-          <View
-            style={styleAssign([wRatio(100), h(101), mt(10), styles.ujb, styles.udr, bgColor(commonStyles.whiteColor)])}>
-            <View style={styleAssign([styles.uac, styles.udr, h(20), ml(20), mt(17)])}>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>名片竞争力：</Text>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>中级</Text>
+          <View style={styleAssign([wRatio(100), h(101), bgColor(commonStyles.whiteColor), mt(10),])}>
+            <View
+              style={styleAssign([wRatio(100), styles.ujb, styles.udr, bgColor(commonStyles.whiteColor)])}>
+              <View style={styleAssign([styles.uac, styles.udr, h(20), ml(20), mt(17)])}>
+                <Text style={styleAssign([fSize(16), color('#343434')])}>名片竞争力：</Text>
+                <Text style={styleAssign([fSize(16), color('#343434')])}>中级</Text>
+              </View>
+              <Image style={styleAssign([w(12), h(5), mr(20), mt(20)])} src={require('../../assets/ico_down2.png')}/>
             </View>
-            <Image style={styleAssign([w(12), h(5), mr(20), mt(20)])} src={require('../../assets/ico_down2.png')}/>
+            <View style={styleAssign([wRatio(100), h(50), styles.ujc])}>
+              <LinearGradientView style={styleAssign([wRatio(90), h(20), {marginLeft: '5%'}])}/>
+              <View style={styleAssign([styles.upa, wRatio(94), h(50), absT(0), {left: '3%'},
+                styles.udr, styles.uac, styles.ujb])}>
+                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/progress_1.png')}/>
+                {
+                  [1, 2, 3].map((value, index) => {
+                    console.log(value);
+                    return <View key={index} style={styleAssign([w(2), h(10), bgColor(commonStyles.whiteColor)])}/>;
+                  })
+                }
+                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/progress_2.png')}/>
+                <View style={styleAssign([w(2), h(10), bgColor(commonStyles.whiteColor)])}/>
+                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/progress_3.png')}/>
+              </View>
+            </View>
           </View>
           {/*个人简介*/}
           <View style={styleAssign([wRatio(100)])}>

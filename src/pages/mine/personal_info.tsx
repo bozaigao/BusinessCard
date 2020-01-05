@@ -335,7 +335,7 @@ class PersonalInfo extends Component<Props, State> {
                     this.setState({
                       titleList2,
                       province: e.detail.value[0],
-                      city: e.detail.value[1]
+                      city: e.detail.value[1] + e.detail.value[2]
                     })
                   }} value={[]}>
                     <ListItem title={value.title} subTitle={value.subtitle} key={index}
