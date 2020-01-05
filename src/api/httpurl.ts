@@ -10,6 +10,8 @@ const BASE_URL = StagingUrl,
     SUCCESS: 1,
     //需要登录
     NEED_LOGIN: 401,
+    //用户不存在
+    USER_NO_EXIT: -1
   },
   //用户登录模块
   UserController = {

@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {get, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -105,13 +105,13 @@ class PersonalInfo extends Component<Props, State> {
         {title: '性别'},
         {title: '联系方式', subtitle: phone ? phone : ''},
         {title: '行业', subtitle: industry ? industry : '选择'},
-        {title: '职位', subtitle: position ? position : '必填'}],
+        {title: '职位', subtitle: position ? position : '必填', hasEdit: true}],
       titleList2: [{title: '名片样式', subtitle: '编辑'},
         {title: '微信&微信二维码', subtitle: wechat ? wechat : ''},
         {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
-        {title: '生日', subtitle: birthday ? birthday : '选填'},
+        {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
         {title: '地区', subtitle: province ? province + city : '选择'},
-        {title: '地址', subtitle: detailAddress ? detailAddress : '选填', hasEdit: true}],
+        {title: '详细地址', subtitle: detailAddress ? detailAddress : '选填', hasEdit: true}],
     }
   }
 
@@ -164,7 +164,6 @@ class PersonalInfo extends Component<Props, State> {
     console.log('函数', this.props)
     let {avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city} = this.state;
 
-    console.log('呵呵', avatar, avatar.length);
     if (avatar.length === 0) {
       toast('头像不能为空');
       return;
@@ -251,7 +250,7 @@ class PersonalInfo extends Component<Props, State> {
                            }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
             <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                   src={avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
+                   src={avatar && avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
           </TouchableButton>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {
@@ -325,7 +324,7 @@ class PersonalInfo extends Component<Props, State> {
                       titleList2,
                       birthday: e.detail.value
                     })
-                  }} value={''}>
+                  }} value={value.subtitle}>
                     <ListItem title={value.title} subTitle={value.subtitle} key={index}
                               hasEdit={value.hasEdit}/>
                   </Picker>);

@@ -136,12 +136,13 @@ class PerformInfo extends Component<Props, State> {
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
-                  src={userInfo.avatar}/>
+                  src={userInfo.avatar ? userInfo.avatar : require('../../assets/ico_default.png')}/>
                 <Image
                   style={styleAssign([w(23), h(23), radiusA(11.5), styles.upa, absB(2), absR(2)])}
                   src={userInfo.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
               </View>
-              <Text style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name}</Text>
+              <Text
+                style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
               <Text
                 style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{userInfo.company ? userInfo.company : ''}</Text>
               <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>四川美术学院</Text>

@@ -55,7 +55,8 @@ export default async function fetch(options) {
       return data;
     }
     //token过期
-    else if (code === NetworkState.NEED_LOGIN) {
+    else if (code === NetworkState.NEED_LOGIN||
+      code === NetworkState.USER_NO_EXIT) {
       if (isRefreshing) {
         wxLogin();
       }

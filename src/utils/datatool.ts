@@ -132,3 +132,13 @@ export function transformTime(time: string) {
 export function getToday() {
   return moment().format('YYYY-MM-DD');
 }
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/1/5
+ * @function: 字符串做安全包裹处理
+ */
+export function wrapSafe(source) {
+  return source ? source : '';
+}
