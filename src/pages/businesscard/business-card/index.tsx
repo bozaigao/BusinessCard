@@ -41,11 +41,11 @@ export default class Card extends PureComponent<Props, State> {
     let {shareClick} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(100), styles.uac])}>
+      <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
         <View style={styleAssign([wRatio(95), h(204), bgColor('rgb(211,199,195)'), radiusA(10),
           styles.udr, styles.uje])}>
-          <Image style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}
-                 src={require('../../../assets/ico_default.png')}/>
+          <View
+            style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
           <View style={styleAssign([ma(20)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Text style={styleAssign([fSize(18)])}>王嘉怡</Text>

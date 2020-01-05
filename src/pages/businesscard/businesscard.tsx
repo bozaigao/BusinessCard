@@ -36,7 +36,6 @@ import MyPerson from "./my-person";
 import MyGoods from "./my-goods";
 import JiZhiCard from "./jizhi-card";
 import MyBusiness from "./my-business";
-import MyPhoto from "./my-photo";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
 
@@ -104,7 +103,6 @@ class Businesscard extends Component<Props, State> {
           <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_switch.png')}/>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                            onClick={() => {
-                             console.log('点击了哦');
                              Taro.navigateTo({
                                url: `/pages/businesscard/qiehuan_businesscard`
                              });
@@ -137,20 +135,14 @@ class Businesscard extends Component<Props, State> {
           }}/>
           {/*我的企业*/}
           <MyBusiness/>
-          {/*我的照片*/}
-          <MyPhoto/>
           {/*极致名片*/}
           <JiZhiCard/>
-          {/*slogan*/}
-          <View style={styleAssign([wRatio(100), styles.ujc, styles.uac, mt(74)])}>
-            <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
-          </View>
           {/*关注公众号*/}
           <View
-            style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(57), bgColor(commonStyles.whiteColor)])}>
+            style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
-                     src={require('../../assets/ico_default.png')}/>
+                     src={require('../../assets/ico_logo.png')}/>
               <View style={styleAssign([ml(5)])}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>关注极致信息公众号</Text>
                 <Text style={styleAssign([fSize(12), color('#D2D2D2')])}>最新资讯、升级更新早知道！</Text>
@@ -159,6 +151,10 @@ class Businesscard extends Component<Props, State> {
             <View style={styleAssign([styles.uac, styles.ujc, bgColor('#FAF1E5'), w(76), h(27), radiusA(30), mr(11)])}>
               <Text style={styleAssign([color('#825D22'), fSize(14)])}>马上关注</Text>
             </View>
+          </View>
+          {/*slogan*/}
+          <View style={styleAssign([wRatio(100), h(86), styles.ujc, styles.uac])}>
+            <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
           </View>
         </ScrollView>
         {/*创建名片*/}
