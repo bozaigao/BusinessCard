@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
-  absR,
+  absR, absT,
   bgColor,
   color,
   commonStyles,
@@ -28,7 +28,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, wrapSafe} from "../../utils/datatool";
 import TouchableButton from "../../compoments/touchable-button";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
@@ -132,7 +132,7 @@ class PerformInfo extends Component<Props, State> {
             </View>
             <View style={styleAssign([wRatio(100), h(190), bgColor(commonStyles.whiteColor)])}/>
             {/*个人信息展示*/}
-            <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absB(15)])}>
+            <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absT(125)])}>
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
@@ -145,9 +145,12 @@ class PerformInfo extends Component<Props, State> {
                 style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
               <Text
                 style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{userInfo.company ? userInfo.company : ''}</Text>
-              <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>四川美术学院</Text>
-              <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>四川 成都</Text>
-              <Text style={styleAssign([fSize(14), color('#727272'), mt(4)])}>耐用消耗品</Text>
+              <Text
+                style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{wrapSafe(userInfo.educationBackground)}</Text>
+              <Text
+                style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</Text>
+              <Text
+                style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{wrapSafe(userInfo.selfDescription)}</Text>
             </View>
             {/*编辑*/}
             <View style={styleAssign([styles.uac, styles.upa, absR(10), absB(150)])}>

@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/api/httpurl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/httpurl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/request.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/mine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/mine.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/datatool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/datatool.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +16,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="personal_info.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="personal_info.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="178" column="23" selection-start-line="178" selection-start-column="17" selection-end-line="178" selection-end-column="23" />
+            <state relative-caret-position="358">
+              <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="142" column="21" lean-forward="true" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#112#164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="100" column="17" selection-start-line="100" selection-start-column="2" selection-end-line="100" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -144,8 +161,8 @@
         <option value="$PROJECT_DIR$/src/api/request.ts" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/pages/mine/mine.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
       </list>
     </option>
   </component>
@@ -392,12 +409,12 @@
       <workItem from="1577666427248" duration="1429000" />
       <workItem from="1577718197651" duration="1735000" />
       <workItem from="1578064088338" duration="32106000" />
-      <workItem from="1578191057224" duration="5502000" />
+      <workItem from="1578191057224" duration="6165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="556673000" />
+    <option name="totallyTimeSpent" value="557336000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -838,13 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="86" column="6" lean-forward="true" selection-start-line="86" selection-start-column="6" selection-end-line="86" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/request.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -887,21 +897,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="100" column="17" selection-start-line="100" selection-start-column="2" selection-end-line="100" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="139" column="22" lean-forward="true" selection-start-line="139" selection-start-column="22" selection-end-line="139" selection-end-column="22" />
+        <state relative-caret-position="325">
+          <caret line="142" column="21" lean-forward="true" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#112#164#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="178" column="23" selection-start-line="178" selection-start-column="17" selection-end-line="178" selection-end-column="23" />
         </state>
       </provider>
     </entry>
