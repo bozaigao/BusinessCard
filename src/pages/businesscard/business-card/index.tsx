@@ -19,7 +19,7 @@ import styles, {
   h,
   ma,
   ml,
-  mt,
+  mt, pl, pr,
   radiusA,
   w,
   wRatio
@@ -59,19 +59,9 @@ export default class Card extends PureComponent<Props, State> {
         </View>
         {/*拨打电话等操作*/}
         <View style={styleAssign([wRatio(100), h(204), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
-          <View
-            style={styleAssign([wRatio(100), styles.uac, styles.udr, h(60), bgColor(commonStyles.whiteColor)])}>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-              <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>访客</Text>
-            </View>
-            <View style={styleAssign([w(1), h(25), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-              <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>收藏</Text>
-            </View>
-          </View>
           {/*完善分享名片*/}
           <View
-            style={styleAssign([wRatio(95), styles.uac, styles.udr, h(44), bgColor(commonStyles.whiteColor)])}>
+            style={styleAssign([wRatio(95), styles.uac, styles.udr, h(44), bgColor(commonStyles.whiteColor), mt(20)])}>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac])}>
               <TouchableButton
                 customStyle={styleAssign([w(160), radiusA(4), styles.uac, styles.ujc, bo(1), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme),
@@ -91,19 +81,39 @@ export default class Card extends PureComponent<Props, State> {
             style={styleAssign([wRatio(95), styles.uac, styles.udr, h(100), bgColor(commonStyles.whiteColor)])}>
             <View
               style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
-                bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4)])}>
+                bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4),
+                {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
               <Text style={styleAssign([color('#979797'), fSize(12)])}>15982468866</Text>
             </View>
             <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
-              bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15)])}>
+              bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
+              {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
               <Text style={styleAssign([color('#979797'), fSize(12)])}>点击添加微信</Text>
             </View>
             <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
-              bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15)])}>
+              bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
+              {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
               <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
+            </View>
+          </View>
+          <View style={styleAssign([wRatio(100), h(61), styles.udr, styles.uac, styles.ujb, pl(20), pr(20)])}>
+            <View style={styleAssign([styles.udr, styles.uac])}>
+              {
+                [1, 2, 3, 4, 5].map((value, index) => {
+                  console.log(value);
+                  return <Image key={index} style={styleAssign([w(22), h(22)])}
+                                src={require('../../../assets/ico_viewer.png')}/>
+                })
+              }
+              <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>150人浏览过</Text>
+            </View>
+            <View style={styleAssign([styles.udr, styles.uac])}>
+              <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>收藏 143</Text>
+              <Image style={styleAssign([w(15), h(15), ml(7)])}
+                     src={require('../../../assets/ico_star.png')}/>
             </View>
           </View>
         </View>

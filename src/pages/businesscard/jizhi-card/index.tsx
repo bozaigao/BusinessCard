@@ -16,7 +16,9 @@ import styles, {
   h,
   ml,
   mt,
-  pa, pl, pr, pt,
+  pl,
+  pr,
+  pt,
   radiusA,
   w,
   wRatio
