@@ -75,7 +75,8 @@ class PerformInfo extends Component<Props, State> {
     } else {
       this.setState({marginTop: 15});
     }
-    this.getUserInfo();
+    // this.getUserInfo();
+    console.log('用户信息', this.props.userInfo);
   }
 
   componentWillUnmount() {
@@ -121,6 +122,8 @@ class PerformInfo extends Component<Props, State> {
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
                        onClick={() => {
+                         console.log('刷新用户信息1');
+                         Taro.eventCenter.trigger('refreshUserInfo');
                          Taro.navigateBack();
                        }}/>
                 <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>

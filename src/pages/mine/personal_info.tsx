@@ -34,7 +34,7 @@ import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
 import TouchableButton from "../../compoments/touchable-button";
-import {Enum} from "../../const/global";
+import {Enum, User} from "../../const/global";
 import {FileController} from "../../api/httpurl";
 
 interface Props {
@@ -42,6 +42,8 @@ interface Props {
   uploadPicture: any;
   //更新用户信息
   update: any;
+  getUserInfo: any;
+  userInfo: User;
 }
 
 interface State {
@@ -83,35 +85,38 @@ class PersonalInfo extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     // let test = this.$router.params.itemId;
+    let {avatar, name, sex, phone, industry, position, yangshi, wechat, email, birthday, province, city, detailAddress} = props.userInfo;
+
     this.state = {
-      avatar: '',
-      name: '',
-      sex: 1,
-      phone: '17311239269',
-      industry: 'IT行业',
-      position: 'IT工程师',
-      yangshi: '名片样式',
-      wechat: '17311239269',
-      email: '1054539528@qq.com',
-      birthday: '',
-      province: '',
-      city: '',
-      detailAddress: '',
-      titleList1: [{title: '姓名', subtitle: '必填', hasEdit: true},
+      avatar,
+      name,
+      sex,
+      phone,
+      industry,
+      position,
+      yangshi,
+      wechat,
+      email,
+      birthday,
+      province,
+      city,
+      detailAddress,
+      titleList1: [{title: '姓名', subtitle: name ? name : '必填', hasEdit: true},
         {title: '性别'},
-        {title: '联系方式', subtitle: '15982468866'},
-        {title: '行业', subtitle: '选择'},
-        {title: '职位', subtitle: '必填'}],
+        {title: '联系方式', subtitle: phone ? phone : ''},
+        {title: '行业', subtitle: industry ? industry : '选择'},
+        {title: '职位', subtitle: position ? position : '必填'}],
       titleList2: [{title: '名片样式', subtitle: '编辑'},
-        {title: '微信&微信二维码', subtitle: '15982468866'},
-        {title: '邮箱', subtitle: '选填', hasEdit: true},
-        {title: '生日', subtitle: '选填'},
-        {title: '地区', subtitle: '选择'},
-        {title: '地址', subtitle: '选填', hasEdit: true}],
+        {title: '微信&微信二维码', subtitle: wechat ? wechat : ''},
+        {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
+        {title: '生日', subtitle: birthday ? birthday : '选填'},
+        {title: '地区', subtitle: province ? province + city : '选择'},
+        {title: '地址', subtitle: detailAddress ? detailAddress : '选填', hasEdit: true}],
     }
   }
 
   componentDidMount() {
+    console.log('用户信息', this.props.userInfo);
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.titleList1[3].subtitle = industry;
@@ -199,8 +204,26 @@ class PersonalInfo extends Component<Props, State> {
     this.props.update(paramas).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
+      toast('信息更新成功');
+      this.getUserInfo();
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+   */
+  getUserInfo = () => {
+    this.props.getUserInfo().then((res) => {
+      console.log('获取用户信息', res);
+      console.log('属性', this.props.userInfo);
+    }).catch(e => {
       console.log('报错啦', e);
     });
   }

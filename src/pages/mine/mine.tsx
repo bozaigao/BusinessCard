@@ -64,17 +64,22 @@ class Mine extends Component<Props, State> {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
       this.setState({marginTop: 43});
     } else {
       this.setState({marginTop: 15});
     }
+    Taro.eventCenter.on('refreshUserInfo', () => {
+      console.log('刷新用户信息');
+      this.getUserInfo();
+    });
     this.getUserInfo();
   }
 
   componentWillUnmount() {
+    // Taro.eventCenter.off('refreshUserInfo');
   }
 
   componentDidShow() {
@@ -125,9 +130,9 @@ class Mine extends Component<Props, State> {
             <View style={styleAssign([styles.upa, absT(100), wRatio(100)])}>
               <View style={styleAssign([styles.udr, wRatio(100), styles.ujb])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
-                  <Image style={styleAssign([w(66), h(66), ml(20)])} src={require('../../assets/ico_default.png')}/>
+                  <Image style={styleAssign([w(66), h(66), ml(20), radiusA(33)])} src={userInfo.avatar}/>
                   <View style={styleAssign([ml(14)])}>
-                    <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>王嘉怡</Text>
+                    <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>{userInfo.name}</Text>
                     <View
                       style={styleAssign([w(140), h(6), radiusA(3), mt(13), styles.udr, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
                       <View style={styleAssign([w(113), h(6), radiusA(3), styles.uac, bgColor('#E2BB7B')])}/>
