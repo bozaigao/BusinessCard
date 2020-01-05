@@ -45,9 +45,16 @@ export default class PersonalInfo extends PureComponent<Props, State> {
           </View>
         </View>
         <View
-          style={styleAssign([wRatio(95), h(307), bgColor(commonStyles.whiteColor), radiusA(4),
+          style={styleAssign([wRatio(95), h(355), bgColor(commonStyles.whiteColor), radiusA(4),
             {marginLeft: '2.5%'}, mt(16), pa(16)])}>
-          <Image style={styleAssign([w(40), h(40), radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
+          <View style={styleAssign([styles.udr, styles.uac])}>
+            <Image style={styleAssign([w(40), h(40), radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
+            <Image style={styleAssign([w(85), h(41), ml(10)])} src={require('../../../assets/ico_msg_bg.png')}/>
+            <View>
+              <View style={styleAssign([w(7), h(7), radiusA(3.6), bgColor('red'), ml(5)])}/>
+              <Text style={styleAssign([fSize(11), color('#979797'), ml(8), mt(5)])}>9″</Text>
+            </View>
+          </View>
           <Text
             style={styleAssign([fSize(14), color('#343434'), mt(16)])}>Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！</Text>
           {/*家乡*/}
@@ -72,6 +79,16 @@ export default class PersonalInfo extends PureComponent<Props, State> {
               bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
               <Text style={styleAssign([fSize(12)])}>校友</Text>
             </View>
+          </View>
+          <View style={styleAssign([wRatio(100), h(68), mt(10), styles.udr, styles.uac, styles.uja])}>
+            {
+              ['90后', '夜跑', '旅行', '摄影'].map((value, index) => {
+                return <View key={index}
+                             style={styleAssign([w(58), h(28), styles.uac, styles.ujc, radiusA(14), bgColor('#E7E7E7')])}>
+                  <Text style={styleAssign([color('#343434'), fSize(12)])}>{value}</Text>
+                </View>
+              })
+            }
           </View>
         </View>
       </View>
