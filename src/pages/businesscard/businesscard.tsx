@@ -30,6 +30,7 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
+import * as loginActions from '../../actions/login';
 import Card from "./business-card";
 import PersonalInfo from "./personal-info";
 import MyPerson from "./my-person";
@@ -38,15 +39,19 @@ import JiZhiCard from "./jizhi-card";
 import MyBusiness from "./my-business";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
+import {User} from "../../const/global";
 
 interface Props {
+  //获取用户信息
+  getUserInfo: any;
+  userInfo: User;
 }
 
 interface State {
   showShare: boolean;
 }
 
-@connect(state => state.taskCenter, {...actions})
+@connect(state => state.taskCenter, {...actions,...loginActions})
 class Businesscard extends Component<Props, State> {
 
   private viewRef;
@@ -77,6 +82,24 @@ class Businesscard extends Component<Props, State> {
     //   console.log('显示对话框');
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
+    this.getUserInfo();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+   */
+  getUserInfo = () => {
+    console.log('获取用户信息');
+    this.props.getUserInfo().then((res) => {
+      console.log('获取用户信息', res);
+      console.log('属性', this.props.userInfo);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
