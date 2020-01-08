@@ -7,6 +7,7 @@
  */
 import Taro, {Component} from "@tarojs/taro";
 import {View} from "@tarojs/components";
+import './index.scss';
 
 interface Props {
   style: any;

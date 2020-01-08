@@ -58,7 +58,7 @@ export default class Card extends PureComponent<Props, State> {
           </View>
         </View>
         {/*拨打电话等操作*/}
-        <View style={styleAssign([wRatio(100), h(204), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
+        <View style={styleAssign([wRatio(100), h(224), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
           {/*完善分享名片*/}
           <View
             style={styleAssign([wRatio(95), styles.uac, styles.udr, h(44), bgColor(commonStyles.whiteColor), mt(20)])}>
