@@ -83,6 +83,7 @@ class Businesscard extends Component<Props, State> {
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
     this.getUserInfo();
+    console.log(this.viewRef)
   }
 
 
@@ -152,7 +153,7 @@ class Businesscard extends Component<Props, State> {
           {
             userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
               Taro.navigateTo({
-                url: `/pages/businesscard/more_goods`
+                url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
               });
             }} goToGoodsDetail={(itemData) => {
               Taro.navigateTo({

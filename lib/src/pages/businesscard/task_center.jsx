@@ -39,14 +39,108 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
         this.config = {
             disableScroll: true
         };
+        this.refresh = () => {
+            this.pageNo = 1;
+            this.getIngTaskList(true);
+        };
+        this.refresh1 = () => {
+            this.pageNo1 = 1;
+            this.getFinishedTaskList(true);
+        };
+        this.loadMore = () => {
+            this.pageNo++;
+            this.getIngTaskList();
+        };
+        this.loadMore1 = () => {
+            this.pageNo1++;
+            this.getFinishedTaskList();
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/1/4
+         * @function: 获取正在进行的任务列表
+         */
+        this.getIngTaskList = (refresh) => {
+            this.viewRef && this.viewRef.showLoading('加载中');
+            this.props.getTaskList({
+                pageNo: this.pageNo,
+                pageSize: this.pageSize,
+                status: 0,
+                date: this.state.date
+            }).then((res) => {
+                console.log('获取正在进行的任务列表', res);
+                this.viewRef && this.viewRef.hideLoading();
+                if (refresh) {
+                    taro_1.default.stopPullDownRefresh();
+                    if (res.records.length !== 0) {
+                        this.state.taskItem.push({ title: '正在进行中', children: res.records });
+                    }
+                    this.setState({ taskItem: this.state.taskItem, todayTask: res.records });
+                }
+                else if (res.records && res.records.length !== 0) {
+                }
+                else {
+                    datatool_1.toast('没有商品了');
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/1/4
+         * @function: 获取已完成的任务列表
+         */
+        this.getFinishedTaskList = (refresh) => {
+            this.viewRef && this.viewRef.showLoading('加载中');
+            this.props.getTaskList({
+                pageNo: this.pageNo1,
+                pageSize: this.pageSize1,
+                status: 1,
+                date: this.state.date
+            }).then((res) => {
+                console.log('获取已完成的任务列表', res);
+                this.viewRef && this.viewRef.hideLoading();
+                if (refresh) {
+                    taro_1.default.stopPullDownRefresh();
+                    if (res.records.length !== 0) {
+                        this.state.taskItem.push({ title: '已完成', children: res.records });
+                    }
+                    this.setState({ taskItem: this.state.taskItem });
+                }
+                else if (res.records && res.records.length !== 0) {
+                }
+                else {
+                    datatool_1.toast('没有商品了');
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
         console.log(this.viewRef);
         this.state = {
             showAllTask: true,
             showOnlyToday: true,
+            taskItem: [],
+            date: '',
+            currentIndex: 0,
+            todayTask: []
         };
+        this.pageNo = 1;
+        this.pageSize = 1000;
+        this.pageNo1 = 1;
+        this.pageSize1 = 1000;
+    }
+    componentDidMount() {
+        this.refresh();
+        this.refresh1();
     }
     render() {
-        let { showAllTask, showOnlyToday } = this.state;
+        let { showAllTask, showOnlyToday, taskItem, date, currentIndex, todayTask } = this.state;
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -55,61 +149,104 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.mt(10)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.ml(20)])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#E2BB7B')])}>全部任务</components_1.Text>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(25), style_1.h(2), style_1.bgColor('#E2BB7B'), style_1.mt(10), style_1.radiusA(1)])}/>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.ml(23)])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16)])}>今日任务</components_1.Text>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(25), style_1.h(2), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10), style_1.radiusA(1)])}/>
-            </components_1.View>
+            <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac])} onClick={() => {
+            this.setState({ currentIndex: 0, taskItem: [], date: '' }, () => {
+                this.refresh();
+                this.refresh1();
+            });
+        }}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</components_1.Text>
+              <components_1.View style={datatool_1.styleAssign([style_1.w(25), style_1.h(2), style_1.bgColor(currentIndex === 0 ? '#E2BB7B' : style_1.commonStyles.whiteColor), style_1.mt(10), style_1.radiusA(1)])}/>
+            </touchable_button_1.default>
+            <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.ml(23)])} onClick={() => {
+            this.setState({ currentIndex: 1, date: datatool_1.getToday(), taskItem: [] }, () => {
+                console.log(this.state.date);
+                this.refresh();
+            });
+        }}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</components_1.Text>
+              <components_1.View style={datatool_1.styleAssign([style_1.w(25), style_1.h(2), style_1.bgColor(currentIndex === 1 ? '#E2BB7B' : style_1.commonStyles.whiteColor), style_1.mt(10), style_1.radiusA(1)])}/>
+            </touchable_button_1.default>
           </components_1.View>
-          <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.mr(20)])} src={require('../../assets/ico_date.png')}/>
+          <components_1.Picker mode='date' onChange={(e) => {
+            this.setState({ date: e.detail.value, taskItem: [] }, () => {
+                this.refresh();
+                this.refresh1();
+            });
+        }} value={date}>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.mr(20)])} src={require('../../assets/ico_date.png')}/>
+          </components_1.Picker>
         </components_1.View>
         
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
-          {[{ title: '正在进行', num: 2 }, { title: '已完成', num: 2 }].map((value, index) => {
-            let showItem = false;
-            if (index === 0) {
-                showItem = showAllTask;
-            }
-            else {
-                showItem = showOnlyToday;
-            }
-            return (<components_1.View key={index}>
-                <touchable_button_1.default onClick={() => {
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY onScrollToUpper={() => {
+            // Taro.startPullDownRefresh();
+            // debounce(() => {
+            //   this.refresh();
+            // }, 400);
+        }} onScrollToLower={() => {
+            // this.loadMore();
+        }}>
+          {currentIndex === 0 ?
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
+                
+                {taskItem.map((value, index) => {
+                let showItem = false;
                 if (index === 0) {
-                    this.setState({ showAllTask: !this.state.showAllTask });
+                    showItem = showAllTask;
                 }
                 else {
-                    this.setState({ showOnlyToday: !this.state.showOnlyToday });
+                    showItem = showOnlyToday;
                 }
-            }} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(40), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
-                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-                    <components_1.View style={{
-                width: 0,
-                height: 0,
-                borderTopWidth: datatool_1.scaleSize(8),
-                borderTopColor: showItem ? '#787878' : 'transparent',
-                borderRightWidth: showItem ? datatool_1.scaleSize(8) : 0,
-                borderRightColor: showItem ? 'transparent' : '#787878',
-                borderLeftWidth: datatool_1.scaleSize(8),
-                borderLeftColor: showItem ? 'transparent' : '#787878',
-                borderBottomWidth: showItem ? 0 : datatool_1.scaleSize(8),
-                borderBottomColor: 'transparent',
-                borderStyle: 'solid',
-            }}/>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(10)])}>{value.title}</components_1.Text>
-                  </components_1.View>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>{`(${value.num})`}</components_1.Text>
-                </touchable_button_1.default>
-                {showItem && <components_1.View>
-                    <task_item_1.default />
-                    <task_item_1.default />
+                return (<components_1.View key={index}>
+                      <touchable_button_1.default onClick={() => {
+                    if (index === 0) {
+                        this.setState({ showAllTask: !this.state.showAllTask });
+                    }
+                    else {
+                        this.setState({ showOnlyToday: !this.state.showOnlyToday });
+                    }
+                }} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(40), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
+                        <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+                          <components_1.View style={{
+                    width: 0,
+                    height: 0,
+                    borderTopWidth: datatool_1.scaleSize(8),
+                    borderTopColor: showItem ? '#787878' : 'transparent',
+                    borderRightWidth: showItem ? datatool_1.scaleSize(8) : 0,
+                    borderRightColor: showItem ? 'transparent' : '#787878',
+                    borderLeftWidth: datatool_1.scaleSize(8),
+                    borderLeftColor: showItem ? 'transparent' : '#787878',
+                    borderBottomWidth: showItem ? 0 : datatool_1.scaleSize(8),
+                    borderBottomColor: 'transparent',
+                    borderStyle: 'solid',
+                }}/>
+                          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(10)])}>{value.title}</components_1.Text>
+                        </components_1.View>
+                        <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>{`(${value.children.length})`}</components_1.Text>
+                      </touchable_button_1.default>
+                      {showItem && <components_1.View>
+                          {value.children.map((itemValue, itemIndex) => {
+                    return (<task_item_1.default key={itemIndex} itemData={itemValue}/>);
+                })}
+                        </components_1.View>}
+                    </components_1.View>);
+            })}
+                {taskItem.length === 0 &&
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.mt(48)])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(78), style_1.h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434'), style_1.mt(31)])}>当前暂无任务</components_1.Text>
                   </components_1.View>}
-              </components_1.View>);
-        })}
+              </components_1.View> :
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
+                {todayTask.map((itemValue, itemIndex) => {
+                return (<task_item_1.default key={itemIndex} itemData={itemValue}/>);
+            })}
+                {todayTask.length === 0 &&
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.mt(48)])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(78), style_1.h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434'), style_1.mt(31)])}>当前暂无任务</components_1.Text>
+                  </components_1.View>}
+              </components_1.View>}
         </components_1.ScrollView>
         
         <bottom_buton_1.default title={'新建任务'} onClick={() => {

@@ -21,6 +21,7 @@ const datatool_1 = require("../../utils/datatool");
 const touchable_button_1 = require("../../compoments/touchable-button");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
+const linear_gradient_view_1 = require("../../compoments/linear-gradient-view");
 let PerformInfo = class PerformInfo extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -61,7 +62,8 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
         else {
             this.setState({ marginTop: 15 });
         }
-        this.getUserInfo();
+        // this.getUserInfo();
+        console.log('用户信息', this.props.userInfo);
     }
     componentWillUnmount() {
     }
@@ -79,6 +81,8 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
               
               <components_1.View style={datatool_1.styleAssign([style_1.mt(marginTop), style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={require('../../assets/ico_back_white.png')} onClick={() => {
+            console.log('刷新用户信息1');
+            taro_1.default.eventCenter.trigger('refreshUserInfo');
             taro_1.default.navigateBack();
         }}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19), style_1.color(style_1.commonStyles.whiteColor)])}>完善名片</components_1.Text>
@@ -87,16 +91,16 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(190), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
             
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absB(15)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absT(125)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(120), style_1.h(120)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60)])} src={userInfo.avatar}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60)])} src={userInfo.avatar ? userInfo.avatar : require('../../assets/ico_default.png')}/>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(23), style_1.h(23), style_1.radiusA(11.5), style_1.default.upa, style_1.absB(2), style_1.absR(2)])} src={userInfo.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
               </components_1.View>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434'), style_1.mt(15)])}>{userInfo.name}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434'), style_1.mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.company ? userInfo.company : ''}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>四川美术学院</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>四川 成都</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>耐用消耗品</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.educationBackground)}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.selfDescription)}</components_1.Text>
             </components_1.View>
             
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.upa, style_1.absR(10), style_1.absB(150)])}>
@@ -108,12 +112,28 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
             </components_1.View>
           </components_1.View>
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(101), style_1.mt(10), style_1.default.ujb, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.h(20), style_1.ml(20), style_1.mt(17)])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>名片竞争力：</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>中级</components_1.Text>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(101), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10),])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.ujb, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.h(20), style_1.ml(20), style_1.mt(17)])}>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>名片竞争力：</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>中级</components_1.Text>
+              </components_1.View>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(5), style_1.mr(20), style_1.mt(20)])} src={require('../../assets/ico_down2.png')}/>
             </components_1.View>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(5), style_1.mr(20), style_1.mt(20)])} src={require('../../assets/ico_down2.png')}/>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.default.ujc])}>
+              <linear_gradient_view_1.LinearGradientView style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(20), { marginLeft: '5%' }])}/>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.upa, style_1.wRatio(94), style_1.h(50), style_1.absT(0), { left: '3%' },
+            style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40)])} src={require('../../assets/progress_1.png')}/>
+                {[1, 2, 3].map((value, index) => {
+            console.log(value);
+            return <components_1.View key={index} style={datatool_1.styleAssign([style_1.w(2), style_1.h(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>;
+        })}
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40)])} src={require('../../assets/progress_2.png')}/>
+                <components_1.View style={datatool_1.styleAssign([style_1.w(2), style_1.h(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40)])} src={require('../../assets/progress_3.png')}/>
+              </components_1.View>
+            </components_1.View>
           </components_1.View>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>

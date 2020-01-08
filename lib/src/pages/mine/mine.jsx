@@ -53,7 +53,7 @@ let Mine = class Mine extends taro_1.Component {
             marginTop: 0,
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
         if (style_1.iphoneX()) {
             this.setState({ marginTop: 43 });
@@ -61,9 +61,14 @@ let Mine = class Mine extends taro_1.Component {
         else {
             this.setState({ marginTop: 15 });
         }
+        taro_1.default.eventCenter.on('refreshUserInfo', () => {
+            console.log('刷新用户信息');
+            this.getUserInfo();
+        });
         this.getUserInfo();
     }
     componentWillUnmount() {
+        // Taro.eventCenter.off('refreshUserInfo');
     }
     componentDidShow() {
     }
@@ -88,9 +93,9 @@ let Mine = class Mine extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.default.upa, style_1.absT(100), style_1.wRatio(100)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.ml(20)])} src={require('../../assets/ico_default.png')}/>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.ml(20), style_1.radiusA(33)])} src={userInfo.avatar ? userInfo.avatar : require('../../assets/ico_default.png')}/>
                   <components_1.View style={datatool_1.styleAssign([style_1.ml(14)])}>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.whiteColor)])}>王嘉怡</components_1.Text>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</components_1.Text>
                     <components_1.View style={datatool_1.styleAssign([style_1.w(140), style_1.h(6), style_1.radiusA(3), style_1.mt(13), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
                       <components_1.View style={datatool_1.styleAssign([style_1.w(113), style_1.h(6), style_1.radiusA(3), style_1.default.uac, style_1.bgColor('#E2BB7B')])}/>
                     </components_1.View>

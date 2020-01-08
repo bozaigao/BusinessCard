@@ -19,9 +19,16 @@ class PersonalInfo extends taro_1.PureComponent {
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(8)])}>我的个人简介</components_1.Text>
           </components_1.View>
         </components_1.View>
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(307), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4),
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(355), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4),
             { marginLeft: '2.5%' }, style_1.mt(16), style_1.pa(16)])}>
-          <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40), style_1.radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(40), style_1.h(40), style_1.radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(85), style_1.h(41), style_1.ml(10)])} src={require('../../../assets/ico_msg_bg.png')}/>
+            <components_1.View>
+              <components_1.View style={datatool_1.styleAssign([style_1.w(7), style_1.h(7), style_1.radiusA(3.6), style_1.bgColor('red'), style_1.ml(5)])}/>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(11), style_1.color('#979797'), style_1.ml(8), style_1.mt(5)])}>9″</components_1.Text>
+            </components_1.View>
+          </components_1.View>
           <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434'), style_1.mt(16)])}>Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！</components_1.Text>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(24)])}>
@@ -45,6 +52,13 @@ class PersonalInfo extends taro_1.PureComponent {
             style_1.bo(1), style_1.radiusA(4), { borderStyle: 'solid' }, style_1.bdColor(style_1.commonStyles.colorTheme), style_1.mr(16)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12)])}>校友</components_1.Text>
             </components_1.View>
+          </components_1.View>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(68), style_1.mt(10), style_1.default.udr, style_1.default.uac, style_1.default.uja])}>
+            {['90后', '夜跑', '旅行', '摄影'].map((value, index) => {
+            return <components_1.View key={index} style={datatool_1.styleAssign([style_1.w(58), style_1.h(28), style_1.default.uac, style_1.default.ujc, style_1.radiusA(14), style_1.bgColor('#E7E7E7')])}>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12)])}>{value}</components_1.Text>
+                </components_1.View>;
+        })}
           </components_1.View>
         </components_1.View>
       </components_1.View>);

@@ -28,7 +28,7 @@ class ShareModal extends taro_1.PureComponent {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(13), style_1.color('#0C0C0C'), style_1.mt(5)])}>微信好友</components_1.Text>
             </touchable_button_1.default>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(187.5), style_1.default.uac])} onClick={haibao}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(62), style_1.h(62)])} src={require('../../../assets/ico_haibao.png')}/>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(62), style_1.h(62)])} src={require('../../../assets/ico_mingpian_haibao.png')}/>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(13), style_1.color('#0C0C0C'), style_1.mt(5)])}>名片海报</components_1.Text>
             </touchable_button_1.default>
           </components_1.View>

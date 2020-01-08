@@ -73,7 +73,6 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
         this.update = () => {
             console.log('函数', this.props);
             let { avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city } = this.state;
-            console.log('呵呵', avatar, avatar.length);
             if (avatar.length === 0) {
                 datatool_1.toast('头像不能为空');
                 return;
@@ -111,41 +110,59 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
             this.props.update(paramas).then((res) => {
                 console.log('更新用户信息', res);
                 this.viewRef && this.viewRef.hideLoading();
+                datatool_1.toast('信息更新成功');
+                this.getUserInfo();
             }).catch(e => {
                 this.viewRef && this.viewRef.hideLoading();
                 console.log('报错啦', e);
             });
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/29
+         * @function: 获取用户信息
+         */
+        this.getUserInfo = () => {
+            this.props.getUserInfo().then((res) => {
+                console.log('获取用户信息', res);
+                console.log('属性', this.props.userInfo);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
         console.log(this.viewRef);
         // let test = this.$router.params.itemId;
+        let { avatar, name, sex, phone, industry, position, yangshi, wechat, email, birthday, province, city, detailAddress } = props.userInfo;
         this.state = {
-            avatar: '',
-            name: '',
-            sex: 1,
-            phone: '17311239269',
-            industry: 'IT行业',
-            position: 'IT工程师',
-            yangshi: '名片样式',
-            wechat: '17311239269',
-            email: '1054539528@qq.com',
-            birthday: '',
-            province: '',
-            city: '',
-            detailAddress: '',
-            titleList1: [{ title: '姓名', subtitle: '必填', hasEdit: true },
+            avatar,
+            name,
+            sex,
+            phone,
+            industry,
+            position,
+            yangshi,
+            wechat,
+            email,
+            birthday,
+            province,
+            city,
+            detailAddress,
+            titleList1: [{ title: '姓名', subtitle: name ? name : '必填', hasEdit: true },
                 { title: '性别' },
-                { title: '联系方式', subtitle: '15982468866' },
-                { title: '行业', subtitle: '选择' },
-                { title: '职位', subtitle: '必填' }],
+                { title: '联系方式', subtitle: phone ? phone : '' },
+                { title: '行业', subtitle: industry ? industry : '选择' },
+                { title: '职位', subtitle: position ? position : '必填', hasEdit: true }],
             titleList2: [{ title: '名片样式', subtitle: '编辑' },
-                { title: '微信&微信二维码', subtitle: '15982468866' },
-                { title: '邮箱', subtitle: '选填', hasEdit: true },
-                { title: '生日', subtitle: '选填' },
-                { title: '地区', subtitle: '选择' },
-                { title: '地址', subtitle: '选填', hasEdit: true }],
+                { title: '微信&微信二维码', subtitle: wechat ? wechat : '' },
+                { title: '邮箱', subtitle: email ? email : '选填', hasEdit: true },
+                { title: '生日', subtitle: birthday ? datatool_1.transformTime(birthday) : '选填' },
+                { title: '地区', subtitle: province ? province + city : '选择' },
+                { title: '详细地址', subtitle: detailAddress ? detailAddress : '选填', hasEdit: true }],
         };
     }
     componentDidMount() {
+        console.log('用户信息', this.props.userInfo);
         taro_1.default.eventCenter.on('industry', (industry) => {
             console.log('参数回调', industry);
             this.state.titleList1[3].subtitle = industry;
@@ -172,7 +189,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
             });
         }}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>头像</components_1.Text>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(60), style_1.h(60), style_1.radiusA(30)])} src={avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(60), style_1.h(60), style_1.radiusA(30)])} src={avatar && avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
           </touchable_button_1.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10)])}>
             {titleList1.map((value, index) => {
@@ -229,7 +246,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
                         titleList2,
                         birthday: e.detail.value
                     });
-                }} value={''}>
+                }} value={value.subtitle}>
                     <list_item_1.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit}/>
                   </components_1.Picker>);
             }
@@ -240,7 +257,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
                     this.setState({
                         titleList2,
                         province: e.detail.value[0],
-                        city: e.detail.value[1]
+                        city: e.detail.value[1] + e.detail.value[2]
                     });
                 }} value={[]}>
                     <list_item_1.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onTextChange={(e) => {

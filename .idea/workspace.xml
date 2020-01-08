@@ -3,7 +3,45 @@
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/api/httpurl.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/api/httpurl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/api/httpurl.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/api/httpurl.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/api/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/api/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/api/request.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/api/request.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/app.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/app.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/app.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/app.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/compoments/touchable-button/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/compoments/touchable-button/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/business-card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/business-card/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/business-card/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/business-card/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/jizhi-card/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/jizhi-card/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/jizhi-card/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/jizhi-card/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-goods/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/my-goods/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-goods/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/my-goods/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/personal-info/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/personal-info/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/personal-info/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/personal-info/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/share-modal/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/share-modal/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/share-modal/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/share-modal/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task-item/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/task-item/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task-item/index.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/task-item/index.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/perform_info.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/perform_info.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/perform_info.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/perform_info.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/personal_info.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/personal_info.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/personal_info.jsx.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/mine/personal_info.jsx.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/utils/datatool.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/datatool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/src/utils/datatool.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/utils/datatool.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,8 +59,8 @@
       <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="156" column="30" selection-start-line="156" selection-start-column="15" selection-end-line="156" selection-end-column="30" />
+            <state relative-caret-position="394">
+              <caret line="165" column="20" lean-forward="true" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#112#164#0" expanded="true" />
@@ -32,38 +70,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="58" column="41" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+            <state relative-caret-position="231">
+              <caret line="71" column="86" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="86" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#79#124#0" expanded="true" />
-                <element signature="n#style#0;n#Text#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mine.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/mine.tsx">
+      <file leaf-file-name="more_goods.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="596">
-              <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+            <state relative-caret-position="298">
+              <caret line="97" column="88" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#110#162#0" expanded="true" />
+                <element signature="e#256#316#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="global.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+      <file leaf-file-name="goods_detail.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="20" />
+            <state relative-caret-position="293">
+              <caret line="61" column="20" lean-forward="true" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -72,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cen</find>
-      <find>transformTime</find>
       <find>taskList</find>
       <find>this.pageSize1</find>
       <find>名片海报</find>
@@ -101,6 +136,8 @@
       <find>actions</find>
       <find>length</find>
       <find>goods_detail</find>
+      <find>viewRef</find>
+      <find>this.$</find>
       <find>goToGoodsDetail</find>
     </findStrings>
     <replaceStrings>
@@ -133,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/mine/self_intro.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer.tsx" />
         <option value="$PROJECT_DIR$/src/reducers/index.ts" />
@@ -158,7 +194,6 @@
         <option value="$PROJECT_DIR$/src/actions/login.ts" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/utils/date.ts" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/add_goods.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/add_task.tsx" />
         <option value="$PROJECT_DIR$/src/const/global.ts" />
@@ -182,8 +217,10 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/jizhi-card/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/personal-info/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx" />
       </list>
     </option>
   </component>
@@ -430,12 +467,12 @@
       <workItem from="1578402779628" duration="1833000" />
       <workItem from="1578465208804" duration="616000" />
       <workItem from="1578491600866" duration="715000" />
-      <workItem from="1578492415364" duration="2571000" />
+      <workItem from="1578492415364" duration="4833000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="571156000" />
+    <option name="totallyTimeSpent" value="573418000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -535,13 +572,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2926">
-          <caret line="133" column="1" lean-forward="true" selection-start-line="133" selection-start-column="1" selection-end-line="133" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/personal-info/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -838,13 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="74" column="26" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -862,7 +885,7 @@
     <entry file="file://$PROJECT_DIR$/src/pages/mine/mine.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="596">
-          <caret line="49" column="26" lean-forward="true" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#110#162#0" expanded="true" />
@@ -872,8 +895,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="156" column="30" selection-start-line="156" selection-start-column="15" selection-end-line="156" selection-end-column="30" />
+        <state relative-caret-position="394">
+          <caret line="165" column="20" lean-forward="true" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#112#164#0" expanded="true" />
@@ -884,12 +907,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="58" column="41" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
+        <state relative-caret-position="231">
+          <caret line="71" column="86" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="86" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#79#124#0" expanded="true" />
-            <element signature="n#style#0;n#Text#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/goods_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="61" column="20" lean-forward="true" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/more_goods.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="97" column="88" selection-start-line="97" selection-start-column="88" selection-end-line="97" selection-end-column="88" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#256#316#0" expanded="true" />
           </folding>
         </state>
       </provider>

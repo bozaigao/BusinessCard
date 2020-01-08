@@ -7,7 +7,20 @@
 import Taro, {Component} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {parseData, styleAssign} from "../../../utils/datatool";
-import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, pa, radiusA, w, wRatio} from "../../../utils/style";
+import styles, {
+  absT,
+  bgColor,
+  color,
+  commonStyles,
+  fSize,
+  h,
+  ml,
+  mt,
+  pa,
+  radiusA,
+  w,
+  wRatio
+} from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import {Goods} from "../../../const/global";
 
@@ -54,19 +67,28 @@ export default class MyGoods extends Component<Props, State> {
               return (
                 <TouchableButton
                   customStyle={styleAssign([wRatio(90), styles.udr, styles.uac, {marginLeft: '5%'}, mt(10), h(152), pa(8), bgColor(commonStyles.whiteColor)])}
-                  key={index}
-                  onClick={() => {
-                    goToGoodsDetail(value);
-                  }}>
+                  key={index}>
                   <Image style={styleAssign([w(120), h(120), radiusA(4)])}
-                         src={value.carouselUrl ? parseData(value.carouselUrl)[0] : ''}/>
+                         src={value.carouselUrl ? parseData(value.carouselUrl)[0] : ''}
+                         onClick={() => {
+                           goToGoodsDetail(value);
+                         }}/>
                   <View style={styleAssign([styles.uf1, styles.ujb])}>
                     <Text
                       style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8), mt(12), color('#373838')])}>{value.name}</Text>
                     <View>
                       <Text style={styleAssign([fSize(18), color('#FA6B57'), ml(8), mt(12)])}>{`￥${value.price}`}</Text>
-                      <Text style={styleAssign([fSize(16), color('#979797'), ml(8), mt(17)])}>点击了解更多</Text>
+                      <Text style={styleAssign([fSize(16), color('#979797'), ml(8), mt(17)])}
+                            onClick={() => {
+                              goToMoreGoods();
+                            }
+                            }>点击了解更多</Text>
                     </View>
+                    <View style={styleAssign([wRatio(100), h(90),
+                      styles.upa, absT(0)])}
+                          onClick={() => {
+                            goToGoodsDetail(value);
+                          }}/>
                   </View>
                 </TouchableButton>);
             })

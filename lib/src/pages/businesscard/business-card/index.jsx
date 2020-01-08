@@ -14,10 +14,10 @@ const touchable_button_1 = require("../../../compoments/touchable-button");
 class Card extends taro_1.PureComponent {
     render() {
         let { shareClick } = this.props;
-        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
+        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(10)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
-          <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../../assets/ico_default.png')}/>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.ma(20)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>王嘉怡</components_1.Text>
@@ -29,17 +29,8 @@ class Card extends taro_1.PureComponent {
         </components_1.View>
         
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.mt(20)])}>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.h(60), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme)])}>访客</components_1.Text>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.w(1), style_1.h(25), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme)])}>收藏</components_1.Text>
-            </components_1.View>
-          </components_1.View>
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(44), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(44), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(20)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac])}>
               <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(160), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc, style_1.bo(1), { borderStyle: 'solid' }, style_1.bdColor(style_1.commonStyles.colorTheme),
             style_1.bgColor(style_1.commonStyles.whiteColor), style_1.h(44)])}>
@@ -54,19 +45,35 @@ class Card extends taro_1.PureComponent {
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
-            style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4)])}>
+            style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
+            { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>拨打电话</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>15982468866</components_1.Text>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
-            style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15)])}>
+            style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
+            { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>加微信</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击添加微信</components_1.Text>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
-            style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15)])}>
+            style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
+            { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>联系地址</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击立即定位</components_1.Text>
+            </components_1.View>
+          </components_1.View>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
+              {[1, 2, 3, 4, 5].map((value, index) => {
+            console.log(value);
+            return <components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(22), style_1.h(22)])} src={require('../../../assets/ico_viewer.png')}/>;
+        })}
+              <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12), style_1.ml(17)])}>150人浏览过</components_1.Text>
+            </components_1.View>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12), style_1.ml(17)])}>收藏 143</components_1.Text>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(15), style_1.h(15), style_1.ml(7)])} src={require('../../../assets/ico_star.png')}/>
             </components_1.View>
           </components_1.View>
         </components_1.View>

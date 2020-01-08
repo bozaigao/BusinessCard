@@ -9,18 +9,18 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {parseData, styleAssign} from "../../utils/datatool";
 import styles, {
+  absT,
   bgColor,
   color,
   commonStyles,
   fSize,
   h,
   hRatio,
-  ma,
   ml,
   mt,
-  pa, pl, pr,
+  pa,
   radiusA,
   w,
   wRatio
@@ -29,8 +29,11 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {User} from "../../const/global";
+import TouchableButton from "../../compoments/touchable-button";
 
 interface Props {
+  userInfo: User;
 }
 
 interface State {
@@ -41,6 +44,7 @@ interface State {
 class MoreGoods extends Component<Props, State> {
 
   private viewRef;
+  private goodsList;
 
 
   /**
@@ -56,6 +60,7 @@ class MoreGoods extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.goodsList = parseData(this.$router.params.goodsList);
     console.log(this.viewRef);
   }
 
@@ -71,23 +76,35 @@ class MoreGoods extends Component<Props, State> {
         <ScrollView
           style={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor), wRatio(100), hRatio(100), mt(16)])}
           scrollY>
-          <View style={styleAssign([styles.uWrap, styles.udr, pl(14), pr(14)])}>
-            {
-              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
-                console.log(value);
-                return (
-                  <View style={styleAssign([ma(5), w(163), h(233), pa(8), bgColor(commonStyles.whiteColor),
-                    radiusA(4)])}
-                        key={index}>
-                    <Image style={styleAssign([w(147), h(152), radiusA(4)])}
-                           src={require('../../assets/ico_default.png')}/>
+          {
+            this.goodsList.map((value, index) => {
+              console.log(value);
+              return (
+                <TouchableButton
+                  customStyle={styleAssign([wRatio(90), styles.udr, styles.uac, {marginLeft: '5%'}, mt(10), h(152), pa(8), bgColor(commonStyles.whiteColor)])}
+                  key={index}
+                  onClick={() => {
+                    Taro.navigateTo({
+                      url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(value)}`
+                    });
+                  }
+                  }>
+                  <Image style={styleAssign([w(120), h(120), radiusA(4)])}
+                         src={value.carouselUrl ? parseData(value.carouselUrl)[0] : ''}/>
+                  <View style={styleAssign([styles.uf1, styles.ujb])}>
                     <Text
-                      style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(8), mt(12)])}>现代简约双人木床</Text>
-                    <Text style={styleAssign([fSize(10), color('#FA6B57'), ml(8), mt(12), mt(8)])}>￥688</Text>
-                  </View>);
-              })
-            }
-          </View>
+                      style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8), mt(12), color('#373838')])}>{value.name}</Text>
+                    <View>
+                      <Text style={styleAssign([fSize(18), color('#FA6B57'), ml(8), mt(32)])}>{`￥${value.price}`}</Text>
+                    </View>
+                    <View style={styleAssign([wRatio(100), h(90),
+                      styles.upa, absT(0)])}
+                          onClick={() => {
+                          }}/>
+                  </View>
+                </TouchableButton>);
+            })
+          }
         </ScrollView>
       </CustomSafeAreaView>);
   }

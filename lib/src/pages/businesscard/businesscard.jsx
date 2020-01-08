@@ -22,13 +22,13 @@ const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/task_center");
+const loginActions = require("../../actions/login");
 const business_card_1 = require("./business-card");
 const personal_info_1 = require("./personal-info");
 const my_person_1 = require("./my-person");
 const my_goods_1 = require("./my-goods");
 const jizhi_card_1 = require("./jizhi-card");
 const my_business_1 = require("./my-business");
-const my_photo_1 = require("./my-photo");
 const touchable_button_1 = require("../../compoments/touchable-button");
 const share_modal_1 = require("./share-modal");
 let Businesscard = class Businesscard extends taro_1.Component {
@@ -44,6 +44,21 @@ let Businesscard = class Businesscard extends taro_1.Component {
         this.config = {
             disableScroll: true
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/29
+         * @function: 获取用户信息
+         */
+        this.getUserInfo = () => {
+            console.log('获取用户信息');
+            this.props.getUserInfo().then((res) => {
+                console.log('获取用户信息', res);
+                console.log('属性', this.props.userInfo);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
         this.state = {
             showShare: false
         };
@@ -55,14 +70,16 @@ let Businesscard = class Businesscard extends taro_1.Component {
         //   console.log('显示对话框');
         //   this.viewRef && this.viewRef.showSignAlert()
         // });
+        this.getUserInfo();
     }
     componentWillUnmount() {
         taro_1.default.eventCenter.off('showJiFenModal');
         console.log('componentWillUnmount');
     }
     render() {
-        console.log(this.viewRef);
         let { showShare } = this.state;
+        let { userInfo } = this.props;
+        console.log('呵呵', userInfo.goodsList);
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
@@ -70,7 +87,6 @@ let Businesscard = class Businesscard extends taro_1.Component {
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={require('../../assets/ico_switch.png')}/>
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
-            console.log('点击了哦');
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/qiehuan_businesscard`
             });
@@ -90,29 +106,23 @@ let Businesscard = class Businesscard extends taro_1.Component {
           
           <my_person_1.default />
           
-          <my_goods_1.default goToMoreGoods={() => {
+          {userInfo.goodsList && userInfo.goodsList.length !== 0 && <my_goods_1.default goToMoreGoods={() => {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/more_goods`
             });
-        }} goToGoodsDetail={() => {
+        }} goToGoodsDetail={(itemData) => {
             taro_1.default.navigateTo({
-                url: `/pages/businesscard/goods_detail`
+                url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(itemData)}`
             });
-        }}/>
+        }} goodsList={userInfo.goodsList}/>}
           
           <my_business_1.default />
           
-          <my_photo_1.default />
-          
           <jizhi_card_1.default />
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.ujc, style_1.default.uac, style_1.mt(74)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极致名片 给您极致服务</components_1.Text>
-          </components_1.View>
-          
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(59), style_1.default.uac, style_1.default.ujb, style_1.default.udr, style_1.mt(57), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(59), style_1.default.uac, style_1.default.ujb, style_1.default.udr, style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(32), style_1.h(32), style_1.radiusA(4), style_1.ml(21)])} src={require('../../assets/ico_default.png')}/>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(32), style_1.h(32), style_1.radiusA(4), style_1.ml(21)])} src={require('../../assets/ico_logo.png')}/>
               <components_1.View style={datatool_1.styleAssign([style_1.ml(5)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.colorTheme)])}>关注极致信息公众号</components_1.Text>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#D2D2D2')])}>最新资讯、升级更新早知道！</components_1.Text>
@@ -121,6 +131,10 @@ let Businesscard = class Businesscard extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.bgColor('#FAF1E5'), style_1.w(76), style_1.h(27), style_1.radiusA(30), style_1.mr(11)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#825D22'), style_1.fSize(14)])}>马上关注</components_1.Text>
             </components_1.View>
+          </components_1.View>
+          
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.ujc, style_1.default.uac])}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极致名片 给您极致服务</components_1.Text>
           </components_1.View>
         </components_1.ScrollView>
         
@@ -147,7 +161,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
     }
 };
 Businesscard = __decorate([
-    redux_1.connect(state => state.taskCenter, Object.assign({}, actions))
+    redux_1.connect(state => Object.assign(state.taskCenter, state.login), Object.assign({}, actions, loginActions))
 ], Businesscard);
 exports.default = Businesscard;
 //# sourceMappingURL=businesscard.jsx.map
