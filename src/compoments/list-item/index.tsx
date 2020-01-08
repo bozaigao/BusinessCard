@@ -17,13 +17,14 @@ interface Props {
   hasEdit?: boolean;
   onCLick?: any;
   notHasUnderline?: boolean;
-  onTextChange?:any;
+  onTextChange?: any;
+  textColor?: string;
 }
 
 export default class ListItem extends Component<Props> {
 
   render() {
-    let {title, subTitle, hasEdit, onCLick, notHasUnderline,onTextChange} = this.props;
+    let {title, subTitle, hasEdit, onCLick, notHasUnderline, onTextChange, textColor} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -35,12 +36,12 @@ export default class ListItem extends Component<Props> {
           }}
           customStyle={styleAssign([wRatio(100), h(55), bgColor(commonStyles.whiteColor), styles.udr, styles.uac,
             styles.ujb, pl(20), pr(20)])}>
-          <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{title}</Text>
+          <Text style={styleAssign([fSize(14), color(textColor ? textColor : '#0C0C0C')])}>{title}</Text>
           {
             hasEdit ? <Input type='text' value={''}
                              placeholder={subTitle}
                              style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
-              onInput={onTextChange}/> :
+                             onInput={onTextChange}/> :
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(14), color('#979797')])}>{subTitle ? subTitle : ''}</Text>
                 <Image style={styleAssign([w(8), h(14), ml(9)])} src={require('../../assets/ico_next.png')}/>

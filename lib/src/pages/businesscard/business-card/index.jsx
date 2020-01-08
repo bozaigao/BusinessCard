@@ -28,7 +28,7 @@ class Card extends taro_1.PureComponent {
           </components_1.View>
         </components_1.View>
         
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.mt(20)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(224), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.mt(20)])}>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(44), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(20)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac])}>

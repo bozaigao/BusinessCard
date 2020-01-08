@@ -71,6 +71,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
         //   this.viewRef && this.viewRef.showSignAlert()
         // });
         this.getUserInfo();
+        console.log(this.viewRef);
     }
     componentWillUnmount() {
         taro_1.default.eventCenter.off('showJiFenModal');
@@ -108,7 +109,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
           
           {userInfo.goodsList && userInfo.goodsList.length !== 0 && <my_goods_1.default goToMoreGoods={() => {
             taro_1.default.navigateTo({
-                url: `/pages/businesscard/more_goods`
+                url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
             });
         }} goToGoodsDetail={(itemData) => {
             taro_1.default.navigateTo({

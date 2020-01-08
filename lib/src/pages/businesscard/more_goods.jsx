@@ -23,6 +23,7 @@ const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
+const touchable_button_1 = require("../../compoments/touchable-button");
 let MoreGoods = class MoreGoods extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -36,6 +37,7 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
         this.config = {
             disableScroll: true
         };
+        this.goodsList = datatool_1.parseData(this.$router.params.goodsList);
         console.log(this.viewRef);
     }
     render() {
@@ -44,17 +46,25 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'更多商品'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.wRatio(100), style_1.hRatio(100), style_1.mt(16)])} scrollY>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uWrap, style_1.default.udr, style_1.pl(14), style_1.pr(14)])}>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+          {this.goodsList.map((value, index) => {
             console.log(value);
-            return (<components_1.View style={datatool_1.styleAssign([style_1.ma(5), style_1.w(163), style_1.h(233), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor),
-                style_1.radiusA(4)])} key={index}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.w(147), style_1.h(152), style_1.radiusA(4)])} src={require('../../assets/ico_default.png')}/>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(8), style_1.mt(12)])}>现代简约双人木床</components_1.Text>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color('#FA6B57'), style_1.ml(8), style_1.mt(12), style_1.mt(8)])}>￥688</components_1.Text>
-                  </components_1.View>);
+            return (<touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(90), style_1.default.udr, style_1.default.uac, { marginLeft: '5%' }, style_1.mt(10), style_1.h(152), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor)])} key={index} onClick={() => {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(value)}`
+                });
+            }}>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(4)])} src={value.carouselUrl ? datatool_1.parseData(value.carouselUrl)[0] : ''}/>
+                  <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.ujb])}>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(8), style_1.mt(12), style_1.color('#373838')])}>{value.name}</components_1.Text>
+                    <components_1.View>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#FA6B57'), style_1.ml(8), style_1.mt(32)])}>{`￥${value.price}`}</components_1.Text>
+                    </components_1.View>
+                    <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(90),
+                style_1.default.upa, style_1.absT(0)])} onClick={() => {
+            }}/>
+                  </components_1.View>
+                </touchable_button_1.default>);
         })}
-          </components_1.View>
         </components_1.ScrollView>
       </safe_area_view_1.default>);
     }
