@@ -51,7 +51,7 @@ interface State {
   showShare: boolean;
 }
 
-@connect(state => state.taskCenter, {...actions,...loginActions})
+@connect(state => Object.assign(state.taskCenter, state.login), {...actions, ...loginActions})
 class Businesscard extends Component<Props, State> {
 
   private viewRef;
@@ -110,9 +110,11 @@ class Businesscard extends Component<Props, State> {
 
 
   render() {
-    console.log(this.viewRef);
 
     let {showShare} = this.state;
+    let {userInfo} = this.props;
+
+    console.log('呵呵', userInfo.goodsList);
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -147,15 +149,17 @@ class Businesscard extends Component<Props, State> {
           {/*我的人脉*/}
           <MyPerson/>
           {/*我的商品*/}
-          <MyGoods goToMoreGoods={() => {
-            Taro.navigateTo({
-              url: `/pages/businesscard/more_goods`
-            });
-          }} goToGoodsDetail={() => {
-            Taro.navigateTo({
-              url: `/pages/businesscard/goods_detail`
-            });
-          }}/>
+          {
+            userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/more_goods`
+              });
+            }} goToGoodsDetail={(itemData) => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(itemData)}`
+              });
+            }} goodsList={userInfo.goodsList}/>
+          }
           {/*我的企业*/}
           <MyBusiness/>
           {/*极致名片*/}
