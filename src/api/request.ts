@@ -49,9 +49,10 @@ export default async function fetch(options) {
   }).then(async (res) => {
     const {code, data, msg} = res.data;
 
-    console.log('接口请求返回的数据', res);
+    console.log('接口请求返回的数据', res,code);
 
     if (code === NetworkState.SUCCESS) {
+      console.log('火速防护巧合无法互换',code)
       return data;
     }
     //token过期
@@ -72,7 +73,7 @@ export default async function fetch(options) {
       return retryOriginalRequest;
     }
     //服务接口报错
-    else if (showToast && code !== NetworkState.SUCCESS) {
+    else if (showToast) {
       toast(msg);
     }
   }).catch((err) => {
@@ -122,7 +123,7 @@ async function wxLogin() {
             isRefreshing = true;
           }
           //服务接口报错
-          else if (code !== NetworkState.SUCCESS) {
+          else{
             toast(msg);
           }
         }).catch((err) => {
