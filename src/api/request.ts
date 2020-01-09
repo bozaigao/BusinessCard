@@ -52,7 +52,6 @@ export default async function fetch(options) {
     console.log('接口请求返回的数据', res,code);
 
     if (code === NetworkState.SUCCESS) {
-      console.log('火速防护巧合无法互换',code)
       return data;
     }
     //token过期
