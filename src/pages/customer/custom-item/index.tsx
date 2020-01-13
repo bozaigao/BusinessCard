@@ -25,10 +25,12 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
+import {CustomerModel} from "../../../const/global";
 
 
 interface Props {
   onClick: any;
+  customer: CustomerModel;
 }
 
 interface State {
@@ -37,7 +39,7 @@ interface State {
 export default class CustomItem extends PureComponent<Props, State> {
 
   render() {
-    let {onClick} = this.props;
+    let {onClick, customer} = this.props;
 
     return (
       <TouchableButton
@@ -49,11 +51,11 @@ export default class CustomItem extends PureComponent<Props, State> {
               <Image style={styleAssign([w(60), h(60), radiusA(30)])}
                      src={require('../../../assets/ico_default.png')}/>
               <Image style={styleAssign([w(16), h(16), styles.upa, absB(0), absR(0)])}
-                     src={require('../../../assets/ico_nv.png')}/>
+                     src={customer.sex === 1 ? require('../../../assets/ico_nan.png') : require('../../../assets/ico_nv.png')}/>
             </View>
             <View style={styleAssign([ml(16)])}>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>刘思雨</Text>
-              <Text style={styleAssign([fSize(12), color('#979797'), mt(4)])}>产品顾问</Text>
+              <Text style={styleAssign([fSize(16), color('#343434')])}>{customer.name}</Text>
+              <Text style={styleAssign([fSize(12), color('#979797'), mt(4)])}>{customer.position}</Text>
               <Text style={styleAssign([fSize(12), color('#979797'), mt(3)])}>来自小程序搜索</Text>
             </View>
           </View>

@@ -24,13 +24,13 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import CustomItem from "./custom-item";
-import TouchableButton from "../../compoments/touchable-button";
 import BottomButon from "../../compoments/bottom-buton";
+import {CustomerModel} from "../../const/global";
 
 interface Props {
   //获取banner信息
@@ -39,15 +39,24 @@ interface Props {
 }
 
 interface State {
+  customerList: CustomerModel[];
+  totalCustomers: number;
 }
 
 @connect(state => state.login, {...actions})
 class Customer extends Component<Props, State> {
   private viewRef;
+  private pageNo;
+  private pageSize;
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.pageNo = 1;
+    this.pageSize = 10;
+    this.state = {
+      customerList: [],
+      totalCustomers: 0
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -64,18 +73,37 @@ class Customer extends Component<Props, State> {
   componentDidHide() {
   }
 
+  refresh = () => {
+    this.pageNo = 1;
+    this.getCustomerList(true);
+  }
+
+  loadMore = () => {
+    this.pageNo++;
+    this.getCustomerList();
+  }
+
   /**
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/1/10
    * @function: 获取客户列表
    */
-  getCustomerList = () => {
+  getCustomerList = (refresh?: boolean) => {
 
     this.viewRef && this.viewRef.showLoading();
-    this.props.getCustomerList({pageNo: 1, pageSize: 20}).then((res) => {
+    this.props.getCustomerList({pageNo: this.pageNo, pageSize: this.pageSize}).then((res) => {
       console.log('获取客户列表', res);
       this.viewRef && this.viewRef.hideLoading();
+      if (refresh) {
+        Taro.stopPullDownRefresh();
+        this.setState({customerList: res.records, totalCustomers: res.total});
+      } else if (res.records && res.records.length !== 0) {
+        this.setState({customerList: this.state.customerList.concat(res.records), totalCustomers: res.total});
+      } else {
+        toast('没有客户了');
+      }
+
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -84,6 +112,8 @@ class Customer extends Component<Props, State> {
 
 
   render() {
+
+    let {customerList,totalCustomers} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -101,18 +131,27 @@ class Customer extends Component<Props, State> {
             {/*条件筛选*/}
             <View
               style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mb(10)])}>
-              <Text style={styleAssign([fSize(14), color('#787878'), ml(20)])}>共2位客户</Text>
+              <Text style={styleAssign([fSize(14), color('#787878'), ml(20)])}>{`共${totalCustomers}位客户`}</Text>
               <Text style={styleAssign([fSize(14), color('#787878')])}>最后跟进时间</Text>
               <Text style={styleAssign([fSize(14), color('#787878'), mr(20)])}>筛选</Text>
             </View>
           </View>
           <ScrollView
+            onScrollToUpper={() => {
+              Taro.startPullDownRefresh();
+              debounce(() => {
+                this.refresh();
+              }, 400);
+            }}
+            onScrollToLower={() => {
+              this.loadMore();
+            }}
             style={styleAssign([styles.uf1, styles.uac])}
             scrollY>
             {
-              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+              customerList.map((value: CustomerModel, index) => {
                 console.log(value);
-                return (<CustomItem key={index} onClick={() => {
+                return (<CustomItem key={index} customer={value} onClick={() => {
                   Taro.navigateTo({
                     url: `/pages/customer/customer_detail`
                   });

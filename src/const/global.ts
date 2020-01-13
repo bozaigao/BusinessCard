@@ -167,3 +167,23 @@ export interface TaskModel {
   userIds: string;
   userList: []
 }
+
+
+export interface CustomerModel {
+  avatar: string,
+  city: string,
+  company: string,
+  detailAddress: string,
+  id: number,
+  intentionGrade: string,
+  label: string,
+  name: string,
+  phone: string,
+  position: string,
+  province: string,
+  recentDate: string,
+  sex: number,
+  source: string,
+  type: number,
+  userId: number
+}
