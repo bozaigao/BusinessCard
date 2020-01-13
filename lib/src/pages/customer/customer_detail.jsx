@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename customer_detail.tsx
+ * @filename customer_ziliao.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/11
@@ -51,7 +51,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'客户详细资料'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.ml(21)])} src={require('../../assets/ico_default.png')}/>
             <components_1.View style={datatool_1.styleAssign([style_1.w(240), style_1.hRatio(100), style_1.default.ujb,
@@ -111,7 +111,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
               </components_1.View>;
         })}
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mt(16)])}>Ta的标签</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8),

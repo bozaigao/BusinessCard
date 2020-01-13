@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename customer_detail.tsx
+ * @filename customer_ziliao.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/11
@@ -286,7 +286,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
             }} textColor={'#727272'}/>);
         })}
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(183), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#CECECE'), style_1.ml(20), style_1.mt(18)])}>描述</components_1.Text>
             <components_1.Textarea value={desc} style={datatool_1.styleAssign([style_1.ml(20), style_1.w(300), style_1.pa(20), style_1.mr(20), style_1.fSize(14), style_1.radiusA(4), style_1.mt(4), style_1.h(91),
@@ -314,7 +314,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
               </touchable_button_1.default> :
             <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204)])} src={avatar.path}/>}
         </components_1.ScrollView>
-        
+
         <bottom_buton_1.default title={'保存'} onClick={() => {
             this.addPrivateCustomer();
         }}/>
