@@ -55,22 +55,12 @@ class Radarscan extends Component<Props, State> {
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
         notNeedBottomPadding={true}>
         {/*雷达、访客切换*/}
-        <View style={styleAssign([wRatio(100), h(85), styles.uac,mt(15)])}>
+        <View style={styleAssign([wRatio(100), h(44), styles.uac,mt(15)])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([styles.uac])}>
               <Text style={styleAssign([fSize(18)])}>雷达</Text>
               <View style={styleAssign([mt(5), w(25), h(2), bgColor(commonStyles.transparent)])}/>
             </View>
-            <View style={styleAssign([styles.uac, ml(23)])}>
-              <Text style={styleAssign([fSize(18), color('#0F56C5')])}>访客</Text>
-              <View style={styleAssign([mt(5), w(25), h(2), bgColor('#0F56C5')])}/>
-            </View>
-          </View>
-          {/*雷达、访客条件筛选*/}
-          <View style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mt(10)])}>
-            <Text style={styleAssign([fSize(14), color('#787878'), ml(20)])}>共3位访客</Text>
-            <Text style={styleAssign([fSize(14), color('#787878')])}>新增访客（2）</Text>
-            <Text style={styleAssign([fSize(14), color('#787878'), mr(20)])}>筛选</Text>
           </View>
         </View>
         <ScrollView

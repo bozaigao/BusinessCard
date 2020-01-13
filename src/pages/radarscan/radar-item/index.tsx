@@ -9,6 +9,8 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
+  absB,
+  absR,
   bgColor,
   color,
   commonStyles,
@@ -38,34 +40,41 @@ export default class RadarItem extends PureComponent<Props, State> {
 
     return (
       <TouchableButton
-        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(154), bgColor(commonStyles.whiteColor), mt(8)])}>
+        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(156), bgColor(commonStyles.whiteColor), mt(14)])}>
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
-            <Image style={styleAssign([w(43), h(43), radiusA(21.5), ml(16)])}
-                   src={require('../../../assets/ico_default.png')}/>
+            <View style={styleAssign([w(46), h(46), ml(16)])}>
+              <Image style={styleAssign([w(46), h(46), radiusA(23)])}
+                     src={require('../../../assets/ico_default.png')}/>
+              <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
+                     src={require('../../../assets/ico_nan.png')}/>
+            </View>
             <View style={styleAssign([ml(16)])}>
-              <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme)])}>刘思雨</Text>
-              <Text style={styleAssign([fSize(10), color('#979797')])}>来自名片扫码2019-11-20</Text>
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <Text style={styleAssign([fSize(12), color('#343434')])}>刘思雨</Text>
+                <Text style={styleAssign([fSize(12), color('#979797')])}>.访客</Text>
+              </View>
+              <Text style={styleAssign([fSize(12), color('#979797'), mt(5)])}>来自微信转发</Text>
             </View>
           </View>
-          <View style={styleAssign([bgColor('#0F56C5'), radiusA(4), styles.uac, styles.ujc,
+          <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
             w(72), h(28), radiusA(4), mr(16)])}>
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>置为客户</Text>
           </View>
         </View>
         <Text
-          style={styleAssign([fSize(12), mt(3), ml(16), color(commonStyles.colorTheme)])}>她于2019-11-20访问过您的名片以及商品</Text>
+          style={styleAssign([fSize(14), mt(3), ml(16), color(commonStyles.colorTheme)])}>把你的名片收藏到名片夹，你已成为Ta感兴趣的人</Text>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
-          <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
-            <Text style={styleAssign([color('#0F56C5'), fSize(12)])}>添加标签</Text>
+          <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
+            <Text style={styleAssign([color('#979797'), fSize(14), ml(16)])}>最后访问 09:36</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([color('#0F56C5'), fSize(12)])}>拨打电话</Text>
+              <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>
             </View>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([color('#0F56C5'), fSize(12)])}>加微信</Text>
+              <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>添加微信</Text>
             </View>
           </View>
         </View>
