@@ -17,18 +17,20 @@ import {
   h,
   mb,
   ml,
-  mr, mt,
+  mr,
+  mt,
   op,
   radiusA,
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign, toast} from "../../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import CustomItem from "./custom-item";
 import TouchableButton from "../../compoments/touchable-button";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
   //获取banner信息
@@ -119,17 +121,11 @@ class Customer extends Component<Props, State> {
               })
             }
           </ScrollView>
-          <View style={styleAssign([wRatio(100), h(80), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-            <TouchableButton customStyle={styleAssign([w(335), h(44), radiusA(4), bgColor('#0F56C5'),
-              styles.uac, styles.ujc])}
-                             onClick={() => {
-                               Taro.navigateTo({
-                                 url: `/pages/customer/add_customer`
-                               });
-                             }}>
-              <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>新增客户</Text>
-            </TouchableButton>
-          </View>
+          <BottomButon title={'新增客户'} onClick={() => {
+            Taro.navigateTo({
+              url: `/pages/customer/add_customer`
+            });
+          }}/>
         </View>
       </CustomSafeAreaView>
     )

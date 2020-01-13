@@ -20,12 +20,28 @@ const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/login");
+const actions = require("../../actions/customer");
 const custom_item_1 = require("./custom-item");
 const touchable_button_1 = require("../../compoments/touchable-button");
 let Customer = class Customer extends taro_1.Component {
     constructor(props) {
         super(props);
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/1/10
+         * @function: 获取客户列表
+         */
+        this.getCustomerList = () => {
+            this.viewRef && this.viewRef.showLoading();
+            this.props.getCustomerList({ pageNo: 1, pageSize: 20 }).then((res) => {
+                console.log('获取客户列表', res);
+                this.viewRef && this.viewRef.hideLoading();
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
         this.state = {};
     }
     componentWillReceiveProps(nextProps) {
@@ -34,11 +50,14 @@ let Customer = class Customer extends taro_1.Component {
     componentWillUnmount() {
     }
     componentDidMount() {
+        this.getCustomerList();
     }
     componentDidHide() {
     }
     render() {
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
+        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true} ref={(ref) => {
+            this.viewRef = ref;
+        }}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(99), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.ujb])}>
             <components_1.View style={datatool_1.styleAssign([{ width: '68%' }, { marginLeft: '2.5%' }, style_1.h(31), style_1.op(0.7), style_1.bgColor('#F5F5F5'),
