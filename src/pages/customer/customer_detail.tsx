@@ -21,12 +21,13 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {parseData, styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {CustomerModel} from "../../const/global";
 
 interface Props {
   //获取banner信息
@@ -35,11 +36,11 @@ interface Props {
 
 interface State {
   showOperate: boolean;
+  customer: CustomerModel
 }
 
 @connect(state => state.login, {...actions})
 class CustomerDetail extends Component<Props, State> {
-
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -53,7 +54,9 @@ class CustomerDetail extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+
     this.state = {
+      customer: parseData(this.$router.params.itemData),
       showOperate: false
     }
   }
@@ -73,7 +76,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate} = this.state;
+    let {showOperate,customer} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
@@ -92,12 +95,12 @@ class CustomerDetail extends Component<Props, State> {
               </View>
               <View style={styleAssign([styles.uac])}>
                 <View style={styleAssign([w(98), h(98)])}>
-                  <Image style={styleAssign([w(98), h(98)])} src={require('../../assets/ico_default.png')}/>
+                  <Image style={styleAssign([w(98), h(98)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
                   <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
-                         src={require('../../assets/ico_nv.png')}/>
+                         src={customer.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
                 </View>
-                <Text style={styleAssign([fSize(22), color('#343434'), mt(11)])}>刘思雨</Text>
-                <Text style={styleAssign([fSize(14), color('#727272')])}>保利房地产集团有限公司</Text>
+                <Text style={styleAssign([fSize(22), color('#343434'), mt(11)])}>{customer.name}</Text>
+                <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>来自</Text>
                   <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>名片扫码</Text>

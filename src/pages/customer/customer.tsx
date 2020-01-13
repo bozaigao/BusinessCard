@@ -153,7 +153,7 @@ class Customer extends Component<Props, State> {
                 console.log(value);
                 return (<CustomItem key={index} customer={value} onClick={() => {
                   Taro.navigateTo({
-                    url: `/pages/customer/customer_detail`
+                    url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
                   });
                 }
                 }/>);
