@@ -9,15 +9,15 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
-  absR, bdColor,
+  absR, absT, bdColor,
   bgColor, bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, ml,
-  mt,
-  pl, pr, radiusA,
+  h, hRatio, ml,
+  mt, op,
+  pl, pr, radiusA, radiusTL, radiusTR,
   w,
   wRatio
 } from "../../utils/style";
@@ -34,6 +34,7 @@ interface Props {
 }
 
 interface State {
+  showOperate: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -52,7 +53,9 @@ class CustomerDetail extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      showOperate: false
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,6 +73,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
+    let {showOperate} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
@@ -80,7 +84,12 @@ class CustomerDetail extends Component<Props, State> {
           <View style={styleAssign([styles.uac, wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, pl(20), pr(20),
               bgColor(commonStyles.whiteColor)])}>
-              <Image style={styleAssign([w(19), h(4), mt(27)])} src={require('../../assets/ico_dot.png')}/>
+              <View style={styleAssign([styles.uac, styles.ujc, w(40), h(40)])}
+                    onClick={() => {
+                      this.setState({showOperate: true});
+                    }}>
+                <Image style={styleAssign([w(19), h(4)])} src={require('../../assets/ico_dot.png')}/>
+              </View>
               <View style={styleAssign([styles.uac])}>
                 <View style={styleAssign([w(98), h(98)])}>
                   <Image style={styleAssign([w(98), h(98)])} src={require('../../assets/ico_default.png')}/>
@@ -129,7 +138,34 @@ class CustomerDetail extends Component<Props, State> {
               </View>
             </View>
           </View>
-        </ScrollView>
+        </ScrollView>{
+        showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                             onClick={() => {
+                               this.setState({showOperate: false});
+                             }}>
+          <View
+            style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
+          <View
+            style={styleAssign([wRatio(100), h(185), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
+              styles.upa, absB(0)])}>
+            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+              <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
+            </View>
+            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                  onClick={() => {
+                    // this.setState({showOperate: false});
+                    // this.deleteGoods();
+                  }}>
+              <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
+            </View>
+            <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+              <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
+            </View>
+          </View>
+        </View>
+      }
       </CustomSafeAreaView>
     )
   }
