@@ -49,7 +49,7 @@ export default class CustomItem extends PureComponent<Props, State> {
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
             <View style={styleAssign([w(60), h(60), ml(16)])}>
               <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                     src={require('../../../assets/ico_default.png')}/>
+                     src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../../assets/ico_default.png')}/>
               <Image style={styleAssign([w(16), h(16), styles.upa, absB(0), absR(0)])}
                      src={customer.sex === 1 ? require('../../../assets/ico_nan.png') : require('../../../assets/ico_nv.png')}/>
             </View>
