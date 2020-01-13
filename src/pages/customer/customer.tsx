@@ -64,10 +64,14 @@ class Customer extends Component<Props, State> {
   }
 
   componentWillUnmount() {
+    Taro.eventCenter.off();
   }
 
   componentDidMount() {
-    this.getCustomerList();
+    this.refresh();
+    Taro.eventCenter.on('refreshCustomerList', () => {
+      this.refresh();
+    })
   }
 
   componentDidHide() {

@@ -9,22 +9,32 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
-  absR, absT, bdColor,
-  bgColor, bo,
+  absR,
+  absT,
+  bdColor,
+  bgColor,
+  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio, ml,
-  mt, op,
-  pl, pr, radiusA, radiusTL, radiusTR,
+  h,
+  hRatio,
+  ml,
+  mt,
+  op,
+  pl,
+  pr,
+  radiusA,
+  radiusTL,
+  radiusTR,
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign} from "../../utils/datatool";
+import {parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/login";
+import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel} from "../../const/global";
@@ -32,6 +42,7 @@ import {CustomerModel} from "../../const/global";
 interface Props {
   //获取banner信息
   dispatchBannerInfo?: any;
+  deleteCustomer?: any;
 }
 
 interface State {
@@ -41,6 +52,7 @@ interface State {
 
 @connect(state => state.login, {...actions})
 class CustomerDetail extends Component<Props, State> {
+  private viewRef;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -54,6 +66,7 @@ class CustomerDetail extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    console.log('呵呵', parseData(this.$router.params.itemData));
 
     this.state = {
       customer: parseData(this.$router.params.itemData),
@@ -75,11 +88,35 @@ class CustomerDetail extends Component<Props, State> {
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/14
+   * @function: 删除客户
+   */
+  deleteCustomer = (customerUserId) => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.deleteCustomer({customerUserId}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      toast('删除成功');
+      Taro.eventCenter.trigger('refreshCustomerList');
+      Taro.navigateBack();
+      console.log('删除信息', res);
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
-    let {showOperate,customer} = this.state;
+    let {showOperate, customer} = this.state;
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          ref={(ref) => {
+                            this.viewRef = ref;
+                          }}>
         <TopHeader title={''}/>
         <ScrollView
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -95,7 +132,8 @@ class CustomerDetail extends Component<Props, State> {
               </View>
               <View style={styleAssign([styles.uac])}>
                 <View style={styleAssign([w(98), h(98)])}>
-                  <Image style={styleAssign([w(98), h(98)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
+                  <Image style={styleAssign([w(98), h(98)])}
+                         src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
                   <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
                          src={customer.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
                 </View>
@@ -157,8 +195,7 @@ class CustomerDetail extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                   onClick={() => {
-                    // this.setState({showOperate: false});
-                    // this.deleteGoods();
+                    this.deleteCustomer(customer.userId);
                   }}>
               <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
             </View>
