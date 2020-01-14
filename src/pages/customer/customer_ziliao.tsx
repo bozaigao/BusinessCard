@@ -25,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, wrapSafe} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -165,11 +165,11 @@ class CustomerZiLiao extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {
             [{title: '来源', value: customer.type === 1 ? '平台' : '手动录入'},
-              {title: '手机', value: customer.phone},
+              {title: '手机', value: wrapSafe(customer.phone)},
               {title: '性别', value: customer.sex === 1 ? '男' : '女'},
-              {title: '公司', value: customer.company},
-              {title: '行业', value: customer.industry},
-              {title: '职位', value: customer.position},].map((value, inedx) => {
+              {title: '公司', value: wrapSafe(customer.company)},
+              {title: '行业', value: wrapSafe(customer.industry)},
+              {title: '职位', value: wrapSafe(customer.position)},].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
                 <View
                   style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
@@ -187,11 +187,11 @@ class CustomerZiLiao extends Component<Props, State> {
           }
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {
-            [{title: '地区', value: customer.province + customer.city},
-              {title: '详细地址', value: customer.detailAddress},
-              {title: '生日', value: customer.birthday},
-              {title: '微信号', value: customer.wechat},
-              {title: '邮箱', value: customer.email}].map((value, inedx) => {
+            [{title: '地区', value: wrapSafe(customer.province + customer.city)},
+              {title: '详细地址', value: wrapSafe(customer.detailAddress)},
+              {title: '生日', value: wrapSafe(customer.birthday)},
+              {title: '微信号', value: wrapSafe(customer.wechat)},
+              {title: '邮箱', value: wrapSafe(customer.email)}].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
                 <View
                   style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
