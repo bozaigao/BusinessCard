@@ -124,3 +124,16 @@ export const updatePrivateCustomer = payload => createAction({
 });
 
 
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/1/14
+ * @function: 获取客户详细资料
+*/
+export const getCustomerDetail = payload => createAction({
+  url: CustomerController.getCustomerDetail,
+  payload,
+  method: 'GET'
+});
+
+

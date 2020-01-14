@@ -187,3 +187,29 @@ export interface CustomerModel {
   type: number,
   userId: number
 }
+
+export interface CustomerDetailModel {
+  aboutUrl: string;
+  avatar: string;
+  birthday: string;
+  city: string;
+  company: string;
+  createTime: string;
+  customerUserId: number;
+  detailAddress: string;
+  email: string;
+  id: number;
+  industry: string;
+  intentionGrade: string;
+  label: string;
+  name: string;
+  phone: string;
+  position: string;
+  province: string;
+  remark: string;
+  sex: number;
+  type: number;
+  updateTime: string;
+  userId: number;
+  wechat: string;
+}

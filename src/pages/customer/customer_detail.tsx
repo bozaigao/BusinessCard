@@ -147,7 +147,7 @@ class CustomerDetail extends Component<Props, State> {
               <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
                     onClick={() => {
                       Taro.navigateTo({
-                        url: `/pages/customer/customer_ziliao`
+                        url: `/pages/customer/customer_ziliao?id=${customer.id}`
                       });
                     }}>
                 <Text style={styleAssign([fSize(15), color('#343434')])}>资料</Text>

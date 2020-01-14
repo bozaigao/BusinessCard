@@ -39,6 +39,7 @@ export default class ListItem extends Component<Props> {
           <Text style={styleAssign([fSize(14), color(textColor ? textColor : '#0C0C0C')])}>{title}</Text>
           {
             hasEdit ? <Input type='text' value={''}
+                             maxLength={subTitle && subTitle.includes('手机') ? 11 : -1}
                              placeholder={subTitle}
                              style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
                              onInput={onTextChange}/> :

@@ -28,21 +28,26 @@ import {
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/login";
+import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
+import {CustomerDetailModel} from "../../const/global";
 
 interface Props {
   //获取banner信息
   dispatchBannerInfo?: any;
+  getCustomerDetail?: any;
 }
 
 interface State {
+  customer: CustomerDetailModel;
 }
 
 @connect(state => state.login, {...actions})
 class CustomerZiLiao extends Component<Props, State> {
+  private id: string;
+  private viewRef;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -57,7 +62,34 @@ class CustomerZiLiao extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.id = this.$router.params.id;
+    this.state = {
+      customer: {
+        aboutUrl: '',
+        avatar: '',
+        birthday: '',
+        city: '',
+        company: '',
+        createTime: '',
+        customerUserId: 0,
+        detailAddress: '',
+        email: '',
+        id: 0,
+        industry: '',
+        intentionGrade: '',
+        label: '',
+        name: '',
+        phone: '',
+        position: '',
+        province: '',
+        remark: '',
+        sex: 0,
+        type: 0,
+        updateTime: '',
+        userId: 0,
+        wechat: '',
+      },
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -68,31 +100,58 @@ class CustomerZiLiao extends Component<Props, State> {
   }
 
   componentDidMount() {
+    this.getCustomerDetail();
   }
 
   componentDidHide() {
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/14
+   * @function: 获取客户详细资料
+   */
+  getCustomerDetail = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.getCustomerDetail({id: this.id}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res) {
+        this.setState({customer: res});
+      }
+      console.log('获取客户详细资料', res);
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
+    let {customer} = this.state;
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          ref={(ref) => {
+                            this.viewRef = ref;
+                          }}>
         <TopHeader title={'客户详细资料'}/>
         <ScrollView
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*头像*/}
           <View style={styleAssign([wRatio(100), h(86), styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
-            <Image style={styleAssign([w(66), h(66), ml(21)])} src={require('../../assets/ico_default.png')}/>
+            <Image style={styleAssign([w(66), h(66), ml(21)])}
+                   src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
             <View style={styleAssign([w(240), hRatio(100), styles.ujb,
               ml(15)])}>
               <Text style={styleAssign([fSize(18), mt(17), color('#343434')])}>
-                TW+2
+                {customer.name}
               </Text>
               <View style={styleAssign([w(240), mb(23), styles.udr, styles.uac, styles.ujb])}>
                 <Text style={styleAssign([fSize(14), color('#353535')])}>
-                  刘思雨
+                  {customer.position}
                 </Text>
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text style={styleAssign([fSize(14), color('#343434')])}>
@@ -105,12 +164,12 @@ class CustomerZiLiao extends Component<Props, State> {
           </View>
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {
-            [{title: '来源', value: '名片海报'},
-              {title: '手机', value: '18980646458'},
-              {title: '性别', value: '女'},
-              {title: '公司', value: '保利房地产集团有限公司'},
-              {title: '行业', value: '房地产业'},
-              {title: '职位', value: '项目经理'},].map((value, inedx) => {
+            [{title: '来源', value: customer.type === 1 ? '平台' : '手动录入'},
+              {title: '手机', value: customer.phone},
+              {title: '性别', value: customer.sex === 1 ? '男' : '女'},
+              {title: '公司', value: customer.company},
+              {title: '行业', value: customer.industry},
+              {title: '职位', value: customer.position},].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
                 <View
                   style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
@@ -128,11 +187,11 @@ class CustomerZiLiao extends Component<Props, State> {
           }
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {
-            [{title: '地区', value: '广东深圳'},
-              {title: '详细地址', value: '广东深圳'},
-              {title: '生日', value: '1990-09-18'},
-              {title: '微信号', value: '18980646458'},
-              {title: '邮箱', value: '80646458@qq.com'}].map((value, inedx) => {
+            [{title: '地区', value: customer.province + customer.city},
+              {title: '详细地址', value: customer.detailAddress},
+              {title: '生日', value: customer.birthday},
+              {title: '微信号', value: customer.wechat},
+              {title: '邮箱', value: customer.email}].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
                 <View
                   style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),

@@ -80,6 +80,8 @@ const BASE_URL = StagingUrl,
     getCustomerList: BASE_URL + 'customer/list',
     //更新手动录入客户的资料
     updatePrivateCustomer: BASE_URL + 'customer/updatePrivateCustomer',
+    //获取客户详细资料
+    getCustomerDetail: BASE_URL + 'customer/get',
   };
 
 
