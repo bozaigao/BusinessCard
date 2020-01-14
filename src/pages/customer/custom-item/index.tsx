@@ -60,7 +60,11 @@ export default class CustomItem extends PureComponent<Props, State> {
             </View>
           </View>
           <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
-            w(72), h(28), radiusA(4), mr(16)])}>
+            w(72), h(28), radiusA(4), mr(16)])}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  console.log('添加跟进');
+                }}>
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>添加跟进</Text>
           </View>
         </View>

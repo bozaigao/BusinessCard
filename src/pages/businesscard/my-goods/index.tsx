@@ -66,6 +66,9 @@ export default class MyGoods extends Component<Props, State> {
               console.log(value);
               return (
                 <TouchableButton
+                  onClick={() => {
+                    goToGoodsDetail(value);
+                  }}
                   customStyle={styleAssign([wRatio(90), styles.udr, styles.uac, {marginLeft: '5%'}, mt(10), h(152), pa(8), bgColor(commonStyles.whiteColor)])}
                   key={index}>
                   <Image style={styleAssign([w(120), h(120), radiusA(4)])}
@@ -79,16 +82,12 @@ export default class MyGoods extends Component<Props, State> {
                     <View>
                       <Text style={styleAssign([fSize(18), color('#FA6B57'), ml(8), mt(12)])}>{`￥${value.price}`}</Text>
                       <Text style={styleAssign([fSize(16), color('#979797'), ml(8), mt(17)])}
-                            onClick={() => {
+                            onClick={(e) => {
+                              e.stopPropagation();
                               goToMoreGoods();
                             }
                             }>点击了解更多</Text>
                     </View>
-                    <View style={styleAssign([wRatio(100), h(90),
-                      styles.upa, absT(0)])}
-                          onClick={() => {
-                            goToGoodsDetail(value);
-                          }}/>
                   </View>
                 </TouchableButton>);
             })

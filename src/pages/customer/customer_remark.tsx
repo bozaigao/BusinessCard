@@ -36,7 +36,7 @@ import BottomButon from "../../compoments/bottom-buton";
 interface Props {
   //获取banner信息
   dispatchBannerInfo?: any;
-  addRemark?: any;
+  updatePrivateCustomer?: any;
 }
 
 interface State {
@@ -101,9 +101,9 @@ class CustomerRemark extends Component<Props, State> {
    * @date 2020/1/14
    * @function: 修改客户备注等信息
    */
-  addRemark = () => {
+  updatePrivateCustomer = () => {
     this.viewRef && this.viewRef.showLoading();
-    this.props.addRemark({
+    this.props.updatePrivateCustomer({
       id: this.id,
       name: this.state.name,
       phone: this.state.phone,
@@ -231,7 +231,7 @@ class CustomerRemark extends Component<Props, State> {
         </ScrollView>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-          this.addRemark();
+          this.updatePrivateCustomer();
         }}/>
       </CustomSafeAreaView>
     )
