@@ -153,7 +153,12 @@ class CustomerZiLiao extends Component<Props, State> {
                 <Text style={styleAssign([fSize(14), color('#353535')])}>
                   {customer.position}
                 </Text>
-                <View style={styleAssign([styles.uac, styles.udr])}>
+                <View style={styleAssign([styles.uac, styles.udr])}
+                onClick={()=>{
+                  Taro.navigateTo({
+                    url: `/pages/customer/customer_remark?id=${this.id}`
+                  });
+                }}>
                   <Text style={styleAssign([fSize(14), color('#343434')])}>
                     添加备注
                   </Text>
