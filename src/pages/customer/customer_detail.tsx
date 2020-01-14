@@ -94,9 +94,9 @@ class CustomerDetail extends Component<Props, State> {
    * @date 2020/1/14
    * @function: 删除客户
    */
-  deleteCustomer = (customerUserId) => {
+  deleteCustomer = (id) => {
     this.viewRef && this.viewRef.showLoading();
-    this.props.deleteCustomer({customerUserId}).then((res) => {
+    this.props.deleteCustomer({id}).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
       toast('删除成功');
       Taro.eventCenter.trigger('refreshCustomerList');
@@ -195,7 +195,7 @@ class CustomerDetail extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                   onClick={() => {
-                    this.deleteCustomer(customer.userId);
+                    this.deleteCustomer(customer.id);
                   }}>
               <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
             </View>
