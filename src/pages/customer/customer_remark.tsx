@@ -111,9 +111,7 @@ class CustomerRemark extends Component<Props, State> {
       aboutUrl: this.avatarArr[0]
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
-      if (res) {
-        toast('修改成功');
-      }
+      toast('修改成功');
       console.log('获取客户详细资料', res);
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
@@ -179,7 +177,7 @@ class CustomerRemark extends Component<Props, State> {
                           }}>
         <TopHeader title={'备注'}/>
         <ScrollView
-          style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor)])}
           scrollY>
           <ListItem title={'备注名'} subTitle={'请输入备注名'}
                     hasEdit={true}
@@ -194,7 +192,8 @@ class CustomerRemark extends Component<Props, State> {
                     }
                     } textColor={'#727272'}/>
           {/*描述*/}
-          <View style={styleAssign([wRatio(100), h(183), mt(10), bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+          <View style={styleAssign([wRatio(100), h(183), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([fSize(14), color('#CECECE'), ml(20), mt(18)])}>描述</Text>
             <Textarea value={desc}
                       style={styleAssign([ml(20), w(300), pa(20), mr(20), fSize(14), radiusA(4), mt(4), h(91),
