@@ -30,6 +30,7 @@ import {CustomerModel} from "../../../const/global";
 
 interface Props {
   onClick: any;
+  genJinCallback:any;
   customer: CustomerModel;
 }
 
@@ -39,7 +40,7 @@ interface State {
 export default class CustomItem extends PureComponent<Props, State> {
 
   render() {
-    let {onClick, customer} = this.props;
+    let {onClick, customer,genJinCallback} = this.props;
 
     return (
       <TouchableButton
@@ -63,6 +64,7 @@ export default class CustomItem extends PureComponent<Props, State> {
             w(72), h(28), radiusA(4), mr(16)])}
                 onClick={(e) => {
                   e.stopPropagation();
+                  genJinCallback(customer);
                   console.log('添加跟进');
                 }}>
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>添加跟进</Text>

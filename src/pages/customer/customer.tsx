@@ -159,6 +159,11 @@ class Customer extends Component<Props, State> {
                   Taro.navigateTo({
                     url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
                   });
+                }}
+                genJinCallback={(customer)=>{
+                  Taro.navigateTo({
+                    url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+                  });
                 }
                 }/>);
               })
