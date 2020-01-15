@@ -25,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -123,7 +123,8 @@ class AddGenJin extends Component<Props, State> {
               跟进客户
             </Text>
             <View style={styleAssign([styles.udr, styles.uac, mt(16)])}>
-              <Image style={styleAssign([w(66), h(66)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
+              <Image style={styleAssign([w(66), h(66)])}
+                     src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
               <View style={styleAssign([ml(16)])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Text style={styleAssign([fSize(18), color('#343434')])}>
