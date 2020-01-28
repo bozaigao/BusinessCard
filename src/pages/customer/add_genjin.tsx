@@ -25,13 +25,12 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header";
-import {CustomerModel, Enum} from "../../const/global";
-import {FileController} from "../../api/httpurl";
+import {CustomerModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {Image, Text, Textarea, View} from "@tarojs/components";
 

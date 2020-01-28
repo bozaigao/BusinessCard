@@ -48,6 +48,7 @@ interface Props {
 interface State {
   showOperate: boolean;
   customer: CustomerModel
+  currentIndex: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -70,7 +71,8 @@ class CustomerDetail extends Component<Props, State> {
 
     this.state = {
       customer: parseData(this.$router.params.itemData),
-      showOperate: false
+      showOperate: false,
+      currentIndex: 0
     }
   }
 
@@ -110,7 +112,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer} = this.state;
+    let {showOperate, customer, currentIndex} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -176,6 +178,57 @@ class CustomerDetail extends Component<Props, State> {
                 {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
                 <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                 <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styleAssign([wRatio(100)])}>
+            <View style={styleAssign([styles.udr, styles.uac, styles.ujb,
+              wRatio(100), h(44), bgColor(commonStyles.whiteColor), mt(12)])}>
+              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                    onClick={() => {
+                      this.setState({currentIndex: 0});
+                    }}>
+                <Text
+                  style={styleAssign([fSize(15), color(currentIndex !== 0 ? '#343434' : '#E2BB7B')])}>轨迹</Text>
+              </View>
+              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                    onClick={() => {
+                      this.setState({currentIndex: 1});
+                    }}>
+                <Text
+                  style={styleAssign([fSize(15), color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>跟进</Text>
+              </View>
+              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                    onClick={() => {
+                      this.setState({currentIndex: 2});
+                    }}>
+                <Text
+                  style={styleAssign([fSize(15), color(currentIndex !== 2 ? '#343434' : '#E2BB7B')])}>标签</Text>
+              </View>
+              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                    onClick={() => {
+                      this.setState({currentIndex: 3});
+                    }}>
+                <Text
+                  style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
+              </View>
+            </View>
+            <View style={styleAssign([styles.uac, styles.udr, styles.ujb, wRatio(100)])}>
+              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                <View
+                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 0 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+              </View>
+              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                <View
+                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 1 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+              </View>
+              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                <View
+                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 2 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+              </View>
+              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                <View
+                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 3 ? commonStyles.whiteColor : '#E2BB7B')])}/>
               </View>
             </View>
           </View>
