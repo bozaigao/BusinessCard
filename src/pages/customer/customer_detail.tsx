@@ -22,22 +22,22 @@ import {
   hRatio,
   ml,
   mt,
-  op,
+  op, pb,
   pl,
-  pr,
+  pr, pt,
   radiusA,
   radiusTL,
   radiusTR,
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, toast} from "../../utils/datatool";
+import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel} from "../../const/global";
+import {CustomerModel, FlowUpListModel} from "../../const/global";
 
 interface Props {
   //获取banner信息
@@ -50,6 +50,7 @@ interface State {
   showOperate: boolean;
   customer: CustomerModel
   currentIndex: number;
+  flowUpList: FlowUpListModel[];
 }
 
 @connect(state => state.login, {...actions})
@@ -73,7 +74,8 @@ class CustomerDetail extends Component<Props, State> {
     this.state = {
       customer: parseData(this.$router.params.itemData),
       showOperate: false,
-      currentIndex: 0
+      currentIndex: 0,
+      flowUpList: []
     }
   }
 
@@ -101,6 +103,7 @@ class CustomerDetail extends Component<Props, State> {
     console.log('查询客户跟进信息记录');
     this.props.followUpList({id: this.state.customer.id}).then((res) => {
       console.log('查询客户跟进信息记录', res);
+      this.setState({flowUpList: res});
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -127,24 +130,39 @@ class CustomerDetail extends Component<Props, State> {
     });
   }
 
-  filterView = (index) => {
-
-    if (index === 0) {
-      return <View style={styleAssign([styles.uf1, bgColor('red')])}/>
-    } else if (index === 1) {
-      return <View/>
-    } else if (index === 2) {
-      return <View style={styleAssign([styles.uf1, bgColor('blue')])}/>
-    } else if (index === 3) {
-      return <View style={styleAssign([styles.uf1, bgColor('yellow')])}/>
-    }
-
-    return <View style={styleAssign([styles.uf1, bgColor('black')])}/>
-  }
-
 
   render() {
-    let {showOperate, customer, currentIndex} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList} = this.state;
+    let childView;
+
+    if (currentIndex === 0) {
+      childView = <View/>;
+    } else if (currentIndex === 1) {
+      childView = <View style={styleAssign([wRatio(100), mt(10)])}>
+        {
+          flowUpList.map((value: FlowUpListModel, index) => {
+            return <View key={index}
+                         style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60), bgColor('red')])}>
+              <View
+                style={styleAssign([wRatio(100), h(74), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
+                <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
+                  <Image style={styleAssign([w(27), h(27)])} src={require('../../assets/ico_default.png')}/>
+                  <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
+                </View>
+                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}>{value.followUpContent}</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
+            </View>;
+          })
+        }
+      </View>;
+    } else if (currentIndex === 2) {
+      childView = <View/>;
+    } else if (currentIndex === 3) {
+      childView = <View/>;
+    } else {
+      childView = <View/>
+    }
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -264,6 +282,7 @@ class CustomerDetail extends Component<Props, State> {
               </View>
             </View>
           </View>
+          {childView}
         </ScrollView>{
         showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
                              onClick={() => {

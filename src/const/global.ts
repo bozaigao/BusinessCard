@@ -213,3 +213,12 @@ export interface CustomerDetailModel {
   userId: number;
   wechat: string;
 }
+
+export interface FlowUpListModel {
+  createTime: string;
+  customerTbId: number;
+  customerUserId: number;
+  followUpContent: string;
+  id: number;
+  userId: number;
+}
