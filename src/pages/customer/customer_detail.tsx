@@ -43,6 +43,7 @@ interface Props {
   //获取banner信息
   dispatchBannerInfo?: any;
   deleteCustomer?: any;
+  followUpList?: any;
 }
 
 interface State {
@@ -84,9 +85,25 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidMount() {
+    this.followUpList();
   }
 
   componentDidHide() {
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/28
+   * @function:
+   */
+  followUpList = () => {
+    console.log('查询客户跟进信息记录');
+    this.props.followUpList({id: this.state.customer.id}).then((res) => {
+      console.log('查询客户跟进信息记录', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -108,6 +125,21 @@ class CustomerDetail extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
+  }
+
+  filterView = (index) => {
+
+    if (index === 0) {
+      return <View style={styleAssign([styles.uf1, bgColor('red')])}/>
+    } else if (index === 1) {
+      return <View/>
+    } else if (index === 2) {
+      return <View style={styleAssign([styles.uf1, bgColor('blue')])}/>
+    } else if (index === 3) {
+      return <View style={styleAssign([styles.uf1, bgColor('yellow')])}/>
+    }
+
+    return <View style={styleAssign([styles.uf1, bgColor('black')])}/>
   }
 
 
