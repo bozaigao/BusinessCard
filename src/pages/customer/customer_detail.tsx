@@ -38,6 +38,7 @@ import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
   //获取banner信息
@@ -310,6 +311,14 @@ class CustomerDetail extends Component<Props, State> {
           </View>
         </View>
       }
+        {/*添加跟进*/}
+        {
+          currentIndex === 1 && <BottomButon title={'添加跟进'} onClick={() => {
+            Taro.navigateTo({
+              url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+            });
+          }}/>
+        }
       </CustomSafeAreaView>
     )
   }
