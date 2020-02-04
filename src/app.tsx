@@ -101,6 +101,7 @@ class App extends Component {
       "pages/mine/audio_recorder",
       "pages/mine/industry_list",
       "pages/mine/perform_info",
+      "pages/mine/my_photo",
     ],
     window: {
       backgroundTextStyle: 'light',

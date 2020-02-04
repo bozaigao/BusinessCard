@@ -276,8 +276,8 @@ class PerformInfo extends Component<Props, State> {
                                        customStyle={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
                                        onClick={() => {
                                          if (index === 0) {
-                                           Taro.chooseImage({count: 9}).then(() => {
-
+                                           Taro.navigateTo({
+                                             url: `/pages/mine/my_photo`
                                            });
                                          } else {
                                            Taro.chooseVideo({compressed: true}).then(() => {
