@@ -14,6 +14,7 @@ interface Props {
   title: string;
   textColor?: string;
   backgroundColor?: string;
+  customCallback?: any;
 }
 
 interface State {
@@ -29,7 +30,7 @@ export default class TopHeader extends Component<Props, State> {
 
   render() {
 
-    let {title, textColor, backgroundColor} = this.props;
+    let {title, textColor, backgroundColor, customCallback} = this.props;
 
     return (
       <View
@@ -37,7 +38,11 @@ export default class TopHeader extends Component<Props, State> {
         <Image style={styleAssign([w(22), h(22), ml(20)])}
                src={textColor ? require('../../assets/ico_back_white.png') : require('../../assets/ico_back.png')}
                onClick={() => {
-                 Taro.navigateBack();
+                 if (customCallback) {
+                   customCallback();
+                 } else {
+                   Taro.navigateBack();
+                 }
                }}/>
         <Text style={styleAssign([fSize(19), color(textColor ? textColor : commonStyles.colorTheme)])}>{title}</Text>
         <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>

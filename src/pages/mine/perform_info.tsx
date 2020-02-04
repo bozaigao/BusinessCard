@@ -19,7 +19,7 @@ import {
   fSize,
   h,
   hRatio,
-  iphoneX,
+  iphoneX, mb,
   ml,
   mr,
   mt,
@@ -29,7 +29,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign, wrapSafe} from "../../utils/datatool";
+import {parseData, styleAssign, wrapSafe} from "../../utils/datatool";
 import TouchableButton from "../../compoments/touchable-button";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
@@ -46,6 +46,7 @@ interface Props {
 interface State {
   marginTop: any;
   showPersonalInfo: boolean;
+  photoUrl: string[];
 }
 
 @connect(state => state.login, {...actions})
@@ -65,6 +66,7 @@ class PerformInfo extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      photoUrl: [],
       marginTop: 0,
       showPersonalInfo: true
     }
@@ -77,11 +79,16 @@ class PerformInfo extends Component<Props, State> {
     } else {
       this.setState({marginTop: 15});
     }
-    // this.getUserInfo();
+    this.getUserInfo();
     console.log('用户信息', this.props.userInfo);
+    Taro.eventCenter.on('refreshUserInfo', () => {
+      console.log('刷新用户信息');
+      this.getUserInfo();
+    });
   }
 
   componentWillUnmount() {
+    Taro.eventCenter.off('refreshUserInfo');
   }
 
   componentDidShow() {
@@ -101,6 +108,9 @@ class PerformInfo extends Component<Props, State> {
     this.props.getUserInfo().then((res) => {
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
+      if (res) {
+        this.setState({photoUrl: parseData(res.photoUrl)});
+      }
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -108,7 +118,7 @@ class PerformInfo extends Component<Props, State> {
 
   render() {
 
-    let {marginTop, showPersonalInfo} = this.state;
+    let {marginTop, showPersonalInfo, photoUrl} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -259,36 +269,36 @@ class PerformInfo extends Component<Props, State> {
             }
           </View>
           {/*我的照片和视频*/}
-          {
-            [{
-              title: '我的照片',
-              subtitle1: '添加照片',
-              subtitle2: '让客户更全面了解你',
-              ico: require('../../assets/ico_camera.png')
-            },
+          <TouchableButton
+            customStyle={styleAssign([wRatio(100), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
+            onClick={() => {
+              Taro.navigateTo({
+                url: `/pages/mine/my_photo?myPhotoUrl=${JSON.stringify(photoUrl)}`
+              });
+            }}>
+            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
+              <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的照片</Text>
               {
-                title: '我的视频',
-                subtitle1: '添加视频',
-                subtitle2: '让客户更全面了解你',
-                ico: require('../../assets/ico_play.png')
-              }].map((value, index) => {
-              return (<TouchableButton key={index}
-                                       customStyle={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
-                                       onClick={() => {
-                                         if (index === 0) {
-                                           Taro.navigateTo({
-                                             url: `/pages/mine/my_photo`
-                                           });
-                                         } else {
-                                           Taro.chooseVideo({compressed: true}).then(() => {
-
-                                           });
-                                         }
-                                       }}>
-                <View style={styleAssign([wRatio(100)])}>
-                  <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20), mt(17)])}>{value.title}</Text>
-                </View>
-                <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                photoUrl.length !== 0 ?
+                  <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                    <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                    <Image style={styleAssign([w(7), h(12), ml(6)])}
+                           src={require('../../assets/ico_next.png')}/>
+                  </TouchableButton> :
+                  <View/>
+              }
+            </View>
+            <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+            {
+              photoUrl.length !== 0 ?
+                <View style={styleAssign([wRatio(100), styles.udr, styles.uWrap])}>
+                  {
+                    photoUrl.map((value, index) => {
+                      return <Image key={index} style={styleAssign([w(105), h(105), radiusA(2), ml(15), mb(10)])}
+                                    src={value}/>;
+                    })
+                  }
+                </View> :
                 <View
                   style={styleAssign([w(335), h(176), mt(16), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
                   <View
@@ -296,12 +306,34 @@ class PerformInfo extends Component<Props, State> {
                       styles.uac, styles.ujc])}>
                     <Image style={styleAssign([w(21), h(19)])} src={require('../../assets/ico_camera.png')}/>
                   </View>
-                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>{value.subtitle1}</Text>
-                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>{value.subtitle2}</Text>
+                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加照片</Text>
+                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>让客户更全面了解你</Text>
                 </View>
-              </TouchableButton>);
-            })
-          }
+            }
+          </TouchableButton>
+          {/*我的视频*/}
+          <TouchableButton
+            customStyle={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
+            onClick={() => {
+              Taro.chooseVideo({compressed: true}).then(() => {
+
+              });
+            }}>
+            <View style={styleAssign([wRatio(100)])}>
+              <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20), mt(17)])}>我的视频</Text>
+            </View>
+            <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+            <View
+              style={styleAssign([w(335), h(176), mt(16), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+              <View
+                style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
+                  styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(16), h(18)])} src={require('../../assets/ico_play.png')}/>
+              </View>
+              <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加视频</Text>
+              <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>让客户更全面了解你</Text>
+            </View>
+          </TouchableButton>
           {/*企业信息*/}
           <TouchableButton
             customStyle={styleAssign([wRatio(100), h(80), mt(10), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc,

@@ -56,7 +56,7 @@ class MyPhoto extends Component<Props, State> {
   private uploading: boolean;
   private uploadCount: number;
   private uploadResultArr;
-  private itemData: Goods;
+  private myPhotoUrl: any;
 
 
   /**
@@ -72,23 +72,18 @@ class MyPhoto extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    console.log(this.viewRef);
-    let myPhotoUrlsLocalTmp: { path: string }[] = [], detailUrlsLocalTmp: { path: string }[] = [];
+    this.myPhotoUrl = parseData(this.$router.params.myPhotoUrl);
+    let myPhotoUrlTmp: any = [];
 
-    this.itemData = parseData(this.$router.params.itemData);
-    if (this.itemData) {
-      parseData(this.itemData.carouselUrl).forEach((item) => {
-        myPhotoUrlsLocalTmp.push({path: item});
-      });
-      parseData(this.itemData.detailUrl).forEach((item) => {
-        detailUrlsLocalTmp.push({path: item});
+    if (this.myPhotoUrl) {
+      parseData(this.myPhotoUrl).forEach((item) => {
+        myPhotoUrlTmp.push({path: item});
       });
     }
-    console.log('传递参数', this.itemData);
 
     this.state = {
-      myPhotoUrlsLocal: myPhotoUrlsLocalTmp,
-      myPhotoUrl: []
+      myPhotoUrlsLocal: myPhotoUrlTmp,
+      myPhotoUrl: parseData(this.myPhotoUrl) ? parseData(this.myPhotoUrl) : []
     }
     this.uploading = false;
     this.uploadCount = 0;
@@ -151,7 +146,10 @@ class MyPhoto extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'我的照片'}/>
+        <TopHeader title={'我的照片'} customCallback={() => {
+          Taro.eventCenter.trigger('refreshUserInfo');
+          Taro.navigateBack();
+        }}/>
         <View style={styleAssign([styles.uf1])}>
           <View
             style={styleAssign([wRatio(100), h(55), pl(20), pr(20), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
@@ -231,7 +229,12 @@ class MyPhoto extends Component<Props, State> {
     }).then((res) => {
       console.log('更新我的照片', res);
       this.viewRef && this.viewRef.hideLoading();
-      toast('信息更新成功');
+      if (res !== null) {
+        toast('信息更新成功');
+        Taro.eventCenter.trigger('refreshUserInfo');
+        Taro.navigateBack();
+      }
+
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);

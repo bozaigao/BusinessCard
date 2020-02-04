@@ -79,7 +79,7 @@ class Mine extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    // Taro.eventCenter.off('refreshUserInfo');
+    Taro.eventCenter.off('refreshUserInfo');
   }
 
   componentDidShow() {
