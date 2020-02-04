@@ -65,6 +65,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      // "pages/mine/my_video",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
@@ -102,6 +103,7 @@ class App extends Component {
       "pages/mine/industry_list",
       "pages/mine/perform_info",
       "pages/mine/my_photo",
+      "pages/mine/my_video",
     ],
     window: {
       backgroundTextStyle: 'light',

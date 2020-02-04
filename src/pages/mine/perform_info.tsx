@@ -315,8 +315,8 @@ class PerformInfo extends Component<Props, State> {
           <TouchableButton
             customStyle={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
             onClick={() => {
-              Taro.chooseVideo({compressed: true}).then(() => {
-
+              Taro.navigateTo({
+                url: `/pages/mine/my_video`
               });
             }}>
             <View style={styleAssign([wRatio(100)])}>

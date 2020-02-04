@@ -1,9 +1,9 @@
 /**
- * @filename my_photo.tsx
+ * @filename my_video.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2020/2/4
- * @Description: 我的照片
+ * @Description: 我的视频
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
@@ -50,7 +50,7 @@ interface State {
 }
 
 @connect(state => state.Goods, {...actions})
-class MyPhoto extends Component<Props, State> {
+class MyVideo extends Component<Props, State> {
 
   private viewRef;
   private uploading: boolean;
@@ -146,7 +146,7 @@ class MyPhoto extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'我的照片'} customCallback={() => {
+        <TopHeader title={'我的视频'} customCallback={() => {
           Taro.eventCenter.trigger('refreshUserInfo');
           Taro.navigateBack();
         }}/>
@@ -242,4 +242,4 @@ class MyPhoto extends Component<Props, State> {
   }
 }
 
-export default MyPhoto;
+export default MyVideo;
