@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/api/request.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/request.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -30,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="audio_recorder.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="audio_recorder.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="273" column="44" lean-forward="true" selection-start-line="273" selection-start-column="44" selection-end-line="273" selection-end-column="44" />
+            <state relative-caret-position="225">
+              <caret line="141" column="36" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#117#186#0" expanded="true" />
@@ -53,7 +52,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="request.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/api/request.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
@@ -203,8 +202,8 @@
         <option value="$PROJECT_DIR$/src/app.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/share-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/delete-notice/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/api/request.ts" />
+        <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
       </list>
     </option>
   </component>
@@ -456,12 +455,12 @@
       <workItem from="1580199590725" duration="5000000" />
       <workItem from="1580213117203" duration="561000" />
       <workItem from="1580798945821" duration="8814000" />
-      <workItem from="1580862894983" duration="17877000" />
+      <workItem from="1580862894983" duration="18175000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="638164000" />
+    <option name="totallyTimeSpent" value="638462000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -481,9 +480,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3271795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -915,33 +914,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_photo.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#252#324#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/taro/types/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="2926" column="4" selection-start-line="2926" selection-start-column="4" selection-end-line="2926" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="273" column="44" lean-forward="true" selection-start-line="273" selection-start-column="44" selection-end-line="273" selection-end-column="44" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#117#186#0" expanded="true" />
-            <element signature="e#496#534#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -958,6 +934,29 @@
           <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_photo.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#252#324#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="141" column="36" selection-start-line="141" selection-start-column="36" selection-end-line="141" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#117#186#0" expanded="true" />
+            <element signature="e#496#534#0" expanded="true" />
           </folding>
         </state>
       </provider>

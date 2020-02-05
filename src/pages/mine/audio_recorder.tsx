@@ -139,6 +139,8 @@ class AudioRecorder extends Component<Props, State> {
     let that = this;
     let token = get(Enum.TOKEN);
 
+    console.log('音频上传token', token);
+
     Taro.uploadFile({
       url: FileController.uploadVoice,
       filePath: path,
