@@ -10,6 +10,13 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {connect} from "@tarojs/redux";
+import * as actions from '../../actions/login';
+import TopHeader from "../../compoments/top-header";
+import {Image, Text, Video, View} from "@tarojs/components";
+import TouchableButton from "../../compoments/touchable-button";
+import {FileController} from "../../api/httpurl";
+import {Enum} from "../../const/global";
 import {
   absR,
   absT,
@@ -19,8 +26,6 @@ import {
   default as styles,
   fSize,
   h,
-  mb,
-  ml,
   mt,
   pl,
   pr,
@@ -28,15 +33,6 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
-import TopHeader from "../../compoments/top-header";
-import {Image, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button";
-import {FileController} from "../../api/httpurl";
-import {Enum} from "../../const/global";
-
-let maxLength = 9;
 
 interface Props {
   //更新用户信息
@@ -44,19 +40,14 @@ interface Props {
 }
 
 interface State {
-  //轮播图
-  myPhotoUrlsLocal: any[];
-  myPhotoUrl: string[];
+  videoUrl: string;
 }
 
 @connect(state => state.Goods, {...actions})
 class MyVideo extends Component<Props, State> {
 
   private viewRef;
-  private uploading: boolean;
-  private uploadCount: number;
-  private uploadResultArr;
-  private myPhotoUrl: any;
+  private uploadResult;
 
 
   /**
@@ -72,66 +63,33 @@ class MyVideo extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.myPhotoUrl = parseData(this.$router.params.myPhotoUrl);
-    let myPhotoUrlTmp: any = [];
-
-    if (this.myPhotoUrl) {
-      parseData(this.myPhotoUrl).forEach((item) => {
-        myPhotoUrlTmp.push({path: item});
-      });
-    }
-
+    this.uploadResult = this.$router.params.videoUrl;
     this.state = {
-      myPhotoUrlsLocal: myPhotoUrlTmp,
-      myPhotoUrl: parseData(this.myPhotoUrl) ? parseData(this.myPhotoUrl) : []
-    }
-    this.uploading = false;
-    this.uploadCount = 0;
-    this.uploadResultArr = [];
-  }
-
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/12/29
-   * @function: 文件列表上传
-   */
-  uploadFileList = (paths, callback) => {
-    if (!this.uploading) {
-      this.uploadResultArr = [];
-      this.uploadCount = 0;
-      this.uploading = true;
-      for (let i = 0; i < paths.length; i++) {
-        this.uploadFileTpWx(paths[i].path, callback, paths.length);
-      }
+      videoUrl: this.uploadResult ? this.uploadResult : ''
     }
   }
+
 
   /**
    * @author 何晏波
    * @QQ 1054539528
    * @date 2019/12/28
-   * @function: 将文件上传到微信服务
+   * @function: 将文件通过微信Api上传到服务端
    */
-  uploadFileTpWx = (path, callback, length) => {
+  uploadFileTpWx = (path, callback) => {
     let that = this;
     let token = get(Enum.TOKEN);
 
     Taro.uploadFile({
-      url: FileController.uploadPicture,
+      url: FileController.uploadVideo,
       filePath: path,
       name: 'file',
       header: {
         'token': token
       },
       success(res) {
-        that.uploadCount++;
-        that.uploadResultArr.push(parseData(res.data).data);
-        if (that.uploadCount === length) {
-          that.uploading = false;
-          callback();
-        }
+        that.uploadResult = parseData(res.data).data;
+        callback();
         console.log('上传文件', parseData(res.data).data);
       }
     });
@@ -140,7 +98,7 @@ class MyVideo extends Component<Props, State> {
 
   render() {
 
-    let {myPhotoUrlsLocal, myPhotoUrl} = this.state;
+    let {videoUrl} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -152,51 +110,51 @@ class MyVideo extends Component<Props, State> {
         }}/>
         <View style={styleAssign([styles.uf1])}>
           <View
-            style={styleAssign([wRatio(100), h(55), pl(20), pr(20), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(18), color('#0C0C0C')])}>上传照片</Text>
-            <Text style={styleAssign([fSize(18), color('#787878')])}>{`${myPhotoUrl.length}/9`}</Text>
+            style={styleAssign([wRatio(100), h(55), pl(20), pr(20), mt(20), bgColor(commonStyles.whiteColor)])}>
+            <Text style={styleAssign([fSize(18), color('#0C0C0C')])}>添加视频</Text>
+            <Text style={styleAssign([fSize(12), color('#979797')])}>添加快速说明业务的视频，可提升名片的停留时长哦~</Text>
           </View>
           <View style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-          <View
-            style={styleAssign([wRatio(100), mt(10), mb(10), pl(10), pr(10), styles.udr, styles.uWrap])}>
-            {
-              myPhotoUrlsLocal.map((value, index) => {
-                return (
-                  <View style={styleAssign([w(105), h(105), ml(10), mb(10),])}>
-                    <Image key={index} style={styleAssign([w(105), h(105), radiusA(2)])}
-                           src={value.path}/>
-                    <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
-                           src={require('../../assets/ico_close.png')}
-                           onClick={() => {
-                             this.state.myPhotoUrl.splice(index, 1);
-                             myPhotoUrlsLocal.splice(index, 1);
-
-                             console.log('删除后的列表', myPhotoUrlsLocal, myPhotoUrl);
-                             this.setState({myPhotoUrlsLocal}, () => {
-                               console.log('剩余图片', this.state.myPhotoUrlsLocal);
-                             });
-                           }}/>
-                  </View>);
-              })
-            }
-            {
-              myPhotoUrlsLocal.length < maxLength && <TouchableButton
-                onClick={() => {
-                  Taro.chooseImage({count: maxLength - myPhotoUrlsLocal.length}).then((res) => {
-                    console.log('本地上传图片', res.tempFiles);
-                    this.setState({myPhotoUrlsLocal: this.state.myPhotoUrlsLocal.concat(res.tempFiles)});
-                    this.uploadFileList(res.tempFiles, () => {
-                      this.state.myPhotoUrl.push(...this.uploadResultArr);
-                      this.setState({myPhotoUrl: this.state.myPhotoUrl});
-                      console.log('上传成功后的图片列表', myPhotoUrl);
-                    });
-                  });
-                }}
-                customStyle={styleAssign([ml(10), mb(20), w(105), h(105), bgColor(commonStyles.pageDefaultBackgroundColor), radiusA(4), styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/ico_goods_add.png')}/>
-              </TouchableButton>
-            }
-          </View>
+          {
+            videoUrl.length !== 0 ?
+              <View style={styleAssign([wRatio(100), styles.udr, styles.ujc])}>
+                <Video
+                  style={styleAssign([w(335), h(203), bgColor(commonStyles.whiteColor)])}
+                  src={videoUrl}
+                  controls={true}
+                  autoplay={false}
+                  objectFit={'fill'}
+                  initialTime={1}
+                  id='video'
+                  loop={false}
+                  muted={false}/>
+                <Image style={styleAssign([w(20), h(20), styles.upa, absR(25), absT(8)])}
+                       src={require('../../assets/ico_close.png')}
+                       onClick={() => {
+                         this.setState({videoUrl: ''});
+                         this.uploadResult = '';
+                       }}/>
+              </View> :
+              <View style={styleAssign([wRatio(100), styles.udr, styles.ujc])}
+                    onClick={() => {
+                      Taro.chooseVideo({compressed: true}).then((res) => {
+                        console.log('视频信息', res);
+                        this.setState({videoUrl: res.tempFilePath});
+                        this.uploadFileTpWx(res.tempFilePath, () => {
+                          console.log('上传成功后的视频列表', this.uploadResult);
+                        });
+                      });
+                    }}>
+                <View
+                  style={styleAssign([w(335), h(203), bgColor('#F9F9F9'), styles.uac, styles.ujc])}>
+                  <View style={styleAssign([styles.uac])}>
+                    <Image style={styleAssign([w(41), h(37)])}
+                           src={require('../../assets/ico_video.png')}/>
+                    <Text style={styleAssign([fSize(16), color('#4A4A4A')])}>点击上传</Text>
+                  </View>
+                </View>
+              </View>
+          }
         </View>
         {/*保存*/}
         <View style={styleAssign([wRatio(100), h(64), styles.uac, styles.ujc])}>
@@ -219,15 +177,15 @@ class MyVideo extends Component<Props, State> {
    * @function: 更新用户信息
    */
   update = () => {
-    if (this.state.myPhotoUrl.length === 0) {
-      toast('请选择照片');
+    if (this.uploadResult.length === 0) {
+      toast('请选择视频');
       return;
     }
     this.viewRef && this.viewRef.showLoading();
     this.props.update({
-      photoUrl: JSON.stringify(this.state.myPhotoUrl),
+      videoUrl: this.uploadResult,
     }).then((res) => {
-      console.log('更新我的照片', res);
+      console.log('更新我的视频', res);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== null) {
         toast('信息更新成功');

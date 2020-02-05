@@ -6,7 +6,7 @@
  * @Description: 完善名片
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Image, ScrollView, Text, View} from '@tarojs/components'
+import {Image, ScrollView, Text, Video, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
@@ -47,6 +47,7 @@ interface State {
   marginTop: any;
   showPersonalInfo: boolean;
   photoUrl: string[];
+  videoUrl: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -67,6 +68,7 @@ class PerformInfo extends Component<Props, State> {
     super(props);
     this.state = {
       photoUrl: [],
+      videoUrl: '',
       marginTop: 0,
       showPersonalInfo: true
     }
@@ -109,7 +111,7 @@ class PerformInfo extends Component<Props, State> {
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
       if (res) {
-        this.setState({photoUrl: parseData(res.photoUrl)});
+        this.setState({photoUrl: parseData(res.photoUrl), videoUrl: res.videoUrl});
       }
     }).catch(e => {
       console.log('报错啦', e);
@@ -118,7 +120,7 @@ class PerformInfo extends Component<Props, State> {
 
   render() {
 
-    let {marginTop, showPersonalInfo, photoUrl} = this.state;
+    let {marginTop, showPersonalInfo, photoUrl, videoUrl} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -316,23 +318,49 @@ class PerformInfo extends Component<Props, State> {
             customStyle={styleAssign([wRatio(100), h(264), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
             onClick={() => {
               Taro.navigateTo({
-                url: `/pages/mine/my_video`
+                url: `/pages/mine/my_video?videoUrl=${videoUrl}`
               });
             }}>
-            <View style={styleAssign([wRatio(100)])}>
-              <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20), mt(17)])}>我的视频</Text>
+            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
+              <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的视频</Text>
+              {
+                videoUrl.length !== 0 ?
+                  <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                    <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                    <Image style={styleAssign([w(7), h(12), ml(6)])}
+                           src={require('../../assets/ico_next.png')}/>
+                  </TouchableButton> :
+                  <View/>
+              }
             </View>
             <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View
-              style={styleAssign([w(335), h(176), mt(16), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-              <View
-                style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
-                  styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(16), h(18)])} src={require('../../assets/ico_play.png')}/>
-              </View>
-              <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加视频</Text>
-              <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>让客户更全面了解你</Text>
-            </View>
+            {
+              videoUrl.length !== 0 ?
+                <Video
+                  style={styleAssign([w(335), h(203), bgColor(commonStyles.whiteColor)])}
+                  src={videoUrl}
+                  controls={true}
+                  autoplay={false}
+                  objectFit={'fill'}
+                  initialTime={1}
+                  id='video'
+                  loop={false}
+                  muted={false}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }
+                  }/> :
+                <View
+                  style={styleAssign([w(335), h(176), mt(16), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+                  <View
+                    style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
+                      styles.uac, styles.ujc])}>
+                    <Image style={styleAssign([w(16), h(18)])} src={require('../../assets/ico_play.png')}/>
+                  </View>
+                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加视频</Text>
+                  <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>让客户更全面了解你</Text>
+                </View>
+            }
           </TouchableButton>
           {/*企业信息*/}
           <TouchableButton

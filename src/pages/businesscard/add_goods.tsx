@@ -40,6 +40,7 @@ import {Image, Input, ScrollView, Text, Textarea, View} from "@tarojs/components
 import TouchableButton from "../../compoments/touchable-button";
 import {FileController} from "../../api/httpurl";
 import {Enum, Goods} from "../../const/global";
+let maxLength = 5;
 
 interface Props {
   //添加商品
@@ -224,7 +225,7 @@ class AddGoods extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2019/12/28
-   * @function: 将文件上传到微信服务
+   * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, callback, length) => {
     let that = this;
@@ -316,9 +317,9 @@ class AddGoods extends Component<Props, State> {
                   })
                 }
                 {
-                  carouselUrlsLocal.length < 5 && <TouchableButton
+                  carouselUrlsLocal.length < maxLength && <TouchableButton
                     onClick={() => {
-                      Taro.chooseImage({count: 5 - carouselUrlsLocal.length}).then((res) => {
+                      Taro.chooseImage({count: maxLength - carouselUrlsLocal.length}).then((res) => {
                         console.log('本地上传图片', res.tempFiles);
                         this.setState({carouselUrlsLocal: this.state.carouselUrlsLocal.concat(res.tempFiles)});
                         this.uploadFileList(res.tempFiles, () => {

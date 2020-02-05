@@ -105,7 +105,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
          * @author 何晏波
          * @QQ 1054539528
          * @date 2019/12/28
-         * @function: 将文件上传到微信服务
+         * @function: 将文件通过微信Api上传到服务端
          */
         this.uploadFileTpWx = (path, callback, length) => {
             let that = this;

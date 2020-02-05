@@ -142,7 +142,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
          * @author 何晏波
          * @QQ 1054539528
          * @date 2019/12/28
-         * @function: 将文件上传到微信服务
+         * @function: 将文件通过微信Api上传到服务端
          */
         this.uploadFileTpWx = (path, callback, length) => {
             let that = this;
@@ -198,7 +198,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={edit ? '编辑商品' : '添加商品'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.pb(5), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
               {[{ title: '商品名称', placeHolder: '15个字以内' }, { title: '参考价格', placeHolder: '选填' }].map((value, index) => {
@@ -250,7 +250,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(259), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.pl(20), style_1.pr(20), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>商品简介</components_1.Text>
@@ -261,7 +261,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
             this.setState({ introduction: e.detail.value });
         }}/>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.pl(20), style_1.pr(20), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>详情图</components_1.Text>
@@ -292,7 +292,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
             </components_1.View>
           </components_1.View>
         </components_1.ScrollView>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(63), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.default.uac, style_1.default.ujc])}>
           {edit ? <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>

@@ -46,7 +46,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
          * @author 何晏波
          * @QQ 1054539528
          * @date 2019/12/28
-         * @function: 将文件上传到微信服务
+         * @function: 将文件通过微信Api上传到服务端
          */
         this.uploadFileTpWx = (path) => {
             let that = this;
@@ -178,7 +178,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'个人信息'}/>
-        
+
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
             style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pl(20), style_1.pr(20)])} onClick={() => {
@@ -281,7 +281,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
         })}
           </components_1.View>
         </components_1.ScrollView>
-        
+
         <bottom_buton_1.default title={'保存'} onClick={() => {
             this.update();
         }}/>
