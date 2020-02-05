@@ -7,14 +7,42 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
-import {bgColor, color, commonStyles, default as styles, fSize, h, ml, mr, mt, pt, w, wRatio} from "../../utils/style";
+import {
+  bgColor,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h,
+  ml,
+  mr,
+  mt,
+  pt,
+  radiusA,
+  w,
+  wRatio
+} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
-import BottomButon from "../../compoments/bottom-buton";
+import TouchableButton from "../../compoments/touchable-button";
+import DeleteNoticeModal from "./delete-notice";
+
+//录制总时间限制
+let totalTime = 60;
+//最小录制时间限制
+let miniRecordTime = 5;
+
+//录制状态
+enum RECORD_STATE {
+  RECORD_NO_START,
+  RECORD_START,
+  RECORD_PAUSE,
+  RECORD_RESUME
+}
 
 interface Props {
   //获取banner信息
@@ -22,6 +50,14 @@ interface Props {
 }
 
 interface State {
+  time: number;
+  recordText: string;
+  recordDone: boolean;
+  recordState: RECORD_STATE;
+  startTimer: boolean;
+  canRecordDone: boolean;
+  canRetry: boolean;
+  showDeleteNotice: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -37,14 +73,19 @@ class AudioRecorder extends Component<Props, State> {
   config: Config = {
     disableScroll: true
   }
+  private timer;
 
   constructor(props) {
     super(props);
     this.state = {
-      list: [{title: '学校', value: '四川美术学院'},
-        {title: '学历', value: '本科'},
-        {title: '专业', value: '产品设计'},
-        {title: '在校时间', value: '2015-2019'}],
+      time: 0,
+      recordText: '',
+      recordDone: false,
+      recordState: RECORD_STATE.RECORD_NO_START,
+      startTimer: false,
+      canRecordDone: false,
+      canRetry: false,
+      showDeleteNotice: false
     }
   }
 
@@ -53,6 +94,7 @@ class AudioRecorder extends Component<Props, State> {
   }
 
   componentWillUnmount() {
+    this.clearTime();
   }
 
   componentDidMount() {
@@ -61,8 +103,49 @@ class AudioRecorder extends Component<Props, State> {
   componentDidHide() {
   }
 
+  starTime = () => {
+    this.timer = setInterval(() => {
+      if (this.state.startTimer) {
+        this.setState({time: this.state.time + 1});
+      }
+    }, 1000);
+  }
+
+  clearTime = () => {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
 
   render() {
+    let {time, recordText, recordDone, recordState, canRecordDone, canRetry, showDeleteNotice} = this.state;
+    let recordIcon, rightIcon;
+
+    switch (recordState) {
+      case RECORD_STATE.RECORD_START:
+        recordIcon = require('../../assets/ico_record_start.png');
+        break;
+      case RECORD_STATE.RECORD_PAUSE:
+        recordIcon = require('../../assets/ico_record_pause.png');
+        break;
+      case RECORD_STATE.RECORD_RESUME:
+        recordIcon = require('../../assets/ico_record_start.png');
+        break;
+      default:
+        recordIcon = require('../../assets/ico_record.png');
+    }
+
+    if (canRetry) {
+      rightIcon = require('../../assets/ico_record_retry.png');
+    } else {
+      if (canRecordDone) {
+        rightIcon = require('../../assets/ico_record_done_pressed.png');
+      } else {
+        rightIcon = require('../../assets/ico_record_done_normal.png');
+      }
+    }
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
@@ -72,7 +155,11 @@ class AudioRecorder extends Component<Props, State> {
           {/*时间计数*/}
           <View
             style={styleAssign([wRatio(100), mt(10), h(140), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(48), color('#979797')])}>00:00</Text>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <Text style={styleAssign([fSize(48), color('#979797')])}>00:</Text>
+              <Text style={styleAssign([fSize(48), color('#E2BB7B'), w(60)])}>{time < 10 ? `0${time}` : time}</Text>
+            </View>
+            <Text style={styleAssign([fSize(14), color('#979797')])}>{recordText}</Text>
           </View>
           {/*录制小贴士*/}
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), mt(10)])}>
@@ -88,17 +175,104 @@ class AudioRecorder extends Component<Props, State> {
           <View
             style={styleAssign([styles.uf1, styles.udr, styles.uac, styles.ujc, bgColor(commonStyles.whiteColor), pt(53)])}>
             <View style={styleAssign([styles.udr, styles.uac])}>
-              <Image style={styleAssign([w(56), h(56)])} src={require('../../assets/ico_record_delete.png')}/>
-              <Image style={styleAssign([w(78), h(78), ml(25), mr(25)])} src={require('../../assets/ico_record.png')}/>
-              <Image style={styleAssign([w(56), h(56)])} src={require('../../assets/ico_record_done.png')}/>
+              <Image style={styleAssign([w(56), h(56)])}
+                     src={recordDone ? require('../../assets/ico_record_delete_pressed.png') :
+                       require('../../assets/ico_record_delete_normal.png')}
+                     onClick={() => {
+                       if (recordDone) {
+                         this.setState({showDeleteNotice: true});
+                       }
+                     }}/>
+              <Image style={styleAssign([w(78), h(78), ml(25), mr(25)])} src={recordIcon}
+                     onClick={() => {
+                       switch (recordState) {
+                         case RECORD_STATE.RECORD_NO_START:
+                           this.starTime();
+                           this.setState({startTimer: true, recordText: '录制中', recordState: RECORD_STATE.RECORD_START});
+                           break;
+                         case RECORD_STATE.RECORD_START:
+                           this.setState({
+                             startTimer: false,
+                             recordText: `暂停录制（剩余${totalTime - time}s）`,
+                             recordState: RECORD_STATE.RECORD_PAUSE
+                           }, () => {
+                             if (time > miniRecordTime) {
+                               this.setState({canRecordDone: true});
+                             }
+                           });
+                           break;
+                         case RECORD_STATE.RECORD_PAUSE:
+                           this.setState({
+                             startTimer: true,
+                             recordText: '录制中',
+                             recordState: RECORD_STATE.RECORD_RESUME
+                           });
+                           break;
+                         case RECORD_STATE.RECORD_RESUME:
+                           this.setState({
+                             startTimer: false,
+                             recordText: `暂停录制（剩余${totalTime - time}s）`,
+                             recordState: RECORD_STATE.RECORD_PAUSE
+                           }, () => {
+                             if (time > miniRecordTime) {
+                               this.setState({canRecordDone: true});
+                             }
+                           });
+                           break;
+                         default:
+                           break;
+                       }
+                     }}/>
+              <Image style={styleAssign([w(56), h(56)])}
+                     src={rightIcon}
+                     onClick={() => {
+                       if (canRetry) {
+                         this.setState({
+                           time: 0,
+                           startTimer: true,
+                           recordState: RECORD_STATE.RECORD_START,
+                           recordDone: false,
+                           recordText: '正在录制',
+                           canRetry: false,
+                           canRecordDone: false
+                         });
+                       } else if (canRecordDone) {
+                         this.setState({recordDone: true, recordText: '录制完成', canRetry: true});
+                       }
+                     }}/>
             </View>
 
           </View>
         </View>
         {/*保存*/}
-        <BottomButon title={'保存'} onClick={() => {
+        <View style={styleAssign([wRatio(100), h(64), styles.uac, styles.ujc])}>
+          <TouchableButton
+            customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(recordDone ? commonStyles.colorTheme : '#E6E6E6'),
+              styles.uac, styles.ujc])}
+            onClick={() => {
 
-        }}/>
+            }}>
+            <Text style={styleAssign([fSize(16), color(recordDone ? commonStyles.whiteColor : '#343434')])}>保存</Text>
+          </TouchableButton>
+        </View>
+        {
+          showDeleteNotice && <DeleteNoticeModal cancelCallback={() => {
+            this.setState({showDeleteNotice: false});
+          }
+          } confirmCallback={() => {
+            this.setState({
+              time: 0,
+              recordText: '',
+              recordDone: false,
+              recordState: RECORD_STATE.RECORD_NO_START,
+              startTimer: false,
+              canRecordDone: false,
+              canRetry: false,
+              showDeleteNotice: false
+            });
+          }
+          }/>
+        }
       </CustomSafeAreaView>
     )
   }
