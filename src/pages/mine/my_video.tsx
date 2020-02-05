@@ -77,22 +77,33 @@ class MyVideo extends Component<Props, State> {
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, callback) => {
-    let that = this;
-    let token = get(Enum.TOKEN);
+    if (path.length === 0) {
+      toast('请选择视频');
+      return;
+    }
 
-    Taro.uploadFile({
-      url: FileController.uploadVideo,
-      filePath: path,
-      name: 'file',
-      header: {
-        'token': token
-      },
-      success(res) {
-        that.uploadResult = parseData(res.data).data;
-        callback();
-        console.log('上传文件', parseData(res.data).data);
-      }
-    });
+    if (path.includes('tmp')) {
+      this.viewRef && this.viewRef.showLoading();
+      let that = this;
+      let token = get(Enum.TOKEN);
+
+      Taro.uploadFile({
+        url: FileController.uploadVideo,
+        filePath: path,
+        name: 'file',
+        header: {
+          'token': token
+        },
+        success(res) {
+          that.uploadResult = parseData(res.data).data;
+          callback();
+          console.log('上传文件', parseData(res.data).data);
+        }
+      });
+    } else {
+      this.uploadResult = path;
+      callback();
+    }
   }
 
 
@@ -140,9 +151,6 @@ class MyVideo extends Component<Props, State> {
                       Taro.chooseVideo({compressed: true}).then((res) => {
                         console.log('视频信息', res);
                         this.setState({videoUrl: res.tempFilePath});
-                        this.uploadFileTpWx(res.tempFilePath, () => {
-                          console.log('上传成功后的视频列表', this.uploadResult);
-                        });
                       });
                     }}>
                 <View
@@ -161,7 +169,10 @@ class MyVideo extends Component<Props, State> {
           <TouchableButton customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(commonStyles.colorTheme),
             styles.uac, styles.ujc])}
                            onClick={() => {
-                             this.update();
+                             this.uploadFileTpWx(videoUrl, () => {
+                               this.update();
+                               console.log('上传成功后的视频列表', this.uploadResult);
+                             });
                            }}>
             <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>保存</Text>
           </TouchableButton>
@@ -177,21 +188,14 @@ class MyVideo extends Component<Props, State> {
    * @function: 更新用户信息
    */
   update = () => {
-    if (this.uploadResult.length === 0) {
-      toast('请选择视频');
-      return;
-    }
-    this.viewRef && this.viewRef.showLoading();
     this.props.update({
       videoUrl: this.uploadResult,
     }).then((res) => {
       console.log('更新我的视频', res);
       this.viewRef && this.viewRef.hideLoading();
-      if (res !== null) {
-        toast('信息更新成功');
-        Taro.eventCenter.trigger('refreshUserInfo');
-        Taro.navigateBack();
-      }
+      toast('信息更新成功');
+      Taro.eventCenter.trigger('refreshUserInfo');
+      Taro.navigateBack();
 
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
