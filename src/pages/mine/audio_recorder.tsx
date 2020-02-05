@@ -5,7 +5,7 @@
  * @date 2019/12/22
  * @Description: 语音录制界面
  */
-import Taro, {Component, Config} from '@tarojs/taro'
+import Taro, {Component, Config, RecorderManager} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   bgColor,
@@ -22,7 +22,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {get, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
@@ -30,6 +30,8 @@ import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import DeleteNoticeModal from "./delete-notice";
+import {Enum} from "../../const/global";
+import {FileController} from "../../api/httpurl";
 
 //录制总时间限制
 let totalTime = 60;
@@ -58,6 +60,7 @@ interface State {
   canRecordDone: boolean;
   canRetry: boolean;
   showDeleteNotice: boolean;
+  localVideoUrl: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -74,9 +77,13 @@ class AudioRecorder extends Component<Props, State> {
     disableScroll: true
   }
   private timer;
+  private viewRef;
+  private recorderManager: RecorderManager;
+
 
   constructor(props) {
     super(props);
+    this.recorderManager = Taro.getRecorderManager();
     this.state = {
       time: 0,
       recordText: '',
@@ -85,7 +92,8 @@ class AudioRecorder extends Component<Props, State> {
       startTimer: false,
       canRecordDone: false,
       canRetry: false,
-      showDeleteNotice: false
+      showDeleteNotice: false,
+      localVideoUrl: ''
     }
   }
 
@@ -118,9 +126,35 @@ class AudioRecorder extends Component<Props, State> {
     }
   }
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 将文件通过微信Api上传到服务端
+   */
+  uploadFileTpWx = (path) => {
+    console.log('上传路径', path);
+    let that = this;
+    let token = get(Enum.TOKEN);
+
+    Taro.uploadFile({
+      url: FileController.uploadVoice,
+      filePath: path,
+      name: 'file',
+      header: {
+        'token': token
+      },
+      success(res) {
+        console.log('上传的音频文件', res);
+        that.setState({localVideoUrl: parseData(res.data).data});
+        console.log('上传的音频文件', parseData(res.data).data);
+      }
+    });
+  }
+
 
   render() {
-    let {time, recordText, recordDone, recordState, canRecordDone, canRetry, showDeleteNotice} = this.state;
+    let {time, recordText, recordDone, recordState, canRecordDone, canRetry, showDeleteNotice, localVideoUrl} = this.state;
     let recordIcon, rightIcon;
 
     switch (recordState) {
@@ -139,16 +173,17 @@ class AudioRecorder extends Component<Props, State> {
 
     if (canRetry) {
       rightIcon = require('../../assets/ico_record_retry.png');
+    } else if (canRecordDone) {
+      rightIcon = require('../../assets/ico_record_done_pressed.png');
     } else {
-      if (canRecordDone) {
-        rightIcon = require('../../assets/ico_record_done_pressed.png');
-      } else {
-        rightIcon = require('../../assets/ico_record_done_normal.png');
-      }
+      rightIcon = require('../../assets/ico_record_done_normal.png');
     }
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          ref={(ref) => {
+                            this.viewRef = ref;
+                          }}>
         <TopHeader title={'语音录制'}/>
         <View
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
@@ -187,37 +222,90 @@ class AudioRecorder extends Component<Props, State> {
                      onClick={() => {
                        switch (recordState) {
                          case RECORD_STATE.RECORD_NO_START:
-                           this.starTime();
-                           this.setState({startTimer: true, recordText: '录制中', recordState: RECORD_STATE.RECORD_START});
+                           console.log('音频录制');
+                           const options = {
+                             sampleRate: 16000,//采样率
+                             numberOfChannels: 1,//录音通道数
+                             encodeBitRate: 96000,//编码码率
+                             format: 'mp3',//音频格式，有效值 aac/mp3
+                             frameSize: 50,//指定帧大小，单位 KB
+                           };
+
+                           this.recorderManager.start(options);
+                           this.recorderManager.onStart(() => {
+                             if (!this.timer) {
+                               this.starTime();
+                               this.setState({
+                                 startTimer: true,
+                                 recordText: '录制中',
+                                 recordState: RECORD_STATE.RECORD_START
+                               });
+                             } else {
+                               this.setState({
+                                 startTimer: true,
+                                 recordText: '录制中',
+                                 recordState: RECORD_STATE.RECORD_START
+                               });
+                             }
+                           });
                            break;
                          case RECORD_STATE.RECORD_START:
-                           this.setState({
-                             startTimer: false,
-                             recordText: `暂停录制（剩余${totalTime - time}s）`,
-                             recordState: RECORD_STATE.RECORD_PAUSE
-                           }, () => {
-                             if (time > miniRecordTime) {
-                               this.setState({canRecordDone: true});
-                             }
-                           });
+                           if (localVideoUrl.length === 0) {
+                             this.recorderManager.pause();
+                             this.recorderManager.onPause(() => {
+                               this.setState({
+                                 startTimer: false,
+                                 recordText: `暂停录制（剩余${totalTime - time}s）`,
+                                 recordState: RECORD_STATE.RECORD_PAUSE
+                               }, () => {
+                                 if (time > miniRecordTime) {
+                                   this.setState({canRecordDone: true});
+                                 }
+                               });
+                             });
+                           } else {
+                             Taro.pauseVoice();
+                           }
                            break;
                          case RECORD_STATE.RECORD_PAUSE:
-                           this.setState({
-                             startTimer: true,
-                             recordText: '录制中',
-                             recordState: RECORD_STATE.RECORD_RESUME
-                           });
+                           if (localVideoUrl.length === 0) {
+                             this.recorderManager.resume();
+                             this.setState({
+                               startTimer: true,
+                               recordText: '录制中',
+                               recordState: RECORD_STATE.RECORD_RESUME
+                             });
+                           } else {
+                             Taro.playVoice({filePath: localVideoUrl}).then(res => {
+                               console.log('音频播放', localVideoUrl, res);
+                               this.setState({
+                                 recordText: '试听中',
+                                 recordState: RECORD_STATE.RECORD_RESUME
+                               });
+                             });
+                           }
                            break;
                          case RECORD_STATE.RECORD_RESUME:
-                           this.setState({
-                             startTimer: false,
-                             recordText: `暂停录制（剩余${totalTime - time}s）`,
-                             recordState: RECORD_STATE.RECORD_PAUSE
-                           }, () => {
-                             if (time > miniRecordTime) {
-                               this.setState({canRecordDone: true});
-                             }
-                           });
+                           if (localVideoUrl.length === 0) {
+                             this.recorderManager.pause();
+                             this.recorderManager.onPause(() => {
+                               this.setState({
+                                 startTimer: false,
+                                 recordText: `暂停录制（剩余${totalTime - time}s）`,
+                                 recordState: RECORD_STATE.RECORD_PAUSE
+                               }, () => {
+                                 if (time > miniRecordTime) {
+                                   this.setState({canRecordDone: true});
+                                 }
+                               });
+                             });
+                           } else {
+                             Taro.pauseVoice();
+                             this.setState({
+                               recordText: '播放暂停',
+                               recordState: RECORD_STATE.RECORD_PAUSE
+                             });
+                           }
                            break;
                          default:
                            break;
@@ -234,10 +322,23 @@ class AudioRecorder extends Component<Props, State> {
                            recordDone: false,
                            recordText: '正在录制',
                            canRetry: false,
-                           canRecordDone: false
+                           canRecordDone: false,
+                           localVideoUrl: ''
                          });
                        } else if (canRecordDone) {
-                         this.setState({recordDone: true, recordText: '录制完成', canRetry: true});
+                         this.viewRef.showLoading();
+                         this.recorderManager.stop();
+                         this.recorderManager.onStop((res) => {
+                           this.viewRef.hideLoading();
+                           this.uploadFileTpWx(res.tempFilePath);
+                           this.setState({
+                             recordDone: true,
+                             recordText: '录制完成',
+                             canRetry: true,
+                           }, () => {
+                             console.log('音频文件', this.state.localVideoUrl);
+                           });
+                         })
                        }
                      }}/>
             </View>
@@ -260,6 +361,7 @@ class AudioRecorder extends Component<Props, State> {
             this.setState({showDeleteNotice: false});
           }
           } confirmCallback={() => {
+            toast('删除成功');
             this.setState({
               time: 0,
               recordText: '',
@@ -268,7 +370,8 @@ class AudioRecorder extends Component<Props, State> {
               startTimer: false,
               canRecordDone: false,
               canRetry: false,
-              showDeleteNotice: false
+              showDeleteNotice: false,
+              localVideoUrl: ''
             });
           }
           }/>
