@@ -49,13 +49,13 @@ export default async function fetch(options) {
   }).then(async (res) => {
     const {code, data, msg} = res.data;
 
-    console.log('接口请求返回的数据', res,code);
+    console.log('接口请求返回的数据', res, code);
 
     if (code === NetworkState.SUCCESS) {
       return data;
     }
     //token过期
-    else if (code === NetworkState.NEED_LOGIN||
+    else if (code === NetworkState.NEED_LOGIN ||
       code === NetworkState.USER_NO_EXIT) {
       if (isRefreshing) {
         wxLogin();
@@ -122,7 +122,7 @@ async function wxLogin() {
             isRefreshing = true;
           }
           //服务接口报错
-          else{
+          else {
             toast(msg);
           }
         }).catch((err) => {

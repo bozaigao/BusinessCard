@@ -5,7 +5,7 @@
  * @date 2019/12/22
  * @Description: 语音录制界面
  */
-import Taro, {Component, Config, RecorderManager} from '@tarojs/taro'
+import Taro, {Component, Config, InnerAudioContext, RecorderManager} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   bgColor,
@@ -79,11 +79,13 @@ class AudioRecorder extends Component<Props, State> {
   private timer;
   private viewRef;
   private recorderManager: RecorderManager;
+  private innerAudioContext: InnerAudioContext;
 
 
   constructor(props) {
     super(props);
     this.recorderManager = Taro.getRecorderManager();
+    this.innerAudioContext = Taro.createInnerAudioContext();
     this.state = {
       time: 0,
       recordText: '',
@@ -228,7 +230,6 @@ class AudioRecorder extends Component<Props, State> {
                              numberOfChannels: 1,//录音通道数
                              encodeBitRate: 96000,//编码码率
                              format: 'mp3',//音频格式，有效值 aac/mp3
-                             frameSize: 50,//指定帧大小，单位 KB
                            };
 
                            this.recorderManager.start(options);
@@ -264,7 +265,7 @@ class AudioRecorder extends Component<Props, State> {
                                });
                              });
                            } else {
-                             Taro.pauseVoice();
+                             this.innerAudioContext.pause();
                            }
                            break;
                          case RECORD_STATE.RECORD_PAUSE:
@@ -276,13 +277,18 @@ class AudioRecorder extends Component<Props, State> {
                                recordState: RECORD_STATE.RECORD_RESUME
                              });
                            } else {
-                             Taro.playVoice({filePath: localVideoUrl}).then(res => {
-                               console.log('音频播放', localVideoUrl, res);
-                               this.setState({
-                                 recordText: '试听中',
-                                 recordState: RECORD_STATE.RECORD_RESUME
-                               });
+                             this.innerAudioContext.play();
+                             this.setState({
+                               recordText: '试听中',
+                               recordState: RECORD_STATE.RECORD_RESUME
                              });
+                             // Taro.playVoice({filePath: localVideoUrl}).then(res => {
+                             //   console.log('音频播放', localVideoUrl, res);
+                             //   this.setState({
+                             //     recordText: '试听中',
+                             //     recordState: RECORD_STATE.RECORD_RESUME
+                             //   });
+                             // });
                            }
                            break;
                          case RECORD_STATE.RECORD_RESUME:
@@ -300,7 +306,7 @@ class AudioRecorder extends Component<Props, State> {
                                });
                              });
                            } else {
-                             Taro.pauseVoice();
+                             this.innerAudioContext.pause();
                              this.setState({
                                recordText: '播放暂停',
                                recordState: RECORD_STATE.RECORD_PAUSE
@@ -330,6 +336,7 @@ class AudioRecorder extends Component<Props, State> {
                          this.recorderManager.stop();
                          this.recorderManager.onStop((res) => {
                            this.viewRef.hideLoading();
+                           console.log(res);
                            this.uploadFileTpWx(res.tempFilePath);
                            this.setState({
                              recordDone: true,
