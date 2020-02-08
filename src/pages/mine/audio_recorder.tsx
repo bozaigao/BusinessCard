@@ -47,8 +47,8 @@ enum RECORD_STATE {
 }
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
+  //更新用户信息
+  update?: any;
 }
 
 interface State {
@@ -105,6 +105,7 @@ class AudioRecorder extends Component<Props, State> {
 
   componentWillUnmount() {
     this.clearTime();
+    this.innerAudioContext && this.innerAudioContext.stop();
   }
 
   componentDidMount() {
@@ -116,8 +117,21 @@ class AudioRecorder extends Component<Props, State> {
   starTime = () => {
     this.timer = setInterval(() => {
       if (this.state.startTimer) {
+        //时间到自动结束录制
+        if (this.state.time === totalTime - 1) {
+          this.recorderManager.pause();
+          this.recorderManager.onPause(() => {
+            this.setState({
+              startTimer: false,
+              recordState: RECORD_STATE.RECORD_PAUSE
+            }, () => {
+              this.stopRecord();
+            });
+          });
+        }
         this.setState({time: this.state.time + 1});
       }
+      console.log('倒计时');
     }, 1000);
   }
 
@@ -128,42 +142,14 @@ class AudioRecorder extends Component<Props, State> {
     }
   }
 
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/12/28
-   * @function: 将文件通过微信Api上传到服务端
-   */
-  uploadFileTpWx = (path) => {
-    console.log('上传路径', path);
-    let that = this;
-    let token = get(Enum.TOKEN);
-
-    console.log('音频上传token', token);
-
-    Taro.uploadFile({
-      url: FileController.uploadVoice,
-      filePath: path,
-      name: 'file',
-      header: {
-        'token': token
-      },
-      success(res) {
-        console.log('上传的音频文件', res);
-        that.setState({localVideoUrl: parseData(res.data).data});
-        console.log('上传的音频文件', parseData(res.data).data);
-      }
-    });
-  }
-
 
   /**
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/2/8
    * @function: 开始录制
-  */
-  startRecord = ()=>{
+   */
+  startRecord = () => {
     const options = {
       sampleRate: 16000,//采样率
       numberOfChannels: 1,//录音通道数
@@ -182,19 +168,84 @@ class AudioRecorder extends Component<Props, State> {
           canRetry: false,
           recordText: '录制中',
           recordState: RECORD_STATE.RECORD_START,
-          localVideoUrl:''
+          localVideoUrl: ''
         });
       } else {
         this.setState({
-          time: 0,
           startTimer: true,
           recordDone: false,
           canRetry: false,
           recordText: '录制中',
           recordState: RECORD_STATE.RECORD_START,
-          localVideoUrl:''
+          localVideoUrl: ''
         });
       }
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/8
+   * @function: 结束录制
+   */
+  stopRecord = () => {
+    this.recorderManager.stop();
+    this.recorderManager.onStop((res) => {
+      console.log(res);
+      this.setState({
+        localVideoUrl: res.tempFilePath,
+        recordDone: true,
+        recordText: '录制完成',
+        canRetry: true,
+      }, () => {
+        console.log('音频文件', this.state.localVideoUrl);
+      });
+    })
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 将文件通过微信Api上传到服务端
+   */
+  uploadFileTpWx = (path) => {
+    console.log('上传路径', path);
+    this.viewRef.showLoading();
+    let token = get(Enum.TOKEN), that = this;
+
+    Taro.uploadFile({
+      url: FileController.uploadVoice,
+      filePath: path,
+      name: 'file',
+      header: {
+        'token': token
+      },
+      success(res) {
+        console.log('上传的音频文件', parseData(res.data).data);
+        that.update(parseData(res.data).data);
+      }
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 更新用户信息
+   */
+  update = (path) => {
+    this.props.update({voiceUrl: path}).then((res) => {
+      console.log('更新用户信息', res);
+      this.viewRef && this.viewRef.hideLoading();
+      toast('录音上传成功');
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
     });
   }
 
@@ -224,7 +275,6 @@ class AudioRecorder extends Component<Props, State> {
     } else {
       rightIcon = require('../../assets/ico_record_done_normal.png');
     }
-
 
 
     return (
@@ -303,7 +353,7 @@ class AudioRecorder extends Component<Props, State> {
                            } else {
                              this.innerAudioContext.src = localVideoUrl;
                              this.innerAudioContext.play();
-                             this.innerAudioContext.onEnded(()=>{
+                             this.innerAudioContext.onEnded(() => {
                                this.setState({
                                  recordText: '试听结束',
                                  recordState: RECORD_STATE.RECORD_PAUSE
@@ -346,21 +396,11 @@ class AudioRecorder extends Component<Props, State> {
                      onClick={() => {
                        if (canRetry) {
                          this.innerAudioContext.stop();
-                         this.startRecord();
+                         this.setState({time: 0}, () => {
+                           this.startRecord();
+                         });
                        } else if (canRecordDone) {
-                         this.recorderManager.stop();
-                         this.recorderManager.onStop((res) => {
-                           console.log(res);
-                           // this.uploadFileTpWx(res.tempFilePath);
-                           this.setState({
-                             localVideoUrl:res.tempFilePath,
-                             recordDone: true,
-                             recordText: '录制完成',
-                             canRetry: true,
-                           }, () => {
-                             console.log('音频文件', this.state.localVideoUrl);
-                           });
-                         })
+                         this.stopRecord();
                        }
                      }}/>
             </View>
@@ -373,7 +413,9 @@ class AudioRecorder extends Component<Props, State> {
             customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(recordDone ? commonStyles.colorTheme : '#E6E6E6'),
               styles.uac, styles.ujc])}
             onClick={() => {
-
+              if (recordDone) {
+                this.uploadFileTpWx(localVideoUrl);
+              }
             }}>
             <Text style={styleAssign([fSize(16), color(recordDone ? commonStyles.whiteColor : '#343434')])}>保存</Text>
           </TouchableButton>
