@@ -157,6 +157,48 @@ class AudioRecorder extends Component<Props, State> {
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/8
+   * @function: 开始录制
+  */
+  startRecord = ()=>{
+    const options = {
+      sampleRate: 16000,//采样率
+      numberOfChannels: 1,//录音通道数
+      encodeBitRate: 96000,//编码码率
+      format: 'mp3',//音频格式，有效值 aac/mp3
+    };
+
+    this.recorderManager.start(options);
+    this.recorderManager.onStart(() => {
+      if (!this.timer) {
+        this.starTime();
+        this.setState({
+          time: 0,
+          startTimer: true,
+          recordDone: false,
+          canRetry: false,
+          recordText: '录制中',
+          recordState: RECORD_STATE.RECORD_START,
+          localVideoUrl:''
+        });
+      } else {
+        this.setState({
+          time: 0,
+          startTimer: true,
+          recordDone: false,
+          canRetry: false,
+          recordText: '录制中',
+          recordState: RECORD_STATE.RECORD_START,
+          localVideoUrl:''
+        });
+      }
+    });
+  }
+
+
   render() {
     let {time, recordText, recordDone, recordState, canRecordDone, canRetry, showDeleteNotice, localVideoUrl} = this.state;
     let recordIcon, rightIcon;
@@ -182,6 +224,8 @@ class AudioRecorder extends Component<Props, State> {
     } else {
       rightIcon = require('../../assets/ico_record_done_normal.png');
     }
+
+
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -227,32 +271,10 @@ class AudioRecorder extends Component<Props, State> {
                        switch (recordState) {
                          case RECORD_STATE.RECORD_NO_START:
                            console.log('音频录制');
-                           const options = {
-                             sampleRate: 16000,//采样率
-                             numberOfChannels: 1,//录音通道数
-                             encodeBitRate: 96000,//编码码率
-                             format: 'mp3',//音频格式，有效值 aac/mp3
-                           };
-
-                           this.recorderManager.start(options);
-                           this.recorderManager.onStart(() => {
-                             if (!this.timer) {
-                               this.starTime();
-                               this.setState({
-                                 startTimer: true,
-                                 recordText: '录制中',
-                                 recordState: RECORD_STATE.RECORD_START
-                               });
-                             } else {
-                               this.setState({
-                                 startTimer: true,
-                                 recordText: '录制中',
-                                 recordState: RECORD_STATE.RECORD_START
-                               });
-                             }
-                           });
+                           this.startRecord();
                            break;
                          case RECORD_STATE.RECORD_START:
+                           console.log('点击了暂停');
                            if (localVideoUrl.length === 0) {
                              this.recorderManager.pause();
                              this.recorderManager.onPause(() => {
@@ -279,18 +301,18 @@ class AudioRecorder extends Component<Props, State> {
                                recordState: RECORD_STATE.RECORD_RESUME
                              });
                            } else {
+                             this.innerAudioContext.src = localVideoUrl;
                              this.innerAudioContext.play();
+                             this.innerAudioContext.onEnded(()=>{
+                               this.setState({
+                                 recordText: '试听结束',
+                                 recordState: RECORD_STATE.RECORD_PAUSE
+                               });
+                             });
                              this.setState({
                                recordText: '试听中',
                                recordState: RECORD_STATE.RECORD_RESUME
                              });
-                             // Taro.playVoice({filePath: localVideoUrl}).then(res => {
-                             //   console.log('音频播放', localVideoUrl, res);
-                             //   this.setState({
-                             //     recordText: '试听中',
-                             //     recordState: RECORD_STATE.RECORD_RESUME
-                             //   });
-                             // });
                            }
                            break;
                          case RECORD_STATE.RECORD_RESUME:
@@ -323,24 +345,15 @@ class AudioRecorder extends Component<Props, State> {
                      src={rightIcon}
                      onClick={() => {
                        if (canRetry) {
-                         this.setState({
-                           time: 0,
-                           startTimer: true,
-                           recordState: RECORD_STATE.RECORD_START,
-                           recordDone: false,
-                           recordText: '正在录制',
-                           canRetry: false,
-                           canRecordDone: false,
-                           localVideoUrl: ''
-                         });
+                         this.innerAudioContext.stop();
+                         this.startRecord();
                        } else if (canRecordDone) {
-                         this.viewRef.showLoading();
                          this.recorderManager.stop();
                          this.recorderManager.onStop((res) => {
-                           this.viewRef.hideLoading();
                            console.log(res);
-                           this.uploadFileTpWx(res.tempFilePath);
+                           // this.uploadFileTpWx(res.tempFilePath);
                            this.setState({
+                             localVideoUrl:res.tempFilePath,
                              recordDone: true,
                              recordText: '录制完成',
                              canRetry: true,
@@ -371,6 +384,7 @@ class AudioRecorder extends Component<Props, State> {
           }
           } confirmCallback={() => {
             toast('删除成功');
+            this.innerAudioContext.stop();
             this.setState({
               time: 0,
               recordText: '',
