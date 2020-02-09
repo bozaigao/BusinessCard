@@ -32,7 +32,7 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/business_card';
 import {User} from "../../const/global";
 import {ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
@@ -40,6 +40,8 @@ import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 
 interface Props {
   userInfo: User;
+  //获取我收藏的名片列表
+  myCollectList: any;
 }
 
 interface State {
@@ -75,6 +77,26 @@ class MyCollect extends Component<Props, State> {
       showOperate: false,
       showDeleteNotice: false
     }
+  }
+
+
+  componentDidMount() {
+    this.myCollectList();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/9
+   * @function: 获取我收藏的名片列表
+   */
+  myCollectList = () => {
+    this.props.myCollectList({type: this.state.subCurrentIndex}).then((res) => {
+      console.log('获取我收藏的名片列表', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -116,7 +138,9 @@ class MyCollect extends Component<Props, State> {
                 <View
                   style={styleAssign([styles.uac, styles.ujc, bgColor(subCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}
                   onClick={() => {
-                    this.setState({subCurrentIndex: 0});
+                    this.setState({subCurrentIndex: 0}, () => {
+                      this.myCollectList();
+                    });
                   }}>
                   <Text
                     style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(subCurrentIndex === 0 ? commonStyles.whiteColor : '#343434')])}>谁收藏了我</Text>
@@ -124,7 +148,9 @@ class MyCollect extends Component<Props, State> {
                 <View
                   style={styleAssign([styles.uac, styles.ujc, bgColor(subCurrentIndex === 1 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2), ml(63)])}
                   onClick={() => {
-                    this.setState({subCurrentIndex: 1});
+                    this.setState({subCurrentIndex: 1}, () => {
+                      this.myCollectList();
+                    });
                   }}>
                   <Text
                     style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(subCurrentIndex === 1 ? commonStyles.whiteColor : '#343434')])}>我收藏了谁</Text>
