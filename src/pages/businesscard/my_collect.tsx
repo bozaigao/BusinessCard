@@ -9,20 +9,25 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
-  absB, absT,
+  absB,
+  absT,
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio,
+  h,
+  hRatio,
   mb,
   ml,
   mr,
-  mt, op,
-  radiusA, radiusTL, radiusTR,
+  mt,
+  op,
+  radiusA,
+  radiusTL,
+  radiusTR,
   w,
   wRatio
 } from "../../utils/style";
@@ -31,6 +36,7 @@ import * as actions from '../../actions/login';
 import {User} from "../../const/global";
 import {ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
+import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 
 interface Props {
   userInfo: User;
@@ -40,6 +46,7 @@ interface State {
   currentIndex: number;
   subCurrentIndex: number;
   showOperate: boolean;
+  showDeleteNotice: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -65,13 +72,14 @@ class MyCollect extends Component<Props, State> {
     this.state = {
       currentIndex: 0,
       subCurrentIndex: 0,
-      showOperate: false
+      showOperate: false,
+      showDeleteNotice: false
     }
   }
 
 
   render() {
-    let {currentIndex, subCurrentIndex, showOperate} = this.state;
+    let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -130,7 +138,7 @@ class MyCollect extends Component<Props, State> {
             {
               [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
                 console.log(value);
-                return (<CollectItem key={index}  operate={()=>{
+                return (<CollectItem key={index} operate={() => {
                   this.setState({showOperate: true});
                 }}/>);
               })
@@ -140,7 +148,7 @@ class MyCollect extends Component<Props, State> {
         {
           showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
                                onClick={() => {
-                                 this.setState({showOperate: false});
+                                 this.setState({showOperate: false, showDeleteNotice: true});
                                }}>
             <View
               style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
@@ -158,6 +166,16 @@ class MyCollect extends Component<Props, State> {
               </View>
             </View>
           </View>
+        }
+
+        {
+          showDeleteNotice && <BusinessCardRemoveNoticeModal cancelCallback={() => {
+            this.setState({showDeleteNotice: false});
+          }
+          } confirmCallback={() => {
+            toast('删除成功');
+          }
+          }/>
         }
 
       </CustomSafeAreaView>);
