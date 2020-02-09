@@ -5,6 +5,7 @@ import Dict from "../actions/dict";
 import File from "../actions/file";
 import Goods from "../actions/goods";
 import Customer from "../actions/customer";
+import BusinessCard from "../actions/business_card";
 
 export default combineReducers({
   login,
@@ -12,5 +13,6 @@ export default combineReducers({
   Dict,
   File,
   Goods,
-  Customer
+  Customer,
+  BusinessCard
 })

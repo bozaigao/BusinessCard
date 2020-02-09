@@ -82,6 +82,13 @@ const BASE_URL = StagingUrl,
     updatePrivateCustomer: BASE_URL + 'customer/updatePrivateCustomer',
     //获取客户详细资料
     getCustomerDetail: BASE_URL + 'customer/get',
+  },
+  //名片管理
+  BusinessCardManage = {
+    //获取我收藏的名片列表
+    myCollectList: BASE_URL + 'cardholder/list',
+    //更新我收藏的名片
+    updateMyCollect: BASE_URL + 'cardholder/update',
   };
 
 
@@ -93,5 +100,6 @@ export {
   DictController,
   FileController,
   GoodsController,
-  CustomerController
+  CustomerController,
+  BusinessCardManage
 };
