@@ -21,7 +21,6 @@ export default function BusinessCard(state = INITIAL_STATE, action) {
 }
 
 
-
 /**
  * @author 何晏波
  * @QQ 1054539528

@@ -101,7 +101,7 @@ class AddGoods extends Component<Props, State> {
 
     this.state = {
       name: this.itemData ? this.itemData.name : '',
-      price: this.itemData ? '' + this.itemData.price : '0',
+      price: this.itemData ? String(this.itemData.price) : '0',
       introduction: this.itemData ? this.itemData.introduction : '',
       carouselUrlsLocal: carouselUrlsLocalTmp,
       detailUrlsLocal: detailUrlsLocalTmp,
