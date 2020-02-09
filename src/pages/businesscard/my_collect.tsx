@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign, toast} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -66,6 +66,8 @@ class MyCollect extends Component<Props, State> {
 
   private viewRef;
   private collectItemModel: CollectItemModel;
+  private pageNo;
+  private pageSize;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -81,6 +83,8 @@ class MyCollect extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
+    this.pageNo = 1;
+    this.pageSize = 10;
     this.state = {
       currentIndex: 0,
       collectSubCurrentIndex: 0,
@@ -96,6 +100,17 @@ class MyCollect extends Component<Props, State> {
 
   componentDidMount() {
     this.myCollectList();
+    this.refresh();
+  }
+
+
+  refresh = () => {
+    this.pageNo = 1;
+    this.getVisitorList(true);
+  }
+
+  loadMore = () => {
+    this.pageNo++;
     this.getVisitorList();
   }
 
@@ -105,12 +120,23 @@ class MyCollect extends Component<Props, State> {
    * @date 2020/2/9
    * @function: 查询我的访客列表
    */
-  getVisitorList = () => {
+  getVisitorList = (refresh?: boolean) => {
     this.viewRef.showLoading();
-    this.props.getVisitorList({type: this.state.visitorSubCurrentIndex, pageNo: 1, pageSize: 20}).then((res) => {
+    this.props.getVisitorList({
+      type: this.state.visitorSubCurrentIndex,
+      pageNo: this.pageNo,
+      pageSize: this.pageSize
+    }).then((res) => {
       this.viewRef.hideLoading();
       console.log('查询我的访客列表', res);
-      this.setState({recordList: res.records, total: res.total});
+      if (refresh) {
+        Taro.stopPullDownRefresh();
+        this.setState({recordList: res.records, total: res.total});
+      } else if (res.records && res.records.length !== 0) {
+        this.setState({recordList: this.state.recordList.concat(res.records), total: res.total});
+      } else {
+        toast('没有记录了');
+      }
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -245,7 +271,16 @@ class MyCollect extends Component<Props, State> {
         </View>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-          scrollY>
+          scrollY
+          onScrollToUpper={() => {
+            Taro.startPullDownRefresh();
+            debounce(() => {
+              this.refresh();
+            }, 400);
+          }}
+          onScrollToLower={() => {
+            this.loadMore();
+          }}>
           {
             recordList.map((value, index) => {
               console.log(value);
