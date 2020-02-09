@@ -33,6 +33,7 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/business_card';
+import * as visitorActions from '../../actions/visitor';
 import {CollectItemModel, User} from "../../const/global";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
@@ -44,6 +45,8 @@ interface Props {
   myCollectList: any;
   //更新我收藏的名片
   updateMyCollect: any;
+  //查询我的访客列表
+  getVisitorList: any;
 }
 
 interface State {
@@ -54,7 +57,7 @@ interface State {
   userList: CollectItemModel[];
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, {...actions, ...visitorActions})
 class MyCollect extends Component<Props, State> {
 
   private viewRef;
@@ -86,6 +89,25 @@ class MyCollect extends Component<Props, State> {
 
   componentDidMount() {
     this.myCollectList();
+    // this.getVisitorList();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/9
+   * @function: 查询我的访客列表
+   */
+  getVisitorList = () => {
+    this.viewRef.showLoading();
+    this.props.getVisitorList({type: 0, pageNo: 1, pageSize: 20}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('查询我的访客列表', res);
+      this.setState({userList: res.userList});
+    }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -130,6 +152,7 @@ class MyCollect extends Component<Props, State> {
 
   render() {
     let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice, userList} = this.state;
+    // let visitorView =
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -146,7 +169,9 @@ class MyCollect extends Component<Props, State> {
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View style={styleAssign([styles.uac, styles.udr])}
                     onClick={() => {
-                      this.setState({currentIndex: 0});
+                      this.setState({currentIndex: 0}, () => {
+                        // this.getVisitorList();
+                      });
                     }}>
                 <View style={styleAssign([styles.uac])}>
                   <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
@@ -165,7 +190,7 @@ class MyCollect extends Component<Props, State> {
                 </View>
               </View>
             </View>
-            <View/>
+            <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
           {
             currentIndex === 1 &&

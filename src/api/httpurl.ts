@@ -89,6 +89,13 @@ const BASE_URL = StagingUrl,
     myCollectList: BASE_URL + 'cardholder/list',
     //更新我收藏的名片
     updateMyCollect: BASE_URL + 'cardholder/update',
+  },
+  //访客管理
+  VisitorManage = {
+    //查询我的访客列表
+    getVisitorList: BASE_URL + 'visitor/list',
+    //添加访客记录
+    addVisitor: BASE_URL + 'visitor/add',
   };
 
 
@@ -101,5 +108,6 @@ export {
   FileController,
   GoodsController,
   CustomerController,
-  BusinessCardManage
+  BusinessCardManage,
+  VisitorManage
 };
