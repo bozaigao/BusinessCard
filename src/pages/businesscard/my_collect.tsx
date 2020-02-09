@@ -11,24 +11,26 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
+  absB, absT,
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, hRatio,
   mb,
   ml,
   mr,
-  mt,
-  radiusA,
+  mt, op,
+  radiusA, radiusTL, radiusTR,
   w,
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import {User} from "../../const/global";
-import {Text, View} from "@tarojs/components";
+import {ScrollView, Text, View} from "@tarojs/components";
+import CollectItem from "./collect-item";
 
 interface Props {
   userInfo: User;
@@ -37,6 +39,7 @@ interface Props {
 interface State {
   currentIndex: number;
   subCurrentIndex: number;
+  showOperate: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -61,13 +64,14 @@ class MyCollect extends Component<Props, State> {
     console.log(this.viewRef);
     this.state = {
       currentIndex: 0,
-      subCurrentIndex: 0
+      subCurrentIndex: 0,
+      showOperate: false
     }
   }
 
 
   render() {
-    let {currentIndex, subCurrentIndex} = this.state;
+    let {currentIndex, subCurrentIndex, showOperate} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -120,7 +124,42 @@ class MyCollect extends Component<Props, State> {
               </View>
             </View>
           }
+          <ScrollView
+            style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+            scrollY>
+            {
+              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+                console.log(value);
+                return (<CollectItem key={index}  operate={()=>{
+                  this.setState({showOperate: true});
+                }}/>);
+              })
+            }
+          </ScrollView>
         </View>
+        {
+          showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                               onClick={() => {
+                                 this.setState({showOperate: false});
+                               }}>
+            <View
+              style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
+            <View
+              style={styleAssign([wRatio(100), h(120), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
+                styles.upa, absB(0)])}>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                    onClick={() => {
+                    }}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除名片</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
+              </View>
+            </View>
+          </View>
+        }
+
       </CustomSafeAreaView>);
   }
 }
