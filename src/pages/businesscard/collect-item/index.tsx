@@ -66,10 +66,13 @@ export default class CollectItem extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
-            <Text style={styleAssign([color('#979797'), fSize(12), ml(16)])}>{`收藏时间 ${transformTime(item.collectTime)}`}</Text>
+            <Text
+              style={styleAssign([color('#979797'), fSize(12), ml(16)])}>{`收藏时间 ${transformTime(item.collectTime)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.ujc, styles.udr, w(40), mr(16)])}
-                onClick={operate}>
+                onClick={() => {
+                  operate(item);
+                }}>
             <Image style={styleAssign([w(19), h(4)])} src={require('../../../assets/ico_three_dot.png')}/>
           </View>
         </View>

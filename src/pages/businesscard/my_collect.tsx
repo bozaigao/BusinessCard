@@ -42,6 +42,8 @@ interface Props {
   userInfo: User;
   //获取我收藏的名片列表
   myCollectList: any;
+  //更新我收藏的名片
+  updateMyCollect: any;
 }
 
 interface State {
@@ -56,7 +58,7 @@ interface State {
 class MyCollect extends Component<Props, State> {
 
   private viewRef;
-
+  private collectItemModel: CollectItemModel;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -94,17 +96,40 @@ class MyCollect extends Component<Props, State> {
    * @function: 获取我收藏的名片列表
    */
   myCollectList = () => {
+    this.viewRef.showLoading();
     this.props.myCollectList({type: this.state.subCurrentIndex}).then((res) => {
+      this.viewRef.hideLoading();
       console.log('获取我收藏的名片列表', res);
       this.setState({userList: res.userList});
     }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/9
+   * @function: 更新我收藏的名片
+   */
+  updateMyCollect = (type: number, collectedUserId: number) => {
+    this.viewRef.showLoading();
+    this.props.updateMyCollect({type, collectedUserId}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('更新我收藏的名片', res);
+      toast('删除成功');
+      this.myCollectList();
+    }).catch(e => {
+      this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
 
 
   render() {
-    let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice,userList} = this.state;
+    let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice, userList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -167,7 +192,8 @@ class MyCollect extends Component<Props, State> {
             {
               userList.map((value, index) => {
                 console.log(value);
-                return (<CollectItem key={index} operate={() => {
+                return (<CollectItem key={index} operate={(item) => {
+                  this.collectItemModel = item;
                   this.setState({showOperate: true});
                 }} item={value}/>);
               })
@@ -186,6 +212,7 @@ class MyCollect extends Component<Props, State> {
                 styles.upa, absB(0)])}>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
+                      this.setState({showOperate: false, showDeleteNotice: true});
                     }}>
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除名片</Text>
               </View>
@@ -202,7 +229,9 @@ class MyCollect extends Component<Props, State> {
             this.setState({showDeleteNotice: false});
           }
           } confirmCallback={() => {
-            toast('删除成功');
+            this.setState({showDeleteNotice: false}, () => {
+              this.updateMyCollect(0, this.collectItemModel.userId);
+            });
           }
           }/>
         }

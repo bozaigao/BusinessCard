@@ -29,6 +29,7 @@ import TouchableButton from "../../../compoments/touchable-button";
 
 interface Props {
   shareClick: any;
+  collectCallback: any;
 }
 
 interface State {
@@ -38,7 +39,7 @@ export default class Card extends PureComponent<Props, State> {
 
   render() {
 
-    let {shareClick} = this.props;
+    let {shareClick, collectCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
@@ -60,7 +61,8 @@ export default class Card extends PureComponent<Props, State> {
         {/*拨打电话等操作*/}
         <View style={styleAssign([wRatio(100), h(264), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
           <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(20)])}>
-            <View style={styleAssign([styles.uf1, styles.uac])}>
+            <View style={styleAssign([styles.uf1, styles.uac])}
+                  onClick={collectCallback}>
               <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>118</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(11), h(11)])} src={require('../../../assets/ico_star_gray.png')}/>

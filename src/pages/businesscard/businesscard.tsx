@@ -144,6 +144,10 @@ class Businesscard extends Component<Props, State> {
           {/*个人名片*/}
           <Card shareClick={() => {
             this.setState({showShare: true});
+          }} collectCallback={() => {
+            Taro.navigateTo({
+              url: `/pages/businesscard/my_collect`
+            });
           }}/>
           {/*我的个人简介*/}
           <PersonalInfo/>
