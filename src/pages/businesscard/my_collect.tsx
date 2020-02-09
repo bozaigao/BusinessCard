@@ -24,7 +24,7 @@ import {
   ml,
   mr,
   mt,
-  op,
+  op, pl, pr,
   radiusA,
   radiusTL,
   radiusTR,
@@ -58,6 +58,7 @@ interface State {
   showDeleteNotice: boolean;
   collectUserList: CollectItemModel[];
   recordList: VisitorRecordModel[];
+  total: number;
 }
 
 @connect(state => state.login, {...actions, ...visitorActions})
@@ -87,7 +88,8 @@ class MyCollect extends Component<Props, State> {
       showOperate: false,
       showDeleteNotice: false,
       collectUserList: [],
-      recordList: []
+      recordList: [],
+      total: 0
     }
   }
 
@@ -108,7 +110,7 @@ class MyCollect extends Component<Props, State> {
     this.props.getVisitorList({type: this.state.visitorSubCurrentIndex, pageNo: 1, pageSize: 20}).then((res) => {
       this.viewRef.hideLoading();
       console.log('查询我的访客列表', res);
-      this.setState({recordList: res.records});
+      this.setState({recordList: res.records, total: res.total});
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -156,7 +158,7 @@ class MyCollect extends Component<Props, State> {
 
 
   render() {
-    let {currentIndex, collectSubCurrentIndex, visitorSubCurrentIndex, showOperate, showDeleteNotice, collectUserList, recordList} = this.state;
+    let {currentIndex, collectSubCurrentIndex, visitorSubCurrentIndex, showOperate, showDeleteNotice, collectUserList, recordList, total} = this.state;
     let childView;
 
     if (currentIndex === 1) {
@@ -201,7 +203,7 @@ class MyCollect extends Component<Props, State> {
       </View>;
     } else {
       childView = <View style={styleAssign([styles.uf1])}>
-        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, styles.udr, mt(10), mb(20)])}>
+        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, styles.udr, mt(10)])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View
               style={styleAssign([styles.uac, styles.ujc, bgColor(visitorSubCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}
@@ -222,6 +224,22 @@ class MyCollect extends Component<Props, State> {
               }}>
               <Text
                 style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(visitorSubCurrentIndex === 1 ? commonStyles.whiteColor : '#343434')])}>我访问了谁</Text>
+            </View>
+          </View>
+        </View>
+        {/*条件筛选*/}
+        <View
+          style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
+            pl(20), pr(20), mt(10), mb(20)])}>
+          <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${total}位访客`}</Text>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <Text style={styleAssign([color('#727272'), fSize(14)])}>最后访问时间</Text>
+              <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
+            </View>
+            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
+              <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
+              <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
             </View>
           </View>
         </View>
