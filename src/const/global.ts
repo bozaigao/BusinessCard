@@ -232,3 +232,26 @@ export interface CollectItemModel {
   position: string;
   userId: number;
 }
+
+export interface VisitorRecordModel {
+  cardCount: number;
+  companyCount: number;
+  createTime: string;
+  goodsCount: number;
+  id: number;
+  lastVisitTime: string;
+  userId: number;
+  visitCount: number;
+  visitor: Visitor;
+  visitorUserId: number;
+}
+
+export interface Visitor {
+  avatar: string;
+  name: string;
+  phone: string;
+  sex: number;
+  source: string;
+  userId: number;
+  wechat: string;
+}

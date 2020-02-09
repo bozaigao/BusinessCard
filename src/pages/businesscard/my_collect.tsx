@@ -34,10 +34,11 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/business_card';
 import * as visitorActions from '../../actions/visitor';
-import {CollectItemModel, User} from "../../const/global";
+import {CollectItemModel, User, VisitorRecordModel} from "../../const/global";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
 import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
+import VisitorItem from "./visitor-item";
 
 interface Props {
   userInfo: User;
@@ -51,10 +52,12 @@ interface Props {
 
 interface State {
   currentIndex: number;
-  subCurrentIndex: number;
+  collectSubCurrentIndex: number;
+  visitorSubCurrentIndex: number;
   showOperate: boolean;
   showDeleteNotice: boolean;
-  userList: CollectItemModel[];
+  collectUserList: CollectItemModel[];
+  recordList: VisitorRecordModel[];
 }
 
 @connect(state => state.login, {...actions, ...visitorActions})
@@ -79,17 +82,19 @@ class MyCollect extends Component<Props, State> {
     console.log(this.viewRef);
     this.state = {
       currentIndex: 0,
-      subCurrentIndex: 0,
+      collectSubCurrentIndex: 0,
+      visitorSubCurrentIndex: 0,
       showOperate: false,
       showDeleteNotice: false,
-      userList: []
+      collectUserList: [],
+      recordList: []
     }
   }
 
 
   componentDidMount() {
     this.myCollectList();
-    // this.getVisitorList();
+    this.getVisitorList();
   }
 
   /**
@@ -100,10 +105,10 @@ class MyCollect extends Component<Props, State> {
    */
   getVisitorList = () => {
     this.viewRef.showLoading();
-    this.props.getVisitorList({type: 0, pageNo: 1, pageSize: 20}).then((res) => {
+    this.props.getVisitorList({type: this.state.visitorSubCurrentIndex, pageNo: 1, pageSize: 20}).then((res) => {
       this.viewRef.hideLoading();
       console.log('查询我的访客列表', res);
-      this.setState({userList: res.userList});
+      this.setState({recordList: res.records});
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -119,10 +124,10 @@ class MyCollect extends Component<Props, State> {
    */
   myCollectList = () => {
     this.viewRef.showLoading();
-    this.props.myCollectList({type: this.state.subCurrentIndex}).then((res) => {
+    this.props.myCollectList({type: this.state.collectSubCurrentIndex}).then((res) => {
       this.viewRef.hideLoading();
       console.log('获取我收藏的名片列表', res);
-      this.setState({userList: res.userList});
+      this.setState({collectUserList: res.userList});
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -151,8 +156,87 @@ class MyCollect extends Component<Props, State> {
 
 
   render() {
-    let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice, userList} = this.state;
-    // let visitorView =
+    let {currentIndex, collectSubCurrentIndex, visitorSubCurrentIndex, showOperate, showDeleteNotice, collectUserList, recordList} = this.state;
+    let childView;
+
+    if (currentIndex === 1) {
+      childView = <View style={styleAssign([styles.uf1])}>
+        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, styles.udr, mt(10), mb(20)])}>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <View
+              style={styleAssign([styles.uac, styles.ujc, bgColor(collectSubCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}
+              onClick={() => {
+                this.setState({collectSubCurrentIndex: 0}, () => {
+                  this.myCollectList();
+                });
+              }}>
+              <Text
+                style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(collectSubCurrentIndex === 0 ? commonStyles.whiteColor : '#343434')])}>谁收藏了我</Text>
+            </View>
+            <View
+              style={styleAssign([styles.uac, styles.ujc, bgColor(collectSubCurrentIndex === 1 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2), ml(63)])}
+              onClick={() => {
+                this.setState({collectSubCurrentIndex: 1}, () => {
+                  this.myCollectList();
+                });
+              }}>
+              <Text
+                style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(collectSubCurrentIndex === 1 ? commonStyles.whiteColor : '#343434')])}>我收藏了谁</Text>
+            </View>
+          </View>
+        </View>
+        <ScrollView
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          scrollY>
+          {
+            collectUserList.map((value, index) => {
+              console.log(value);
+              return (<CollectItem key={index} operate={(item) => {
+                this.collectItemModel = item;
+                this.setState({showOperate: true});
+              }} item={value}/>);
+            })
+          }
+        </ScrollView>
+      </View>;
+    } else {
+      childView = <View style={styleAssign([styles.uf1])}>
+        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, styles.udr, mt(10), mb(20)])}>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <View
+              style={styleAssign([styles.uac, styles.ujc, bgColor(visitorSubCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}
+              onClick={() => {
+                this.setState({visitorSubCurrentIndex: 0}, () => {
+                  this.getVisitorList();
+                });
+              }}>
+              <Text
+                style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(visitorSubCurrentIndex === 0 ? commonStyles.whiteColor : '#343434')])}>谁访问了我</Text>
+            </View>
+            <View
+              style={styleAssign([styles.uac, styles.ujc, bgColor(visitorSubCurrentIndex === 1 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2), ml(63)])}
+              onClick={() => {
+                this.setState({visitorSubCurrentIndex: 1}, () => {
+                  this.getVisitorList();
+                });
+              }}>
+              <Text
+                style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(visitorSubCurrentIndex === 1 ? commonStyles.whiteColor : '#343434')])}>我访问了谁</Text>
+            </View>
+          </View>
+        </View>
+        <ScrollView
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          scrollY>
+          {
+            recordList.map((value, index) => {
+              console.log(value);
+              return (<VisitorItem key={index} item={value}/>);
+            })
+          }
+        </ScrollView>
+      </View>;
+    }
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -170,7 +254,7 @@ class MyCollect extends Component<Props, State> {
               <View style={styleAssign([styles.uac, styles.udr])}
                     onClick={() => {
                       this.setState({currentIndex: 0}, () => {
-                        // this.getVisitorList();
+                        this.getVisitorList();
                       });
                     }}>
                 <View style={styleAssign([styles.uac])}>
@@ -193,45 +277,8 @@ class MyCollect extends Component<Props, State> {
             <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
           {
-            currentIndex === 1 &&
-            <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, styles.udr, mt(10), mb(20)])}>
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <View
-                  style={styleAssign([styles.uac, styles.ujc, bgColor(subCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}
-                  onClick={() => {
-                    this.setState({subCurrentIndex: 0}, () => {
-                      this.myCollectList();
-                    });
-                  }}>
-                  <Text
-                    style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(subCurrentIndex === 0 ? commonStyles.whiteColor : '#343434')])}>谁收藏了我</Text>
-                </View>
-                <View
-                  style={styleAssign([styles.uac, styles.ujc, bgColor(subCurrentIndex === 1 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2), ml(63)])}
-                  onClick={() => {
-                    this.setState({subCurrentIndex: 1}, () => {
-                      this.myCollectList();
-                    });
-                  }}>
-                  <Text
-                    style={styleAssign([mt(2), mb(2), ml(8), mr(8), color(subCurrentIndex === 1 ? commonStyles.whiteColor : '#343434')])}>我收藏了谁</Text>
-                </View>
-              </View>
-            </View>
+            childView
           }
-          <ScrollView
-            style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-            scrollY>
-            {
-              userList.map((value, index) => {
-                console.log(value);
-                return (<CollectItem key={index} operate={(item) => {
-                  this.collectItemModel = item;
-                  this.setState({showOperate: true});
-                }} item={value}/>);
-              })
-            }
-          </ScrollView>
         </View>
         {
           showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
