@@ -222,3 +222,17 @@ export interface FlowUpListModel {
   id: number;
   userId: number;
 }
+
+export interface CollectItemModel {
+  count: number;
+  userList: UserListItem[];
+}
+
+export interface UserListItem {
+  avatar: string;
+  collectTime: string;
+  company: string;
+  name: string;
+  position: string;
+  userId: number;
+}

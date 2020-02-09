@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/const/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/const/global.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,15 +25,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_collect.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my_collect.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="96" column="19" lean-forward="true" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+            <state relative-caret-position="319">
+              <caret line="93" column="25" lean-forward="true" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#254#310#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="614">
+              <caret line="236" column="16" selection-start-line="236" selection-start-column="16" selection-end-line="236" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -160,7 +169,6 @@
         <option value="$PROJECT_DIR$/src/pages/customer/custom-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_genjin.tsx" />
-        <option value="$PROJECT_DIR$/src/const/global.ts" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/top-header/index.tsx" />
@@ -182,6 +190,7 @@
         <option value="$PROJECT_DIR$/src/actions/business_card.ts" />
         <option value="$PROJECT_DIR$/src/reducers/index.ts" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" />
+        <option value="$PROJECT_DIR$/src/const/global.ts" />
       </list>
     </option>
   </component>
@@ -224,6 +233,12 @@
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="const" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
@@ -453,12 +468,12 @@
       <workItem from="1580862894983" duration="18514000" />
       <workItem from="1580969781145" duration="186000" />
       <workItem from="1581124537392" duration="5819000" />
-      <workItem from="1581166818243" duration="5608000" />
+      <workItem from="1581166818243" duration="5962000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="650414000" />
+    <option name="totallyTimeSpent" value="650768000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -618,13 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2926">
           <caret line="133" column="22" lean-forward="true" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="216" column="32" selection-start-line="216" selection-start-column="17" selection-end-line="216" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -948,12 +956,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="96" column="19" lean-forward="true" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+        <state relative-caret-position="319">
+          <caret line="93" column="25" lean-forward="true" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#254#310#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="614">
+          <caret line="236" column="16" selection-start-line="236" selection-start-column="16" selection-end-line="236" selection-end-column="16" />
         </state>
       </provider>
     </entry>
