@@ -33,7 +33,7 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/business_card';
-import {User} from "../../const/global";
+import {CollectItemModel, User} from "../../const/global";
 import {ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
 import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
@@ -49,6 +49,7 @@ interface State {
   subCurrentIndex: number;
   showOperate: boolean;
   showDeleteNotice: boolean;
+  userList: CollectItemModel[];
 }
 
 @connect(state => state.login, {...actions})
@@ -75,7 +76,8 @@ class MyCollect extends Component<Props, State> {
       currentIndex: 0,
       subCurrentIndex: 0,
       showOperate: false,
-      showDeleteNotice: false
+      showDeleteNotice: false,
+      userList: []
     }
   }
 
@@ -94,6 +96,7 @@ class MyCollect extends Component<Props, State> {
   myCollectList = () => {
     this.props.myCollectList({type: this.state.subCurrentIndex}).then((res) => {
       console.log('获取我收藏的名片列表', res);
+      this.setState({userList: res.userList});
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -101,7 +104,7 @@ class MyCollect extends Component<Props, State> {
 
 
   render() {
-    let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice} = this.state;
+    let {currentIndex, subCurrentIndex, showOperate, showDeleteNotice,userList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -162,11 +165,11 @@ class MyCollect extends Component<Props, State> {
             style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
             scrollY>
             {
-              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
+              userList.map((value, index) => {
                 console.log(value);
                 return (<CollectItem key={index} operate={() => {
                   this.setState({showOperate: true});
-                }}/>);
+                }} item={value}/>);
               })
             }
           </ScrollView>
