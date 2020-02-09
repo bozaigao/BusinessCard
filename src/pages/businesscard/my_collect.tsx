@@ -24,7 +24,9 @@ import {
   ml,
   mr,
   mt,
-  op, pl, pr,
+  op,
+  pl,
+  pr,
   radiusA,
   radiusTL,
   radiusTR,
@@ -39,6 +41,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
 import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 import VisitorItem from "./visitor-item";
+import ModeModal from "./mode-modal";
 
 interface Props {
   userInfo: User;
@@ -59,6 +62,10 @@ interface State {
   collectUserList: CollectItemModel[];
   recordList: VisitorRecordModel[];
   total: number;
+  shaiXuanMode: string;
+  showMode: boolean;
+  shaiXuanValue: string;
+  showShaiXuan: boolean;
 }
 
 @connect(state => state.login, {...actions, ...visitorActions})
@@ -93,7 +100,11 @@ class MyCollect extends Component<Props, State> {
       showDeleteNotice: false,
       collectUserList: [],
       recordList: [],
-      total: 0
+      total: 0,
+      shaiXuanMode: '最后访问时间',
+      shaiXuanValue: '全部',
+      showMode: false,
+      showShaiXuan: false
     }
   }
 
@@ -184,7 +195,10 @@ class MyCollect extends Component<Props, State> {
 
 
   render() {
-    let {currentIndex, collectSubCurrentIndex, visitorSubCurrentIndex, showOperate, showDeleteNotice, collectUserList, recordList, total} = this.state;
+    let {
+      currentIndex, collectSubCurrentIndex, visitorSubCurrentIndex, showOperate, showDeleteNotice, collectUserList, recordList, total,
+      shaiXuanMode, showMode, showShaiXuan
+    } = this.state;
     let childView;
 
     if (currentIndex === 1) {
@@ -254,21 +268,26 @@ class MyCollect extends Component<Props, State> {
           </View>
         </View>
         {/*条件筛选*/}
-        <View
-          style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
-            pl(20), pr(20), mt(10), mb(20)])}>
-          <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${total}位访客`}</Text>
-          <View style={styleAssign([styles.uac, styles.udr])}>
+        {
+          visitorSubCurrentIndex === 0 && <View
+            style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
+              pl(20), pr(20), mt(10), mb(20)])}>
+            <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${total}位访客`}</Text>
             <View style={styleAssign([styles.uac, styles.udr])}>
-              <Text style={styleAssign([color('#727272'), fSize(14)])}>最后访问时间</Text>
-              <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
-            </View>
-            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
-              <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
-              <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
+              <View style={styleAssign([styles.uac, styles.udr])}
+                    onClick={() => {
+                      this.setState({showMode: true});
+                    }}>
+                <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
+                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
+              </View>
+              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
+                <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
+                <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
+              </View>
             </View>
           </View>
-        </View>
+        }
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY
@@ -364,6 +383,27 @@ class MyCollect extends Component<Props, State> {
           } confirmCallback={() => {
             this.setState({showDeleteNotice: false}, () => {
               this.updateMyCollect(0, this.collectItemModel.userId);
+            });
+          }
+          }/>
+        }
+
+        {
+          showMode && <ModeModal cancelCallback={() => {
+            console.log('点击');
+            this.setState({showMode: false});
+          }
+          } confirmCallback={() => {
+
+          }
+          } collectCallback={() => {
+            this.setState({showMode: false, currentIndex: 1}, () => {
+              this.myCollectList();
+            });
+          }
+          } myVisitorCallback={() => {
+            this.setState({showMode: false, visitorSubCurrentIndex: 1}, () => {
+              this.getVisitorList();
             });
           }
           }/>
