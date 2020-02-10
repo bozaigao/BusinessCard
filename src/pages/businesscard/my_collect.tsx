@@ -273,7 +273,7 @@ class MyCollect extends Component<Props, State> {
               style={styleAssign([styles.uac, styles.ujc, bgColor(visitorSubCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}
               onClick={() => {
                 this.setState({visitorSubCurrentIndex: 0}, () => {
-                  this.getVisitorList();
+                  this.refresh();
                 });
               }}>
               <Text
@@ -283,7 +283,7 @@ class MyCollect extends Component<Props, State> {
               style={styleAssign([styles.uac, styles.ujc, bgColor(visitorSubCurrentIndex === 1 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2), ml(63)])}
               onClick={() => {
                 this.setState({visitorSubCurrentIndex: 1}, () => {
-                  this.getVisitorList();
+                  this.refresh();
                 });
               }}>
               <Text
@@ -353,7 +353,7 @@ class MyCollect extends Component<Props, State> {
               <View style={styleAssign([styles.uac, styles.udr])}
                     onClick={() => {
                       this.setState({currentIndex: 0}, () => {
-                        this.getVisitorList();
+                        this.refresh();
                       });
                     }}>
                 <View style={styleAssign([styles.uac])}>
