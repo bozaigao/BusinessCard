@@ -41,6 +41,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
 import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 import VisitorItem from "./visitor-item";
+import ShaiXuanModal from "./shai-xuan-modal";
 import ModeModal from "./mode-modal";
 
 interface Props {
@@ -281,7 +282,10 @@ class MyCollect extends Component<Props, State> {
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
                 <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
               </View>
-              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
+              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                    onClick={() => {
+                      this.setState({showShaiXuan: true});
+                    }}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
                 <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
               </View>
@@ -387,7 +391,6 @@ class MyCollect extends Component<Props, State> {
           }
           }/>
         }
-
         {
           showMode && <ModeModal cancelCallback={() => {
             console.log('点击');
@@ -403,6 +406,26 @@ class MyCollect extends Component<Props, State> {
           }
           } myVisitorCallback={() => {
             this.setState({showMode: false, visitorSubCurrentIndex: 1}, () => {
+              this.getVisitorList();
+            });
+          }
+          }/>
+        }
+        {
+          showShaiXuan && <ShaiXuanModal cancelCallback={() => {
+            console.log('点击');
+            this.setState({showShaiXuan: false});
+          }
+          } confirmCallback={() => {
+
+          }
+          } collectCallback={() => {
+            this.setState({showShaiXuan: false, currentIndex: 1}, () => {
+              this.myCollectList();
+            });
+          }
+          } myVisitorCallback={() => {
+            this.setState({showShaiXuan: false, visitorSubCurrentIndex: 1}, () => {
               this.getVisitorList();
             });
           }

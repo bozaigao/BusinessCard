@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {getToday, styleAssign} from "../../../utils/datatool";
 import {
   absR,
   absT,
@@ -24,7 +24,6 @@ import {
   mr,
   mt,
   op,
-  padding,
   pl,
   pr,
   radiusA,
@@ -43,24 +42,23 @@ interface Props {
 }
 
 interface State {
-  topHeight: number;
-  bottomHeight: number;
+
 }
 
 export default class ModeModal extends PureComponent<Props, State> {
 
-  componentWillMount() {
-    //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
-    if (iphoneX()) {
-      this.setState({topHeight: 43, bottomHeight: 44});
-    } else {
-      this.setState({topHeight: 15});
+  constructor(props) {
+    super(props);
+    this.state = {
+      startTime: '2020-01-01',
+      endTime: getToday(),
+      visitTime: '全部'
     }
   }
 
   render() {
 
-    let {cancelCallback, collectCallback, myVisitorCallback} = this.props;
+    let {cancelCallback, collectCallback, myVisitorCallback, confirmCallback} = this.props;
     let visitorSubCurrentIndex = 0, currentIndex = 0;
 
     return (
@@ -138,41 +136,18 @@ export default class ModeModal extends PureComponent<Props, State> {
           </View>
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {/*筛选内容*/}
-          <View style={styleAssign([wRatio(100), h(214), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问时间</Text>
-            <View style={styleAssign([styles.uac, styles.udr, pl(20), mt(12)])}>
-              {
-                ['全部', '今日', '本周', '本月', '近半年'].map((value, index) => {
-                  return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
-                    styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor('#E4E4E4')])}>
-                    <Text style={styleAssign([color('#0C0C0C'), fSize(14)])}>{value}</Text>
-                  </View>;
-                })
-              }
+          <View style={styleAssign([wRatio(100), h(88), bgColor(commonStyles.whiteColor)])}
+                onClick={() => {
+                  confirmCallback('最后访问时间');
+                }}>
+            <View style={styleAssign([wRatio(100), h(44), styles.ujc, bgColor(commonStyles.whiteColor)])}>
+              <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20)])}>最后访问时间</Text>
             </View>
-            <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>自定义时间</Text>
-            <View style={styleAssign([styles.uac, styles.udr, wRatio(100), pl(20), mt(14)])}>
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([color('#979797'), fSize(14)])}>2019-03-18</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_down.png')}/>
-              </View>
-              <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mr(20)])}>至</Text>
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([color('#979797'), fSize(14)])}>2019-04-20</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_down.png')}/>
-              </View>
-            </View>
-            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.uje])}>
-              <View style={styleAssign([styles.uac, styles.udr, mb(15)])}>
-                <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}>
-                  <Text style={styleAssign([color(commonStyles.colorTheme), fSize(16)])}>重置</Text>
-                </View>
-                <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc,
-                  bgColor(commonStyles.colorTheme), ml(130)])}>
-                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>确定</Text>
-                </View>
-              </View>
+            <View style={styleAssign([wRatio(100), h(44), styles.ujc, bgColor(commonStyles.whiteColor)])}
+                  onClick={() => {
+                    confirmCallback('最多访问次数');
+                  }}>
+              <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20)])}>最多访问次数</Text>
             </View>
           </View>
           <View style={styleAssign([styles.uf1])}
