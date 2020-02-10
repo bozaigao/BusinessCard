@@ -156,10 +156,9 @@ let nowYear = now.getFullYear(); //当前年
 nowYear += (nowYear < 2000) ? 1900 : 0; //
 
 let lastMonthDate = new Date(); //上月日期
+
 lastMonthDate.setDate(1);
 lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
-let lastYear = lastMonthDate.getFullYear();
-let lastMonth = lastMonthDate.getMonth();
 
 //格式化日期：yyyy-MM-dd
 function formatDate(date) {
@@ -181,6 +180,7 @@ function getMonthDays(myMonth) {
   let monthStartDate = new Date(nowYear, myMonth, 1);
   let monthEndDate = new Date(nowYear, myMonth + 1, 1);
   let days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
+
   return days;
 }
 
@@ -188,18 +188,21 @@ function getMonthDays(myMonth) {
 //获得本周的开始日期
 export function getWeekStartDate() {
   let weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+
   return formatDate(weekStartDate);
 }
 
 //获得本周的结束日期
 export function getWeekEndDate() {
   let weekEndDate = new Date(nowYear, nowMonth, nowDay + (7 - nowDayOfWeek));
+
   return formatDate(weekEndDate);
 }
 
 //获得本月的开始日期
 export function getMonthStartDate() {
   let monthStartDate = new Date(nowYear, nowMonth, 1);
+
   return formatDate(monthStartDate);
 }
 
@@ -208,6 +211,7 @@ export function getMonthEndDate() {
 
   let days = getMonthDays(nowMonth);//获取当月总共有多少天
   let monthEndDate = new Date(nowYear, nowMonth, days);
+
   return formatDate(monthEndDate); //返回当月结束时间
 }
 
