@@ -96,6 +96,19 @@ const BASE_URL = StagingUrl,
     getVisitorList: BASE_URL + 'visitor/list',
     //添加访客记录
     addVisitor: BASE_URL + 'visitor/add',
+  },
+  //雷达模块
+  RadarManage = {
+    //新增行为轨迹
+    addRadarTrace: BASE_URL + 'behaviorTrace/add',
+    //雷达AI分析 兴趣和行为占比
+    interestBehaviorRate: BASE_URL + 'behaviorTrace/interestBehaviorRate',
+    //查询我的雷达数据列表
+    getTraceList: BASE_URL + 'behaviorTrace/list',
+    //雷达AI分析-客户活跃度
+    traceActive: BASE_URL + 'behaviorTrace/traceActive',
+    //雷达详情访问轨迹
+    traceList: BASE_URL + 'behaviorTrace/traceList',
   };
 
 
@@ -109,5 +122,6 @@ export {
   GoodsController,
   CustomerController,
   BusinessCardManage,
-  VisitorManage
+  VisitorManage,
+  RadarManage
 };

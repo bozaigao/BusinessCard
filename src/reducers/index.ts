@@ -7,6 +7,7 @@ import Goods from "../actions/goods";
 import Customer from "../actions/customer";
 import BusinessCard from "../actions/business_card";
 import Visitor from "../actions/visitor";
+import Radar from "../actions/radar";
 
 export default combineReducers({
   login,
@@ -16,5 +17,6 @@ export default combineReducers({
   Goods,
   Customer,
   BusinessCard,
-  Visitor
+  Visitor,
+  Radar
 })
