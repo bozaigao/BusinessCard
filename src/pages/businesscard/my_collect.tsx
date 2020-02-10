@@ -9,7 +9,15 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {
+  debounce, getHalfYearStartDate,
+  getMonthEndDate,
+  getMonthStartDate,
+  getWeekEndDate,
+  getWeekStartDate,
+  styleAssign,
+  toast
+} from "../../utils/datatool";
 import {
   absB,
   absT,

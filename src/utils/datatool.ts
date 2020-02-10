@@ -142,3 +142,86 @@ export function getToday() {
 export function wrapSafe(source) {
   return source ? source : '';
 }
+
+
+/**
+ * 获取本周、本季度、本月、上月的开始日期、结束日期
+ */
+let now = new Date(); //当前日期
+let nowDayOfWeek = now.getDay(); //今天本周的第几天
+let nowDay = now.getDate(); //当前日
+let nowMonth = now.getMonth(); //当前月
+let nowYear = now.getFullYear(); //当前年
+
+nowYear += (nowYear < 2000) ? 1900 : 0; //
+
+let lastMonthDate = new Date(); //上月日期
+lastMonthDate.setDate(1);
+lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+let lastYear = lastMonthDate.getFullYear();
+let lastMonth = lastMonthDate.getMonth();
+
+//格式化日期：yyyy-MM-dd
+function formatDate(date) {
+  let myyear = date.getFullYear();
+  let mymonth = date.getMonth() + 1;
+  let myweekday = date.getDate();
+
+  if (mymonth < 10) {
+    mymonth = "0" + mymonth;
+  }
+  if (myweekday < 10) {
+    myweekday = "0" + myweekday;
+  }
+  return (myyear + "-" + mymonth + "-" + myweekday);
+}
+
+//获得某月的天数
+function getMonthDays(myMonth) {
+  let monthStartDate = new Date(nowYear, myMonth, 1);
+  let monthEndDate = new Date(nowYear, myMonth + 1, 1);
+  let days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
+  return days;
+}
+
+
+//获得本周的开始日期
+export function getWeekStartDate() {
+  let weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+  return formatDate(weekStartDate);
+}
+
+//获得本周的结束日期
+export function getWeekEndDate() {
+  let weekEndDate = new Date(nowYear, nowMonth, nowDay + (7 - nowDayOfWeek));
+  return formatDate(weekEndDate);
+}
+
+//获得本月的开始日期
+export function getMonthStartDate() {
+  let monthStartDate = new Date(nowYear, nowMonth, 1);
+  return formatDate(monthStartDate);
+}
+
+//获得本月的结束日期
+export function getMonthEndDate() {
+
+  let days = getMonthDays(nowMonth);//获取当月总共有多少天
+  let monthEndDate = new Date(nowYear, nowMonth, days);
+  return formatDate(monthEndDate); //返回当月结束时间
+}
+
+
+//获得半年的开始日期
+export function getHalfYearStartDate() {
+  let quarterStartDate;
+
+  if (nowMonth > 5) {
+    quarterStartDate = new Date(nowYear, nowMonth - 5, 1);
+  } else {
+    quarterStartDate = new Date(nowYear - 1, 6 + nowMonth, 1);
+  }
+
+  return formatDate(quarterStartDate);
+}
+
