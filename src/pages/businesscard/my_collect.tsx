@@ -159,8 +159,6 @@ class MyCollect extends Component<Props, State> {
       Object.assign(params, {visitCount: shaiXuanTimes});
     }
 
-    console.log('妈买啊请求参数', params);
-
     this.props.getVisitorList(params).then((res) => {
       console.log('查询我的访客列表', res);
       if (refresh) {

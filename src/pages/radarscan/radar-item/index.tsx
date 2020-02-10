@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {formartSecond, styleAssign, transformTime} from "../../../utils/datatool";
 import styles, {
   absB,
   absR,
@@ -25,10 +25,11 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
+import {operateMap, RadarModel} from "../../../const/global";
 
 
 interface Props {
-  // navigation: Navigation;
+  item: RadarModel;
 }
 
 interface State {
@@ -37,6 +38,7 @@ interface State {
 export default class RadarItem extends PureComponent<Props, State> {
 
   render() {
+    let {item} = this.props;
 
     return (
       <TouchableButton
@@ -45,16 +47,17 @@ export default class RadarItem extends PureComponent<Props, State> {
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
             <View style={styleAssign([w(46), h(46), ml(16)])}>
               <Image style={styleAssign([w(46), h(46), radiusA(23)])}
-                     src={require('../../../assets/ico_default.png')}/>
+                     src={item.behaviorTraceUser.avatar}/>
               <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
-                     src={require('../../../assets/ico_nan.png')}/>
+                     src={item.behaviorTraceUser.sex === 1 ? require('../../../assets/ico_nan.png') : require('../../../assets/ico_nv.png')}/>
             </View>
             <View style={styleAssign([ml(16)])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([fSize(12), color('#343434')])}>刘思雨</Text>
+                <Text style={styleAssign([fSize(12), color('#343434')])}>{item.behaviorTraceUser.name}</Text>
                 <Text style={styleAssign([fSize(12), color('#979797')])}>.访客</Text>
               </View>
-              <Text style={styleAssign([fSize(12), color('#979797'), mt(5)])}>来自微信转发</Text>
+              <Text
+                style={styleAssign([fSize(12), color('#979797'), mt(5)])}>{`来自${item.behaviorTraceUser.source}`}</Text>
             </View>
           </View>
           <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
@@ -62,12 +65,21 @@ export default class RadarItem extends PureComponent<Props, State> {
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>置为客户</Text>
           </View>
         </View>
-        <Text
-          style={styleAssign([fSize(14), mt(3), ml(16), color(commonStyles.colorTheme)])}>把你的名片收藏到名片夹，你已成为Ta感兴趣的人</Text>
+        <View style={styleAssign([styles.uac, styles.udr])}>
+          <Text
+            style={styleAssign([fSize(14), mt(3), ml(16), color(commonStyles.colorTheme)])}>他</Text>
+          <Text
+            style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{operateMap[item.behaviorType]}</Text>
+          <Text
+            style={styleAssign([fSize(14), mt(3), color(commonStyles.colorTheme)])}>持续时间</Text>
+          <Text
+            style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{`${formartSecond(item.duration)}`}</Text>
+        </View>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
-            <Text style={styleAssign([color('#979797'), fSize(14), ml(16)])}>最后访问 09:36</Text>
+            <Text
+              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`最后访问 ${transformTime(item.behaviorTraceUser.lastVisitTime)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>

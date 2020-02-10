@@ -255,3 +255,54 @@ export interface Visitor {
   userId: number;
   wechat: string;
 }
+
+//雷达
+export interface RadarModel {
+  attributes: string;
+  behaviorTraceUser: BehaviorTraceUser;
+  behaviorType: string;
+  createTime: string;
+  duration: number;
+  goodsId: number;
+  id: number;
+  lastVisitTime: string;
+  time: number;
+  traceUserId: number;
+  userId: number;
+}
+
+export interface BehaviorTraceUser {
+  avatar: string;
+  city: string;
+  company: string;
+  detailAddress: string;
+  lastVisitTime: string;
+  name: string;
+  phone: string;
+  position: string;
+  province: string;
+  sex: number;
+  source: string;
+  type: number;
+  userId: number;
+  wechat: string;
+}
+
+export let operateMap = {};
+
+operateMap['view_card'] = '查看名片';
+operateMap['share_card'] = '分享名片';
+operateMap['collect_card'] = '收藏名片';
+operateMap['put_in_address_book'] = '存入通讯录';
+operateMap['call_up'] = '打电话';
+operateMap['copy_wechat'] = '复制微信号';
+operateMap['copy_email'] = '复制邮箱号';
+operateMap['navigation_company'] = '导航到公司地址';
+operateMap['play_your_voice'] = '播放你的语音';
+operateMap['villager'] = '同乡';
+operateMap['schoolfellow'] = '校友';
+operateMap['play_company_video'] = '播放企业宣传视频';
+operateMap['view_your_photos'] = '浏览你的照片';
+operateMap['play_your_video'] = '播放你的视频';
+operateMap['view_goods'] = '浏览商品';
+operateMap['view_enterprise_website'] = '浏览企业官网';

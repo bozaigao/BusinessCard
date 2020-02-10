@@ -229,3 +229,14 @@ export function getHalfYearStartDate() {
   return formatDate(quarterStartDate);
 }
 
+export function formartSecond(seconds: number) {
+  if (seconds < 60) {
+    return `${seconds}`;
+  }
+  else if (seconds % 60 === 0) {
+    return `${seconds / 60}分钟`;
+  } else {
+    return `${seconds / 60}分${seconds % 60}秒`;
+  }
+}
+
