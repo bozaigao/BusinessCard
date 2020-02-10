@@ -9,15 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {
-  debounce, getHalfYearStartDate,
-  getMonthEndDate,
-  getMonthStartDate,
-  getWeekEndDate,
-  getWeekStartDate,
-  styleAssign,
-  toast
-} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -75,6 +67,12 @@ interface State {
   showMode: boolean;
   shaiXuanValue: string;
   showShaiXuan: boolean;
+  //筛选开始时间
+  startTime: string;
+  //筛选结束时间
+  endTime: string;
+  //筛选次数
+  shaiXuanTimes: number;
 }
 
 @connect(state => state.login, {...actions, ...visitorActions})
@@ -113,7 +111,10 @@ class MyCollect extends Component<Props, State> {
       shaiXuanMode: '最后访问时间',
       shaiXuanValue: '全部',
       showMode: false,
-      showShaiXuan: false
+      showShaiXuan: false,
+      startTime: '',
+      endTime: '',
+      shaiXuanTimes: 0
     }
   }
 
@@ -141,11 +142,26 @@ class MyCollect extends Component<Props, State> {
    * @function: 查询我的访客列表
    */
   getVisitorList = (refresh?: boolean) => {
-    this.props.getVisitorList({
+
+    let params;
+    let {startTime, endTime, shaiXuanTimes} = this.state;
+
+    params = {
       type: this.state.visitorSubCurrentIndex,
       pageNo: this.pageNo,
       pageSize: this.pageSize
-    }).then((res) => {
+    }
+    if (startTime.length !== 0 &&
+      endTime.length !== 0) {
+      Object.assign(params, {startDate: startTime, endDate: endTime});
+    }
+    if (shaiXuanTimes !== 0) {
+      Object.assign(params, {visitCount: shaiXuanTimes});
+    }
+
+    console.log('妈买啊请求参数', params);
+
+    this.props.getVisitorList(params).then((res) => {
       console.log('查询我的访客列表', res);
       if (refresh) {
         Taro.stopPullDownRefresh();
@@ -407,14 +423,10 @@ class MyCollect extends Component<Props, State> {
             }
             }
             cancelCallback={() => {
-              console.log('点击');
               this.setState({showMode: false});
             }
             } confirmCallback={(data) => {
-            console.log('原始值', data);
-            this.setState({showMode: false,shaiXuanMode: data, }, () => {
-              console.log('点击', this.state.shaiXuanMode);
-            });
+            this.setState({showMode: false, shaiXuanMode: data,});
           }
           } collectCallback={() => {
             this.setState({showMode: false, currentIndex: 1}, () => {
@@ -432,18 +444,27 @@ class MyCollect extends Component<Props, State> {
           showShaiXuan && <ShaiXuanModal
             totalPerson={total}
             shaiXuanMode={shaiXuanMode}
+            shaiXuanTimesCallback={(times) => {
+              console.log('筛选次数',times);
+              this.setState({shaiXuanTimes: times, startTime: '', endTime: '', showShaiXuan: false}, () => {
+                this.refresh();
+              });
+            }
+            }
+            startAndEndTimeCallback={(startTime, endTime) => {
+              this.setState({startTime, endTime, shaiXuanTimes: 0, showShaiXuan: false}, () => {
+                this.refresh();
+              });
+            }
+            }
             modeCallback={() => {
               this.setState({showShaiXuan: false, showMode: true});
             }
             }
             cancelCallback={() => {
-              console.log('点击');
               this.setState({showShaiXuan: false});
             }
-            } confirmCallback={() => {
-
-          }
-          } collectCallback={() => {
+            } collectCallback={() => {
             this.setState({showShaiXuan: false, currentIndex: 1}, () => {
               this.myCollectList();
             });

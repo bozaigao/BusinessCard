@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/utils/datatool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/datatool.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,8 +20,8 @@
       <file leaf-file-name="my_collect.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="123" column="3" lean-forward="true" selection-start-line="123" selection-start-column="3" selection-end-line="123" selection-end-column="3" />
+            <state relative-caret-position="434">
+              <caret line="480" column="3" lean-forward="true" selection-start-line="480" selection-start-column="3" selection-end-line="480" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#254#320#0" expanded="true" />
@@ -32,8 +33,8 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="21" />
+            <state relative-caret-position="-1676">
+              <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#106#155#0" expanded="true" />
@@ -42,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+            <state relative-caret-position="544">
+              <caret line="195" column="47" selection-start-line="195" selection-start-column="47" selection-end-line="195" selection-end-column="47" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#106#155#0" expanded="true" />
@@ -55,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datatool.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="datatool.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="228" column="38" lean-forward="true" selection-start-line="228" selection-start-column="38" selection-end-line="228" selection-end-column="38" />
+            <state relative-caret-position="604">
+              <caret line="219" column="36" selection-start-line="219" selection-start-column="16" selection-end-line="219" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -96,8 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>righ</find>
-      <find>showOperate</find>
       <find>tim</find>
       <find>time</find>
       <find>operate</find>
@@ -121,11 +120,13 @@
       <find>Date</find>
       <find>生日</find>
       <find>最后访问时间</find>
-      <find>confirmCallback</find>
-      <find>shaiXuanMode</find>
       <find>var</find>
       <find>nowDayOfWeek</find>
+      <find>confirmCallback</find>
       <find>getQuarterStartMonth</find>
+      <find>shaiXuanMode</find>
+      <find>shaiXuanTimesCallback</find>
+      <find>shaiXuanTimes</find>
     </findStrings>
     <replaceStrings>
       <replace>YaoRenDangGui_Taro</replace>
@@ -214,9 +215,9 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/visitor-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/safe-area-view/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" />
       </list>
     </option>
   </component>
@@ -530,12 +531,12 @@
       <workItem from="1581124537392" duration="5819000" />
       <workItem from="1581166818243" duration="7105000" />
       <workItem from="1581224358211" duration="14810000" />
-      <workItem from="1581294928809" duration="4896000" />
+      <workItem from="1581294928809" duration="7386000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="671617000" />
+    <option name="totallyTimeSpent" value="674107000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1003,8 +1004,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="21" />
+        <state relative-caret-position="-1676">
+          <caret line="43" column="21" lean-forward="true" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#106#155#0" expanded="true" />
@@ -1012,21 +1013,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx">
+    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#106#155#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="604">
+          <caret line="219" column="36" selection-start-line="219" selection-start-column="16" selection-end-line="219" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="123" column="3" lean-forward="true" selection-start-line="123" selection-start-column="3" selection-end-line="123" selection-end-column="3" />
+        <state relative-caret-position="434">
+          <caret line="480" column="3" lean-forward="true" selection-start-line="480" selection-start-column="3" selection-end-line="480" selection-end-column="3" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#254#320#0" expanded="true" />
@@ -1034,10 +1031,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="228" column="38" lean-forward="true" selection-start-line="228" selection-start-column="38" selection-end-line="228" selection-end-column="38" />
+        <state relative-caret-position="544">
+          <caret line="195" column="47" selection-start-line="195" selection-start-column="47" selection-end-line="195" selection-end-column="47" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#106#155#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

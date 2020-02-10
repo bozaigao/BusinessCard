@@ -7,7 +7,15 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Picker, Text, View} from "@tarojs/components";
-import {getToday, styleAssign} from "../../../utils/datatool";
+import {
+  getHalfYearStartDate,
+  getMonthEndDate,
+  getMonthStartDate,
+  getToday,
+  getWeekEndDate,
+  getWeekStartDate,
+  styleAssign
+} from "../../../utils/datatool";
 import {
   absR,
   absT,
@@ -37,18 +45,20 @@ import CustomSafeAreaView from "../../../compoments/safe-area-view";
 
 interface Props {
   cancelCallback: any;
-  confirmCallback: any;
   collectCallback: any;
   myVisitorCallback: any;
+  shaiXuanTimesCallback: any;
+  startAndEndTimeCallback: any;
   modeCallback: any;
   shaiXuanMode: string;
-  totalPerson:number;
+  totalPerson: number;
 }
 
 interface State {
   startTime: string;
   endTime: string;
   visitTime: string;
+  shaiXuanTimes: string;
 }
 
 export default class ShaiXuanModal extends PureComponent<Props, State> {
@@ -59,13 +69,17 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
       startTime: '2020-01-01',
       endTime: getToday(),
       visitTime: '全部',
+      shaiXuanTimes: '全部',
     }
   }
 
   render() {
 
-    let {cancelCallback, collectCallback, myVisitorCallback, modeCallback, shaiXuanMode,totalPerson} = this.props;
-    let {startTime, endTime, visitTime} = this.state;
+    let {
+      cancelCallback, collectCallback, myVisitorCallback, modeCallback, shaiXuanMode, totalPerson,
+      shaiXuanTimesCallback, startAndEndTimeCallback
+    } = this.props;
+    let {startTime, endTime, visitTime, shaiXuanTimes} = this.state;
     let visitorSubCurrentIndex = 0, currentIndex = 0;
 
     return (
@@ -152,6 +166,38 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                       return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
                         styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(visitTime === value ? '#E4E4E4' : commonStyles.transparent)])}
                                    onClick={() => {
+                                     switch (value) {
+                                       case '全部':
+                                         this.setState({visitTime: value, startTime: '', endTime: ''});
+                                         break;
+                                       case '今日':
+                                         this.setState({visitTime: value, startTime: getToday(), endTime: getToday()});
+                                         break;
+                                       case '本周':
+                                         this.setState({
+                                           visitTime: value,
+                                           startTime: getWeekStartDate(),
+                                           endTime: getWeekEndDate()
+                                         });
+                                         break;
+                                       case '本月':
+                                         this.setState({
+                                           visitTime: value,
+                                           startTime: getMonthStartDate(),
+                                           endTime: getMonthEndDate()
+                                         });
+                                         break;
+                                       case '近半年':
+                                         this.setState({
+                                           visitTime: value,
+                                           startTime: getHalfYearStartDate(),
+                                           endTime: getToday()
+                                         });
+                                         break;
+                                       default:
+                                         this.setState({visitTime: value, startTime: '', endTime: ''});
+                                         break;
+                                     }
                                      this.setState({visitTime: value});
                                    }}>
                         <Text style={styleAssign([color('#0C0C0C'), fSize(14)])}>{value}</Text>
@@ -185,11 +231,17 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                   style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
                 <View style={styleAssign([styles.uf1, styles.uac, styles.uje])}>
                   <View style={styleAssign([styles.uac, styles.udr, mb(15)])}>
-                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}>
+                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}
+                          onClick={() => {
+                            this.setState({visitTime: '全部', startTime: '2020-01-01', endTime: getToday()});
+                          }}>
                       <Text style={styleAssign([color(commonStyles.colorTheme), fSize(16)])}>重置</Text>
                     </View>
                     <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc,
-                      bgColor(commonStyles.colorTheme), ml(130)])}>
+                      bgColor(commonStyles.colorTheme), ml(130)])}
+                          onClick={() => {
+                            startAndEndTimeCallback(startTime, endTime);
+                          }}>
                       <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>确定</Text>
                     </View>
                   </View>
@@ -201,9 +253,9 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                   {
                     ['全部', '10次内', '30次内', '大于30次'].map((value, index) => {
                       return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
-                        styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(visitTime === value ? '#E4E4E4' : commonStyles.transparent)])}
+                        styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(shaiXuanTimes === value ? '#E4E4E4' : commonStyles.transparent)])}
                                    onClick={() => {
-                                     this.setState({visitTime: value});
+                                     this.setState({shaiXuanTimes: value});
                                    }}>
                         <Text style={styleAssign([color('#0C0C0C'), fSize(14)])}>{value}</Text>
                       </View>;
@@ -214,11 +266,33 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                   style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
                 <View style={styleAssign([styles.uf1, styles.uac, styles.uje])}>
                   <View style={styleAssign([styles.uac, styles.udr, mb(15)])}>
-                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}>
+                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}
+                          onClick={() => {
+                            this.setState({shaiXuanTimes: '全部'});
+                          }}>
                       <Text style={styleAssign([color(commonStyles.colorTheme), fSize(16)])}>重置</Text>
                     </View>
                     <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc,
-                      bgColor(commonStyles.colorTheme), ml(130)])}>
+                      bgColor(commonStyles.colorTheme), ml(130)])}
+                          onClick={() => {
+                            switch (shaiXuanTimes) {
+                              case '全部':
+                                shaiXuanTimesCallback(0);
+                                break;
+                              case '10次内':
+                                shaiXuanTimesCallback(1);
+                                break;
+                              case '30次内':
+                                shaiXuanTimesCallback(2);
+                                break;
+                              case '大于30次':
+                                shaiXuanTimesCallback(3);
+                                break;
+                              default:
+                                shaiXuanTimesCallback(0);
+                                break;
+                            }
+                          }}>
                       <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>确定</Text>
                     </View>
                   </View>
