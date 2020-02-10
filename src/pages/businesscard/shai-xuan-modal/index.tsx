@@ -40,6 +40,9 @@ interface Props {
   confirmCallback: any;
   collectCallback: any;
   myVisitorCallback: any;
+  modeCallback: any;
+  shaiXuanMode: string;
+  totalPerson:number;
 }
 
 interface State {
@@ -55,13 +58,13 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
     this.state = {
       startTime: '2020-01-01',
       endTime: getToday(),
-      visitTime: '全部'
+      visitTime: '全部',
     }
   }
 
   render() {
 
-    let {cancelCallback, collectCallback, myVisitorCallback} = this.props;
+    let {cancelCallback, collectCallback, myVisitorCallback, modeCallback, shaiXuanMode,totalPerson} = this.props;
     let {startTime, endTime, visitTime} = this.state;
     let visitorSubCurrentIndex = 0, currentIndex = 0;
 
@@ -123,73 +126,105 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
           <View
             style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
               pl(20), pr(20)])}>
-            <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${2}位访客`}</Text>
+            <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${totalPerson}位访客`}</Text>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View style={styleAssign([styles.uac, styles.udr])}
-                    onClick={() => {
-                      // this.setState({showMode: true});
-                    }}>
-                <Text style={styleAssign([color('#727272'), fSize(14)])}>最后访问时间</Text>
+                    onClick={modeCallback}>
+                <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
                 <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_down.png')}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
-                <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
-                <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../../assets/ico_shaixuan.png')}/>
+                <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>筛选</Text>
+                <Image style={styleAssign([w(14), h(14), ml(3)])}
+                       src={require('../../../assets/ico_shaixuan_orange.png')}/>
               </View>
             </View>
           </View>
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {/*筛选内容*/}
-          <View style={styleAssign([wRatio(100), h(214), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问时间</Text>
-            <View style={styleAssign([styles.uac, styles.udr, pl(20), mt(12)])}>
-              {
-                ['全部', '今日', '本周', '本月', '近半年'].map((value, index) => {
-                  return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
-                    styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(visitTime === value ? '#E4E4E4' : commonStyles.transparent)])}
-                               onClick={() => {
-                                 this.setState({visitTime: value});
-                               }}>
-                    <Text style={styleAssign([color('#0C0C0C'), fSize(14)])}>{value}</Text>
-                  </View>;
-                })
-              }
-            </View>
-            <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>自定义时间</Text>
-            <View style={styleAssign([styles.uac, styles.udr, wRatio(100), pl(20), mt(14)])}>
-              <Picker mode='date' onChange={(e) => {
-                this.setState({startTime: e.detail.value});
-              }} value={startTime}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([color('#979797'), fSize(14)])}>{startTime}</Text>
-                  <Image style={styleAssign([w(8), h(5), ml(3)])}
-                         src={require('../../../assets/ico_sanjiao_down.png')}/>
+          {
+            shaiXuanMode === '最后访问时间' ?
+              <View style={styleAssign([wRatio(100), h(214), bgColor(commonStyles.whiteColor)])}>
+                <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问时间</Text>
+                <View style={styleAssign([styles.uac, styles.udr, pl(20), mt(12)])}>
+                  {
+                    ['全部', '今日', '本周', '本月', '近半年'].map((value, index) => {
+                      return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
+                        styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(visitTime === value ? '#E4E4E4' : commonStyles.transparent)])}
+                                   onClick={() => {
+                                     this.setState({visitTime: value});
+                                   }}>
+                        <Text style={styleAssign([color('#0C0C0C'), fSize(14)])}>{value}</Text>
+                      </View>;
+                    })
+                  }
                 </View>
-              </Picker>
-              <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mr(20)])}>至</Text>
-              <Picker mode='date' onChange={(e) => {
-                this.setState({endTime: e.detail.value});
-              }} value={endTime}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([color('#979797'), fSize(14)])}>{endTime}</Text>
-                  <Image style={styleAssign([w(8), h(5), ml(3)])}
-                         src={require('../../../assets/ico_sanjiao_down.png')}/>
+                <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>自定义时间</Text>
+                <View style={styleAssign([styles.uac, styles.udr, wRatio(100), pl(20), mt(14)])}>
+                  <Picker mode='date' onChange={(e) => {
+                    this.setState({startTime: e.detail.value});
+                  }} value={startTime}>
+                    <View style={styleAssign([styles.uac, styles.udr])}>
+                      <Text style={styleAssign([color('#979797'), fSize(14)])}>{startTime}</Text>
+                      <Image style={styleAssign([w(8), h(5), ml(3)])}
+                             src={require('../../../assets/ico_sanjiao_down.png')}/>
+                    </View>
+                  </Picker>
+                  <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mr(20)])}>至</Text>
+                  <Picker mode='date' onChange={(e) => {
+                    this.setState({endTime: e.detail.value});
+                  }} value={endTime}>
+                    <View style={styleAssign([styles.uac, styles.udr])}>
+                      <Text style={styleAssign([color('#979797'), fSize(14)])}>{endTime}</Text>
+                      <Image style={styleAssign([w(8), h(5), ml(3)])}
+                             src={require('../../../assets/ico_sanjiao_down.png')}/>
+                    </View>
+                  </Picker>
                 </View>
-              </Picker>
-            </View>
-            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.uje])}>
-              <View style={styleAssign([styles.uac, styles.udr, mb(15)])}>
-                <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}>
-                  <Text style={styleAssign([color(commonStyles.colorTheme), fSize(16)])}>重置</Text>
+                <View
+                  style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.uje])}>
+                  <View style={styleAssign([styles.uac, styles.udr, mb(15)])}>
+                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}>
+                      <Text style={styleAssign([color(commonStyles.colorTheme), fSize(16)])}>重置</Text>
+                    </View>
+                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc,
+                      bgColor(commonStyles.colorTheme), ml(130)])}>
+                      <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>确定</Text>
+                    </View>
+                  </View>
                 </View>
-                <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc,
-                  bgColor(commonStyles.colorTheme), ml(130)])}>
-                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>确定</Text>
+              </View> :
+              <View style={styleAssign([wRatio(100), h(156), bgColor(commonStyles.whiteColor)])}>
+                <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问时间</Text>
+                <View style={styleAssign([styles.uac, styles.udr, pl(20), mt(12)])}>
+                  {
+                    ['全部', '10次内', '30次内', '大于30次'].map((value, index) => {
+                      return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
+                        styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(visitTime === value ? '#E4E4E4' : commonStyles.transparent)])}
+                                   onClick={() => {
+                                     this.setState({visitTime: value});
+                                   }}>
+                        <Text style={styleAssign([color('#0C0C0C'), fSize(14)])}>{value}</Text>
+                      </View>;
+                    })
+                  }
+                </View>
+                <View
+                  style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.uje])}>
+                  <View style={styleAssign([styles.uac, styles.udr, mb(15)])}>
+                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc])}>
+                      <Text style={styleAssign([color(commonStyles.colorTheme), fSize(16)])}>重置</Text>
+                    </View>
+                    <View style={styleAssign([w(52), h(27), radiusA(4), styles.uac, styles.ujc,
+                      bgColor(commonStyles.colorTheme), ml(130)])}>
+                      <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>确定</Text>
+                    </View>
+                  </View>
                 </View>
               </View>
-            </View>
-          </View>
+          }
           <View style={styleAssign([styles.uf1])}
                 onClick={() => {
                   cancelCallback();

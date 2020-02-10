@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" afterDir="false" />
@@ -19,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="my_collect.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="my_collect.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="394" column="29" lean-forward="true" selection-start-line="394" selection-start-column="29" selection-end-line="394" selection-end-column="29" />
+            <state relative-caret-position="459">
+              <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#254#320#0" expanded="true" />
@@ -32,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="146" column="101" selection-start-line="146" selection-start-column="101" selection-end-line="146" selection-end-column="101" />
+            <state relative-caret-position="345">
+              <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="21" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#106#155#0" expanded="true" />
@@ -48,8 +47,8 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="50" column="34" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="34" />
+            <state relative-caret-position="225">
+              <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#106#155#0" expanded="true" />
@@ -99,9 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>retr</find>
-      <find>rightIcon</find>
-      <find>startRecord</find>
       <find>canRecordDone</find>
       <find>Top</find>
       <find>clearTime</find>
@@ -129,6 +125,9 @@
       <find>visitorSubCurrentIndex</find>
       <find>Date</find>
       <find>生日</find>
+      <find>最后访问时间</find>
+      <find>confirmCallback</find>
+      <find>shaiXuanMode</find>
     </findStrings>
     <replaceStrings>
       <replace>YaoRenDangGui_CP</replace>
@@ -217,9 +216,9 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/collect-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/visitor-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/safe-area-view/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" />
       </list>
     </option>
   </component>
@@ -533,12 +532,12 @@
       <workItem from="1581124537392" duration="5819000" />
       <workItem from="1581166818243" duration="7105000" />
       <workItem from="1581224358211" duration="14810000" />
-      <workItem from="1581294928809" duration="1162000" />
+      <workItem from="1581294928809" duration="3713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="667883000" />
+    <option name="totallyTimeSpent" value="670434000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -554,7 +553,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32923076" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50030136" side_tool="true" weight="0.32102564" />
@@ -562,7 +561,7 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
@@ -1008,10 +1007,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#106#155#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="50" column="34" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="34" />
+        <state relative-caret-position="225">
+          <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#106#155#0" expanded="true" />
@@ -1021,22 +1031,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="394" column="29" lean-forward="true" selection-start-line="394" selection-start-column="29" selection-end-line="394" selection-end-column="29" />
+        <state relative-caret-position="459">
+          <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#254#320#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="146" column="101" selection-start-line="146" selection-start-column="101" selection-end-line="146" selection-end-column="101" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#106#155#0" expanded="true" />
           </folding>
         </state>
       </provider>

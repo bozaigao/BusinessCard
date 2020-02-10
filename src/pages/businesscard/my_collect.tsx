@@ -133,13 +133,11 @@ class MyCollect extends Component<Props, State> {
    * @function: 查询我的访客列表
    */
   getVisitorList = (refresh?: boolean) => {
-    this.viewRef.showLoading();
     this.props.getVisitorList({
       type: this.state.visitorSubCurrentIndex,
       pageNo: this.pageNo,
       pageSize: this.pageSize
     }).then((res) => {
-      this.viewRef.hideLoading();
       console.log('查询我的访客列表', res);
       if (refresh) {
         Taro.stopPullDownRefresh();
@@ -150,7 +148,6 @@ class MyCollect extends Component<Props, State> {
         toast('没有记录了');
       }
     }).catch(e => {
-      this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -200,6 +197,8 @@ class MyCollect extends Component<Props, State> {
       currentIndex, collectSubCurrentIndex, visitorSubCurrentIndex, showOperate, showDeleteNotice, collectUserList, recordList, total,
       shaiXuanMode, showMode, showShaiXuan
     } = this.state;
+
+    console.log('shaiXuanMode', shaiXuanMode);
     let childView;
 
     if (currentIndex === 1) {
@@ -392,12 +391,22 @@ class MyCollect extends Component<Props, State> {
           }/>
         }
         {
-          showMode && <ModeModal cancelCallback={() => {
-            console.log('点击');
-            this.setState({showMode: false});
-          }
-          } confirmCallback={() => {
-
+          showMode && <ModeModal
+            totalPerson={total}
+            shaiXuanMode={shaiXuanMode}
+            shaiXuanCallback={() => {
+              this.setState({showMode: false, showShaiXuan: true});
+            }
+            }
+            cancelCallback={() => {
+              console.log('点击');
+              this.setState({showMode: false});
+            }
+            } confirmCallback={(data) => {
+            console.log('原始值', data);
+            this.setState({showMode: false,shaiXuanMode: data, }, () => {
+              console.log('点击', this.state.shaiXuanMode);
+            });
           }
           } collectCallback={() => {
             this.setState({showMode: false, currentIndex: 1}, () => {
@@ -412,11 +421,18 @@ class MyCollect extends Component<Props, State> {
           }/>
         }
         {
-          showShaiXuan && <ShaiXuanModal cancelCallback={() => {
-            console.log('点击');
-            this.setState({showShaiXuan: false});
-          }
-          } confirmCallback={() => {
+          showShaiXuan && <ShaiXuanModal
+            totalPerson={total}
+            shaiXuanMode={shaiXuanMode}
+            modeCallback={() => {
+              this.setState({showShaiXuan: false, showMode: true});
+            }
+            }
+            cancelCallback={() => {
+              console.log('点击');
+              this.setState({showShaiXuan: false});
+            }
+            } confirmCallback={() => {
 
           }
           } collectCallback={() => {

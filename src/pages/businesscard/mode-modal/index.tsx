@@ -39,6 +39,9 @@ interface Props {
   confirmCallback: any;
   collectCallback: any;
   myVisitorCallback: any;
+  shaiXuanCallback: any;
+  shaiXuanMode: string;
+  totalPerson:number;
 }
 
 interface State {
@@ -58,7 +61,7 @@ export default class ModeModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {cancelCallback, collectCallback, myVisitorCallback, confirmCallback} = this.props;
+    let {cancelCallback, collectCallback, myVisitorCallback, confirmCallback,shaiXuanCallback,shaiXuanMode,totalPerson} = this.props;
     let visitorSubCurrentIndex = 0, currentIndex = 0;
 
     return (
@@ -119,28 +122,26 @@ export default class ModeModal extends PureComponent<Props, State> {
           <View
             style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
               pl(20), pr(20)])}>
-            <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${2}位访客`}</Text>
+            <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${totalPerson}位访客`}</Text>
             <View style={styleAssign([styles.uac, styles.udr])}>
-              <View style={styleAssign([styles.uac, styles.udr])}
-                    onClick={() => {
-                      // this.setState({showMode: true});
-                    }}>
-                <Text style={styleAssign([color('#727272'), fSize(14)])}>最后访问时间</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_down.png')}/>
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>{shaiXuanMode}</Text>
+                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_up.png')}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
-                <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
+                <Text style={styleAssign([color('#727272'), fSize(14)])}
+                      onClick={shaiXuanCallback}>筛选</Text>
                 <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../../assets/ico_shaixuan.png')}/>
               </View>
             </View>
           </View>
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {/*筛选内容*/}
-          <View style={styleAssign([wRatio(100), h(88), bgColor(commonStyles.whiteColor)])}
-                onClick={() => {
-                  confirmCallback('最后访问时间');
-                }}>
-            <View style={styleAssign([wRatio(100), h(44), styles.ujc, bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([wRatio(100), h(88), bgColor(commonStyles.whiteColor)])}>
+            <View style={styleAssign([wRatio(100), h(44), styles.ujc, bgColor(commonStyles.whiteColor)])}
+                  onClick={() => {
+                    confirmCallback('最后访问时间');
+                  }}>
               <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20)])}>最后访问时间</Text>
             </View>
             <View style={styleAssign([wRatio(100), h(44), styles.ujc, bgColor(commonStyles.whiteColor)])}
