@@ -135,7 +135,7 @@ class PerformInfo extends Component<Props, State> {
               {/*我的*/}
               <View
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(22), h(22), ml(20)])} src={`${cloudBaseUrl}ico_back_white.png`}
+                <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
                        onClick={() => {
                          console.log('刷新用户信息1');
                          Taro.eventCenter.trigger('refreshUserInfo');
@@ -151,10 +151,10 @@ class PerformInfo extends Component<Props, State> {
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
-                  src={userInfo.avatar ? userInfo.avatar :`${cloudBaseUrl}ico_default.png`}/>
+                  src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
                 <Image
                   style={styleAssign([w(23), h(23), radiusA(11.5), styles.upa, absB(2), absR(2)])}
-                  src={userInfo.sex === 1 ?`${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
+                  src={userInfo.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
               </View>
               <Text
                 style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
