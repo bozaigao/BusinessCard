@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
@@ -35,9 +35,9 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/goods';
-import TopHeader from "../../compoments/top-header";
+import TopHeader from "../../compoments/top-header/index";
 import {Image, Input, ScrollView, Text, Textarea, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button";
+import TouchableButton from "../../compoments/touchable-button/index";
 import {FileController} from "../../api/httpurl";
 import {Enum, Goods} from "../../const/global";
 let maxLength = 5;
@@ -343,7 +343,7 @@ class AddGoods extends Component<Props, State> {
             </View>
             <View style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <Textarea value={introduction}
-                      placeholder={'请输入公司简介'}
+                      placeholder={'请输入商品简介'}
                       style={styleAssign([w(300), h(140), fSize(16), mt(10), ml(20),
                         bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}
                       onInput={(e) => {
@@ -405,7 +405,7 @@ class AddGoods extends Component<Props, State> {
                                    this.updateGoods();
                                  }
                                  }>
-                  <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>保存</Text>
+                  <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>保存</Text>
                 </TouchableButton>
               </View> :
               <View style={styleAssign([styles.uac, styles.udr])}>
@@ -418,7 +418,7 @@ class AddGoods extends Component<Props, State> {
                 </TouchableButton>
                 <TouchableButton customStyle={styleAssign([ml(10), w(162), h(47), bgColor(commonStyles.colorTheme),
                   radiusA(2), styles.uac, styles.ujc])}>
-                  <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>立即上架</Text>
+                  <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即上架</Text>
                 </TouchableButton>
               </View>
           }

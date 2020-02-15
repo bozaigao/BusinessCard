@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {
@@ -34,9 +34,9 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/goods';
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button";
-import GoodsManageItem from "./goods-manage-item";
-import BottomButon from "../../compoments/bottom-buton";
+import TouchableButton from "../../compoments/touchable-button/index";
+import GoodsManageItem from "../businesscard/goods-manage-item/index";
+import BottomButon from "../../compoments/bottom-buton/index";
 import {Goods, User} from "../../const/global";
 
 interface Props {

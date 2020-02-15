@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {getToday, scaleSize, styleAssign, toast} from "../../utils/datatool";
 import {
@@ -28,11 +28,11 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
-import TopHeader from "../../compoments/top-header";
+import TopHeader from "../../compoments/top-header/index";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button";
-import TaskItem from "./task-item";
-import BottomButon from "../../compoments/bottom-buton";
+import TouchableButton from "../../compoments/touchable-button/index";
+import TaskItem from "../businesscard/task-item/index";
+import BottomButon from "../../compoments/bottom-buton/index";
 import {TaskModel} from "../../const/global";
 
 interface Props {

@@ -69,7 +69,7 @@ class Customer extends Component<Props, State> {
       totalCustomers: 0,
       shaiXuanMode: '最后访问时间',
       shaiXuanValue: '全部',
-      showMode: true,
+      showMode: false,
       showShaiXuan: false,
       startTime: '2020-01-01',
       endTime: getToday(),

@@ -103,11 +103,11 @@ class PersonalInfo extends Component<Props, State> {
       detailAddress,
       titleList1: [{title: '姓名', subtitle: name ? name : '必填', hasEdit: true},
         {title: '性别'},
-        {title: '联系方式', subtitle: phone ? phone : ''},
+        {title: '手机', subtitle: phone ? phone : ''},
         {title: '行业', subtitle: industry ? industry : '选择'},
         {title: '职位', subtitle: position ? position : '必填', hasEdit: true}],
       titleList2: [{title: '名片样式', subtitle: '编辑'},
-        {title: '微信&微信二维码', subtitle: wechat ? wechat : ''},
+        {title: '微信', subtitle: wechat ? wechat : ''},
         {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
         {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
         {title: '地区', subtitle: province ? province + city : '选择'},
@@ -364,11 +364,11 @@ class PersonalInfo extends Component<Props, State> {
               })
             }
           </View>
+          {/*保存*/}
+          <BottomButon title={'保存'} onClick={() => {
+            this.update();
+          }}/>
         </ScrollView>
-        {/*保存*/}
-        <BottomButon title={'保存'} onClick={() => {
-          this.update();
-        }}/>
       </CustomSafeAreaView>
     );
   }
