@@ -12,15 +12,15 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
-  absB,
-  absR,
-  absT, bdColor,
-  bgColor, bo,
+  bdColor,
+  bgColor,
+  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, ma,
+  h,
+  ma,
   ml,
   mr,
   mt,
@@ -191,22 +191,18 @@ class Businesscard extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(86), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
           </View>
-        </ScrollView>
-        {/*创建名片*/}
-        <TouchableButton
-          onClick={() => {
-            Taro.navigateTo({
-              url: `/pages/businesscard/add_businesscard`
-            });
-          }}
-          customStyle={styleAssign([w(70), h(70), styles.uac, styles.ujc, styles.upa, absR(10), absB(5)])}>
-          <Image style={styleAssign([styles.uac, w(70), h(70), styles.upa, absT(0), absR(0)])}
-                 src={require('../../assets/ico_add_card_bg.png')}/>
-          <View style={styleAssign([styles.uac])}>
-            <Image style={styleAssign([w(26), h(19)])} src={require('../../assets/ico_add_card_img.png')}/>
-            <Text style={styleAssign([color(commonStyles.colorTheme), fSize(10), mt(2)])}>创建</Text>
+          {/*创建名片*/}
+          <View style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}
+                onClick={() => {
+                  Taro.navigateTo({
+                    url: `/pages/businesscard/add_businesscard`
+                  });
+                }}>
+            <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
+              <Text style={styleAssign([fSize(14), color('#825D22')])}>创建您的专属名片</Text>
+            </View>
           </View>
-        </TouchableButton>
+        </ScrollView>
         {
           showShare && <ShareModal cancle={() => {
             this.setState({showShare: false});
