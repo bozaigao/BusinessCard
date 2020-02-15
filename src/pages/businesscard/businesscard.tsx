@@ -14,13 +14,13 @@ import {styleAssign} from "../../utils/datatool";
 import {
   absB,
   absR,
-  absT,
-  bgColor,
+  absT, bdColor,
+  bgColor, bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, ma,
   ml,
   mr,
   mt,
@@ -126,16 +126,20 @@ class Businesscard extends Component<Props, State> {
         {/*切换名片*/}
         <View
           style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
-          <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_switch.png')}/>
+          <View
+            style={styleAssign([styles.uac, styles.udr, ml(23), w(95), h(32), radiusA(16), bdColor('#E5E5E5'), bo(1), {borderStyle: 'solid'}])}>
+            <Image style={styleAssign([w(27), h(27), ma(2)])} src={require('../../assets/ico_default.png')}/>
+            <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
+          </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                            onClick={() => {
                              Taro.navigateTo({
                                url: `/pages/businesscard/qiehuan_businesscard`
                              });
                            }}>
-            <Text style={styleAssign([fSize(18),color('#343434')])}>名片</Text>
+            <Text style={styleAssign([fSize(18), color('#343434')])}>名片</Text>
           </TouchableButton>
-          <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+          <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
         </View>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}

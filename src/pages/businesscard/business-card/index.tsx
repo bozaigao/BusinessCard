@@ -9,18 +9,21 @@ import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
   absB,
-  absL, absR, absT,
+  absL,
+  absR,
   absT,
   bdColor,
   bgColor,
   bo,
   color,
   commonStyles,
-  fSize, fWeight,
+  fSize,
+  fWeight,
   h,
-  ma,
   ml,
-  mt, pl, pr,
+  mt,
+  pl,
+  pr,
   radiusA,
   w,
   wRatio
@@ -49,7 +52,7 @@ export default class Card extends PureComponent<Props, State> {
           <View
             style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
           <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
-            <Text style={styleAssign([fSize(18),fWeight('medium')])}>王嘉怡</Text>
+            <Text style={styleAssign([fSize(18),fWeight('bold')])}>王嘉怡</Text>
             <Text style={styleAssign([fSize(12),ml(8)])}>销售经理</Text>
           </View>
           <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
