@@ -116,7 +116,8 @@ class Mine extends Component<Props, State> {
           style={styleAssign([wRatio(100), hRatio(100)])}
           scrollY>
           <View style={styleAssign([wRatio(100)])}>
-            <View style={styleAssign([wRatio(100), h(242), bgColor(commonStyles.colorTheme)])}>
+            <View style={styleAssign([wRatio(100), h(262)])}>
+              <Image style={styleAssign([wRatio(100), hRatio(100)])} src={require('../../assets/ico_mine_bg.png')}/>
               {/*我的*/}
               <View
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
@@ -125,7 +126,7 @@ class Mine extends Component<Props, State> {
                 <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
               </View>
             </View>
-            <View style={styleAssign([wRatio(100), h(150), bgColor(commonStyles.whiteColor)])}/>
+            <View style={styleAssign([wRatio(100), h(80), bgColor(commonStyles.whiteColor)])}/>
             {/*用户头像信息*/}
             <View style={styleAssign([styles.upa, absT(65), wRatio(100)])}>
               <View style={styleAssign([styles.udr, wRatio(100), styles.ujb])}>

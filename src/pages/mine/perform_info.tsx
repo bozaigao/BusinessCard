@@ -257,8 +257,8 @@ class PerformInfo extends Component<Props, State> {
                                    }}>
                     <View style={styleAssign([wRatio(100), h(68), styles.udr, styles.uac, styles.ujb])}>
                       <View style={styleAssign([ml(20)])}>
-                        <Text style={styleAssign([fSize(16), color('#343434')])}>{value.title}</Text>
-                        <Text style={styleAssign([fSize(14), color('#979797')])}>{value.subTitle}</Text>
+                        <Text style={styleAssign([fSize(14), color('#343434')])}>{value.title}</Text>
+                        <Text style={styleAssign([fSize(12), color('#979797')])}>{value.subTitle}</Text>
                       </View>
                       <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                         <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{value.chooseTitle}</Text>
