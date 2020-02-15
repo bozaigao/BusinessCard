@@ -188,19 +188,19 @@ class Mine extends Component<Props, State> {
                                        onClick={() => {
                                          if (value.title === '商城') {
                                            Taro.navigateTo({
-                                             url: `/pages/businesscard/goods_manage`
+                                             url: `/pages/mine/goods_manage`
                                            });
                                          } else if (value.title === '海报') {
                                            Taro.navigateTo({
-                                             url: `/pages/businesscard/haibao`
+                                             url: `/pages/mine/haibao`
                                            });
                                          } else if (value.title === '工具箱') {
                                            Taro.navigateTo({
-                                             url: `/pages/businesscard/tool_box`
+                                             url: `/pages/mine/tool_box`
                                            });
                                          } else if (value.title === '任务中心') {
                                            Taro.navigateTo({
-                                             url: `/pages/businesscard/task_center`
+                                             url: `/pages/mine/task_center`
                                            });
                                          } else if (value.title === '名片夹') {
                                            Taro.navigateTo({

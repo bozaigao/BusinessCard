@@ -65,7 +65,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      // "pages/businesscard/goods_manage",
+      "pages/mine/goods_manage",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
@@ -86,13 +86,13 @@ class App extends Component {
       "pages/customer/add_genjin",
       //我的模块子页面
       "pages/mine/personal_info",
-      "pages/businesscard/add_task",
-      "pages/businesscard/tool_box",
-      "pages/businesscard/haibao",
-      "pages/businesscard/goods_detail",
-      "pages/businesscard/goods_manage",
-      "pages/businesscard/add_goods",
-      "pages/businesscard/task_center",
+      "pages/mine/add_task",
+      "pages/mine/tool_box",
+      "pages/mine/haibao",
+      "pages/mine/goods_detail",
+      // "pages/mine/goods_manage",
+      "pages/mine/add_goods",
+      "pages/mine/task_center",
       "pages/mine/contact_way",
       "pages/mine/setting_page",
       "pages/mine/feedback",

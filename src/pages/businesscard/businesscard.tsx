@@ -164,7 +164,7 @@ class Businesscard extends Component<Props, State> {
               });
             }} goToGoodsDetail={(itemData) => {
               Taro.navigateTo({
-                url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(itemData)}`
+                url: `/pages/mine/goods_detail?itemData=${JSON.stringify(itemData)}`
               });
             }} goodsList={userInfo.goodsList}/>
           }

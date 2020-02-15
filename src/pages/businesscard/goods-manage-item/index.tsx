@@ -67,7 +67,7 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), h(120), styles.upa, absT(0)])}
               onClick={() => {
                 Taro.navigateTo({
-                  url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(itemData)}`
+                  url: `/pages/mine/goods_detail?itemData=${JSON.stringify(itemData)}`
                 });
               }}/>
         <View

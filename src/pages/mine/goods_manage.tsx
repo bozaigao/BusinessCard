@@ -53,6 +53,7 @@ interface State {
   showChoose: boolean;
   state: string;
   showOperate: boolean;
+  currentIndex:number;
 }
 
 @connect(state => state.login, {...actions})
@@ -84,7 +85,8 @@ class GoodsManage extends Component<Props, State> {
       totalGoods: 0,
       showChoose: false,
       state: '全部',
-      showOperate: false
+      showOperate: false,
+      currentIndex:0
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -206,21 +208,44 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate,currentIndex} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <View
-          style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
+          style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])}
                  src={require('../../assets/ico_back.png')}
                  onClick={() => {
                    Taro.navigateBack();
                  }}/>
-          <Text style={styleAssign([fSize(19), color(commonStyles.colorTheme)])}>商品管理</Text>
-          <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <View style={styleAssign([styles.uac, styles.udr])}
+                  onClick={() => {
+                    this.setState({currentIndex: 0}, () => {
+                      this.refresh();
+                    });
+                  }}>
+              <View style={styleAssign([styles.uac])}>
+                <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
+                <View
+                  style={styleAssign([w(36), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+              </View>
+            </View>
+            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                  onClick={() => {
+                    this.setState({currentIndex: 1});
+                  }}>
+              <View style={styleAssign([styles.uac])}>
+                <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>收藏</Text>
+                <View
+                  style={styleAssign([w(36), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+              </View>
+            </View>
+          </View>
+          <View style={styleAssign([w(22), h(22), mr(20)])}/>
         </View>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
@@ -288,7 +313,7 @@ class GoodsManage extends Component<Props, State> {
         {/*新增商品*/}
         <BottomButon title={'新增商品'} onClick={() => {
           Taro.navigateTo({
-            url: `/pages/businesscard/add_goods`
+            url: `/pages/mine/add_goods`
           });
         }}/>
         {/*选择展示商品*/}
@@ -349,7 +374,7 @@ class GoodsManage extends Component<Props, State> {
                     onClick={() => {
                       this.setState({showChoose: false});
                       Taro.navigateTo({
-                        url: `/pages/businesscard/add_goods?edit=true&itemData=${JSON.stringify(this.itemData)}`
+                        url: `/pages/mine/add_goods?edit=true&itemData=${JSON.stringify(this.itemData)}`
                       });
                     }}>
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>编辑商品</Text>
