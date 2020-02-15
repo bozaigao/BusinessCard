@@ -166,6 +166,7 @@ class AudioRecorder extends Component<Props, State> {
           startTimer: true,
           recordDone: false,
           canRetry: false,
+          canRecordDone: false,
           recordText: '录制中',
           recordState: RECORD_STATE.RECORD_START,
           localVideoUrl: ''
@@ -174,6 +175,7 @@ class AudioRecorder extends Component<Props, State> {
         this.setState({
           startTimer: true,
           recordDone: false,
+          canRecordDone: false,
           canRetry: false,
           recordText: '录制中',
           recordState: RECORD_STATE.RECORD_START,
@@ -333,7 +335,7 @@ class AudioRecorder extends Component<Props, State> {
                                  recordText: `暂停录制（剩余${totalTime - time}s）`,
                                  recordState: RECORD_STATE.RECORD_PAUSE
                                }, () => {
-                                 if (time > miniRecordTime) {
+                                 if (time >= miniRecordTime) {
                                    this.setState({canRecordDone: true});
                                  }
                                });
@@ -374,7 +376,7 @@ class AudioRecorder extends Component<Props, State> {
                                  recordText: `暂停录制（剩余${totalTime - time}s）`,
                                  recordState: RECORD_STATE.RECORD_PAUSE
                                }, () => {
-                                 if (time > miniRecordTime) {
+                                 if (time >= miniRecordTime) {
                                    this.setState({canRecordDone: true});
                                  }
                                });

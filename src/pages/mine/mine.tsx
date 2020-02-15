@@ -155,7 +155,7 @@ class Mine extends Component<Props, State> {
                 {
                   [{
                     title: '商城',
-                    icon: require('../../assets/co_shop.png')
+                    icon: require('../../assets/ico_shop.png')
                   }, {
                     title: '海报',
                     icon: require('../../assets/ico_haibao.png')
