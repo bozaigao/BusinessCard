@@ -15,6 +15,7 @@ interface Props {
   title: string;
   subTitle?: string;
   hasEdit?: boolean;
+  must?: boolean;
   onCLick?: any;
   notHasUnderline?: boolean;
   onTextChange?: any;
@@ -24,7 +25,7 @@ interface Props {
 export default class ListItem extends Component<Props> {
 
   render() {
-    let {title, subTitle, hasEdit, onCLick, notHasUnderline, onTextChange, textColor} = this.props;
+    let {title, subTitle, hasEdit, onCLick, notHasUnderline, onTextChange, textColor, must} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -36,7 +37,12 @@ export default class ListItem extends Component<Props> {
           }}
           customStyle={styleAssign([wRatio(100), h(55), bgColor(commonStyles.whiteColor), styles.udr, styles.uac,
             styles.ujb, pl(20), pr(20)])}>
-          <Text style={styleAssign([fSize(14), color(textColor ? textColor : '#0C0C0C')])}>{title}</Text>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            {
+              must && <Text style={styleAssign([fSize(14), color(commonStyles.redColor)])}>*</Text>
+            }
+            <Text style={styleAssign([fSize(14), color(textColor ? textColor : '#0C0C0C')])}>{title}</Text>
+          </View>
           {
             hasEdit ? <Input type='text' value={''}
                              maxLength={subTitle && subTitle.includes('手机') ? 11 : -1}

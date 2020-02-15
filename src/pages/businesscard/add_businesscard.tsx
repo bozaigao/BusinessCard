@@ -11,18 +11,13 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
-  absR,
-  absT,
   bgColor,
   color,
   commonStyles,
   default as styles,
   fSize,
   h,
-  hRatio,
-  ma,
   ml,
-  mt,
   op,
   pl,
   pr,
@@ -33,8 +28,10 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
-import {Image, Input, ScrollView, Switch, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Switch, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
+import TouchableButton from "../../compoments/touchable-button";
+import ListItem from "../../compoments/list-item";
 
 interface Props {
   dispatchLogin?: any;
@@ -44,7 +41,8 @@ interface Props {
 
 interface State {
   signInPageDetail: any;
-  listData: { title: string; value: string; }[];
+  listData: { title: string; subtitle: string; hasEdit?: boolean; must?: boolean; }[];
+  avatar: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -68,11 +66,30 @@ class AddBusinesscard extends Component<Props, State> {
     super(props);
     this.state = {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
-      listData: [{title: '姓名', value: 'JY-W'}, {title: '公司', value: '美克美家家居集团有限公司'}, {title: '行业', value: '家居'},
-        {title: '职位', value: '销售经理'}, {title: '地区', value: '成都'}, {title: '微信号', value: '15982468866'}, {
+      listData: [
+        {title: '姓名', subtitle: 'JY-W', hasEdit: true, must: true},
+        {
+          title: '公司',
+          subtitle: '美克美家家居集团有限公司',
+          hasEdit: true,
+          must: true
+        }, {
+          title: '行业',
+          subtitle: '家居',
+          must: true
+        },
+        {title: '职位', subtitle: '销售经理', hasEdit: true},
+        {title: '地区', subtitle: '成都'},
+        {
+          title: '微信号',
+          subtitle: '15982468866',
+          hasEdit: true
+        }, {
           title: '邮箱',
-          value: '98248866@168.com'
-        }]
+          subtitle: '98248866@168.com',
+          hasEdit: true
+        }],
+      avatar: ''
     }
   }
 
@@ -86,89 +103,73 @@ class AddBusinesscard extends Component<Props, State> {
       signInPageDetail.signInCount = 0
     }
 
-    let {listData} = this.state;
+    let {listData, avatar} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
-      }} customStyle={styleAssign([bgColor('#2B2A2F')])}
-                          notNeedBottomPadding={true}>
-        <TopHeader title={'名片信息'} textColor={commonStyles.whiteColor} backgroundColor={'#2B2A2F'}/>
-        <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.colorTheme)])}
+      }} notNeedBottomPadding={true}>
+        <TopHeader title={'创建名片'} backgroundColor={commonStyles.whiteColor}/>
+        <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                     scrollY>
-          <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), mt(60)])}/>
-          <View
-            style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(10), absR(0), styles.uac, bgColor(commonStyles.whiteColor)])}>
-            {/*名片信息头部*/}
-            <View
-              style={styleAssign([w(335), h(197), radiusA(5), bgColor(commonStyles.whiteColor), {boxShadow: '0px 2px 4px 0px rgba(230,230,230,0.5'}])}>
-              <View style={styleAssign([styles.uac, styles.udr, ma(20)])}>
-                <Image style={styleAssign([w(71), h(71), radiusA(4)])}
-                       src={require('../../assets/ico_default.png')}/>
-                <View style={styleAssign([ml(13)])}>
-                  <Text style={styleAssign([fSize(18), color(commonStyles.colorTheme)])}>JY-W</Text>
-                  <Text style={styleAssign([fSize(14), color('#727272'), mt(8)])}>公司</Text>
-                  <Text style={styleAssign([fSize(14), color('#727272')])}>职位</Text>
-                </View>
-              </View>
-              <View style={styleAssign([w(295), h(0.5), bgColor('#E5E5E5'), ml(20)])}/>
-              {/*电话*/}
-              <View style={styleAssign([wRatio(100), styles.uac, styles.udr, ml(20), mt(19)])}>
-                <Image style={styleAssign([w(9), h(12)])} src={require('../../assets/ico_phone.png')}
-                       mode={'aspectFit'}/>
-                <Text style={styleAssign([ml(15), fSize(12), color('#727272')])}>15982468866</Text>
-              </View>
-              {/*定位*/}
-              <View style={styleAssign([wRatio(100), styles.uac, styles.udr, ml(20), mt(10)])}>
-                <Image style={styleAssign([w(9), h(12)])} src={require('../../assets/ico_location.png')}
-                       mode={'aspectFit'}/>
-                <Text style={styleAssign([ml(15), fSize(12), color('#727272')])}>四川成都</Text>
-              </View>
+          {/*名片信息头部*/}
+          <TouchableButton customStyle={styleAssign([wRatio(100), h(86), styles.uac, styles.udr, styles.ujb,
+            bgColor(commonStyles.whiteColor), pl(20), pr(20)])}
+                           onClick={() => {
+                             Taro.chooseImage({count: 1}).then((res) => {
+                               console.log('图片路径', res.tempFiles[0].path)
+                               this.setState({avatar: res.tempFiles[0].path})
+                               // this.uploadFileTpWx(res.tempFiles[0].path);
+                             });
+                           }}>
+            <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
+            <Image style={styleAssign([w(60), h(60), radiusA(30)])}
+                   src={avatar && avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
+          </TouchableButton>
+          <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+          {/*内容编辑*/}
+          {
+            listData.map((value, index) => {
+              return (<ListItem title={value.title}
+                                must={value.must}
+                                subTitle={value.subtitle}
+                                key={index}
+                                hasEdit={value.hasEdit}
+                                onCLick={(title) => {
+                                  if (title === '联系方式') {
+                                    Taro.navigateTo({
+                                      url: `/pages/mine/contact_way`
+                                    });
+                                  } else if (title === '行业') {
+                                    Taro.navigateTo({
+                                      url: `/pages/mine/industry_list`,
+                                      success: (e) => {
+                                        console.log('参数回传1', e);
+                                      }
+                                    });
+                                  }
+                                }
+                                } onTextChange={(e) => {
+                // this.setState({name: e.detail.value});
+                console.log(e);
+              }
+              }/>);
+            })
+          }
+          <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+          {/*开关*/}
+          <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
+            <View style={styleAssign([wRatio(100), h(50), pl(20), pr(20), styles.uac, styles.udr, styles.ujb])}>
+              <Text style={styleAssign([fSize(14), color('#343434')])}>分享自己的名片给朋友时展示手机号</Text>
+              <Switch color={'#E2BB7B'}/>
             </View>
-            {/*内容编辑*/}
-            {
-              listData.map((item, index) => {
-                console.log(item);
-                return (<View style={styleAssign([wRatio(100)])} key={index}>
-                  <View style={styleAssign([wRatio(100), h(50), styles.uac, styles.udr, pl(21), pr(21)])}>
-                    {
-                      (index === 0 || index === 1) ? <View style={styleAssign([styles.uac, styles.udr])}>
-                          <Text style={styleAssign([fSize(12), color('red')])}>*</Text>
-                          <Text style={styleAssign([fSize(12), color('#727272')])}>{item.title}</Text>
-                        </View> :
-                        <Text style={styleAssign([fSize(12), color('#727272')])}>{item.title}</Text>
-                    }
-                    <Input type='text' value={item.value}
-                           style={styleAssign([wRatio(70), ml(32), fSize(14)])}/>
-                  </View>
-                  <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
-                </View>);
-              })
-            }
-            <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            {/*开关*/}
-            <View style={styleAssign([wRatio(100)])}>
-              <View style={styleAssign([wRatio(100), h(50), pl(20), pr(20), styles.uac, styles.udr, styles.ujb])}>
-                <Text style={styleAssign([fSize(14), color('#343434')])}>名片展示邮箱号</Text>
-                <Switch color={'#E2BB7B'}/>
-              </View>
-              <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
-            </View>
-            <View style={styleAssign([wRatio(100)])}>
-              <View style={styleAssign([wRatio(100), h(50), pl(20), pr(20), styles.uac, styles.udr, styles.ujb])}>
-                <Text style={styleAssign([fSize(14), color('#343434')])}>分享自己的名片给朋友时展示手机号</Text>
-                <Switch color={'#E2BB7B'}/>
-              </View>
-              <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
-            </View>
-            <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            {/*创建名片*/}
-            {/*新建任务*/}
-            <BottomButon title={'创建名片'} onClick={() => {
-
-            }}/>
+            <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
           </View>
         </ScrollView>
+        {/*创建名片*/}
+        <BottomButon title={'保存'} onClick={() => {
+
+        }}/>
       </CustomSafeAreaView>);
   }
 }
