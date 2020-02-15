@@ -8,7 +8,8 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
-  absL,
+  absB,
+  absL, absR, absT,
   absT,
   bdColor,
   bgColor,
@@ -47,15 +48,35 @@ export default class Card extends PureComponent<Props, State> {
           styles.udr, styles.uje])}>
           <View
             style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
-          <View style={styleAssign([ma(20)])}>
+          <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
+            <Text style={styleAssign([fSize(18),fWeight('medium')])}>王嘉怡</Text>
+            <Text style={styleAssign([fSize(12),ml(8)])}>销售经理</Text>
+          </View>
+          <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
+            {/*电话号码*/}
             <View style={styleAssign([styles.uac, styles.udr])}>
-              <Text style={styleAssign([fSize(18)])}>王嘉怡</Text>
-              <Text style={styleAssign([fSize(12)])}>销售经理</Text>
+              <Text
+                style={styleAssign([fSize(12), color('#343434')])}>17311239269</Text>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_mobile.png')}/>
             </View>
-            <Text
-              style={styleAssign([fSize(12), mt(30), mt(5)])}>15982468866@qq.com</Text>
-            <Text
-              style={styleAssign([fSize(12), mt(5)])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</Text>
+            {/*微信号*/}
+            <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
+              <Text
+                style={styleAssign([fSize(12), color('#343434')])}>bozaigao</Text>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_wechat.png')}/>
+            </View>
+            {/*邮箱*/}
+            <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
+              <Text
+                style={styleAssign([fSize(12), color('#343434')])}>邮箱信息未对外公开</Text>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_email.png')}/>
+            </View>
+            {/*地址*/}
+            <View style={styleAssign([styles.udr, mt(8)])}>
+              <Text
+                style={styleAssign([fSize(12), color('#343434')])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</Text>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_location.png')}/>
+            </View>
           </View>
         </View>
         {/*拨打电话等操作*/}
@@ -119,15 +140,15 @@ export default class Card extends PureComponent<Props, State> {
             </View>
           </View>
           <View style={styleAssign([wRatio(100), h(61), styles.udr, styles.uac, styles.ujb, pl(20), pr(20)])}>
-            <View style={styleAssign([styles.udr, styles.uac])}>
+            <View style={styleAssign([styles.udr, styles.uac, bgColor('red'), w(170)])}>
               {
                 [1, 2, 3, 4, 5].map((value, index) => {
                   console.log(value);
-                  return <Image key={index} style={styleAssign([w(22), h(22)])}
+                  return <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absL(15 * index)])}
                                 src={require('../../../assets/ico_viewer.png')}/>
                 })
               }
-              <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>150人浏览过</Text>
+              <Text style={styleAssign([color('#343434'), fSize(12), styles.upa, absL(100)])}>150人浏览过</Text>
             </View>
             <View style={styleAssign([styles.udr, styles.uac])}>
               <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>收藏 143</Text>

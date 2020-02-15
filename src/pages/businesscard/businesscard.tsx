@@ -133,8 +133,7 @@ class Businesscard extends Component<Props, State> {
                                url: `/pages/businesscard/qiehuan_businesscard`
                              });
                            }}>
-            <Text style={styleAssign([fSize(19)])}>名片</Text>
-            <Image style={styleAssign([w(18), h(18), ml(5)])} src={require('../../assets/ico_down.png')}/>
+            <Text style={styleAssign([fSize(18),color('#343434')])}>名片</Text>
           </TouchableButton>
           <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
         </View>
