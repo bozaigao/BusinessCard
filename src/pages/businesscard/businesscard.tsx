@@ -191,18 +191,18 @@ class Businesscard extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(86), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
           </View>
-          {/*创建名片*/}
-          <View style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}
-                onClick={() => {
-                  Taro.navigateTo({
-                    url: `/pages/businesscard/add_businesscard`
-                  });
-                }}>
-            <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
-              <Text style={styleAssign([fSize(14), color('#825D22')])}>创建您的专属名片</Text>
-            </View>
-          </View>
         </ScrollView>
+        {/*创建名片*/}
+        <View style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}
+              onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/businesscard/add_businesscard`
+                });
+              }}>
+          <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
+            <Text style={styleAssign([fSize(14), color('#825D22')])}>创建您的专属名片</Text>
+          </View>
+        </View>
         {
           showShare && <ShareModal cancle={() => {
             this.setState({showShare: false});

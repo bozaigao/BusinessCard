@@ -127,7 +127,7 @@ class Mine extends Component<Props, State> {
             </View>
             <View style={styleAssign([wRatio(100), h(150), bgColor(commonStyles.whiteColor)])}/>
             {/*用户头像信息*/}
-            <View style={styleAssign([styles.upa, absT(100), wRatio(100)])}>
+            <View style={styleAssign([styles.upa, absT(65), wRatio(100)])}>
               <View style={styleAssign([styles.udr, wRatio(100), styles.ujb])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Image style={styleAssign([w(66), h(66), ml(20), radiusA(33)])}
