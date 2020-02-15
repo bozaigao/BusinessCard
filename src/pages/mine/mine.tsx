@@ -155,16 +155,16 @@ class Mine extends Component<Props, State> {
                 {
                   [{
                     title: '商城',
-                    icon: `${cloudBaseUrl}ico_haibao.png`
+                    icon: require('../../assets/co_shop.png')
                   }, {
                     title: '海报',
-                    icon: `${cloudBaseUrl}ico_haibao.png`
+                    icon: require('../../assets/ico_haibao.png')
                   }, {
                     title: '工具箱',
-                    icon: `${cloudBaseUrl}ico_toolkit.png`
+                    icon: require('../../assets/ico_toolkit.png')
                   }, {
                     title: '任务中心',
-                    icon: `${cloudBaseUrl}ico_task.png`
+                    icon: require('../../assets/ico_task.png')
                   }].map((value, index) => {
                     return (
                       <TouchableButton customStyle={styleAssign([styles.uac])} key={index}
