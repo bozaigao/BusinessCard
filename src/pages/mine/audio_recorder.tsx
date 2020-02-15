@@ -31,7 +31,7 @@ import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import DeleteNoticeModal from "./delete-notice";
 import {Enum} from "../../const/global";
-import {cloudBaseUrl, FileController} from "../../api/httpurl";
+import {FileController} from "../../api/httpurl";
 
 //录制总时间限制
 let totalTime = 60;
@@ -256,24 +256,24 @@ class AudioRecorder extends Component<Props, State> {
 
     switch (recordState) {
       case RECORD_STATE.RECORD_START:
-        recordIcon = `${cloudBaseUrl}ico_record_start.png`;
+        recordIcon = require('../../assets/ico_record_start.png');
         break;
       case RECORD_STATE.RECORD_PAUSE:
-        recordIcon = `${cloudBaseUrl}ico_record_pause.png`;
+        recordIcon = require('../../assets/ico_record_pause.png');
         break;
       case RECORD_STATE.RECORD_RESUME:
-        recordIcon = `${cloudBaseUrl}ico_record_start.png`;
+        recordIcon = require('../../assets/ico_record_start.png');
         break;
       default:
-        recordIcon = `${cloudBaseUrl}ico_record.png`;
+        recordIcon = require('../../assets/ico_record.png');
     }
 
     if (canRetry) {
-      rightIcon = `${cloudBaseUrl}ico_record_retry.png`;
+      rightIcon = require('../../assets/ico_record_retry.png');
     } else if (canRecordDone) {
-      rightIcon = `${cloudBaseUrl}ico_record_done_pressed.png`;
+      rightIcon = require('../../assets/ico_record_done_pressed.png');
     } else {
-      rightIcon = `${cloudBaseUrl}ico_record_done_normal.png`;
+      rightIcon = require('../../assets/ico_record_done_normal.png');
     }
 
 
@@ -309,8 +309,8 @@ class AudioRecorder extends Component<Props, State> {
             style={styleAssign([styles.uf1, styles.udr, styles.uac, styles.ujc, bgColor(commonStyles.whiteColor), pt(53)])}>
             <View style={styleAssign([styles.udr, styles.uac])}>
               <Image style={styleAssign([w(56), h(56)])}
-                     src={recordDone ?`${cloudBaseUrl}ico_record_delete_pressed.png`:
-                       `${cloudBaseUrl}ico_record_delete_normal.png`}
+                     src={recordDone ?require('../../assets/ico_record_delete_pressed.png'):
+                       require('../../assets/ico_record_delete_normal.png')}
                      onClick={() => {
                        if (recordDone) {
                          this.setState({showDeleteNotice: true});

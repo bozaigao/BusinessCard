@@ -293,7 +293,7 @@ class GoodsManage extends Component<Props, State> {
         {
           !hasShop ?
             <View style={styleAssign([styles.uac, mt(114)])}>
-              <Image style={styleAssign([w(80), h(72)])} src={`${cloudBaseUrl}ico_my_shop.png`}/>
+              <Image style={styleAssign([w(80), h(72)])} src={require('../../assets/ico_my_shop.png')}/>
               <Text style={styleAssign([fSize(15), color('#343434'), mt(33)])}>您还未开通自己的商铺</Text>
               <View
                 style={styleAssign([w(202), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}

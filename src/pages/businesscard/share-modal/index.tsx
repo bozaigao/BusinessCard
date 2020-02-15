@@ -25,12 +25,11 @@ import {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
-import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
-  wechatShare:any;
-  haibao:any;
+  wechatShare: any;
+  haibao: any;
   cancle: any;
 }
 
@@ -41,7 +40,7 @@ export default class ShareModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {cancle,wechatShare,haibao} = this.props;
+    let {cancle, wechatShare, haibao} = this.props;
 
     return (
       <View
@@ -56,13 +55,13 @@ export default class ShareModal extends PureComponent<Props, State> {
           {/*微信分享、名片海报*/}
           <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac])}>
             <TouchableButton customStyle={styleAssign([w(187.5), styles.uac])}
-            onClick={wechatShare}>
-              <Image style={styleAssign([w(62), h(62)])} src={`${cloudBaseUrl}ico_wechat.png`}/>
+                             onClick={wechatShare}>
+              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
             </TouchableButton>
             <TouchableButton customStyle={styleAssign([w(187.5), styles.uac])}
                              onClick={haibao}>
-              <Image style={styleAssign([w(62), h(62)])} src={`${cloudBaseUrl}ico_mingpian_haibao.png`}/>
+              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_mingpian_haibao.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>名片海报</Text>
             </TouchableButton>
           </View>

@@ -291,7 +291,7 @@ class TaskCenter extends Component<Props, State> {
                 {
                   taskItem.length === 0 &&
                   <View style={styleAssign([styles.uac, mt(48)])}>
-                    <Image style={styleAssign([w(78), h(69)])} src={`${cloudBaseUrl}ico_no_data.png`}/>
+                    <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
                     <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无任务</Text>
                   </View>
                 }
@@ -305,7 +305,7 @@ class TaskCenter extends Component<Props, State> {
                 {
                   todayTask.length === 0 &&
                   <View style={styleAssign([styles.uac, mt(48)])}>
-                    <Image style={styleAssign([w(78), h(69)])} src={`${cloudBaseUrl}ico_no_data.png`}/>
+                    <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
                     <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无任务</Text>
                   </View>
                 }
