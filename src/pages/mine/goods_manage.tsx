@@ -19,13 +19,14 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio,
+  hRatio, ma,
   ml,
   mr,
   mt,
-  op,
+  op, pa,
   pl,
   pr,
+  radiusA,
   radiusTL,
   radiusTR,
   w,
@@ -53,7 +54,8 @@ interface State {
   showChoose: boolean;
   state: string;
   showOperate: boolean;
-  currentIndex:number;
+  currentIndex: number;
+  hasShop: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -86,7 +88,8 @@ class GoodsManage extends Component<Props, State> {
       showChoose: false,
       state: '全部',
       showOperate: false,
-      currentIndex:0
+      currentIndex: 0,
+      hasShop: true
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -208,45 +211,12 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate,currentIndex} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop} = this.state;
 
-    return (
-      <CustomSafeAreaView ref={(ref) => {
-        this.viewRef = ref;
-      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <View
-          style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-          <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={require('../../assets/ico_back.png')}
-                 onClick={() => {
-                   Taro.navigateBack();
-                 }}/>
-          <View style={styleAssign([styles.uac, styles.udr])}>
-            <View style={styleAssign([styles.uac, styles.udr])}
-                  onClick={() => {
-                    this.setState({currentIndex: 0}, () => {
-                      this.refresh();
-                    });
-                  }}>
-              <View style={styleAssign([styles.uac])}>
-                <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
-                <View
-                  style={styleAssign([w(36), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
-              </View>
-            </View>
-            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
-                  onClick={() => {
-                    this.setState({currentIndex: 1});
-                  }}>
-              <View style={styleAssign([styles.uac])}>
-                <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>收藏</Text>
-                <View
-                  style={styleAssign([w(36), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
-              </View>
-            </View>
-          </View>
-          <View style={styleAssign([w(22), h(22), mr(20)])}/>
-        </View>
+    let child;
+
+    if (currentIndex === 0) {
+      child = <View style={styleAssign([styles.uf1])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20)])}>
@@ -316,6 +286,98 @@ class GoodsManage extends Component<Props, State> {
             url: `/pages/mine/add_goods`
           });
         }}/>
+      </View>
+    } else {
+      child = <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+        {
+          !hasShop ?
+            <View style={styleAssign([styles.uac, mt(114)])}>
+              <Image style={styleAssign([w(80), h(72)])} src={require('../../assets/ico_my_shop.png')}/>
+              <Text style={styleAssign([fSize(15), color('#343434'), mt(33)])}>您还未开通自己的商铺</Text>
+              <View
+                style={styleAssign([w(202), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
+                onClick={() => {
+
+                }}>
+                <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即开通</Text>
+              </View>
+            </View> :
+            <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
+              <View
+                style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
+                <Image style={styleAssign([w(129), h(134), radiusA(4)])}
+                       src={require('../../assets/ico_shop_pic.png')}/>
+                <View style={styleAssign([ml(16)])}>
+                  <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
+                  <View style={styleAssign([styles.udr, mt(12)])}>
+                    <Image style={styleAssign([w(12), h(14)])} src={require('../../assets/ico_shop_location.png')}/>
+                    <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>四川省成都市武侯区盛和二路18号富森美家居</Text>
+                  </View>
+                  <Text style={styleAssign([fSize(12), color('#979797'), mt(14)])}>有效期至：2020-6-30</Text>
+                  <View style={styleAssign([wRatio(100), styles.udr, styles.uje, mt(10)])}>
+                    <View
+                      style={styleAssign([w(64), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
+                      <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>进店逛逛</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View style={styleAssign([styles.uac, styles.udr, mt(26)])}>
+                <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B'), ml(20)])}/>
+                <Text style={styleAssign([fSize(16), color('#373838'), ml(5)])}>商铺简介</Text>
+              </View>
+              <Text style={styleAssign([fSize(14), color('#373838'), ma(20)])}>美克集团创建于1990年，旗下包括上市公司美克国际家居用品股份有限公司、新疆美克化工有限责任公司、美克置地等多家企业，产业涉及家具制造及出口、家居零售和精细化工等领域。
+                多年来，美克集团坚持走世界优质企业道路，持续优化产业结构，提升企业核心竞争能力。美克家具制造业具备生产实木客厅、餐厅、卧房、家庭办公等全套民用家具产品的能力，是国内乃至亚洲知名的家具制造企业之一；零售业“美克美家”逐渐成为中国家居消费行业的典范，高品质生活的代名词，成为广受赞誉与令人尊敬的知名家居品牌；美克化工生产的1,4-丁二醇是纺织、汽车零配件、医药化妆品和家电等产品的一种重要精细化工中间体原料，目前是中国的1,4-丁二醇供应商之一。</Text>
+              <View style={styleAssign([styles.uf1, styles.uje])}>
+                {/*续费套餐*/}
+                <BottomButon title={'续费套餐'} onClick={() => {
+                }}/>
+              </View>
+            </View>
+        }
+      </View>
+    }
+
+    return (
+      <CustomSafeAreaView ref={(ref) => {
+        this.viewRef = ref;
+      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        <View
+          style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+          <Image style={styleAssign([w(22), h(22), ml(20)])}
+                 src={require('../../assets/ico_back.png')}
+                 onClick={() => {
+                   Taro.navigateBack();
+                 }}/>
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <View style={styleAssign([styles.uac, styles.udr])}
+                  onClick={() => {
+                    this.setState({currentIndex: 0}, () => {
+                      this.refresh();
+                    });
+                  }}>
+              <View style={styleAssign([styles.uac])}>
+                <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>商品管理</Text>
+                <View
+                  style={styleAssign([w(72), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+              </View>
+            </View>
+            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                  onClick={() => {
+                    this.setState({currentIndex: 1});
+                  }}>
+              <View style={styleAssign([styles.uac])}>
+                <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的商铺</Text>
+                <View
+                  style={styleAssign([w(72), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+              </View>
+            </View>
+          </View>
+          <View style={styleAssign([w(22), h(22), mr(20)])}/>
+        </View>
+        {
+          child
+        }
         {/*选择展示商品*/}
         {
           showChoose && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
