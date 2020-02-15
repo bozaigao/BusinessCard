@@ -36,7 +36,7 @@ interface Props {
 }
 
 interface State {
-
+  currentIndex: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -59,11 +59,14 @@ class Haibao extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
+    this.state = {
+      currentIndex: 0
+    }
   }
 
 
   render() {
-
+    let {currentIndex} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -80,12 +83,15 @@ class Haibao extends Component<Props, State> {
               ['热点话题', '早晚问候', '业绩催单', '人才招聘', '节日海报', '热点话题', '早晚问候', '业绩催单', '人才招聘', '节日海报'].map((value, index) => {
                 console.log(value);
                 return (<View style={styleAssign([styles.uac, mt(5), ml(20), {display: 'inline-block'}])}
-                              key={index}>
+                              key={index}
+                              onClick={() => {
+                                this.setState({currentIndex: index});
+                              }}>
                   <Text
-                    style={styleAssign([fSize(14), color(index === 0 ? '#E2BB7B' : commonStyles.colorTheme)])}>{value}</Text>
+                    style={styleAssign([fSize(14), color(index === currentIndex ? '#E2BB7B' : commonStyles.colorTheme)])}>{value}</Text>
                   <View
-                    style={styleAssign([w(25), h(2), radiusA(1), bgColor(index === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(5),
-                      ml(15)])}/>
+                    style={styleAssign([w(50), h(2), radiusA(1), bgColor(index === currentIndex ? '#E2BB7B' : commonStyles.whiteColor), mt(5),
+                      ml(5)])}/>
                 </View>);
               })
             }
