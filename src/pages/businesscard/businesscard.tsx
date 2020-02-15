@@ -110,6 +110,15 @@ class Businesscard extends Component<Props, State> {
     console.log('componentWillUnmount');
   }
 
+  //@ts-ignore
+  onShareAppMessage(res) {
+    console.log('名片分享');
+    return {
+      title: '名片分享',
+      path: '/pages/businesscard/add_businesscard'
+    }
+  }
+
 
   render() {
 

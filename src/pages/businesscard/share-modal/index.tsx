@@ -6,7 +6,7 @@
  * @Description: 名片切换item
  */
 import Taro, {PureComponent} from "@tarojs/taro";
-import {Image, Text, View} from "@tarojs/components";
+import {Button, Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import {
   absB,
@@ -54,16 +54,18 @@ export default class ShareModal extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), h(194), bgColor(commonStyles.whiteColor), styles.upa, absB(0)])}>
           {/*微信分享、名片海报*/}
           <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac])}>
-            <TouchableButton customStyle={styleAssign([w(187.5), styles.uac])}
-                             onClick={wechatShare}>
-              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat.png')}/>
-              <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
-            </TouchableButton>
-            <TouchableButton customStyle={styleAssign([w(187.5), styles.uac])}
-                             onClick={haibao}>
+            <Button openType={'share'} style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+              <View style={styleAssign([w(187.5), styles.uac])}
+                    onClick={wechatShare}>
+                <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat.png')}/>
+                <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
+              </View>
+            </Button>
+            <View style={styleAssign([w(187.5), styles.uac])}
+                  onClick={haibao}>
               <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_mingpian_haibao.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>名片海报</Text>
-            </TouchableButton>
+            </View>
           </View>
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {/*取消*/}
