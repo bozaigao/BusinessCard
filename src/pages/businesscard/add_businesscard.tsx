@@ -32,6 +32,7 @@ import {Image, ScrollView, Switch, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   dispatchLogin?: any;
@@ -124,7 +125,7 @@ class AddBusinesscard extends Component<Props, State> {
                            }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
             <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                   src={avatar && avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
+                   src={avatar && avatar.length !== 0 ? avatar : `${cloudBaseUrl}ico_default.png`}/>
           </TouchableButton>
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {/*内容编辑*/}

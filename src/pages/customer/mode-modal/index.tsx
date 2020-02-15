@@ -29,6 +29,7 @@ import {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -71,7 +72,7 @@ export default class ModeModal extends PureComponent<Props, State> {
         </TouchableButton>
         <View style={styleAssign([{width: '68%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
           radiusA(26), styles.uac, styles.udr, mt(10)])}>
-          <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../../assets/ico_search.png')}/>
+          <Image style={styleAssign([w(21), h(21), ml(16)])} src={`${cloudBaseUrl}ico_search.png`}/>
           <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
         </View>
         <View style={styleAssign([styles.uf1])}>
@@ -83,12 +84,12 @@ export default class ModeModal extends PureComponent<Props, State> {
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>{shaiXuanMode}</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_up.png')}/>
+                  <Image style={styleAssign([w(8), h(5), ml(3)])} src={`${cloudBaseUrl}ico_sanjiao_up.png`}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}
                       onClick={shaiXuanCallback}>筛选</Text>
-                <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../../assets/ico_shaixuan.png')}/>
+                <Image style={styleAssign([w(14), h(14), ml(3)])} src={`${cloudBaseUrl}ico_shaixuan.png`}/>
               </View>
             </View>
           </View>

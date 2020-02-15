@@ -41,6 +41,7 @@ import {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -96,7 +97,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
         <View
           style={styleAssign([wRatio(100), h(iphoneX() ? 47 : 44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={require('../../../assets/ico_back.png')}
+                 src={`${cloudBaseUrl}ico_back.png`}
                  onClick={() => {
                    Taro.navigateBack();
                  }}/>
@@ -145,12 +146,12 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
               <View style={styleAssign([styles.uac, styles.udr])}
                     onClick={modeCallback}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_down.png')}/>
+                <Image style={styleAssign([w(8), h(5), ml(3)])} src={`${cloudBaseUrl}ico_sanjiao_down.png`}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>筛选</Text>
                 <Image style={styleAssign([w(14), h(14), ml(3)])}
-                       src={require('../../../assets/ico_shaixuan_orange.png')}/>
+                         src={`${cloudBaseUrl}ico_shaixuan_orange.png`}/>
               </View>
             </View>
           </View>
@@ -213,7 +214,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                     <View style={styleAssign([styles.uac, styles.udr])}>
                       <Text style={styleAssign([color('#979797'), fSize(14)])}>{startTime}</Text>
                       <Image style={styleAssign([w(8), h(5), ml(3)])}
-                             src={require('../../../assets/ico_sanjiao_down.png')}/>
+                             src={`${cloudBaseUrl}ico_sanjiao_down.png`}/>
                     </View>
                   </Picker>
                   <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mr(20)])}>至</Text>
@@ -223,7 +224,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                     <View style={styleAssign([styles.uac, styles.udr])}>
                       <Text style={styleAssign([color('#979797'), fSize(14)])}>{endTime}</Text>
                       <Image style={styleAssign([w(8), h(5), ml(3)])}
-                             src={require('../../../assets/ico_sanjiao_down.png')}/>
+                             src={`${cloudBaseUrl}ico_sanjiao_down.png`}/>
                     </View>
                   </Picker>
                 </View>

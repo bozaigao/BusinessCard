@@ -29,6 +29,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import QieHanItem from "./qiehuan-item";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   dispatchLogin?: any;
@@ -89,7 +90,7 @@ class QiehuanBusinesscard extends Component<Props, State> {
               padding([20, 16, 20, 16])])}>
             <TouchableButton customStyle={styleAssign([styles.udr, styles.uac])}>
               <Image style={styleAssign([w(22), h(25)])}
-                     src={require('../../assets/ico_add.png')}/>
+                     src={`${cloudBaseUrl}ico_add.png`}/>
               <Text style={styleAssign([fSize(16), color('#CECECE'), ml(10)])}>添加新名片</Text>
             </TouchableButton>
           </View>

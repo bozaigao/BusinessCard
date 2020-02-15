@@ -33,6 +33,7 @@ import TopHeader from "../../compoments/top-header";
 import {CustomerModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {Image, Text, Textarea, View} from "@tarojs/components";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   //获取banner信息
@@ -123,7 +124,7 @@ class AddGenJin extends Component<Props, State> {
             </Text>
             <View style={styleAssign([styles.udr, styles.uac, mt(16)])}>
               <Image style={styleAssign([w(66), h(66)])}
-                     src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
+                     src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
               <View style={styleAssign([ml(16)])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Text style={styleAssign([fSize(18), color('#343434')])}>

@@ -32,6 +32,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import TouchableButton from "../../compoments/touchable-button";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
 }
@@ -87,7 +88,7 @@ class MyTags extends Component<Props, State> {
                       padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
                       <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
                       <Image style={styleAssign([w(15), h(15), styles.upa, absT(-5), absR(-5)])}
-                             src={require('../../assets/ico_close.png')}/>
+                             src={`${cloudBaseUrl}ico_close.png`}/>
                     </TouchableButton>
                   </View>);
                 })
@@ -98,7 +99,7 @@ class MyTags extends Component<Props, State> {
                 customStyle={styleAssign([styles.uac, styles.udr, ml(20), bgColor(commonStyles.colorTheme),
                   w(95), h(28), radiusA(14), styles.uac, styles.ujc])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
-                  <Image style={styleAssign([w(12), h(12)])} src={require('../../assets/ico_black_add.png')}/>
+                  <Image style={styleAssign([w(12), h(12)])} src={`${cloudBaseUrl}ico_black_add.png`}/>
                   <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>自定义标签</Text>
                 </View>
               </TouchableButton>

@@ -23,6 +23,7 @@ import styles, {
   w,
   wRatio
 } from "../../../utils/style";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -48,8 +49,8 @@ export default class PersonalInfo extends PureComponent<Props, State> {
           style={styleAssign([wRatio(95), h(355), bgColor(commonStyles.whiteColor), radiusA(4),
             {marginLeft: '2.5%'}, mt(16), pa(16)])}>
           <View style={styleAssign([styles.udr, styles.uac])}>
-            <Image style={styleAssign([w(40), h(40), radiusA(20)])} src={require('../../../assets/ico_default.png')}/>
-            <Image style={styleAssign([w(85), h(41), ml(10)])} src={require('../../../assets/ico_msg_bg.png')}/>
+            <Image style={styleAssign([w(40), h(40), radiusA(20)])} src={`${cloudBaseUrl}ico_default.png`}/>
+            <Image style={styleAssign([w(85), h(41), ml(10)])} src={`${cloudBaseUrl}ico_msg_bg.png`}/>
             <View>
               <View style={styleAssign([w(7), h(7), radiusA(3.6), bgColor('red'), ml(5)])}/>
               <Text style={styleAssign([fSize(11), color('#979797'), ml(8), mt(5)])}>9″</Text>

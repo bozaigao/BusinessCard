@@ -26,6 +26,7 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import {operateMap, RadarModel} from "../../../const/global";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -49,7 +50,7 @@ export default class RadarItem extends PureComponent<Props, State> {
               <Image style={styleAssign([w(46), h(46), radiusA(23)])}
                      src={item.behaviorTraceUser.avatar}/>
               <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
-                     src={item.behaviorTraceUser.sex === 1 ? require('../../../assets/ico_nan.png') : require('../../../assets/ico_nv.png')}/>
+                     src={item.behaviorTraceUser.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
             </View>
             <View style={styleAssign([ml(16)])}>
               <View style={styleAssign([styles.uac, styles.udr])}>

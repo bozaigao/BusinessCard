@@ -34,6 +34,7 @@ import BottomButon from "../../compoments/bottom-buton";
 import {CustomerModel} from "../../const/global";
 import ModeModal from "./mode-modal";
 import ShaiXuanModal from "./shai-xuan-modal";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   //获取banner信息
@@ -146,7 +147,7 @@ class Customer extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(99), bgColor(commonStyles.whiteColor), styles.ujb])}>
             <View style={styleAssign([{width: '68%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
               radiusA(26), styles.uac, styles.udr, mt(10)])}>
-              <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
+              <Image style={styleAssign([w(21), h(21), ml(16)])} src={`${cloudBaseUrl}ico_search.png`}/>
               <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
             </View>
             {/*条件筛选*/}
@@ -160,14 +161,14 @@ class Customer extends Component<Props, State> {
                         this.setState({showMode: true});
                       }}>
                   <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                  <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
+                  <Image style={styleAssign([w(8), h(5), ml(3)])} src={`${cloudBaseUrl}ico_sanjiao_down.png`}/>
                 </View>
                 <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
                       onClick={() => {
                         this.setState({showShaiXuan: true});
                       }}>
                   <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
-                  <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
+                  <Image style={styleAssign([w(14), h(14), ml(3)])} src={`${cloudBaseUrl}ico_shaixuan.png`}/>
                 </View>
               </View>
             </View>

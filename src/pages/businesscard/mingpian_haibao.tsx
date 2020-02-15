@@ -28,6 +28,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
 }
@@ -74,7 +75,7 @@ class MingpianHaibao extends Component<Props, State> {
             <View style={styleAssign([mt(20), wRatio(95), h(204), bgColor('rgb(211,199,195)'), radiusA(10),
               styles.udr, styles.uje])}>
               <Image style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}
-                     src={require('../../assets/ico_default.png')}/>
+                     src={`${cloudBaseUrl}ico_default.png`}/>
               <View style={styleAssign([ma(20)])}>
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text style={styleAssign([fSize(18)])}>王嘉怡</Text>
@@ -93,7 +94,7 @@ class MingpianHaibao extends Component<Props, State> {
             <View style={styleAssign([mt(20), wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([wRatio(100), styles.uae, styles.udr])}>
               <Image style={styleAssign([w(44), h(44), ml(16), mt(40)])}
-                     src={require('../../assets/ico_miniprogram.png')}/>
+                     src={`${cloudBaseUrl}ico_miniprogram.png`}/>
               <Text style={styleAssign([fSize(12), color('#E2BB7B'), ml(11)])}>长按识别二维码 收下名片</Text>
             </View>
           </View>

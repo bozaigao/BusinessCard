@@ -26,6 +26,7 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import {VisitorRecordModel} from "../../../const/global";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -49,7 +50,7 @@ export default class VisitorItem extends PureComponent<Props, State> {
               <Image style={styleAssign([w(46), h(46), radiusA(23)])}
                      src={item.visitor.avatar}/>
               <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
-                     src={item.visitor.sex === 2 ? require('../../../assets/ico_nv.png') : require('../../../assets/ico_nan.png')}/>
+                     src={item.visitor.sex === 2 ?`${cloudBaseUrl}ico_nv.png` : `${cloudBaseUrl}ico_nan.png`}/>
             </View>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(12), color('#343434')])}>{item.visitor.name}</Text>

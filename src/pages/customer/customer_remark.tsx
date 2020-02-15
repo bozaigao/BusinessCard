@@ -30,7 +30,7 @@ import {Image, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import ListItem from "../../compoments/list-item";
 import TouchableButton from "../../compoments/touchable-button";
 import {Enum} from "../../const/global";
-import {FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController} from "../../api/httpurl";
 import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
@@ -220,7 +220,7 @@ class CustomerRemark extends Component<Props, State> {
                   <View
                     style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
                       styles.uac, styles.ujc])}>
-                    <Image style={styleAssign([w(21), h(19)])} src={require('../../assets/ico_camera.png')}/>
+                    <Image style={styleAssign([w(21), h(19)])} src={`${cloudBaseUrl}ico_camera.png`}/>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加与客户相关的图片</Text>
                 </View>

@@ -8,6 +8,7 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, hRatio, ml, mt, radiusA, w, wRatio} from "../../../utils/style";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -32,17 +33,17 @@ export default class MyPhoto extends PureComponent<Props, State> {
           <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
             <Image
               style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={require('../../../assets/ico_default.png')}/>
+              src={`${cloudBaseUrl}ico_default.png`}/>
           </View>
           <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
             <Image
               style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={require('../../../assets/ico_default.png')}/>
+              src={`${cloudBaseUrl}ico_default.png`}/>
           </View>
           <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
             <Image
               style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={require('../../../assets/ico_default.png')}/>
+              src={`${cloudBaseUrl}ico_default.png`}/>
           </View>
         </View>
       </View>

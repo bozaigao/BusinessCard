@@ -17,6 +17,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "./list-item";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
 }
@@ -67,7 +68,7 @@ class CompanyInfo extends Component<Props, State> {
           }
           <View style={styleAssign([wRatio(100), h(230), bgColor(commonStyles.whiteColor), mb(10)])}>
             <View style={styleAssign([styles.uac, ml(36), w(160), mt(16)])}>
-              <Image style={styleAssign([w(160), h(160)])} src={require('../../assets/ico_click_upload.png')}
+              <Image style={styleAssign([w(160), h(160)])} src={`${cloudBaseUrl}ico_click_upload.png`}
                      onClick={() => {
                        Taro.chooseImage({count: 1}).then(() => {
 
@@ -80,7 +81,7 @@ class CompanyInfo extends Component<Props, State> {
           <ListItem title={'企业视频'}/>
           <View
             style={styleAssign([wRatio(100), h(193), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor), mb(10)])}>
-            <Image style={styleAssign([w(305), h(160)])} src={require('../../assets/ico_upload_video.png')}
+            <Image style={styleAssign([w(305), h(160)])} src={`${cloudBaseUrl}ico_upload_video.png`}
                    onClick={() => {
                      Taro.chooseVideo({compressed: true}).then(() => {
 

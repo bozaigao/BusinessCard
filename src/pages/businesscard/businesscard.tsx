@@ -40,6 +40,7 @@ import MyBusiness from "./my-business";
 import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
 import {User} from "../../const/global";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   //获取用户信息
@@ -128,7 +129,7 @@ class Businesscard extends Component<Props, State> {
           style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
           <View
             style={styleAssign([styles.uac, styles.udr, ml(23), w(95), h(32), radiusA(16), bdColor('#E5E5E5'), bo(1), {borderStyle: 'solid'}])}>
-            <Image style={styleAssign([w(27), h(27), ma(2)])} src={require('../../assets/ico_default.png')}/>
+            <Image style={styleAssign([w(27), h(27), ma(2)])} src={`${cloudBaseUrl}ico_default.png`}/>
             <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
           </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
@@ -177,7 +178,7 @@ class Businesscard extends Component<Props, State> {
             style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
-                     src={require('../../assets/ico_logo.png')}/>
+                     src={`${cloudBaseUrl}ico_logo.png`}/>
               <View style={styleAssign([ml(5)])}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>关注极致信息公众号</Text>
                 <Text style={styleAssign([fSize(12), color('#D2D2D2')])}>最新资讯、升级更新早知道！</Text>

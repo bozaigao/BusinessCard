@@ -27,6 +27,7 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import {Goods} from "../../../const/global";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -51,7 +52,7 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
             <Image style={styleAssign([w(90), h(90), radiusA(4)])} src={parseData(itemData.carouselUrl)[0]}/>
             {
               itemData.showHomepage === 1 && <Image style={styleAssign([w(36), h(36), styles.upa, absL(0), absT(0)])}
-                                                    src={require('../../../assets/ico_top.png')}/>
+                                                    src={`${cloudBaseUrl}ico_top.png`}/>
             }
           </View>
           <View style={styleAssign([ml(12)])}>

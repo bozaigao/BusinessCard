@@ -33,7 +33,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
-import {FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController} from "../../api/httpurl";
 import {Enum} from "../../const/global";
 
 let maxLength = 9;
@@ -166,7 +166,7 @@ class MyPhoto extends Component<Props, State> {
                     <Image key={index} style={styleAssign([w(105), h(105), radiusA(2)])}
                            src={value.path}/>
                     <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
-                           src={require('../../assets/ico_close.png')}
+                           src={`${cloudBaseUrl}ico_close.png`}
                            onClick={() => {
                              this.state.myPhotoUrl.splice(index, 1);
                              myPhotoUrlsLocal.splice(index, 1);
@@ -193,7 +193,7 @@ class MyPhoto extends Component<Props, State> {
                   });
                 }}
                 customStyle={styleAssign([ml(10), mb(20), w(105), h(105), bgColor(commonStyles.pageDefaultBackgroundColor), radiusA(4), styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/ico_goods_add.png')}/>
+                <Image style={styleAssign([w(40), h(40)])} src={`${cloudBaseUrl}ico_goods_add.png`}/>
               </TouchableButton>
             }
           </View>

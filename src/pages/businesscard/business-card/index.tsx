@@ -29,6 +29,7 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -60,25 +61,25 @@ export default class Card extends PureComponent<Props, State> {
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Text
                 style={styleAssign([fSize(12), color('#343434')])}>17311239269</Text>
-              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_mobile.png')}/>
+                <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
             </View>
             {/*微信号*/}
             <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
               <Text
                 style={styleAssign([fSize(12), color('#343434')])}>bozaigao</Text>
-              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_wechat.png')}/>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
             </View>
             {/*邮箱*/}
             <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
               <Text
                 style={styleAssign([fSize(12), color('#343434')])}>邮箱信息未对外公开</Text>
-              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_email.png')}/>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
             </View>
             {/*地址*/}
             <View style={styleAssign([styles.udr, mt(8)])}>
               <Text
                 style={styleAssign([fSize(12), color('#343434')])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</Text>
-              <Image style={styleAssign([w(12), h(10), ml(8)])} src={require('../../../assets/ico_card_location.png')}/>
+              <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
             </View>
           </View>
         </View>
@@ -89,7 +90,7 @@ export default class Card extends PureComponent<Props, State> {
                   onClick={collectCallback}>
               <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>118</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(11), h(11)])} src={require('../../../assets/ico_star_gray.png')}/>
+                <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_star_gray.png`}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>收藏</Text>
               </View>
             </View>
@@ -97,7 +98,7 @@ export default class Card extends PureComponent<Props, State> {
             <View style={styleAssign([styles.uf1, styles.uac])}>
               <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>230</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(11), h(11)])} src={require('../../../assets/ico_person_gray.png')}/>
+                <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_person_gray.png`}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>访客</Text>
               </View>
             </View>
@@ -148,7 +149,7 @@ export default class Card extends PureComponent<Props, State> {
                 [1, 2, 3, 4, 5].map((value, index) => {
                   console.log(value);
                   return <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absL(15 * index)])}
-                                src={require('../../../assets/ico_viewer.png')}/>
+                                src={`${cloudBaseUrl}ico_viewer.png`}/>
                 })
               }
               <Text style={styleAssign([color('#343434'), fSize(12), styles.upa, absL(100)])}>150人浏览过</Text>
@@ -156,7 +157,7 @@ export default class Card extends PureComponent<Props, State> {
             <View style={styleAssign([styles.udr, styles.uac])}>
               <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>收藏 143</Text>
               <Image style={styleAssign([w(15), h(15), ml(7)])}
-                     src={require('../../../assets/ico_star.png')}/>
+                     src={`${cloudBaseUrl}ico_star.png`}/>
             </View>
           </View>
         </View>

@@ -32,7 +32,7 @@ import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
 import BottomButon from "../../compoments/bottom-buton";
 import {Enum} from "../../const/global";
-import {FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController} from "../../api/httpurl";
 
 interface Props {
   //获取banner信息
@@ -216,7 +216,7 @@ class AddCustomer extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={sex === 1 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
+                              src={sex === 1 ? `${cloudBaseUrl}ico_checked.png` : `${cloudBaseUrl}ico_nochecked.png`}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>男</Text>
                           </TouchableButton>
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
@@ -226,7 +226,7 @@ class AddCustomer extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={sex === 2 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
+                              src={sex === 2 ? `${cloudBaseUrl}ico_checked.png` : `${cloudBaseUrl}ico_nochecked.png`}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>女</Text>
                           </TouchableButton>
                         </View>
@@ -352,7 +352,7 @@ class AddCustomer extends Component<Props, State> {
                   <View
                     style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
                       styles.uac, styles.ujc])}>
-                    <Image style={styleAssign([w(21), h(19)])} src={require('../../assets/ico_camera.png')}/>
+                    <Image style={styleAssign([w(21), h(19)])} src={`${cloudBaseUrl}ico_camera.png`}/>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加与客户相关的图片</Text>
                 </View>

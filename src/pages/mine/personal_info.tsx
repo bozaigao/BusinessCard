@@ -35,7 +35,7 @@ import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
 import TouchableButton from "../../compoments/touchable-button";
 import {Enum, User} from "../../const/global";
-import {FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController} from "../../api/httpurl";
 
 interface Props {
   //上传文件
@@ -250,7 +250,7 @@ class PersonalInfo extends Component<Props, State> {
                            }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
             <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                   src={avatar && avatar.length !== 0 ? avatar : require('../../assets/ico_default.png')}/>
+                   src={avatar && avatar.length !== 0 ? avatar : `${cloudBaseUrl}ico_default.png`}/>
           </TouchableButton>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {
@@ -269,7 +269,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={sex === 1 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
+                              src={sex === 1 ?`${cloudBaseUrl}ico_checked.png`:`${cloudBaseUrl}ico_nochecked.png`}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>男</Text>
                           </TouchableButton>
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
@@ -279,7 +279,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={sex === 2 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
+                              src={sex === 2 ?`${cloudBaseUrl}ico_checked.png` :`${cloudBaseUrl}ico_nochecked.png`}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>女</Text>
                           </TouchableButton>
                         </View>

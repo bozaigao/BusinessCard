@@ -65,7 +65,6 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/mine/goods_manage",
       //主界面
       "pages/businesscard/businesscard",
       "pages/radarscan/radarscan",
@@ -90,7 +89,7 @@ class App extends Component {
       "pages/mine/tool_box",
       "pages/mine/haibao",
       "pages/mine/goods_detail",
-      // "pages/mine/goods_manage",
+      "pages/mine/goods_manage",
       "pages/mine/add_goods",
       "pages/mine/task_center",
       "pages/mine/contact_way",

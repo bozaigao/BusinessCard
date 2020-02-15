@@ -39,6 +39,7 @@ import TouchableButton from "../../compoments/touchable-button/index";
 import GoodsManageItem from "../businesscard/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Goods, User} from "../../const/global";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   //获取商品列表
@@ -292,7 +293,7 @@ class GoodsManage extends Component<Props, State> {
         {
           !hasShop ?
             <View style={styleAssign([styles.uac, mt(114)])}>
-              <Image style={styleAssign([w(80), h(72)])} src={require('../../assets/ico_my_shop.png')}/>
+              <Image style={styleAssign([w(80), h(72)])} src={`${cloudBaseUrl}ico_my_shop.png`}/>
               <Text style={styleAssign([fSize(15), color('#343434'), mt(33)])}>您还未开通自己的商铺</Text>
               <View
                 style={styleAssign([w(202), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
@@ -306,11 +307,11 @@ class GoodsManage extends Component<Props, State> {
               <View
                 style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
                 <Image style={styleAssign([w(129), h(134), radiusA(4)])}
-                       src={require('../../assets/ico_shop_pic.png')}/>
+                       src={`${cloudBaseUrl}ico_shop_pic.png`}/>
                 <View style={styleAssign([ml(16)])}>
                   <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
                   <View style={styleAssign([styles.udr, mt(12)])}>
-                    <Image style={styleAssign([w(12), h(14)])} src={require('../../assets/ico_shop_location.png')}/>
+                    <Image style={styleAssign([w(12), h(14)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
                     <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>四川省成都市武侯区盛和二路18号富森美家居</Text>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#979797'), mt(14)])}>有效期至：2020-6-30</Text>
@@ -345,7 +346,7 @@ class GoodsManage extends Component<Props, State> {
         <View
           style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={require('../../assets/ico_back.png')}
+                 src={`${cloudBaseUrl}ico_back.png`}
                  onClick={() => {
                    Taro.navigateBack();
                  }}/>

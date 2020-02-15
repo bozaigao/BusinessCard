@@ -43,6 +43,7 @@ import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 import VisitorItem from "./visitor-item";
 import ShaiXuanModal from "./shai-xuan-modal";
 import ModeModal from "./mode-modal";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   userInfo: User;
@@ -301,14 +302,14 @@ class MyCollect extends Component<Props, State> {
                       this.setState({showMode: true});
                     }}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
+                <Image style={styleAssign([w(8), h(5), ml(3)])} src={`${cloudBaseUrl}ico_sanjiao_down.png`}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
                     onClick={() => {
                       this.setState({showShaiXuan: true});
                     }}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
-                <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
+                <Image style={styleAssign([w(14), h(14), ml(3)])} src={`${cloudBaseUrl}ico_shaixuan.png`}/>
               </View>
             </View>
           </View>
@@ -343,7 +344,7 @@ class MyCollect extends Component<Props, State> {
           <View
             style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
             <Image style={styleAssign([w(22), h(22), ml(20)])}
-                   src={require('../../assets/ico_back.png')}
+                   src={`${cloudBaseUrl}ico_back.png`}
                    onClick={() => {
                      Taro.navigateBack();
                    }}/>

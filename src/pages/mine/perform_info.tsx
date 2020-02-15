@@ -35,6 +35,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import {User} from "../../const/global";
 import {LinearGradientView} from "../../compoments/linear-gradient-view";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 
 interface Props {
@@ -134,7 +135,7 @@ class PerformInfo extends Component<Props, State> {
               {/*我的*/}
               <View
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
+                <Image style={styleAssign([w(22), h(22), ml(20)])} src={`${cloudBaseUrl}ico_back_white.png`}
                        onClick={() => {
                          console.log('刷新用户信息1');
                          Taro.eventCenter.trigger('refreshUserInfo');
@@ -150,10 +151,10 @@ class PerformInfo extends Component<Props, State> {
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
-                  src={userInfo.avatar ? userInfo.avatar : require('../../assets/ico_default.png')}/>
+                  src={userInfo.avatar ? userInfo.avatar :`${cloudBaseUrl}ico_default.png`}/>
                 <Image
                   style={styleAssign([w(23), h(23), radiusA(11.5), styles.upa, absB(2), absR(2)])}
-                  src={userInfo.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
+                  src={userInfo.sex === 1 ?`${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
               </View>
               <Text
                 style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
@@ -168,7 +169,7 @@ class PerformInfo extends Component<Props, State> {
             </View>
             {/*编辑*/}
             <View style={styleAssign([styles.uac, styles.upa, absR(10), absB(150)])}>
-              <Image style={styleAssign([w(21), h(19), mt(70)])} src={require('../../assets/ico_edit.png')}
+              <Image style={styleAssign([w(21), h(19), mt(70)])} src={`${cloudBaseUrl}ico_edit.png`}
                      onClick={() => {
                        Taro.navigateTo({
                          url: `/pages/mine/personal_info`
@@ -184,22 +185,22 @@ class PerformInfo extends Component<Props, State> {
                 <Text style={styleAssign([fSize(16), color('#343434')])}>名片竞争力：</Text>
                 <Text style={styleAssign([fSize(16), color('#343434')])}>中级</Text>
               </View>
-              <Image style={styleAssign([w(12), h(5), mr(20), mt(20)])} src={require('../../assets/ico_down2.png')}/>
+              <Image style={styleAssign([w(12), h(5), mr(20), mt(20)])} src={`${cloudBaseUrl}ico_down2.png`}/>
             </View>
             <View style={styleAssign([wRatio(100), h(50), styles.ujc])}>
               <LinearGradientView style={styleAssign([wRatio(90), h(20), {marginLeft: '5%'}])}/>
               <View style={styleAssign([styles.upa, wRatio(94), h(50), absT(0), {left: '3%'},
                 styles.udr, styles.uac, styles.ujb])}>
-                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/progress_1.png')}/>
+                <Image style={styleAssign([w(40), h(40)])} src={`${cloudBaseUrl}progress_1.png`}/>
                 {
                   [1, 2, 3].map((value, index) => {
                     console.log(value);
                     return <View key={index} style={styleAssign([w(2), h(10), bgColor(commonStyles.whiteColor)])}/>;
                   })
                 }
-                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/progress_2.png')}/>
+                <Image style={styleAssign([w(40), h(40)])} src={`${cloudBaseUrl}progress_2.png`}/>
                 <View style={styleAssign([w(2), h(10), bgColor(commonStyles.whiteColor)])}/>
-                <Image style={styleAssign([w(40), h(40)])} src={require('../../assets/progress_3.png')}/>
+                <Image style={styleAssign([w(40), h(40)])} src={`${cloudBaseUrl}progress_3.png`}/>
               </View>
             </View>
           </View>
@@ -214,7 +215,7 @@ class PerformInfo extends Component<Props, State> {
                 <Text style={styleAssign([fSize(16), color('#343434')])}>个人简介</Text>
                 <Text style={styleAssign([fSize(14), color('#979797')])}>完善个人简介，拥有精美名片</Text>
               </View>
-              <Image style={styleAssign([w(12), h(5), mr(20), mt(40)])} src={require('../../assets/ico_down2.png')}/>
+              <Image style={styleAssign([w(12), h(5), mr(20), mt(40)])} src={`${cloudBaseUrl}ico_down2.png`}/>
             </TouchableButton>
             {
               showPersonalInfo && [{
@@ -262,7 +263,7 @@ class PerformInfo extends Component<Props, State> {
                       </View>
                       <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                         <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{value.chooseTitle}</Text>
-                        <Image style={styleAssign([w(7), h(12), ml(6)])} src={require('../../assets/ico_next.png')}/>
+                        <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                       </TouchableButton>
                     </View>
                     <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
@@ -285,7 +286,7 @@ class PerformInfo extends Component<Props, State> {
                   <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                     <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                     <Image style={styleAssign([w(7), h(12), ml(6)])}
-                           src={require('../../assets/ico_next.png')}/>
+                           src={`${cloudBaseUrl}ico_next.png`}/>
                   </TouchableButton> :
                   <View/>
               }
@@ -306,7 +307,7 @@ class PerformInfo extends Component<Props, State> {
                   <View
                     style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
                       styles.uac, styles.ujc])}>
-                    <Image style={styleAssign([w(21), h(19)])} src={require('../../assets/ico_camera.png')}/>
+                    <Image style={styleAssign([w(21), h(19)])} src={`${cloudBaseUrl}ico_camera.png`}/>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加照片</Text>
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>让客户更全面了解你</Text>
@@ -328,7 +329,7 @@ class PerformInfo extends Component<Props, State> {
                   <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                     <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                     <Image style={styleAssign([w(7), h(12), ml(6)])}
-                           src={require('../../assets/ico_next.png')}/>
+                           src={`${cloudBaseUrl}ico_next.png`}/>
                   </TouchableButton> :
                   <View/>
               }
@@ -355,7 +356,7 @@ class PerformInfo extends Component<Props, State> {
                   <View
                     style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
                       styles.uac, styles.ujc])}>
-                    <Image style={styleAssign([w(16), h(18)])} src={require('../../assets/ico_play.png')}/>
+                    <Image style={styleAssign([w(16), h(18)])} src={`${cloudBaseUrl}ico_play.png`}/>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加视频</Text>
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(4)])}>让客户更全面了解你</Text>
@@ -377,7 +378,7 @@ class PerformInfo extends Component<Props, State> {
               </View>
               <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
-                <Image style={styleAssign([w(7), h(12), ml(6)])} src={require('../../assets/ico_next.png')}/>
+                <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
               </TouchableButton>
             </View>
           </TouchableButton>

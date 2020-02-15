@@ -33,6 +33,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import {CustomerDetailModel} from "../../const/global";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   //获取banner信息
@@ -143,7 +144,7 @@ class CustomerZiLiao extends Component<Props, State> {
           {/*头像*/}
           <View style={styleAssign([wRatio(100), h(86), styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
             <Image style={styleAssign([w(66), h(66), ml(21)])}
-                   src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
+                   src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
             <View style={styleAssign([w(240), hRatio(100), styles.ujb,
               ml(15)])}>
               <Text style={styleAssign([fSize(18), mt(17), color('#343434')])}>
@@ -162,7 +163,7 @@ class CustomerZiLiao extends Component<Props, State> {
                   <Text style={styleAssign([fSize(14), color('#343434')])}>
                     添加备注
                   </Text>
-                  <Image style={styleAssign([w(12), h(12), ml(10)])} src={require('../../assets/ico_edit_mark.png')}/>
+                  <Image style={styleAssign([w(12), h(12), ml(10)])} src={`${cloudBaseUrl}ico_edit_mark.png`}/>
                 </View>
               </View>
             </View>

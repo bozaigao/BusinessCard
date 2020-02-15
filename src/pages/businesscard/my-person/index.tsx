@@ -8,6 +8,7 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, pa, radiusA, w, wRatio} from "../../../utils/style";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -39,7 +40,7 @@ export default class MyPerson extends PureComponent<Props, State> {
                 key={index}>
                 <View style={styleAssign([styles.uf1, styles.uac])}>
                   <Image style={styleAssign([w(58), h(58), radiusA(29), mt(20)])}
-                         src={require('../../../assets/ico_default.png')}/>
+                         src={`${cloudBaseUrl}ico_default.png`}/>
                   <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), mt(8)])}>卢志刚</Text>
                   <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme), mt(4)])}>软件开发</Text>
                   <View style={styleAssign([styles.uac, styles.udr, mt(28)])}>

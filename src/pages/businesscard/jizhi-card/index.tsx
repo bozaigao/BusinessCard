@@ -23,6 +23,7 @@ import styles, {
   w,
   wRatio
 } from "../../../utils/style";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -57,15 +58,15 @@ export default class JiZhiCard extends PureComponent<Props, State> {
                       <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), mt(4)])}>极致信息·项目经理</Text>
                     </View>
                     <Image style={styleAssign([w(66), h(66), radiusA(33)])}
-                           src={require('../../../assets/ico_default.png')}/>
+                           src={`${cloudBaseUrl}ico_default.png`}/>
                   </View>
                   <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
-                    <Image style={styleAssign([w(12), h(10)])} src={require('../../../assets/ico_wechat_gray.png')}/>
+                    <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_wechat_gray.png`}/>
                     <Text
                       style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(4)])}>18980668468</Text>
                   </View>
                   <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
-                    <Image style={styleAssign([w(12), h(10)])} src={require('../../../assets/ico_phone_gray.png')}/>
+                    <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_phone_gray.png`}/>
                     <Text
                       style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(4)])}>LY8866321</Text>
                   </View>
@@ -75,14 +76,14 @@ export default class JiZhiCard extends PureComponent<Props, State> {
                       style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac])}>
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                         <View style={styleAssign([styles.udr, styles.uac])}>
-                          <Image style={styleAssign([w(18), h(18)])} src={require('../../../assets/ico_call.png')}/>
+                          <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_call.png`}/>
                           <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>拨打电话</Text>
                         </View>
                       </View>
                       <View style={styleAssign([w(1), h(19), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                         <View style={styleAssign([styles.udr, styles.uac])}>
-                          <Image style={styleAssign([w(18), h(18)])} src={require('../../../assets/ico_share.png')}/>
+                          <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_share.png`}/>
                           <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>分享名片</Text>
                         </View>
                       </View>

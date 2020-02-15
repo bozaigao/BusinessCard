@@ -23,6 +23,7 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -41,7 +42,7 @@ export default class QieHanItem extends PureComponent<Props, State> {
         customStyle={styleAssign([styles.uac, styles.udr, w(335), h(128), radiusA(4), bgColor(commonStyles.whiteColor),
           padding([20, 16, 20, 16])])}>
         <Image style={styleAssign([w(88), h(88)])}
-               src={require('../../../assets/ico_person.png')}/>
+               src={`${cloudBaseUrl}ico_person.png`}/>
         <View style={styleAssign([wRatio(70), ml(12)])}>
           <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb])}>
             <Text style={styleAssign([fSize(18), color('#343434')])}>王嘉怡</Text>

@@ -26,6 +26,7 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import {CollectItemModel} from "../../../const/global";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -50,7 +51,7 @@ export default class CollectItem extends PureComponent<Props, State> {
               <Image style={styleAssign([w(66), h(66), radiusA(33)])}
                      src={item.avatar}/>
               <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
-                     src={require('../../../assets/ico_nan.png')}/>
+                     src={`${cloudBaseUrl}ico_nan.png`}/>
             </View>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(16), color('#343434')])}>{item.name}</Text>
@@ -73,7 +74,7 @@ export default class CollectItem extends PureComponent<Props, State> {
                 onClick={() => {
                   operate(item);
                 }}>
-            <Image style={styleAssign([w(19), h(4)])} src={require('../../../assets/ico_three_dot.png')}/>
+            <Image style={styleAssign([w(19), h(4)])} src={`${cloudBaseUrl}ico_three_dot.png`}/>
           </View>
         </View>
       </TouchableButton>

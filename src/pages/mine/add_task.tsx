@@ -31,6 +31,7 @@ import TopHeader from "../../compoments/top-header/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Image, Picker, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   addTask: any;
@@ -139,13 +140,13 @@ class AddTask extends Component<Props, State> {
               <Text style={styleAssign([fSize(14), color('#787878')])}>日期及时间</Text>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(14), color('#787878')])}>{date ? date : '选择'}</Text>
-                <Image style={styleAssign([w(7), h(13), ml(5)])} src={require('../../assets/ico_next.png')}/>
+                <Image style={styleAssign([w(7), h(13), ml(5)])} src={`${cloudBaseUrl}ico_next.png`}/>
               </View>
             </TouchableButton>
           </Picker>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
-            <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={require('../../assets/ico_add_task.png')}/>
+            <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}/>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
           <Textarea style={styleAssign([wRatio(95), h(128), pa(20), bgColor(commonStyles.whiteColor)])}

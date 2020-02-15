@@ -10,6 +10,7 @@ import {Image, Input, Text, View} from "@tarojs/components";
 import {bgColor, color, commonStyles, default as styles, fSize, h, ml, pl, pr, w, wRatio} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 import TouchableButton from "../touchable-button";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   title: string;
@@ -51,7 +52,7 @@ export default class ListItem extends Component<Props> {
                              onInput={onTextChange}/> :
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(14), color('#979797')])}>{subTitle ? subTitle : ''}</Text>
-                <Image style={styleAssign([w(8), h(14), ml(9)])} src={require('../../assets/ico_next.png')}/>
+                <Image style={styleAssign([w(8), h(14), ml(9)])} src={`${cloudBaseUrl}ico_next.png`}/>
               </View>
           }
         </TouchableButton>

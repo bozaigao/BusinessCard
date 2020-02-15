@@ -15,7 +15,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, Text, Video, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
-import {FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController} from "../../api/httpurl";
 import {Enum} from "../../const/global";
 import {
   absR,
@@ -140,7 +140,7 @@ class MyVideo extends Component<Props, State> {
                   loop={false}
                   muted={false}/>
                 <Image style={styleAssign([w(20), h(20), styles.upa, absR(25), absT(8)])}
-                       src={require('../../assets/ico_close.png')}
+                       src={`${cloudBaseUrl}ico_close.png`}
                        onClick={() => {
                          this.setState({videoUrl: ''});
                          this.uploadResult = '';
@@ -157,7 +157,7 @@ class MyVideo extends Component<Props, State> {
                   style={styleAssign([w(335), h(203), bgColor('#F9F9F9'), styles.uac, styles.ujc])}>
                   <View style={styleAssign([styles.uac])}>
                     <Image style={styleAssign([w(41), h(37)])}
-                           src={require('../../assets/ico_video.png')}/>
+                           src={`${cloudBaseUrl}ico_video.png`}/>
                     <Text style={styleAssign([fSize(16), color('#4A4A4A')])}>点击上传</Text>
                   </View>
                 </View>

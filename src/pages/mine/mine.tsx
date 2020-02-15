@@ -31,6 +31,7 @@ import * as actions from "../../actions/login";
 import {User} from "../../const/global";
 import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 
 interface Props {
@@ -117,7 +118,7 @@ class Mine extends Component<Props, State> {
           scrollY>
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([wRatio(100), h(262)])}>
-              <Image style={styleAssign([wRatio(100), hRatio(100)])} src={require('../../assets/ico_mine_bg.png')}/>
+              <Image style={styleAssign([wRatio(100), hRatio(100)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
               {/*我的*/}
               <View
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
@@ -132,7 +133,7 @@ class Mine extends Component<Props, State> {
               <View style={styleAssign([styles.udr, wRatio(100), styles.ujb])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Image style={styleAssign([w(66), h(66), ml(20), radiusA(33)])}
-                         src={userInfo.avatar ? userInfo.avatar : require('../../assets/ico_default.png')}/>
+                         src={userInfo.avatar ? userInfo.avatar :`${cloudBaseUrl}ico_default.png`}/>
                   <View style={styleAssign([ml(14)])}>
                     <Text
                       style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
@@ -154,7 +155,7 @@ class Mine extends Component<Props, State> {
                                      }}>
                       <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>完善名片</Text>
                       <Image style={styleAssign([w(7), h(12), ml(8)])}
-                             src={require('../../assets/ico_next_white.png')}/>
+                             src={`${cloudBaseUrl}ico_next_white.png`}/>
                     </TouchableButton>
                     <TouchableButton
                       customStyle={styleAssign([mt(25), w(66), h(28), radiusA(4), bgColor('#E2BB7B'), styles.uac, styles.ujc])}>
@@ -165,23 +166,23 @@ class Mine extends Component<Props, State> {
               </View>
               {/*分销*/}
               <View style={styleAssign([wRatio(100), h(100), styles.uac, mt(24)])}>
-                <Image style={styleAssign([w(335), h(100)])} src={require('../../assets/ico_fenxiao.png')}/>
+                <Image style={styleAssign([w(335), h(100)])} src={`${cloudBaseUrl}ico_fenxiao.png`}/>
               </View>
               {/*工具模块*/}
               <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.uja, mt(27)])}>
                 {
                   [{
                     title: '商城',
-                    icon: require('../../assets/ico_haibao.png')
+                    icon:`${cloudBaseUrl}ico_haibao.png`
                   }, {
                     title: '海报',
-                    icon: require('../../assets/ico_haibao.png')
+                    icon:`${cloudBaseUrl}ico_haibao.png`
                   }, {
                     title: '工具箱',
-                    icon: require('../../assets/ico_toolkit.png')
+                    icon:`${cloudBaseUrl}ico_toolkit.png`
                   }, {
                     title: '任务中心',
-                    icon: require('../../assets/ico_task.png')
+                    icon:`${cloudBaseUrl}ico_task.png`
                   }].map((value, index) => {
                     return (
                       <TouchableButton customStyle={styleAssign([styles.uac])} key={index}

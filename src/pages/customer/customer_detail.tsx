@@ -39,6 +39,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
+import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   //获取banner信息
@@ -147,7 +148,7 @@ class CustomerDetail extends Component<Props, State> {
               <View
                 style={styleAssign([wRatio(100), h(74), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
                 <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
-                  <Image style={styleAssign([w(27), h(27)])} src={require('../../assets/ico_default.png')}/>
+                  <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
                 </View>
                 <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}>{value.followUpContent}</Text>
@@ -181,14 +182,14 @@ class CustomerDetail extends Component<Props, State> {
                     onClick={() => {
                       this.setState({showOperate: true});
                     }}>
-                <Image style={styleAssign([w(19), h(4)])} src={require('../../assets/ico_dot.png')}/>
+                <Image style={styleAssign([w(19), h(4)])} src={`${cloudBaseUrl}ico_dot.png`}/>
               </View>
               <View style={styleAssign([styles.uac])}>
                 <View style={styleAssign([w(98), h(98)])}>
                   <Image style={styleAssign([w(98), h(98)])}
-                         src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : require('../../assets/ico_default.png')}/>
+                         src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
                   <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
-                         src={customer.sex === 1 ? require('../../assets/ico_nan.png') : require('../../assets/ico_nv.png')}/>
+                         src={customer.sex === 1 ?`${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
                 </View>
                 <Text style={styleAssign([fSize(22), color('#343434'), mt(11)])}>{customer.name}</Text>
                 <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
@@ -205,7 +206,7 @@ class CustomerDetail extends Component<Props, State> {
                     }}>
                 <Text style={styleAssign([fSize(15), color('#343434')])}>资料</Text>
                 <Image style={styleAssign([w(7), h(12), ml(8)])}
-                       src={require('../../assets/ico_next.png')}/>
+                       src={`${cloudBaseUrl}ico_next.png`}/>
               </View>
             </View>
             {/*加微信、联系地址*/}
