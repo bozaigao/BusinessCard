@@ -346,7 +346,7 @@ class GoodsManage extends Component<Props, State> {
         <View
           style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={`${cloudBaseUrl}ico_back.png`}
+                 src={require('../../assets/ico_back.png')}
                  onClick={() => {
                    Taro.navigateBack();
                  }}/>
