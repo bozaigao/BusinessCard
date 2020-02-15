@@ -137,7 +137,6 @@ class PerformInfo extends Component<Props, State> {
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
                        onClick={() => {
-                         console.log('刷新用户信息1');
                          Taro.eventCenter.trigger('refreshUserInfo');
                          Taro.navigateBack();
                        }}/>
@@ -207,70 +206,103 @@ class PerformInfo extends Component<Props, State> {
           {/*个人简介*/}
           <View style={styleAssign([wRatio(100)])}>
             <TouchableButton
-              customStyle={styleAssign([wRatio(100), h(80), mt(10), styles.ujb, styles.udr, bgColor(commonStyles.whiteColor)])}
+              customStyle={styleAssign([wRatio(100), h(40), mt(10), styles.ujb, styles.uac, styles.udr, bgColor(commonStyles.whiteColor)])}
               onClick={() => {
                 this.setState({showPersonalInfo: !this.state.showPersonalInfo});
               }}>
-              <View style={styleAssign([ml(20), mt(17)])}>
-                <Text style={styleAssign([fSize(16), color('#343434')])}>个人简介</Text>
-                <Text style={styleAssign([fSize(14), color('#979797')])}>完善个人简介，拥有精美名片</Text>
-              </View>
-              <Image style={styleAssign([w(12), h(5), mr(20), mt(40)])} src={`${cloudBaseUrl}ico_down2.png`}/>
+              <Text style={styleAssign([fSize(16), color('#343434'), ml(20)])}>个人简介</Text>
+              <Image style={styleAssign([w(12), h(5), mr(20)])}
+                     src={showPersonalInfo ? `${cloudBaseUrl}ico_down2.png` : require('../../assets/ico_up2.png')}/>
             </TouchableButton>
             {
-              showPersonalInfo && [{
-                title: '我的家乡',
-                subTitle: '完善家乡信息，增加更多人脉',
-                chooseTitle: '选择'
-              },
-                {
-                  title: '教育经历',
-                  subTitle: '完善教育经历，寻找校友',
-                  chooseTitle: '添加'
-                },
-                {
-                  title: '我的语音',
-                  subTitle: '留下语音介绍，让客户更快认识你',
-                  chooseTitle: '添加'
-                },
-                {
-                  title: '自我描述',
-                  subTitle: '让客户进一步深入了解你',
-                  chooseTitle: '添加'
-                }].map((value, index) => {
-                return (
-                  <TouchableButton key={index}
-                                   customStyle={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
-                                   onClick={() => {
-                                     if (value.title === '教育经历') {
-                                       Taro.navigateTo({
-                                         url: `/pages/mine/my_edu`
-                                       });
-                                     } else if (value.title === '自我描述') {
-                                       Taro.navigateTo({
-                                         url: `/pages/mine/self_intro`
-                                       });
-                                     } else if (value.title === '我的语音') {
-                                       Taro.navigateTo({
-                                         url: `/pages/mine/audio_recorder`
-                                       });
-                                     }
-                                   }}>
-                    <View style={styleAssign([wRatio(100), h(68), styles.udr, styles.uac, styles.ujb])}>
-                      <View style={styleAssign([ml(20)])}>
-                        <Text style={styleAssign([fSize(14), color('#343434')])}>{value.title}</Text>
-                        <Text style={styleAssign([fSize(12), color('#979797')])}>{value.subTitle}</Text>
-                      </View>
-                      <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                        <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{value.chooseTitle}</Text>
-                        <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
-                      </TouchableButton>
-                    </View>
-                    <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-                  </TouchableButton>);
-              })
+              showPersonalInfo &&
+              <View style={styleAssign([wRatio(100)])}>
+                {/*我的语音*/}
+                <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/mine/audio_recorder`
+                        });
+                      }}>
+                  <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
+                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>我的语音</Text>
+                    <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
+                    </TouchableButton>
+                  </View>
+                  <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mb(10)])}>
+                    <Image style={styleAssign([w(40), h(40), ml(19)])} src={`${cloudBaseUrl}ico_default.png`}/>
+                    <Image style={styleAssign([w(186), h(41), ml(10)])} src={require('../../assets/ico_voice_bg.png')}/>
+                  </View>
+                  <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                </View>
+                {/*自我描述*/}
+                <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/mine/self_intro`
+                        });
+                      }}>
+                  <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
+                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>自我描述</Text>
+                    <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
+                    </TouchableButton>
+                  </View>
+                  <View style={styleAssign([wRatio(100), mb(10)])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！</Text>
+                  </View>
+                  <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                </View>
+                {/*我的家乡*/}
+                <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/mine/self_intro`
+                        });
+                      }}>
+                  <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
+                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>我的家乡</Text>
+                    <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
+                    </TouchableButton>
+                  </View>
+                  <View style={styleAssign([wRatio(100), mb(10)])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>四川省 成都市</Text>
+                  </View>
+                  <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                </View>
+                {/*教育经历*/}
+                <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/mine/my_edu`
+                        });
+                      }}>
+                  <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
+                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>教育经历</Text>
+                    <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
+                    </TouchableButton>
+                  </View>
+                  <View style={styleAssign([wRatio(100), mb(10)])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>四川美术学院</Text>
+                    <Text
+                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>产品设计 2015-2019 本科</Text>
+                  </View>
+                  <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                </View>
+              </View>
             }
           </View>
+
           {/*我的照片和视频*/}
           <TouchableButton
             customStyle={styleAssign([wRatio(100), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
