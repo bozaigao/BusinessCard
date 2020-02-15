@@ -41,7 +41,6 @@ interface Props {
 }
 
 interface State {
-  marginTop: any;
 }
 
 @connect(state => state.login, {...actions})
@@ -60,18 +59,9 @@ class Mine extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.state = {
-      marginTop: 0,
-    }
   }
 
   componentDidMount() {
-    //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
-    if (iphoneX()) {
-      this.setState({marginTop: 43});
-    } else {
-      this.setState({marginTop: 15});
-    }
     Taro.eventCenter.on('refreshUserInfo', () => {
       console.log('刷新用户信息');
       this.getUserInfo();
@@ -107,7 +97,6 @@ class Mine extends Component<Props, State> {
 
   render() {
 
-    let {marginTop} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -117,23 +106,16 @@ class Mine extends Component<Props, State> {
           style={styleAssign([wRatio(100), hRatio(100)])}
           scrollY>
           <View style={styleAssign([wRatio(100)])}>
-            <View style={styleAssign([wRatio(100), h(262)])}>
-              <Image style={styleAssign([wRatio(100), hRatio(100)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
-              {/*我的*/}
-              <View
-                style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-                <View style={styleAssign([w(22), h(14), ml(20)])}/>
-                <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>我的</Text>
-                <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
-              </View>
+            <View style={styleAssign([wRatio(100), h(iphoneX() ? 282 : 262)])}>
+              <Image style={styleAssign([wRatio(100), h(222)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
             </View>
             <View style={styleAssign([wRatio(100), h(80), bgColor(commonStyles.whiteColor)])}/>
             {/*用户头像信息*/}
-            <View style={styleAssign([styles.upa, absT(65), wRatio(100)])}>
+            <View style={styleAssign([styles.upa, absT(iphoneX() ? 85 : 65), wRatio(100)])}>
               <View style={styleAssign([styles.udr, wRatio(100), styles.ujb])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Image style={styleAssign([w(66), h(66), ml(20), radiusA(33)])}
-                         src={userInfo.avatar ? userInfo.avatar :`${cloudBaseUrl}ico_default.png`}/>
+                         src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
                   <View style={styleAssign([ml(14)])}>
                     <Text
                       style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
@@ -165,7 +147,7 @@ class Mine extends Component<Props, State> {
                 </View>
               </View>
               {/*分销*/}
-              <View style={styleAssign([wRatio(100), h(100), styles.uac, mt(24)])}>
+              <View style={styleAssign([wRatio(100), h(100), styles.uac, mt(iphoneX() ? 14 : 24)])}>
                 <Image style={styleAssign([w(335), h(100)])} src={`${cloudBaseUrl}ico_fenxiao.png`}/>
               </View>
               {/*工具模块*/}
@@ -173,16 +155,16 @@ class Mine extends Component<Props, State> {
                 {
                   [{
                     title: '商城',
-                    icon:`${cloudBaseUrl}ico_haibao.png`
+                    icon: `${cloudBaseUrl}ico_haibao.png`
                   }, {
                     title: '海报',
-                    icon:`${cloudBaseUrl}ico_haibao.png`
+                    icon: `${cloudBaseUrl}ico_haibao.png`
                   }, {
                     title: '工具箱',
-                    icon:`${cloudBaseUrl}ico_toolkit.png`
+                    icon: `${cloudBaseUrl}ico_toolkit.png`
                   }, {
                     title: '任务中心',
-                    icon:`${cloudBaseUrl}ico_task.png`
+                    icon: `${cloudBaseUrl}ico_task.png`
                   }].map((value, index) => {
                     return (
                       <TouchableButton customStyle={styleAssign([styles.uac])} key={index}
