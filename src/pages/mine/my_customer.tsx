@@ -142,7 +142,7 @@ class MyCustomer extends Component<Props, State> {
   }
 
   render() {
-    let {currentIndex, total, customerList, content} = this.state;
+    let {currentIndex, total, customerList} = this.state;
     let child;
 
     if (currentIndex === 0) {
