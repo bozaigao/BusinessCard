@@ -110,6 +110,19 @@ const BASE_URL = StagingUrl,
     traceActive: BASE_URL + 'behaviorTrace/traceActive',
     //雷达详情访问轨迹
     traceList: BASE_URL + 'behaviorTrace/traceList',
+  },
+  //分销中心
+  DistributionManage = {
+    //我的客户列表
+    myCustomerList: BASE_URL + 'distribution/myCustomerList',
+    //数据中心
+    settlementRecord: BASE_URL + 'distribution/settlementRecord',
+    //分销中心主页-我的收益
+    userIncome: BASE_URL + 'distribution/userIncome',
+    //申请提现
+    withdraw: BASE_URL + 'distribution/withdraw',
+    //提现记录
+    withdrawList: BASE_URL + 'distribution/withdrawList',
   };
 
 
@@ -124,5 +137,6 @@ export {
   CustomerController,
   BusinessCardManage,
   VisitorManage,
-  RadarManage
+  RadarManage,
+  DistributionManage
 };

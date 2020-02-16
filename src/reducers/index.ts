@@ -8,6 +8,7 @@ import Customer from "../actions/customer";
 import BusinessCard from "../actions/business_card";
 import Visitor from "../actions/visitor";
 import Radar from "../actions/radar";
+import Distribution from "../actions/distribution";
 
 export default combineReducers({
   login,
@@ -18,5 +19,6 @@ export default combineReducers({
   Customer,
   BusinessCard,
   Visitor,
-  Radar
+  Radar,
+  Distribution
 })
