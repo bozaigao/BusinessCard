@@ -32,26 +32,29 @@ import {
 } from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/login";
-import {User} from "../../const/global";
+import * as actions from "../../actions/distribution";
+import {BaseCoin, SettlementStats, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import DataCenterItem from "../businesscard/data-center-item";
 
 
 interface Props {
-  //获取用户信息
-  getUserInfo: any;
+  //数据中心
+  settlementRecord: any;
   userInfo: User;
 }
 
 interface State {
   marginTop: number;
   year: string;
+  settlementStatsList: SettlementStats[];
+  totalIncome: number;
+  totalSale: number;
 }
 
 @connect(state => state.login, {...actions})
 class DataCenter extends Component<Props, State> {
-
+  private viewRef;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -67,25 +70,20 @@ class DataCenter extends Component<Props, State> {
     super(props);
     this.state = {
       marginTop: 0,
-      year: `${new Date().getFullYear()}`
+      year: `${new Date().getFullYear()}`,
+      settlementStatsList: [],
+      totalIncome: 0,
+      totalSale: 0
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (iphoneX()) {
       this.setState({marginTop: 43});
     } else {
       this.setState({marginTop: 15});
     }
-    Taro.eventCenter.on('refreshUserInfo', () => {
-      console.log('刷新用户信息');
-      this.getUserInfo();
-    });
-    this.getUserInfo();
-  }
-
-  componentWillUnmount() {
-    Taro.eventCenter.off('refreshUserInfo');
+    this.settlementRecord();
   }
 
   componentDidShow() {
@@ -98,24 +96,39 @@ class DataCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
-   * @function: 获取用户信息
+   * @date 2020/2/16
+   * @function: 数据中心
    */
-  getUserInfo = () => {
-    this.props.getUserInfo().then((res) => {
-      console.log('获取用户信息', res);
+  settlementRecord = () => {
+    let {year} = this.state;
+
+    this.viewRef.showLoading();
+    this.props.settlementRecord({year}).then((res) => {
+      console.log('数据中心', res);
       console.log('属性', this.props.userInfo);
+      this.viewRef.hideLoading();
+      if (res) {
+        this.setState({
+          settlementStatsList: res.settlementStats,
+          totalIncome: res.totalIncome,
+          totalSale: res.totalSale
+        });
+      }
     }).catch(e => {
+      this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
 
   render() {
-    let {marginTop, year} = this.state;
+    let {marginTop, year, settlementStatsList, totalIncome, totalSale} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
-                          notNeedBottomPadding={true} notNeedTopPadding={true}>
+                          notNeedBottomPadding={true} notNeedTopPadding={true}
+                          ref={(ref) => {
+                            this.viewRef = ref;
+                          }}>
         <View style={styleAssign([wRatio(100), hRatio(100)])}>
           <View style={styleAssign([wRatio(100), h(iphoneX() ? 262 : 242)])}>
             <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
@@ -130,6 +143,20 @@ class DataCenter extends Component<Props, State> {
                 <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(15)])}>
                   <View style={styleAssign([styles.uf1, styles.uac])}>
                     <Text style={styleAssign([fSize(12), color('#979797')])}>
+                      销售额(税前)
+                    </Text>
+                    <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
+                      <Text style={styleAssign([fSize(14), color('#FA6B57'), mb(5)])}>
+                        ¥
+                      </Text>
+                      <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
+                        {(totalSale / BaseCoin).toFixed(2)}
+                      </Text>
+                    </View>
+                  </View>
+                  <View style={styleAssign([w(1), h(40), bgColor('#E5E5E5')])}/>
+                  <View style={styleAssign([styles.uf1, styles.uac])}>
+                    <Text style={styleAssign([fSize(12), color('#979797')])}>
                       已结算收入(税前)
                     </Text>
                     <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
@@ -137,21 +164,7 @@ class DataCenter extends Component<Props, State> {
                         ¥
                       </Text>
                       <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                        688.00
-                      </Text>
-                    </View>
-                  </View>
-                  <View style={styleAssign([w(1), h(40), bgColor('#E5E5E5')])}/>
-                  <View style={styleAssign([styles.uf1, styles.uac])}>
-                    <Text style={styleAssign([fSize(12), color('#979797')])}>
-                      未结算收入(税前)
-                    </Text>
-                    <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
-                      <Text style={styleAssign([fSize(14), color('#FA6B57'), mb(5)])}>
-                        ¥
-                      </Text>
-                      <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                        0.00
+                        {(totalIncome / BaseCoin).toFixed(2)}
                       </Text>
                     </View>
                   </View>
@@ -173,7 +186,9 @@ class DataCenter extends Component<Props, State> {
           </View>
           <View style={styleAssign([styles.uf1, pl(20), pr(20), mt(20)])}>
             <Picker mode='date' onChange={(e) => {
-              this.setState({year: e.detail.value});
+              this.setState({year: e.detail.value}, () => {
+                this.settlementRecord();
+              });
             }} value={year} fields={'year'}>
               <View style={styleAssign([w(63), h(22), bgColor(commonStyles.colorTheme), radiusA(2),
                 styles.udr, styles.uac, styles.ujc])}>
@@ -187,11 +202,11 @@ class DataCenter extends Component<Props, State> {
             <ScrollView
               style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY>
-              <DataCenterItem/>
-              <DataCenterItem/>
-              <DataCenterItem/>
-              <DataCenterItem/>
-              <DataCenterItem/>
+              {
+                settlementStatsList.map((value, index) => {
+                  return <DataCenterItem item={value} key={index}/>;
+                })
+              }
             </ScrollView>
           </View>
         </View>

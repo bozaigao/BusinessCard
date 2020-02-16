@@ -31,7 +31,7 @@ import {
 import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
-import {User} from "../../const/global";
+import {BaseCoin, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 
@@ -55,7 +55,6 @@ interface State {
   withdrawIncomeStat: number;
 }
 
-export let BaseCoin = 100;
 
 @connect(state => state.login, {...actions})
 class FenxiaoCenter extends Component<Props, State> {
@@ -90,10 +89,6 @@ class FenxiaoCenter extends Component<Props, State> {
       this.setState({marginTop: 15});
     }
     this.userIncome();
-  }
-
-  componentWillUnmount() {
-    Taro.eventCenter.off('refreshUserInfo');
   }
 
   componentDidShow() {

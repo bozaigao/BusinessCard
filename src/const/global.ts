@@ -288,6 +288,14 @@ export interface BehaviorTraceUser {
   wechat: string;
 }
 
+export interface SettlementStats {
+  date: string;
+  totalIncome: number;
+  totalSale: number;
+}
+
+export let BaseCoin = 100;
+
 export let operateMap = {};
 
 operateMap['view_card'] = '查看名片';
