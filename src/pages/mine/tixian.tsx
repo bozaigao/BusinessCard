@@ -152,7 +152,7 @@ class TiXian extends Component<Props, State> {
                       styles.uac, styles.ujc])}
                           onClick={() => {
                             Taro.navigateTo({
-                              url: `/pages/mine/tixian_page`
+                              url: `/pages/mine/tixian_page?withdrawIncome=${withdrawIncome}`
                             });
                           }}>
                       <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>

@@ -4,12 +4,12 @@
  * @QQ 1054539528
  * @date 2020/2/16
  * @Description: 微信提现界面
-*/
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -26,15 +26,19 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/distribution';
 import TopHeader from "../../compoments/top-header";
 import {Image, Input, Text, View} from "@tarojs/components";
+import {BaseCoin} from "../../const/global";
 
 interface Props {
+  //申请提现
+  withdraw: any;
 }
 
 interface State {
-
+  money: string;
+  withdrawIncome: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -57,11 +61,38 @@ class TixianPage extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
-    this.state = {}
+    this.state = {
+      money: '',
+      withdrawIncome: this.$router.params.withdrawIncome
+    }
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/16
+   * @function: 申请提现
+   */
+  withdraw = () => {
+    this.viewRef.showLoading();
+    let {money} = this.state;
+
+    this.props.withdraw({money: parseInt(money, 10) * BaseCoin}).then((res) => {
+      console.log('申请提现', res);
+      this.viewRef.hideLoading();
+      if (!res) {
+        toast('提现成功');
+      }
+    }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
   render() {
+    let {withdrawIncome} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -78,7 +109,10 @@ class TixianPage extends Component<Props, State> {
               <Text style={styleAssign([fSize(28), color('#343434'), ml(20)])}>
                 ￥
               </Text>
-              <Input type='number' autoFocus={true} style={styleAssign([ml(16), fSize(28)])}/>
+              <Input type='number' autoFocus={true} style={styleAssign([ml(16), fSize(28)])}
+                     onInput={(e) => {
+                       this.setState({money: e.detail.value});
+                     }}/>
             </View>
             <View
               style={styleAssign([wRatio(90), h(1), {marginLeft: '5%'}, bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
@@ -87,7 +121,7 @@ class TixianPage extends Component<Props, State> {
                 当前余额：
               </Text>
               <Text style={styleAssign([fSize(12), color('#FA6B57')])}>
-                ￥0
+                {`￥${withdrawIncome}`}
               </Text>
               <Text style={styleAssign([fSize(12), color('#576A94')])}>
                 ，攒够100元可以提现，手续费2%
@@ -120,7 +154,7 @@ class TixianPage extends Component<Props, State> {
             <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc,
               bgColor('#E2BB7B')])}
                   onClick={() => {
-
+                    this.withdraw();
                   }}>
               <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>
                 提现
