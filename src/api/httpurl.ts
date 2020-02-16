@@ -7,6 +7,8 @@ export let cloudBaseUrl = 'cloud://business-card-9mm0s.6275-business-card-9mm0s-
 const BASE_URL = StagingUrl,
   //网络请求返回状态码
   NetworkState = {
+    //操作失败
+    FAIL: 0,
     //返回成功
     SUCCESS: 1,
     //需要登录

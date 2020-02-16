@@ -30,6 +30,7 @@ import * as actions from '../../actions/distribution';
 import TopHeader from "../../compoments/top-header";
 import {Image, Input, Text, View} from "@tarojs/components";
 import {BaseCoin} from "../../const/global";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   //申请提现
@@ -81,7 +82,7 @@ class TixianPage extends Component<Props, State> {
     this.props.withdraw({money: parseInt(money, 10) * BaseCoin}).then((res) => {
       console.log('申请提现', res);
       this.viewRef.hideLoading();
-      if (!res) {
+      if (res !== NetworkState.FAIL) {
         toast('提现成功');
       }
     }).catch(e => {

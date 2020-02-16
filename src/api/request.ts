@@ -74,6 +74,7 @@ export default async function fetch(options) {
     //服务接口报错
     else if (showToast) {
       toast(msg);
+      return NetworkState.FAIL;
     }
   }).catch((err) => {
 
