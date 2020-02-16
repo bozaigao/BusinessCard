@@ -28,7 +28,7 @@ import {BehaviorTrace, operateMap} from "../../../const/global";
 
 interface Props {
   item: { day: string; behaviorTraceList: BehaviorTrace[] };
-  name:string;
+  name: string;
 }
 
 interface State {
@@ -45,9 +45,8 @@ export default class TraceItem extends PureComponent<Props, State> {
   }
 
   render() {
-    let {item,name} = this.props;
+    let {item, name} = this.props;
     let {showDetail} = this.state;
-    console.log('数据', item);
 
     return (
       <View style={wRatio(100)}>
@@ -72,7 +71,7 @@ export default class TraceItem extends PureComponent<Props, State> {
         </View>
         <View style={styleAssign([wRatio(100)])}>
           {
-            item.behaviorTraceList.map((value: BehaviorTrace, index) => {
+            showDetail && item.behaviorTraceList.map((value: BehaviorTrace, index) => {
               return <View style={styleAssign([wRatio(100)])} key={index}>
                 <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujc])}>
