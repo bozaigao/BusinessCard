@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,12 +17,9 @@
       <file leaf-file-name="radar_detail.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="101" column="65" selection-start-line="101" selection-start-column="65" selection-end-line="101" selection-end-column="65" />
+            <state relative-caret-position="455">
+              <caret line="112" column="12" lean-forward="true" selection-start-line="112" selection-start-column="12" selection-end-line="112" selection-end-column="12" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#114#166#0" expanded="true" />
-                <element signature="e#497#535#0" expanded="true" />
                 <element signature="n#style#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
@@ -460,12 +455,12 @@
       <workItem from="1581691375770" duration="2627000" />
       <workItem from="1581728520556" duration="9201000" />
       <workItem from="1581753433718" duration="17627000" />
-      <workItem from="1581813576527" duration="24324000" />
+      <workItem from="1581813576527" duration="24342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="731824000" />
+    <option name="totallyTimeSpent" value="731842000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1043,12 +1038,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="101" column="65" selection-start-line="101" selection-start-column="65" selection-end-line="101" selection-end-column="65" />
+        <state relative-caret-position="455">
+          <caret line="112" column="12" lean-forward="true" selection-start-line="112" selection-start-column="12" selection-end-line="112" selection-end-column="12" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#114#166#0" expanded="true" />
-            <element signature="e#497#535#0" expanded="true" />
             <element signature="n#style#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
