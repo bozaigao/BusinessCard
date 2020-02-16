@@ -304,6 +304,20 @@ export interface CustomerRecord {
   userId: number;
 }
 
+export interface TiXianRecord {
+  afterMoney: number;
+  beforeMoney: number;
+  createTime: string;
+  dealTime: string;
+  id: number;
+  money: number;
+  remark: string;
+  status: number;
+  transactionId: string;
+  userId: number;
+  wechatpayAccount: string;
+}
+
 export let BaseCoin = 100;
 
 export let operateMap = {};

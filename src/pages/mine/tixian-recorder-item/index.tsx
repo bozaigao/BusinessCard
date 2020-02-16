@@ -23,15 +23,17 @@ import {
   w,
   wRatio
 } from "../../../utils/style";
-import {styleAssign} from "../../../utils/datatool";
+import {styleAssign, transformTime} from "../../../utils/datatool";
+import {BaseCoin, TiXianRecord} from "../../../const/global";
 
 interface Props {
-
+  item: TiXianRecord;
 }
 
 export default class TiXianRecorderItem extends Component<Props> {
 
   render() {
+    let {item} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -42,19 +44,19 @@ export default class TiXianRecorderItem extends Component<Props> {
             <Image style={styleAssign([w(21), h(21)])} src={require('../../../assets/ico_coin.png')}/>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(14), color('#343434')])}>
-                收入提现
+                {item.remark}
               </Text>
               <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>
-                单号：123456789012345678
+                {`单号：${item.transactionId}`}
               </Text>
             </View>
           </View>
           <View style={styleAssign([styles.uae])}>
             <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>
-              - 100.00
+              {`- ${(item.money / BaseCoin).toFixed(2)}`}
             </Text>
             <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>
-              2019-07-15 13:36
+              {transformTime(item.createTime)}
             </Text>
           </View>
         </View>
