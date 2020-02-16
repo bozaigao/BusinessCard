@@ -131,7 +131,7 @@ class DataCenter extends Component<Props, State> {
                           }}>
         <View style={styleAssign([wRatio(100), hRatio(100)])}>
           <View style={styleAssign([wRatio(100), h(iphoneX() ? 262 : 242)])}>
-            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
+            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])} src={require('../../assets/ico_mine_bg.png')}/>
             <View style={styleAssign([wRatio(100), h(156), styles.upa, absB(0), styles.uac, styles.ujc])}>
               <View style={styleAssign([w(335), h(156), bgColor(commonStyles.whiteColor), radiusA(4),])}>
                 <View style={styleAssign([wRatio(100), h(60), styles.uac, styles.ujc, bgColor('#FAF1E5'),

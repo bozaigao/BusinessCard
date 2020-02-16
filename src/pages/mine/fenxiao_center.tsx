@@ -150,7 +150,7 @@ class FenxiaoCenter extends Component<Props, State> {
                           notNeedBottomPadding={true} notNeedTopPadding={true}>
         <View style={styleAssign([wRatio(100), hRatio(100)])}>
           <View style={styleAssign([wRatio(100), h(iphoneX() ? 292 : 252)])}>
-            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 262 : 222)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
+            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 262 : 222)])} src={require('../../assets/ico_mine_bg.png')}/>
             <View style={styleAssign([wRatio(100), h(112), styles.upa, absB(0), styles.uac, styles.ujc])}>
               <View style={styleAssign([w(335), h(112), bgColor(commonStyles.whiteColor), radiusA(4),
                 pa(16)])}>

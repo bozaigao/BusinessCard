@@ -107,7 +107,7 @@ class Mine extends Component<Props, State> {
           scrollY>
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([wRatio(100), h(iphoneX() ? 282 : 262)])}>
-              <Image style={styleAssign([wRatio(100), h(222)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
+              <Image style={styleAssign([wRatio(100), h(222)])} src={require('../../assets/ico_mine_bg.png')}/>
             </View>
             <View style={styleAssign([wRatio(100), h(80), bgColor(commonStyles.whiteColor)])}/>
             {/*用户头像信息*/}

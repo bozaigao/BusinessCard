@@ -19,7 +19,7 @@ import {
   pb,
   pl,
   pr,
-  pt,
+  pt, radiusA,
   w,
   wRatio
 } from "../../../utils/style";
@@ -42,7 +42,7 @@ export default class MyCustomerItem extends Component<Props> {
           style={styleAssign([wRatio(100), h(84), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
             pl(20), pr(20), pt(15), pb(15)])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
-            <Image style={styleAssign([w(52), h(52)])}
+            <Image style={styleAssign([w(52), h(52), radiusA(26)])}
                    src={item.avatar ? item.avatar : `${cloudBaseUrl}ico_default.png`}/>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(14), color('#343434')])}>

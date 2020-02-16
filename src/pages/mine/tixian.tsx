@@ -124,7 +124,7 @@ class TiXian extends Component<Props, State> {
                           notNeedBottomPadding={true} notNeedTopPadding={true}>
         <View style={styleAssign([wRatio(100), hRatio(100)])}>
           <View style={styleAssign([wRatio(100), h(iphoneX() ? 322 : 322)])}>
-            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])} src={`${cloudBaseUrl}ico_mine_bg.png`}/>
+            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])} src={require('../../assets/ico_mine_bg.png')}/>
             <View style={styleAssign([wRatio(100), h(213), styles.upa, absB(0), styles.uac, styles.ujc])}>
               <View style={styleAssign([w(335), h(213), bgColor(commonStyles.whiteColor), radiusA(4),])}>
                 <View style={styleAssign([wRatio(100), h(60), styles.uac, styles.ujc, bgColor('#FAF1E5'),
