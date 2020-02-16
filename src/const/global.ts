@@ -294,6 +294,16 @@ export interface SettlementStats {
   totalSale: number;
 }
 
+export interface CustomerRecord {
+  avatar: string;
+  bindTime: string;
+  customerUserId: number;
+  id: number;
+  name: string;
+  type: string;
+  userId: number;
+}
+
 export let BaseCoin = 100;
 
 export let operateMap = {};
