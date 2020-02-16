@@ -250,7 +250,7 @@ class FenxiaoCenter extends Component<Props, State> {
                     styles.uac, styles.ujc])}
                         onClick={() => {
                           Taro.navigateTo({
-                            url: `/pages/mine/tixian`
+                            url: `/pages/mine/tixian?withdrawIncome=${(withdrawIncome / BaseCoin).toFixed(2)}&withdrawIncomeStat=${(withdrawIncomeStat / BaseCoin).toFixed(2)}`
                           });
                         }}>
                     <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>

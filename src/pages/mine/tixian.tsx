@@ -47,6 +47,10 @@ interface Props {
 interface State {
   marginTop: number;
   year: string;
+  //可提现金额 单位分
+  withdrawIncome: string;
+  //已提现金额 单位分
+  withdrawIncomeStat: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -67,7 +71,9 @@ class TiXian extends Component<Props, State> {
     super(props);
     this.state = {
       marginTop: 0,
-      year: `${new Date().getFullYear()}`
+      year: `${new Date().getFullYear()}`,
+      withdrawIncome: this.$router.params.withdrawIncome,
+      withdrawIncomeStat: this.$router.params.withdrawIncomeStat
     }
   }
 
@@ -111,7 +117,7 @@ class TiXian extends Component<Props, State> {
   }
 
   render() {
-    let {marginTop} = this.state;
+    let {marginTop, withdrawIncome, withdrawIncomeStat} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -138,7 +144,7 @@ class TiXian extends Component<Props, State> {
                       ¥
                     </Text>
                     <Text style={styleAssign([fSize(28), color('#FA6B57')])}>
-                      688.00
+                      {withdrawIncome}
                     </Text>
                   </View>
                   <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(28)])}>
@@ -168,7 +174,7 @@ class TiXian extends Component<Props, State> {
             <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>
               提现
             </Text>
-            <View style={styleAssign([w(22), h(22)])}/>
+            <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
           {/*我的提现记录*/}
           <View style={styleAssign([wRatio(100), styles.uac])}
@@ -190,7 +196,7 @@ class TiXian extends Component<Props, State> {
               </View>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(12), color('#979797'), mr(9)])}>
-                  1888.00 元
+                  {`${withdrawIncomeStat} 元`}
                 </Text>
                 <Image style={styleAssign([w(7), h(12)])} src={require('../../assets/ico_next.png')}/>
               </View>
