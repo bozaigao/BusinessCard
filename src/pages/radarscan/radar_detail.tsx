@@ -1,16 +1,15 @@
 /**
- * @filename customer_ziliao.tsx
+ * @filename radar_detail.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/11
- * @Description: 客户详情界面
+ * @date 2020/2/16
+ * @Description: 雷达详情界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
   absR,
-  absT,
   bdColor,
   bgColor,
   bo,
@@ -19,44 +18,38 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio,
   ml,
   mt,
-  op, pb,
   pl,
-  pr, pt,
+  pr,
   radiusA,
-  radiusTL,
-  radiusTR,
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {parseData, styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/customer";
+import * as actions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header";
-import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel, FlowUpListModel} from "../../const/global";
-import BottomButon from "../../compoments/bottom-buton";
+import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
+import {BehaviorTraceUser, FlowUpListModel} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
+import TraceItem from "./trace-item";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
-  deleteCustomer?: any;
-  followUpList?: any;
+  traceList?: any;
 }
 
 interface State {
-  showOperate: boolean;
-  customer: CustomerModel
+  customer: BehaviorTraceUser
   currentIndex: number;
   flowUpList: FlowUpListModel[];
+  date: string;
 }
 
 @connect(state => state.login, {...actions})
-class CustomerDetail extends Component<Props, State> {
+class RadarDetail extends Component<Props, State> {
   private viewRef;
   /**
    * 指定config的类型声明为: Taro.Config
@@ -75,9 +68,9 @@ class CustomerDetail extends Component<Props, State> {
 
     this.state = {
       customer: parseData(this.$router.params.itemData),
-      showOperate: false,
       currentIndex: 0,
-      flowUpList: []
+      flowUpList: [],
+      date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`
     }
   }
 
@@ -89,7 +82,7 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.followUpList();
+    // this.traceList();
   }
 
   componentDidHide() {
@@ -98,72 +91,72 @@ class CustomerDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/28
-   * @function:
+   * @date 2020/2/16
+   * @function: 雷达详情访问轨迹
    */
-  followUpList = () => {
-    console.log('查询客户跟进信息记录');
-    this.props.followUpList({id: this.state.customer.id}).then((res) => {
-      console.log('查询客户跟进信息记录', res);
+  traceList = () => {
+    this.viewRef.showLoading();
+    console.log('雷达详情访问轨迹');
+    this.props.traceList({traceUserId: this.state.customer.userId}).then((res) => {
+      console.log('雷达详情访问轨迹', res);
+      this.viewRef.hideLoading();
       this.setState({flowUpList: res});
     }).catch(e => {
-      console.log('报错啦', e);
-    });
-  }
-
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2020/1/14
-   * @function: 删除客户
-   */
-  deleteCustomer = (id) => {
-    this.viewRef && this.viewRef.showLoading();
-    this.props.deleteCustomer({id}).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
-      toast('删除成功');
-      Taro.eventCenter.trigger('refreshCustomerList');
-      Taro.navigateBack();
-      console.log('删除信息', res);
-    }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
+      this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList} = this.state;
+    let {customer, currentIndex, flowUpList, date} = this.state;
     let childView;
 
     if (currentIndex === 0) {
-      childView = <View/>;
-    } else if (currentIndex === 1) {
-      childView = <View style={styleAssign([wRatio(100), mt(10)])}>
-        {
-          flowUpList.map((value: FlowUpListModel, index) => {
-            return <View key={index}
-                         style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60), bgColor('red')])}>
-              <View
-                style={styleAssign([wRatio(100), h(74), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
-                <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
-                  <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
-                  <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
-                </View>
-                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}>{value.followUpContent}</Text>
-              </View>
-              <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
-            </View>;
-          })
-        }
+      childView = <View style={styleAssign([styles.uf1])}>
+        <View style={styleAssign([styles.uac, styles.udr, wRatio(100), styles.ujb,
+          pl(20), pr(20), mt(10)])}>
+          <Picker mode='date' onChange={(e) => {
+            this.setState({date: e.detail.value}, () => {
+            });
+          }} value={date} fields={'month'}>
+            <View style={styleAssign([w(77), h(22), bgColor(commonStyles.colorTheme), radiusA(2),
+              styles.udr, styles.uac, styles.ujc])}>
+              <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                {date}
+              </Text>
+              <Image style={styleAssign([w(8), h(8), ml(5)])}
+                     src={require('../../assets/ico_xiasanjiao_white.png')}/>
+            </View>
+          </Picker>
+          <Text style={styleAssign([fSize(14), color('#979797')])}>
+            共访问了86次
+          </Text>
+        </View>
+        <ScrollView
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          scrollY>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+          <TraceItem/>
+        </ScrollView>
+        {/*收藏名片*/}
+        <BottomButon title={'收藏名片'} onClick={() => {
+        }}/>
       </View>;
+    } else if (currentIndex === 1) {
+      childView = <View/>;
     } else if (currentIndex === 2) {
       childView = <View/>;
-    } else if (currentIndex === 3) {
-      childView = <View/>;
-    } else {
-      childView = <View/>
     }
 
     return (
@@ -172,21 +165,14 @@ class CustomerDetail extends Component<Props, State> {
                             this.viewRef = ref;
                           }}>
         <TopHeader title={''}/>
-        <ScrollView
-          style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-          scrollY>
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([styles.uac, wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, pl(20), pr(20),
               bgColor(commonStyles.whiteColor)])}>
-              <View style={styleAssign([styles.uac, styles.ujc, w(40), h(40)])}
-                    onClick={() => {
-                      this.setState({showOperate: true});
-                    }}>
-                <Image style={styleAssign([w(19), h(4)])} src={`${cloudBaseUrl}ico_dot.png`}/>
-              </View>
+              <View style={styleAssign([styles.uac, styles.ujc, w(40), h(40)])}/>
               <View style={styleAssign([styles.uac])}>
                 <View style={styleAssign([w(98), h(98)])}>
-                  <Image style={styleAssign([w(98), h(98)])}
+                  <Image style={styleAssign([w(98), h(98), radiusA(49)])}
                          src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
                   <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
                          src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
@@ -201,7 +187,7 @@ class CustomerDetail extends Component<Props, State> {
               <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
                     onClick={() => {
                       Taro.navigateTo({
-                        url: `/pages/customer/customer_ziliao?id=${customer.id}`
+                        url: `/pages/customer/customer_ziliao?id=${customer.userId}`
                       });
                     }}>
                 <Text style={styleAssign([fSize(15), color('#343434')])}>资料</Text>
@@ -272,21 +258,7 @@ class CustomerDetail extends Component<Props, State> {
                       this.setState({currentIndex: 1});
                     }}>
                 <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>跟进</Text>
-              </View>
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 2});
-                    }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 2 ? '#343434' : '#E2BB7B')])}>标签</Text>
-              </View>
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 3});
-                    }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
+                  style={styleAssign([fSize(15), color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
               </View>
             </View>
             <View style={styleAssign([styles.uac, styles.udr, styles.ujb, wRatio(100)])}>
@@ -298,56 +270,14 @@ class CustomerDetail extends Component<Props, State> {
                 <View
                   style={styleAssign([w(44), h(1), bgColor(currentIndex !== 1 ? commonStyles.whiteColor : '#E2BB7B')])}/>
               </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
-                <View
-                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 2 ? commonStyles.whiteColor : '#E2BB7B')])}/>
-              </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
-                <View
-                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 3 ? commonStyles.whiteColor : '#E2BB7B')])}/>
-              </View>
             </View>
           </View>
           {childView}
-        </ScrollView>{
-        showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
-                             onClick={() => {
-                               this.setState({showOperate: false});
-                             }}>
-          <View
-            style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
-          <View
-            style={styleAssign([wRatio(100), h(185), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
-              styles.upa, absB(0)])}>
-            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
-            </View>
-            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
-                  onClick={() => {
-                    this.deleteCustomer(customer.id);
-                  }}>
-              <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
-            </View>
-            <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
-            </View>
-          </View>
         </View>
-      }
-        {/*添加跟进*/}
-        {
-          currentIndex === 1 && <BottomButon title={'添加跟进'} onClick={() => {
-            Taro.navigateTo({
-              url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-            });
-          }}/>
-        }
       </CustomSafeAreaView>
     )
   }
 }
 
 
-export default CustomerDetail
+export default RadarDetail

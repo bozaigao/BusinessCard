@@ -44,7 +44,12 @@ export default class RadarItem extends PureComponent<Props, State> {
     return (
       <TouchableButton
         customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(156), bgColor(commonStyles.whiteColor), mt(14)])}>
-        <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
+        <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}
+              onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/radarscan/radar_detail?itemData=${JSON.stringify(item.behaviorTraceUser)}`
+                });
+              }}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
             <View style={styleAssign([w(46), h(46), ml(16)])}>
               <Image style={styleAssign([w(46), h(46), radiusA(23)])}

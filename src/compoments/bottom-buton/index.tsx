@@ -24,8 +24,8 @@ export class BottomButon extends Component<Props> {
     let {title, onClick} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(100), h(64), styles.uac, styles.ujc])}>
-        <TouchableButton customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(commonStyles.colorTheme),
+      <View style={styleAssign([wRatio(100), h(68), styles.uac, styles.ujc])}>
+        <TouchableButton customStyle={styleAssign([w(335), h(44), radiusA(2), bgColor(commonStyles.colorTheme),
           styles.uac, styles.ujc])}
                          onClick={onClick}>
           <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{title}</Text>

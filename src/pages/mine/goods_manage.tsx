@@ -329,12 +329,15 @@ class GoodsManage extends Component<Props, State> {
               </View>
               <Text style={styleAssign([fSize(14), color('#373838'), ma(20)])}>美克集团创建于1990年，旗下包括上市公司美克国际家居用品股份有限公司、新疆美克化工有限责任公司、美克置地等多家企业，产业涉及家具制造及出口、家居零售和精细化工等领域。
                 多年来，美克集团坚持走世界优质企业道路，持续优化产业结构，提升企业核心竞争能力。美克家具制造业具备生产实木客厅、餐厅、卧房、家庭办公等全套民用家具产品的能力，是国内乃至亚洲知名的家具制造企业之一；零售业“美克美家”逐渐成为中国家居消费行业的典范，高品质生活的代名词，成为广受赞誉与令人尊敬的知名家居品牌；美克化工生产的1,4-丁二醇是纺织、汽车零配件、医药化妆品和家电等产品的一种重要精细化工中间体原料，目前是中国的1,4-丁二醇供应商之一。</Text>
-              <View style={styleAssign([styles.uf1, styles.uje])}>
-                {/*续费套餐*/}
-                <BottomButon title={'续费套餐'} onClick={() => {
-                }}/>
-              </View>
             </View>
+        }
+        {
+          hasShop &&
+          <View style={styleAssign([styles.uf1, styles.uje])}>
+            {/*续费套餐*/}
+            <BottomButon title={'续费套餐'} onClick={() => {
+            }}/>
+          </View>
         }
       </View>
     }
