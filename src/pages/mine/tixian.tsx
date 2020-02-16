@@ -6,7 +6,7 @@
  * @Description: 提现
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Image, Picker, ScrollView, Text, View} from '@tarojs/components'
+import {Image, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
@@ -20,7 +20,8 @@ import {
   hRatio,
   iphoneX,
   mb,
-  ml, mr,
+  ml,
+  mr,
   mt,
   pl,
   pr,
@@ -35,7 +36,6 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
-import DataCenterItem from "../businesscard/data-center-item";
 
 
 interface Props {
