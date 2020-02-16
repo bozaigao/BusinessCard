@@ -318,6 +318,18 @@ export interface TiXianRecord {
   wechatpayAccount: string;
 }
 
+export interface BehaviorTrace {
+  attributes: string;
+  behaviorType: string;
+  createTime: string;
+  duration: number;
+  goodsId: number;
+  id: number;
+  time: string;
+  traceUserId: number;
+  userId: number;
+}
+
 export let BaseCoin = 100;
 
 export let operateMap = {};

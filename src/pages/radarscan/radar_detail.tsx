@@ -32,7 +32,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
-import {BehaviorTraceUser, FlowUpListModel} from "../../const/global";
+import {BehaviorTrace, BehaviorTraceUser, traceListModel} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import TraceItem from "./trace-item";
 import BottomButon from "../../compoments/bottom-buton";
@@ -45,8 +45,8 @@ interface State {
   customer: BehaviorTraceUser
   currentIndex: number;
   count: number;
-  flowUpList: FlowUpListModel[];
-  date: string;
+  traceList: { day: string; behaviorTraceList: BehaviorTrace[] }[];
+  month: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -66,12 +66,16 @@ class RadarDetail extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log('呵呵', parseData(this.$router.params.itemData));
+    let month = new Date().getMonth() + 1;
 
+    if (month < 10) {
+      month = `0${month}`;
+    }
     this.state = {
       customer: parseData(this.$router.params.itemData),
       currentIndex: 0,
-      flowUpList: [],
-      date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
+      traceList: [],
+      month: `${new Date().getFullYear()}-${month}`,
       count: 0
     }
   }
@@ -99,10 +103,10 @@ class RadarDetail extends Component<Props, State> {
   traceList = () => {
     this.viewRef.showLoading();
     // console.log('雷达详情访问轨迹',this.state.customer.userId);
-    this.props.traceList({traceUserId: this.state.customer.userId}).then((res) => {
+    this.props.traceList({traceUserId: this.state.customer.userId, month: this.state.month}).then((res) => {
       console.log('雷达详情访问轨迹', res);
       this.viewRef.hideLoading();
-      this.setState({flowUpList: res, count: res.count});
+      this.setState({traceList: res.list, count: res.count});
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -111,7 +115,7 @@ class RadarDetail extends Component<Props, State> {
 
 
   render() {
-    let {customer, currentIndex, flowUpList, date, count} = this.state;
+    let {customer, currentIndex, traceList, month, count} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -119,13 +123,13 @@ class RadarDetail extends Component<Props, State> {
         <View style={styleAssign([styles.uac, styles.udr, wRatio(100), styles.ujb,
           pl(20), pr(20), mt(10)])}>
           <Picker mode='date' onChange={(e) => {
-            this.setState({date: e.detail.value}, () => {
+            this.setState({month: e.detail.value}, () => {
             });
-          }} value={date} fields={'month'}>
+          }} value={month} fields={'month'}>
             <View style={styleAssign([w(77), h(22), bgColor(commonStyles.colorTheme), radiusA(2),
               styles.udr, styles.uac, styles.ujc])}>
               <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
-                {date}
+                {month}
               </Text>
               <Image style={styleAssign([w(8), h(8), ml(5)])}
                      src={require('../../assets/ico_xiasanjiao_white.png')}/>
@@ -138,18 +142,12 @@ class RadarDetail extends Component<Props, State> {
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
-          <TraceItem/>
+          {
+            traceList.map((value, index) => {
+              return <TraceItem item={value} key={index}
+              name={customer.name}/>;
+            })
+          }
         </ScrollView>
         {/*收藏名片*/}
         <BottomButon title={'收藏名片'} onClick={() => {

@@ -126,13 +126,23 @@ export default class Card extends PureComponent<Props, State> {
             <View
               style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                 bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4),
-                {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
+                {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
+              onClick={() => {
+                Taro.makePhoneCall({
+                  phoneNumber: '15982468866' //仅为示例，并非真实的电话号码
+                })
+              }}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
               <Text style={styleAssign([color('#979797'), fSize(12)])}>15982468866</Text>
             </View>
             <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
               bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
-              {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
+              {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
+                  onClick={() => {
+                    Taro.setClipboardData({
+                      data: 'bozaigao98'
+                    });
+                  }}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
               <Text style={styleAssign([color('#979797'), fSize(12)])}>点击添加微信</Text>
             </View>

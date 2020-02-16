@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/data_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/data_center.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/mine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/mine.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/tixian.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tixian.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/const/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/const/global.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,68 +20,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="radar_detail.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="985">
+              <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#109#158#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radar_detail.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3850">
-              <caret line="175" column="22" selection-start-line="175" selection-start-column="22" selection-end-line="175" selection-end-column="22" />
-              <folding>
-                <element signature="n#style#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#View#0;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#View#1;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#View#0;n#View#1;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#Image#0;n#View#0;n#View#1;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_customer.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/my_customer.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="246" column="34" lean-forward="true" selection-start-line="246" selection-start-column="34" selection-end-line="246" selection-end-column="34" />
+            <state relative-caret-position="209">
+              <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#111#163#0" expanded="true" />
+                <element signature="e#114#166#0" expanded="true" />
+                <element signature="e#497#535#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx">
+      <file leaf-file-name="global.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/const/global.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="47" column="71" lean-forward="true" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
+            <state relative-caret-position="248">
+              <caret line="323" column="21" lean-forward="true" selection-start-line="323" selection-start-column="21" selection-end-line="323" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radarscan.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="22">
+              <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#109#153#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="73" column="35" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx">
+        <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar-item/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#109#158#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="311">
+              <caret line="77" column="100" lean-forward="true" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="100" />
             </state>
           </provider>
         </entry>
@@ -97,8 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onShareAppMessage</find>
-      <find>/pages/businesscard/add_businesscard</find>
       <find>pages/businesscard/add_businesscard</find>
       <find>marginTop</find>
       <find>red</find>
@@ -124,12 +113,13 @@
       <find>customer</find>
       <find>showOperate</find>
       <find>actions</find>
-      <find>flowUpList</find>
       <find>detIl</find>
       <find>ico_mine_bg</find>
+      <find>e.detail.value[0]</find>
+      <find>flowUpList</find>
+      <find>traceList</find>
     </findStrings>
     <replaceStrings>
-      <replace>'GET'</replace>
       <replace>ConstEnum</replace>
       <replace>Enum</replace>
       <replace>ico_default.png</replace>
@@ -159,6 +149,7 @@
       <replace>pages/mine/add_goods</replace>
       <replace>pages/mine/task_center</replace>
       <replace>;</replace>
+      <replace>traceList</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -177,7 +168,6 @@
         <option value="$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/utils/style.ts" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/list-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer.tsx" />
@@ -202,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/data-center-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/data_center.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_customer.tsx" />
-        <option value="$PROJECT_DIR$/src/const/global.ts" />
         <option value="$PROJECT_DIR$/src/pages/mine/tixian_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/tixian-recorder-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" />
@@ -214,10 +203,12 @@
         <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/radarscan/radar-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/bottom-buton/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx" />
-        <option value="$PROJECT_DIR$/src/app.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx" />
+        <option value="$PROJECT_DIR$/src/app.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" />
+        <option value="$PROJECT_DIR$/src/const/global.ts" />
+        <option value="$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" />
       </list>
     </option>
   </component>
@@ -265,20 +256,13 @@
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
+              <item name="const" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="mine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
@@ -293,7 +277,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="radarscan" type="462c0819:PsiDirectoryNode" />
-              <item name="trace-item" type="462c0819:PsiDirectoryNode" />
+              <item name="radar-item" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -487,12 +477,12 @@
       <workItem from="1581691375770" duration="2627000" />
       <workItem from="1581728520556" duration="9201000" />
       <workItem from="1581753433718" duration="17627000" />
-      <workItem from="1581813576527" duration="24602000" />
+      <workItem from="1581813576527" duration="27283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="732102000" />
+    <option name="totallyTimeSpent" value="734783000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -592,26 +582,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-778">
-          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="369" column="14" lean-forward="true" selection-start-line="366" selection-start-column="9" selection-end-line="369" selection-end-column="14" />
-          <folding>
-            <element signature="e#257#344#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my-person/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -914,9 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/taro/types/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -946,13 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="273" column="34" selection-start-line="273" selection-start-column="17" selection-end-line="273" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
@@ -970,42 +930,6 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#111#163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="149" column="20" selection-start-line="149" selection-start-column="10" selection-end-line="149" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="155" column="18" lean-forward="true" selection-start-line="153" selection-start-column="8" selection-end-line="155" selection-end-column="18" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#112#164#0" expanded="true" />
-            <element signature="e#323#372#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar-item/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="90" column="37" selection-start-line="90" selection-start-column="37" selection-end-line="90" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-568">
-          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1028,40 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#109#158#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="73" column="35" selection-start-line="73" selection-start-column="35" selection-end-line="73" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3850">
-          <caret line="175" column="22" selection-start-line="175" selection-start-column="22" selection-end-line="175" selection-end-column="22" />
-          <folding>
-            <element signature="n#style#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#View#0;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#View#1;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#View#0;n#View#1;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#Image#0;n#View#0;n#View#1;n#View#0;n#View#0;n#View#0;n#TopHeader#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/my_customer.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1075,11 +965,101 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="47" column="71" lean-forward="true" selection-start-line="47" selection-start-column="71" selection-end-line="47" selection-end-column="71" />
+        <state relative-caret-position="313">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#109#153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/personal-info/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="157" column="14" selection-start-line="157" selection-start-column="14" selection-end-line="157" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#112#164#0" expanded="true" />
+            <element signature="e#323#372#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="137" column="49" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3129">
+          <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="26" column="20" lean-forward="true" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar-item/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="77" column="100" lean-forward="true" selection-start-line="77" selection-start-column="71" selection-end-line="77" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/const/global.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="323" column="21" lean-forward="true" selection-start-line="323" selection-start-column="21" selection-end-line="323" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="985">
+          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#109#158#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="147" column="33" selection-start-line="147" selection-start-column="33" selection-end-line="147" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#114#166#0" expanded="true" />
+            <element signature="e#497#535#0" expanded="true" />
           </folding>
         </state>
       </provider>

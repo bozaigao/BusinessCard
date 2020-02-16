@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {styleAssign, transformTime} from "../../../utils/datatool";
 import styles, {
   bgColor,
   color,
@@ -17,16 +17,18 @@ import styles, {
   hRatio,
   ml,
   mt,
-  pa,
   pl,
   pr,
   radiusA,
   w,
   wRatio
 } from "../../../utils/style";
+import {BehaviorTrace, operateMap} from "../../../const/global";
 
 
 interface Props {
+  item: { day: string; behaviorTraceList: BehaviorTrace[] };
+  name:string;
 }
 
 interface State {
@@ -43,7 +45,9 @@ export default class TraceItem extends PureComponent<Props, State> {
   }
 
   render() {
+    let {item,name} = this.props;
     let {showDetail} = this.state;
+    console.log('数据', item);
 
     return (
       <View style={wRatio(100)}>
@@ -55,7 +59,7 @@ export default class TraceItem extends PureComponent<Props, State> {
               this.setState({showDetail: !this.state.showDetail});
             }}>
             <Text style={styleAssign([fSize(14), color('#343434')])}>
-              11-08 访问轨迹
+              {`${item.day} 访问轨迹`}
             </Text>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Text style={styleAssign([fSize(14), color('#979797')])}>
@@ -66,27 +70,34 @@ export default class TraceItem extends PureComponent<Props, State> {
             </View>
           </View>
         </View>
-        {
-          showDetail && <View style={styleAssign([wRatio(100)])}>
-            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujc])}>
-              <View style={styleAssign([w(335), pa(10), styles.udr, bgColor(commonStyles.whiteColor)])}>
-                <View style={styleAssign([styles.uac])}>
-                  <View style={styleAssign([w(6), h(6), radiusA(3), bgColor('#979797')])}/>
-                  <View style={styleAssign([w(1), hRatio(100), bgColor('#979797')])}/>
+        <View style={styleAssign([wRatio(100)])}>
+          {
+            item.behaviorTraceList.map((value: BehaviorTrace, index) => {
+              return <View style={styleAssign([wRatio(100)])} key={index}>
+                <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujc])}>
+                  <View style={styleAssign([w(335), pl(10), pr(10), styles.udr, bgColor(commonStyles.whiteColor)])}>
+                    <View style={styleAssign([styles.uac])}>
+                      <View style={styleAssign([w(6), h(6), radiusA(3), bgColor('#979797')])}/>
+                      <View style={styleAssign([w(1), hRatio(100), bgColor('#979797')])}/>
+                    </View>
+                    <View style={styleAssign([ml(13)])}>
+                      <Text style={styleAssign([fSize(14), color('#343434')])}>
+                        {transformTime(value.time)}
+                      </Text>
+                      <Text style={styleAssign([fSize(14), color('#343434')])}>
+                        {name}
+                      </Text>
+                      <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>
+                        {operateMap[value.behaviorType]}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-                <View style={styleAssign([ml(13)])}>
-                  <Text style={styleAssign([fSize(14), color('#343434')])}>
-                    11-08 09:36
-                  </Text>
-                  <Text style={styleAssign([fSize(14), color('#343434')])}>
-                    刘思雨 点击了你标签，你们是同乡哦，可以收藏Ta的名片
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        }
+              </View>;
+            })
+          }
+        </View>
       </View>
     );
   }
