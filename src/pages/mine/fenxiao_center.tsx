@@ -23,7 +23,8 @@ import {
   ml,
   mt,
   pa,
-  pl, pr,
+  pl,
+  pr,
   radiusA,
   w,
   wRatio
@@ -43,7 +44,7 @@ interface Props {
 
 interface State {
   marginTop: number;
-  //等级 gold黄金 platinum铂金 diamond 钻石
+  //等级 gold黄金 platinum铂金 diamond 钻石 partner 皇冠
   level: string;
   //未结算收入 单位分
   noSettlement: number;
