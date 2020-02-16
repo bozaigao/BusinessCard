@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/ico_coin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/ico_wechat_done.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/ico_wechat_tixian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/mine/tixian-recorder-item/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/mine/tixian_page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/mine/tixian_recorder.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/mine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/mine.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/tixian.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tixian.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,33 +20,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tixian_page.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/tixian_page.tsx">
+      <file leaf-file-name="fenxiao_center.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+            <state relative-caret-position="269">
+              <caret line="220" column="26" selection-start-line="216" selection-start-column="24" selection-end-line="220" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tixian.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/tixian.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="148" column="60" lean-forward="true" selection-start-line="148" selection-start-column="60" selection-end-line="148" selection-end-column="60" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#262#311#0" expanded="true" />
+                <element signature="e#104#156#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Input.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/components/types/Input.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="30" column="18" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="18" />
+            <state relative-caret-position="181">
+              <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -66,8 +62,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>require(</find>
-      <find>/assets/</find>
       <find>ico_back_white.png</find>
       <find>ico_back.png</find>
       <find>showPersonalInfo</find>
@@ -96,6 +90,8 @@
       <find>Picker</find>
       <find>Inpu</find>
       <find>placeholder</find>
+      <find>fenxiao</find>
+      <find>tixian</find>
     </findStrings>
     <replaceStrings>
       <replace>'POST'</replace>
@@ -167,11 +163,9 @@
         <option value="$PROJECT_DIR$/src/pages/mine/haibao.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/mine.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/share-modal/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" />
         <option value="$PROJECT_DIR$/src/api/httpurl.ts" />
         <option value="$PROJECT_DIR$/src/reducers/index.ts" />
         <option value="$PROJECT_DIR$/src/actions/distribution.ts" />
@@ -182,11 +176,13 @@
         <option value="$PROJECT_DIR$/src/pages/customer/shai-xuan-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_customer.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/tixian.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/tixian_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/tixian-recorder-item/index.tsx" />
-        <option value="$PROJECT_DIR$/src/app.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/tixian_page.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/mine.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/tixian.tsx" />
+        <option value="$PROJECT_DIR$/src/app.tsx" />
       </list>
     </option>
   </component>
@@ -468,12 +464,12 @@
       <workItem from="1581691375770" duration="2627000" />
       <workItem from="1581728520556" duration="9201000" />
       <workItem from="1581753433718" duration="17627000" />
-      <workItem from="1581813576527" duration="9274000" />
+      <workItem from="1581813576527" duration="10384000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="716774000" />
+    <option name="totallyTimeSpent" value="717884000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -493,9 +489,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3271795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -777,17 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/mine.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="161" column="22" lean-forward="true" selection-start-line="161" selection-start-column="22" selection-end-line="161" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#110#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compoments/top-header/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
@@ -958,13 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="224" column="10" lean-forward="true" selection-start-line="224" selection-start-column="10" selection-end-line="240" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
@@ -1020,17 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/tixian.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#104#156#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/components/types/Input.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -1038,21 +1005,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/mine.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
+        <state relative-caret-position="220">
+          <caret line="151" column="23" lean-forward="true" selection-start-line="151" selection-start-column="23" selection-end-line="155" selection-end-column="25" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#110#162#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/tixian_page.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+        <state relative-caret-position="39">
+          <caret line="105" column="23" lean-forward="true" selection-start-line="105" selection-start-column="23" selection-end-line="105" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#262#311#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="220" column="26" selection-start-line="216" selection-start-column="24" selection-end-line="220" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/tixian.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="148" column="60" lean-forward="true" selection-start-line="148" selection-start-column="60" selection-end-line="148" selection-end-column="60" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#104#156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
         </state>
       </provider>
     </entry>

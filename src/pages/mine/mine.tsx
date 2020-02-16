@@ -148,7 +148,12 @@ class Mine extends Component<Props, State> {
               </View>
               {/*分销*/}
               <View style={styleAssign([wRatio(100), h(100), styles.uac, mt(iphoneX() ? 14 : 24)])}>
-                <Image style={styleAssign([w(335), h(100)])} src={`${cloudBaseUrl}ico_fenxiao.png`}/>
+                <Image style={styleAssign([w(335), h(100)])} src={`${cloudBaseUrl}ico_fenxiao.png`}
+                       onClick={() => {
+                         Taro.navigateTo({
+                           url: `/pages/mine/fenxiao_center`
+                         });
+                       }}/>
               </View>
               {/*工具模块*/}
               <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.uja, mt(27)])}>

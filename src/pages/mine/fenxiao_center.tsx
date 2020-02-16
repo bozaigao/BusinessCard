@@ -213,7 +213,12 @@ class FenxiaoCenter extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.uf1, styles.udr, styles.uje])}>
                   <View style={styleAssign([w(77), h(30), radiusA(15), bgColor('#E2BB7B'),
-                    styles.uac, styles.ujc])}>
+                    styles.uac, styles.ujc])}
+                        onClick={() => {
+                          Taro.navigateTo({
+                            url: `/pages/mine/tixian`
+                          });
+                        }}>
                     <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>
                       提现
                     </Text>
@@ -225,7 +230,9 @@ class FenxiaoCenter extends Component<Props, State> {
           {/*数据中心*/}
           <View style={styleAssign([wRatio(100), styles.uac])}
                 onClick={() => {
-
+                  Taro.navigateTo({
+                    url: `/pages/mine/data_center`
+                  });
                 }}>
             <View style={styleAssign([wRatio(100), h(51), styles.udr, styles.uac, styles.ujb, pl(20), pr(20),
               bgColor(commonStyles.whiteColor), mt(20)])}>
@@ -244,7 +251,9 @@ class FenxiaoCenter extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), h(51), styles.udr, styles.uac, styles.ujb, pl(20), pr(20),
               bgColor(commonStyles.whiteColor)])}
                   onClick={() => {
-
+                    Taro.navigateTo({
+                      url: `/pages/mine/my_customer`
+                    });
                   }}>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Image style={styleAssign([w(20), h(20)])} src={require('../../assets/ico_my_client.png')}/>

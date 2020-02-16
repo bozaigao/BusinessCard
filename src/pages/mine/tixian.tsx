@@ -111,7 +111,7 @@ class TiXian extends Component<Props, State> {
   }
 
   render() {
-    let {marginTop, year} = this.state;
+    let {marginTop} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -123,35 +123,34 @@ class TiXian extends Component<Props, State> {
               <View style={styleAssign([w(335), h(213), bgColor(commonStyles.whiteColor), radiusA(4),])}>
                 <View style={styleAssign([wRatio(100), h(60), styles.uac, styles.ujc, bgColor('#FAF1E5'),
                   radiusTL(4), radiusTR(4)])}>
-                  <Text style={styleAssign([fSize(16), color('#343434')])}>
-                    累计数据
-                  </Text>
-                </View>
-                <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(15)])}>
-                  <View style={styleAssign([styles.uf1, styles.uac])}>
-                    <Text style={styleAssign([fSize(12), color('#979797')])}>
-                      已结算收入(税前)
+                  <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
+                    <Text style={styleAssign([fSize(16), color('#343434')])}>
+                      可提现金额
                     </Text>
-                    <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
-                      <Text style={styleAssign([fSize(14), color('#FA6B57'), mb(5)])}>
-                        ¥
-                      </Text>
-                      <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                        688.00
-                      </Text>
-                    </View>
+                    <Text style={styleAssign([fSize(12), color('#979797')])}>
+                      (税前)
+                    </Text>
                   </View>
-                  <View style={styleAssign([w(1), h(40), bgColor('#E5E5E5')])}/>
-                  <View style={styleAssign([styles.uf1, styles.uac])}>
-                    <Text style={styleAssign([fSize(12), color('#979797')])}>
-                      未结算收入(税前)
+                </View>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+                  <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
+                    <Text style={styleAssign([fSize(18), color('#FA6B57'), mb(5)])}>
+                      ¥
                     </Text>
-                    <View style={styleAssign([styles.udr, styles.uae, mt(4)])}>
-                      <Text style={styleAssign([fSize(14), color('#FA6B57'), mb(5)])}>
-                        ¥
-                      </Text>
-                      <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                        0.00
+                    <Text style={styleAssign([fSize(28), color('#FA6B57')])}>
+                      688.00
+                    </Text>
+                  </View>
+                  <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(28)])}>
+                    <View style={styleAssign([w(201), h(41), radiusA(21), bgColor('#E2BB7B'),
+                      styles.uac, styles.ujc])}
+                          onClick={() => {
+                            Taro.navigateTo({
+                              url: `/pages/mine/tixian_page`
+                            });
+                          }}>
+                      <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>
+                        提现
                       </Text>
                     </View>
                   </View>
@@ -177,7 +176,12 @@ class TiXian extends Component<Props, State> {
 
                 }}>
             <View style={styleAssign([wRatio(100), h(51), styles.udr, styles.uac, styles.ujb, pl(20), pr(20),
-              bgColor(commonStyles.whiteColor), mt(20)])}>
+              bgColor(commonStyles.whiteColor), mt(20)])}
+                  onClick={() => {
+                    Taro.navigateTo({
+                      url: `/pages/mine/tixian_recorder`
+                    });
+                  }}>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Image style={styleAssign([w(20), h(20)])} src={require('../../assets/ico_tixian.png')}/>
                 <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(14)])}>
