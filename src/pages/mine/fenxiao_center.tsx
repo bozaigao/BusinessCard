@@ -30,20 +30,32 @@ import {
 } from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/login";
+import * as actions from "../../actions/distribution";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 
 interface Props {
-  //获取用户信息
-  getUserInfo: any;
+  //分销中心主页-我的收益
+  userIncome: any;
   userInfo: User;
 }
 
 interface State {
   marginTop: number;
+  //等级 gold黄金 platinum铂金 diamond 钻石
+  level: string;
+  //未结算收入 单位分
+  noSettlement: number;
+  //已结算收入 单位分
+  totalIncome: number;
+  //可提现金额 单位分
+  withdrawIncome: number;
+  //已提现金额 单位分
+  withdrawIncomeStat: number;
 }
+
+export let BaseCoin = 100;
 
 @connect(state => state.login, {...actions})
 class FenxiaoCenter extends Component<Props, State> {
@@ -62,7 +74,12 @@ class FenxiaoCenter extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      marginTop: 0
+      marginTop: 0,
+      level: 'gold',
+      noSettlement: 0,
+      totalIncome: 0,
+      withdrawIncome: 0,
+      withdrawIncomeStat: 0
     }
   }
 
@@ -72,11 +89,7 @@ class FenxiaoCenter extends Component<Props, State> {
     } else {
       this.setState({marginTop: 15});
     }
-    Taro.eventCenter.on('refreshUserInfo', () => {
-      console.log('刷新用户信息');
-      this.getUserInfo();
-    });
-    this.getUserInfo();
+    this.userIncome();
   }
 
   componentWillUnmount() {
@@ -93,13 +106,21 @@ class FenxiaoCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
-   * @function: 获取用户信息
+   * @date 2020/2/16
+   * @function: 分销中心主页-我的收益
    */
-  getUserInfo = () => {
-    this.props.getUserInfo().then((res) => {
-      console.log('获取用户信息', res);
-      console.log('属性', this.props.userInfo);
+  userIncome = () => {
+    this.props.userIncome().then((res) => {
+      console.log('分销中心主页-我的收益', res);
+      if (res) {
+        this.setState({
+          level: res.level,
+          noSettlement: res.noSettlement,
+          totalIncome: res.totalIncome,
+          withdrawIncome: res.withdrawIncome,
+          withdrawIncomeStat: res.withdrawIncomeStat
+        });
+      }
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -108,7 +129,25 @@ class FenxiaoCenter extends Component<Props, State> {
   render() {
 
     let {userInfo} = this.props;
-    let {marginTop} = this.state;
+    let {marginTop, level, noSettlement, totalIncome, withdrawIncome, withdrawIncomeStat} = this.state;
+    let levelIcon = require('../../assets/ico_gold.png');
+
+    switch (level) {
+      case 'gold':
+        levelIcon = require('../../assets/ico_gold.png');
+        break;
+      case 'platinum':
+        levelIcon = require('../../assets/ico_platinum.png');
+        break;
+      case 'diamond':
+        levelIcon = require('../../assets/ico_diamond.png');
+        break;
+      case 'partner':
+        levelIcon = require('../../assets/ico_partner.png');
+        break;
+      default:
+        break;
+    }
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -132,7 +171,7 @@ class FenxiaoCenter extends Component<Props, State> {
                         ¥
                       </Text>
                       <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                        688.00
+                        {(totalIncome / BaseCoin).toFixed(2)}
                       </Text>
                     </View>
                   </View>
@@ -146,7 +185,7 @@ class FenxiaoCenter extends Component<Props, State> {
                         ¥
                       </Text>
                       <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                        0.00
+                        {(noSettlement / BaseCoin).toFixed(2)}
                       </Text>
                     </View>
                   </View>
@@ -177,10 +216,10 @@ class FenxiaoCenter extends Component<Props, State> {
                     <Text
                       style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
                     <Text
-                      style={styleAssign([fSize(12), color(commonStyles.whiteColor), ml(10)])}>ID：0819996</Text>
+                      style={styleAssign([fSize(12), color(commonStyles.whiteColor), ml(10)])}>{`ID：${userInfo.id}`}</Text>
                   </View>
                   <Image style={styleAssign([w(82), h(23), mt(5)])}
-                         src={require('../../assets/ico_gold.png')}/>
+                         src={levelIcon}/>
                 </View>
               </View>
             </View>
@@ -194,7 +233,7 @@ class FenxiaoCenter extends Component<Props, State> {
                   我的收益
                 </Text>
                 <Text style={styleAssign([fSize(12), color('#979797')])}>
-                  已提现 ￥688.00
+                  {`已提现 ￥${(withdrawIncomeStat / BaseCoin).toFixed(2)}`}
                 </Text>
               </View>
               <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(15)])}>
@@ -207,7 +246,7 @@ class FenxiaoCenter extends Component<Props, State> {
                       ¥
                     </Text>
                     <Text style={styleAssign([fSize(24), color('#FA6B57')])}>
-                      688.00
+                      {(withdrawIncome / BaseCoin).toFixed(2)}
                     </Text>
                   </View>
                 </View>
