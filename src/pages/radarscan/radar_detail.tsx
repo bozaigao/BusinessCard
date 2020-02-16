@@ -99,7 +99,7 @@ class RadarDetail extends Component<Props, State> {
   traceList = () => {
     this.viewRef.showLoading();
     // console.log('雷达详情访问轨迹',this.state.customer.userId);
-    this.props.traceList({traceUserId: 1}).then((res) => {
+    this.props.traceList({traceUserId: this.state.customer.userId}).then((res) => {
       console.log('雷达详情访问轨迹', res);
       this.viewRef.hideLoading();
       this.setState({flowUpList: res, count: res.count});
