@@ -44,6 +44,7 @@ interface Props {
 interface State {
   customer: BehaviorTraceUser
   currentIndex: number;
+  count: number;
   flowUpList: FlowUpListModel[];
   date: string;
 }
@@ -70,7 +71,8 @@ class RadarDetail extends Component<Props, State> {
       customer: parseData(this.$router.params.itemData),
       currentIndex: 0,
       flowUpList: [],
-      date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`
+      date: `${new Date().getFullYear()}-${new Date().getMonth() + 1}`,
+      count: 0
     }
   }
 
@@ -82,7 +84,7 @@ class RadarDetail extends Component<Props, State> {
   }
 
   componentDidMount() {
-    // this.traceList();
+    this.traceList();
   }
 
   componentDidHide() {
@@ -96,11 +98,11 @@ class RadarDetail extends Component<Props, State> {
    */
   traceList = () => {
     this.viewRef.showLoading();
-    console.log('雷达详情访问轨迹');
-    this.props.traceList({traceUserId: this.state.customer.userId}).then((res) => {
+    // console.log('雷达详情访问轨迹',this.state.customer.userId);
+    this.props.traceList({traceUserId: 1}).then((res) => {
       console.log('雷达详情访问轨迹', res);
       this.viewRef.hideLoading();
-      this.setState({flowUpList: res});
+      this.setState({flowUpList: res, count: res.count});
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -109,7 +111,7 @@ class RadarDetail extends Component<Props, State> {
 
 
   render() {
-    let {customer, currentIndex, flowUpList, date} = this.state;
+    let {customer, currentIndex, flowUpList, date, count} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -130,7 +132,7 @@ class RadarDetail extends Component<Props, State> {
             </View>
           </Picker>
           <Text style={styleAssign([fSize(14), color('#979797')])}>
-            共访问了86次
+            {`共访问了${count}次`}
           </Text>
         </View>
         <ScrollView
