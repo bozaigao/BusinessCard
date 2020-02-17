@@ -125,7 +125,7 @@ class DataCenter extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
-                          notNeedBottomPadding={true} notNeedTopPadding={true}
+                          notNeedBottomPadding={true}
                           ref={(ref) => {
                             this.viewRef = ref;
                           }}>

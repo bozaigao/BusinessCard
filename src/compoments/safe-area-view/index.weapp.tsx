@@ -1,13 +1,15 @@
 import Taro, {Component} from "@tarojs/taro";
 import {View} from "@tarojs/components";
 import {styleAssign} from "../../utils/datatool";
-import {bgColor, commonStyles, hRatio, iphoneX, pb, pt, wRatio} from "../../utils/style";
+import {bgColor, commonStyles, hRatio, mb, wRatio} from "../../utils/style";
 import Loading from "../loading";
+import {Global} from "../../const/global";
+
+declare let global: Global;
 
 interface Props {
   customStyle?: any;
   children?: any;
-  notNeedTopPadding?: boolean;
   notNeedBottomPadding?: boolean;
 }
 
@@ -24,31 +26,23 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      paddingTop: 0,
+      paddingTop:global.menuButton.top,
       paddingBottom: 0,
       showLoading: false,
       title: ''
     }
   }
 
-  componentWillMount() {
-    //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
-    if (iphoneX()) {
-      this.setState({paddingTop: 43, paddingBottom: 44});
-    } else {
-      this.setState({paddingTop: 15});
-    }
-  }
 
   render() {
-    let {customStyle, children, notNeedTopPadding, notNeedBottomPadding} = this.props;
+    let {customStyle, children, notNeedBottomPadding} = this.props;
     let {paddingTop, showLoading, paddingBottom, title} = this.state;
 
     console.log('距离顶部', paddingTop)
 
     return (
       <View
-        style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor), pt(notNeedTopPadding ? 0 : paddingTop), pb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
+        style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor),  mb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
         {
           children
         }

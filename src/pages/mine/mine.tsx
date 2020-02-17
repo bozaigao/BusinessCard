@@ -101,7 +101,7 @@ class Mine extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
-                          notNeedBottomPadding={true} notNeedTopPadding={true}>
+                          notNeedBottomPadding={true}>
         <ScrollView
           style={styleAssign([wRatio(100), hRatio(100)])}
           scrollY>

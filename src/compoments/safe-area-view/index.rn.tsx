@@ -9,7 +9,6 @@ interface Props {
   style?: any;
   onClick?: any;
   children?: any;
-  notNeedTopPadding?: boolean;
   notNeedBottomPadding?: boolean;
 }
 

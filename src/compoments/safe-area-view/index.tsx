@@ -7,7 +7,6 @@ import Loading from "../loading";
 interface Props {
   customStyle?: any;
   children?: any;
-  notNeedTopPadding?: boolean;
   notNeedBottomPadding?: boolean;
 }
 

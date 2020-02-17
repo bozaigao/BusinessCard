@@ -41,6 +41,7 @@ import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
+import Navigation from "../../compoments/navigation";
 
 interface Props {
   //获取用户信息
@@ -84,6 +85,7 @@ class Businesscard extends Component<Props, State> {
     //   this.viewRef && this.viewRef.showSignAlert()
     // });
     this.getUserInfo();
+    console.log('胶囊按钮', Taro.getMenuButtonBoundingClientRect());
     console.log(this.viewRef)
   }
 
@@ -134,23 +136,25 @@ class Businesscard extends Component<Props, State> {
                           notNeedBottomPadding={true}
       >
         {/*切换名片*/}
-        <View
-          style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
+        <Navigation>
           <View
-            style={styleAssign([styles.uac, styles.udr, ml(23), w(95), h(32), radiusA(16), bdColor('#E5E5E5'), bo(1), {borderStyle: 'solid'}])}>
-            <Image style={styleAssign([w(27), h(27), ma(2)])} src={`${cloudBaseUrl}ico_default.png`}/>
-            <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
+            style={styleAssign([wRatio(100), styles.ujb, styles.uac, styles.udr])}>
+            <View
+              style={styleAssign([styles.uac, styles.udr, ml(23), w(95), h(32), radiusA(16), bdColor('#E5E5E5'), bo(1), {borderStyle: 'solid'}])}>
+              <Image style={styleAssign([w(27), h(27), ma(2)])} src={`${cloudBaseUrl}ico_default.png`}/>
+              <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
+            </View>
+            <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
+                             onClick={() => {
+                               Taro.navigateTo({
+                                 url: `/pages/businesscard/qiehuan_businesscard`
+                               });
+                             }}>
+              <Text style={styleAssign([fSize(18), color('#343434')])}>名片</Text>
+            </TouchableButton>
+            <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
           </View>
-          <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
-                           onClick={() => {
-                             Taro.navigateTo({
-                               url: `/pages/businesscard/qiehuan_businesscard`
-                             });
-                           }}>
-            <Text style={styleAssign([fSize(18), color('#343434')])}>名片</Text>
-          </TouchableButton>
-          <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
-        </View>
+        </Navigation>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
@@ -184,7 +188,7 @@ class Businesscard extends Component<Props, State> {
           <JiZhiCard/>
           {/*关注公众号*/}
           <View
-            style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
+            style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
                      src={`${cloudBaseUrl}ico_logo.png`}/>

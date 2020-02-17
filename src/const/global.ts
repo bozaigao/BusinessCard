@@ -26,8 +26,26 @@ export interface Global {
   system: string;
   version: any;
   windowHeight: number;
+  safeArea: {
+    bottom: number;
+    height: number;
+    left: number;
+    right: number;
+    top: number;
+    width: number;
+  },
+  menuButton:MenuButton;
 }
 
+
+export interface MenuButton {
+  bottom: number;
+  height: number;
+  left: number;
+  right: number;
+  top: number;
+  width: number;
+}
 
 //用户基本信息
 export interface User {

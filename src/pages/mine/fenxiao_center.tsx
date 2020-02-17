@@ -147,7 +147,7 @@ class FenxiaoCenter extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
-                          notNeedBottomPadding={true} notNeedTopPadding={true}>
+                          notNeedBottomPadding={true}>
         <View style={styleAssign([wRatio(100), hRatio(100)])}>
           <View style={styleAssign([wRatio(100), h(iphoneX() ? 292 : 252)])}>
             <Image style={styleAssign([wRatio(100), h(iphoneX() ? 262 : 222)])} src={require('../../assets/ico_mine_bg.png')}/>

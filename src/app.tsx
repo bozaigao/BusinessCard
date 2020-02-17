@@ -21,11 +21,14 @@ class App extends Component {
     super(props);
 
     console.log('呵呵', global);
-
+    //获取胶囊按钮位置信息为后面自定义导航条做准备
+    global.menuButton = Taro.getMenuButtonBoundingClientRect();
+    console.log('胶囊信息', global.menuButton);
     global.debug = true;
     Taro.getSystemInfo({
       success: res => {
         global = Object.assign(global, res, {debug: true});
+        console.log('设备信息', res);
         if (res.model && res.model.includes('iPhone X')) {
           global.iphoneX = true;
           console.log('是iphoneX机型')
@@ -116,7 +119,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTextStyle: 'white',
+      navigationBarTextStyle: 'black',
       pageOrientation: 'portrait',
       navigationStyle: 'custom'
     },
