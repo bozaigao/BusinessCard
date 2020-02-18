@@ -23,16 +23,16 @@ import {
   ml,
   mr,
   mt,
-  op,
+  op, pb,
   pl,
-  pr,
+  pr, pt,
   radiusA,
   w,
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
-import {cloudBaseUrl} from "../../../api/httpurl";
+import Navigation from "../../../compoments/navigation";
 
 
 interface Props {
@@ -42,7 +42,7 @@ interface Props {
   myVisitorCallback: any;
   shaiXuanCallback: any;
   shaiXuanMode: string;
-  totalPerson:number;
+  totalPerson: number;
 }
 
 interface State {
@@ -62,7 +62,7 @@ export default class ModeModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {cancelCallback, collectCallback, myVisitorCallback, confirmCallback,shaiXuanCallback,shaiXuanMode,totalPerson} = this.props;
+    let {cancelCallback, collectCallback, myVisitorCallback, confirmCallback, shaiXuanCallback, shaiXuanMode, totalPerson} = this.props;
     let visitorSubCurrentIndex = 0, currentIndex = 0;
 
     return (
@@ -76,35 +76,37 @@ export default class ModeModal extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), h(60), bgColor(commonStyles.whiteColor)])}/>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.blackColor), op(0.5)])}/>
         </TouchableButton>
-        <View
-          style={styleAssign([wRatio(100), h(iphoneX() ? 47 : 44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-          <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={require('../../../assets/ico_back.png')}
-                 onClick={() => {
-                   Taro.navigateBack();
-                 }}/>
-          <View style={styleAssign([styles.uac, styles.udr])}>
+        <Navigation style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+          <View
+            style={styleAssign([wRatio(100), h(iphoneX() ? 47 : 44), styles.udr, styles.uac, styles.ujb])}>
+            <Image style={styleAssign([w(22), h(22), ml(20)])}
+                   src={require('../../../assets/ico_back.png')}
+                   onClick={() => {
+                     Taro.navigateBack();
+                   }}/>
             <View style={styleAssign([styles.uac, styles.udr])}>
-              <View style={styleAssign([styles.uac])}>
-                <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
-                <View
-                  style={styleAssign([w(36), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <View style={styleAssign([styles.uac])}>
+                  <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
+                  <View
+                    style={styleAssign([w(36), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+                </View>
+              </View>
+              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                    onClick={collectCallback}>
+                <View style={styleAssign([styles.uac])}>
+                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>收藏</Text>
+                  <View
+                    style={styleAssign([w(36), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+                </View>
               </View>
             </View>
-            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
-                  onClick={collectCallback}>
-              <View style={styleAssign([styles.uac])}>
-                <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>收藏</Text>
-                <View
-                  style={styleAssign([w(36), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
-              </View>
-            </View>
+            <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
-          <View style={styleAssign([w(22), h(22), mr(20)])}/>
-        </View>
+        </Navigation>
         <View style={styleAssign([styles.uf1])}>
           <View
-            style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, styles.udr, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+            style={styleAssign([wRatio(100), pt(10), pb(10), styles.uac, styles.ujc, styles.udr, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View
                 style={styleAssign([styles.uac, styles.ujc, bgColor(visitorSubCurrentIndex === 0 ? '#E2BB7B' : commonStyles.pageDefaultBackgroundColor), radiusA(2)])}>

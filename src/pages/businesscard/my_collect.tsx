@@ -43,6 +43,7 @@ import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 import VisitorItem from "./visitor-item";
 import ShaiXuanModal from "./shai-xuan-modal";
 import ModeModal from "./mode-modal";
+import Navigation from "../../compoments/navigation";
 
 interface Props {
   userInfo: User;
@@ -340,39 +341,41 @@ class MyCollect extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <View
-            style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-            <Image style={styleAssign([w(22), h(22), ml(20)])}
-                   src={require('../../assets/ico_back.png')}
-                   onClick={() => {
-                     Taro.navigateBack();
-                   }}/>
-            <View style={styleAssign([styles.uac, styles.udr])}>
-              <View style={styleAssign([styles.uac, styles.udr])}
-                    onClick={() => {
-                      this.setState({currentIndex: 0}, () => {
-                        this.refresh();
-                      });
-                    }}>
-                <View style={styleAssign([styles.uac])}>
-                  <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
-                  <View
-                    style={styleAssign([w(36), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+          <Navigation style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+            <View
+              style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+              <Image style={styleAssign([w(22), h(22), ml(20)])}
+                     src={require('../../assets/ico_back.png')}
+                     onClick={() => {
+                       Taro.navigateBack();
+                     }}/>
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <View style={styleAssign([styles.uac, styles.udr])}
+                      onClick={() => {
+                        this.setState({currentIndex: 0}, () => {
+                          this.refresh();
+                        });
+                      }}>
+                  <View style={styleAssign([styles.uac])}>
+                    <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>访客</Text>
+                    <View
+                      style={styleAssign([w(36), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+                  </View>
+                </View>
+                <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                      onClick={() => {
+                        this.setState({currentIndex: 1});
+                      }}>
+                  <View style={styleAssign([styles.uac])}>
+                    <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>收藏</Text>
+                    <View
+                      style={styleAssign([w(36), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+                  </View>
                 </View>
               </View>
-              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 1});
-                    }}>
-                <View style={styleAssign([styles.uac])}>
-                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>收藏</Text>
-                  <View
-                    style={styleAssign([w(36), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
-                </View>
-              </View>
+              <View style={styleAssign([w(22), h(22), mr(20)])}/>
             </View>
-            <View style={styleAssign([w(22), h(22), mr(20)])}/>
-          </View>
+          </Navigation>
           {
             childView
           }
@@ -443,7 +446,7 @@ class MyCollect extends Component<Props, State> {
             totalPerson={total}
             shaiXuanMode={shaiXuanMode}
             shaiXuanTimesCallback={(times) => {
-              console.log('筛选次数',times);
+              console.log('筛选次数', times);
               this.setState({shaiXuanTimes: times, startTime: '', endTime: '', showShaiXuan: false}, () => {
                 this.refresh();
               });

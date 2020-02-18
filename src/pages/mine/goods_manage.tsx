@@ -40,6 +40,7 @@ import GoodsManageItem from "../businesscard/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Goods, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
+import Navigation from "../../compoments/navigation";
 
 interface Props {
   //获取商品列表
@@ -346,39 +347,41 @@ class GoodsManage extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <View
-          style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-          <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={require('../../assets/ico_back.png')}
-                 onClick={() => {
-                   Taro.navigateBack();
-                 }}/>
-          <View style={styleAssign([styles.uac, styles.udr])}>
-            <View style={styleAssign([styles.uac, styles.udr])}
-                  onClick={() => {
-                    this.setState({currentIndex: 0}, () => {
-                      this.refresh();
-                    });
-                  }}>
-              <View style={styleAssign([styles.uac])}>
-                <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>商品管理</Text>
-                <View
-                  style={styleAssign([w(72), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+        <Navigation>
+          <View
+            style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+            <Image style={styleAssign([w(22), h(22), ml(20)])}
+                   src={require('../../assets/ico_back.png')}
+                   onClick={() => {
+                     Taro.navigateBack();
+                   }}/>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <View style={styleAssign([styles.uac, styles.udr])}
+                    onClick={() => {
+                      this.setState({currentIndex: 0}, () => {
+                        this.refresh();
+                      });
+                    }}>
+                <View style={styleAssign([styles.uac])}>
+                  <Text style={styleAssign([fSize(18), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>商品管理</Text>
+                  <View
+                    style={styleAssign([w(72), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+                </View>
+              </View>
+              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                    onClick={() => {
+                      this.setState({currentIndex: 1});
+                    }}>
+                <View style={styleAssign([styles.uac])}>
+                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的商铺</Text>
+                  <View
+                    style={styleAssign([w(72), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
+                </View>
               </View>
             </View>
-            <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
-                  onClick={() => {
-                    this.setState({currentIndex: 1});
-                  }}>
-              <View style={styleAssign([styles.uac])}>
-                <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的商铺</Text>
-                <View
-                  style={styleAssign([w(72), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
-              </View>
-            </View>
+            <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
-          <View style={styleAssign([w(22), h(22), mr(20)])}/>
-        </View>
+        </Navigation>
         {
           child
         }

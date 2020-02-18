@@ -41,6 +41,7 @@ import {
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
 import {cloudBaseUrl} from "../../../api/httpurl";
+import Navigation from "../../../compoments/navigation";
 
 
 interface Props {
@@ -88,24 +89,25 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), h(60), bgColor(commonStyles.whiteColor)])}/>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.blackColor), op(0.5)])}/>
         </TouchableButton>
-        <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
-          <View style={styleAssign([{width: '68%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
-            radiusA(26), styles.uac, styles.udr, mt(10)])}>
+        <Navigation style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
+            radiusA(26), styles.uac, styles.udr])}>
             <Image style={styleAssign([w(21), h(21), ml(16)])} src={`${cloudBaseUrl}ico_search.png`}/>
             <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
           </View>
-        </View>
+        </Navigation>
         <View style={styleAssign([styles.uf1])}>
           {/*条件筛选*/}
           <View
-            style={styleAssign([wRatio(100), h(44), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
+            style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
               pl(20), pr(20)])}>
             <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${totalPerson}位客户`}</Text>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View style={styleAssign([styles.uac, styles.udr])}
                     onClick={modeCallback}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_down.png')}/>
+                <Image style={styleAssign([w(8), h(5), ml(3)])}
+                       src={require('../../../assets/ico_sanjiao_down.png')}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>筛选</Text>
