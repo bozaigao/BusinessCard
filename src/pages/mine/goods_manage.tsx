@@ -387,11 +387,12 @@ class GoodsManage extends Component<Props, State> {
         }
         {/*选择展示商品*/}
         {
-          showChoose && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
-                              onClick={() => {
-                                this.setState({showChoose: false});
-                              }}>
-            <View style={styleAssign([wRatio(100), mt(130), bgColor(commonStyles.whiteColor)])}>
+          showChoose &&
+          <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                onClick={() => {
+                  this.setState({showChoose: false});
+                }}>
+            <View style={styleAssign([wRatio(100), mt(120), bgColor(commonStyles.whiteColor)])}>
               {
                 ['全部', '已上架', '已下架'].map((value, index) => {
                   return (<TouchableButton key={index}

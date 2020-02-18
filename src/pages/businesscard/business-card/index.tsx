@@ -110,7 +110,7 @@ export default class Card extends PureComponent<Props, State> {
               <TouchableButton
                 customStyle={styleAssign([w(160), radiusA(4), styles.uac, styles.ujc, bo(1), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme),
                   bgColor(commonStyles.whiteColor), h(44)])}>
-                <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>完善名片</Text>
+                <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>查看名片</Text>
               </TouchableButton>
               <TouchableButton
                 customStyle={styleAssign([w(160), radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),

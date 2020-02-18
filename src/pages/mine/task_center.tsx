@@ -262,13 +262,13 @@ class TaskCenter extends Component<Props, State> {
                           <View style={{
                             width: 0,
                             height: 0,
-                            borderTopWidth: scaleSize(8),
+                            borderTopWidth: scaleSize(6),
                             borderTopColor: showItem ? '#787878' : 'transparent',
-                            borderRightWidth: showItem ? scaleSize(8) : 0,
+                            borderRightWidth: showItem ? scaleSize(6) : 0,
                             borderRightColor: showItem ? 'transparent' : '#787878',
-                            borderLeftWidth: scaleSize(8),
+                            borderLeftWidth: scaleSize(6),
                             borderLeftColor: showItem ? 'transparent' : '#787878',
-                            borderBottomWidth: showItem ? 0 : scaleSize(8),
+                            borderBottomWidth: showItem ? 0 : scaleSize(6),
                             borderBottomColor: 'transparent',
                             borderStyle: 'solid',
                           }}/>

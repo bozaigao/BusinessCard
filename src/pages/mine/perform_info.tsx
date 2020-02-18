@@ -295,7 +295,7 @@ class PerformInfo extends Component<Props, State> {
                     <Text
                       style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>四川美术学院</Text>
                     <Text
-                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>产品设计 2015-2019 本科</Text>
+                      style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>产品设计 2015-2019 本科</Text>
                   </View>
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>

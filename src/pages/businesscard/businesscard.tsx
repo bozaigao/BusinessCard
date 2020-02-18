@@ -203,7 +203,7 @@ class Businesscard extends Component<Props, State> {
           </View>
           {/*slogan*/}
           <View style={styleAssign([wRatio(100), h(86), styles.ujc, styles.uac])}>
-            <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极致名片 给您极致服务</Text>
+            <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极易推 给您极致服务</Text>
           </View>
         </ScrollView>
         {/*创建名片*/}
