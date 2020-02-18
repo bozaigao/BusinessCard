@@ -8,7 +8,7 @@
 import Taro, {Component} from "@tarojs/taro";
 import {View} from "@tarojs/components";
 import {styleAssign} from "../../utils/datatool";
-import {bgColor, default as styles, mb, wRatio} from "../../utils/style";
+import {default as styles, mb, wRatio} from "../../utils/style";
 import {Global} from "../../const/global";
 
 declare let global: Global;
@@ -32,9 +32,9 @@ export default class Navigation extends Component<Props> {
     return (
       <View
         style={styleAssign([wRatio(100), {height: `${global.menuButton.height + (global.menuButton.top - global.statusBarHeight) * 2 + global.statusBarHeight}px`},
-          styles.ujb, styles.udr, styles.uae, style])}>
+          styles.uje, styles.udr, styles.uae, style])}>
         <View style={styleAssign([wRatio(100),{height:`${global.menuButton.height}px`}, mb(global.menuButton.top - global.statusBarHeight),
-        styles.ujc,bgColor('red')])}>
+        styles.ujc])}>
           {children}
         </View>
       </View>

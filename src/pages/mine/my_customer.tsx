@@ -30,6 +30,7 @@ import * as actions from "../../actions/distribution";
 import {CustomerRecord, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import MyCustomerItem from "./my_customer_item";
+import TopHeader from "../../compoments/top-header";
 
 
 interface Props {
@@ -177,17 +178,7 @@ class MyCustomer extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.udr, styles.ujb])}>
-          <Image style={styleAssign([w(22), h(22), ml(20)])}
-                 src={require('../../assets/ico_back.png')}
-                 onClick={() => {
-                   Taro.navigateBack();
-                 }}/>
-          <Text style={styleAssign([fSize(18), color(commonStyles.colorTheme)])}>
-            我的客户
-          </Text>
-          <View style={styleAssign([w(22), h(22)])}/>
-        </View>
+        <TopHeader title={'我的客户'}/>
         <View style={styleAssign([wRatio(100), h(30), mt(20), styles.uac, styles.udr, styles.ujb])}>
           <View style={styleAssign([styles.uac, ml(36)])}
                 onClick={() => {

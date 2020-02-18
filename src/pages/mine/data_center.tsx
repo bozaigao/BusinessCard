@@ -21,6 +21,7 @@ import {
   iphoneX,
   mb,
   ml,
+  mr,
   mt,
   pl,
   pr,
@@ -34,8 +35,8 @@ import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {BaseCoin, SettlementStats, User} from "../../const/global";
-import {cloudBaseUrl} from "../../api/httpurl";
 import DataCenterItem from "../businesscard/data-center-item";
+import Navigation from "../../compoments/navigation";
 
 
 interface Props {
@@ -45,7 +46,6 @@ interface Props {
 }
 
 interface State {
-  marginTop: number;
   year: string;
   settlementStatsList: SettlementStats[];
   totalIncome: number;
@@ -69,7 +69,6 @@ class DataCenter extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      marginTop: 0,
       year: `${new Date().getFullYear()}`,
       settlementStatsList: [],
       totalIncome: 0,
@@ -78,11 +77,6 @@ class DataCenter extends Component<Props, State> {
   }
 
   componentDidMount() {
-    if (iphoneX()) {
-      this.setState({marginTop: 43});
-    } else {
-      this.setState({marginTop: 15});
-    }
     this.settlementRecord();
   }
 
@@ -121,7 +115,7 @@ class DataCenter extends Component<Props, State> {
   }
 
   render() {
-    let {marginTop, year, settlementStatsList, totalIncome, totalSale} = this.state;
+    let {year, settlementStatsList, totalIncome, totalSale} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -131,7 +125,8 @@ class DataCenter extends Component<Props, State> {
                           }}>
         <View style={styleAssign([wRatio(100), hRatio(100)])}>
           <View style={styleAssign([wRatio(100), h(iphoneX() ? 262 : 242)])}>
-            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])} src={require('../../assets/ico_mine_bg.png')}/>
+            <Image style={styleAssign([wRatio(100), h(iphoneX() ? 242 : 222)])}
+                   src={require('../../assets/ico_mine_bg.png')}/>
             <View style={styleAssign([wRatio(100), h(156), styles.upa, absB(0), styles.uac, styles.ujc])}>
               <View style={styleAssign([w(335), h(156), bgColor(commonStyles.whiteColor), radiusA(4),])}>
                 <View style={styleAssign([wRatio(100), h(60), styles.uac, styles.ujc, bgColor('#FAF1E5'),
@@ -172,18 +167,19 @@ class DataCenter extends Component<Props, State> {
               </View>
             </View>
           </View>
-          <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.udr, styles.ujb,
-            styles.upa, absT(marginTop)])}>
-            <Image style={styleAssign([w(22), h(22), ml(20)])}
-                   src={require('../../assets/ico_back_white.png')}
-                   onClick={() => {
-                     Taro.navigateBack();
-                   }}/>
-            <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>
-              数据中心
-            </Text>
-            <View style={styleAssign([w(22), h(22)])}/>
-          </View>
+          <Navigation style={styleAssign([styles.upa, absT(0)])}>
+            <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb])}>
+              <Image style={styleAssign([w(22), h(22), ml(20)])}
+                     src={require('../../assets/ico_back_white.png')}
+                     onClick={() => {
+                       Taro.navigateBack();
+                     }}/>
+              <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>
+                数据中心
+              </Text>
+              <View style={styleAssign([w(22), h(22), mr(20)])}/>
+            </View>
+          </Navigation>
           <View style={styleAssign([styles.uf1, pl(20), pr(20), mt(20)])}>
             <Picker mode='date' onChange={(e) => {
               this.setState({year: e.detail.value}, () => {

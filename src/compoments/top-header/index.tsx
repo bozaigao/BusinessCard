@@ -16,6 +16,7 @@ interface Props {
   textColor?: string;
   backgroundColor?: string;
   customCallback?: any;
+  style?: any;
 }
 
 interface State {
@@ -31,10 +32,10 @@ export default class TopHeader extends Component<Props, State> {
 
   render() {
 
-    let {title, textColor, backgroundColor, customCallback} = this.props;
+    let {title, textColor, backgroundColor, customCallback,style} = this.props;
 
     return (
-      <Navigation>
+      <Navigation style={style}>
         <View
           style={styleAssign([wRatio(100), styles.ujb, styles.udr, styles.uac, bgColor(backgroundColor ? backgroundColor : commonStyles.whiteColor)])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])}
