@@ -9,11 +9,12 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import {ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {debounce, styleAssign, toast} from "../../utils/datatool";
-import styles, {bgColor, commonStyles, fSize, h, mt, w, wRatio} from "../../utils/style";
+import styles, {bgColor, commonStyles, fSize, wRatio} from "../../utils/style";
 import RadarItem from "./radar-item";
 import * as actions from '../../actions/radar';
 import {connect} from "@tarojs/redux";
 import {RadarModel} from "../../const/global";
+import Navigation from "../../compoments/navigation";
 
 interface Props {
   //查询我的雷达数据列表
@@ -98,14 +99,11 @@ class Radarscan extends Component<Props, State> {
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
         notNeedBottomPadding={true}>
         {/*雷达、访客切换*/}
-        <View style={styleAssign([wRatio(100), h(44), styles.uac, mt(15)])}>
-          <View style={styleAssign([styles.uac, styles.udr])}>
-            <View style={styleAssign([styles.uac])}>
-              <Text style={styleAssign([fSize(18)])}>雷达</Text>
-              <View style={styleAssign([mt(5), w(25), h(2), bgColor(commonStyles.transparent)])}/>
-            </View>
+        <Navigation>
+          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+            <Text style={styleAssign([fSize(18)])}>雷达</Text>
           </View>
-        </View>
+        </Navigation>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY

@@ -7,7 +7,6 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
-import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absT,
   bgColor,
@@ -32,6 +31,7 @@ import {User} from "../../const/global";
 import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
 import {cloudBaseUrl} from "../../api/httpurl";
+import CustomSafeAreaView from "../../compoments/safe-area-view";
 
 
 interface Props {

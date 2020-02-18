@@ -35,6 +35,7 @@ import {CustomerModel} from "../../const/global";
 import ModeModal from "./mode-modal";
 import ShaiXuanModal from "./shai-xuan-modal";
 import {cloudBaseUrl} from "../../api/httpurl";
+import Navigation from "../../compoments/navigation";
 
 interface Props {
   //获取banner信息
@@ -145,11 +146,13 @@ class Customer extends Component<Props, State> {
                           }}>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100), h(99), bgColor(commonStyles.whiteColor), styles.ujb])}>
-            <View style={styleAssign([{width: '68%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
-              radiusA(26), styles.uac, styles.udr, mt(10)])}>
-              <Image style={styleAssign([w(21), h(21), ml(16)])} src={`${cloudBaseUrl}ico_search.png`}/>
-              <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
-            </View>
+            <Navigation>
+              <View style={styleAssign([{width: '60%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
+                radiusA(26), styles.uac, styles.udr])}>
+                <Image style={styleAssign([w(21), h(21), ml(16)])} src={`${cloudBaseUrl}ico_search.png`}/>
+                <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
+              </View>
+            </Navigation>
             {/*条件筛选*/}
             <View
               style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
