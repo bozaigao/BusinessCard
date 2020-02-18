@@ -26,7 +26,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      paddingTop:global.menuButton.top,
+      paddingTop: global.menuButton.top,
       paddingBottom: 0,
       showLoading: false,
       title: ''
@@ -42,7 +42,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
 
     return (
       <View
-        style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor),  mb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
+        style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor), mb(notNeedBottomPadding ? 0 : paddingBottom), customStyle])}>
         {
           children
         }
@@ -61,7 +61,9 @@ export default class CustomSafeAreaView extends Component<Props, State> {
    * @function: 显示进度条
    */
   showLoading = (title?: string) => {
-    this.setState({showLoading: true, title: title ? title : ''});
+    Taro.showLoading({
+      title: title ? title : '加载中',
+    });
   }
 
 
@@ -72,7 +74,7 @@ export default class CustomSafeAreaView extends Component<Props, State> {
    * @function: 隐藏进度条
    */
   hideLoading = () => {
-    this.setState({showLoading: false});
+    Taro.hideLoading();
   }
 
 }
