@@ -7,13 +7,30 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
-import {bgColor, commonStyles, default as styles, mt} from "../../utils/style";
+import {
+  absB,
+  absR,
+  bgColor,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h,
+  mb,
+  ml,
+  mt,
+  pa,
+  pl,
+  pr,
+  w,
+  wRatio
+} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
-import {Picker, View} from "@tarojs/components";
+import {Picker, Text, Textarea, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
 
@@ -24,6 +41,7 @@ interface Props {
 
 interface State {
   list: { title: string, subtitle?: string, hasEdit?: boolean; }[];
+  wenHouYU: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -47,6 +65,7 @@ class MyEdu extends Component<Props, State> {
         {title: '学历', subtitle: '选择'},
         {title: '专业', subtitle: '请输入专业名称', hasEdit: true},
         {title: '在校时间', subtitle: '选择'}],
+      wenHouYU: ''
     }
   }
 
@@ -66,7 +85,7 @@ class MyEdu extends Component<Props, State> {
 
   render() {
 
-    let {list} = this.state;
+    let {list, wenHouYU} = this.state;
     let selectorRange = ['博士', '研究生', '专科', '高中'];
     let multiSelectorRange = [['2015', '2016', '2017', '2018', '2019'], ['到'], ['2020', '2021', '2022', '2023', '2024']];
 
@@ -161,7 +180,30 @@ class MyEdu extends Component<Props, State> {
                 }/>);
               })
             }
+            <View style={styleAssign([wRatio(100), h(161), bgColor(commonStyles.whiteColor), mt(10)])}>
+              <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb, pl(20), pr(20),])}>
+                <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>同校问候语</Text>
+                <View style={styleAssign([w(50), h(50), styles.uae, styles.ujc])}>
+                  <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>预览</Text>
+                </View>
+              </View>
+              <View style={styleAssign([wRatio(100), h(101)])}>
+              <Textarea value={''}
+                        maxlength={50}
+                        placeholder={'校友您好，很高兴能遇到你！你可以收藏我的名片哦~'}
+                        style={styleAssign([w(305), h(91), fSize(16), ml(20),
+                          bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20)])}
+                        onInput={(e) => {
+                          this.setState({wenHouYU: e.detail.value});
+                        }}/>
+                <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(30)])}>
+                  <Text style={styleAssign([fSize(12), color('#979797')])}>{wenHouYU.length}</Text>
+                  <Text style={styleAssign([fSize(12), color('#CECECE')])}>/50</Text>
+                </View>
+              </View>
+            </View>
           </View>
+
           {/*保存*/}
           <BottomButon title={'保存'} onClick={() => {
 

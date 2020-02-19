@@ -19,22 +19,22 @@
       <file leaf-file-name="my_edu.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="111" column="95" selection-start-line="111" selection-start-column="95" selection-end-line="111" selection-end-column="95" />
+            <state relative-caret-position="345">
+              <caret line="191" column="37" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#107#159#0" expanded="true" />
-                <element signature="e#369#407#0" expanded="true" />
+                <element signature="e#463#501#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Picker.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/components/types/Picker.d.ts">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/compoments/bottom-buton/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="43" column="22" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="22" />
+            <state relative-caret-position="176">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -50,7 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>完善</find>
       <find>sca</find>
       <find>我的</find>
       <find>red</find>
@@ -80,6 +79,7 @@
       <find>edu</find>
       <find>solid</find>
       <find>Pick</find>
+      <find>TextA</find>
     </findStrings>
     <replaceStrings>
       <replace>ConstEnum</replace>
@@ -439,12 +439,12 @@
       <workItem from="1582033663404" duration="11164000" />
       <workItem from="1582072323407" duration="600000" />
       <workItem from="1582073095511" duration="147000" />
-      <workItem from="1582114774488" duration="6111000" />
+      <workItem from="1582114774488" duration="7503000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="761878000" />
+    <option name="totallyTimeSpent" value="763270000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -940,13 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/compoments/bottom-buton/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="29" column="51" lean-forward="true" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/components/types/Picker.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -954,14 +947,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/compoments/bottom-buton/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="111" column="95" selection-start-line="111" selection-start-column="95" selection-end-line="111" selection-end-column="95" />
+        <state relative-caret-position="345">
+          <caret line="191" column="37" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#107#159#0" expanded="true" />
-            <element signature="e#369#407#0" expanded="true" />
+            <element signature="e#463#501#0" expanded="true" />
           </folding>
         </state>
       </provider>
