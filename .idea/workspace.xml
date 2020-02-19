@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,10 +19,11 @@
       <file leaf-file-name="personal_info.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="401" column="42" lean-forward="true" selection-start-line="401" selection-start-column="42" selection-end-line="401" selection-end-column="42" />
+            <state relative-caret-position="464">
+              <caret line="111" column="66" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="66" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <element signature="e#257#344#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -451,12 +451,12 @@
       <workItem from="1582033663404" duration="11164000" />
       <workItem from="1582072323407" duration="600000" />
       <workItem from="1582073095511" duration="147000" />
-      <workItem from="1582114774488" duration="3884000" />
+      <workItem from="1582114774488" duration="4065000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="759651000" />
+    <option name="totallyTimeSpent" value="759832000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -970,10 +970,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="401" column="42" lean-forward="true" selection-start-line="401" selection-start-column="42" selection-end-line="401" selection-end-column="42" />
+        <state relative-caret-position="464">
+          <caret line="111" column="66" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="66" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="e#257#344#0" expanded="true" />
           </folding>
         </state>
       </provider>

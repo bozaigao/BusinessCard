@@ -11,7 +11,8 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {get, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
-  absB, absR,
+  absB,
+  absR,
   bgColor,
   color,
   commonStyles,
@@ -108,7 +109,7 @@ class PersonalInfo extends Component<Props, State> {
         {title: '行业', subtitle: industry ? industry : '选择'},
         {title: '职位', subtitle: position ? position : '必填', hasEdit: true}],
       titleList2: [
-        {title: '微信', subtitle: wechat ? wechat : ''},
+        {title: '微信', subtitle: wechat ? wechat : '',hasEdit: true},
         {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
         {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
         {title: '地区', subtitle: province ? province + city : '选择'},
@@ -389,11 +390,12 @@ class PersonalInfo extends Component<Props, State> {
                       });
                     } else if (title === '详细地址') {
                       let that = this;
+
                       Taro.getLocation({
                         type: 'gcj02', //返回可以用于wx.openLocation的经纬度
                         success(res) {
-                          const latitude = res.latitude
-                          const longitude = res.longitude
+                          const latitude = res.latitude;
+                          const longitude = res.longitude;
 
                           Taro.chooseLocation({
                             latitude,
