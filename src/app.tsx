@@ -116,6 +116,11 @@ class App extends Component {
       "pages/mine/tixian_recorder",
       "pages/mine/tixian_page",
     ],
+    permission: {
+      "scope.userLocation": {
+        "desc": "获取你的详细位置信息"
+      }
+    },
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
@@ -176,4 +181,10 @@ class App extends Component {
   }
 }
 
-Taro.render(<App/>, document.getElementById('app'));
+Taro
+  .render(
+    <App/>,
+    document
+      .getElementById(
+        'app'
+      ));

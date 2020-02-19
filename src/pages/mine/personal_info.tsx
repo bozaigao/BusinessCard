@@ -112,7 +112,7 @@ class PersonalInfo extends Component<Props, State> {
         {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
         {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
         {title: '地区', subtitle: province ? province + city : '选择'},
-        {title: '详细地址', subtitle: detailAddress ? detailAddress : '选填', hasEdit: true}],
+        {title: '详细地址', subtitle: detailAddress ? detailAddress : '选填'}],
     }
   }
 
@@ -387,6 +387,25 @@ class PersonalInfo extends Component<Props, State> {
                       Taro.navigateTo({
                         url: `/pages/mine/my_tags`
                       });
+                    } else if (title === '详细地址') {
+                      let that = this;
+                      Taro.getLocation({
+                        type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+                        success(res) {
+                          const latitude = res.latitude
+                          const longitude = res.longitude
+
+                          Taro.chooseLocation({
+                            latitude,
+                            longitude,
+                            scale: 18,
+                            success(res) {
+                              that.state.titleList2[4].subtitle = res.address;
+                              that.setState({titleList2: that.state.titleList2});
+                            }
+                          })
+                        }
+                      })
                     }
                   }
                   }/>);
