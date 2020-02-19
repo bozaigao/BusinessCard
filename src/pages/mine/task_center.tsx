@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {getToday, scaleSize, styleAssign, toast} from "../../utils/datatool";
+import {getToday, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -33,8 +33,9 @@ import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
 import TaskItem from "../businesscard/task-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
-import {TaskModel} from "../../const/global";
+import {Orientation, TaskModel} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
+import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
   getTaskList: any;
@@ -259,19 +260,7 @@ class TaskCenter extends Component<Props, State> {
                         }}
                         customStyle={styleAssign([wRatio(100), h(40), styles.udr, styles.uac, styles.ujb, pl(20), pr(20), bgColor(commonStyles.whiteColor), mt(10)])}>
                         <View style={styleAssign([styles.uac, styles.udr, bgColor(commonStyles.whiteColor)])}>
-                          <View style={{
-                            width: 0,
-                            height: 0,
-                            borderTopWidth: scaleSize(6),
-                            borderTopColor: showItem ? '#787878' : 'transparent',
-                            borderRightWidth: showItem ? scaleSize(6) : 0,
-                            borderRightColor: showItem ? 'transparent' : '#787878',
-                            borderLeftWidth: scaleSize(6),
-                            borderLeftColor: showItem ? 'transparent' : '#787878',
-                            borderBottomWidth: showItem ? 0 : scaleSize(6),
-                            borderBottomColor: 'transparent',
-                            borderStyle: 'solid',
-                          }}/>
+                          <SanJiao orientation={showItem ? Orientation.down : Orientation.right}/>
                           <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(10)])}>{value.title}</Text>
                         </View>
                         <Text style={styleAssign([fSize(14), color('#787878')])}>{`(${value.children.length})`}</Text>

@@ -349,6 +349,12 @@ export interface BehaviorTrace {
 }
 
 export let BaseCoin = 100;
+export enum Orientation {
+  up,
+  down,
+  left,
+  right
+}
 
 export let operateMap = {};
 

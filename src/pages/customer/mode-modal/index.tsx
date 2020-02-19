@@ -29,6 +29,8 @@ import {
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
 import Navigation from "../../../compoments/navigation";
+import {Orientation} from "../../../const/global";
+import SanJiao from "../../../compoments/sanjiao";
 
 
 interface Props {
@@ -85,7 +87,7 @@ export default class ModeModal extends PureComponent<Props, State> {
             <View style={styleAssign([styles.uac, styles.udr])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>{shaiXuanMode}</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../../assets/ico_sanjiao_up.png')}/>
+                <SanJiao orientation={Orientation.up} style={styleAssign([ml(3)])}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}

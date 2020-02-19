@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, scaleSize, styleAssign, toast} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -19,11 +19,13 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio, ma,
+  hRatio,
+  ma,
   ml,
   mr,
   mt,
-  op, pa,
+  op,
+  pa,
   pl,
   pr,
   radiusA,
@@ -38,9 +40,10 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
 import GoodsManageItem from "../businesscard/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
-import {Goods, User} from "../../const/global";
+import {Goods, Orientation, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import Navigation from "../../compoments/navigation";
+import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
   //获取商品列表
@@ -232,20 +235,7 @@ class GoodsManage extends Component<Props, State> {
                              this.setState({showChoose: !this.state.showChoose});
                            }}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>{state}</Text>
-            <View style={{
-              marginLeft: scaleSize(8),
-              width: 0,
-              height: 0,
-              borderTopWidth: scaleSize(6),
-              borderTopColor: '#787878',
-              borderRightWidth: scaleSize(6),
-              borderRightColor: 'transparent',
-              borderLeftWidth: scaleSize(6),
-              borderLeftColor: 'transparent',
-              borderBottomWidth: 0,
-              borderBottomColor: 'transparent',
-              borderStyle: 'solid',
-            }}/>
+            <SanJiao orientation={showChoose ? Orientation.up : Orientation.down} style={styleAssign([ml(8)])}/>
           </TouchableButton>
         </View>
         <ScrollView

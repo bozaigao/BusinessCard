@@ -29,10 +29,11 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import CustomItem from "./custom-item";
 import BottomButon from "../../compoments/bottom-buton";
-import {CustomerModel} from "../../const/global";
+import {CustomerModel, Orientation} from "../../const/global";
 import ModeModal from "./mode-modal";
 import ShaiXuanModal from "./shai-xuan-modal";
 import Navigation from "../../compoments/navigation";
+import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
   //获取banner信息
@@ -161,7 +162,7 @@ class Customer extends Component<Props, State> {
                         this.setState({showMode: true});
                       }}>
                   <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                  <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
+                  <SanJiao orientation={Orientation.down} style={styleAssign([ml(3)])}/>
                 </View>
                 <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
                       onClick={() => {
