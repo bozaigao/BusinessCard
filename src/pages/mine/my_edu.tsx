@@ -13,7 +13,7 @@ import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
-import {View} from "@tarojs/components";
+import {Picker, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
 
@@ -67,6 +67,8 @@ class MyEdu extends Component<Props, State> {
   render() {
 
     let {list} = this.state;
+    let selectorRange = ['博士', '研究生', '专科', '高中'];
+    let multiSelectorRange = [['2015', '2016', '2017', '2018', '2019'], ['到'], ['2020', '2021', '2022', '2023', '2024']];
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
@@ -76,6 +78,65 @@ class MyEdu extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, mt(10)])}>
             {
               list.map((value, index) => {
+                if (value.title === '学历') {
+                  return (<Picker mode='selector' onChange={(e) => {
+                    this.state.list[1].subtitle = selectorRange[e.detail.value];
+                    this.setState({list: this.state.list});
+                  }} range={selectorRange} value={0}>
+                    <ListItem textColor={'#727272'}
+                              title={value.title}
+                              subTitle={value.subtitle}
+                              key={index}
+                              hasEdit={value.hasEdit}
+                              onCLick={(title) => {
+                                if (title === '联系方式') {
+                                  Taro.navigateTo({
+                                    url: `/pages/mine/contact_way`
+                                  });
+                                } else if (title === '行业') {
+                                  Taro.navigateTo({
+                                    url: `/pages/mine/industry_list`,
+                                    success: (e) => {
+                                      console.log('参数回传1', e);
+                                    }
+                                  });
+                                }
+                              }
+                              } onTextChange={(e) => {
+                      // this.setState({name: e.detail.value});
+                      console.log(e);
+                    }
+                    }/></Picker>);
+                } else if (value.title === '在校时间') {
+                  return (<Picker mode='multiSelector' onChange={(e) => {
+                    this.state.list[3].subtitle = multiSelectorRange[0][e.detail.value[0]] + '-' + multiSelectorRange[2][e.detail.value[2]];
+                    this.setState({list: this.state.list});
+                  }} range={multiSelectorRange} value={[4, 0, 0]}>
+                    <ListItem textColor={'#727272'}
+                              title={value.title}
+                              subTitle={value.subtitle}
+                              key={index}
+                              hasEdit={value.hasEdit}
+                              onCLick={(title) => {
+                                if (title === '联系方式') {
+                                  Taro.navigateTo({
+                                    url: `/pages/mine/contact_way`
+                                  });
+                                } else if (title === '行业') {
+                                  Taro.navigateTo({
+                                    url: `/pages/mine/industry_list`,
+                                    success: (e) => {
+                                      console.log('参数回传1', e);
+                                    }
+                                  });
+                                }
+                              }
+                              } onTextChange={(e) => {
+                      // this.setState({name: e.detail.value});
+                      console.log(e);
+                    }
+                    }/></Picker>);
+                }
                 return (<ListItem textColor={'#727272'}
                                   title={value.title} subTitle={value.subtitle} key={index}
                                   hasEdit={value.hasEdit}
