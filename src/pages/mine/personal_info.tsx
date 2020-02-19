@@ -107,7 +107,7 @@ class PersonalInfo extends Component<Props, State> {
         {title: '手机', subtitle: phone ? phone : ''},
         {title: '行业', subtitle: industry ? industry : '选择'},
         {title: '职位', subtitle: position ? position : '必填', hasEdit: true}],
-      titleList2: [{title: '名片样式', subtitle: '编辑'},
+      titleList2: [
         {title: '微信', subtitle: wechat ? wechat : ''},
         {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
         {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
@@ -319,7 +319,24 @@ class PersonalInfo extends Component<Props, State> {
               })
             }
           </View>
+          {/*名片样式*/}
           <View style={styleAssign([wRatio(100), mt(10)])}>
+            <View style={styleAssign([wRatio(100), h(76), styles.udr, styles.ujb, styles.uac,
+              pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
+              <View>
+                <Text style={styleAssign([fSize(14), color('#727272')])}>名片样式</Text>
+                <View style={styleAssign([styles.udr, styles.uac])}>
+                  <Text style={styleAssign([fSize(12), color('#727272')])}>名片样式</Text>
+                  <Text style={styleAssign([fSize(12), color('#343434'), ml(10)])}>商务版</Text>
+                </View>
+              </View>
+              <View style={styleAssign([styles.udr, styles.uac])}>
+                <Image style={styleAssign([w(72), h(49)])} src={require('../../assets/ico_card_template.png')}/>
+                <Image style={styleAssign([w(8), h(14), ml(9)])} src={require('../../assets/ico_next.png')}/>
+              </View>
+            </View>
+            <View
+              style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), {marginLeft: '5%'}])}/>
             {
               titleList2.map((value: any, index) => {
 
