@@ -7,7 +7,7 @@
  */
 import Taro, {Component} from "@tarojs/taro";
 import {Text, View} from "@tarojs/components";
-import styles, {bgColor, color, commonStyles, fSize, h, radiusA, w, wRatio} from "../../utils/style";
+import styles, {bgColor, color, commonStyles, fSize, h, op, radiusA, w, wRatio} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 import TouchableButton from "../touchable-button";
 
@@ -24,12 +24,15 @@ export class BottomButon extends Component<Props> {
     let {title, onClick} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(100), h(68), styles.uac, styles.ujc])}>
-        <TouchableButton customStyle={styleAssign([w(335), h(44), radiusA(2), bgColor(commonStyles.colorTheme),
-          styles.uac, styles.ujc])}
-                         onClick={onClick}>
-          <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{title}</Text>
-        </TouchableButton>
+      <View style={styleAssign([wRatio(100)])}>
+        <View style={styleAssign([wRatio(100), h(1), bgColor('rgb(184,186,190)'), op(0.5)])}/>
+        <View style={styleAssign([wRatio(100), h(68), styles.uac, styles.ujc])}>
+          <TouchableButton customStyle={styleAssign([w(335), h(44), radiusA(2), bgColor(commonStyles.colorTheme),
+            styles.uac, styles.ujc])}
+                           onClick={onClick}>
+            <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{title}</Text>
+          </TouchableButton>
+        </View>
       </View>
     );
   }
