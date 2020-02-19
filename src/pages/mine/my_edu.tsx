@@ -25,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
@@ -33,6 +33,7 @@ import TopHeader from "../../compoments/top-header";
 import {Picker, Text, Textarea, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
+import WenHouModal from "./wenhou-modal";
 
 interface Props {
   //获取banner信息
@@ -42,6 +43,10 @@ interface Props {
 interface State {
   list: { title: string, subtitle?: string, hasEdit?: boolean; }[];
   wenHouYU: string;
+  //这里的tmp主要是解决弹窗把TextArea里面的文字遮不住问题，很奇怪
+  wenHouYUTmp: string;
+  placeHolder: string;
+  showWenHouYu: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -57,15 +62,20 @@ class MyEdu extends Component<Props, State> {
   config: Config = {
     disableScroll: true
   }
+  private placeHolder;
 
   constructor(props) {
     super(props);
+    this.placeHolder = '校友您好，很高兴能遇到你！你可以收藏我的名片哦~';
     this.state = {
       list: [{title: '学校', subtitle: '请输入学校名称', hasEdit: true},
         {title: '学历', subtitle: '选择'},
         {title: '专业', subtitle: '请输入专业名称', hasEdit: true},
         {title: '在校时间', subtitle: '选择'}],
-      wenHouYU: ''
+      wenHouYU: '',
+      wenHouYUTmp: '',
+      placeHolder: this.placeHolder,
+      showWenHouYu: false
     }
   }
 
@@ -85,7 +95,7 @@ class MyEdu extends Component<Props, State> {
 
   render() {
 
-    let {list, wenHouYU} = this.state;
+    let {list, wenHouYU, wenHouYUTmp, showWenHouYu} = this.state;
     let selectorRange = ['博士', '研究生', '专科', '高中'];
     let multiSelectorRange = [['2015', '2016', '2017', '2018', '2019'], ['到'], ['2020', '2021', '2022', '2023', '2024']];
 
@@ -183,22 +193,29 @@ class MyEdu extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), h(161), bgColor(commonStyles.whiteColor), mt(10)])}>
               <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb, pl(20), pr(20),])}>
                 <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>同校问候语</Text>
-                <View style={styleAssign([w(50), h(50), styles.uae, styles.ujc])}>
+                <View style={styleAssign([w(50), h(50), styles.uae, styles.ujc])}
+                      onClick={() => {
+                        if (wenHouYU.length === 0) {
+                          toast('问候语不能为空');
+                        } else {
+                          this.setState({showWenHouYu: true, wenHouYU: '', placeHolder: ''});
+                        }
+                      }}>
                   <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>预览</Text>
                 </View>
               </View>
               <View style={styleAssign([wRatio(100), h(101)])}>
-              <Textarea value={''}
-                        maxlength={50}
-                        placeholder={'校友您好，很高兴能遇到你！你可以收藏我的名片哦~'}
+              <Textarea value={wenHouYU}
+                        maxlength={28}
+                        placeholder={this.placeHolder}
                         style={styleAssign([w(305), h(91), fSize(16), ml(20),
                           bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20)])}
                         onInput={(e) => {
-                          this.setState({wenHouYU: e.detail.value});
+                          this.setState({wenHouYU: e.detail.value, wenHouYUTmp: e.detail.value});
                         }}/>
                 <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(30)])}>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{wenHouYU.length}</Text>
-                  <Text style={styleAssign([fSize(12), color('#CECECE')])}>/50</Text>
+                  <Text style={styleAssign([fSize(12), color('#CECECE')])}>/28</Text>
                 </View>
               </View>
             </View>
@@ -209,6 +226,11 @@ class MyEdu extends Component<Props, State> {
 
           }}/>
         </View>
+        {
+          showWenHouYu && <WenHouModal cancle={() => {
+            this.setState({showWenHouYu: false, wenHouYU: wenHouYUTmp, placeHolder: this.placeHolder});
+          }} wenHouYu={wenHouYUTmp}/>
+        }
       </CustomSafeAreaView>
     )
   }
