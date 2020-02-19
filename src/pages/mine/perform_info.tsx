@@ -22,7 +22,7 @@ import {
   iphoneX, mb,
   ml,
   mr,
-  mt,
+  mt, pb,
   pl,
   pr,
   radiusA,
@@ -34,8 +34,8 @@ import TouchableButton from "../../compoments/touchable-button";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import {User} from "../../const/global";
-import {LinearGradientView} from "../../compoments/linear-gradient-view";
 import {cloudBaseUrl} from "../../api/httpurl";
+import LinearGradientView from "./linear-gradient-view";
 
 
 interface Props {
@@ -131,7 +131,7 @@ class PerformInfo extends Component<Props, State> {
           style={styleAssign([wRatio(100), hRatio(100)])}
           scrollY>
           <View style={styleAssign([wRatio(100)])}>
-            <View style={styleAssign([wRatio(100), h(182), bgColor(commonStyles.colorTheme)])}>
+            <LinearGradientView style={styleAssign([wRatio(100), h(182)])}>
               {/*我的*/}
               <View
                 style={styleAssign([mt(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
@@ -143,7 +143,7 @@ class PerformInfo extends Component<Props, State> {
                 <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>
                 <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
               </View>
-            </View>
+            </LinearGradientView>
             <View style={styleAssign([wRatio(100), h(190), bgColor(commonStyles.whiteColor)])}/>
             {/*个人信息展示*/}
             <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absT(125)])}>
@@ -335,7 +335,7 @@ class PerformInfo extends Component<Props, State> {
                   }
                 </View> :
                 <View
-                  style={styleAssign([w(335), h(176), mt(16), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+                  style={styleAssign([w(335), h(176), mt(16),mb(10), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
                   <View
                     style={styleAssign([w(40), h(40), radiusA(20), bgColor(commonStyles.whiteColor),
                       styles.uac, styles.ujc])}>
