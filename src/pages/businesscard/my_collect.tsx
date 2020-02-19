@@ -36,7 +36,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/business_card';
 import * as visitorActions from '../../actions/visitor';
-import {CollectItemModel, User, VisitorRecordModel} from "../../const/global";
+import {CollectItemModel, Orientation, User, VisitorRecordModel} from "../../const/global";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "./collect-item";
 import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
@@ -44,6 +44,7 @@ import VisitorItem from "./visitor-item";
 import ShaiXuanModal from "./shai-xuan-modal";
 import ModeModal from "./mode-modal";
 import Navigation from "../../compoments/navigation";
+import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
   userInfo: User;
@@ -302,7 +303,7 @@ class MyCollect extends Component<Props, State> {
                       this.setState({showMode: true});
                     }}>
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                <Image style={styleAssign([w(8), h(5), ml(3)])} src={require('../../assets/ico_sanjiao_down.png')}/>
+                <SanJiao orientation={Orientation.down} style={styleAssign([ml(3)])}/>
               </View>
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
                     onClick={() => {
