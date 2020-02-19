@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {get, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
+  absB, absR,
   bgColor,
   color,
   commonStyles,
@@ -249,8 +250,12 @@ class PersonalInfo extends Component<Props, State> {
                              });
                            }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
-            <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                   src={avatar && avatar.length !== 0 ? avatar : `${cloudBaseUrl}ico_default.png`}/>
+            <View style={styleAssign([w(60), h(60)])}>
+              <Image style={styleAssign([w(60), h(60), radiusA(30)])}
+                     src={avatar && avatar.length !== 0 ? avatar : `${cloudBaseUrl}ico_default.png`}/>
+              <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
+                     src={require('../../assets/ico_small_camera.png')}/>
+            </View>
           </TouchableButton>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {
@@ -260,7 +265,7 @@ class PersonalInfo extends Component<Props, State> {
                     <View style={styleAssign([wRatio(100)])}>
                       <View
                         style={styleAssign([wRatio(100), h(51), styles.uac, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-                        <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20)])}>性别</Text>
+                        <Text style={styleAssign([fSize(14), color('#727272'), ml(20)])}>性别</Text>
                         <View style={styleAssign([styles.uac, styles.udr])}>
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                                            onClick={() => {
@@ -269,7 +274,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={sex === 1 ?`${cloudBaseUrl}ico_checked.png`:`${cloudBaseUrl}ico_nochecked.png`}/>
+                              src={sex === 1 ? `${cloudBaseUrl}ico_checked.png` : `${cloudBaseUrl}ico_nochecked.png`}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>男</Text>
                           </TouchableButton>
                           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, ml(20), mr(20)])}
@@ -279,7 +284,7 @@ class PersonalInfo extends Component<Props, State> {
                                            }}>
                             <Image
                               style={styleAssign([w(18), h(18), radiusA(9)])}
-                              src={sex === 2 ?`${cloudBaseUrl}ico_checked.png` :`${cloudBaseUrl}ico_nochecked.png`}/>
+                              src={sex === 2 ? `${cloudBaseUrl}ico_checked.png` : `${cloudBaseUrl}ico_nochecked.png`}/>
                             <Text style={styleAssign([fSize(14), color('#979797'), ml(10)])}>女</Text>
                           </TouchableButton>
                         </View>
@@ -289,7 +294,8 @@ class PersonalInfo extends Component<Props, State> {
                     </View>
                   );
                 }
-                return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
+                return (<ListItem textColor={'#727272'}
+                                  title={value.title} subTitle={value.subtitle} key={index}
                                   hasEdit={value.hasEdit}
                                   onCLick={(title) => {
                                     if (title === '联系方式') {
@@ -325,7 +331,9 @@ class PersonalInfo extends Component<Props, State> {
                       birthday: e.detail.value
                     })
                   }} value={value.subtitle}>
-                    <ListItem title={value.title} subTitle={value.subtitle} key={index}
+                    <ListItem title={value.title}
+                              textColor={'#727272'}
+                              subTitle={value.subtitle} key={index}
                               hasEdit={value.hasEdit}/>
                   </Picker>);
                 } else if (value.title === '地区') {
@@ -338,29 +346,33 @@ class PersonalInfo extends Component<Props, State> {
                       city: e.detail.value[1] + e.detail.value[2]
                     })
                   }} value={[]}>
-                    <ListItem title={value.title} subTitle={value.subtitle} key={index}
-                              hasEdit={value.hasEdit}
-                              onTextChange={(e) => {
-                                console.log(e);
-                                if (value.subtitle === '邮箱') {
-                                  this.setState({email: e.detail.value});
-                                } else if (value.subtitle === '地址') {
-                                  this.setState({detailAddress: e.detail.value});
-                                }
-                              }
-                              }/>
+                    <ListItem
+                      textColor={'#727272'}
+                      title={value.title} subTitle={value.subtitle} key={index}
+                      hasEdit={value.hasEdit}
+                      onTextChange={(e) => {
+                        console.log(e);
+                        if (value.subtitle === '邮箱') {
+                          this.setState({email: e.detail.value});
+                        } else if (value.subtitle === '地址') {
+                          this.setState({detailAddress: e.detail.value});
+                        }
+                      }
+                      }/>
                   </Picker>);
                 }
-                return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
-                                  hasEdit={value.hasEdit}
-                                  onCLick={(title) => {
-                                    if (title === '我的标签') {
-                                      Taro.navigateTo({
-                                        url: `/pages/mine/my_tags`
-                                      });
-                                    }
-                                  }
-                                  }/>);
+                return (<ListItem
+                  textColor={'#727272'}
+                  title={value.title} subTitle={value.subtitle} key={index}
+                  hasEdit={value.hasEdit}
+                  onCLick={(title) => {
+                    if (title === '我的标签') {
+                      Taro.navigateTo({
+                        url: `/pages/mine/my_tags`
+                      });
+                    }
+                  }
+                  }/>);
               })
             }
           </View>
