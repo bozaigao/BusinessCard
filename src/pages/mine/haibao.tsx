@@ -26,7 +26,7 @@ import {
   ml,
   mt,
   pl,
-  pr, pt,
+  pr,
   radiusA,
   w,
   wRatio

@@ -73,7 +73,6 @@ export default class TraceItem extends PureComponent<Props, State> {
           {
             showDetail && item.behaviorTraceList.map((value: BehaviorTrace, index) => {
               return <View style={styleAssign([wRatio(100)])} key={index}>
-                <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujc])}>
                   <View style={styleAssign([w(335), pl(10), pr(10), styles.udr, bgColor(commonStyles.whiteColor)])}>
                     <View style={styleAssign([styles.uac])}>
