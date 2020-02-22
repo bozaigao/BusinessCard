@@ -200,7 +200,7 @@ class TaskCenter extends Component<Props, State> {
                              }}>
               <Text style={styleAssign([fSize(16), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</Text>
               <View
-                style={styleAssign([w(25), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
+                style={styleAssign([w(60), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
             </TouchableButton>
             <TouchableButton customStyle={styleAssign([styles.uac, ml(23)])}
                              onClick={() => {
@@ -211,7 +211,7 @@ class TaskCenter extends Component<Props, State> {
                              }}>
               <Text style={styleAssign([fSize(16), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</Text>
               <View
-                style={styleAssign([w(25), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
+                style={styleAssign([w(60), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
             </TouchableButton>
           </View>
           <Picker mode='date' onChange={(e) => {
