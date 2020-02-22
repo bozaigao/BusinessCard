@@ -195,7 +195,7 @@ class FenxiaoCenter extends Component<Props, State> {
               <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>
                 分销中心
               </Text>
-              <View style={styleAssign([w(22), h(22),mr(22)])}/>
+              <View style={styleAssign([w(22), h(22), mr(22)])}/>
             </View>
           </NavigationBar>
           {/*用户头像信息*/}
@@ -223,7 +223,7 @@ class FenxiaoCenter extends Component<Props, State> {
               pa(16)])}>
               <View style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr])}>
                 <Text style={styleAssign([fSize(14), color('#343434')])}>
-                  我的收益
+                  收益提现
                 </Text>
                 <Text style={styleAssign([fSize(12), color('#979797')])}>
                   {`已提现 ￥${(withdrawIncomeStat / BaseCoin).toFixed(2)}`}
@@ -244,13 +244,16 @@ class FenxiaoCenter extends Component<Props, State> {
                   </View>
                 </View>
                 <View style={styleAssign([styles.uf1, styles.udr, styles.uje])}>
-                  <View style={styleAssign([w(77), h(30), radiusA(15), bgColor('#E2BB7B'),
-                    styles.uac, styles.ujc])}
-                        onClick={() => {
-                          Taro.navigateTo({
-                            url: `/pages/mine/tixian?withdrawIncome=${(withdrawIncome / BaseCoin).toFixed(2)}&withdrawIncomeStat=${(withdrawIncomeStat / BaseCoin).toFixed(2)}`
-                          });
-                        }}>
+                  <View
+                    style={styleAssign([w(77), h(30), radiusA(15), bgColor(parseInt((withdrawIncome / BaseCoin).toFixed(2), 10) === 0 ? '#CCCCCC' : '#E2BB7B'),
+                      styles.uac, styles.ujc])}
+                    onClick={() => {
+                      if (parseInt((withdrawIncome / BaseCoin).toFixed(2), 10) !== 0) {
+                        Taro.navigateTo({
+                          url: `/pages/mine/tixian?withdrawIncome=${(withdrawIncome / BaseCoin).toFixed(2)}&withdrawIncomeStat=${(withdrawIncomeStat / BaseCoin).toFixed(2)}`
+                        });
+                      }
+                    }}>
                     <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>
                       提现
                     </Text>

@@ -142,13 +142,16 @@ class TiXian extends Component<Props, State> {
                     </Text>
                   </View>
                   <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(28)])}>
-                    <View style={styleAssign([w(201), h(41), radiusA(21), bgColor('#E2BB7B'),
-                      styles.uac, styles.ujc])}
-                          onClick={() => {
-                            Taro.navigateTo({
-                              url: `/pages/mine/tixian_page?withdrawIncome=${withdrawIncome}`
-                            });
-                          }}>
+                    <View
+                      style={styleAssign([w(201), h(41), radiusA(21), bgColor(parseInt(withdrawIncome, 10) === 0 ? '#CCCCCC' : '#E2BB7B'),
+                        styles.uac, styles.ujc])}
+                      onClick={() => {
+                        if (parseInt(withdrawIncome, 10) !== 0) {
+                          Taro.navigateTo({
+                            url: `/pages/mine/tixian_page?withdrawIncome=${withdrawIncome}`
+                          });
+                        }
+                      }}>
                       <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>
                         提现
                       </Text>
