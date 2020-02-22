@@ -104,7 +104,7 @@ class SelfIntro extends Component<Props, State> {
                     });
                   }}>
               <Text
-                style={styleAssign([fSize(12), color('#979797')])}>长按可复制长按可复制</Text>
+                style={styleAssign([fSize(12), color('#979797')])}>长按可复制</Text>
             </View>
           </View>
         </View>

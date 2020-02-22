@@ -17,10 +17,10 @@ import {
   default as styles,
   fSize,
   h,
-  mb,
   ml,
   mt,
   pa,
+  padding,
   pl,
   pr,
   radiusA,
@@ -32,12 +32,14 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Switch, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
+import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
 }
 
-interface State {
 
+interface State {
+  template:string;
 }
 
 @connect(state => state.login, {...actions})
@@ -60,11 +62,14 @@ class ToolBox extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
-    this.state = {}
+    this.state = {
+      template:'您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~'
+    }
   }
 
 
   render() {
+    let {template} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -73,13 +78,30 @@ class ToolBox extends Component<Props, State> {
         <TopHeader title={'工具箱'}/>
         {/*输入区*/}
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <View style={styleAssign([wRatio(100), h(193), bgColor(commonStyles.whiteColor), mt(10)])}>
+          <View style={styleAssign([wRatio(100),h(360),  bgColor(commonStyles.whiteColor), mt(10)])}>
             <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(20)])}>名片引导语</Text>
             <Textarea value={''}
                       placeholder={'您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~'}
                       style={styleAssign([w(305), h(91), fSize(16), mt(10), ml(20),
                         bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}/>
-            <Text style={styleAssign([fSize(14), color('#E2BB7B'), ml(20), mt(16), mb(16)])}>查看模板</Text>
+            <Text style={styleAssign([fSize(16), color('#313137'), ml(20), mt(20)])}>参考模板</Text>
+            <View style={styleAssign([wRatio(90), {marginLeft: '5%'}, h(100), mt(13),
+              {boxShadow: '0px 4px 4px 0px rgba(230,230,230,0.5'}])}>
+              <View style={styleAssign([{flex: 2}, styles.uac, styles.ujc, padding([16, 16, 0, 16])])}>
+                <Text
+                  style={styleAssign([fSize(14), color('#343434')])}>{template}</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(5)])}/>
+              <View style={styleAssign([h(35), styles.uac, styles.ujc,])}
+                    onLongPress={() => {
+                      Taro.setClipboardData({
+                        data: template
+                      });
+                    }}>
+                <Text
+                  style={styleAssign([fSize(12), color('#979797')])}>长按可复制</Text>
+              </View>
+            </View>
           </View>
           {/*雷达提醒开关*/}
           <View
@@ -88,13 +110,10 @@ class ToolBox extends Component<Props, State> {
             <Switch color={'#E2BB7B'}/>
           </View>
         </View>
-        {/*新建任务*/}
-        <View style={styleAssign([wRatio(100), h(64), styles.uac, styles.ujc])}>
-          <TouchableButton customStyle={styleAssign([w(335), h(48), radiusA(2), bgColor(commonStyles.colorTheme),
-            styles.uac, styles.ujc])}>
-            <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>确定</Text>
-          </TouchableButton>
-        </View>
+        {/*保存*/}
+        <BottomButon title={'确定'} onClick={() => {
+
+        }}/>
       </CustomSafeAreaView>
     );
   }
