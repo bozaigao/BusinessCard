@@ -44,6 +44,7 @@ import {Goods, Orientation, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
+import GoodsShaiXuan from "./goods-shaixuan";
 
 interface Props {
   //获取商品列表
@@ -378,43 +379,35 @@ class GoodsManage extends Component<Props, State> {
         {/*选择展示商品*/}
         {
           showChoose &&
-          <View style={styleAssign([wRatio(100), hRatio(100),  {position: 'fixed'}, absT(0)])}
-                onClick={() => {
-                  this.setState({showChoose: false});
-                }}>
-            <View style={styleAssign([wRatio(100), mt(120), bgColor(commonStyles.whiteColor)])}>
-              {
-                ['全部', '已上架', '已下架'].map((value, index) => {
-                  return (<TouchableButton key={index}
-                                           customStyle={styleAssign([wRatio(100), h(44), styles.udr, styles.uac])}
-                                           onClick={() => {
-                                             this.setState({state: value, showChoose: false}, () => {
-                                               let tmp: Goods[] = [];
+          <GoodsShaiXuan cancel={() => {
+            this.setState({showChoose: false});
+          }
+          } totalGoods={totalGoods}
+                         onClickMode={(value) => {
+                           this.setState({state: value, showChoose: false}, () => {
+                             let tmp: Goods[] = [];
 
-                                               for (let i = 0; i < this.goodsListTmp.length; i++) {
-                                                 if (value === '已上架' && this.goodsListTmp[i].status === 1) {
-                                                   tmp.push(this.goodsListTmp[i]);
-                                                 }
-                                                 if (value === '已下架' && this.goodsListTmp[i].status === 0) {
-                                                   tmp.push(this.goodsListTmp[i]);
-                                                 }
-                                                 if (value === '全部') {
-                                                   tmp.push(this.goodsListTmp[i]);
-                                                 }
-                                               }
-                                               console.log('筛选', tmp)
-                                               this.setState({goodsList: tmp});
-                                             });
-                                             console.log(value)
-                                           }}>
-                    <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20)])}>{value}</Text>
-                  </TouchableButton>);
-                })
-              }
-            </View>
-            <View
-              style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
-          </View>
+                             for (let i = 0; i < this.goodsListTmp.length; i++) {
+                               if (value === '已上架' && this.goodsListTmp[i].status === 1) {
+                                 tmp.push(this.goodsListTmp[i]);
+                               }
+                               if (value === '已下架' && this.goodsListTmp[i].status === 0) {
+                                 tmp.push(this.goodsListTmp[i]);
+                               }
+                               if (value === '全部') {
+                                 tmp.push(this.goodsListTmp[i]);
+                               }
+                             }
+                             console.log('筛选', tmp)
+                             this.setState({showChoose: false, goodsList: tmp});
+                           });
+                         }
+                         }
+                         onClickShop={() => {
+                           this.setState({showChoose: false, currentIndex: 1});
+                         }
+                         }
+                         mode={state}/>
         }
         {
           showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}

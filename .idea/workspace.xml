@@ -2,32 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/mine/goods-shaixuan/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/PageComponent/HomeSearchTop/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/pages/home/PageComponent/HomeSearchTop/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compoments/navigation/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/compoments/navigation_bar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/compoments/top-header/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/compoments/top-header/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/jizhi-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/jizhi-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mingpianjia-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/mingpianjia-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-business/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my-business/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-person/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my-person/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-photo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my-photo/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/personal-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/personal-info/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/qiehuan-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/qiehuan-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/mode-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/mode-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/shai-xuan-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/shai-xuan-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/data_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/data_center.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/goods_manage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/goods_manage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/mine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/mine.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/tixian.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tixian.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,8 +43,34 @@
       <file leaf-file-name="goods_manage.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_manage.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="380" column="62" selection-start-line="380" selection-start-column="62" selection-end-line="380" selection-end-column="62" />
+            <state relative-caret-position="264">
+              <caret line="409" column="36" selection-start-line="409" selection-start-column="36" selection-end-line="409" selection-end-column="36" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#264#330#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/goods-shaixuan/index.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="103" column="32" lean-forward="true" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#110#159#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/wenhou-modal/index.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="71" column="23" lean-forward="true" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -127,10 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>全部</find>
-      <find>borderLeftColor: 'transparent'</find>
-      <find>borderTopWidth: scaleSize(6)</find>
-      <find>管理</find>
       <find>SanJia</find>
       <find>SanJi</find>
       <find>shaiXuanMode</find>
@@ -157,6 +156,10 @@
       <find>Clip</find>
       <find>Navigation</find>
       <find>mana</find>
+      <find>goodsListTmp</find>
+      <find>child</find>
+      <find>total</find>
+      <find>goodsList</find>
     </findStrings>
     <replaceStrings>
       <replace>Enum</replace>
@@ -197,7 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/businesscard/share-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/reducers/index.ts" />
         <option value="$PROJECT_DIR$/src/actions/distribution.ts" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
@@ -247,6 +249,7 @@
         <option value="$PROJECT_DIR$/src/pages/mine/self_intro.tsx" />
         <option value="$PROJECT_DIR$/src/app.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/shai-xuan-modal/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/goods-shaixuan/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/goods_manage.tsx" />
       </list>
     </option>
@@ -315,8 +318,7 @@
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-              <item name="shai-xuan-modal" type="462c0819:PsiDirectoryNode" />
+              <item name="mine" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
@@ -324,6 +326,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="mine" type="462c0819:PsiDirectoryNode" />
+              <item name="goods-shaixuan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="mine" type="462c0819:PsiDirectoryNode" />
+              <item name="wenhou-modal" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -529,12 +540,12 @@
       <workItem from="1582273239614" duration="32000" />
       <workItem from="1582335160029" duration="1725000" />
       <workItem from="1582337123795" duration="4000" />
-      <workItem from="1582337140389" duration="1056000" />
+      <workItem from="1582337140389" duration="3404000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="770075000" />
+    <option name="totallyTimeSpent" value="772423000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -636,13 +647,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="99" column="14" lean-forward="true" selection-start-line="99" selection-start-column="14" selection-end-line="99" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compoments/safe-area-view/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -911,13 +915,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/wenhou-modal/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1518">
-          <caret line="69" column="45" lean-forward="true" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/linear-gradient-view/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -990,10 +987,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/wenhou-modal/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="71" column="23" lean-forward="true" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/goods-shaixuan/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="103" column="32" lean-forward="true" selection-start-line="103" selection-start-column="32" selection-end-line="103" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#110#159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_manage.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="380" column="62" selection-start-line="380" selection-start-column="62" selection-end-line="380" selection-end-column="62" />
+        <state relative-caret-position="264">
+          <caret line="409" column="36" selection-start-line="409" selection-start-column="36" selection-end-line="409" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#264#330#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
