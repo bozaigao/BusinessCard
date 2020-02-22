@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
+  absB,
   absR,
   absT,
   bdColor,
@@ -25,8 +26,8 @@ import {
   mb,
   ml,
   mt,
+  op,
   pa,
-  pb,
   pl,
   pr,
   radiusA,
@@ -40,6 +41,7 @@ import {Image, Input, ScrollView, Text, Textarea, View} from "@tarojs/components
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl, FileController} from "../../api/httpurl";
 import {Enum, Goods} from "../../const/global";
+
 let maxLength = 5;
 
 interface Props {
@@ -261,7 +263,7 @@ class AddGoods extends Component<Props, State> {
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={edit ? '编辑商品' : '添加商品'}/>
         <ScrollView
-          style={styleAssign([wRatio(100), hRatio(100), pb(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*商品基本信息*/}
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), mt(10)])}>
@@ -344,11 +346,16 @@ class AddGoods extends Component<Props, State> {
             <View style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <Textarea value={introduction}
                       placeholder={'请输入商品简介'}
+                      maxlength={200}
                       style={styleAssign([w(300), h(140), fSize(16), mt(10), ml(20),
                         bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}
                       onInput={(e) => {
                         this.setState({introduction: e.detail.value});
                       }}/>
+            <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(30)])}>
+              <Text style={styleAssign([fSize(12), color('#979797')])}>{introduction.length}</Text>
+              <Text style={styleAssign([fSize(12), color('#CECECE')])}>/200</Text>
+            </View>
           </View>
           {/*详情图*/}
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), mt(10)])}>
@@ -395,33 +402,36 @@ class AddGoods extends Component<Props, State> {
           </View>
         </ScrollView>
         {/*保存和上架*/}
-        <View style={styleAssign([wRatio(100), h(63), bgColor(commonStyles.whiteColor),
-          styles.uac, styles.ujc])}>
-          {
-            edit ? <View style={styleAssign([styles.uac, styles.udr])}>
-                <TouchableButton customStyle={styleAssign([ml(10), w(335), h(47), bgColor(commonStyles.colorTheme),
-                  radiusA(2), styles.uac, styles.ujc])}
-                                 onClick={() => {
-                                   this.updateGoods();
-                                 }
-                                 }>
-                  <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>保存</Text>
-                </TouchableButton>
-              </View> :
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <TouchableButton customStyle={styleAssign([w(162), h(47), bo(1), bdColor(commonStyles.colorTheme),
-                  {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
-                                 onClick={() => {
-                                   this.addGoods();
-                                 }}>
-                  <Text style={styleAssign([fSize(20), color('#343434')])}>保存商品</Text>
-                </TouchableButton>
-                <TouchableButton customStyle={styleAssign([ml(10), w(162), h(47), bgColor(commonStyles.colorTheme),
-                  radiusA(2), styles.uac, styles.ujc])}>
-                  <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即上架</Text>
-                </TouchableButton>
-              </View>
-          }
+        <View>
+          <View style={styleAssign([wRatio(100), h(1), bgColor('rgb(184,186,190)'), op(0.5)])}/>
+          <View style={styleAssign([wRatio(100), h(68), bgColor(commonStyles.whiteColor),
+            styles.uac, styles.ujc])}>
+            {
+              edit ? <View style={styleAssign([styles.uac, styles.udr])}>
+                  <TouchableButton customStyle={styleAssign([ml(10), w(335), h(44), bgColor(commonStyles.colorTheme),
+                    radiusA(2), styles.uac, styles.ujc])}
+                                   onClick={() => {
+                                     this.updateGoods();
+                                   }
+                                   }>
+                    <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>保存</Text>
+                  </TouchableButton>
+                </View> :
+                <View style={styleAssign([styles.uac, styles.udr])}>
+                  <TouchableButton customStyle={styleAssign([w(162), h(44), bo(1), bdColor(commonStyles.colorTheme),
+                    {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
+                                   onClick={() => {
+                                     this.addGoods();
+                                   }}>
+                    <Text style={styleAssign([fSize(16), color('#343434')])}>保存商品</Text>
+                  </TouchableButton>
+                  <TouchableButton customStyle={styleAssign([ml(10), w(162), h(44), bgColor(commonStyles.colorTheme),
+                    radiusA(2), styles.uac, styles.ujc])}>
+                    <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即上架</Text>
+                  </TouchableButton>
+                </View>
+            }
+          </View>
         </View>
       </CustomSafeAreaView>
     );
