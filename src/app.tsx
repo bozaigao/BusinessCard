@@ -1,7 +1,7 @@
 import '@tarojs/async-await'
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Provider} from '@tarojs/redux'
-import Index from './pages/businesscard/businesscard'
+import Index from './pages/businesscard'
 import configStore from './store'
 import './app.scss'
 import {Global} from "./const/global";
@@ -69,54 +69,76 @@ class App extends Component {
   config: Config = {
     pages: [
       //主界面
-      "pages/businesscard/businesscard",
-      "pages/radarscan/radarscan",
-      "pages/customer/customer",
-      "pages/mine/mine",
-      //名片模块子页面
-      "pages/businesscard/add_businesscard",
-      "pages/businesscard/qiehuan_businesscard",
-      "pages/businesscard/mingpian_haibao",
-      "pages/businesscard/more_goods",
-      "pages/businesscard/mingpianjia",
-      "pages/businesscard/my_collect",
+      "pages/businesscard",
+      "pages/radarscan",
+      "pages/customer",
+      "pages/mine",
+    ],
+    subPackages: [
+      {
+        //名片模块子页面
+        root: 'pages/businesscard',
+        pages: [
+          "add_businesscard",
+          "qiehuan_businesscard",
+          "mingpian_haibao",
+          "more_goods",
+          "mingpianjia",
+          "my_collect",
+        ]
+      },
       //雷达模块子界面
-      "pages/radarscan/radar_detail",
+      {
+        root: 'pages/radarscan',
+        pages: [
+          "radar_detail"
+        ]
+      },
       //客户模块子页面
-      "pages/customer/customer_detail",
-      "pages/customer/customer_ziliao",
-      "pages/customer/add_customer",
-      "pages/customer/customer_remark",
-      "pages/customer/add_genjin",
+      {
+        root: 'pages/customer',
+        pages: [
+          "customer_detail",
+          "customer_ziliao",
+          "add_customer",
+          "customer_remark",
+          "add_genjin",
+        ]
+      },
       //我的模块子页面
-      "pages/mine/personal_info",
-      "pages/mine/add_task",
-      "pages/mine/tool_box",
-      "pages/mine/haibao",
-      "pages/mine/goods_detail",
-      "pages/mine/goods_manage",
-      "pages/mine/add_goods",
-      "pages/mine/task_center",
-      "pages/mine/contact_way",
-      "pages/mine/setting_page",
-      "pages/mine/feedback",
-      "pages/mine/my_tags",
-      "pages/mine/company_info",
-      "pages/mine/my_edu",
-      "pages/mine/self_intro",
-      "pages/mine/audio_recorder",
-      "pages/mine/industry_list",
-      "pages/mine/perform_info",
-      "pages/mine/my_photo",
-      "pages/mine/my_video",
-      "pages/mine/fenxiao_center",
-      "pages/mine/data_center",
-      "pages/mine/my_customer",
-      "pages/mine/tixian",
-      "pages/mine/tixian_recorder",
-      "pages/mine/tixian_page",
-      "pages/mine/about_us",
-      "pages/mine/help",
+      {
+        root: 'pages/mine',
+        pages: [
+          "personal_info",
+          "add_task",
+          "tool_box",
+          "haibao",
+          "goods_detail",
+          "goods_manage",
+          "add_goods",
+          "task_center",
+          "contact_way",
+          "setting_page",
+          "feedback",
+          "my_tags",
+          "company_info",
+          "my_edu",
+          "self_intro",
+          "audio_recorder",
+          "industry_list",
+          "perform_info",
+          "my_photo",
+          "my_video",
+          "fenxiao_center",
+          "data_center",
+          "my_customer",
+          "tixian",
+          "tixian_recorder",
+          "tixian_page",
+          "about_us",
+          "help",
+        ]
+      },
     ],
     permission: {
       "scope.userLocation": {
@@ -136,22 +158,22 @@ class App extends Component {
       backgroundColor: '#FFFFFF',
       borderStyle: 'white',
       list: [{
-        pagePath: "pages/businesscard/businesscard",
+        pagePath: "pages/businesscard",
         iconPath: "./assets/ico_tabar_businesscard_normal.png",
         selectedIconPath: "./assets/ico_tabar_businesscard_pressed.png",
         text: "名片",
       }, {
-        pagePath: "pages/radarscan/radarscan",
+        pagePath: "pages/radarscan",
         iconPath: "./assets/ico_tabar_radarscan_normal.png",
         selectedIconPath: "./assets/ico_tabar_radarscan_pressed.png",
         text: "雷达",
       }, {
-        pagePath: "pages/customer/customer",
+        pagePath: "pages/customer",
         iconPath: "./assets/ico_tabar_customer_normal.png",
         selectedIconPath: "./assets/ico_tabar_customer_pressed.png",
         text: "客户",
       }, {
-        pagePath: "pages/mine/mine",
+        pagePath: "pages/mine",
         iconPath: "./assets/ico_tabar_mine_normal.png",
         selectedIconPath: "./assets/ico_tabar_mine_pressed.png",
         text: "我的",

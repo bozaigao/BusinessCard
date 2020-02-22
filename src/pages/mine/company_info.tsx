@@ -16,7 +16,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
-import ListItem from "./list-item";
+import ListItem from "../sub_pagecomponent/list-item";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {

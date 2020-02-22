@@ -38,13 +38,13 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/goods';
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
-import GoodsManageItem from "../businesscard/goods-manage-item/index";
+import GoodsManageItem from "../sub_pagecomponent/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Goods, Orientation, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
-import GoodsShaiXuan from "./goods-shaixuan";
+import GoodsShaiXuan from "../sub_pagecomponent/goods-shaixuan";
 
 interface Props {
   //获取商品列表

@@ -33,7 +33,7 @@ import TopHeader from "../../compoments/top-header";
 import {Picker, Text, Textarea, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
-import WenHouModal from "./wenhou-modal";
+import WenHouModal from "../sub_pagecomponent/wenhou-modal";
 
 interface Props {
   //获取banner信息

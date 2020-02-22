@@ -23,16 +23,16 @@ import {
   radiusA,
   w,
   wRatio
-} from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+} from "../utils/style";
+import {styleAssign} from "../utils/datatool";
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/login";
-import {User} from "../../const/global";
-import TouchableButton from "../../compoments/touchable-button";
-import ListItem from "../../compoments/list-item";
-import {cloudBaseUrl} from "../../api/httpurl";
-import CustomSafeAreaView from "../../compoments/safe-area-view";
-import NavigationBar from "../../compoments/navigation_bar";
+import * as actions from "../actions/login";
+import {User} from "../const/global";
+import TouchableButton from "../compoments/touchable-button/index";
+import ListItem from "../compoments/list-item/index";
+import {cloudBaseUrl} from "../api/httpurl";
+import CustomSafeAreaView from "../compoments/safe-area-view/index";
+import NavigationBar from "../compoments/navigation_bar/index";
 
 
 interface Props {
@@ -105,7 +105,7 @@ class Mine extends Component<Props, State> {
                           notNeedBottomPadding={true}>
         <View style={styleAssign([styles.uf1])}>
           <Image style={styleAssign([wRatio(100), h(iphoneX() ? 264 : 244), styles.upa, absT(0)])}
-                 src={require('../../assets/ico_mine_bg.png')}/>
+                 src={require('../assets/ico_mine_bg.png')}/>
           <NavigationBar>
             <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
               <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>我的</Text>
@@ -161,16 +161,16 @@ class Mine extends Component<Props, State> {
               {
                 [{
                   title: '商城',
-                  icon: require('../../assets/ico_shop.png')
+                  icon: require('../assets/ico_shop.png')
                 }, {
                   title: '海报',
-                  icon: require('../../assets/ico_haibao.png')
+                  icon: require('../assets/ico_haibao.png')
                 }, {
                   title: '工具箱',
-                  icon: require('../../assets/ico_toolkit.png')
+                  icon: require('../assets/ico_toolkit.png')
                 }, {
                   title: '任务中心',
-                  icon: require('../../assets/ico_task.png')
+                  icon: require('../assets/ico_task.png')
                 }].map((value, index) => {
                   return (
                     <TouchableButton customStyle={styleAssign([styles.uac])} key={index}

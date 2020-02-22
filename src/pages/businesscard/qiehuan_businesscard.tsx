@@ -28,7 +28,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
-import QieHanItem from "./qiehuan-item";
+import QieHanItem from "../sub_pagecomponent/qiehuan-item";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {

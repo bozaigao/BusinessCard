@@ -21,7 +21,7 @@ import styles, {
   w,
   wRatio
 } from "../../../utils/style";
-import TouchableButton from "../../../compoments/touchable-button";
+import TouchableButton from "../../../compoments/touchable-button/index";
 import {Goods} from "../../../const/global";
 
 

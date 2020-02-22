@@ -38,11 +38,11 @@ import * as actions from '../../actions/business_card';
 import * as visitorActions from '../../actions/visitor';
 import {CollectItemModel, Orientation, User, VisitorRecordModel} from "../../const/global";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import CollectItem from "./collect-item";
-import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
-import VisitorItem from "./visitor-item";
-import ShaiXuanModal from "./shai-xuan-modal";
-import ModeModal from "./mode-modal";
+import CollectItem from "../sub_pagecomponent/collect-item";
+import BusinessCardRemoveNoticeModal from "../sub_pagecomponent/businesscard-remove-notice";
+import VisitorItem from "../sub_pagecomponent/visitor-item";
+import ShaiXuanModal from "../sub_pagecomponent/shai-xuan-modal";
+import ModeModal from "../sub_pagecomponent/mode-modal";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 

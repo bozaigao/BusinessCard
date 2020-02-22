@@ -35,7 +35,7 @@ import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {BaseCoin, SettlementStats, User} from "../../const/global";
-import DataCenterItem from "../businesscard/data-center-item";
+import DataCenterItem from "../sub_pagecomponent/data-center-item";
 import NavigationBar from "../../compoments/navigation_bar";
 
 

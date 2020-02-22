@@ -15,7 +15,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Text, View} from "@tarojs/components";
-import HelpListItem from "./help-list-item";
+import HelpListItem from "../sub_pagecomponent/help-list-item";
 
 interface Props {
 }

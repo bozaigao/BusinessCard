@@ -39,11 +39,11 @@ import {
   w,
   wRatio
 } from "../../../utils/style";
-import TouchableButton from "../../../compoments/touchable-button";
-import CustomSafeAreaView from "../../../compoments/safe-area-view";
-import NavigationBar from "../../../compoments/navigation_bar";
+import TouchableButton from "../../../compoments/touchable-button/index";
+import CustomSafeAreaView from "../../../compoments/safe-area-view/index";
+import NavigationBar from "../../../compoments/navigation_bar/index";
 import {Orientation} from "../../../const/global";
-import SanJiao from "../../../compoments/sanjiao";
+import SanJiao from "../../../compoments/sanjiao/index";
 
 
 interface Props {

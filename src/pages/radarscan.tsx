@@ -7,14 +7,14 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
-import CustomSafeAreaView from "../../compoments/safe-area-view";
-import {styleAssign, toast} from "../../utils/datatool";
-import styles, {bgColor, color, commonStyles, fSize, h, mt, w, wRatio} from "../../utils/style";
-import RadarItem from "./radar-item";
-import * as actions from '../../actions/radar';
+import CustomSafeAreaView from "../compoments/safe-area-view/index";
+import {styleAssign, toast} from "../utils/datatool";
+import styles, {bgColor, color, commonStyles, fSize, h, mt, w, wRatio} from "../utils/style";
+import RadarItem from "./pagecomponent/radar-item/index";
+import * as actions from '../actions/radar';
 import {connect} from "@tarojs/redux";
-import {RadarModel} from "../../const/global";
-import NavigationBar from "../../compoments/navigation_bar";
+import {RadarModel} from "../const/global";
+import NavigationBar from "../compoments/navigation_bar/index";
 
 interface Props {
   //查询我的雷达数据列表
@@ -114,7 +114,7 @@ class Radarscan extends Component<Props, State> {
           records.length === 0 ?
             <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
               <View style={styleAssign([styles.uac])}>
-                <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
                 <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂记录</Text>
               </View>
             </View> :

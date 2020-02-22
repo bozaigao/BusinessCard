@@ -36,7 +36,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
-import LinearGradientView from "./linear-gradient-view";
+import LinearGradientView from "../sub_pagecomponent/linear-gradient-view";
 
 
 interface Props {

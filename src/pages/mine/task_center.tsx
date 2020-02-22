@@ -31,7 +31,7 @@ import * as actions from '../../actions/task_center';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
-import TaskItem from "../businesscard/task-item/index";
+import TaskItem from "../sub_pagecomponent/task-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Orientation, TaskModel} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";

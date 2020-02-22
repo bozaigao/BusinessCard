@@ -8,9 +8,9 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign} from "../utils/datatool";
 import {
   bdColor,
   bgColor,
@@ -27,21 +27,21 @@ import {
   radiusA,
   w,
   wRatio
-} from "../../utils/style";
+} from "../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/task_center';
-import * as loginActions from '../../actions/login';
-import Card from "./business-card";
-import PersonalInfo from "./personal-info";
-import MyPerson from "./my-person";
-import MyGoods from "./my-goods";
-import JiZhiCard from "./jizhi-card";
-import MyBusiness from "./my-business";
-import TouchableButton from "../../compoments/touchable-button";
-import ShareModal from "./share-modal";
-import {User} from "../../const/global";
-import {cloudBaseUrl} from "../../api/httpurl";
-import NavigationBar from "../../compoments/navigation_bar";
+import * as actions from '../actions/task_center';
+import * as loginActions from '../actions/login';
+import Card from "./pagecomponent/business-card/index";
+import PersonalInfo from "./pagecomponent/personal-info/index";
+import MyPerson from "./pagecomponent/my-person/index";
+import MyGoods from "./pagecomponent/my-goods/index";
+import JiZhiCard from "./pagecomponent/jizhi-card/index";
+import MyBusiness from "./pagecomponent/my-business/index";
+import TouchableButton from "../compoments/touchable-button/index";
+import ShareModal from "./pagecomponent/share-modal/index";
+import {User} from "../const/global";
+import {cloudBaseUrl} from "../api/httpurl";
+import NavigationBar from "../compoments/navigation_bar/index";
 
 interface Props {
   //获取用户信息

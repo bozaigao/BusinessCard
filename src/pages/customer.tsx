@@ -7,7 +7,7 @@
  */
 import Taro, {Component} from '@tarojs/taro'
 import {Image, Input, ScrollView, Text, View} from '@tarojs/components'
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../compoments/safe-area-view/index";
 import {
   bgColor,
   color,
@@ -23,18 +23,18 @@ import {
   radiusA,
   w,
   wRatio
-} from "../../utils/style";
-import {getToday, styleAssign, toast} from "../../utils/datatool";
+} from "../utils/style";
+import {getToday, styleAssign, toast} from "../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/customer";
-import CustomItem from "./custom-item";
-import BottomButon from "../../compoments/bottom-buton";
-import {CustomerModel, Orientation} from "../../const/global";
-import ModeModal from "./mode-modal";
-import ShaiXuanModal from "./shai-xuan-modal";
-import NavigationBar from "../../compoments/navigation_bar";
-import SanJiao from "../../compoments/sanjiao";
+import * as actions from "../actions/customer";
+import CustomItem from "./pagecomponent/custom-item/index";
+import BottomButon from "../compoments/bottom-buton/index";
+import {CustomerModel, Orientation} from "../const/global";
+import ModeModal from "./pagecomponent/mode-modal/index";
+import ShaiXuanModal from "./pagecomponent/shai-xuan-modal/index";
+import NavigationBar from "../compoments/navigation_bar/index";
+import SanJiao from "../compoments/sanjiao/index";
 
 interface Props {
   //获取banner信息
@@ -147,7 +147,7 @@ class Customer extends Component<Props, State> {
             <NavigationBar>
               <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
                 radiusA(26), styles.uac, styles.udr])}>
-                <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
+                <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../assets/ico_search.png')}/>
                 <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
               </View>
             </NavigationBar>
@@ -169,7 +169,7 @@ class Customer extends Component<Props, State> {
                         this.setState({showShaiXuan: true});
                       }}>
                   <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
-                  <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../../assets/ico_shaixuan.png')}/>
+                  <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../assets/ico_shaixuan.png')}/>
                 </View>
               </View>
             </View>
@@ -178,7 +178,7 @@ class Customer extends Component<Props, State> {
             customerList.length === 0 ?
               <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                 <View style={styleAssign([styles.uac])}>
-                  <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                  <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
                   <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
                 </View>
               </View> :

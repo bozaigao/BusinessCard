@@ -38,10 +38,10 @@ import {
   w,
   wRatio
 } from "../../../utils/style";
-import TouchableButton from "../../../compoments/touchable-button";
-import CustomSafeAreaView from "../../../compoments/safe-area-view";
-import NavigationBar from "../../../compoments/navigation_bar";
-import SanJiao from "../../../compoments/sanjiao";
+import TouchableButton from "../../../compoments/touchable-button/index";
+import CustomSafeAreaView from "../../../compoments/safe-area-view/index";
+import NavigationBar from "../../../compoments/navigation_bar/index";
+import SanJiao from "../../../compoments/sanjiao/index";
 import {Orientation} from "../../../const/global";
 
 

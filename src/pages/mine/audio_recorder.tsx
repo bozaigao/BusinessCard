@@ -29,7 +29,7 @@ import * as actions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
-import DeleteNoticeModal from "./delete-notice";
+import DeleteNoticeModal from "../sub_pagecomponent/delete-notice";
 import {Enum} from "../../const/global";
 import {FileController} from "../../api/httpurl";
 

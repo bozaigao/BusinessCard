@@ -26,10 +26,10 @@ import {
   w,
   wRatio
 } from "../../../utils/style";
-import TouchableButton from "../../../compoments/touchable-button";
+import TouchableButton from "../../../compoments/touchable-button/index";
 import {Orientation} from "../../../const/global";
-import NavigationBar from "../../../compoments/navigation_bar";
-import SanJiao from "../../../compoments/sanjiao";
+import NavigationBar from "../../../compoments/navigation_bar/index";
+import SanJiao from "../../../compoments/sanjiao/index";
 
 
 interface Props {
