@@ -111,7 +111,7 @@ class Haibao extends Component<Props, State> {
                 [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
                   console.log(value);
                   return (
-                    <View style={styleAssign([ma(5), w(107), h(247), bgColor(commonStyles.whiteColor),
+                    <View style={styleAssign([ma(4), w(107), h(247), bgColor(commonStyles.whiteColor),
                       radiusA(4)])}
                           key={index}>
                       <View style={styleAssign([w(107), h(178), radiusA(4)])}>
