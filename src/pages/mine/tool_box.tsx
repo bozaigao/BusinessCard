@@ -23,7 +23,6 @@ import {
   padding,
   pl,
   pr,
-  radiusA,
   w,
   wRatio
 } from "../../utils/style";
@@ -31,7 +30,6 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Switch, Text, Textarea, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button";
 import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
