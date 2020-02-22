@@ -14,7 +14,7 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, mb,
   ml,
   mr,
   mt,
@@ -161,7 +161,7 @@ class MyCustomer extends Component<Props, State> {
                    }}/>
           </View>
         </View>
-        <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(15)])}>
+        <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(10), mb(10)])}>
           <Text style={styleAssign([fSize(14), color('#727272')])}>
             您目前拥有
           </Text>
@@ -220,24 +220,33 @@ class MyCustomer extends Component<Props, State> {
           {
             child
           }
-          <ScrollView
-            style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-            scrollY
-            onScrollToUpper={() => {
-              Taro.startPullDownRefresh();
-              debounce(() => {
-                this.refresh();
-              }, 400);
-            }}
-            onScrollToLower={() => {
-              this.loadMore();
-            }}>
-            {
-              customerList.map((value, index) => {
-                return <MyCustomerItem item={value} key={index}/>;
-              })
-            }
-          </ScrollView>
+          {
+            customerList.length === 0 ?
+              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+                <View style={styleAssign([styles.uac])}>
+                  <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                  <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
+                </View>
+              </View> :
+              <ScrollView
+                style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+                scrollY
+                onScrollToUpper={() => {
+                  Taro.startPullDownRefresh();
+                  debounce(() => {
+                    this.refresh();
+                  }, 400);
+                }}
+                onScrollToLower={() => {
+                  this.loadMore();
+                }}>
+                {
+                  customerList.map((value, index) => {
+                    return <MyCustomerItem item={value} key={index}/>;
+                  })
+                }
+              </ScrollView>
+          }
         </View>
       </CustomSafeAreaView>
     );
