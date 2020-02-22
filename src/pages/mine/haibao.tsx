@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
+  absB, absR,
   bdColor,
   bgColor, bo,
   color,
@@ -80,19 +81,20 @@ class Haibao extends Component<Props, State> {
               bgColor(commonStyles.whiteColor)])}
             scrollX>
             {
-              ['热点话题', '早晚问候', '业绩催单', '人才招聘', '节日海报', '热点话题', '早晚问候', '业绩催单', '人才招聘', '节日海报'].map((value, index) => {
+              ['热点话题', '早晚问候', '每日励志', '人才招聘', '节日节气'].map((value, index) => {
                 console.log(value);
-                return (<View style={styleAssign([styles.uac, mt(5), ml(20), {display: 'inline-block'}])}
-                              key={index}
-                              onClick={() => {
-                                this.setState({currentIndex: index});
-                              }}>
-                  <Text
-                    style={styleAssign([fSize(14), color(index === currentIndex ? '#E2BB7B' : commonStyles.colorTheme)])}>{value}</Text>
-                  <View
-                    style={styleAssign([w(50), h(2), radiusA(1), bgColor(index === currentIndex ? '#E2BB7B' : commonStyles.whiteColor), mt(5),
-                      ml(5)])}/>
-                </View>);
+                return (
+                  <View style={styleAssign([styles.uac, mt(5), ml(index !== 0 ? 20 : 0), {display: 'inline-block'}])}
+                        key={index}
+                        onClick={() => {
+                          this.setState({currentIndex: index});
+                        }}>
+                    <Text
+                      style={styleAssign([fSize(14), color(index === currentIndex ? '#E2BB7B' : commonStyles.colorTheme)])}>{value}</Text>
+                    <View
+                      style={styleAssign([w(50), h(2), radiusA(1), bgColor(index === currentIndex ? '#E2BB7B' : commonStyles.whiteColor), mt(5),
+                        ml(5)])}/>
+                  </View>);
               })
             }
           </ScrollView>
@@ -100,16 +102,20 @@ class Haibao extends Component<Props, State> {
           <ScrollView
             style={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor), wRatio(100), hRatio(100), mt(16)])}
             scrollY>
-            <View style={styleAssign([styles.uWrap, styles.udr, pl(14), pr(14)])}>
+            <View style={styleAssign([styles.uWrap, styles.udr, pl(14), pr(14), bgColor(commonStyles.whiteColor)])}>
               {
                 [1, 2, 3, 4, 5, 6, 7, 8, 9].map((value, index) => {
                   console.log(value);
                   return (
-                    <View style={styleAssign([ma(5), w(105), h(267), pa(8), bgColor(commonStyles.whiteColor),
+                    <View style={styleAssign([ma(5), w(107), h(247), bgColor(commonStyles.whiteColor),
                       radiusA(4)])}
                           key={index}>
-                      <Image style={styleAssign([w(97), h(186), radiusA(4)])}
-                             src={`${cloudBaseUrl}ico_default.png`}/>
+                      <View style={styleAssign([w(107), h(178), radiusA(4)])}>
+                        <Image style={styleAssign([w(107), h(178), radiusA(4)])}
+                               src={`https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582355731670&di=55fa50f48a87b1399348f669bf581b97&imgtype=0&src=http%3A%2F%2Fimg.sccnn.com%2Fbimg%2F341%2F16456.jpg`}/>
+                        <Image style={styleAssign([w(20), h(20), radiusA(10), styles.upa, absB(5), absR(5)])}
+                               src={`https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1582356001454&di=25b8ab4031e2bacf6ca011bceee981b6&imgtype=0&src=http%3A%2F%2Fwww.hntianwang.com%2Fdata%2Fupload%2Fimage%2F20171015%2F1508057715985296.jpg`}/>
+                      </View>
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                         <TouchableButton
                           customStyle={styleAssign([w(72), h(28), bo(1), bdColor(commonStyles.colorTheme), {borderStyle: 'solid'},

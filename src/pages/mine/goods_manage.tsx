@@ -307,9 +307,10 @@ class GoodsManage extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
               <View
                 style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
-                <Image style={styleAssign([w(129), h(134), radiusA(4)])}
-                       src={`${cloudBaseUrl}ico_shop_pic.png`}/>
-                <View style={styleAssign([ml(16)])}>
+                <Image style={styleAssign([w(134), h(134), radiusA(4)])}
+                       src={`${cloudBaseUrl}ico_shop_pic.png`}
+                       mode={'scaleToFill'}/>
+                <View style={styleAssign([ml(16), wRatio(60)])}>
                   <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
                   <View style={styleAssign([styles.udr, mt(12)])}>
                     <Image style={styleAssign([w(12), h(14)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
