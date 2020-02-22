@@ -6,10 +6,10 @@
  * @Description: 雷达
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {ScrollView, Text, View} from '@tarojs/components'
+import {Image, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {debounce, styleAssign, toast} from "../../utils/datatool";
-import styles, {bgColor, commonStyles, fSize, wRatio} from "../../utils/style";
+import styles, {bgColor, color, commonStyles, fSize, h, mt, w, wRatio} from "../../utils/style";
 import RadarItem from "./radar-item";
 import * as actions from '../../actions/radar';
 import {connect} from "@tarojs/redux";
@@ -104,25 +104,34 @@ class Radarscan extends Component<Props, State> {
             <Text style={styleAssign([fSize(18)])}>雷达</Text>
           </View>
         </NavigationBar>
-        <ScrollView
-          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-          scrollY
-          onScrollToUpper={() => {
-            Taro.startPullDownRefresh();
-            debounce(() => {
-              this.refresh();
-            }, 400);
-          }}
-          onScrollToLower={() => {
-            this.loadMore();
-          }}>
-          {
-            records.map((value, index) => {
-              console.log(value);
-              return (<RadarItem key={index} item={value}/>);
-            })
-          }
-        </ScrollView>
+        {
+          records.length === 0 ?
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+              <View style={styleAssign([styles.uac])}>
+                <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂记录</Text>
+              </View>
+            </View> :
+            <ScrollView
+              style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+              scrollY
+              onScrollToUpper={() => {
+                Taro.startPullDownRefresh();
+                debounce(() => {
+                  this.refresh();
+                }, 400);
+              }}
+              onScrollToLower={() => {
+                this.loadMore();
+              }}>
+              {
+                records.map((value, index) => {
+                  console.log(value);
+                  return (<RadarItem key={index} item={value}/>);
+                })
+              }
+            </ScrollView>
+        }
       </CustomSafeAreaView>
     )
   }

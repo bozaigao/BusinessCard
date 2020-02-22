@@ -77,7 +77,7 @@ class ToolBox extends Component<Props, State> {
         {/*输入区*/}
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100),h(360),  bgColor(commonStyles.whiteColor), mt(10)])}>
-            <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(20)])}>名片引导语</Text>
+            <Text style={styleAssign([fSize(15), color('#0C0C0C'), ml(20), mt(20)])}>名片引导语</Text>
             <Textarea value={''}
                       placeholder={'您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~'}
                       style={styleAssign([w(305), h(91), fSize(16), mt(10), ml(20),
@@ -104,7 +104,7 @@ class ToolBox extends Component<Props, State> {
           {/*雷达提醒开关*/}
           <View
             style={styleAssign([wRatio(100), h(56), styles.uac, styles.udr, styles.ujb, pl(20), pr(20), mt(10), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>雷达提醒</Text>
+            <Text style={styleAssign([fSize(15), color('#0C0C0C')])}>雷达提醒</Text>
             <Switch color={'#E2BB7B'}/>
           </View>
         </View>

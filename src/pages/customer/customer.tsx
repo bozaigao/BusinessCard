@@ -15,7 +15,7 @@ import {
   default as styles,
   fSize,
   h,
-  ml,
+  ml, mt,
   op,
   pl,
   pr,
@@ -174,35 +174,44 @@ class Customer extends Component<Props, State> {
               </View>
             </View>
           </View>
-          <ScrollView
-            onScrollToUpper={() => {
-              Taro.startPullDownRefresh();
-              debounce(() => {
-                this.refresh();
-              }, 400);
-            }}
-            onScrollToLower={() => {
-              this.loadMore();
-            }}
-            style={styleAssign([styles.uf1, styles.uac])}
-            scrollY>
-            {
-              customerList.map((value: CustomerModel, index) => {
-                console.log(value);
-                return (<CustomItem key={index} customer={value} onClick={() => {
-                  Taro.navigateTo({
-                    url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
-                  });
+          {
+            customerList.length === 0 ?
+              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+                <View style={styleAssign([styles.uac])}>
+                  <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+                  <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
+                </View>
+              </View> :
+              <ScrollView
+                onScrollToUpper={() => {
+                  Taro.startPullDownRefresh();
+                  debounce(() => {
+                    this.refresh();
+                  }, 400);
                 }}
-                                    genJinCallback={(customer) => {
-                                      Taro.navigateTo({
-                                        url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-                                      });
-                                    }
-                                    }/>);
-              })
-            }
-          </ScrollView>
+                onScrollToLower={() => {
+                  this.loadMore();
+                }}
+                style={styleAssign([styles.uf1, styles.uac])}
+                scrollY>
+                {
+                  customerList.map((value: CustomerModel, index) => {
+                    console.log(value);
+                    return (<CustomItem key={index} customer={value} onClick={() => {
+                      Taro.navigateTo({
+                        url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
+                      });
+                    }}
+                                        genJinCallback={(customer) => {
+                                          Taro.navigateTo({
+                                            url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+                                          });
+                                        }
+                                        }/>);
+                  })
+                }
+              </ScrollView>
+          }
           <BottomButon title={'新增客户'} onClick={() => {
             Taro.navigateTo({
               url: `/pages/customer/add_customer`
