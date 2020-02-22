@@ -88,8 +88,10 @@ class TaskCenter extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.refresh();
-    this.refresh1();
+    this.setState({taskItem: []}, () => {
+      this.refresh();
+      this.refresh1();
+    });
   }
 
 
@@ -225,10 +227,18 @@ class TaskCenter extends Component<Props, State> {
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                     scrollY
                     onScrollToUpper={() => {
-                      this.refresh();
+                      if (currentIndex === 1) {
+                        this.refresh();
+                      } else {
+                        this.refresh1();
+                      }
                     }}
                     onScrollToLower={() => {
-                      this.loadMore();
+                      if (currentIndex === 1) {
+                        this.loadMore();
+                      } else {
+                        this.loadMore1();
+                      }
                     }}>
           {
             currentIndex === 0 ?
