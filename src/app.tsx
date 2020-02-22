@@ -20,27 +20,20 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    console.log('呵呵', global);
     //获取胶囊按钮位置信息为后面自定义导航条做准备
     global.menuButton = Taro.getMenuButtonBoundingClientRect();
-    console.log('胶囊信息', global.menuButton);
-    global.debug = true;
+    global.debug = false;
     Taro.getSystemInfo({
       success: res => {
-        global = Object.assign(global, res, {debug: true});
-        console.log('设备信息', res);
+        global = Object.assign(global, res, {debug: false});
         if (res.model && res.model.includes('iPhone X')) {
           global.iphoneX = true;
-          console.log('是iphoneX机型')
         } else if (res.platform === 'ios' && res.screenHeight === 812 && res.screenWidth === 375 ||
           res.screenHeight === 896 && res.screenWidth === 414) {
           global.iphoneX = true;
-          console.log('是iphoneX机型')
         } else {
           global.iphoneX = false;
-          console.log('不是iphoneX机型')
         }
-        console.log('设备信息', global);
       }
 
     }).then(res => console.log(res));
@@ -57,6 +50,8 @@ class App extends Component {
       console.error = () => {
       };
     }
+    console.log('设备信息', global);
+    console.log('胶囊信息', global.menuButton);
   }
 
   /**

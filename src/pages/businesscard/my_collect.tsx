@@ -257,6 +257,14 @@ class MyCollect extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {
+            collectUserList.length === 0 &&
+            <View
+              style={styleAssign([styles.uac, mt(100)])}>
+              <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+              <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无数据</Text>
+            </View>
+          }
+          {
             collectUserList.map((value, index) => {
               console.log(value);
               return (<CollectItem key={index} operate={(item) => {
@@ -327,7 +335,15 @@ class MyCollect extends Component<Props, State> {
             this.loadMore();
           }}>
           {
-            recordList.map((value, index) => {
+            recordList.length === 0 &&
+            <View
+              style={styleAssign([styles.uac, mt(100)])}>
+              <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
+              <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无数据</Text>
+            </View>
+          }
+          {
+            recordList.length !== 0 && recordList.map((value, index) => {
               console.log(value);
               return (<VisitorItem key={index} item={value}/>);
             })
