@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {bgColor, commonStyles, default as styles} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/distribution';
@@ -79,15 +79,16 @@ class TixianRecorder extends Component<Props, State> {
    * @function: 提现记录
    */
   withdrawList = (refresh?: boolean) => {
+    this.viewRef && this.viewRef.showLoading();
     this.props.withdrawList({pageNo: this.pageNo, pageSize: this.pageSize}).then((res) => {
       console.log('提现记录', res);
       if (res) {
+        this.viewRef && this.viewRef.hideLoading();
         this.setState({
           records: res.records
         });
 
         if (refresh) {
-          Taro.stopPullDownRefresh();
           this.setState({
             records: res.records
           });
@@ -98,6 +99,7 @@ class TixianRecorder extends Component<Props, State> {
         }
       }
     }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -115,10 +117,7 @@ class TixianRecorder extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY
           onScrollToUpper={() => {
-            Taro.startPullDownRefresh();
-            debounce(() => {
-              this.refresh();
-            }, 400);
+            this.refresh();
           }}
           onScrollToLower={() => {
             this.loadMore();

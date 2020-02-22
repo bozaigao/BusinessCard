@@ -14,7 +14,8 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h, mb,
+  h,
+  mb,
   ml,
   mr,
   mt,
@@ -24,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {CustomerRecord, User} from "../../const/global";
@@ -51,6 +52,7 @@ class MyCustomer extends Component<Props, State> {
 
   private pageNo;
   private pageSize;
+  private viewRef;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -114,18 +116,19 @@ class MyCustomer extends Component<Props, State> {
     if (content.length !== 0) {
       params = {pageNo: this.pageNo, pageSize: this.pageSize, type, content};
     }
+    this.viewRef&&this.viewRef.showLoading();
 
     this.props.myCustomerList(params).then((res) => {
       console.log('获取我的客户列表', res);
       console.log('属性', this.props.userInfo);
       if (res) {
+        this.viewRef&&this.viewRef.hideLoading();
         this.setState({
           total: res.total,
           customerList: res.records
         });
 
         if (refresh) {
-          Taro.stopPullDownRefresh();
           this.setState({
             total: res.total,
             customerList: res.records
@@ -137,6 +140,7 @@ class MyCustomer extends Component<Props, State> {
         }
       }
     }).catch(e => {
+      this.viewRef&&this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -176,7 +180,10 @@ class MyCustomer extends Component<Props, State> {
     }
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+                          ref={(ref) => {
+                            this.viewRef = ref;
+                          }}>
         <TopHeader title={'我的客户'}/>
         <View style={styleAssign([wRatio(100), h(30), mt(20), styles.uac, styles.udr, styles.ujb])}>
           <View style={styleAssign([styles.uac, ml(36)])}
@@ -232,10 +239,7 @@ class MyCustomer extends Component<Props, State> {
                 style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                 scrollY
                 onScrollToUpper={() => {
-                  Taro.startPullDownRefresh();
-                  debounce(() => {
-                    this.refresh();
-                  }, 400);
+                  this.refresh();
                 }}
                 onScrollToLower={() => {
                   this.loadMore();

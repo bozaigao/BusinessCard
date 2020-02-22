@@ -189,7 +189,7 @@ class GoodsManage extends Component<Props, State> {
    * @function: 获取商品列表
    */
   getGoodsList = (refresh?: boolean) => {
-    this.viewRef && this.viewRef.showLoading('加载中');
+    this.viewRef && this.viewRef.showLoading();
     this.props.getGoodsList({
       userId: this.props.userInfo.id,
       pageNo: this.pageNo,
@@ -198,7 +198,6 @@ class GoodsManage extends Component<Props, State> {
       console.log('获取商品列表', res);
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
-        Taro.stopPullDownRefresh();
         this.setState({goodsList: res.records, totalGoods: res.total}, () => {
           this.goodsListTmp = this.state.goodsList;
         });
@@ -251,10 +250,7 @@ class GoodsManage extends Component<Props, State> {
               style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY
               onScrollToUpper={() => {
-                Taro.startPullDownRefresh();
-                debounce(() => {
-                  this.refresh();
-                }, 400);
+                this.refresh();
               }}
               onScrollToLower={() => {
                 this.loadMore();

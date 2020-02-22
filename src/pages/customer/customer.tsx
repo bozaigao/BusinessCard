@@ -15,7 +15,8 @@ import {
   default as styles,
   fSize,
   h,
-  ml, mt,
+  ml,
+  mt,
   op,
   pl,
   pr,
@@ -23,7 +24,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {debounce, getToday, styleAssign, toast} from "../../utils/datatool";
+import {getToday, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -117,7 +118,6 @@ class Customer extends Component<Props, State> {
       console.log('获取客户列表', res);
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
-        Taro.stopPullDownRefresh();
         this.setState({customerList: res.records, totalCustomers: res.total});
       } else if (res.records && res.records.length !== 0) {
         this.setState({customerList: this.state.customerList.concat(res.records), totalCustomers: res.total});
@@ -184,10 +184,7 @@ class Customer extends Component<Props, State> {
               </View> :
               <ScrollView
                 onScrollToUpper={() => {
-                  Taro.startPullDownRefresh();
-                  debounce(() => {
-                    this.refresh();
-                  }, 400);
+                  this.refresh();
                 }}
                 onScrollToLower={() => {
                   this.loadMore();

@@ -130,7 +130,6 @@ class TaskCenter extends Component<Props, State> {
       console.log('获取正在进行的任务列表', res);
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
-        Taro.stopPullDownRefresh();
         if (res.records.length !== 0) {
           this.state.taskItem.push({title: '正在进行中', children: res.records});
         }
@@ -163,7 +162,6 @@ class TaskCenter extends Component<Props, State> {
       console.log('获取已完成的任务列表', res);
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
-        Taro.stopPullDownRefresh();
         if (res.records.length !== 0) {
           this.state.taskItem.push({title: '已完成', children: res.records});
         }
@@ -227,13 +225,10 @@ class TaskCenter extends Component<Props, State> {
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                     scrollY
                     onScrollToUpper={() => {
-                      // Taro.startPullDownRefresh();
-                      // debounce(() => {
-                      //   this.refresh();
-                      // }, 400);
+                      this.refresh();
                     }}
                     onScrollToLower={() => {
-                      // this.loadMore();
+                      this.loadMore();
                     }}>
           {
             currentIndex === 0 ?

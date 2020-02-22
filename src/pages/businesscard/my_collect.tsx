@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -160,11 +160,12 @@ class MyCollect extends Component<Props, State> {
     if (shaiXuanTimes !== 0) {
       Object.assign(params, {visitCount: shaiXuanTimes});
     }
+    this.viewRef && this.viewRef.showLoading();
 
     this.props.getVisitorList(params).then((res) => {
       console.log('查询我的访客列表', res);
+      this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
-        Taro.stopPullDownRefresh();
         this.setState({recordList: res.records, total: res.total});
       } else if (res.records && res.records.length !== 0) {
         this.setState({recordList: this.state.recordList.concat(res.records), total: res.total});
@@ -172,6 +173,7 @@ class MyCollect extends Component<Props, State> {
         toast('没有记录了');
       }
     }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -319,10 +321,7 @@ class MyCollect extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY
           onScrollToUpper={() => {
-            Taro.startPullDownRefresh();
-            debounce(() => {
-              this.refresh();
-            }, 400);
+            this.refresh();
           }}
           onScrollToLower={() => {
             this.loadMore();
