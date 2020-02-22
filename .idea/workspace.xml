@@ -3,57 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/business-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/businesscard-remove-notice/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/businesscard-remove-notice/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/collect-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/collect-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/data-center-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/data-center-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/goods-manage-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/goods-manage-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/jizhi-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/jizhi-card/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mingpianjia-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/mingpianjia-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mingpianjia.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/mingpianjia.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mode-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/mode-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-business/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/my-business/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-goods/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/my-goods/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-person/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my-photo/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/my-photo/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/personal-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/qiehuan-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/qiehuan-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/qiehuan_businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/qiehuan_businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/shai-xuan-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/shai-xuan-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/share-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/share-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/task-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/visitor-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/visitor-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/custom-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/custom-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/mode-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/mode-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/shai-xuan-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/shai-xuan-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/company_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/company_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/data_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/data_center.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/delete-notice/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/delete-notice/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/goods-shaixuan/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/goods-shaixuan/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/goods_manage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/goods_manage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/help-list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/help-list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/help.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/help.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/linear-gradient-view/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/linear-gradient-view/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/linear-gradient-view/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/linear-gradient-view/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/list-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/list-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/mine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/my_customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_customer_item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/my_customer_item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/task_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/task_center.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/tixian-recorder-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/tixian-recorder-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/tixian_recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tixian_recorder.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/wenhou-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/radar-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/radar-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan/radar_detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/radarscan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan/trace-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/trace-item/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -79,6 +29,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="132" column="18" lean-forward="true" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#112#164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
@@ -88,14 +60,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="audio_recorder.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="audio_recorder.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+            <state relative-caret-position="-601">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#117#205#0" expanded="true" />
+                <element signature="e#515#553#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,7 +177,6 @@
         <option value="$PROJECT_DIR$/src/compoments/safe-area-view/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/wenhou-modal/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/shai-xuan-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/goods-shaixuan/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" />
@@ -233,6 +205,7 @@
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/radarscan.tsx" />
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
       </list>
     </option>
   </component>
@@ -493,12 +466,12 @@
       <workItem from="1582273239614" duration="32000" />
       <workItem from="1582335160029" duration="1725000" />
       <workItem from="1582337123795" duration="4000" />
-      <workItem from="1582337140389" duration="16707000" />
+      <workItem from="1582337140389" duration="17470000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="785726000" />
+    <option name="totallyTimeSpent" value="786489000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -820,17 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="137" column="19" lean-forward="true" selection-start-line="137" selection-start-column="19" selection-end-line="137" selection-end-column="19" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#112#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/data_center.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1001,13 +963,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="133" column="24" lean-forward="true" selection-start-line="133" selection-start-column="24" selection-end-line="133" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_manage.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2423">
@@ -1038,11 +993,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        <state relative-caret-position="-601">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#117#205#0" expanded="true" />
+            <element signature="e#515#553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="132" column="18" lean-forward="true" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#112#164#0" expanded="true" />
           </folding>
         </state>
       </provider>

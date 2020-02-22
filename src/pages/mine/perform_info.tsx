@@ -126,12 +126,12 @@ class PerformInfo extends Component<Props, State> {
     let {userInfo} = this.props;
 
     return (
-      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor)])}
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           notNeedBottomPadding={true}>
         <ScrollView
-          style={styleAssign([wRatio(100), hRatio(100)])}
+          style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor)])}
           scrollY>
-          <View style={styleAssign([wRatio(100)])}>
+          <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([wRatio(100)])}>
               <LinearGradientView style={styleAssign([wRatio(100), h(182)])}/>
               {/*我的*/}
