@@ -47,7 +47,7 @@ export default class TopHeader extends Component<Props, State> {
                      Taro.navigateBack();
                    }
                  }}/>
-          <Text style={styleAssign([fSize(19), color(textColor ? textColor : commonStyles.colorTheme)])}>{title}</Text>
+          <Text style={styleAssign([fSize(18), color(textColor ? textColor : commonStyles.colorTheme)])}>{title}</Text>
           <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
         </View>
       </NavigationBar>

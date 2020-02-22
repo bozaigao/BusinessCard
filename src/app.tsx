@@ -115,6 +115,8 @@ class App extends Component {
       "pages/mine/tixian",
       "pages/mine/tixian_recorder",
       "pages/mine/tixian_page",
+      "pages/mine/about_us",
+      "pages/mine/help",
     ],
     permission: {
       "scope.userLocation": {

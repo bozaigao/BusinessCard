@@ -219,6 +219,13 @@ class Mine extends Component<Props, State> {
                                         url: `/pages/mine/feedback`
                                       });
                                     } else if (title === '关于极致名片') {
+                                      Taro.navigateTo({
+                                        url: `/pages/mine/about_us`
+                                      });
+                                    } else {
+                                      Taro.navigateTo({
+                                        url: `/pages/mine/help`
+                                      });
                                     }
                                   }
                                   }/>);
