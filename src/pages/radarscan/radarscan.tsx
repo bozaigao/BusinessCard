@@ -14,7 +14,7 @@ import RadarItem from "./radar-item";
 import * as actions from '../../actions/radar';
 import {connect} from "@tarojs/redux";
 import {RadarModel} from "../../const/global";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 
 interface Props {
   //查询我的雷达数据列表
@@ -99,11 +99,11 @@ class Radarscan extends Component<Props, State> {
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
         notNeedBottomPadding={true}>
         {/*雷达、访客切换*/}
-        <Navigation>
+        <NavigationBar>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
             <Text style={styleAssign([fSize(18)])}>雷达</Text>
           </View>
-        </Navigation>
+        </NavigationBar>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY

@@ -12,7 +12,7 @@ import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
-  // navigation: Navigation;
+  // navigation_bar: NavigationBar;
 }
 
 interface State {

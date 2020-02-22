@@ -42,7 +42,7 @@ import GoodsManageItem from "../businesscard/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Goods, Orientation, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
@@ -337,7 +337,7 @@ class GoodsManage extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <Navigation>
+        <NavigationBar>
           <View
             style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
             <Image style={styleAssign([w(22), h(22), ml(20)])}
@@ -371,14 +371,14 @@ class GoodsManage extends Component<Props, State> {
             </View>
             <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
-        </Navigation>
+        </NavigationBar>
         {
           child
         }
         {/*选择展示商品*/}
         {
           showChoose &&
-          <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+          <View style={styleAssign([wRatio(100), hRatio(100),  {position: 'fixed'}, absT(0)])}
                 onClick={() => {
                   this.setState({showChoose: false});
                 }}>

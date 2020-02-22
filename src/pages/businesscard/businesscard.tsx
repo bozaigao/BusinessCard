@@ -41,7 +41,7 @@ import TouchableButton from "../../compoments/touchable-button";
 import ShareModal from "./share-modal";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 
 interface Props {
   //获取用户信息
@@ -136,7 +136,7 @@ class Businesscard extends Component<Props, State> {
                           notNeedBottomPadding={true}
       >
         {/*切换名片*/}
-        <Navigation>
+        <NavigationBar>
           <View
             style={styleAssign([wRatio(100), styles.ujb, styles.uac, styles.udr])}>
             <View
@@ -154,7 +154,7 @@ class Businesscard extends Component<Props, State> {
             </TouchableButton>
             <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
           </View>
-        </Navigation>
+        </NavigationBar>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>

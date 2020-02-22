@@ -41,7 +41,7 @@ import {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
-import Navigation from "../../../compoments/navigation";
+import NavigationBar from "../../../compoments/navigation_bar";
 import {Orientation} from "../../../const/global";
 import SanJiao from "../../../compoments/sanjiao";
 
@@ -96,7 +96,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), h(60), bgColor(commonStyles.whiteColor)])}/>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.blackColor), op(0.5)])}/>
         </TouchableButton>
-        <Navigation style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        <NavigationBar style={styleAssign([bgColor(commonStyles.whiteColor)])}>
           <View
             style={styleAssign([wRatio(100), h(iphoneX() ? 47 : 44), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
             <Image style={styleAssign([w(22), h(22), ml(20)])}
@@ -123,7 +123,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
             </View>
             <View style={styleAssign([w(22), h(22), mr(20)])}/>
           </View>
-        </Navigation>
+        </NavigationBar>
         <View style={styleAssign([styles.uf1])}>
           <View
             style={styleAssign([wRatio(100), styles.uac, styles.ujc, styles.udr, bgColor(commonStyles.pageDefaultBackgroundColor)])}>

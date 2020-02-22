@@ -32,7 +32,7 @@ import BottomButon from "../../compoments/bottom-buton";
 import {CustomerModel, Orientation} from "../../const/global";
 import ModeModal from "./mode-modal";
 import ShaiXuanModal from "./shai-xuan-modal";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
@@ -144,13 +144,13 @@ class Customer extends Component<Props, State> {
                           }}>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.ujb])}>
-            <Navigation>
+            <NavigationBar>
               <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
                 radiusA(26), styles.uac, styles.udr])}>
                 <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
                 <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
               </View>
-            </Navigation>
+            </NavigationBar>
             {/*条件筛选*/}
             <View
               style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,

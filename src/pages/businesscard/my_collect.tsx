@@ -43,7 +43,7 @@ import BusinessCardRemoveNoticeModal from "./businesscard-remove-notice";
 import VisitorItem from "./visitor-item";
 import ShaiXuanModal from "./shai-xuan-modal";
 import ModeModal from "./mode-modal";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
@@ -342,7 +342,7 @@ class MyCollect extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <Navigation style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+          <NavigationBar style={styleAssign([bgColor(commonStyles.whiteColor)])}>
             <View
               style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
               <Image style={styleAssign([w(22), h(22), ml(20)])}
@@ -376,7 +376,7 @@ class MyCollect extends Component<Props, State> {
               </View>
               <View style={styleAssign([w(22), h(22), mr(20)])}/>
             </View>
-          </Navigation>
+          </NavigationBar>
           {
             childView
           }

@@ -19,7 +19,7 @@ interface Props {
 }
 
 
-export default class Navigation extends Component<Props> {
+export default class NavigationBar extends Component<Props> {
 
   constructor(props) {
     super(props);

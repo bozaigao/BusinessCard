@@ -35,7 +35,7 @@ import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
 import {User} from "../../const/global";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 
 
 interface Props {
@@ -158,7 +158,7 @@ class TiXian extends Component<Props, State> {
               </View>
             </View>
           </View>
-          <Navigation style={styleAssign([styles.upa, absT(0)])}>
+          <NavigationBar style={styleAssign([styles.upa, absT(0)])}>
             <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb])}>
               <Image style={styleAssign([w(22), h(22), ml(20)])}
                      src={require('../../assets/ico_back_white.png')}
@@ -170,7 +170,7 @@ class TiXian extends Component<Props, State> {
               </Text>
               <View style={styleAssign([w(22), h(22), mr(20)])}/>
             </View>
-          </Navigation>
+          </NavigationBar>
           {/*我的提现记录*/}
           <View style={styleAssign([wRatio(100), styles.uac])}
                 onClick={() => {

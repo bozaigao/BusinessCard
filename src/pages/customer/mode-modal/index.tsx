@@ -28,7 +28,7 @@ import {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button";
 import CustomSafeAreaView from "../../../compoments/safe-area-view";
-import Navigation from "../../../compoments/navigation";
+import NavigationBar from "../../../compoments/navigation_bar";
 import {Orientation} from "../../../const/global";
 import SanJiao from "../../../compoments/sanjiao";
 
@@ -71,13 +71,13 @@ export default class ModeModal extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), h(60), bgColor(commonStyles.whiteColor)])}/>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.blackColor), op(0.5)])}/>
         </TouchableButton>
-        <Navigation style={styleAssign([bgColor(commonStyles.whiteColor)])}>
+        <NavigationBar style={styleAssign([bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
             radiusA(26), styles.uac, styles.udr])}>
             <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../../assets/ico_search.png')}/>
             <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
           </View>
-        </Navigation>
+        </NavigationBar>
         <View style={styleAssign([styles.uf1])}>
           {/*条件筛选*/}
           <View

@@ -35,7 +35,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {BaseCoin, User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 
 
 interface Props {
@@ -185,7 +185,7 @@ class FenxiaoCenter extends Component<Props, State> {
               </View>
             </View>
           </View>
-          <Navigation style={styleAssign([styles.upa, absT(0)])}>
+          <NavigationBar style={styleAssign([styles.upa, absT(0)])}>
             <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb])}>
               <Image style={styleAssign([w(22), h(22), ml(20)])}
                      src={require('../../assets/ico_back_white.png')}
@@ -197,7 +197,7 @@ class FenxiaoCenter extends Component<Props, State> {
               </Text>
               <View style={styleAssign([w(22), h(22),mr(22)])}/>
             </View>
-          </Navigation>
+          </NavigationBar>
           {/*用户头像信息*/}
           <View style={styleAssign([styles.upa, absT(iphoneX() ? 105 : 75), wRatio(100)])}>
             <View style={styleAssign([styles.udr, wRatio(100), styles.ujb])}>

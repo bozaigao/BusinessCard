@@ -32,7 +32,7 @@ import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
 import {cloudBaseUrl} from "../../api/httpurl";
 import CustomSafeAreaView from "../../compoments/safe-area-view";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 
 
 interface Props {
@@ -106,11 +106,11 @@ class Mine extends Component<Props, State> {
         <View style={styleAssign([styles.uf1])}>
           <Image style={styleAssign([wRatio(100), h(iphoneX() ? 264 : 244), styles.upa, absT(0)])}
                  src={require('../../assets/ico_mine_bg.png')}/>
-          <Navigation>
+          <NavigationBar>
             <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
               <Text style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>我的</Text>
             </View>
-          </Navigation>
+          </NavigationBar>
           {/*用户头像信息*/}
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, mt(25)])}>

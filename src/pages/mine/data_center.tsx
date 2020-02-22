@@ -36,7 +36,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {BaseCoin, SettlementStats, User} from "../../const/global";
 import DataCenterItem from "../businesscard/data-center-item";
-import Navigation from "../../compoments/navigation";
+import NavigationBar from "../../compoments/navigation_bar";
 
 
 interface Props {
@@ -167,7 +167,7 @@ class DataCenter extends Component<Props, State> {
               </View>
             </View>
           </View>
-          <Navigation style={styleAssign([styles.upa, absT(0)])}>
+          <NavigationBar style={styleAssign([styles.upa, absT(0)])}>
             <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb])}>
               <Image style={styleAssign([w(22), h(22), ml(20)])}
                      src={require('../../assets/ico_back_white.png')}
@@ -179,7 +179,7 @@ class DataCenter extends Component<Props, State> {
               </Text>
               <View style={styleAssign([w(22), h(22), mr(20)])}/>
             </View>
-          </Navigation>
+          </NavigationBar>
           <View style={styleAssign([styles.uf1, pl(20), pr(20), mt(20)])}>
             <Picker mode='date' onChange={(e) => {
               this.setState({year: e.detail.value}, () => {
