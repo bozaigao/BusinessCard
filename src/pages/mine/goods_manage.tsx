@@ -239,40 +239,49 @@ class GoodsManage extends Component<Props, State> {
             <SanJiao orientation={showChoose ? Orientation.up : Orientation.down} style={styleAssign([ml(8)])}/>
           </TouchableButton>
         </View>
-        <ScrollView
-          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-          scrollY
-          onScrollToUpper={() => {
-            Taro.startPullDownRefresh();
-            debounce(() => {
-              this.refresh();
-            }, 400);
-          }}
-          onScrollToLower={() => {
-            this.loadMore();
-          }}>
-          {
-            goodsList.map((value, index) => {
-              console.log(value);
-              return (<GoodsManageItem key={index} itemData={value}
-                                       moreCallback={(itemData) => {
-                                         this.itemData = itemData;
-                                         this.setState({showOperate: true});
-                                       }
-                                       }
-                                       xiajiaCallback={(itemData) => {
-                                         this.itemData = itemData;
-                                         this.xiajiaGoods();
-                                       }
-                                       }
-                                       notTopGoodsCallback={(itemData) => {
-                                         this.itemData = itemData;
-                                         this.notTopGoods();
-                                       }
-                                       }/>);
-            })
-          }
-        </ScrollView>
+        {
+          goodsList.length === 0 ?
+            <View style={styleAssign([styles.uf1])}>
+              <View style={styleAssign([styles.uac, mt(48)])}>
+                <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_goods.png')}/>
+                <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无商品</Text>
+              </View>
+            </View> :
+            <ScrollView
+              style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+              scrollY
+              onScrollToUpper={() => {
+                Taro.startPullDownRefresh();
+                debounce(() => {
+                  this.refresh();
+                }, 400);
+              }}
+              onScrollToLower={() => {
+                this.loadMore();
+              }}>
+              {
+                goodsList.map((value, index) => {
+                  console.log(value);
+                  return (<GoodsManageItem key={index} itemData={value}
+                                           moreCallback={(itemData) => {
+                                             this.itemData = itemData;
+                                             this.setState({showOperate: true});
+                                           }
+                                           }
+                                           xiajiaCallback={(itemData) => {
+                                             this.itemData = itemData;
+                                             this.xiajiaGoods();
+                                           }
+                                           }
+                                           notTopGoodsCallback={(itemData) => {
+                                             this.itemData = itemData;
+                                             this.notTopGoods();
+                                           }
+                                           }/>);
+                })
+              }
+            </ScrollView>
+        }
         {/*新增商品*/}
         <BottomButon title={'新增商品'} onClick={() => {
           Taro.navigateTo({
