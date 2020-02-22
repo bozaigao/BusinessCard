@@ -26,7 +26,7 @@ import {
   ml,
   mt,
   pl,
-  pr,
+  pr, pt,
   radiusA,
   w,
   wRatio
@@ -104,7 +104,7 @@ class Haibao extends Component<Props, State> {
           </ScrollView>
           <View style={styleAssign([wRatio(100), h(4), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <ScrollView
-            style={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor), wRatio(100), hRatio(100), mt(16)])}
+            style={styleAssign([bgColor(commonStyles.pageDefaultBackgroundColor), wRatio(100), hRatio(100)])}
             scrollY>
             <View style={styleAssign([styles.uWrap, styles.udr, pl(14), pr(14), bgColor(commonStyles.whiteColor)])}>
               {
