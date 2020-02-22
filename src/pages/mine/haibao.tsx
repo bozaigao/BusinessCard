@@ -11,17 +11,22 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
-  absB, absR,
+  absB,
+  absR,
   bdColor,
-  bgColor, bo,
+  bgColor,
+  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio, ma,
+  h,
+  hRatio,
+  ma,
   ml,
-  mt, pa,
-  pl, pr,
+  mt,
+  pl,
+  pr,
   radiusA,
   w,
   wRatio
@@ -31,7 +36,6 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
-import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
 }
