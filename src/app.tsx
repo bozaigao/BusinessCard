@@ -132,6 +132,7 @@ class App extends Component {
           "tixian_page",
           "about_us",
           "help",
+          "tequan"
         ]
       },
     ],

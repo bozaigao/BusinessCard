@@ -141,7 +141,12 @@ class Mine extends Component<Props, State> {
                            src={`${cloudBaseUrl}ico_next_white.png`}/>
                   </TouchableButton>
                   <TouchableButton
-                    customStyle={styleAssign([mt(25), w(66), h(28), radiusA(4), bgColor('#E2BB7B'), styles.uac, styles.ujc])}>
+                    customStyle={styleAssign([mt(25), w(66), h(28), radiusA(4), bgColor('#E2BB7B'), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      Taro.navigateTo({
+                        url: `/pages/mine/tequan`
+                      });
+                    }}>
                     <Text style={styleAssign([fSize(12), color('#825D22')])}>开通特权</Text>
                   </TouchableButton>
                 </View>

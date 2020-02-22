@@ -46,7 +46,7 @@ interface Props {
 }
 
 interface State {
-  marginTop: any;
+  marginTop: number;
   showPersonalInfo: boolean;
   photoUrl: string[];
   videoUrl: string;
