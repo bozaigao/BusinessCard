@@ -89,6 +89,7 @@ class TeQuan extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
+
         <ScrollView
           style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor)])}
           scrollY>
@@ -181,7 +182,20 @@ class TeQuan extends Component<Props, State> {
           }
           {/*开通*/}
           <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
-            <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}>
+            <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
+                  onClick={() => {
+                    Taro.requestPayment({
+                      timeStamp: '',
+                      nonceStr: '',
+                      package: '',
+                      signType: 'MD5',
+                      paySign: '',
+                      success(res) {
+                      },
+                      fail(res) {
+                      }
+                    })
+                  }}>
               <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即开通</Text>
             </View>
           </View>
