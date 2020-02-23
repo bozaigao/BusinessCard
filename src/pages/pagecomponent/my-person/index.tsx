@@ -80,7 +80,7 @@ export default class MyPerson extends Component<Props, State> {
             pl(20), pr(20), mt(16)])}>
           {
             hasSelected && ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
-              return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 72 : 0)])}
+              return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 62 : 0)])}
                            onClick={() => {
                              this.setState({currentIndex: index});
                            }}>
