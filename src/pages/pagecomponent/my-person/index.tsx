@@ -94,6 +94,7 @@ export default class MyPerson extends Component<Props, State> {
         </View>
         {
           [1, 2, 3, 4, 5, 6].map((value, index) => {
+            console.log(value);
             return <RenMaiItem key={index}/>;
           })
         }
