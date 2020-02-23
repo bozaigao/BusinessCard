@@ -147,7 +147,12 @@ class Businesscard extends Component<Props, State> {
             Taro.navigateTo({
               url: `/pages/businesscard/my_collect`
             });
-          }}/>
+          }}
+                viewMyCardCallback={() => {
+                  Taro.navigateTo({
+                    url: `/pages/other_businesscard`
+                  });
+                }}/>
           {/*我的个人简介*/}
           <PersonalInfo/>
           {/*我的人脉*/}

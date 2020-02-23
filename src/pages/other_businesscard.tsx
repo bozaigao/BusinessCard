@@ -207,45 +207,25 @@ class OtherBusinesscard extends Component<Props, State> {
               </View>
             </View>
             {/*拨打电话等操作*/}
-            <View style={styleAssign([wRatio(100), h(264), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
-              <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(20)])}>
-                <View style={styleAssign([styles.uf1, styles.uac])}
-                      onClick={() => {
-                        Taro.navigateTo({
-                          url: `/pages/businesscard/my_collect`
-                        });
-                      }}>
-                  <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>118</Text>
-                  <View style={styleAssign([styles.udr, styles.uac])}>
-                    <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_star_gray.png`}/>
-                    <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>收藏</Text>
-                  </View>
-                </View>
-                <View style={styleAssign([w(1), h(25), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-                <View style={styleAssign([styles.uf1, styles.uac])}>
-                  <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>230</Text>
-                  <View style={styleAssign([styles.udr, styles.uac])}>
-                    <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_person_gray.png`}/>
-                    <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>访客</Text>
-                  </View>
-                </View>
-              </View>
+            <View style={styleAssign([wRatio(100), h(184), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
               {/*完善分享名片*/}
               <View
                 style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujc, h(44), bgColor(commonStyles.whiteColor), mt(20)])}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <TouchableButton
                     customStyle={styleAssign([w(160), radiusA(4), styles.uac, styles.ujc, bo(1), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme),
-                      bgColor(commonStyles.whiteColor), h(44)])}>
-                    <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>查看名片</Text>
+                      bgColor(commonStyles.whiteColor), h(44)])}
+                    onClick={() => {
+                      this.setState({showShare: true});
+                    }}>
+                    <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>分享名片</Text>
                   </TouchableButton>
                   <TouchableButton
                     customStyle={styleAssign([w(160), radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),
                       bdColor(commonStyles.colorTheme), bgColor(commonStyles.colorTheme)])}
                     onClick={() => {
-                      this.setState({showShare: true});
                     }}>
-                    <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>分享名片</Text>
+                    <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>收藏名片</Text>
                   </TouchableButton>
                 </View>
               </View>

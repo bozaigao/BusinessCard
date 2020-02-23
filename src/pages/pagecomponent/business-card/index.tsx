@@ -33,6 +33,7 @@ import {cloudBaseUrl} from "../../../api/httpurl";
 interface Props {
   shareClick: any;
   collectCallback: any;
+  viewMyCardCallback: any;
 }
 
 interface State {
@@ -42,7 +43,7 @@ export default class Card extends PureComponent<Props, State> {
 
   render() {
 
-    let {shareClick, collectCallback} = this.props;
+    let {shareClick, collectCallback,viewMyCardCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
@@ -107,7 +108,8 @@ export default class Card extends PureComponent<Props, State> {
             <View style={styleAssign([styles.udr, styles.uac])}>
               <TouchableButton
                 customStyle={styleAssign([w(160), radiusA(4), styles.uac, styles.ujc, bo(1), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme),
-                  bgColor(commonStyles.whiteColor), h(44)])}>
+                  bgColor(commonStyles.whiteColor), h(44)])}
+              onClick={viewMyCardCallback}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>查看名片</Text>
               </TouchableButton>
               <TouchableButton
