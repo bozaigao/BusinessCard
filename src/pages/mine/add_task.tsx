@@ -119,7 +119,7 @@ class AddTask extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'任务中心'}/>
+        <TopHeader title={'新建任务'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac])}>
           <Textarea style={styleAssign([wRatio(95), h(128), pa(20), bgColor(commonStyles.whiteColor),
             mt(10)])}
