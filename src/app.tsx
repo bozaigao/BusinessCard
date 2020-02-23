@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/other_businesscard",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -80,6 +81,7 @@ class App extends Component {
           "more_goods",
           "mingpianjia",
           "my_collect",
+          // "other_businesscard"
         ]
       },
       //雷达模块子界面

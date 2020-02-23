@@ -12,15 +12,12 @@ import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
 import {styleAssign} from "../utils/datatool";
 import {
-  bdColor,
   bgColor,
-  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
   h,
-  ma,
   ml,
   mr,
   mt,
@@ -37,7 +34,6 @@ import MyPerson from "./pagecomponent/my-person/index";
 import MyGoods from "./pagecomponent/my-goods/index";
 import JiZhiCard from "./pagecomponent/jizhi-card/index";
 import MyBusiness from "./pagecomponent/my-business/index";
-import TouchableButton from "../compoments/touchable-button/index";
 import ShareModal from "./pagecomponent/share-modal/index";
 import {User} from "../const/global";
 import {cloudBaseUrl} from "../api/httpurl";
@@ -114,10 +110,9 @@ class Businesscard extends Component<Props, State> {
 
   //@ts-ignore
   onShareAppMessage(res) {
-    console.log('名片分享');
     return {
-      title: '名片分享',
-      path: '/pages/businesscard/add_businesscard'
+      title: `${this.props.userInfo.name}的名片分享`,
+      path: '/pages/businesscard/other_businesscard'
     }
   }
 
@@ -138,21 +133,8 @@ class Businesscard extends Component<Props, State> {
         {/*切换名片*/}
         <NavigationBar>
           <View
-            style={styleAssign([wRatio(100), styles.ujb, styles.uac, styles.udr])}>
-            <View
-              style={styleAssign([styles.uac, styles.udr, ml(23), w(95), h(32), radiusA(16), bdColor('#E5E5E5'), bo(1), {borderStyle: 'solid'}])}>
-              <Image style={styleAssign([w(27), h(27), ma(2)])} src={`${cloudBaseUrl}ico_default.png`}/>
-              <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
-            </View>
-            <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
-                             onClick={() => {
-                               Taro.navigateTo({
-                                 url: `/pages/businesscard/qiehuan_businesscard`
-                               });
-                             }}>
-              <Text style={styleAssign([fSize(18), color('#343434')])}>名片</Text>
-            </TouchableButton>
-            <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
+            style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujc])}>
+            <Text style={styleAssign([fSize(18), color('#343434')])}>名片</Text>
           </View>
         </NavigationBar>
         <ScrollView
