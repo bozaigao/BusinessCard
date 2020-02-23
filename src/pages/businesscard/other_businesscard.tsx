@@ -8,9 +8,9 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
-import CustomSafeAreaView from "../compoments/safe-area-view/index";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 import {
   absB,
   absL,
@@ -34,20 +34,19 @@ import {
   radiusA,
   w,
   wRatio
-} from "../utils/style";
+} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../actions/task_center';
-import * as loginActions from '../actions/login';
-import PersonalInfo from "./pagecomponent/personal-info/index";
-import MyPerson from "./pagecomponent/my-person/index";
-import MyGoods from "./pagecomponent/my-goods/index";
-import JiZhiCard from "./pagecomponent/jizhi-card/index";
-import MyBusiness from "./pagecomponent/my-business/index";
-import TouchableButton from "../compoments/touchable-button/index";
-import ShareModal from "./pagecomponent/share-modal/index";
-import {User} from "../const/global";
-import {cloudBaseUrl} from "../api/httpurl";
-import NavigationBar from "../compoments/navigation_bar/index";
+import * as actions from '../../actions/task_center';
+import * as loginActions from '../../actions/login';
+import PersonalInfo from "../pagecomponent/personal-info/index";
+import MyGoods from "../pagecomponent/my-goods/index";
+import JiZhiCard from "../pagecomponent/jizhi-card/index";
+import MyBusiness from "../pagecomponent/my-business/index";
+import TouchableButton from "../../compoments/touchable-button/index";
+import ShareModal from "../pagecomponent/share-modal/index";
+import {User} from "../../const/global";
+import {cloudBaseUrl} from "../../api/httpurl";
+import NavigationBar from "../../compoments/navigation_bar/index";
 
 interface Props {
   //获取用户信息
@@ -283,8 +282,6 @@ class OtherBusinesscard extends Component<Props, State> {
           </View>
           {/*我的个人简介*/}
           <PersonalInfo/>
-          {/*我的人脉*/}
-          <MyPerson/>
           {/*我的商品*/}
           {
             userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
