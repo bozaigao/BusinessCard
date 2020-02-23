@@ -63,7 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/other_businesscard",
+      // "pages/other_businesscard",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
