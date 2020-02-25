@@ -7,9 +7,9 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view/index";
+import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign, toast} from "../../utils/datatool";
+import {styleAssign, toast} from "../utils/datatool";
 import {
   bgColor,
   color,
@@ -17,21 +17,21 @@ import {
   default as styles,
   fSize,
   h,
-  ml,
+  ml, mr,
   mt,
   pa,
   pl,
   pr,
   w,
   wRatio
-} from "../../utils/style";
+} from "../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/task_center';
-import TopHeader from "../../compoments/top-header/index";
-import BottomButon from "../../compoments/bottom-buton/index";
+import * as actions from '../actions/task_center';
+import TopHeader from "../compoments/top-header/index";
+import BottomButon from "../compoments/bottom-buton/index";
 import {Image, Picker, Text, Textarea, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button/index";
-import {cloudBaseUrl} from "../../api/httpurl";
+import TouchableButton from "../compoments/touchable-button/index";
+import {cloudBaseUrl} from "../api/httpurl";
 
 interface Props {
   addTask: any;
@@ -120,13 +120,21 @@ class AddTask extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'新建任务'}/>
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac])}>
-          <Textarea style={styleAssign([wRatio(95), h(128), pa(20), bgColor(commonStyles.whiteColor),
-            mt(10)])}
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), styles.uac])}>
+          <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+          <View
+            style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), h(40), pl(20), pr(20)])}>
+            <Text style={styleAssign([fSize(14), color('#727272')])}>主题</Text>
+            <View style={styleAssign([styles.udr, styles.uac])}>
+              <Text style={styleAssign([fSize(14), color('#727272')])}>{theme.length}</Text>
+              <Text style={styleAssign([fSize(14), color('#979797')])}>/50</Text>
+            </View>
+          </View>
+          <Textarea style={styleAssign([wRatio(90), h(128), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
                     value={theme} placeholder={'例如：电话回访客户'}
                     onInput={(e) => {
                       this.setState({theme: e.detail.value});
-                    }}/>
+                    }} maxlength={50}/>
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <Picker mode='date' onChange={(e) => {
             this.setState({date: e.detail.value});
@@ -149,11 +157,18 @@ class AddTask extends Component<Props, State> {
             <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}/>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
-          <Textarea style={styleAssign([wRatio(95), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
-                    value={remark} placeholder={'备注'}
-                    onInput={(e) => {
-                      this.setState({remark: e.detail.value});
-                    }}/>
+          <View
+            style={styleAssign([wRatio(100), styles.uas, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+            <Textarea style={styleAssign([wRatio(70), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
+                      value={remark} placeholder={'备注'}
+                      onInput={(e) => {
+                        this.setState({remark: e.detail.value});
+                      }} maxlength={200}/>
+            <View style={styleAssign([styles.udr, styles.uac, mr(20), mt(18), bgColor(commonStyles.whiteColor)])}>
+              <Text style={styleAssign([fSize(14), color('#727272')])}>{remark.length}</Text>
+              <Text style={styleAssign([fSize(14), color('#979797')])}>/200</Text>
+            </View>
+          </View>
         </View>
         {/*新建任务*/}
         <BottomButon title={'保存'} onClick={() => {

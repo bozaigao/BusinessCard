@@ -63,7 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      // "pages/other_businesscard",
+      "pages/add_task",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -107,7 +107,7 @@ class App extends Component {
         root: 'pages/mine',
         pages: [
           "personal_info",
-          "add_task",
+          // "add_task",
           "tool_box",
           "haibao",
           "goods_detail",
