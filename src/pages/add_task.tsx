@@ -29,9 +29,10 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
 import TopHeader from "../compoments/top-header/index";
 import BottomButon from "../compoments/bottom-buton/index";
-import {Image, Picker, Text, Textarea, View} from "@tarojs/components";
+import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../api/httpurl";
+import GuanLianCustomer from "./sub_pagecomponent/guanlian-customer";
 
 interface Props {
   addTask: any;
@@ -120,7 +121,9 @@ class AddTask extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'新建任务'}/>
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), styles.uac])}>
+        <ScrollView
+          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}
+          scrollY>
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <View
             style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), h(40), pl(20), pr(20)])}>
@@ -155,6 +158,10 @@ class AddTask extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
             <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}/>
+             <GuanLianCustomer/>
+             <GuanLianCustomer/>
+             <GuanLianCustomer/>
+             <GuanLianCustomer/>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
           <View
@@ -169,7 +176,7 @@ class AddTask extends Component<Props, State> {
               <Text style={styleAssign([fSize(14), color('#979797')])}>/200</Text>
             </View>
           </View>
-        </View>
+        </ScrollView>
         {/*新建任务*/}
         <BottomButon title={'保存'} onClick={() => {
           this.addTask();
