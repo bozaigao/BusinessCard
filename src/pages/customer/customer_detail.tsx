@@ -186,7 +186,7 @@ class CustomerDetail extends Component<Props, State> {
               </View>
               <View style={styleAssign([styles.uac])}>
                 <View style={styleAssign([w(98), h(98)])}>
-                  <Image style={styleAssign([w(98), h(98)])}
+                  <Image style={styleAssign([w(98), h(98), radiusA(49)])}
                          src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
                   <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
                          src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
