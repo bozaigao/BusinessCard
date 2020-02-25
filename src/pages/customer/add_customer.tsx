@@ -32,7 +32,7 @@ import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
 import BottomButon from "../../compoments/bottom-buton";
 import {Enum} from "../../const/global";
-import {cloudBaseUrl, FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 
 interface Props {
   //获取banner信息
@@ -173,10 +173,8 @@ class AddCustomer extends Component<Props, State> {
     this.props.addPrivateCustomer(paramas).then((res) => {
       console.log('手动录入客户', res);
       this.viewRef && this.viewRef.hideLoading();
-      if (res) {
+      if (res !== NetworkState.FAIL) {
         toast('录入成功');
-      } else {
-        toast('录入失败');
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();

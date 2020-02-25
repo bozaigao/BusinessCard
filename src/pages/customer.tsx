@@ -142,79 +142,77 @@ class Customer extends Component<Props, State> {
                           ref={(ref) => {
                             this.viewRef = ref;
                           }}>
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.ujb])}>
-            <NavigationBar>
-              <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
-                radiusA(26), styles.uac, styles.udr])}>
-                <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../assets/ico_search.png')}/>
-                <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
+        <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.ujb])}>
+          <NavigationBar>
+            <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
+              radiusA(26), styles.uac, styles.udr])}>
+              <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../assets/ico_search.png')}/>
+              <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
+            </View>
+          </NavigationBar>
+          {/*条件筛选*/}
+          <View
+            style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
+              pl(20), pr(20)])}>
+            <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${totalCustomers}位客户`}</Text>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <View style={styleAssign([styles.uac, styles.udr])}
+                    onClick={() => {
+                      this.setState({showMode: true});
+                    }}>
+                <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
+                <SanJiao orientation={Orientation.down} style={styleAssign([ml(3)])}/>
               </View>
-            </NavigationBar>
-            {/*条件筛选*/}
-            <View
-              style={styleAssign([wRatio(100), h(36), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
-                pl(20), pr(20)])}>
-              <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${totalCustomers}位客户`}</Text>
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <View style={styleAssign([styles.uac, styles.udr])}
-                      onClick={() => {
-                        this.setState({showMode: true});
-                      }}>
-                  <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
-                  <SanJiao orientation={Orientation.down} style={styleAssign([ml(3)])}/>
-                </View>
-                <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
-                      onClick={() => {
-                        this.setState({showShaiXuan: true});
-                      }}>
-                  <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
-                  <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../assets/ico_shaixuan.png')}/>
-                </View>
+              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                    onClick={() => {
+                      this.setState({showShaiXuan: true});
+                    }}>
+                <Text style={styleAssign([color('#727272'), fSize(14)])}>筛选</Text>
+                <Image style={styleAssign([w(14), h(14), ml(3)])} src={require('../assets/ico_shaixuan.png')}/>
               </View>
             </View>
           </View>
-          {
-            customerList.length === 0 ?
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-                <View style={styleAssign([styles.uac])}>
-                  <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
-                  <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
-                </View>
-              </View> :
-              <ScrollView
-                onScrollToUpper={() => {
-                  this.refresh();
-                }}
-                onScrollToLower={() => {
-                  this.loadMore();
-                }}
-                style={styleAssign([styles.uf1, styles.uac])}
-                scrollY>
-                {
-                  customerList.map((value: CustomerModel, index) => {
-                    console.log(value);
-                    return (<CustomItem key={index} customer={value} onClick={() => {
-                      Taro.navigateTo({
-                        url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
-                      });
-                    }}
-                                        genJinCallback={(customer) => {
-                                          Taro.navigateTo({
-                                            url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-                                          });
-                                        }
-                                        }/>);
-                  })
-                }
-              </ScrollView>
-          }
-          <BottomButon title={'新增客户'} onClick={() => {
-            Taro.navigateTo({
-              url: `/pages/customer/add_customer`
-            });
-          }}/>
         </View>
+        {
+          customerList.length === 0 ?
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+              <View style={styleAssign([styles.uac])}>
+                <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
+                <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
+              </View>
+            </View> :
+            <ScrollView
+              onScrollToUpper={() => {
+                this.refresh();
+              }}
+              onScrollToLower={() => {
+                this.loadMore();
+              }}
+              style={styleAssign([styles.uf1, styles.uac])}
+              scrollY>
+              {
+                customerList.map((value: CustomerModel, index) => {
+                  console.log(value);
+                  return (<CustomItem key={index} customer={value} onClick={() => {
+                    Taro.navigateTo({
+                      url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
+                    });
+                  }}
+                                      genJinCallback={(customer) => {
+                                        Taro.navigateTo({
+                                          url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+                                        });
+                                      }
+                                      }/>);
+                })
+              }
+            </ScrollView>
+        }
+        <BottomButon title={'新增客户'} onClick={() => {
+          Taro.navigateTo({
+            url: `/pages/customer/add_customer`
+          });
+        }}/>
         {
           showMode && <ModeModal
             totalPerson={totalCustomers}

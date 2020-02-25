@@ -7,9 +7,9 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../compoments/safe-area-view/index";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign, toast} from "../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -24,15 +24,15 @@ import {
   pr,
   w,
   wRatio
-} from "../utils/style";
+} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../actions/task_center';
-import TopHeader from "../compoments/top-header/index";
-import BottomButon from "../compoments/bottom-buton/index";
+import * as actions from '../../actions/task_center';
+import TopHeader from "../../compoments/top-header/index";
+import BottomButon from "../../compoments/bottom-buton/index";
 import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
-import TouchableButton from "../compoments/touchable-button/index";
-import {cloudBaseUrl} from "../api/httpurl";
-import GuanLianCustomer from "./sub_pagecomponent/guanlian-customer";
+import TouchableButton from "../../compoments/touchable-button/index";
+import {cloudBaseUrl} from "../../api/httpurl";
+import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer/index";
 
 interface Props {
   addTask: any;
