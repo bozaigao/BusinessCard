@@ -173,7 +173,7 @@ class Customer extends Component<Props, State> {
         </View>
         {
           customerList.length === 0 ?
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc,bgColor(commonStyles.pageDefaultBackgroundColor),bgColor(commonStyles.pageDefaultBackgroundColor)])}>
               <View style={styleAssign([styles.uac])}>
                 <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
                 <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
