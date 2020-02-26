@@ -63,7 +63,6 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/choose_customer",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -134,7 +133,8 @@ class App extends Component {
           "tixian_page",
           "about_us",
           "help",
-          "tequan"
+          "tequan",
+          "choose_customer"
         ]
       },
     ],

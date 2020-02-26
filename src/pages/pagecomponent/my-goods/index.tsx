@@ -7,20 +7,7 @@
 import Taro, {Component} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {parseData, styleAssign} from "../../../utils/datatool";
-import styles, {
-  absT,
-  bgColor,
-  color,
-  commonStyles,
-  fSize,
-  h,
-  ml,
-  mt,
-  pa,
-  radiusA,
-  w,
-  wRatio
-} from "../../../utils/style";
+import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, pa, radiusA, w, wRatio} from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
 import {Goods} from "../../../const/global";
 

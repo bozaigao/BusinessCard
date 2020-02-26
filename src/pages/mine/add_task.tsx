@@ -17,7 +17,8 @@ import {
   default as styles,
   fSize,
   h,
-  ml, mr,
+  ml,
+  mr,
   mt,
   pa,
   pl,
@@ -32,7 +33,8 @@ import BottomButon from "../../compoments/bottom-buton/index";
 import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../../api/httpurl";
-import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer/index";
+import {CustomerModel} from "../../const/global";
+import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer";
 
 interface Props {
   addTask: any;
@@ -42,6 +44,7 @@ interface State {
   theme: string;
   date: string;
   remark: string;
+  chooseCustomer: CustomerModel[];
 }
 
 @connect(state => state.login, {...actions})
@@ -68,7 +71,18 @@ class AddTask extends Component<Props, State> {
       theme: '',
       date: '',
       remark: '',
+      chooseCustomer: []
     }
+  }
+
+  componentDidMount() {
+    Taro.eventCenter.on('chooseCustomer', (chooseCustomer) => {
+      this.setState({chooseCustomer});
+    })
+  }
+
+  componentWillUnmount() {
+    Taro.eventCenter.off('chooseCustomer');
   }
 
 
@@ -79,7 +93,7 @@ class AddTask extends Component<Props, State> {
    * @function: 添加任务
    */
   addTask = () => {
-    let {theme, date, remark} = this.state;
+    let {theme, date, remark, chooseCustomer} = this.state;
 
     if (theme.length === 0) {
       toast('主题不能为空');
@@ -101,6 +115,15 @@ class AddTask extends Component<Props, State> {
       remark
     };
 
+    if (chooseCustomer.length !== 0) {
+      let userIds: number[] = [];
+
+      for (let i = 0; i < chooseCustomer.length; i++) {
+        userIds.push(chooseCustomer[i].id);
+      }
+      Object.assign(paramas, {userIds: JSON.stringify(userIds)});
+    }
+
     this.viewRef && this.viewRef.showLoading();
     this.props.addTask(paramas).then((res) => {
       console.log(res);
@@ -114,7 +137,7 @@ class AddTask extends Component<Props, State> {
 
 
   render() {
-    let {theme, date, remark} = this.state;
+    let {theme, date, remark, chooseCustomer} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -157,8 +180,20 @@ class AddTask extends Component<Props, State> {
           </Picker>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
-            <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}/>
-             <GuanLianCustomer customer={null}/>
+            {
+              chooseCustomer.length === 0 &&
+              <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}
+                     onClick={() => {
+                       Taro.navigateTo({
+                         url: `/pages/mine/choose_customer`
+                       });
+                     }}/>
+            }
+            {
+              chooseCustomer.map((value, index) => {
+                return <GuanLianCustomer key={index} customer={value}/>;
+              })
+            }
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
           <View

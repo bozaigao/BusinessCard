@@ -6,7 +6,7 @@
  * @Description: 选择客户界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import CustomSafeAreaView from "../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {
   bgColor,
   color,
@@ -22,15 +22,15 @@ import {
   radiusA,
   w,
   wRatio
-} from "../utils/style";
-import {parseData, styleAssign, toast} from "../utils/datatool";
+} from "../../utils/style";
+import {parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../actions/customer";
-import TopHeader from "../compoments/top-header";
+import * as actions from "../../actions/customer";
+import TopHeader from "../../compoments/top-header/index";
 import {Image, Input, ScrollView, Text, View} from "@tarojs/components";
-import GuanLianCustomer from "./sub_pagecomponent/guanlian-customer";
-import {CustomerModel} from "../const/global";
+import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer/index";
+import {CustomerModel} from "../../const/global";
 
 interface Props {
   getCustomerList?: any;
@@ -143,7 +143,7 @@ class ChooseCustomer extends Component<Props, State> {
             pl(20), pr(20)])}>
           <View style={styleAssign([{width: '85%'}, h(31), op(0.7), bgColor('#F5F5F5'),
             radiusA(26), styles.uac, styles.udr])}>
-            <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../assets/ico_search.png')}/>
+            <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
             <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}
                    onInput={(e) => {
                      this.setState({name: e.detail.value}, () => {
@@ -151,14 +151,28 @@ class ChooseCustomer extends Component<Props, State> {
                      })
                    }}/>
           </View>
-          <Text style={styleAssign([fSize(16), color('#CECECE')])}>取消</Text>
+          <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme)])}
+                onClick={() => {
+                  let chooseCustomers: CustomerModel[] = [];
+
+                  for (let i = 0; i < customerList.length; i++) {
+                    for (let j = 0; j < chooseCustomerIds.length; j++) {
+                      if (customerList[i].id === chooseCustomerIds[j]) {
+                        chooseCustomers.push(customerList[i]);
+                        break;
+                      }
+                    }
+                  }
+                  Taro.eventCenter.trigger('chooseCustomer', chooseCustomers);
+                  Taro.navigateBack();
+                }}>确定</Text>
         </View>
         {
           customerList.length === 0 ?
             <View
               style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
               <View style={styleAssign([styles.uac])}>
-                <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
+                <Image style={styleAssign([w(78), h(69)])} src={require('../../assets/ico_no_data.png')}/>
                 <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
               </View>
             </View> :
