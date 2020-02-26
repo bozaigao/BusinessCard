@@ -16,7 +16,8 @@ import {
   h,
   ml,
   op,
-  pl, pr,
+  pl,
+  pr,
   radiusA,
   w,
   wRatio
@@ -27,6 +28,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../actions/customer";
 import TopHeader from "../compoments/top-header";
 import {Image, Input, ScrollView, Text, View} from "@tarojs/components";
+import GuanLianCustomer from "./sub_pagecomponent/guanlian-customer";
 
 interface Props {
   //获取banner信息
@@ -96,27 +98,6 @@ class ChooseCustomer extends Component<Props, State> {
   }
 
 
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2020/1/14
-   * @function: 删除客户
-   */
-  deleteCustomer = (id) => {
-    this.viewRef && this.viewRef.showLoading();
-    this.props.deleteCustomer({id}).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
-      toast('删除成功');
-      Taro.eventCenter.trigger('refreshCustomerList');
-      Taro.navigateBack();
-      console.log('删除信息', res);
-    }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
-      console.log('报错啦', e);
-    });
-  }
-
-
   render() {
 
     return (
@@ -138,7 +119,7 @@ class ChooseCustomer extends Component<Props, State> {
         <ScrollView
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
-
+          <GuanLianCustomer backgroundColor={commonStyles.pageDefaultBackgroundColor} marginTop={10}/>
         </ScrollView>
       </CustomSafeAreaView>
     )
