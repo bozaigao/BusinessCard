@@ -37,8 +37,6 @@ import NavigationBar from "../compoments/navigation_bar/index";
 import SanJiao from "../compoments/sanjiao/index";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
   getCustomerList?: any;
 }
 

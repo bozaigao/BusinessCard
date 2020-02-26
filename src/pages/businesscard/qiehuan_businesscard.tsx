@@ -33,8 +33,6 @@ import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   dispatchLogin?: any;
-  //获取banner信息
-  dispatchBannerInfo?: any;
 }
 
 interface State {

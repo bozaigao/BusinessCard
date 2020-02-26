@@ -35,8 +35,6 @@ import {Enum} from "../../const/global";
 import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
   //手动录入客户
   addPrivateCustomer?: any;
 }

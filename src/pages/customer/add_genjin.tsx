@@ -36,7 +36,6 @@ import {Image, Text, Textarea, View} from "@tarojs/components";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
-  //获取banner信息
   addFollowUp?: any;
 }
 

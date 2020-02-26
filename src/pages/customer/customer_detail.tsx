@@ -42,8 +42,6 @@ import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
   deleteCustomer?: any;
   followUpList?: any;
 }

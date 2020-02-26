@@ -34,8 +34,6 @@ import {cloudBaseUrl, FileController} from "../../api/httpurl";
 import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
   updatePrivateCustomer?: any;
 }
 

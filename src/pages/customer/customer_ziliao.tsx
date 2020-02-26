@@ -36,8 +36,6 @@ import {CustomerDetailModel} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
   getCustomerDetail?: any;
 }
 

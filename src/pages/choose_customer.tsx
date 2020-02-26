@@ -31,10 +31,7 @@ import {Image, Input, ScrollView, Text, View} from "@tarojs/components";
 import GuanLianCustomer from "./sub_pagecomponent/guanlian-customer";
 
 interface Props {
-  //获取banner信息
-  dispatchBannerInfo?: any;
-  deleteCustomer?: any;
-  followUpList?: any;
+  getCustomerList?: any;
 }
 
 interface State {
@@ -44,6 +41,8 @@ interface State {
 @connect(state => state.login, {...actions})
 class ChooseCustomer extends Component<Props, State> {
   private viewRef;
+  private pageNo;
+  private pageSize;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -58,7 +57,8 @@ class ChooseCustomer extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log('呵呵', parseData(this.$router.params.itemData));
-
+    this.pageNo = 1;
+    this.pageSize = 10;
     this.state = {
       customer: parseData(this.$router.params.itemData),
       showOperate: false,
@@ -75,24 +75,45 @@ class ChooseCustomer extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.followUpList();
+    this.refresh();
   }
 
   componentDidHide() {
   }
 
+  refresh = () => {
+    this.pageNo = 1;
+    this.getCustomerList(true);
+  }
+
+  loadMore = () => {
+    this.pageNo++;
+    this.getCustomerList();
+  }
+
+
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/28
-   * @function:
+   * @date 2020/1/10
+   * @function: 获取客户列表
    */
-  followUpList = () => {
-    console.log('查询客户跟进信息记录');
-    this.props.followUpList({id: this.state.customer.id}).then((res) => {
-      console.log('查询客户跟进信息记录', res);
-      this.setState({flowUpList: res});
+  getCustomerList = (refresh?: boolean) => {
+
+    this.viewRef && this.viewRef.showLoading();
+    this.props.getCustomerList({pageNo: this.pageNo, pageSize: this.pageSize}).then((res) => {
+      console.log('获取客户列表', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (refresh) {
+        this.setState({customerList: res.records, totalCustomers: res.total});
+      } else if (res.records && res.records.length !== 0) {
+        this.setState({customerList: this.state.customerList.concat(res.records), totalCustomers: res.total});
+      } else {
+        toast('没有客户了');
+      }
+
     }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
