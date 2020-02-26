@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/pages/choose_customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/choose_customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sub_pagecomponent/guanlian-customer/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/guanlian-customer/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,12 +19,12 @@
       <file leaf-file-name="choose_customer.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/choose_customer.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="164" column="38" selection-start-line="164" selection-start-column="38" selection-end-line="164" selection-end-column="38" />
+            <state relative-caret-position="198">
+              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#117#169#0" expanded="true" />
-                <element signature="e#465#503#0" expanded="true" />
+                <element signature="e#471#509#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -513,12 +510,12 @@
       <workItem from="1582436475934" duration="11072000" />
       <workItem from="1582639677839" duration="4649000" />
       <workItem from="1582708639260" duration="655000" />
-      <workItem from="1582727969364" duration="2374000" />
+      <workItem from="1582727969364" duration="2387000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="816917000" />
+    <option name="totallyTimeSpent" value="816930000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1062,12 +1059,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/choose_customer.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="164" column="38" selection-start-line="164" selection-start-column="38" selection-end-line="164" selection-end-column="38" />
+        <state relative-caret-position="198">
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#117#169#0" expanded="true" />
-            <element signature="e#465#503#0" expanded="true" />
+            <element signature="e#471#509#0" expanded="true" />
           </folding>
         </state>
       </provider>
