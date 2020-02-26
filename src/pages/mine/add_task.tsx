@@ -158,10 +158,7 @@ class AddTask extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
             <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}/>
-             <GuanLianCustomer/>
-             <GuanLianCustomer/>
-             <GuanLianCustomer/>
-             <GuanLianCustomer/>
+             <GuanLianCustomer customer={null}/>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
           <View

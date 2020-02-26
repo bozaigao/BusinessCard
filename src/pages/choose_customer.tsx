@@ -39,6 +39,7 @@ interface Props {
 interface State {
   customerList: CustomerModel[];
   name: string;
+  chooseCustomerIds: number[];
 }
 
 @connect(state => state.login, {...actions})
@@ -64,7 +65,8 @@ class ChooseCustomer extends Component<Props, State> {
     this.pageSize = 10;
     this.state = {
       customerList: [],
-      name: ''
+      name: '',
+      chooseCustomerIds: []
     }
   }
 
@@ -128,7 +130,7 @@ class ChooseCustomer extends Component<Props, State> {
 
 
   render() {
-    let {customerList} = this.state;
+    let {customerList, chooseCustomerIds} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -173,7 +175,32 @@ class ChooseCustomer extends Component<Props, State> {
                 customerList.map((value, index) => {
                   return <GuanLianCustomer customer={value} key={index}
                                            backgroundColor={commonStyles.pageDefaultBackgroundColor}
-                                           marginTop={10}/>;
+                                           marginTop={10}
+                                           hascheck={true}
+                                           isChecked={chooseCustomerIds.includes(value.id)}
+                                           onChoose={(id: number) => {
+                                             let hasData = false;
+
+                                             for (let i = 0; i < chooseCustomerIds.length; i++) {
+                                               if (id === chooseCustomerIds[i]) {
+                                                 hasData = true;
+                                                 this.state.chooseCustomerIds.splice(i, 1);
+                                                 this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
+                                                   () => {
+                                                     console.log('点击', this.state.chooseCustomerIds);
+                                                   });
+                                                 break;
+                                               }
+                                             }
+                                             if (!hasData) {
+                                               this.state.chooseCustomerIds.push(id);
+                                               this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
+                                                 () => {
+                                                   console.log('点击', this.state.chooseCustomerIds);
+                                                 });
+                                             }
+                                           }
+                                           }/>;
                 })
               }
             </ScrollView>

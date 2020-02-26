@@ -27,20 +27,27 @@ import {CustomerModel} from "../../../const/global";
 
 interface Props {
   hascheck?: boolean;
+  isChecked?: boolean;
   backgroundColor?: string;
   marginTop?: number;
+  onChoose?: any;
   customer: CustomerModel;
 }
 
 export default class GuanLianCustomer extends Component<Props> {
 
+
   render() {
-    let {backgroundColor, marginTop, customer} = this.props;
+    let {backgroundColor, marginTop, customer, hascheck, isChecked, onChoose} = this.props;
 
     return (
       <View
         style={styleAssign([wRatio(100), styles.uac, styles.ujc, bgColor(backgroundColor ? backgroundColor : commonStyles.whiteColor),
-          mt(marginTop ? marginTop : 0)])}>
+          mt(marginTop ? marginTop : 0)])}
+        onClick={() => {
+          onChoose && onChoose(customer.id);
+        }
+        }>
         <View
           style={styleAssign([wRatio(90), h(96), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb])}>
           <View style={styleAssign([styles.udr, styles.uac])}>
@@ -54,7 +61,11 @@ export default class GuanLianCustomer extends Component<Props> {
               <Text style={styleAssign([color('#A9A9A9'), fSize(12), mt(8)])}>{customer.company}</Text>
             </View>
           </View>
-          <Image style={styleAssign([w(25), h(25), mr(14)])} src={require('../../../assets/ico_checked.png')}/>
+          {
+            hascheck &&
+            <Image style={styleAssign([w(25), h(25), mr(14)])}
+                   src={isChecked ? require('../../../assets/ico_checked.png') : require('../../../assets/ico_nocheck.png')}/>
+          }
         </View>
       </View>
     )
