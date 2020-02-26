@@ -140,7 +140,7 @@ class AddCustomer extends Component<Props, State> {
    */
   addPrivateCustomer = () => {
 
-    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, desc, detailAddress} = this.state;
+    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress} = this.state;
 
     if (phone.length === 0) {
       toast('手机不能为空');

@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/choose_customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/choose_customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/add_task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/add_task.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/my-goods/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/my-goods/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -20,11 +14,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="choose_customer.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_customer.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/add_customer.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="142" column="88" selection-start-line="142" selection-start-column="88" selection-end-line="142" selection-end-column="88" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#118#170#0" expanded="true" />
+                <element signature="e#480#518#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="choose_customer.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/choose_customer.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="153" column="76" selection-start-line="153" selection-start-column="76" selection-end-line="153" selection-end-column="76" />
+            <state relative-caret-position="380">
+              <caret line="166" column="36" lean-forward="true" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#117#169#0" expanded="true" />
@@ -71,15 +79,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="344">
               <caret line="194" column="12" selection-start-line="194" selection-start-column="6" selection-end-line="194" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/@types/lodash/ts3.1/common/common.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="184" column="41" lean-forward="true" selection-start-line="184" selection-start-column="41" selection-end-line="184" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -143,7 +142,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onShare</find>
       <find>分享名片</find>
       <find>cloudBaseUrl</find>
       <find>next</find>
@@ -173,6 +171,7 @@
       <find>didMo</find>
       <find>取消</find>
       <find>add</find>
+      <find>确定</find>
     </findStrings>
     <replaceStrings>
       <replace>Enum</replace>
@@ -254,7 +253,6 @@
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/add_task.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
@@ -264,6 +262,7 @@
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/my-goods/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/add_task.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/choose_customer.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
       </list>
     </option>
   </component>
@@ -325,7 +324,7 @@
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="mine" type="462c0819:PsiDirectoryNode" />
+              <item name="customer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -535,12 +534,12 @@
       <workItem from="1582436475934" duration="11072000" />
       <workItem from="1582639677839" duration="4649000" />
       <workItem from="1582708639260" duration="655000" />
-      <workItem from="1582727969364" duration="4676000" />
+      <workItem from="1582727969364" duration="4713000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="819219000" />
+    <option name="totallyTimeSpent" value="819256000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -560,9 +559,9 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25435898" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19529837" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3271795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -949,13 +948,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/add_customer.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3146">
-          <caret line="174" column="24" selection-start-line="174" selection-start-column="24" selection-end-line="174" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/my-business/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -1085,12 +1077,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/choose_customer.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="153" column="76" selection-start-line="153" selection-start-column="76" selection-end-line="153" selection-end-column="76" />
+        <state relative-caret-position="380">
+          <caret line="166" column="36" lean-forward="true" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#117#169#0" expanded="true" />
             <element signature="e#471#509#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/add_customer.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="142" column="88" selection-start-line="142" selection-start-column="88" selection-end-line="142" selection-end-column="88" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#118#170#0" expanded="true" />
+            <element signature="e#480#518#0" expanded="true" />
           </folding>
         </state>
       </provider>
