@@ -37,7 +37,7 @@ import BottomButon from "../../compoments/bottom-buton";
 import ListItem from "../../compoments/list-item";
 import TouchableButton from "../../compoments/touchable-button";
 import {Enum, User} from "../../const/global";
-import {cloudBaseUrl, FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 
 interface Props {
   //上传文件
@@ -109,7 +109,7 @@ class PersonalInfo extends Component<Props, State> {
         {title: '行业', subtitle: industry ? industry : '选择'},
         {title: '职位', subtitle: position ? position : '必填', hasEdit: true}],
       titleList2: [
-        {title: '微信', subtitle: wechat ? wechat : '',hasEdit: true},
+        {title: '微信', subtitle: wechat ? wechat : '', hasEdit: true},
         {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
         {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
         {title: '地区', subtitle: province ? province + city : '选择'},
@@ -205,8 +205,10 @@ class PersonalInfo extends Component<Props, State> {
     this.props.update(paramas).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
-      toast('信息更新成功');
       this.getUserInfo();
+      if (res !== NetworkState.FAIL) {
+        toast('信息更新成功');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);

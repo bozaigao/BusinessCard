@@ -151,10 +151,12 @@ class AddGoods extends Component<Props, State> {
       detailUrl: JSON.stringify(this.detailUrls),
       introduction
     }).then((res) => {
-      toast('商品更新成功');
       Taro.eventCenter.trigger('goodsListRefresh');
       console.log('更新商品信息', res);
       this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('商品更新成功');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -195,12 +197,12 @@ class AddGoods extends Component<Props, State> {
       detailUrl: JSON.stringify(this.detailUrls),
       introduction
     }).then((res) => {
-      if (res !== NetworkState.FAIL) {
-        toast('商品添加成功');
-      }
       Taro.eventCenter.trigger('goodsListRefresh');
       console.log('添加商品信息', res);
       this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('商品添加成功');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
