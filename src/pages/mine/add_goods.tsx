@@ -210,6 +210,9 @@ class AddGoods extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('商品添加成功');
+        debounce(1000,()=>{
+          Taro.navigateBack();
+        });
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();

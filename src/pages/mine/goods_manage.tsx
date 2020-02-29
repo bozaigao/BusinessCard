@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -233,7 +233,7 @@ class GoodsManage extends Component<Props, State> {
     let child;
 
     if (currentIndex === 0) {
-      child = <View style={styleAssign([styles.uf1])}>
+      child = <View style={styleAssign([wRatio(100),hRatio(100)])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20)])}>
