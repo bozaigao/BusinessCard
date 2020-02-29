@@ -112,7 +112,7 @@ class AddBusinesscard extends Component<Props, State> {
   componentDidMount() {
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
-      this.state.listData[2].subtitle = industry;
+      this.state.listData[2].value = industry;
 
       this.setState({listData: this.state.listData});
     })
@@ -127,15 +127,15 @@ class AddBusinesscard extends Component<Props, State> {
   update = () => {
     let {listData, showPhone} = this.state;
 
-    if (listData[0].value.length === 0) {
+    if (!listData[0].value || listData[0].value.length === 0) {
       toast('请先填写姓名');
       return;
     }
-    if (listData[1].value.length === 0) {
+    if (!listData[1].value || listData[1].value.length === 0) {
       toast('请先填写公司');
       return;
     }
-    if (listData[2].value.length === 0) {
+    if (!listData[2].value || listData[2].value.length === 0) {
       toast('请先填写行业');
       return;
     }
