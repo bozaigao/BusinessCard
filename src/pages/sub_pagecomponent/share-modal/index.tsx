@@ -18,7 +18,7 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio, mr,
+  hRatio,
   mt,
   op,
   w,
@@ -28,7 +28,6 @@ import TouchableButton from "../../../compoments/touchable-button/index";
 
 
 interface Props {
-  wechatShare: any;
   friendShare: any;
   downloadPic: any;
   cancle: any;
@@ -41,7 +40,7 @@ export default class ShareModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {friendShare, downloadPic, wechatShare, cancle} = this.props;
+    let {friendShare, downloadPic, cancle} = this.props;
 
     return (
       <View
