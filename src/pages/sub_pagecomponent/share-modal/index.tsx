@@ -18,7 +18,7 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio,
+  hRatio, mr,
   mt,
   op,
   w,
@@ -56,20 +56,20 @@ export default class ShareModal extends PureComponent<Props, State> {
           {/*微信分享、名片海报*/}
           <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac, styles.ujb])}>
             <Button openType={'share'}
-                    style={styleAssign([styles.uf1, h(100), styles.uac,bgColor(commonStyles.whiteColor)])}>
+                    style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}>
               <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
             </Button>
-            <View style={styleAssign([styles.uac, styles.uf1, h(100)])}
-                  onClick={friendShare}>
+            <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
+                    onClick={friendShare}>
               <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat_friend.png')}/>
-              <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(12)])}>朋友圈</Text>
-            </View>
-            <View style={styleAssign([styles.uac, styles.uf1, h(100)])}
-                  onClick={downloadPic}>
+              <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>朋友圈</Text>
+            </Button>
+            <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
+                    onClick={downloadPic}>
               <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_download_pic.png')}/>
-              <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(12)])}>保存到手机</Text>
-            </View>
+              <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>保存到手机</Text>
+            </Button>
           </View>
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           {/*取消*/}
