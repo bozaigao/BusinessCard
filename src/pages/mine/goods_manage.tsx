@@ -101,7 +101,7 @@ class GoodsManage extends Component<Props, State> {
       currentIndex: 0,
       hasShop: true,
       showShare: false,
-      showDeleteNotice:false
+      showDeleteNotice: false
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -228,12 +228,12 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare,showDeleteNotice} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare, showDeleteNotice} = this.state;
 
     let child;
 
     if (currentIndex === 0) {
-      child = <View style={styleAssign([wRatio(100),hRatio(100)])}>
+      child = <View style={styleAssign([wRatio(100), hRatio(100)])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20)])}>
@@ -321,7 +321,7 @@ class GoodsManage extends Component<Props, State> {
                 <View style={styleAssign([ml(16), wRatio(60)])}>
                   <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
                   <View style={styleAssign([styles.udr, mt(12)])}>
-                    <Image style={styleAssign([w(12), h(14)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
+                    <Image style={styleAssign([w(12), h(12),mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
                     <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>四川省成都市武侯区盛和二路18号富森美家居</Text>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#979797'), mt(14)])}>有效期至：2020-6-30</Text>
@@ -455,7 +455,7 @@ class GoodsManage extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.setState({showOperate: false,showDeleteNotice:true});
+                      this.setState({showOperate: false, showDeleteNotice: true});
                     }}>
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>删除</Text>
               </View>
