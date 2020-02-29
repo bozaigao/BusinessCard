@@ -73,7 +73,7 @@ class AddBusinesscard extends Component<Props, State> {
           must: true
         }, {
           title: '行业',
-          subtitle: '家居',
+          subtitle: '',
           must: true
         },
         {title: '职位', subtitle: '销售经理', hasEdit: true},
@@ -89,6 +89,15 @@ class AddBusinesscard extends Component<Props, State> {
         }],
       avatar: ''
     }
+  }
+
+  componentDidMount() {
+    Taro.eventCenter.on('industry', (industry) => {
+      console.log('参数回调', industry);
+      this.state.listData[2].subtitle = industry;
+
+      this.setState({listData:this.state.listData});
+    })
   }
 
 
