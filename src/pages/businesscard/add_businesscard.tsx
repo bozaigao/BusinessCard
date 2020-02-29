@@ -33,8 +33,10 @@ import BottomButon from "../../compoments/bottom-buton";
 import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
 import {cloudBaseUrl} from "../../api/httpurl";
+import {User} from "../../const/global";
 
 interface Props {
+  userInfo: User;
 }
 
 interface State {
@@ -62,10 +64,11 @@ class AddBusinesscard extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    console.log('添加名牌呢',props.userInfo);
     this.state = {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
       listData: [
-        {title: '姓名', subtitle: 'JY-W', hasEdit: true, must: true},
+        {title: '姓名', subtitle: props.userInfo.name, hasEdit: true, must: true},
         {
           title: '公司',
           subtitle: '美克美家家居集团有限公司',
@@ -77,7 +80,7 @@ class AddBusinesscard extends Component<Props, State> {
           must: true
         },
         {title: '职位', subtitle: '销售经理', hasEdit: true},
-        {title: '地区', subtitle: '成都'},
+        {title: '地区', subtitle: props.userInfo.province + props.userInfo.city},
         {
           title: '微信号',
           subtitle: '15982468866',
@@ -87,7 +90,7 @@ class AddBusinesscard extends Component<Props, State> {
           subtitle: '98248866@168.com',
           hasEdit: true
         }],
-      avatar: ''
+      avatar: props.userInfo.avatar
     }
   }
 
@@ -96,7 +99,7 @@ class AddBusinesscard extends Component<Props, State> {
       console.log('参数回调', industry);
       this.state.listData[2].subtitle = industry;
 
-      this.setState({listData:this.state.listData});
+      this.setState({listData: this.state.listData});
     })
   }
 

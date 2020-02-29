@@ -42,6 +42,7 @@ import NavigationBar from "../compoments/navigation_bar/index";
 interface Props {
   //获取用户信息
   getUserInfo: any;
+  updateUserInfo: any;
   userInfo: User;
 }
 
@@ -74,15 +75,21 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidMount() {
-    // console.log('componentDidMount');
-    // // 监听一个事件，接受参数
-    // Taro.eventCenter.on('showJiFenModal', () => {
-    //   console.log('显示对话框');
-    //   this.viewRef && this.viewRef.showSignAlert()
-    // });
+    let {userInfo} = this.props, that = this;
+
+    Taro.getUserInfo({
+      lang: "zh_CN",
+      success: function (res: any) {
+        console.log('获取用户信息', res);
+        userInfo.avatar = res.userInfo.avatarUrl;
+        userInfo.city = res.userInfo.city;
+        userInfo.province = res.userInfo.province;
+        userInfo.name = res.userInfo.nickName;
+        userInfo.sex = res.userInfo.gender;
+        that.props.updateUserInfo(userInfo);
+      }
+    })
     this.getUserInfo();
-    console.log('胶囊按钮', Taro.getMenuButtonBoundingClientRect());
-    console.log(this.viewRef)
   }
 
 
@@ -95,6 +102,7 @@ class Businesscard extends Component<Props, State> {
   getUserInfo = () => {
     console.log('获取用户信息');
     this.props.getUserInfo().then((res) => {
+      this.props.updateUserInfo(res);
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
     }).catch(e => {
@@ -122,7 +130,7 @@ class Businesscard extends Component<Props, State> {
     let {showShare} = this.state;
     let {userInfo} = this.props;
 
-    console.log('呵呵', userInfo.goodsList);
+    console.log('呵呵', this.viewRef);
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -194,12 +202,13 @@ class Businesscard extends Component<Props, State> {
           </View>
         </ScrollView>
         {/*创建名片*/}
-        <View style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}
-              onClick={() => {
-                Taro.navigateTo({
-                  url: `/pages/businesscard/add_businesscard`
-                });
-              }}>
+        <View
+          onClick={() => {
+            Taro.navigateTo({
+              url: `/pages/businesscard/add_businesscard`
+            });
+          }}
+          style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
             <Text style={styleAssign([fSize(14), color('#825D22')])}>创建您的专属名片</Text>
           </View>

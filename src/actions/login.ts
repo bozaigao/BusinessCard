@@ -9,13 +9,15 @@ import {createAction} from "../utils/redux";
 import {UserController} from "../api/httpurl";
 
 const INITIAL_STATE = {
-  userInfo:{}
+  userInfo: {}
 }
+
+const UpdateUserData = 'UpdateUserData';
 
 export default function login(state = INITIAL_STATE, action) {
   if (action.type) {
     switch (action.type) {
-      case 'getUserInfo':
+      case UpdateUserData:
         return {
           ...state,
           userInfo: action.payload
@@ -36,7 +38,7 @@ export default function login(state = INITIAL_STATE, action) {
 export const userLogin = payload => createAction({
   url: UserController.login,
   payload,
-  method:'POST'
+  method: 'POST'
 });
 
 
@@ -45,13 +47,23 @@ export const userLogin = payload => createAction({
  * @QQ 1054539528
  * @date 2019/12/25
  * @function: 获取用户详细信息
-*/
+ */
 export const getUserInfo = payload => createAction({
   url: UserController.getUserInfo,
   payload,
-  method:'GET',
-  type:'getUserInfo'
+  method: 'GET',
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/2/29
+ * @function: 更新用户数据流
+ */
+export const updateUserInfo = payload => dispatch => {
+  return dispatch({type: UpdateUserData, payload});
+}
 
 
 /**
@@ -63,6 +75,6 @@ export const getUserInfo = payload => createAction({
 export const update = payload => createAction({
   url: UserController.update,
   payload,
-  method:'POST'
+  method: 'POST'
 });
 
