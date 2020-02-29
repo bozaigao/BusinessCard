@@ -3,7 +3,7 @@ let StagingUrl = 'https://api.rczhizhi.com/';
 
 //线上发布地址
 // let ProductionUrl = 'http://api-test.rczhizhi.com/';
-export let cloudBaseUrl = 'cloud://business-card-n0a6u.6275-business-card-n0a6u-1301363138/assets/';
+export let cloudBaseUrl = 'cloud://business-card-8687h.6275-business-card-8687h-1301418170/assets/';
 
 const BASE_URL = StagingUrl,
   //网络请求返回状态码
