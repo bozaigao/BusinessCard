@@ -41,7 +41,7 @@ import TouchableButton from "../../compoments/touchable-button/index";
 import GoodsManageItem from "../sub_pagecomponent/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Goods, Orientation, User} from "../../const/global";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 import GoodsShaiXuan from "../sub_pagecomponent/goods-shaixuan";
@@ -136,8 +136,10 @@ class GoodsManage extends Component<Props, State> {
       status: -1
     }).then((res) => {
       console.log(res);
-      toast('删除成功');
       this.refresh();
+      if (res !== NetworkState.FAIL) {
+        toast('删除成功');
+      }
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -155,9 +157,11 @@ class GoodsManage extends Component<Props, State> {
       id: this.itemData.id,
       status: 0
     }).then((res) => {
-      console.log(res);
-      toast('操作成功');
-      this.refresh();
+      console.log('下架商品', res);
+      if (res !== NetworkState.FAIL) {
+        this.refresh();
+        toast('下架成功');
+      }
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -175,8 +179,10 @@ class GoodsManage extends Component<Props, State> {
       showHomepage: 0
     }).then((res) => {
       console.log(res);
-      toast('操作成功');
-      this.refresh();
+      if (res !== NetworkState.FAIL) {
+        this.refresh();
+        toast('操作成功');
+      }
     }).catch(e => {
       console.log('报错啦', e);
     });

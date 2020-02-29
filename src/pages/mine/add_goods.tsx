@@ -39,7 +39,7 @@ import * as actions from '../../actions/goods';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Input, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
-import {cloudBaseUrl, FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 import {Enum, Goods} from "../../const/global";
 
 let maxLength = 5;
@@ -195,7 +195,9 @@ class AddGoods extends Component<Props, State> {
       detailUrl: JSON.stringify(this.detailUrls),
       introduction
     }).then((res) => {
-      toast('商品添加成功');
+      if (res !== NetworkState.FAIL) {
+        toast('商品添加成功');
+      }
       Taro.eventCenter.trigger('goodsListRefresh');
       console.log('添加商品信息', res);
       this.viewRef && this.viewRef.hideLoading();

@@ -39,7 +39,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 
 interface Props {
   deleteCustomer?: any;
@@ -120,7 +120,9 @@ class CustomerDetail extends Component<Props, State> {
     this.viewRef && this.viewRef.showLoading();
     this.props.deleteCustomer({id}).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
-      toast('删除成功');
+      if (res !== NetworkState.FAIL) {
+        toast('删除成功');
+      }
       Taro.eventCenter.trigger('refreshCustomerList');
       Taro.navigateBack();
       console.log('删除信息', res);

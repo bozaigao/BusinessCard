@@ -30,7 +30,7 @@ import {Image, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import ListItem from "../../compoments/list-item";
 import TouchableButton from "../../compoments/touchable-button";
 import {Enum} from "../../const/global";
-import {cloudBaseUrl, FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {
@@ -109,7 +109,9 @@ class CustomerRemark extends Component<Props, State> {
       aboutUrl: this.avatarArr[0]
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
-      toast('修改成功');
+      if (res !== NetworkState.FAIL) {
+        toast('修改成功');
+      }
       console.log('获取客户详细资料', res);
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();

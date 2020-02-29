@@ -32,7 +32,7 @@ import TopHeader from "../../compoments/top-header/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import {CustomerModel} from "../../const/global";
 import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer";
 
@@ -128,7 +128,9 @@ class AddTask extends Component<Props, State> {
     this.props.addTask(paramas).then((res) => {
       console.log(res);
       this.viewRef && this.viewRef.hideLoading();
-      toast('任务添加成功');
+      if (res !== NetworkState.FAIL) {
+        toast('任务添加成功');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);

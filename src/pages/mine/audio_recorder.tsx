@@ -31,7 +31,7 @@ import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
 import DeleteNoticeModal from "../sub_pagecomponent/delete-notice";
 import {Enum} from "../../const/global";
-import {FileController} from "../../api/httpurl";
+import {FileController, NetworkState} from "../../api/httpurl";
 
 //录制总时间限制
 let totalTime = 60;
@@ -244,7 +244,9 @@ class AudioRecorder extends Component<Props, State> {
     this.props.update({voiceUrl: path}).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
-      toast('录音上传成功');
+      if (res !== NetworkState.FAIL) {
+        toast('录音上传成功');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);

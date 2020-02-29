@@ -33,7 +33,7 @@ import TopHeader from "../../compoments/top-header";
 import {CustomerModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {Image, Text, Textarea, View} from "@tarojs/components";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 
 interface Props {
   addFollowUp?: any;
@@ -98,8 +98,9 @@ class AddGenJin extends Component<Props, State> {
       followUpContent: this.state.desc,
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
-      toast('添加成功');
-      console.log('添加客户跟进', res);
+      if (res !== NetworkState.FAIL) {
+        toast('添加成功');
+      }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);

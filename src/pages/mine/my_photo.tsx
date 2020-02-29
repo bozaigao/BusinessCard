@@ -33,7 +33,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button";
-import {cloudBaseUrl, FileController} from "../../api/httpurl";
+import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 import {Enum} from "../../const/global";
 
 let maxLength = 9;
@@ -229,7 +229,9 @@ class MyPhoto extends Component<Props, State> {
     }).then((res) => {
       console.log('更新我的照片', res);
       this.viewRef && this.viewRef.hideLoading();
-      toast('信息更新成功');
+      if (res !== NetworkState.FAIL) {
+        toast('信息更新成功');
+      }
       Taro.eventCenter.trigger('refreshUserInfo');
       Taro.navigateBack();
 

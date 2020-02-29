@@ -76,7 +76,7 @@ class PerformInfo extends Component<Props, State> {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
       this.setState({marginTop: 43});
@@ -84,7 +84,6 @@ class PerformInfo extends Component<Props, State> {
       this.setState({marginTop: 15});
     }
     this.getUserInfo();
-    console.log('用户信息', this.props.userInfo);
     Taro.eventCenter.on('refreshUserInfo', () => {
       console.log('刷新用户信息');
       this.getUserInfo();
@@ -110,10 +109,11 @@ class PerformInfo extends Component<Props, State> {
    */
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
-      console.log('获取用户信息', res);
-      console.log('属性', this.props.userInfo);
       if (res) {
-        this.setState({photoUrl: parseData(res.photoUrl), videoUrl: res.videoUrl});
+        console.log('获取用户信息1', res);
+        this.setState({photoUrl: parseData(res.photoUrl), videoUrl: res.videoUrl}, () => {
+          console.log('获取用户信息', this.state.photoUrl);
+        });
       }
     }).catch(e => {
       console.log('报错啦', e);
@@ -316,7 +316,7 @@ class PerformInfo extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的照片</Text>
               {
-                photoUrl.length !== 0 ?
+                photoUrl && photoUrl.length !== 0 ?
                   <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                     <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                     <Image style={styleAssign([w(7), h(12), ml(6)])}
@@ -327,7 +327,7 @@ class PerformInfo extends Component<Props, State> {
             </View>
             <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             {
-              photoUrl.length !== 0 ?
+              photoUrl && photoUrl.length !== 0 ?
                 <View style={styleAssign([wRatio(100), styles.udr, styles.uWrap])}>
                   {
                     photoUrl.map((value, index) => {
@@ -359,7 +359,7 @@ class PerformInfo extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的视频</Text>
               {
-                videoUrl.length !== 0 ?
+                videoUrl && videoUrl.length !== 0 ?
                   <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                     <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                     <Image style={styleAssign([w(7), h(12), ml(6)])}
@@ -370,7 +370,7 @@ class PerformInfo extends Component<Props, State> {
             </View>
             <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             {
-              videoUrl.length !== 0 ?
+              videoUrl && videoUrl.length !== 0 ?
                 <Video
                   style={styleAssign([w(335), h(203), bgColor(commonStyles.whiteColor)])}
                   src={videoUrl}

@@ -45,6 +45,7 @@ import ShaiXuanModal from "../sub_pagecomponent/shai-xuan-modal";
 import ModeModal from "../sub_pagecomponent/mode-modal";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   userInfo: User;
@@ -209,8 +210,10 @@ class MyCollect extends Component<Props, State> {
     this.props.updateMyCollect({type, collectedUserId}).then((res) => {
       this.viewRef.hideLoading();
       console.log('更新我收藏的名片', res);
-      toast('删除成功');
-      this.myCollectList();
+      if(res!==NetworkState.FAIL){
+        this.myCollectList();
+        toast('删除成功');
+      }
     }).catch(e => {
       this.viewRef.hideLoading();
       console.log('报错啦', e);

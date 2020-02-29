@@ -113,7 +113,6 @@ class Businesscard extends Component<Props, State> {
    * @function: 获取用户信息
    */
   getUserInfo = () => {
-    console.log('获取用户信息');
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
       console.log('获取用户信息', res);
