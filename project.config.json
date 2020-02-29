@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "YaoRenDangGui_Taro",
   "description": "YaoRenDangGui_Taro",
-  "appid": "touristappid",
+  "appid": "wx7834b9fe3df7e260",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -10,4 +10,3 @@
     "minified": false
   },
   "compileType": "miniprogram"
-}

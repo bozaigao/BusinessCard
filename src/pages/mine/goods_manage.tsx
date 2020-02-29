@@ -45,6 +45,7 @@ import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 import GoodsShaiXuan from "../sub_pagecomponent/goods-shaixuan";
+import ShareModal from "../sub_pagecomponent/share-modal";
 
 interface Props {
   //获取商品列表
@@ -62,6 +63,7 @@ interface State {
   showOperate: boolean;
   currentIndex: number;
   hasShop: boolean;
+  showShare: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -95,7 +97,8 @@ class GoodsManage extends Component<Props, State> {
       state: '全部',
       showOperate: false,
       currentIndex: 0,
-      hasShop: true
+      hasShop: true,
+      showShare: false
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -222,7 +225,7 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare} = this.state;
 
     let child;
 
@@ -301,7 +304,7 @@ class GoodsManage extends Component<Props, State> {
               <View
                 style={styleAssign([w(202), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
                 onClick={() => {
-
+                  this.setState({showShare: true});
                 }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即开通</Text>
               </View>
@@ -431,13 +434,15 @@ class GoodsManage extends Component<Props, State> {
             <View
               style={styleAssign([wRatio(100), h(242), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
                 styles.upa, absB(0)])}>
-              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      this.setState({showOperate: false, showShare: true});
+                    }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>立即分享</Text>
               </View>
               <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.setState({showChoose: false});
                       Taro.navigateTo({
                         url: `/pages/mine/add_goods?edit=true&itemData=${JSON.stringify(this.itemData)}`
                       });
@@ -458,6 +463,22 @@ class GoodsManage extends Component<Props, State> {
               </View>
             </View>
           </View>
+        }
+        {
+          showShare && <ShareModal cancle={() => {
+            this.setState({showShare: false});
+          }
+          } wechatShare={() => {
+          }
+          } friendShare={() => {
+            Taro.navigateTo({
+              url: `/pages/businesscard/mingpian_haibao`
+            });
+          }
+          }
+                                   downloadPic={() => {
+                                   }
+                                   }/>
         }
       </CustomSafeAreaView>
     );
