@@ -6,7 +6,7 @@
  * @Description: 名片首页
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Button, Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
@@ -75,21 +75,25 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidMount() {
+    this.getUserInfo();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/2/29
+   * @function: 获取微信用户基本资料
+   */
+  getWechatUserInfo = (res) => {
     let {userInfo} = this.props, that = this;
 
-    Taro.getUserInfo({
-      lang: "zh_CN",
-      success: function (res: any) {
-        console.log('获取用户信息', res);
-        userInfo.avatar = res.userInfo.avatarUrl;
-        userInfo.city = res.userInfo.city;
-        userInfo.province = res.userInfo.province;
-        userInfo.name = res.userInfo.nickName;
-        userInfo.sex = res.userInfo.gender;
-        that.props.updateUserInfo(userInfo);
-      }
-    })
-    this.getUserInfo();
+    userInfo.avatar = res.userInfo.avatarUrl;
+    userInfo.city = res.userInfo.city;
+    userInfo.province = res.userInfo.province;
+    userInfo.name = res.userInfo.nickName;
+    userInfo.sex = res.gender;
+    that.props.updateUserInfo(userInfo);
   }
 
 
@@ -104,7 +108,6 @@ class Businesscard extends Component<Props, State> {
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
       console.log('获取用户信息', res);
-      console.log('属性', this.props.userInfo);
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -202,17 +205,17 @@ class Businesscard extends Component<Props, State> {
           </View>
         </ScrollView>
         {/*创建名片*/}
-        <View
-          onClick={() => {
-            Taro.navigateTo({
-              url: `/pages/businesscard/add_businesscard`
-            });
-          }}
-          style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
+        <Button  lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
+          console.log('用户信息',data);
+          this.getWechatUserInfo(data.detail);
+          Taro.navigateTo({
+            url: `/pages/businesscard/add_businesscard`
+          });
+        }} style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
             <Text style={styleAssign([fSize(14), color('#825D22')])}>创建您的专属名片</Text>
           </View>
-        </View>
+        </Button>
         {
           showShare && <ShareModal cancle={() => {
             this.setState({showShare: false});
