@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -72,6 +72,7 @@ class AddGoods extends Component<Props, State> {
   private carouselUrls: string[];
   private detailUrls: string[];
   private itemData: Goods;
+  private timer;
 
 
   /**
@@ -156,11 +157,18 @@ class AddGoods extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('商品更新成功');
+        debounce(1000,()=>{
+          Taro.navigateBack();
+        });
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
+  }
+
+  componentWillUnmount() {
+    this.timer && clearTimeout(this.timer);
   }
 
 

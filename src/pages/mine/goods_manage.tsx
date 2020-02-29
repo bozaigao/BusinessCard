@@ -46,6 +46,7 @@ import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 import GoodsShaiXuan from "../sub_pagecomponent/goods-shaixuan";
 import ShareModal from "../sub_pagecomponent/share-modal";
+import GoodsRemoveNoticeModal from "../sub_pagecomponent/goods-remove-notice";
 
 interface Props {
   //获取商品列表
@@ -64,6 +65,7 @@ interface State {
   currentIndex: number;
   hasShop: boolean;
   showShare: boolean;
+  showDeleteNotice: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -98,7 +100,8 @@ class GoodsManage extends Component<Props, State> {
       showOperate: false,
       currentIndex: 0,
       hasShop: true,
-      showShare: false
+      showShare: false,
+      showDeleteNotice:false
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -225,7 +228,7 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare,showDeleteNotice} = this.state;
 
     let child;
 
@@ -452,8 +455,7 @@ class GoodsManage extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.setState({showOperate: false});
-                      this.deleteGoods();
+                      this.setState({showOperate: false,showDeleteNotice:true});
                     }}>
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>删除</Text>
               </View>
@@ -479,6 +481,17 @@ class GoodsManage extends Component<Props, State> {
                                    downloadPic={() => {
                                    }
                                    }/>
+        }
+        {
+          showDeleteNotice && <GoodsRemoveNoticeModal cancelCallback={() => {
+            this.setState({showDeleteNotice: false});
+          }
+          } confirmCallback={() => {
+            this.setState({showDeleteNotice: false}, () => {
+              this.deleteGoods();
+            });
+          }
+          }/>
         }
       </CustomSafeAreaView>
     );

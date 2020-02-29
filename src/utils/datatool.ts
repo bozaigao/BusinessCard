@@ -47,22 +47,15 @@ export function styleAssign(styles: any[]) {
  * @date 2018/10/22
  * @function: 定时器任务
  */
-export function debounce(fn, wait) {
-  let timer;
+export function debounce(idle, action) {
+  let last
 
-  return function () {
-    let that = this;
-
-    let args = arguments;
-
-    if (timer) {
-      clearTimeout(timer);
-      timer = null;
-    }
-    timer = setTimeout(function () {
-      fn.apply(that, args);
-    }, wait)
-  }
+  return (() => {
+    clearTimeout(last)
+    last = setTimeout(function() {
+      action()
+    }, idle)
+  })()
 }
 
 
