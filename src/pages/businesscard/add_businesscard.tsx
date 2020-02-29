@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -28,21 +28,24 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
-import {Image, ScrollView, Switch, Text, View} from "@tarojs/components";
+import {Image, Picker, ScrollView, Switch, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
-import {cloudBaseUrl} from "../../api/httpurl";
-import {User} from "../../const/global";
+import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
+import {Enum, User} from "../../const/global";
 
 interface Props {
   userInfo: User;
+  //更新用户信息
+  update: any;
 }
 
 interface State {
   signInPageDetail: any;
-  listData: { title: string; subtitle: string; hasEdit?: boolean; must?: boolean; }[];
+  listData: { title: string; subtitle: string; value: string; hasEdit?: boolean; must?: boolean; }[];
   avatar: string;
+  showPhone: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -61,36 +64,48 @@ class AddBusinesscard extends Component<Props, State> {
   config: Config = {
     disableScroll: true
   }
+  private province;
+  private city;
+  private avatar;
 
   constructor(props) {
     super(props);
-    console.log('添加名牌呢',props.userInfo);
+    let {name, avatar, company, industry, position, province, city, wechat, email, showPhone} = props.userInfo;
+
+    this.avatar = avatar;
+    this.province = province;
+    this.city = city;
     this.state = {
+      showPhone,
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
       listData: [
-        {title: '姓名', subtitle: props.userInfo.name, hasEdit: true, must: true},
+        {title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true},
         {
           title: '公司',
-          subtitle: '美克美家家居集团有限公司',
+          subtitle: '请输入公司名',
+          value: company,
           hasEdit: true,
           must: true
         }, {
           title: '行业',
-          subtitle: '',
+          subtitle: '请选择行业',
+          value: industry,
           must: true
         },
-        {title: '职位', subtitle: '销售经理', hasEdit: true},
-        {title: '地区', subtitle: props.userInfo.province + props.userInfo.city},
+        {title: '职位', subtitle: '请输入职业', value: position, hasEdit: true},
+        {title: '地区', subtitle: '请选择地区', value: province + city,},
         {
           title: '微信号',
-          subtitle: '15982468866',
+          subtitle: '请输入微信号',
+          value: wechat,
           hasEdit: true
         }, {
           title: '邮箱',
-          subtitle: '98248866@168.com',
+          subtitle: '请输入邮箱',
+          value: email,
           hasEdit: true
         }],
-      avatar: props.userInfo.avatar
+      avatar: avatar
     }
   }
 
@@ -103,6 +118,77 @@ class AddBusinesscard extends Component<Props, State> {
     })
   }
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 更新用户信息
+   */
+  update = () => {
+    let {listData, showPhone} = this.state;
+
+    if (listData[0].value.length === 0) {
+      toast('请先填写姓名');
+      return;
+    }
+    if (listData[1].value.length === 0) {
+      toast('请先填写公司');
+      return;
+    }
+    if (listData[2].value.length === 0) {
+      toast('请先填写行业');
+      return;
+    }
+    this.viewRef && this.viewRef.showLoading();
+    this.props.update({
+      avatar: this.avatar,
+      name: listData[0].value,
+      company: listData[1].value,
+      industry: listData[2].value,
+      position: listData[3].value,
+      province: this.province,
+      city: this.city,
+      wechat: listData[5].value,
+      email: listData[6].value,
+      showPhone
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        Taro.eventCenter.trigger('refreshUserInfo');
+        toast('名片创建成功');
+      }
+
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 将文件通过微信Api上传到服务端
+   */
+  uploadFileTpWx = (path) => {
+    let that = this;
+    let token = get(Enum.TOKEN);
+
+    Taro.uploadFile({
+      url: FileController.uploadPicture,
+      filePath: path,
+      name: 'file',
+      header: {
+        'token': token
+      },
+      success(res) {
+        that.avatar = parseData(res.data).data;
+        console.log('上传文件', parseData(res.data).data);
+      }
+    });
+  }
+
 
   render() {
     console.log(this.viewRef);
@@ -113,7 +199,7 @@ class AddBusinesscard extends Component<Props, State> {
       signInPageDetail.signInCount = 0
     }
 
-    let {listData, avatar} = this.state;
+    let {listData, avatar, showPhone} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -129,7 +215,7 @@ class AddBusinesscard extends Component<Props, State> {
                              Taro.chooseImage({count: 1}).then((res) => {
                                console.log('图片路径', res.tempFiles[0].path)
                                this.setState({avatar: res.tempFiles[0].path})
-                               // this.uploadFileTpWx(res.tempFiles[0].path);
+                               this.uploadFileTpWx(res.tempFiles[0].path);
                              });
                            }}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>头像</Text>
@@ -140,27 +226,57 @@ class AddBusinesscard extends Component<Props, State> {
           {/*内容编辑*/}
           {
             listData.map((value, index) => {
+              if (value.title === '地区') {
+                return (<Picker mode='region' onChange={(e) => {
+                  console.log(e.detail)
+                  this.province = e.detail.value[0];
+                  this.city = e.detail.value[1] + e.detail.value[2];
+                  this.state.listData[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                  this.setState({
+                    listData: this.state.listData
+                  })
+                }} value={[]}>
+                  <ListItem title={value.title}
+                            must={value.must}
+                            subTitle={value.subtitle}
+                            value={value.value}
+                            key={index}
+                            hasEdit={value.hasEdit}/>
+                </Picker>);
+              }
               return (<ListItem title={value.title}
                                 must={value.must}
                                 subTitle={value.subtitle}
                                 key={index}
+                                value={value.value}
                                 hasEdit={value.hasEdit}
                                 onCLick={(title) => {
-                                  if (title === '联系方式') {
+                                  if (title === '行业') {
                                     Taro.navigateTo({
-                                      url: `/pages/mine/contact_way`
-                                    });
-                                  } else if (title === '行业') {
-                                    Taro.navigateTo({
-                                      url: `/pages/mine/industry_list`,
-                                      success: (e) => {
-                                        console.log('参数回传1', e);
-                                      }
+                                      url: `/pages/mine/industry_list`
                                     });
                                   }
                                 }
                                 } onTextChange={(e) => {
-                // this.setState({name: e.detail.value});
+                if (value.title === '姓名') {
+                  this.state.listData[0].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
+                } else if (value.title === '公司') {
+                  this.state.listData[1].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
+                } else if (value.title === '行业') {
+                  this.state.listData[2].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
+                } else if (value.title === '职位') {
+                  this.state.listData[3].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
+                } else if (value.title === '微信号') {
+                  this.state.listData[5].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
+                } else if (value.title === '邮箱') {
+                  this.state.listData[6].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
+                }
                 console.log(e);
               }
               }/>);
@@ -171,15 +287,15 @@ class AddBusinesscard extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([wRatio(100), h(50), pl(20), pr(20), styles.uac, styles.udr, styles.ujb])}>
               <Text style={styleAssign([fSize(14), color('#343434')])}>分享自己的名片给朋友时展示手机号</Text>
-              <Switch color={'#E2BB7B'}/>
+              <Switch color={'#E2BB7B'} checked={showPhone === 1} onChange={(e) => {
+                this.setState({showPhone: e.detail.value ? 1 : 0});
+              }}/>
             </View>
             <View style={styleAssign([w(336), h(0.5), bgColor('#E5E5E5'), ml(20), op(0.3)])}/>
           </View>
         </ScrollView>
         {/*创建名片*/}
-        <BottomButon title={'保存'} onClick={() => {
-
-        }}/>
+        <BottomButon title={'保存'} onClick={this.update}/>
       </CustomSafeAreaView>);
   }
 }

@@ -10,7 +10,7 @@ import {Button, Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../utils/datatool";
+import {get, styleAssign} from "../utils/datatool";
 import {
   bgColor,
   color,
@@ -35,7 +35,7 @@ import MyGoods from "./pagecomponent/my-goods/index";
 import JiZhiCard from "./pagecomponent/jizhi-card/index";
 import MyBusiness from "./pagecomponent/my-business/index";
 import ShareModal from "./pagecomponent/share-modal/index";
-import {User} from "../const/global";
+import {Enum, User} from "../const/global";
 import {cloudBaseUrl} from "../api/httpurl";
 import NavigationBar from "../compoments/navigation_bar/index";
 
@@ -75,7 +75,16 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidMount() {
+    Taro.eventCenter.on('refreshUserInfo', () => {
+      console.log('刷新用户信息');
+      this.getUserInfo();
+    });
     this.getUserInfo();
+  }
+
+  componentWillUnmount() {
+    Taro.eventCenter.off('showJiFenModal');
+    Taro.eventCenter.off('refreshUserInfo');
   }
 
 
@@ -83,9 +92,9 @@ class Businesscard extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/2/29
-   * @function: 获取微信用户基本资料
+   * @function: 更新用户基本资料
    */
-  getWechatUserInfo = (res) => {
+  updateUserInfo = (res) => {
     let {userInfo} = this.props, that = this;
 
     userInfo.avatar = res.userInfo.avatarUrl;
@@ -113,11 +122,6 @@ class Businesscard extends Component<Props, State> {
     });
   }
 
-
-  componentWillUnmount() {
-    Taro.eventCenter.off('showJiFenModal');
-    console.log('componentWillUnmount');
-  }
 
   //@ts-ignore
   onShareAppMessage(res) {
@@ -205,9 +209,13 @@ class Businesscard extends Component<Props, State> {
           </View>
         </ScrollView>
         {/*创建名片*/}
-        <Button  lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
-          console.log('用户信息',data);
-          this.getWechatUserInfo(data.detail);
+        <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
+          let token = get(Enum.TOKEN);
+
+          console.log('更新用户信息', token);
+          if (!token) {
+            this.updateUserInfo(data.detail);
+          }
           Taro.navigateTo({
             url: `/pages/businesscard/add_businesscard`
           });

@@ -14,6 +14,7 @@ import TouchableButton from "../touchable-button";
 interface Props {
   title: string;
   subTitle?: string;
+  value?: string;
   hasEdit?: boolean;
   must?: boolean;
   onCLick?: any;
@@ -25,7 +26,7 @@ interface Props {
 export default class ListItem extends Component<Props> {
 
   render() {
-    let {title, subTitle, hasEdit, onCLick, notHasUnderline, onTextChange, textColor, must} = this.props;
+    let {title, subTitle, value, hasEdit, onCLick, notHasUnderline, onTextChange, textColor, must} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -44,13 +45,14 @@ export default class ListItem extends Component<Props> {
             <Text style={styleAssign([fSize(14), color(textColor ? textColor : '#0C0C0C')])}>{title}</Text>
           </View>
           {
-            hasEdit ? <Input type='text' value={''}
+            hasEdit ? <Input type='text' value={value}
                              maxLength={subTitle && subTitle.includes('手机') ? 11 : -1}
                              placeholder={subTitle}
                              style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
                              onInput={onTextChange}/> :
               <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([fSize(14), color('#979797')])}>{subTitle ? subTitle : ''}</Text>
+                <Text
+                  style={styleAssign([fSize(14), color(value && value.length !== 0 ? '#0C0C0C' : '#979797')])}>{value ? value : subTitle}</Text>
                 <Image style={styleAssign([w(8), h(14), ml(9)])} src={require('../../assets/ico_next.png')}/>
               </View>
           }
