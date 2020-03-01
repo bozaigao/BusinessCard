@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/help/how_share_card",
       "pages/help/how_perform_card",
       "pages/help/introduce",
       //主界面
