@@ -69,7 +69,7 @@ class Feedback extends Component<Props, State> {
       console.log('获取用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
-        toast('返回成功');
+        toast('感谢您的反馈');
         debounce(1000, () => {
           Taro.navigateBack();
         });
