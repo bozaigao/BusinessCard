@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absB, absR,
   bgColor,
@@ -32,14 +32,20 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Switch, Text, Textarea, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
+import {User} from "../../const/global";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
+  userInfo: User;
+  //更新用户信息
+  update: any;
 }
 
 
 interface State {
   template: string;
   desc: string;
+  radarRemind: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -61,16 +67,51 @@ class ToolBox extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    console.log(this.viewRef);
+    console.log('工具箱',props.userInfo);
     this.state = {
       template: '您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~',
-      desc: ''
+      desc: props.userInfo.guideLanguage,
+      radarRemind: props.userInfo.radarRemind
     }
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 更新用户信息
+   */
+  update = () => {
+    let {desc, radarRemind} = this.state;
+
+    if (desc.length === 0) {
+      toast('请先完善引导语');
+      return;
+    }
+    this.viewRef && this.viewRef.showLoading();
+    this.props.update({
+      guideLanguage: desc,
+      radarRemind
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        Taro.eventCenter.trigger('refreshUserInfo');
+        toast('保存成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
+      }
+
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
-    let {template, desc} = this.state;
+    let {template, desc, radarRemind} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -81,10 +122,10 @@ class ToolBox extends Component<Props, State> {
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100), h(360), bgColor(commonStyles.whiteColor), mt(10)])}>
             <Text style={styleAssign([fSize(15), color('#0C0C0C'), ml(20), mt(20)])}>名片引导语</Text>
-            <View style={styleAssign([wRatio(100), h(91)])}>
-            <Textarea value={''}
+            <View style={styleAssign([wRatio(100), h(91), mt(20)])}>
+            <Textarea value={desc}
                       placeholder={'您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~'}
-                      style={styleAssign([w(305), h(91), fSize(16), mt(10), ml(20),
+                      style={styleAssign([w(305), h(91), fSize(16), ml(20),
                         bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}
                       onInput={(e) => {
                         this.setState({desc: e.detail.value});
@@ -117,12 +158,14 @@ class ToolBox extends Component<Props, State> {
           <View
             style={styleAssign([wRatio(100), h(56), styles.uac, styles.udr, styles.ujb, pl(20), pr(20), mt(10), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([fSize(15), color('#0C0C0C')])}>雷达提醒</Text>
-            <Switch color={'#E2BB7B'}/>
+            <Switch color={'#E2BB7B'} checked={radarRemind === 1} onChange={(e) => {
+              this.setState({radarRemind: e.detail.value ? 1 : 0});
+            }}/>
           </View>
         </View>
         {/*保存*/}
         <BottomButon title={'确定'} onClick={() => {
-
+          this.update();
         }}/>
       </CustomSafeAreaView>
     );
