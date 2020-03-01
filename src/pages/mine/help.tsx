@@ -53,7 +53,7 @@ class Help extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'使用帮助'}/>
-        <View style={styleAssign([styles.uf1,bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           {
             ['极致推有什么用？', '如何完善名片信息？如何完善名片信息？',
               '如何分享自己的名片？', '客户可以通过哪些途径查看名片？',
@@ -61,7 +61,43 @@ class Help extends Component<Props, State> {
               '雷达功能有什么作用？', '如何开启消息提醒？',
               '如何修改名片样式？'].map((value, index) => {
               return <HelpListItem key={index} title={value} onClick={() => {
-
+                if (value === '极致推有什么用？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/introduce`
+                  });
+                } else if (value === '如何完善名片信息？如何完善名片信息？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/how_perform_card`
+                  });
+                } else if (value === '如何分享自己的名片？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/how_share_card`
+                  });
+                } else if (value === '客户可以通过哪些途径查看名片？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/view_card`
+                  });
+                } else if (value === '如何获取自己的人脉？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/get_renmai`
+                  });
+                } else if (value === '如何开通自己的商铺？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/open_shop`
+                  });
+                } else if (value === '雷达功能有什么作用？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/radar_gongneng`
+                  });
+                } else if (value === '如何开启消息提醒？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/open_message_notice`
+                  });
+                } else if (value === '如何修改名片样式？') {
+                  Taro.navigateTo({
+                    url: `/pages/mine/update_card_style`
+                  });
+                }
               }}/>;
             })
           }

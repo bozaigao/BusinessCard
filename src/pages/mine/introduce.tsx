@@ -7,14 +7,14 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {bgColor, color, commonStyles, fSize, ml, mr, mt} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import {Text} from "@tarojs/components";
-import HelpNavigationItem from "../pagecomponent/help-navigation-item";
+import HelpNavigationItem from "../pagecomponent/help-navigation-item/index";
 
 interface Props {
 }

@@ -63,15 +63,6 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/help/radar_gongneng",
-      "pages/help/open_message_notice",
-      "pages/help/update_card_style",
-      "pages/help/get_renmai",
-      "pages/help/open_shop",
-      "pages/help/view_card",
-      "pages/help/how_share_card",
-      "pages/help/how_perform_card",
-      "pages/help/introduce",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -143,9 +134,18 @@ class App extends Component {
           "about_us",
           "help",
           "tequan",
-          "choose_customer"
+          "choose_customer",
+          "radar_gongneng",
+          "open_message_notice",
+          "update_card_style",
+          "get_renmai",
+          "open_shop",
+          "view_card",
+          "how_share_card",
+          "how_perform_card",
+          "introduce",
         ]
-      },
+      }
     ],
     permission: {
       "scope.userLocation": {
