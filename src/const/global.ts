@@ -374,3 +374,11 @@ operateMap['view_your_photos'] = '浏览你的照片';
 operateMap['play_your_video'] = '播放你的视频';
 operateMap['view_goods'] = '浏览商品';
 operateMap['view_enterprise_website'] = '浏览企业官网';
+
+
+export let timeMap = {};
+
+timeMap['seven_days'] = '7天试用';
+timeMap['quarter'] = '1季度';
+timeMap['half_a_year'] = '半年';
+timeMap['one_year'] = '1年';

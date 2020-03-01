@@ -29,18 +29,6 @@ export default function teQuan(state = INITIAL_STATE, action) {
   return state;
 }
 
-/**
- * @author 何晏波
- * @QQ 1054539528
- * @date 2020/3/1
- * @function: 购买套餐
-*/
-export const purchasePackage = payload => createAction({
-  url: TeQuanManage.purchasePackage,
-  payload,
-  method: 'POST'
-});
-
 
 /**
  * @author 何晏波
@@ -52,4 +40,17 @@ export const packageList = payload => createAction({
   url: TeQuanManage.packageList,
   payload,
   method: 'GET',
+});
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/1
+ * @function: 购买套餐
+*/
+export const purchasePackage = payload => createAction({
+  url: TeQuanManage.purchasePackage,
+  payload,
+  method: 'POST'
 });

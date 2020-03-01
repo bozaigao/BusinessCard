@@ -32,13 +32,17 @@ import {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/tequan';
 import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import LinearGradientView from "../sub_pagecomponent/linear-gradient-view/index";
 import LevelItem from "../sub_pagecomponent/level-item/index";
 import TaoCanItem from "../sub_pagecomponent/taocan-item/index";
+import {NetworkState} from "../../api/httpurl";
+import {timeMap} from "../../const/global";
 
 interface Props {
+  //获取特权套餐
+  packageList: any;
 }
 
 interface State {
@@ -49,6 +53,7 @@ interface State {
   subtitle1: string;
   title2: string;
   subtitle2: string;
+  packageList: any[];
 }
 
 @connect(state => state.login, {...actions})
@@ -79,6 +84,7 @@ class TeQuan extends Component<Props, State> {
       subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
       title2: '特权介绍',
       subtitle2: '• 可查看全部访客的信息',
+      packageList: []
     }
   }
 
@@ -91,9 +97,71 @@ class TeQuan extends Component<Props, State> {
     }
   }
 
+  componentDidShow() {
+    this.packageList();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/1
+   * @function: 获取特权套餐
+   */
+  packageList = () => {
+    let type = 'visitor';
+
+    let {currentIndex} = this.state, packageList: any = [];
+
+    if (currentIndex === 0) {
+      type = 'visitor';
+    } else if (currentIndex === 1) {
+      type = 'connection';
+    }
+    this.props.packageList({packageType: type}).then((res) => {
+      if (res !== NetworkState.FAIL) {
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].purchaseTime === 'seven_days') {
+            packageList.push({
+              title: timeMap['seven_days'],
+              subTitle: '',
+              left: '到期￥198/季度续费，可取消',
+              price: res[i].price,
+              timeLimit: true
+            });
+          } else if (res[i].purchaseTime === 'quarter') {
+            packageList.push({
+              title: timeMap['quarter'],
+              subTitle: '（3个月）',
+              left: `￥${(res[i].price / 3).toFixed(0)}/月`,
+              price: res[i].price,
+            });
+          } else if (res[i].purchaseTime === 'half_a_year') {
+            packageList.push({
+              title: timeMap['half_a_year'],
+              subTitle: '（6个月）',
+              left: `￥${(res[i].price / 6).toFixed(0)}/月`,
+              price: res[i].price,
+            });
+          } else if (res[i].purchaseTime === 'one_year') {
+            packageList.push({
+              title: timeMap['one_year'],
+              subTitle: '（12个月）',
+              left: `￥${(res[i].price / 12).toFixed(0)}/月`,
+              price: res[i].price,
+            });
+          }
+        }
+        this.setState({packageList});
+      }
+      console.log('获取特权套餐', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
 
   render() {
-    let {marginTop, taoCanIndex, currentIndex, title1, subtitle1, title2, subtitle2} = this.state;
+    let {marginTop, taoCanIndex, currentIndex, title1, subtitle1, title2, subtitle2, packageList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -120,12 +188,21 @@ class TeQuan extends Component<Props, State> {
               style={styleAssign([wRatio(100), h(182), styles.uac, styles.upa, absB(0)])}
               onChange={(e) => {
                 this.setState({currentIndex: e.detail.current}, () => {
+                  this.packageList();
                   if (this.state.currentIndex === 0) {
-                    this.setState({title1: '查看访客无限制', subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析', title2: '特权介绍', subtitle2: '• 可查看全部访客的信息'});
+                    this.setState({
+                      title1: '查看访客无限制',
+                      subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
+                      title2: '特权介绍',
+                      subtitle2: '• 可查看全部访客的信息'
+                    });
                   } else if (this.state.currentIndex === 1) {
-                    this.setState({title1: '开通商铺，展示更多产品', subtitle1: '开通商铺之后您将拥有专属线上商铺，我们将为您免费装修店铺并上架您的产品', title2: '特权介绍', subtitle2: '• 可展示更多产品\n• 可进行线上产品购买交易'});
-                  } else if (this.state.currentIndex === 2) {
-                    this.setState({title1: '获取人脉资源，增加客户来源', subtitle1: '开通人脉扩展功能，突破每日推送人脉名额限制 根据您的期望人脉选择及个人名片信息，精准推送人脉，提升获客率', title2: '特权介绍', subtitle2: '• 可查看更多人脉'});
+                    this.setState({
+                      title1: '获取人脉资源，增加客户来源',
+                      subtitle1: '开通人脉扩展功能，突破每日推送人脉名额限制 根据您的期望人脉选择及个人名片信息，精准推送人脉，提升获客率',
+                      title2: '特权介绍',
+                      subtitle2: '• 可查看更多人脉'
+                    });
                   }
                 });
               }}>
@@ -136,13 +213,6 @@ class TeQuan extends Component<Props, State> {
                   bg: 'ico_tequan1.png',
                   logo: 'ico_tequan1_logo.png',
                   buttonTitle: '新用户1元试用',
-                  right: '最低￥198起'
-                }, {
-                  title: '开通商铺',
-                  subTitle: '提升你的产品线上推广效果',
-                  bg: 'ico_tequan2.png',
-                  logo: 'ico_tequan2_logo.png',
-                  buttonTitle: '联系客服',
                   right: '最低￥198起'
                 },
                   {
@@ -189,10 +259,7 @@ class TeQuan extends Component<Props, State> {
             <View style={styleAssign([w(39), h(1), bgColor('#E4C28C')])}/>
           </View>
           {
-            [{title: '7天试用', subTitle: '', left: '到期￥198/季度续费，可取消', price: '1', timeLimit: true},
-              {title: '1季度', subTitle: '（3个月）', left: '￥66/月', price: '198', timeLimit: false},
-              {title: '半年', subTitle: '（6个月）', left: '￥61/月', price: '368', timeLimit: false},
-              {title: '1年', subTitle: '（12个月）', left: '￥57/月', price: '688', timeLimit: false}].map((value, index) => {
+            packageList.map((value, index) => {
               return <TaoCanItem key={index} item={value}
                                  onClick={() => {
                                    this.setState({taoCanIndex: index});
