@@ -55,7 +55,6 @@ interface State {
 
 @connect(state => state.login, {...actions})
 class Customer extends Component<Props, State> {
-  private viewRef;
   private pageNo;
   private pageSize;
 
@@ -113,10 +112,8 @@ class Customer extends Component<Props, State> {
    */
   getCustomerList = (refresh?: boolean) => {
 
-    this.viewRef && this.viewRef.showLoading();
     this.props.getCustomerList({pageNo: this.pageNo, pageSize: this.pageSize}).then((res) => {
       console.log('获取客户列表', res);
-      this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
         this.setState({customerList: res.records, totalCustomers: res.total});
       } else if (res.records && res.records.length !== 0) {
@@ -126,7 +123,6 @@ class Customer extends Component<Props, State> {
       }
 
     }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -138,10 +134,7 @@ class Customer extends Component<Props, State> {
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
-                          notNeedBottomPadding={true}
-                          ref={(ref) => {
-                            this.viewRef = ref;
-                          }}>
+                          notNeedBottomPadding={true}>
         <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.ujb])}>
           <NavigationBar>
             <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),

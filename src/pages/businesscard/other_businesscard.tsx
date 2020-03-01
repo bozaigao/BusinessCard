@@ -82,7 +82,8 @@ class OtherBusinesscard extends Component<Props, State> {
     }
   }
 
-  componentDidShow(){
+  componentDidShow() {
+    console.log(this.viewRef);
     this.getUserInfo();
   }
 

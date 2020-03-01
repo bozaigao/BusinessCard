@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -110,7 +110,7 @@ class AddBusinesscard extends Component<Props, State> {
   }
 
 
-  componentDidShow(){
+  componentDidShow() {
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.listData[2].value = industry;
@@ -157,6 +157,9 @@ class AddBusinesscard extends Component<Props, State> {
       if (res !== NetworkState.FAIL) {
         Taro.eventCenter.trigger('refreshUserInfo');
         toast('名片创建成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        });
       }
 
     }).catch(e => {

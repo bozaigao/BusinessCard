@@ -29,7 +29,6 @@ interface State {
 class Radarscan extends Component<Props, State> {
   private pageNo;
   private pageSize;
-  private viewRef;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -75,9 +74,7 @@ class Radarscan extends Component<Props, State> {
    * @function: 查询我的雷达数据列表
    */
   getTraceList = (refresh?: boolean) => {
-    this.viewRef && this.viewRef.showLoading();
     this.props.getTraceList({pageNo: this.pageNo, pageSize: this.pageSize}).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
       console.log('查询我的雷达数据列表', res);
       if (refresh) {
         this.setState({records: res.records});
@@ -87,7 +84,6 @@ class Radarscan extends Component<Props, State> {
         toast('没有记录了');
       }
     }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -98,10 +94,7 @@ class Radarscan extends Component<Props, State> {
     return (
       <CustomSafeAreaView
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
-        notNeedBottomPadding={true}
-        ref={(ref) => {
-          this.viewRef = ref;
-        }} >
+        notNeedBottomPadding={true}>
         {/*雷达、访客切换*/}
         <NavigationBar>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>

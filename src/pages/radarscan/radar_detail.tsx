@@ -32,7 +32,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
-import {BehaviorTrace, BehaviorTraceUser, traceListModel} from "../../const/global";
+import {BehaviorTrace, BehaviorTraceUser} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import TraceItem from "../sub_pagecomponent/trace-item";
 import BottomButon from "../../compoments/bottom-buton";
@@ -69,6 +69,7 @@ class RadarDetail extends Component<Props, State> {
     let month = new Date().getMonth() + 1;
 
     if (month < 10) {
+      //@ts-ignore
       month = `0${month}`;
     }
     this.state = {
