@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/help/radar_gongneng",
       "pages/help/open_message_notice",
       "pages/help/update_card_style",
       "pages/help/get_renmai",
