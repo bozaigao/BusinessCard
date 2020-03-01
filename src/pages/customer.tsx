@@ -79,18 +79,20 @@ class Customer extends Component<Props, State> {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off();
-  }
 
-  componentDidMount() {
+  componentDidShow(){
     this.refresh();
     Taro.eventCenter.on('refreshCustomerList', () => {
       this.refresh();
     })
   }
 
+  componentWillUnmount() {
+    Taro.eventCenter.off();
+  }
+
   componentDidHide() {
+    console.log('componentDidShow')
   }
 
   refresh = () => {

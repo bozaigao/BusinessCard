@@ -75,10 +75,10 @@ class AddTask extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+  componentDidShow(){
     Taro.eventCenter.on('chooseCustomer', (chooseCustomer) => {
       this.setState({chooseCustomer});
-    })
+    });
   }
 
   componentWillUnmount() {
@@ -125,8 +125,8 @@ class AddTask extends Component<Props, State> {
       console.log(res);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
-        toast('任务添加成功');
         Taro.eventCenter.trigger('refreshTaskList');
+        toast('任务添加成功');
         debounce(1000, () => {
           Taro.navigateBack();
         });

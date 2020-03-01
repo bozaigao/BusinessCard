@@ -76,11 +76,9 @@ class DataCenter extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
-    this.settlementRecord();
-  }
 
   componentDidShow() {
+    this.settlementRecord();
   }
 
   componentDidHide() {

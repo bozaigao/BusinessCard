@@ -67,7 +67,7 @@ class TixianRecorder extends Component<Props, State> {
     this.withdrawList();
   }
 
-  componentDidMount() {
+  componentDidShow(){
     this.refresh();
   }
 

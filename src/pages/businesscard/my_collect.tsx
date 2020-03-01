@@ -122,7 +122,7 @@ class MyCollect extends Component<Props, State> {
   }
 
 
-  componentDidMount() {
+  componentDidShow(){
     this.myCollectList();
     this.refresh();
   }

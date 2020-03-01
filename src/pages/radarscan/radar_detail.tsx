@@ -87,7 +87,7 @@ class RadarDetail extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
+  componentDidShow(){
     this.traceList();
   }
 

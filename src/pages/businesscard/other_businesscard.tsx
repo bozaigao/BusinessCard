@@ -82,16 +82,8 @@ class OtherBusinesscard extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
-    // console.log('componentDidMount');
-    // // 监听一个事件，接受参数
-    // Taro.eventCenter.on('showJiFenModal', () => {
-    //   console.log('显示对话框');
-    //   this.viewRef && this.viewRef.showSignAlert()
-    // });
+  componentDidShow(){
     this.getUserInfo();
-    console.log('胶囊按钮', Taro.getMenuButtonBoundingClientRect());
-    console.log(this.viewRef)
   }
 
 

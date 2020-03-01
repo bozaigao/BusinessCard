@@ -86,7 +86,7 @@ class CustomerDetail extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
+  componentDidShow(){
     this.followUpList();
   }
 

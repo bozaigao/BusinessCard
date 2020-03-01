@@ -78,11 +78,8 @@ class MyCustomer extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+  componentDidShow(){
     this.refresh();
-  }
-
-  componentDidShow() {
   }
 
   componentDidHide() {

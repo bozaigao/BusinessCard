@@ -77,7 +77,7 @@ class ChooseCustomer extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.refresh();
   }
 

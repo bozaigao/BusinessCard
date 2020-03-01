@@ -108,8 +108,6 @@ class AudioRecorder extends Component<Props, State> {
     this.innerAudioContext && this.innerAudioContext.stop();
   }
 
-  componentDidMount() {
-  }
 
   componentDidHide() {
   }

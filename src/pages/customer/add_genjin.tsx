@@ -74,8 +74,6 @@ class AddGenJin extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
-  }
 
   componentDidHide() {
   }

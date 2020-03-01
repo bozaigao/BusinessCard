@@ -109,7 +109,8 @@ class AddBusinesscard extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+
+  componentDidShow(){
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.listData[2].value = industry;

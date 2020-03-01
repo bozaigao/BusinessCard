@@ -23,10 +23,6 @@ interface State {
 
 export default class MyGoods extends Component<Props, State> {
 
-  componentDidMount() {
-    // console.log('北部属性',this.props.goodsList);
-
-  }
 
   render() {
 

@@ -98,7 +98,8 @@ class CustomerZiLiao extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
+
+  componentDidShow(){
     this.getCustomerDetail();
   }
 

@@ -109,7 +109,7 @@ class GoodsManage extends Component<Props, State> {
   }
 
 
-  componentDidMount() {
+  componentDidShow(){
     this.refresh();
     Taro.eventCenter.on('goodsListRefresh', () => {
       this.refresh();

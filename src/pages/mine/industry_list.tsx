@@ -57,7 +57,7 @@ class IndustryList extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.getIndustryList();
   }
 

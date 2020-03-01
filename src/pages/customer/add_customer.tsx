@@ -22,7 +22,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -120,7 +120,7 @@ class AddCustomer extends Component<Props, State> {
     Taro.eventCenter.off();
   }
 
-  componentDidMount() {
+  componentDidShow(){
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.top1List[4].subtitle = industry;
@@ -173,6 +173,9 @@ class AddCustomer extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('录入成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        });
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();

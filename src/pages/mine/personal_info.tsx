@@ -117,14 +117,15 @@ class PersonalInfo extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+
+  componentDidShow() {
     console.log('用户信息', this.props.userInfo);
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.titleList1[3].subtitle = industry;
 
       this.setState({industry, titleList1: this.state.titleList1});
-    })
+    });
   }
 
   componentWillUnmount() {

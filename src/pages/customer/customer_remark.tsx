@@ -86,8 +86,6 @@ class CustomerRemark extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
-  }
 
   componentDidHide() {
   }

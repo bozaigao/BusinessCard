@@ -50,14 +50,12 @@ class Radarscan extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
-    this.refresh();
-  }
 
   componentWillUnmount() {
   }
 
   componentDidShow() {
+    this.refresh();
   }
 
   refresh = () => {

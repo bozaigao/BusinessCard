@@ -84,8 +84,6 @@ class MyEdu extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidMount() {
-  }
 
   componentDidHide() {
   }

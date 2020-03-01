@@ -76,7 +76,7 @@ class PerformInfo extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+  componentDidShow(){
     //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
     if (iphoneX()) {
       this.setState({marginTop: 43});
@@ -94,8 +94,6 @@ class PerformInfo extends Component<Props, State> {
     Taro.eventCenter.off('refreshUserInfo');
   }
 
-  componentDidShow() {
-  }
 
   componentDidHide() {
   }
