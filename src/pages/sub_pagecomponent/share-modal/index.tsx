@@ -41,7 +41,7 @@ export default class ShareModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {friendShare, downloadPic, cancle,wechatShare} = this.props;
+    let {friendShare, downloadPic, cancle} = this.props;
 
     return (
       <View

@@ -92,6 +92,17 @@ class TaskCenter extends Component<Props, State> {
       this.refresh();
       this.refresh1();
     });
+    Taro.eventCenter.on('refreshTaskList', () => {
+      console.log('刷新任务列表');
+      this.setState({taskItem: []}, () => {
+        this.refresh();
+        this.refresh1();
+      });
+    });
+  }
+
+  componentWillUnmount(){
+    Taro.eventCenter.off('refreshTaskList');
   }
 
 
@@ -138,7 +149,7 @@ class TaskCenter extends Component<Props, State> {
         this.setState({taskItem: this.state.taskItem, todayTask: res.records});
       } else if (res.records && res.records.length !== 0) {
       } else {
-        toast('没有商品了');
+        toast('没有任务了');
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
@@ -170,7 +181,7 @@ class TaskCenter extends Component<Props, State> {
         this.setState({taskItem: this.state.taskItem});
       } else if (res.records && res.records.length !== 0) {
       } else {
-        toast('没有商品了');
+        toast('没有任务了');
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();

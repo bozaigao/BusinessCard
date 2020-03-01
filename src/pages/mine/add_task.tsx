@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign, toast} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -103,10 +103,6 @@ class AddTask extends Component<Props, State> {
       toast('日期不能为空');
       return;
     }
-    if (remark.length === 0) {
-      toast('备注不能为空');
-      return;
-    }
 
     let paramas = {
       theme,
@@ -130,6 +126,10 @@ class AddTask extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('任务添加成功');
+        Taro.eventCenter.trigger('refreshTaskList');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        });
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
