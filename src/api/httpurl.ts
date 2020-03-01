@@ -25,6 +25,8 @@ const BASE_URL = StagingUrl,
     getUserInfo: BASE_URL + 'user/getUserInfo',
     //更新用户信息
     update: BASE_URL + 'user/update',
+    //反馈建议
+    suggestionAdd: BASE_URL + 'suggestion/add',
   },
   //数据字典
   DictController = {

@@ -9,15 +9,17 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {absB, absR, bgColor, color, commonStyles, default as styles, fSize, h, mt, pa, wRatio} from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import {Text, Textarea, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
+  suggestionAdd: any;
 }
 
 interface State {
@@ -49,6 +51,35 @@ class Feedback extends Component<Props, State> {
     }
   }
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/1
+   * @function: 投诉与建议
+   */
+  suggestionAdd = () => {
+    let {content} = this.state;
+
+    if (content.length === 0) {
+      toast('请输入内容');
+      return;
+    }
+    this.viewRef && this.viewRef.showLoading();
+    this.props.suggestionAdd({content: this.state.content}).then((res) => {
+      console.log('获取用户信息', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('返回成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        });
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
 
   render() {
     let {content} = this.state;
@@ -76,7 +107,7 @@ class Feedback extends Component<Props, State> {
         </View>
         {/*提交*/}
         <BottomButon title={'提交'} onClick={() => {
-
+          this.suggestionAdd();
         }}/>
       </CustomSafeAreaView>
     );

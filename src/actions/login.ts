@@ -78,3 +78,16 @@ export const update = payload => createAction({
   method: 'POST'
 });
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/1
+ * @function: 新增建议
+*/
+export const suggestionAdd = payload => createAction({
+  url: UserController.suggestionAdd,
+  payload,
+  method: 'POST'
+});
+
