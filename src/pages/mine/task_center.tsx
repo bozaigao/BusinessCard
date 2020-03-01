@@ -34,11 +34,12 @@ import TouchableButton from "../../compoments/touchable-button/index";
 import TaskItem from "../sub_pagecomponent/task-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {Orientation, TaskModel} from "../../const/global";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import SanJiao from "../../compoments/sanjiao";
 
 interface Props {
   getTaskList: any;
+  updateTask: any;
 }
 
 interface State {
@@ -101,7 +102,7 @@ class TaskCenter extends Component<Props, State> {
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     Taro.eventCenter.off('refreshTaskList');
   }
 
@@ -190,6 +191,34 @@ class TaskCenter extends Component<Props, State> {
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/1
+   * @function: 更新任务状态
+   */
+  taskUpdate = (taskId) => {
+    this.viewRef && this.viewRef.showLoading('加载中');
+    this.props.updateTask({
+      id: taskId,
+      status: 1,
+    }).then((res) => {
+      console.log('更新任务状态', res,taskId);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.setState({taskItem: []}, () => {
+          this.refresh();
+          this.refresh1();
+          toast('状态更新成功');
+        });
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
     let {showAllTask, showOnlyToday, taskItem, date, currentIndex, todayTask} = this.state;
 
@@ -238,18 +267,8 @@ class TaskCenter extends Component<Props, State> {
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                     scrollY
                     onScrollToUpper={() => {
-                      if (currentIndex === 1) {
-                        this.refresh();
-                      } else {
-                        this.refresh1();
-                      }
                     }}
                     onScrollToLower={() => {
-                      if (currentIndex === 1) {
-                        this.loadMore();
-                      } else {
-                        this.loadMore1();
-                      }
                     }}>
           {
             currentIndex === 0 ?
@@ -285,7 +304,11 @@ class TaskCenter extends Component<Props, State> {
                         showItem && <View>
                           {
                             value.children.map((itemValue, itemIndex) => {
-                              return (<TaskItem key={itemIndex} itemData={itemValue}/>);
+                              return (<TaskItem key={itemIndex} itemData={itemValue}
+                                                finishCallback={(taskId) => {
+                                                  this.taskUpdate(taskId);
+                                                }
+                                                }/>);
                             })
                           }
                         </View>
@@ -304,7 +327,10 @@ class TaskCenter extends Component<Props, State> {
               <View style={styleAssign([styles.uf1])}>
                 {
                   todayTask.map((itemValue, itemIndex) => {
-                    return (<TaskItem key={itemIndex} itemData={itemValue}/>);
+                    return (<TaskItem key={itemIndex} itemData={itemValue} finishCallback={(taskId) => {
+                      this.taskUpdate(taskId);
+                    }
+                    }/>);
                   })
                 }
                 {

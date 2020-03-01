@@ -31,6 +31,7 @@ import {TaskModel} from "../../../const/global";
 
 interface Props {
   itemData: TaskModel;
+  finishCallback?: any;
 }
 
 interface State {
@@ -39,7 +40,7 @@ interface State {
 export default class TaskItem extends PureComponent<Props, State> {
 
   render() {
-    let {itemData} = this.props;
+    let {itemData, finishCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), h(143), styles.uac, styles.ujc, mt(10), mb(10)])}>
@@ -47,17 +48,23 @@ export default class TaskItem extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb,
             pl(16), pr(16), pt(20)])}>
             <Text style={styleAssign([fSize(16), color('#343434')])}>{itemData.theme}</Text>
-            <TouchableButton
-              customStyle={styleAssign([w(72), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>移至完成</Text>
-            </TouchableButton>
+            {
+              itemData.status !== 1 && <TouchableButton
+                onClick={() => {
+                  finishCallback(itemData.id);
+                }}
+                customStyle={styleAssign([w(72), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>移至完成</Text>
+              </TouchableButton>
+            }
           </View>
           <Text style={styleAssign([fSize(12), color('#343434'), mt(10), ml(20)])}>{itemData.remark}</Text>
           <View
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <View style={styleAssign([styles.uf1, styles.uac, styles.udr, styles.ujb])}>
-            <Text style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{transformTime(itemData.createTime)}</Text>
-            <TouchableButton customStyle={styleAssign([styles.uac, styles.ujc, mr(16),styles.utxdu])}>
+            <Text
+              style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{transformTime(itemData.date)}</Text>
+            <TouchableButton customStyle={styleAssign([styles.uac, styles.ujc, mr(16), styles.utxdu])}>
               <Text style={styleAssign([color('#313137'), fSize(12)])}>查看关联客户</Text>
             </TouchableButton>
           </View>

@@ -52,7 +52,7 @@ export function debounce(idle, action) {
 
   return (() => {
     clearTimeout(last)
-    last = setTimeout(function() {
+    last = setTimeout(function () {
       action()
     }, idle)
   })()
