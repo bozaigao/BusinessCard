@@ -43,11 +43,13 @@ import {timeMap} from "../../const/global";
 interface Props {
   //获取特权套餐
   packageList: any;
+  //购买套餐
+  purchasePackage: any;
 }
 
 interface State {
   marginTop: number;
-  taoCanIndex: number;
+  packageId: number;
   currentIndex: number;
   title1: string;
   subtitle1: string;
@@ -78,7 +80,7 @@ class TeQuan extends Component<Props, State> {
     console.log(this.viewRef);
     this.state = {
       marginTop: 0,
-      taoCanIndex: 0,
+      packageId: 0,
       currentIndex: 0,
       title1: '查看访客无限制',
       subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
@@ -123,6 +125,7 @@ class TeQuan extends Component<Props, State> {
         for (let i = 0; i < res.length; i++) {
           if (res[i].purchaseTime === 'seven_days') {
             packageList.push({
+              packageId: res[i].id,
               title: timeMap['seven_days'],
               subTitle: '',
               left: '到期￥198/季度续费，可取消',
@@ -131,6 +134,7 @@ class TeQuan extends Component<Props, State> {
             });
           } else if (res[i].purchaseTime === 'quarter') {
             packageList.push({
+              packageId: res[i].id,
               title: timeMap['quarter'],
               subTitle: '（3个月）',
               left: `￥${(res[i].price / 3).toFixed(0)}/月`,
@@ -138,6 +142,7 @@ class TeQuan extends Component<Props, State> {
             });
           } else if (res[i].purchaseTime === 'half_a_year') {
             packageList.push({
+              packageId: res[i].id,
               title: timeMap['half_a_year'],
               subTitle: '（6个月）',
               left: `￥${(res[i].price / 6).toFixed(0)}/月`,
@@ -145,6 +150,7 @@ class TeQuan extends Component<Props, State> {
             });
           } else if (res[i].purchaseTime === 'one_year') {
             packageList.push({
+              packageId: res[i].id,
               title: timeMap['one_year'],
               subTitle: '（12个月）',
               left: `￥${(res[i].price / 12).toFixed(0)}/月`,
@@ -152,7 +158,7 @@ class TeQuan extends Component<Props, State> {
             });
           }
         }
-        this.setState({packageList});
+        this.setState({packageList, packageId: packageList.length !== 0 ? packageList[0].packageId : 0});
       }
       console.log('获取特权套餐', res);
     }).catch(e => {
@@ -160,8 +166,42 @@ class TeQuan extends Component<Props, State> {
     });
   }
 
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/1
+   * @function: 购买套餐
+   */
+  purchasePackage = (packageId) => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.purchasePackage({packageId}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        console.log('购买套餐', res);
+        Taro.requestPayment({
+          timeStamp: res.timeStamp,
+          nonceStr: res.nonceStr,
+          package: res.package,
+          signType: res.signType,
+          paySign: res.paySign,
+          success(res) {
+            console.log('支付成功', res);
+          },
+          fail(res) {
+            console.log('支付失败', res);
+          }
+        });
+      }
+      console.log('获取特权套餐', res);
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
   render() {
-    let {marginTop, taoCanIndex, currentIndex, title1, subtitle1, title2, subtitle2, packageList} = this.state;
+    let {marginTop, packageId, currentIndex, title1, subtitle1, title2, subtitle2, packageList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -262,27 +302,17 @@ class TeQuan extends Component<Props, State> {
             packageList.map((value, index) => {
               return <TaoCanItem key={index} item={value}
                                  onClick={() => {
-                                   this.setState({taoCanIndex: index});
+                                   this.setState({packageId: value.packageId});
                                  }
                                  }
-                                 checked={index === taoCanIndex}/>;
+                                 checked={value.packageId === packageId}/>;
             })
           }
           {/*开通*/}
           <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
             <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
                   onClick={() => {
-                    Taro.requestPayment({
-                      timeStamp: '',
-                      nonceStr: '',
-                      package: '',
-                      signType: 'MD5',
-                      paySign: '',
-                      success(res) {
-                      },
-                      fail(res) {
-                      }
-                    })
+                    this.purchasePackage(packageId);
                   }}>
               <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即开通</Text>
             </View>

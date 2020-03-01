@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/actions/tequan.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/tequan.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/const/global.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/const/global.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,8 +19,8 @@
       <file leaf-file-name="tequan.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actions/tequan.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="38" column="39" lean-forward="true" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
+            <state relative-caret-position="424">
+              <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="18" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#102#146#0" expanded="true" />
@@ -43,8 +41,8 @@
       <file leaf-file-name="tequan.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="154" column="37" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
+            <state relative-caret-position="504">
+              <caret line="195" column="33" selection-start-line="195" selection-start-column="33" selection-end-line="195" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#255#304#0" expanded="true" />
@@ -540,12 +538,12 @@
       <workItem from="1582708639260" duration="655000" />
       <workItem from="1582727969364" duration="4734000" />
       <workItem from="1582940642676" duration="20648000" />
-      <workItem from="1583022584893" duration="19631000" />
+      <workItem from="1583022584893" duration="20953000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="859556000" />
+    <option name="totallyTimeSpent" value="860878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -565,9 +563,9 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17061612" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17061612" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3271795" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1111,17 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/tequan.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="38" column="39" lean-forward="true" selection-start-line="38" selection-start-column="39" selection-end-line="38" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#102#146#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/const/global.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="478">
@@ -1129,10 +1116,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/tequan.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="49" column="18" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#102#146#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="154" column="37" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
+        <state relative-caret-position="504">
+          <caret line="195" column="33" selection-start-line="195" selection-start-column="33" selection-end-line="195" selection-end-column="33" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#255#304#0" expanded="true" />
