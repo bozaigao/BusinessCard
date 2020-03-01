@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
+  absB, absR,
   bgColor,
   color,
   commonStyles,
@@ -37,7 +38,8 @@ interface Props {
 
 
 interface State {
-  template:string;
+  template: string;
+  desc: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -61,13 +63,14 @@ class ToolBox extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
-      template:'您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~'
+      template: '您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~',
+      desc: ''
     }
   }
 
 
   render() {
-    let {template} = this.state;
+    let {template, desc} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -76,12 +79,21 @@ class ToolBox extends Component<Props, State> {
         <TopHeader title={'工具箱'}/>
         {/*输入区*/}
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-          <View style={styleAssign([wRatio(100),h(360),  bgColor(commonStyles.whiteColor), mt(10)])}>
+          <View style={styleAssign([wRatio(100), h(360), bgColor(commonStyles.whiteColor), mt(10)])}>
             <Text style={styleAssign([fSize(15), color('#0C0C0C'), ml(20), mt(20)])}>名片引导语</Text>
+            <View style={styleAssign([wRatio(100), h(91)])}>
             <Textarea value={''}
                       placeholder={'您好，我是…公司的…,这是我的电子名片，欢迎进入我的名片主页~'}
                       style={styleAssign([w(305), h(91), fSize(16), mt(10), ml(20),
-                        bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}/>
+                        bgColor(commonStyles.pageDefaultBackgroundColor), pa(16)])}
+                      onInput={(e) => {
+                        this.setState({desc: e.detail.value});
+                      }} maxlength={50}/>
+              <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(10)])}>
+                <Text style={styleAssign([fSize(12), color('#979797')])}>{desc.length}</Text>
+                <Text style={styleAssign([fSize(12), color('#CECECE')])}>/50</Text>
+              </View>
+            </View>
             <Text style={styleAssign([fSize(16), color('#313137'), ml(20), mt(20)])}>参考模板</Text>
             <View style={styleAssign([wRatio(90), {marginLeft: '5%'}, h(100), mt(13),
               {boxShadow: '0px 4px 4px 0px rgba(230,230,230,0.5'}])}>

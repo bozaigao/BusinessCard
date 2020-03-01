@@ -30,6 +30,7 @@ import TouchableButton from "../../../compoments/touchable-button/index";
 interface Props {
   friendShare: any;
   downloadPic: any;
+  wechatShare: any;
   cancle: any;
 }
 
@@ -40,7 +41,7 @@ export default class ShareModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {friendShare, downloadPic, cancle} = this.props;
+    let {friendShare, downloadPic, cancle,wechatShare} = this.props;
 
     return (
       <View
