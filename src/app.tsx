@@ -63,6 +63,11 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/help/open_message_notice",
+      "pages/help/update_card_style",
+      "pages/help/get_renmai",
+      "pages/help/open_shop",
+      "pages/help/view_card",
       "pages/help/how_share_card",
       "pages/help/how_perform_card",
       "pages/help/introduce",
