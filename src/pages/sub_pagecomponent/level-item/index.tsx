@@ -40,7 +40,7 @@ export default class LevelItem extends Component<Props> {
     let {item} = this.props;
 
     return (
-      <View style={styleAssign([w(335), h(182), ml(10), {display: 'inline-block'},])}>
+      <View style={styleAssign([w(335), h(182), ml(20)])}>
         <Image style={styleAssign([w(335), h(182), styles.upa, absT(0)])}
                src={`${cloudBaseUrl}${item.bg}`}/>
         <View style={styleAssign([styles.uf1])}>

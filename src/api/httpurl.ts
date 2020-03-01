@@ -124,6 +124,13 @@ const BASE_URL = StagingUrl,
     withdraw: BASE_URL + 'distribution/withdraw',
     //提现记录
     withdrawList: BASE_URL + 'distribution/withdrawList',
+  },
+  //特区中心
+  TeQuanManage = {
+    //查询套餐信息
+    packageList: BASE_URL + 'privilege/packageList',
+    //购买套餐
+    purchasePackage: BASE_URL + 'privilege/purchasePackage',
   };
 
 
@@ -139,5 +146,6 @@ export {
   BusinessCardManage,
   VisitorManage,
   RadarManage,
-  DistributionManage
+  DistributionManage,
+  TeQuanManage
 };

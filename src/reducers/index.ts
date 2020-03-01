@@ -9,6 +9,7 @@ import BusinessCard from "../actions/business_card";
 import Visitor from "../actions/visitor";
 import Radar from "../actions/radar";
 import Distribution from "../actions/distribution";
+import teQuan from "../actions/tequan";
 
 export default combineReducers({
   login,
@@ -20,5 +21,6 @@ export default combineReducers({
   BusinessCard,
   Visitor,
   Radar,
-  Distribution
+  Distribution,
+  teQuan
 })

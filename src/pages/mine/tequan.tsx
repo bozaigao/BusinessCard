@@ -33,7 +33,7 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import LinearGradientView from "../sub_pagecomponent/linear-gradient-view/index";
 import LevelItem from "../sub_pagecomponent/level-item/index";
 import TaoCanItem from "../sub_pagecomponent/taocan-item/index";
@@ -44,6 +44,11 @@ interface Props {
 interface State {
   marginTop: number;
   taoCanIndex: number;
+  currentIndex: number;
+  title1: string;
+  subtitle1: string;
+  title2: string;
+  subtitle2: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -69,6 +74,11 @@ class TeQuan extends Component<Props, State> {
     this.state = {
       marginTop: 0,
       taoCanIndex: 0,
+      currentIndex: 0,
+      title1: '查看访客无限制',
+      subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
+      title2: '特权介绍',
+      subtitle2: '• 可查看全部访客的信息',
     }
   }
 
@@ -83,7 +93,7 @@ class TeQuan extends Component<Props, State> {
 
 
   render() {
-    let {marginTop, taoCanIndex} = this.state;
+    let {marginTop, taoCanIndex, currentIndex, title1, subtitle1, title2, subtitle2} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -106,9 +116,19 @@ class TeQuan extends Component<Props, State> {
               <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>特权开通</Text>
               <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
             </View>
-            <ScrollView
-              style={styleAssign([wRatio(100), h(182), styles.uac, styles.upa, absB(0), {whiteSpace: 'nowrap'}])}
-              scrollX>
+            <Swiper
+              style={styleAssign([wRatio(100), h(182), styles.uac, styles.upa, absB(0)])}
+              onChange={(e) => {
+                this.setState({currentIndex: e.detail.current}, () => {
+                  if (this.state.currentIndex === 0) {
+                    this.setState({title1: '查看访客无限制', subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析', title2: '特权介绍', subtitle2: '• 可查看全部访客的信息'});
+                  } else if (this.state.currentIndex === 1) {
+                    this.setState({title1: '开通商铺，展示更多产品', subtitle1: '开通商铺之后您将拥有专属线上商铺，我们将为您免费装修店铺并上架您的产品', title2: '特权介绍', subtitle2: '• 可展示更多产品\n• 可进行线上产品购买交易'});
+                  } else if (this.state.currentIndex === 2) {
+                    this.setState({title1: '获取人脉资源，增加客户来源', subtitle1: '开通人脉扩展功能，突破每日推送人脉名额限制 根据您的期望人脉选择及个人名片信息，精准推送人脉，提升获客率', title2: '特权介绍', subtitle2: '• 可查看更多人脉'});
+                  }
+                });
+              }}>
               {
                 [{
                   title: '查看全部访客',
@@ -133,10 +153,12 @@ class TeQuan extends Component<Props, State> {
                     buttonTitle: '新用户1元试用',
                     right: '最低￥198起'
                   }].map((value, index) => {
-                  return <LevelItem key={index} item={value}/>
+                  return <SwiperItem key={index}>
+                    <LevelItem key={index} item={value}/>
+                  </SwiperItem>
                 })
               }
-            </ScrollView>
+            </Swiper>
           </View>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(16), styles.udr])}>
             <View style={styleAssign([w(39), h(1), bgColor('#E4C28C')])}/>
@@ -144,22 +166,21 @@ class TeQuan extends Component<Props, State> {
             <View style={styleAssign([w(39), h(1), bgColor('#E4C28C')])}/>
           </View>
           <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(14)])}>
-            <Text style={styleAssign([color('#343434'), fSize(14)])}>查看访客无限制</Text>
+            <Text style={styleAssign([color('#343434'), fSize(14)])}>{title1}</Text>
             <Text
-              style={styleAssign([color('#979797'), fSize(14), mt(6)])}>查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析</Text>
+              style={styleAssign([color('#979797'), fSize(14), mt(6)])}>{subtitle1}</Text>
           </View>
           <View style={styleAssign([wRatio(100)])}>
             <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(30),
               styles.udr, styles.ujb, styles.uac])}>
-              <Text style={styleAssign([color('#343434'), fSize(14)])}>特权介绍</Text>
+              <Text style={styleAssign([color('#343434'), fSize(14)])}>{title2}</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>详情</Text>
                 <Image style={styleAssign([w(7), h(12), ml(8)])} src={require('../../assets/ico_next_orange.png')}/>
               </View>
             </View>
             <View style={styleAssign([styles.uac, styles.udr, mt(6), ml(20)])}>
-              <View style={styleAssign([w(4), h(4), radiusA(2), bgColor('#979797')])}/>
-              <Text style={styleAssign([color('#979797'), fSize(14), ml(8)])}>可查看全部访客的信息</Text>
+              <Text style={styleAssign([color('#979797'), fSize(14), ml(8)])}>{subtitle2}</Text>
             </View>
           </View>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(18), styles.udr])}>
