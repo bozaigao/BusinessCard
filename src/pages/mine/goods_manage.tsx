@@ -236,7 +236,7 @@ class GoodsManage extends Component<Props, State> {
       child = <View style={styleAssign([wRatio(100), hRatio(100)])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
-          pl(20), pr(20)])}>
+          pl(20), pr(20),bgColor('red')])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
             <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${totalGoods}件商品)`}</Text>
