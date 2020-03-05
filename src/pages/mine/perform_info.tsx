@@ -19,11 +19,11 @@ import {
   fSize,
   h,
   hRatio,
-  iphoneX,
   mb,
   ml,
   mr,
   mt,
+  op,
   pl,
   pr,
   radiusA,
@@ -37,6 +37,7 @@ import * as actions from "../../actions/login";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import LinearGradientView from "../sub_pagecomponent/linear-gradient-view";
+import NavigationBar from "../../compoments/navigation_bar";
 
 
 interface Props {
@@ -46,10 +47,10 @@ interface Props {
 }
 
 interface State {
-  marginTop: number;
   showPersonalInfo: boolean;
   photoUrl: string[];
   videoUrl: string;
+  scrollTop: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -71,18 +72,12 @@ class PerformInfo extends Component<Props, State> {
     this.state = {
       photoUrl: [],
       videoUrl: '',
-      marginTop: 0,
-      showPersonalInfo: true
+      showPersonalInfo: true,
+      scrollTop:0
     }
   }
 
   componentDidShow(){
-    //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
-    if (iphoneX()) {
-      this.setState({marginTop: 43});
-    } else {
-      this.setState({marginTop: 15});
-    }
     this.getUserInfo();
     Taro.eventCenter.on('refreshUserInfo', () => {
       console.log('刷新用户信息');
@@ -120,7 +115,7 @@ class PerformInfo extends Component<Props, State> {
 
   render() {
 
-    let {marginTop, showPersonalInfo, photoUrl, videoUrl} = this.state;
+    let {showPersonalInfo, photoUrl, videoUrl,scrollTop} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -128,21 +123,14 @@ class PerformInfo extends Component<Props, State> {
                           notNeedBottomPadding={true}>
         <ScrollView
           style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor)])}
-          scrollY>
+          scrollY
+          onScroll={(e: any) => {
+            this.setState({scrollTop: e.detail.scrollTop});
+            console.log(e.detail);
+          }}>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([wRatio(100)])}>
               <LinearGradientView style={styleAssign([wRatio(100), h(182)])}/>
-              {/*我的*/}
-              <View
-                style={styleAssign([styles.upa, absT(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
-                       onClick={() => {
-                         Taro.eventCenter.trigger('refreshUserInfo');
-                         Taro.navigateBack();
-                       }}/>
-                <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>
-                <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
-              </View>
             </View>
             <View style={styleAssign([wRatio(100), h(190), bgColor(commonStyles.whiteColor)])}/>
             {/*个人信息展示*/}
@@ -415,6 +403,18 @@ class PerformInfo extends Component<Props, State> {
             </View>
           </TouchableButton>
         </ScrollView>
+        <NavigationBar style={styleAssign([styles.upa, absT(0), op((300 - scrollTop) / 300)])}>
+        <View
+          style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
+          <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
+                 onClick={() => {
+                   Taro.eventCenter.trigger('refreshUserInfo');
+                   Taro.navigateBack();
+                 }}/>
+          <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>
+          <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+        </View>
+        </NavigationBar>
       </CustomSafeAreaView>
     );
   }

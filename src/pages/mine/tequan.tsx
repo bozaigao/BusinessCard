@@ -25,6 +25,7 @@ import {
   ml,
   mr,
   mt,
+  op,
   pl,
   pr,
   radiusA,
@@ -39,6 +40,7 @@ import LevelItem from "../sub_pagecomponent/level-item/index";
 import TaoCanItem from "../sub_pagecomponent/taocan-item/index";
 import {NetworkState} from "../../api/httpurl";
 import {timeMap} from "../../const/global";
+import NavigationBar from "../../compoments/navigation_bar";
 
 interface Props {
   //获取特权套餐
@@ -48,7 +50,6 @@ interface Props {
 }
 
 interface State {
-  marginTop: number;
   packageId: number;
   currentIndex: number;
   title1: string;
@@ -56,6 +57,7 @@ interface State {
   title2: string;
   subtitle2: string;
   packageList: any[];
+  scrollTop: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -79,23 +81,14 @@ class TeQuan extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
-      marginTop: 0,
       packageId: 0,
       currentIndex: 0,
       title1: '查看访客无限制',
       subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
       title2: '特权介绍',
       subtitle2: '• 可查看全部访客的信息',
-      packageList: []
-    }
-  }
-
-  componentWillMount() {
-    //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
-    if (iphoneX()) {
-      this.setState({marginTop: 43});
-    } else {
-      this.setState({marginTop: 15});
+      packageList: [],
+      scrollTop: 0
     }
   }
 
@@ -201,29 +194,21 @@ class TeQuan extends Component<Props, State> {
   }
 
   render() {
-    let {marginTop, packageId, currentIndex, title1, subtitle1, title2, subtitle2, packageList} = this.state;
+    let {marginTop, packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-
         <ScrollView
-          style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor)])}
-          scrollY>
-          <View style={styleAssign([wRatio(100), h(iphoneX() ? 287 : 247), mt(0)])}>
+          style={styleAssign([styles.upa, absT(0), wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor)])}
+          scrollY
+          onScroll={(e: any) => {
+            this.setState({scrollTop: e.detail.scrollTop});
+            console.log(e.detail);
+          }}>
+          <View style={styleAssign([wRatio(100), h(iphoneX() ? 287 : 267), mt(0)])}>
             <LinearGradientView style={styleAssign([wRatio(100), h(iphoneX() ? 222 : 182)])}/>
-            {/*我的*/}
-            <View
-              style={styleAssign([styles.upa, absT(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-              <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
-                     onClick={() => {
-                       Taro.eventCenter.trigger('refreshUserInfo');
-                       Taro.navigateBack();
-                     }}/>
-              <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>特权开通</Text>
-              <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
-            </View>
             <Swiper
               style={styleAssign([wRatio(100), h(182), styles.uac, styles.upa, absB(0)])}
               onChange={(e) => {
@@ -328,6 +313,18 @@ class TeQuan extends Component<Props, State> {
             </View>
           </View>
         </ScrollView>
+        <NavigationBar style={styleAssign([styles.upa, absT(0), op((300 - scrollTop) / 300)])}>
+          <View
+            style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
+            <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
+                   onClick={() => {
+                     Taro.eventCenter.trigger('refreshUserInfo');
+                     Taro.navigateBack();
+                   }}/>
+            <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>特权开通</Text>
+            <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+          </View>
+        </NavigationBar>
       </CustomSafeAreaView>
     );
   }
