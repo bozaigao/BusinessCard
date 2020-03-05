@@ -11,13 +11,18 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {styleAssign} from "../../utils/datatool";
 import {
-  absB, absL, absR, absT,
+  absB,
+  absL,
+  absR,
+  absT,
   bgColor,
   color,
   commonStyles,
   default as styles,
-  fSize, fWeight,
-  h, ma, ml,
+  fSize,
+  fWeight,
+  h,
+  ml,
   mt,
   radiusA,
   w,
@@ -27,7 +32,6 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../../api/httpurl";
 import BottomButon from "../../compoments/bottom-buton";
 
