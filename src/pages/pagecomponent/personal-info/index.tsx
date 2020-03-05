@@ -74,7 +74,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
             <View style={styleAssign([])}>
               <Text style={styleAssign([fSize(14)])}>教育</Text>
               <Text style={styleAssign([fSize(12)])}>四川美术学院</Text>
-              <Text style={styleAssign([fSize(10)])}>产品设计 2015-2019 本科</Text>
+              <Text style={styleAssign([fSize(10),color('#979797')])}>产品设计 2015-2019 本科</Text>
             </View>
             <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
               bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>

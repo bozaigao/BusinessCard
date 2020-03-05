@@ -8,6 +8,8 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
+  absB,
+  absR,
   bgColor,
   color,
   commonStyles,
@@ -144,6 +146,10 @@ class AddCustomer extends Component<Props, State> {
 
     if (phone.length === 0) {
       toast('手机不能为空');
+      return;
+    }
+    if (phone.length !== 11 || !phone.startsWith('1')) {
+      toast('手机号非法');
       return;
     }
     if (industry.length === 0) {
@@ -324,18 +330,25 @@ class AddCustomer extends Component<Props, State> {
             }
           </View>
           {/*备注*/}
-          <View style={styleAssign([wRatio(100), h(183), mt(10), bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([wRatio(100), h(203), mt(10), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([fSize(14), color('#CECECE'), ml(20), mt(18)])}>描述</Text>
+            <View style={styleAssign([wRatio(100), h(160)])}>
             <Textarea value={desc}
-                      style={styleAssign([ml(20), w(300), pa(20), mr(20), fSize(14), radiusA(4), mt(4), h(91),
+                      style={styleAssign([ml(20), w(300), pa(20), mr(20), fSize(14), radiusA(4), mt(4), h(160),
                         bgColor(commonStyles.pageDefaultBackgroundColor)])}
                       onInput={(e) => {
                         this.setState({desc: e.detail.value});
-                      }} placeholder={'请输入您对客户的备注描述，帮助您更好地追踪客户~'}/>
+                      }} placeholder={'请输入您对客户的备注描述，帮助您更好地追踪客户~'}
+                      maxlength={600}/>
+              <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(10)])}>
+                <Text style={styleAssign([fSize(12), color('#979797')])}>{desc.length}</Text>
+                <Text style={styleAssign([fSize(12), color('#CECECE')])}>/600</Text>
+              </View>
+            </View>
           </View>
           {
             avatar.path.length === 0 ? <TouchableButton
-                customStyle={styleAssign([wRatio(100), h(204), mt(10), styles.uac, bgColor(commonStyles.whiteColor)])}
+                customStyle={styleAssign([wRatio(100), h(204), styles.uac, bgColor(commonStyles.whiteColor)])}
                 onClick={() => {
                   Taro.chooseImage({count: 1}).then((res) => {
                     console.log('路径', res);
@@ -358,7 +371,7 @@ class AddCustomer extends Component<Props, State> {
               </TouchableButton> :
               <View style={styleAssign([styles.uac, styles.ujc])}>
                 <Image style={styleAssign([w(335), h(176)])} src={avatar.path}
-                mode={'aspectFit'}/>
+                       mode={'aspectFit'}/>
               </View>
           }
         </ScrollView>

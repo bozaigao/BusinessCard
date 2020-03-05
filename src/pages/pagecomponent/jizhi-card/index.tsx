@@ -63,12 +63,12 @@ export default class JiZhiCard extends PureComponent<Props, State> {
                   <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
                     <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_wechat_gray.png`}/>
                     <Text
-                      style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(4)])}>18980668468</Text>
+                      style={styleAssign([fSize(12), color('#979797'), ml(4)])}>18980668468</Text>
                   </View>
                   <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
                     <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_phone_gray.png`}/>
                     <Text
-                      style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(4)])}>LY8866321</Text>
+                      style={styleAssign([fSize(12), color('#979797'), ml(4)])}>LY8866321</Text>
                   </View>
                   <View style={styleAssign([wRatio(100), styles.upa, absB(0)])}>
                     <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
