@@ -19,7 +19,7 @@ import {
   color,
   commonStyles,
   default as styles,
-  fSize,
+  fSize, fWeight,
   h,
   hRatio,
   ma,
@@ -94,10 +94,10 @@ class Haibao extends Component<Props, State> {
                           this.setState({currentIndex: index});
                         }}>
                     <Text
-                      style={styleAssign([fSize(14), color(index === currentIndex ? '#E2BB7B' : commonStyles.colorTheme)])}>{value}</Text>
+                      style={styleAssign([fSize(14), color(index === currentIndex ? '#E2BB7B' : commonStyles.colorTheme), fWeight(index === currentIndex ? 'bold' : 'normal')])}>{value}</Text>
                     <View
                       style={styleAssign([w(50), h(2), radiusA(1), bgColor(index === currentIndex ? '#E2BB7B' : commonStyles.whiteColor), mt(5),
-                        ml(5)])}/>
+                        ml(3)])}/>
                   </View>);
               })
             }
