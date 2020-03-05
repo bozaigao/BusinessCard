@@ -22,10 +22,10 @@ class App extends Component {
 
     //获取胶囊按钮位置信息为后面自定义导航条做准备
     global.menuButton = Taro.getMenuButtonBoundingClientRect();
-    global.debug = true;
+    global.debug = false;
     Taro.getSystemInfo({
       success: res => {
-        global = Object.assign(global, res, {debug: true});
+        global = Object.assign(global, res, {debug: false});
         if (res.model && res.model.includes('iPhone X')) {
           global.iphoneX = true;
         } else if (res.platform === 'ios' && res.screenHeight === 812 && res.screenWidth === 375 ||
@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      // "pages/renmai_taocan_detail",
       //主界面
       "pages/businesscard",
       "pages/radarscan",

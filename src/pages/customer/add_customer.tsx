@@ -120,7 +120,7 @@ class AddCustomer extends Component<Props, State> {
     Taro.eventCenter.off();
   }
 
-  componentDidShow(){
+  componentDidShow() {
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.top1List[4].subtitle = industry;
@@ -356,7 +356,10 @@ class AddCustomer extends Component<Props, State> {
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加与客户相关的图片</Text>
                 </View>
               </TouchableButton> :
-              <Image style={styleAssign([wRatio(100), h(204)])} src={avatar.path}/>
+              <View style={styleAssign([styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(335), h(176)])} src={avatar.path}
+                mode={'aspectFit'}/>
+              </View>
           }
         </ScrollView>
         {/*保存*/}
