@@ -8,6 +8,8 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
+  absB,
+  absR,
   bgColor,
   color,
   commonStyles,
@@ -193,12 +195,19 @@ class CustomerRemark extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <View style={styleAssign([wRatio(100), h(183), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([fSize(14), color('#CECECE'), ml(20), mt(18)])}>描述</Text>
+            <View style={styleAssign([wRatio(100), h(160)])}>
             <Textarea value={desc}
-                      style={styleAssign([ml(20), w(300), pa(20), mr(20), fSize(14), radiusA(4), mt(4), h(91),
+                      style={styleAssign([ml(20), w(300), pa(20), mr(20), fSize(14), radiusA(4), mt(4), h(160),
                         bgColor(commonStyles.pageDefaultBackgroundColor)])}
                       onInput={(e) => {
                         this.setState({desc: e.detail.value});
-                      }} placeholder={'请输入您对客户的备注描述，帮助您更好地追踪客户~'}/>
+                      }} placeholder={'请输入您对客户的备注描述，帮助您更好地追踪客户~'}
+                      maxlength={600}/>
+              <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(10)])}>
+                <Text style={styleAssign([fSize(12), color('#979797')])}>{desc.length}</Text>
+                <Text style={styleAssign([fSize(12), color('#CECECE')])}>/600</Text>
+              </View>
+            </View>
           </View>
           {
             avatar.path.length === 0 ? <TouchableButton
@@ -223,7 +232,10 @@ class CustomerRemark extends Component<Props, State> {
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加与客户相关的图片</Text>
                 </View>
               </TouchableButton> :
-              <Image style={styleAssign([wRatio(100), h(204)])} src={avatar.path}/>
+              <View style={styleAssign([styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(335), h(176)])} src={avatar.path}
+                       mode={'aspectFit'}/>
+              </View>
           }
         </ScrollView>
         {/*保存*/}
