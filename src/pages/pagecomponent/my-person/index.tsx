@@ -62,7 +62,7 @@ export default class MyPerson extends Component<Props, State> {
           !hasSelected &&
           <View style={styleAssign([wRatio(100), styles.uac, mt(20)])}>
             <View style={styleAssign([w(335), h(360), styles.uac, bgColor(commonStyles.whiteColor)])}>
-              <Image style={styleAssign([w(335), h(204)])} src={`${cloudBaseUrl}ico_renmai.png`}/>
+              <Image style={styleAssign([w(335), h(204)])} src={`${cloudBaseUrl}ico_renmai_bg.png`}/>
               <Text style={styleAssign([fSize(14), color('#343434'), mt(27)])}>您可以选择您期望的人脉，我们将为您引荐</Text>
               <Text style={styleAssign([fSize(12), color('#979797'), mt(13)])}>名片完善度越高，获得人脉数据越丰富，精准</Text>
               <View
