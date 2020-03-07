@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/choose_renmai_tag",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
