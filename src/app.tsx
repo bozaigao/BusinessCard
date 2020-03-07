@@ -80,7 +80,8 @@ class App extends Component {
           "more_goods",
           "mingpianjia",
           "my_collect",
-          "other_businesscard"
+          "other_businesscard",
+          "ming_pian_ma"
         ]
       },
       //雷达模块子界面

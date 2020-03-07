@@ -34,6 +34,7 @@ interface Props {
   shareClick: any;
   collectCallback: any;
   viewMyCardCallback: any;
+  gotoCardCallback: any;
 }
 
 interface State {
@@ -43,7 +44,7 @@ export default class Card extends PureComponent<Props, State> {
 
   render() {
 
-    let {shareClick, collectCallback, viewMyCardCallback} = this.props;
+    let {shareClick, collectCallback, viewMyCardCallback,gotoCardCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
@@ -83,7 +84,8 @@ export default class Card extends PureComponent<Props, State> {
               </View>
             </View>
           </View>
-          <View style={styleAssign([wRatio(100), h(45), styles.udr, styles.uac, styles.ujb])}>
+          <View style={styleAssign([wRatio(100), h(45), styles.udr, styles.uac, styles.ujb])}
+          onClick={gotoCardCallback}>
             <Text
               style={styleAssign([fSize(12), color('#29292E'), ml(16)])}>我的名片</Text>
             <View style={styleAssign([styles.udr, styles.uac, mr(16)])}>

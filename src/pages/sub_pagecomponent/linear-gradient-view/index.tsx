@@ -13,7 +13,7 @@ interface Props {
   style: any;
 }
 
-export class LinearGradientView extends Component<Props> {
+export class LinearGradientView2 extends Component<Props> {
 
 
   render() {
@@ -28,4 +28,4 @@ export class LinearGradientView extends Component<Props> {
   }
 }
 
-export default LinearGradientView;
+export default LinearGradientView2;
