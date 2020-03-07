@@ -267,8 +267,6 @@ class OtherBusinesscard extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>收藏 143</Text>
-                  <Image style={styleAssign([w(15), h(15), ml(7)])}
-                         src={`${cloudBaseUrl}ico_star.png`}/>
                 </View>
               </View>
             </View>
