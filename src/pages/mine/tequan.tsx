@@ -194,7 +194,7 @@ class TeQuan extends Component<Props, State> {
   }
 
   render() {
-    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList} = this.state;
+    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -269,7 +269,12 @@ class TeQuan extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(30),
               styles.udr, styles.ujb, styles.uac])}>
               <Text style={styleAssign([color('#343434'), fSize(14)])}>{title2}</Text>
-              <View style={styleAssign([styles.udr, styles.uac])}>
+              <View style={styleAssign([styles.udr, styles.uac])}
+                    onClick={() => {
+                      Taro.navigateTo({
+                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'fangke' : 'renmai'}&packageId=${packageList[0].packageId}`
+                      });
+                    }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>详情</Text>
                 <Image style={styleAssign([w(7), h(12), ml(8)])} src={require('../../assets/ico_next_orange.png')}/>
               </View>

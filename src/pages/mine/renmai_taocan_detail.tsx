@@ -7,9 +7,9 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../compoments/safe-area-view/index";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -31,13 +31,13 @@ import {
   radiusA,
   w,
   wRatio
-} from "../utils/style";
+} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../actions/tequan';
+import * as actions from '../../actions/tequan';
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import LinearGradientView from "./sub_pagecomponent/linear-gradient-view/index";
-import {cloudBaseUrl, NetworkState} from "../api/httpurl";
-import NavigationBar from "../compoments/navigation_bar";
+import LinearGradientView from "../sub_pagecomponent/linear-gradient-view/index";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
+import NavigationBar from "../../compoments/navigation_bar/index";
 
 interface Props {
   //购买套餐
@@ -53,6 +53,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
 
   private viewRef;
   private type;
+  private packageId;
 
 
   /**
@@ -69,7 +70,8 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
-    this.type = 'renmai'
+    this.type = this.$router.params.type;
+    this.packageId = this.$router.params.packageId;
     this.state = {
       scrollTop: 0
     }
@@ -271,7 +273,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
         <NavigationBar style={styleAssign([styles.upa, absT(0), op((300 - scrollTop) / 300)])}>
           <View
             style={styleAssign([styles.upa, wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-            <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../assets/ico_back_white.png')}
+            <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
                    onClick={() => {
                      Taro.eventCenter.trigger('refreshUserInfo');
                      Taro.navigateBack();
@@ -279,7 +281,10 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
           </View>
         </NavigationBar>
         <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(21), mb(16)])}>
-          <View style={styleAssign([w(335), h(44), styles.uac, styles.ujc, radiusA(2), bgColor('#E2BB7B')])}>
+          <View style={styleAssign([w(335), h(44), styles.uac, styles.ujc, radiusA(2), bgColor('#E2BB7B')])}
+          onClick={()=>{
+            this.purchasePackage(this.packageId);
+          }}>
             <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即开通</Text>
           </View>
         </View>
