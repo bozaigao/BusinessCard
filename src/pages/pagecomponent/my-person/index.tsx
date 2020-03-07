@@ -103,10 +103,10 @@ export default class MyPerson extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(226), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc])}>
             <View style={styleAssign([styles.uac])}>
               <View style={styleAssign([styles.uac, styles.ujc, styles.udr, w(160)])}>
-                <Image style={styleAssign([w(46), h(46)])} src={`${cloudBaseUrl}ico_renmai_1.png`}/>
-                <Image style={styleAssign([w(46), h(46), ml(40)])} src={`${cloudBaseUrl}ico_renmai_3.png`}/>
+                <Image style={styleAssign([w(46), h(46)])} src={`${cloudBaseUrl}ico_person_mohu_1.png`}/>
+                <Image style={styleAssign([w(46), h(46), ml(40)])} src={`${cloudBaseUrl}ico_person_mohu_3.png`}/>
                 <Image style={styleAssign([w(64), h(64), styles.upa, absL(50)])}
-                       src={`${cloudBaseUrl}ico_renmai_2.png`}/>
+                       src={`${cloudBaseUrl}ico_person_mohu_2.png`}/>
               </View>
               <Text style={styleAssign([fSize(14), color('#979797'), mt(13)])}>
                 未开通拓展人脉功能\n暂不能解锁更多人脉
