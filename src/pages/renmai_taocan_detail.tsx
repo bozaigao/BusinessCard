@@ -3,7 +3,7 @@
  * @author 何晏波
  * @QQ 1054539528
  * @date 2020/2/22
- * @Description: 特权
+ * @Description: 特权详情
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
 import {styleAssign} from "../utils/datatool";
 import {
+  absB,
   absT,
   bgColor,
   color,
@@ -20,9 +21,14 @@ import {
   h,
   hRatio,
   iphoneX,
+  mb,
   ml,
   mr,
   mt,
+  op,
+  pl,
+  pr,
+  radiusA,
   w,
   wRatio
 } from "../utils/style";
@@ -30,7 +36,8 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../actions/tequan';
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import LinearGradientView from "./sub_pagecomponent/linear-gradient-view/index";
-import {NetworkState} from "../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../api/httpurl";
+import NavigationBar from "../compoments/navigation_bar";
 
 interface Props {
   //购买套餐
@@ -38,13 +45,14 @@ interface Props {
 }
 
 interface State {
-  marginTop: number;
+  scrollTop: number;
 }
 
 @connect(state => state.login, {...actions})
 class RenmaiTaoCanDetail extends Component<Props, State> {
 
   private viewRef;
+  private type;
 
 
   /**
@@ -61,17 +69,9 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
+    this.type = 'renmai'
     this.state = {
-      marginTop: 0,
-    }
-  }
-
-  componentWillMount() {
-    //这里只要是针对微信小程序设置自定义tabBar后的iphoneX高度适配
-    if (iphoneX()) {
-      this.setState({marginTop: 43});
-    } else {
-      this.setState({marginTop: 15});
+      scrollTop: 0
     }
   }
 
@@ -110,7 +110,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
   }
 
   render() {
-    let {marginTop} = this.state;
+    let {scrollTop} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -119,23 +119,170 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
 
         <ScrollView
           style={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.whiteColor)])}
-          scrollY>
-          <View style={styleAssign([wRatio(100), h(iphoneX() ? 287 : 247), mt(0)])}>
+          scrollY
+          onScroll={(e: any) => {
+            this.setState({scrollTop: e.detail.scrollTop});
+            console.log(e.detail);
+          }}>
+          <View style={styleAssign([wRatio(100), h(iphoneX() ? 222 : 182), mt(0)])}>
             <LinearGradientView style={styleAssign([wRatio(100), h(iphoneX() ? 222 : 182)])}/>
-            {/*我的*/}
             <View
-              style={styleAssign([styles.upa, absT(marginTop), wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-              <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
-                     onClick={() => {
-                       Taro.eventCenter.trigger('refreshUserInfo');
-                       Taro.navigateBack();
-                     }}/>
-              <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>特权开通</Text>
-              <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+              style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, styles.upa, absB(20), pl(37), pr(37)])}>
+              <View style={styleAssign([styles.uac])}>
+                <Image style={styleAssign([w(42), h(42)])}
+                       src={this.type === 'renmai' ? `${cloudBaseUrl}ico_renmai_1.png` : `${cloudBaseUrl}ico_fangke_1.png`}/>
+                <Text
+                  style={styleAssign([fSize(12), color(this.type === 'renmai' ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}>
+                  更多人脉
+                </Text>
+              </View>
+              <View style={styleAssign([styles.uac])}>
+                <Image style={styleAssign([w(42), h(42)])}
+                       src={this.type === 'renmai' ? `${cloudBaseUrl}ico_renmai_2.png` : `${cloudBaseUrl}ico_fangke_2.png`}/>
+                <Text
+                  style={styleAssign([fSize(12), color(this.type !== 'renmai' ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}>
+                  查看访客
+                </Text>
+              </View>
             </View>
           </View>
-
+          {
+            this.type === 'renmai' ?
+              <Text style={styleAssign([fSize(18), color('#825D22'), ml(20), mt(13)])}>
+                每月增30个精准人脉推荐
+              </Text> :
+              <Text style={styleAssign([fSize(18), color('#825D22'), ml(20), mt(13)])}>
+                随时了解谁对你感兴趣
+              </Text>
+          }
+          <View style={styleAssign([w(34), h(2), radiusA(1), bgColor('#825D22'), ml(21), mt(7)])}/>
+          {
+            this.type === 'renmai' ?
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(12), mt(20)])}>
+                开通人脉特权，突破人脉获取限制，精准获客
+              </Text> :
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(12), mt(20)])}>
+                开通查看访客特权，突破查看访客7天限制
+              </Text>
+          }
+          <View style={styleAssign([wRatio(100), h(126), styles.uac, styles.ujc, mt(7)])}>
+            <Image style={styleAssign([w(346), h(126)])}
+                   src={this.type === 'renmai' ? `${cloudBaseUrl}ico_renmai.png` : `${cloudBaseUrl}ico_fangke.png`}/>
+            <View style={styleAssign([styles.udr, w(346), h(126), styles.upa, absT(0)])}>
+              <View style={styleAssign([styles.uf1])}>
+                {
+                  this.type === 'renmai' ?
+                    <View style={styleAssign([mt(40), ml(10)])}>
+                      <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                        普通用户人脉推荐
+                      </Text>
+                      <View style={styleAssign([styles.uac, styles.udr])}>
+                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                          每月为
+                        </Text>
+                        <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>
+                          固定值
+                        </Text>
+                      </View>
+                    </View> :
+                    <View style={styleAssign([mt(40), ml(10)])}>
+                      <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                        普通用户可查看
+                      </Text>
+                      <View style={styleAssign([styles.uac, styles.udr])}>
+                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                          近
+                        </Text>
+                        <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>
+                          7天内访客
+                        </Text>
+                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                          信息
+                        </Text>
+                      </View>
+                    </View>
+                }
+              </View>
+              <View style={styleAssign([styles.uf1])}>
+                {
+                  this.type === 'renmai' ?
+                    <View style={styleAssign([mt(40), ml(30)])}>
+                      <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                        普通用户人脉推荐
+                      </Text>
+                      <View style={styleAssign([styles.uac, styles.udr])}>
+                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                          推荐每月增
+                        </Text>
+                        <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>
+                          30个
+                        </Text>
+                      </View>
+                    </View>:
+                    <View style={styleAssign([mt(40), ml(30)])}>
+                      <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                        特权用户可查看
+                      </Text>
+                      <View style={styleAssign([styles.uac, styles.udr])}>
+                        <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>
+                          全部访客
+                        </Text>
+                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                          信息
+                        </Text>
+                      </View>
+                    </View>
+                }
+              </View>
+            </View>
+          </View>
+          <View style={styleAssign([styles.udr, styles.uac, ml(20), mt(20)])}>
+            <View style={styleAssign([w(3), h(14), bgColor('#E2BB7B')])}/>
+            <Text style={styleAssign([fSize(14), color('#343434'), ml(7)])}>
+              服务用户
+            </Text>
+          </View>
+          {
+            this.type === 'renmai' ?
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(20), mt(13)])}>
+                开通人脉特权以及开通试用的所有用户
+              </Text>:
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(20), mt(13)])}>
+                开通查看全部访客特权的所有用户
+              </Text>
+          }
+          <View style={styleAssign([styles.udr, styles.uac, ml(20), mt(20)])}>
+            <View style={styleAssign([w(3), h(14), bgColor('#E2BB7B')])}/>
+            <Text style={styleAssign([fSize(14), color('#343434'), ml(7)])}>
+              特权介绍
+            </Text>
+          </View>
+          {
+            this.type === 'renmai' ?
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20), mt(13)])}>
+                开通人脉特权以及开通试用的用户，可在选择开通时间期限内使用名片程序中获取更多人脉资源的特权功能，一旦开通此项特权，我们将每日为用户提供更丰富且精准的人脉资源，累计每月将比普通用户多推荐30个优质人脉，并且所获取的人脉转化为客户的概率将提升80%。\n
+                若您已开通此特权，请在特权到期前24小时内进行续费开通，以免到期后服务中断给您带来不便。
+              </Text>:
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20), mt(13)])}>
+                开通查看全部访客特权以及开通试用的用户，可在此时间期限内使用名片程序中查看全部访客的特权功能，而普通用户则只能查看近7天内访客信息。一旦开通此项特权，我们不仅将为用户提供全部访客信息，保证用户不错过任何一位潜在客户，并且还将为用户提供访客更全面、精准的分析数据。让用户更全面了解访客对自己名片的兴趣点，以便用户更有针对性地跟进访客，最终提升将访客转化为客户的概率，获客率将比普通用户高80%。 若您已开通此特权，请在特权到期前24小时内进行续费开通，以免到期后服务中断给您带来不便。
+              </Text>
+          }
         </ScrollView>
+        <NavigationBar style={styleAssign([styles.upa, absT(0), op((300 - scrollTop) / 300)])}>
+          <View
+            style={styleAssign([styles.upa, wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
+            <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../assets/ico_back_white.png')}
+                   onClick={() => {
+                     Taro.eventCenter.trigger('refreshUserInfo');
+                     Taro.navigateBack();
+                   }}/>
+          </View>
+        </NavigationBar>
+        <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(21), mb(16)])}>
+          <View style={styleAssign([w(335), h(44), styles.uac, styles.ujc, radiusA(2), bgColor('#E2BB7B')])}>
+            <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即开通</Text>
+          </View>
+        </View>
       </CustomSafeAreaView>
     );
   }

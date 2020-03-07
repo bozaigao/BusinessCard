@@ -194,7 +194,7 @@ class TeQuan extends Component<Props, State> {
   }
 
   render() {
-    let {marginTop, packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList} = this.state;
+    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
