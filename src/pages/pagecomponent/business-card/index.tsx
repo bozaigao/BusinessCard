@@ -33,6 +33,7 @@ import {cloudBaseUrl} from "../../../api/httpurl";
 interface Props {
   shareClick: any;
   collectCallback: any;
+  visitorCallback:any;
   viewMyCardCallback: any;
   gotoCardCallback: any;
 }
@@ -44,7 +45,7 @@ export default class Card extends PureComponent<Props, State> {
 
   render() {
 
-    let {shareClick, collectCallback, viewMyCardCallback,gotoCardCallback} = this.props;
+    let {shareClick, collectCallback,visitorCallback, viewMyCardCallback,gotoCardCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
@@ -106,7 +107,7 @@ export default class Card extends PureComponent<Props, State> {
               </View>
             </View>
             <View style={styleAssign([w(1), h(25), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([styles.uf1, styles.uac])}>
+            <View style={styleAssign([styles.uf1, styles.uac])} onClick={visitorCallback}>
               <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>230</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_person_gray.png`}/>

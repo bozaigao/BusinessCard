@@ -103,7 +103,7 @@ class MyCollect extends Component<Props, State> {
     this.pageNo = 1;
     this.pageSize = 10;
     this.state = {
-      currentIndex: 0,
+      currentIndex: parseInt(this.$router.params.currentIndex),
       collectSubCurrentIndex: 0,
       visitorSubCurrentIndex: 0,
       showOperate: false,
@@ -122,7 +122,7 @@ class MyCollect extends Component<Props, State> {
   }
 
 
-  componentDidShow(){
+  componentDidShow() {
     this.myCollectList();
     this.refresh();
   }
@@ -210,7 +210,7 @@ class MyCollect extends Component<Props, State> {
     this.props.updateMyCollect({type, collectedUserId}).then((res) => {
       this.viewRef.hideLoading();
       console.log('更新我收藏的名片', res);
-      if(res!==NetworkState.FAIL){
+      if (res !== NetworkState.FAIL) {
         this.myCollectList();
         toast('删除成功');
       }

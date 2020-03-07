@@ -159,23 +159,28 @@ class Businesscard extends Component<Props, State> {
             this.setState({showShare: true});
           }} collectCallback={() => {
             Taro.navigateTo({
-              url: `/pages/businesscard/my_collect`
+              url: `/pages/businesscard/my_collect?currentIndex=1`
             });
           }}
+                visitorCallback={() => {
+                  Taro.navigateTo({
+                    url: `/pages/businesscard/my_collect?currentIndex=0`
+                  });
+                }}
                 viewMyCardCallback={() => {
                   Taro.navigateTo({
                     url: `/pages/businesscard/other_businesscard`
                   });
                 }}
-          gotoCardCallback={()=>{
-            Taro.navigateTo({
-              url: `/pages/businesscard/ming_pian_ma`
-            });
-          }}/>
+                gotoCardCallback={() => {
+                  Taro.navigateTo({
+                    url: `/pages/businesscard/ming_pian_ma`
+                  });
+                }}/>
           {/*我的个人简介*/}
           <PersonalInfo/>
           {/*我的人脉*/}
-          <MyPerson chooseCallback={()=>{
+          <MyPerson chooseCallback={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/choose_renmai_tag`
             });
