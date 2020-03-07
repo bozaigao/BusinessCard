@@ -175,7 +175,11 @@ class Businesscard extends Component<Props, State> {
           {/*我的个人简介*/}
           <PersonalInfo/>
           {/*我的人脉*/}
-          <MyPerson/>
+          <MyPerson chooseCallback={()=>{
+            Taro.navigateTo({
+              url: `/pages/businesscard/choose_renmai_tag`
+            });
+          }}/>
           {/*我的商品*/}
           {
             userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {

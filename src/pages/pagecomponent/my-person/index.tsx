@@ -28,6 +28,7 @@ import RenMaiItem from "../renmai-item";
 
 
 interface Props {
+  chooseCallback:any;
 }
 
 interface State {
@@ -43,6 +44,7 @@ export default class MyPerson extends Component<Props, State> {
 
   render() {
     let {hasSelected, currentIndex} = this.state;
+    let {chooseCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -68,6 +70,7 @@ export default class MyPerson extends Component<Props, State> {
               <View
                 style={styleAssign([w(303), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
                 onClick={() => {
+                  chooseCallback();
                   this.setState({hasSelected: true});
                 }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即选择</Text>
