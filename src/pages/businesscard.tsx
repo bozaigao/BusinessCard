@@ -10,7 +10,7 @@ import {Button, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {get, styleAssign} from "../utils/datatool";
+import {styleAssign} from "../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, radiusA, w, wRatio} from "../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
@@ -18,7 +18,7 @@ import * as loginActions from '../actions/login';
 import Card from "./pagecomponent/business-card/index";
 import MyPerson from "./pagecomponent/my-person/index";
 import ShareModal from "./pagecomponent/share-modal/index";
-import {Enum, User} from "../const/global";
+import {User} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
 
 interface Props {
@@ -77,14 +77,14 @@ class Businesscard extends Component<Props, State> {
    * @function: 更新用户基本资料
    */
   updateUserInfo = (res) => {
-    let {userInfo} = this.props, that = this;
+    let {userInfo} = this.props;
 
     userInfo.avatar = res.userInfo.avatarUrl;
     userInfo.city = res.userInfo.city;
     userInfo.province = res.userInfo.province;
     userInfo.name = res.userInfo.nickName;
     userInfo.sex = res.gender;
-    that.props.updateUserInfo(userInfo);
+    this.props.updateUserInfo(userInfo);
   }
 
 
@@ -97,7 +97,7 @@ class Businesscard extends Component<Props, State> {
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
-      console.log('重新更新用户信息',res)
+      console.log('重新更新用户信息', res)
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -116,6 +116,7 @@ class Businesscard extends Component<Props, State> {
   render() {
 
     let {showShare} = this.state;
+    let {userInfo} = this.props;
 
     console.log('呵呵', this.viewRef);
 
@@ -139,27 +140,27 @@ class Businesscard extends Component<Props, State> {
           <Card
             userInfo={this.props.userInfo}
             shareClick={() => {
-            this.setState({showShare: true});
-          }} collectCallback={() => {
+              this.setState({showShare: true});
+            }} collectCallback={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/my_collect?currentIndex=1`
             });
           }}
-                visitorCallback={() => {
-                  Taro.navigateTo({
-                    url: `/pages/businesscard/my_collect?currentIndex=0`
-                  });
-                }}
-                viewMyCardCallback={() => {
-                  Taro.navigateTo({
-                    url: `/pages/businesscard/other_businesscard`
-                  });
-                }}
-                gotoCardCallback={() => {
-                  Taro.navigateTo({
-                    url: `/pages/businesscard/ming_pian_ma`
-                  });
-                }}/>
+            visitorCallback={() => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/my_collect?currentIndex=0`
+              });
+            }}
+            viewMyCardCallback={() => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/other_businesscard`
+              });
+            }}
+            gotoCardCallback={() => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/ming_pian_ma`
+              });
+            }}/>
           {/*我的人脉*/}
           <MyPerson chooseCallback={() => {
             Taro.navigateTo({
@@ -173,10 +174,8 @@ class Businesscard extends Component<Props, State> {
         </ScrollView>
         {/*创建名片*/}
         <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
-          let token = get(Enum.TOKEN);
-
-          console.log('更新用户信息', token);
-          if (!token) {
+          // console.log('更新用户信息', token);
+          if (!userInfo.avatar) {
             this.updateUserInfo(data.detail);
           }
           Taro.navigateTo({
