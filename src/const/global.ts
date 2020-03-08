@@ -89,6 +89,8 @@ export interface User {
   id: number;
   //行业
   industry: string;
+  villagerGreeting: string;
+  schoolfellowGreeting: string;
   //标签列表(json数组)
   label: string;
   latitude: number;

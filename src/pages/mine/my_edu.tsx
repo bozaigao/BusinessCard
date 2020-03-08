@@ -70,15 +70,15 @@ class MyEdu extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    this.schoolTimeStart = 0;
-    this.schoolTimeEnd = 0;
+    this.schoolTimeStart = this.$router.params.schoolTimeStart;
+    this.schoolTimeEnd = this.$router.params.schoolTimeEnd;
     this.placeHolder = '校友您好，很高兴能遇到你！你可以收藏我的名片哦~';
     this.state = {
-      list: [{title: '学校', subtitle: '请输入学校名称', hasEdit: true},
-        {title: '学历', subtitle: '选择'},
-        {title: '专业', subtitle: '请输入专业名称', hasEdit: true},
-        {title: '在校时间', subtitle: '选择'}],
-      wenHouYU: '',
+      list: [{title: '学校', subtitle: '请输入学校名称', value: this.$router.params.school, hasEdit: true},
+        {title: '学历', subtitle: '选择', value: this.$router.params.educationBackground},
+        {title: '专业', subtitle: '请输入专业名称', value: this.$router.params.profession, hasEdit: true},
+        {title: '在校时间', subtitle: '选择', value: this.schoolTimeStart + '-' + this.schoolTimeEnd}],
+      wenHouYU: this.$router.params.schoolfellowGreeting,
       wenHouYUTmp: '',
       placeHolder: this.placeHolder,
       showWenHouYu: false
@@ -132,7 +132,8 @@ class MyEdu extends Component<Props, State> {
       educationBackground: list[1].value && list[1].value,
       profession: list[2].value && list[2].value,
       schoolTimeStart: `${this.schoolTimeStart}`,
-      schoolTimeEnd: `${this.schoolTimeEnd}`
+      schoolTimeEnd: `${this.schoolTimeEnd}`,
+      schoolfellowGreeting: wenHouYU
     };
 
     console.log('参数错误', params);

@@ -291,7 +291,7 @@ class PerformInfo extends Component<Props, State> {
                 <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/pages/mine/my_edu`
+                          url: `/pages/mine/my_edu?school=${userInfo.school}&educationBackground=${userInfo.educationBackground}&profession=${userInfo.profession}&schoolfellowGreeting=${userInfo.schoolfellowGreeting}&schoolTimeStart=${userInfo.schoolTimeStart}&schoolTimeEnd=${userInfo.schoolTimeEnd}`
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
@@ -301,12 +301,19 @@ class PerformInfo extends Component<Props, State> {
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
-                  <View style={styleAssign([wRatio(100), mb(10)])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>四川美术学院</Text>
-                    <Text
-                      style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>产品设计 2015-2019 本科</Text>
-                  </View>
+                  {
+                    userInfo.school && userInfo.school.length !== 0 ?
+                      <View style={styleAssign([wRatio(100), mb(10)])}>
+                        <Text
+                          style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>{userInfo.school}</Text>
+                        <Text
+                          style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
+                      </View> :
+                      <View style={styleAssign([wRatio(100), mb(10)])}>
+                        <Text
+                          style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>让同窗校友轻松找到你</Text>
+                      </View>
+                  }
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>
               </View>
