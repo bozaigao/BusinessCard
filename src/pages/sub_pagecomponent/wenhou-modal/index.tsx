@@ -64,7 +64,7 @@ export default class WenHouModal extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), hRatio(100), styles.uac, styles.ujc, styles.upa, absB(0)])}>
           <View style={styleAssign([w(302), h(284)])}>
             <Image style={styleAssign([wRatio(100), h(185)])}
-                   src={type === WenHouType.EDUCATION ? require('../../../assets/ico_wenhou_bg.png') : require('../../../assets/ico_wenhou_bg.png')}/>
+                   src={type === WenHouType.EDUCATION ? require('../../../assets/ico_wenhou_bg.png') : require('../../../assets/ico_wenhou_home_bg.png')}/>
             <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), radiusBL(8), radiusBR(8),
               styles.uac, styles.ujc])}>
               <View style={styleAssign([styles.udr])}>
