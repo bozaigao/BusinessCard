@@ -116,7 +116,6 @@ class Businesscard extends Component<Props, State> {
   render() {
 
     let {showShare} = this.state;
-    let {userInfo} = this.props;
 
     console.log('呵呵', this.viewRef);
 
