@@ -82,7 +82,7 @@ export default class Card extends PureComponent<Props, State> {
               {/*地址*/}
               <View style={styleAssign([styles.udr, mt(8)])}>
                 <Text
-                  style={styleAssign([fSize(12), color('#343434')])}>{userInfo.province+userInfo.city+userInfo.detailAddress}</Text>
+                  style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
                 <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
               </View>
             </View>

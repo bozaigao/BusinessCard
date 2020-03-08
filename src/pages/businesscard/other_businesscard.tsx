@@ -195,7 +195,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 {/*地址*/}
                 <View style={styleAssign([styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.province+userInfo.city+userInfo.detailAddress}</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
                   <Image style={styleAssign([w(9), h(11), ml(8),mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
                 </View>
               </View>
@@ -251,7 +251,22 @@ class OtherBusinesscard extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
-                  {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
+                  {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
+                onClick={()=>{
+                  Taro.getLocation({
+                    type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+                    success (res) {
+                      const latitude = res.latitude
+                      const longitude = res.longitude
+
+                      Taro.openLocation({
+                        latitude,
+                        longitude,
+                        scale: 18
+                      })
+                    }
+                  })
+                }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
                 </View>

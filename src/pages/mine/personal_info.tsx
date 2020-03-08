@@ -124,7 +124,7 @@ class PersonalInfo extends Component<Props, State> {
     console.log('用户信息', this.props.userInfo);
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
-      this.state.titleList1[3].subtitle = industry;
+      this.state.titleList1[3].value = industry;
 
       this.setState({industry, titleList1: this.state.titleList1});
     });
@@ -206,7 +206,7 @@ class PersonalInfo extends Component<Props, State> {
       birthday,
       province,
       city,
-      detailAddress: this.state.titleList2[4].subtitle
+      detailAddress: this.state.titleList2[4].value
     };
 
     this.viewRef && this.viewRef.showLoading();
@@ -362,12 +362,12 @@ class PersonalInfo extends Component<Props, State> {
 
                 if (value.title === '生日') {
                   return (<Picker mode='date' onChange={(e) => {
-                    titleList2[3].subtitle = e.detail.value;
+                    titleList2[3].value = e.detail.value;
                     this.setState({
                       titleList2,
                       birthday: e.detail.value
                     })
-                  }} value={value.subtitle}>
+                  }} value={value.value}>
                     <ListItem title={value.title}
                               value={value.value}
                               textColor={'#727272'}
@@ -377,7 +377,7 @@ class PersonalInfo extends Component<Props, State> {
                 } else if (value.title === '地区') {
                   return (<Picker mode='region' onChange={(e) => {
                     console.log(e.detail)
-                    titleList2[4].subtitle = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                    titleList2[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
                     this.setState({
                       titleList2,
                       province: e.detail.value[0],
@@ -392,9 +392,9 @@ class PersonalInfo extends Component<Props, State> {
                       hasEdit={value.hasEdit}
                       onTextChange={(e) => {
                         console.log(e);
-                        if (value.subtitle === '邮箱') {
+                        if (value.title === '邮箱') {
                           this.setState({email: e.detail.value});
-                        } else if (value.subtitle === '地址') {
+                        } else if (value.title === '地址') {
                           this.setState({detailAddress: e.detail.value});
                         }
                       }
@@ -425,7 +425,7 @@ class PersonalInfo extends Component<Props, State> {
                             longitude,
                             scale: 18,
                             success(res) {
-                              that.state.titleList2[4].subtitle = res.address;
+                              that.state.titleList2[4].value = res.address;
                               that.setState({titleList2: that.state.titleList2});
                             }
                           })
