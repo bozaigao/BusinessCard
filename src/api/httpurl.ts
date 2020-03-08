@@ -23,6 +23,8 @@ const BASE_URL = StagingUrl,
     login: BASE_URL + 'user/login',
     //获取用户详细信息
     getUserInfo: BASE_URL + 'user/getUserInfo',
+    //根据用户id获取用户详细信息
+    getUserInfoById: BASE_URL + 'user/getUserInfoById',
     //更新用户信息
     update: BASE_URL + 'user/update',
     //反馈建议

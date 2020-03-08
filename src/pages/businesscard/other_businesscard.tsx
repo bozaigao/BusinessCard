@@ -50,8 +50,7 @@ import NavigationBar from "../../compoments/navigation_bar/index";
 
 interface Props {
   //获取用户信息
-  getUserInfo: any;
-  updateUserInfo: any;
+  getUserInfoById: any;
   userInfo: User;
 }
 
@@ -85,7 +84,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
   componentDidShow() {
     console.log(this.viewRef);
-    this.getUserInfo();
+    this.getUserInfoById();
   }
 
 
@@ -95,10 +94,9 @@ class OtherBusinesscard extends Component<Props, State> {
    * @date 2019/12/29
    * @function: 获取用户信息
    */
-  getUserInfo = () => {
+  getUserInfoById = () => {
     console.log('获取用户信息');
-    this.props.getUserInfo({userId:this.$router.params.userId}).then((res) => {
-      this.props.updateUserInfo(res);
+    this.props.getUserInfoById({userId:this.$router.params.userId}).then((res) => {
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
     }).catch(e => {
@@ -232,7 +230,7 @@ class OtherBusinesscard extends Component<Props, State> {
                     {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                   onClick={() => {
                     Taro.makePhoneCall({
-                      phoneNumber: '15982468866' //仅为示例，并非真实的电话号码
+                      phoneNumber: userInfo.phone //仅为示例，并非真实的电话号码
                     })
                   }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>

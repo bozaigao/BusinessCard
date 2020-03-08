@@ -103,7 +103,7 @@ class Businesscard extends Component<Props, State> {
   onShareAppMessage(res) {
     return {
       title: `${this.props.userInfo.name}的名片分享`,
-      path: '/pages/businesscard/other_businesscard'
+      path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
     }
   }
 

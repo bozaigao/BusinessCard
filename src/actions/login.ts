@@ -58,6 +58,19 @@ export const getUserInfo = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
+ * @date 2020/3/8
+ * @function: 根据用户id获取用户详细信息
+*/
+export const getUserInfoById = payload => createAction({
+  url: UserController.getUserInfoById,
+  payload,
+  method: 'GET',
+});
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
  * @date 2020/2/29
  * @function: 更新用户数据流
  */
