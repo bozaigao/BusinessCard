@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,11 +43,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="47" column="60" selection-start-line="47" selection-start-column="60" selection-end-line="47" selection-end-column="60" />
+            <state relative-caret-position="396">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,7 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/help/update_card_style.tsx" />
         <option value="$PROJECT_DIR$/src/pages/help/open_message_notice.tsx" />
         <option value="$PROJECT_DIR$/src/pages/help/radar_gongnneng.tsx" />
         <option value="$PROJECT_DIR$/src/pages/help/radar_gongneng.tsx" />
@@ -207,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
       </list>
     </option>
   </component>
@@ -262,13 +273,6 @@
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="mine" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -487,12 +491,12 @@
       <workItem from="1583418355812" duration="4750000" />
       <workItem from="1583458131072" duration="26000" />
       <workItem from="1583543199866" duration="23890000" />
-      <workItem from="1583628597752" duration="33198000" />
+      <workItem from="1583628597752" duration="33952000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="924598000" />
+    <option name="totallyTimeSpent" value="925352000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -598,17 +602,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/goods-shaixuan/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="101" column="57" selection-start-line="101" selection-start-column="57" selection-end-line="101" selection-end-column="57" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#110#159#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_manage.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1041,8 +1034,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="47" column="60" selection-start-line="47" selection-start-column="60" selection-end-line="47" selection-end-column="60" />
+        <state relative-caret-position="396">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="123" column="17" lean-forward="true" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="17" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -51,6 +51,7 @@ interface State {
   startTime: string;
   //筛选结束时间
   endTime: string;
+  name: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -71,6 +72,7 @@ class Customer extends Component<Props, State> {
       showShaiXuan: false,
       startTime: '2020-01-01',
       endTime: getToday(),
+      name: ''
     }
   }
 
@@ -79,7 +81,7 @@ class Customer extends Component<Props, State> {
   }
 
 
-  componentDidShow(){
+  componentDidShow() {
     this.refresh();
     Taro.eventCenter.on('refreshCustomerList', () => {
       this.refresh();
@@ -111,8 +113,26 @@ class Customer extends Component<Props, State> {
    * @function: 获取客户列表
    */
   getCustomerList = (refresh?: boolean) => {
+    let status = 0;
+    let {shaiXuanMode, startTime, endTime} = this.state;
 
-    this.props.getCustomerList({pageNo: this.pageNo, pageSize: this.pageSize}).then((res) => {
+    if (shaiXuanMode === '最后访问时间') {
+      status = 0;
+    } else if (shaiXuanMode === '最后跟进时间') {
+      status = 1;
+    } else if (shaiXuanMode === '最后转入时间') {
+      status = 2;
+    }
+
+    let params = {
+      pageNo: this.pageNo,
+      pageSize: this.pageSize,
+      startDate: startTime,
+      endDate: endTime,
+      status
+    };
+    console.log('搜索参数', params);
+    this.props.getCustomerList(params).then((res) => {
       console.log('获取客户列表', res);
       if (refresh) {
         this.setState({customerList: res.records, totalCustomers: res.total});
@@ -140,7 +160,12 @@ class Customer extends Component<Props, State> {
             <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
               radiusA(26), styles.uac, styles.udr])}>
               <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../assets/ico_search.png')}/>
-              <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}/>
+              <Input type='text' placeholder='搜索客户姓名' style={styleAssign([ml(16), fSize(14)])}
+                     onInput={(e) => {
+                       this.setState({name: e.detail.value}, () => {
+                         this.refresh();
+                       });
+                     }}/>
             </View>
           </NavigationBar>
           {/*条件筛选*/}
@@ -168,7 +193,8 @@ class Customer extends Component<Props, State> {
         </View>
         {
           customerList.length === 0 ?
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc,bgColor(commonStyles.pageDefaultBackgroundColor),bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+            <View
+              style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor), bgColor(commonStyles.pageDefaultBackgroundColor)])}>
               <View style={styleAssign([styles.uac])}>
                 <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
                 <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
@@ -218,7 +244,9 @@ class Customer extends Component<Props, State> {
               this.setState({showMode: false});
             }
             } confirmCallback={(data) => {
-            this.setState({showMode: false, shaiXuanMode: data,});
+            this.setState({showMode: false, shaiXuanMode: data}, () => {
+              this.refresh();
+            });
           }
           }/>
         }
