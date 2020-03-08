@@ -153,7 +153,10 @@ class App extends Component {
     permission: {
       "scope.userLocation": {
         "desc": "获取你的详细位置信息"
-      }
+      },
+      "scope.record": {
+        "desc": "获取你的个人录音"
+      },
     },
     window: {
       backgroundTextStyle: 'light',

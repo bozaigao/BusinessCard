@@ -22,7 +22,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/login";
@@ -154,8 +154,24 @@ class AudioRecorder extends Component<Props, State> {
       encodeBitRate: 96000,//编码码率
       format: 'mp3',//音频格式，有效值 aac/mp3
     };
+    let that = this;
 
-    this.recorderManager.start(options);
+    Taro.getSetting({
+      success(res) {
+        if (res.authSetting['scope.record']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          that.recorderManager.start(options);
+        } else {
+          Taro.openSetting({
+            success(res) {
+              if (res.authSetting['scope.record']) {
+                that.recorderManager.start(options);
+              }
+            }
+          });
+        }
+      }
+    })
     this.recorderManager.onStart(() => {
       if (!this.timer) {
         this.starTime();
@@ -244,6 +260,9 @@ class AudioRecorder extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('录音上传成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
@@ -311,7 +330,7 @@ class AudioRecorder extends Component<Props, State> {
             style={styleAssign([styles.uf1, styles.udr, styles.uac, styles.ujc, bgColor(commonStyles.whiteColor), pt(53)])}>
             <View style={styleAssign([styles.udr, styles.uac])}>
               <Image style={styleAssign([w(56), h(56)])}
-                     src={recordDone ?require('../../assets/ico_record_delete_pressed.png'):
+                     src={recordDone ? require('../../assets/ico_record_delete_pressed.png') :
                        require('../../assets/ico_record_delete_normal.png')}
                      onClick={() => {
                        if (recordDone) {
