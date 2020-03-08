@@ -349,6 +349,11 @@ class PerformInfo extends Component<Props, State> {
                         </View>;
                       })
                     }
+                    {
+                      userInfo.label.length===0&&
+                      <Text
+                        style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>让志同道合的朋友轻松找到你</Text>
+                    }
                   </View>
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>

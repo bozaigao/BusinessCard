@@ -96,7 +96,7 @@ class OtherBusinesscard extends Component<Props, State> {
    */
   getUserInfoById = () => {
     console.log('获取用户信息');
-    this.props.getUserInfoById({userId:this.$router.params.userId}).then((res) => {
+    this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
     }).catch(e => {
@@ -144,7 +144,8 @@ class OtherBusinesscard extends Component<Props, State> {
                   url: `/pages/businesscard`
                 });
               }}>
-              <Image style={styleAssign([w(27), h(27), ma(2)])} src={`${cloudBaseUrl}ico_default.png`}/>
+              <Image style={styleAssign([w(27), h(27),radiusA(13.5), ma(2)])}
+                     src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
               <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
             </View>
             <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
@@ -194,7 +195,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 <View style={styleAssign([styles.udr, mt(8)])}>
                   <Text
                     style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
-                  <Image style={styleAssign([w(9), h(11), ml(8),mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                  <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
                 </View>
               </View>
             </View>
@@ -250,13 +251,13 @@ class OtherBusinesscard extends Component<Props, State> {
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
-                onClick={()=>{
-                  Taro.openLocation({
-                    latitude:userInfo.latitude,
-                    longitude:userInfo.longitude,
-                    scale: 18
-                  });
-                }}>
+                      onClick={() => {
+                        Taro.openLocation({
+                          latitude: userInfo.latitude,
+                          longitude: userInfo.longitude,
+                          scale: 18
+                        });
+                      }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
                 </View>
@@ -298,7 +299,7 @@ class OtherBusinesscard extends Component<Props, State> {
           <JiZhiCard/>
           {/*关注公众号*/}
           <View
-            style={styleAssign([wRatio(100),h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
+            style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
                      src={`${cloudBaseUrl}ico_logo.png`}/>
