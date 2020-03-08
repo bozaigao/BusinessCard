@@ -51,11 +51,11 @@ import NavigationBar from "../../compoments/navigation_bar/index";
 interface Props {
   //获取用户信息
   getUserInfoById: any;
-  userInfo: User;
 }
 
 interface State {
   showShare: boolean;
+  userInfo: User;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), {...actions, ...loginActions})
@@ -78,7 +78,8 @@ class OtherBusinesscard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      showShare: false
+      showShare: false,
+      userInfo: null
     }
   }
 
@@ -97,8 +98,8 @@ class OtherBusinesscard extends Component<Props, State> {
   getUserInfoById = () => {
     console.log('获取用户信息');
     this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
+      this.setState({userInfo: res});
       console.log('获取用户信息', res);
-      console.log('属性', this.props.userInfo);
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -122,10 +123,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare} = this.state;
-    let {userInfo} = this.props;
-
-    console.log('呵呵', userInfo.goodsList);
+    let {showShare, userInfo} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -134,7 +132,7 @@ class OtherBusinesscard extends Component<Props, State> {
                           notNeedBottomPadding={true}
       >
         {/*切换名片*/}
-        <NavigationBar>
+        {userInfo && <NavigationBar>
           <View
             style={styleAssign([wRatio(100), styles.ujb, styles.uac, styles.udr])}>
             <View
@@ -144,8 +142,8 @@ class OtherBusinesscard extends Component<Props, State> {
                   url: `/pages/businesscard`
                 });
               }}>
-              <Image style={styleAssign([w(27), h(27),radiusA(13.5), ma(2)])}
-                     src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
+              <Image style={styleAssign([w(27), h(27), radiusA(13.5), ma(2)])}
+                     src={userInfo && userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
               <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
             </View>
             <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
@@ -158,8 +156,8 @@ class OtherBusinesscard extends Component<Props, State> {
             </TouchableButton>
             <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
           </View>
-        </NavigationBar>
-        <ScrollView
+        </NavigationBar>}
+        {userInfo && <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
@@ -169,32 +167,32 @@ class OtherBusinesscard extends Component<Props, State> {
               <View
                 style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
               <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
-                <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
-                <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
+                <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo && userInfo.name}</Text>
+                <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo && userInfo.position}</Text>
               </View>
               <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
                 {/*电话号码*/}
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.phone}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
                 </View>
                 {/*微信号*/}
                 <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.wechat}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
                 </View>
                 {/*邮箱*/}
                 <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
                 </View>
                 {/*地址*/}
                 <View style={styleAssign([styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.detailAddress}</Text>
                   <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
                 </View>
               </View>
@@ -283,7 +281,7 @@ class OtherBusinesscard extends Component<Props, State> {
           <PersonalInfo/>
           {/*我的商品*/}
           {
-            userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
+            userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
               Taro.navigateTo({
                 url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
               });
@@ -316,7 +314,7 @@ class OtherBusinesscard extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(86), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极易推 给您极致服务</Text>
           </View>
-        </ScrollView>
+        </ScrollView>}
         {
           showShare && <ShareModal cancle={() => {
             this.setState({showShare: false});

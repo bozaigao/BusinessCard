@@ -88,6 +88,7 @@ class PerformInfo extends Component<Props, State> {
 
 
   componentDidHide() {
+    this.innerAudioContext && this.innerAudioContext.stop();
   }
 
 
@@ -111,15 +112,12 @@ class PerformInfo extends Component<Props, State> {
     });
   }
 
-  componentWillUnmount() {
-    this.innerAudioContext && this.innerAudioContext.stop();
-  }
+
 
   render() {
 
     let {showPersonalInfo, photoUrl, videoUrl, scrollTop} = this.state;
     let {userInfo} = this.props;
-    console.log('哦买噶', userInfo.label, userInfo.label.length)
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
