@@ -147,7 +147,6 @@ class MyPhoto extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'我的照片'} customCallback={() => {
-          Taro.eventCenter.trigger('refreshUserInfo');
           Taro.navigateBack();
         }}/>
         <View style={styleAssign([styles.uf1])}>
@@ -232,7 +231,6 @@ class MyPhoto extends Component<Props, State> {
       if (res !== NetworkState.FAIL) {
         toast('信息更新成功');
       }
-      Taro.eventCenter.trigger('refreshUserInfo');
       Taro.navigateBack();
 
     }).catch(e => {

@@ -116,7 +116,6 @@ class MyVideo extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'我的视频'} customCallback={() => {
-          Taro.eventCenter.trigger('refreshUserInfo');
           Taro.navigateBack();
         }}/>
         <View style={styleAssign([styles.uf1])}>
@@ -194,7 +193,6 @@ class MyVideo extends Component<Props, State> {
       console.log('更新我的视频', res);
       this.viewRef && this.viewRef.hideLoading();
       toast('信息更新成功');
-      Taro.eventCenter.trigger('refreshUserInfo');
       Taro.navigateBack();
 
     }).catch(e => {

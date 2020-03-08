@@ -57,16 +57,11 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidShow() {
-    Taro.eventCenter.on('refreshUserInfo', () => {
-      console.log('刷新用户信息');
-      this.getUserInfo();
-    });
     this.getUserInfo();
   }
 
   componentWillUnmount() {
     Taro.eventCenter.off('showJiFenModal');
-    Taro.eventCenter.off('refreshUserInfo');
   }
 
 

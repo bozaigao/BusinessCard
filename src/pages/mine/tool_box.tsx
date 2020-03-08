@@ -96,7 +96,6 @@ class ToolBox extends Component<Props, State> {
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
-        Taro.eventCenter.trigger('refreshUserInfo');
         toast('保存成功');
         debounce(1000, () => {
           Taro.navigateBack();

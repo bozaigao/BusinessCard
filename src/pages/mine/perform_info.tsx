@@ -80,15 +80,8 @@ class PerformInfo extends Component<Props, State> {
 
   componentDidShow(){
     this.getUserInfo();
-    Taro.eventCenter.on('refreshUserInfo', () => {
-      console.log('刷新用户信息');
-      this.getUserInfo();
-    });
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off('refreshUserInfo');
-  }
 
 
   componentDidHide() {
@@ -410,7 +403,6 @@ class PerformInfo extends Component<Props, State> {
           style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
           <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
                  onClick={() => {
-                   Taro.eventCenter.trigger('refreshUserInfo');
                    Taro.navigateBack();
                  }}/>
           <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>

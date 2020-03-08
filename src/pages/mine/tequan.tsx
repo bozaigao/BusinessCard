@@ -323,7 +323,6 @@ class TeQuan extends Component<Props, State> {
             style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
             <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
                    onClick={() => {
-                     Taro.eventCenter.trigger('refreshUserInfo');
                      Taro.navigateBack();
                    }}/>
             <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>特权开通</Text>

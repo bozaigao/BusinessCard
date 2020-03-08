@@ -77,16 +77,9 @@ class TiXian extends Component<Props, State> {
   }
 
   componentWillMount() {
-    Taro.eventCenter.on('refreshUserInfo', () => {
-      console.log('刷新用户信息');
-      this.getUserInfo();
-    });
     this.getUserInfo();
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off('refreshUserInfo');
-  }
 
   componentDidShow() {
   }

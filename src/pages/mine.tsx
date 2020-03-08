@@ -63,15 +63,8 @@ class Mine extends Component<Props, State> {
     super(props);
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off('refreshUserInfo');
-  }
 
   componentDidShow() {
-    Taro.eventCenter.on('refreshUserInfo', () => {
-      console.log('刷新用户信息');
-      this.getUserInfo();
-    });
     this.getUserInfo();
   }
 
