@@ -146,7 +146,8 @@ class App extends Component {
           "how_share_card",
           "how_perform_card",
           "introduce",
-          "renmai_taocan_detail"
+          "renmai_taocan_detail",
+          "my_home"
         ]
       }
     ],

@@ -271,7 +271,7 @@ class PerformInfo extends Component<Props, State> {
                 <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/pages/mine/self_intro`
+                          url: `/pages/mine/my_home?villagerGreeting=${userInfo.villagerGreeting}&province=${userInfo.province}&city=${userInfo.city}`
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
@@ -282,8 +282,13 @@ class PerformInfo extends Component<Props, State> {
                     </TouchableButton>
                   </View>
                   <View style={styleAssign([wRatio(100), mb(10)])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>四川省 成都市</Text>
+                    {
+                      userInfo.province || userInfo.city ?
+                        <Text
+                          style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>{`${userInfo.province} ${userInfo.city}`}</Text> :
+                        <Text
+                          style={styleAssign([fSize(12), color('#A9A9A9'), ml(20), mr(20)])}>完善家乡信息，增加更多人脉</Text>
+                    }
                   </View>
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>

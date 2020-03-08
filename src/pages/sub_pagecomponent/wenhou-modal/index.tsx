@@ -31,8 +31,13 @@ import TouchableButton from "../../../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../../../api/httpurl";
 import {User} from "../../../const/global";
 
+export enum WenHouType {
+  HOME,
+  EDUCATION
+}
 
 interface Props {
+  type: WenHouType;
   cancle: any;
   wenHouYu: string;
   userInfo: User;
@@ -45,7 +50,7 @@ export default class WenHouModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {cancle, wenHouYu,userInfo} = this.props;
+    let {cancle, wenHouYu, userInfo, type} = this.props;
 
     return (
       <View
@@ -58,12 +63,13 @@ export default class WenHouModal extends PureComponent<Props, State> {
           customStyle={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.blackColor), op(0.5), styles.upa, absT(0), absR(0)])}/>
         <View style={styleAssign([wRatio(100), hRatio(100), styles.uac, styles.ujc, styles.upa, absB(0)])}>
           <View style={styleAssign([w(302), h(284)])}>
-            <Image style={styleAssign([wRatio(100), h(185)])} src={require('../../../assets/ico_wenhou_bg.png')}/>
+            <Image style={styleAssign([wRatio(100), h(185)])}
+                   src={type === WenHouType.EDUCATION ? require('../../../assets/ico_wenhou_bg.png') : require('../../../assets/ico_wenhou_bg.png')}/>
             <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), radiusBL(8), radiusBR(8),
               styles.uac, styles.ujc])}>
               <View style={styleAssign([styles.udr])}>
                 <Image style={styleAssign([w(40), h(40), radiusA(20)])}
-                       src={userInfo.avatar?userInfo.avatar:`${cloudBaseUrl}ico_default.png`}/>
+                       src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
                 <View style={styleAssign([ml(10)])}>
                   <Image style={styleAssign([w(221), h(59)])}
                          src={require('../../../assets/ico_wenhouyu_bg2.png')}/>
