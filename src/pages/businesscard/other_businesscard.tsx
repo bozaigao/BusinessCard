@@ -278,7 +278,7 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           </View>
           {/*我的个人简介*/}
-          <PersonalInfo/>
+          <PersonalInfo userInfo={userInfo}/>
           {/*我的商品*/}
           {
             userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
