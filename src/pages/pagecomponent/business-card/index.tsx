@@ -28,14 +28,16 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../../../api/httpurl";
+import {User} from "../../../const/global";
 
 
 interface Props {
   shareClick: any;
   collectCallback: any;
-  visitorCallback:any;
+  visitorCallback: any;
   viewMyCardCallback: any;
   gotoCardCallback: any;
+  userInfo: User;
 }
 
 interface State {
@@ -45,7 +47,7 @@ export default class Card extends PureComponent<Props, State> {
 
   render() {
 
-    let {shareClick, collectCallback,visitorCallback, viewMyCardCallback,gotoCardCallback} = this.props;
+    let {shareClick, collectCallback, visitorCallback, viewMyCardCallback, gotoCardCallback, userInfo} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
@@ -55,38 +57,38 @@ export default class Card extends PureComponent<Props, State> {
             <View
               style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
             <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
-              <Text style={styleAssign([fSize(18), fWeight('bold')])}>王嘉怡</Text>
-              <Text style={styleAssign([fSize(12), ml(8)])}>销售经理</Text>
+              <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
+              <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
             </View>
             <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
               {/*电话号码*/}
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text
-                  style={styleAssign([fSize(12), color('#343434')])}>17311239269</Text>
+                  style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
                 <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
               </View>
               {/*微信号*/}
               <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                 <Text
-                  style={styleAssign([fSize(12), color('#343434')])}>bozaigao</Text>
+                  style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
                 <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
               </View>
               {/*邮箱*/}
               <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                 <Text
-                  style={styleAssign([fSize(12), color('#343434')])}>邮箱信息未对外公开</Text>
+                  style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
                 <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
               </View>
               {/*地址*/}
               <View style={styleAssign([styles.udr, mt(8)])}>
                 <Text
-                  style={styleAssign([fSize(12), color('#343434')])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</Text>
-                <Image style={styleAssign([w(9), h(11), ml(8),mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                  style={styleAssign([fSize(12), color('#343434')])}>{userInfo.province+userInfo.city+userInfo.detailAddress}</Text>
+                <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
               </View>
             </View>
           </View>
           <View style={styleAssign([wRatio(100), h(45), styles.udr, styles.uac, styles.ujb])}
-          onClick={gotoCardCallback}>
+                onClick={gotoCardCallback}>
             <Text
               style={styleAssign([fSize(12), color('#29292E'), ml(16)])}>我的名片</Text>
             <View style={styleAssign([styles.udr, styles.uac, mr(16)])}>

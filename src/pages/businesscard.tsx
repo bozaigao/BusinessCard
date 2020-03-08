@@ -97,7 +97,7 @@ class Businesscard extends Component<Props, State> {
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
-      console.log('获取用户信息', res);
+      console.log('重新更新用户信息',res)
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -136,7 +136,9 @@ class Businesscard extends Component<Props, State> {
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
-          <Card shareClick={() => {
+          <Card
+            userInfo={this.props.userInfo}
+            shareClick={() => {
             this.setState({showShare: true});
           }} collectCallback={() => {
             Taro.navigateTo({
