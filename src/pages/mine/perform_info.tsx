@@ -43,6 +43,7 @@ import NavigationBar from "../../compoments/navigation_bar";
 interface Props {
   //获取用户信息
   getUserInfo: any;
+  updateUserInfo: any;
   userInfo: User;
 }
 
@@ -103,6 +104,7 @@ class PerformInfo extends Component<Props, State> {
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
       if (res) {
+        this.props.updateUserInfo(res);
         console.log('获取用户信息1', res);
         this.setState({photoUrl: parseData(res.photoUrl), videoUrl: res.videoUrl}, () => {
           console.log('获取用户信息', this.state.photoUrl);

@@ -41,6 +41,7 @@ import NavigationBar from "../../compoments/navigation_bar";
 interface Props {
   //获取用户信息
   getUserInfo: any;
+  updateUserInfo: any;
   userInfo: User;
 }
 
@@ -102,6 +103,7 @@ class TiXian extends Component<Props, State> {
    */
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
+      this.props.updateUserInfo(res);
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
     }).catch(e => {

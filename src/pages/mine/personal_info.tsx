@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -42,6 +42,7 @@ import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 interface Props {
   //上传文件
   uploadPicture: any;
+  updateUserInfo: any;
   //更新用户信息
   update: any;
   getUserInfo: any;
@@ -62,8 +63,8 @@ interface State {
   province: string;
   city: string;
   detailAddress: string;
-  titleList1: { title: string, subtitle?: string, hasEdit?: boolean }[];
-  titleList2: { title: string, subtitle?: string, hasEdit?: boolean }[];
+  titleList1: { title: string, subtitle?: string, value?: string, hasEdit?: boolean }[];
+  titleList2: { title: string, subtitle?: string, value?: string, hasEdit?: boolean }[];
 }
 
 @connect(state => state.login, {...fileActions, ...loginActions})
@@ -88,6 +89,7 @@ class PersonalInfo extends Component<Props, State> {
     console.log(this.viewRef);
     // let test = this.$router.params.itemId;
     let {avatar, name, sex, phone, industry, position, yangshi, wechat, email, birthday, province, city, detailAddress} = props.userInfo;
+    console.log('用户信息', props.userInfo);
 
     this.state = {
       avatar,
@@ -103,17 +105,17 @@ class PersonalInfo extends Component<Props, State> {
       province,
       city,
       detailAddress,
-      titleList1: [{title: '姓名', subtitle: name ? name : '必填', hasEdit: true},
+      titleList1: [{title: '姓名', subtitle: '请输入姓名', value: name ? name : '', hasEdit: true},
         {title: '性别'},
-        {title: '手机', subtitle: phone ? phone : ''},
-        {title: '行业', subtitle: industry ? industry : '选择'},
-        {title: '职位', subtitle: position ? position : '必填', hasEdit: true}],
+        {title: '手机', subtitle: '请输入手机号', value: phone ? phone : '', hasEdit: true},
+        {title: '行业', value: industry ? industry : '', subtitle: '请选择行业'},
+        {title: '职位', value: position ? position : '必填', subtitle: '请选择职位', hasEdit: true}],
       titleList2: [
-        {title: '微信', subtitle: wechat ? wechat : '', hasEdit: true},
-        {title: '邮箱', subtitle: email ? email : '选填', hasEdit: true},
-        {title: '生日', subtitle: birthday ? transformTime(birthday) : '选填'},
-        {title: '地区', subtitle: province ? province + city : '选择'},
-        {title: '详细地址', subtitle: detailAddress ? detailAddress : '选填'}],
+        {title: '微信', value: wechat ? wechat : '', subtitle: '请输入微信号', hasEdit: true},
+        {title: '邮箱', value: email ? email : '', subtitle: '请输入邮箱', hasEdit: true},
+        {title: '生日', value: birthday ? transformTime(birthday) : '', subtitle: '请选择生日'},
+        {title: '地区', value: province ? province + city : '', subtitle: '请选择详地区'},
+        {title: '详细地址', value: detailAddress ? detailAddress : '', subtitle: '请选择详细地址'}],
     }
   }
 
@@ -176,7 +178,11 @@ class PersonalInfo extends Component<Props, State> {
       return;
     }
     if (phone.length === 0) {
-      toast('电话不能为空');
+      toast('手机号不能为空');
+      return;
+    }
+    if (!phone.startsWith('1') || phone.length !== 11) {
+      toast('手机号非法');
       return;
     }
     if (industry.length === 0) {
@@ -199,7 +205,8 @@ class PersonalInfo extends Component<Props, State> {
       wechat,
       birthday,
       province,
-      city
+      city,
+      detailAddress: this.state.titleList2[4].subtitle
     };
 
     this.viewRef && this.viewRef.showLoading();
@@ -209,6 +216,9 @@ class PersonalInfo extends Component<Props, State> {
       this.getUserInfo();
       if (res !== NetworkState.FAIL) {
         toast('信息更新成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
@@ -225,6 +235,7 @@ class PersonalInfo extends Component<Props, State> {
    */
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
+      this.props.updateUserInfo(res);
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);
     }).catch(e => {
@@ -299,7 +310,9 @@ class PersonalInfo extends Component<Props, State> {
                   );
                 }
                 return (<ListItem textColor={'#727272'}
-                                  title={value.title} subTitle={value.subtitle} key={index}
+                                  title={value.title}
+                                  value={value.value}
+                                  subTitle={value.subtitle} key={index}
                                   hasEdit={value.hasEdit}
                                   onCLick={(title) => {
                                     if (title === '联系方式') {
@@ -316,8 +329,11 @@ class PersonalInfo extends Component<Props, State> {
                                     }
                                   }
                                   } onTextChange={(e) => {
-                  this.setState({name: e.detail.value});
-                  console.log(e);
+                  if (value.title === '姓名') {
+                    this.setState({name: e.detail.value});
+                  } else if (value.title === '手机') {
+                    this.setState({phone: e.detail.value});
+                  }
                 }
                 }/>);
               })
@@ -353,6 +369,7 @@ class PersonalInfo extends Component<Props, State> {
                     })
                   }} value={value.subtitle}>
                     <ListItem title={value.title}
+                              value={value.value}
                               textColor={'#727272'}
                               subTitle={value.subtitle} key={index}
                               hasEdit={value.hasEdit}/>
@@ -369,7 +386,9 @@ class PersonalInfo extends Component<Props, State> {
                   }} value={[]}>
                     <ListItem
                       textColor={'#727272'}
-                      title={value.title} subTitle={value.subtitle} key={index}
+                      title={value.title} subTitle={value.subtitle}
+                      value={value.value}
+                      key={index}
                       hasEdit={value.hasEdit}
                       onTextChange={(e) => {
                         console.log(e);
@@ -384,6 +403,7 @@ class PersonalInfo extends Component<Props, State> {
                 }
                 return (<ListItem
                   textColor={'#727272'}
+                  value={value.value}
                   title={value.title} subTitle={value.subtitle} key={index}
                   hasEdit={value.hasEdit}
                   onCLick={(title) => {
