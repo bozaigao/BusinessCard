@@ -252,7 +252,7 @@ class MyEdu extends Component<Props, State> {
           }}/>
         </View>
         {
-          showWenHouYu && <WenHouModal type={WenHouType.HOME} cancle={() => {
+          showWenHouYu && <WenHouModal type={WenHouType.EDUCATION} cancle={() => {
             this.setState({showWenHouYu: false, wenHouYU: wenHouYUTmp, placeHolder: this.placeHolder});
           }} wenHouYu={wenHouYUTmp} userInfo={this.props.userInfo}/>
         }
