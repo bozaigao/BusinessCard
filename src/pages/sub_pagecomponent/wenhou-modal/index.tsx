@@ -50,7 +50,8 @@ export default class WenHouModal extends PureComponent<Props, State> {
     return (
       <View
         style={styleAssign([{
-          position: 'absolute',
+          position: 'fixed',
+          zIndex: Infinity
         }, absT(0), absR(0), wRatio(100), hRatio(100)])}>
         <TouchableButton
           onClick={cancle}

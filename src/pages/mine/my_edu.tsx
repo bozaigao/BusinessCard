@@ -46,6 +46,7 @@ interface Props {
 interface State {
   list: { title: string, subtitle?: string, value?: string; hasEdit?: boolean; }[];
   wenHouYU: string;
+  wenHouYUTmp: string;
   placeHolder: string;
   showWenHouYu: boolean;
 }
@@ -66,18 +67,21 @@ class MyEdu extends Component<Props, State> {
   private viewRef;
   private schoolTimeStart;
   private schoolTimeEnd;
+  private placeHolder;
 
   constructor(props) {
     super(props);
     this.schoolTimeStart = this.$router.params.schoolTimeStart;
     this.schoolTimeEnd = this.$router.params.schoolTimeEnd;
+    this.placeHolder = '校友您好，很高兴能遇到你！你可以收藏我的名片哦~';
     this.state = {
       list: [{title: '学校', subtitle: '请输入学校名称', value: this.$router.params.school, hasEdit: true},
         {title: '学历', subtitle: '选择', value: this.$router.params.educationBackground},
         {title: '专业', subtitle: '请输入专业名称', value: this.$router.params.profession, hasEdit: true},
         {title: '在校时间', subtitle: '选择', value: this.schoolTimeStart + '-' + this.schoolTimeEnd}],
       wenHouYU: this.$router.params.schoolfellowGreeting,
-      placeHolder: '校友您好，很高兴能遇到你！你可以收藏我的名片哦~',
+      wenHouYUTmp: this.$router.params.schoolfellowGreeting,
+      placeHolder: this.placeHolder,
       showWenHouYu: false
     }
   }
@@ -152,7 +156,7 @@ class MyEdu extends Component<Props, State> {
 
   render() {
 
-    let {list, wenHouYU, showWenHouYu, placeHolder} = this.state;
+    let {list, wenHouYU, showWenHouYu, placeHolder, wenHouYUTmp} = this.state;
     let selectorRange = ['博士', '研究生', '专科', '高中'];
     let multiSelectorRange = [['2015', '2016', '2017', '2018', '2019'], ['到'], ['2020', '2021', '2022', '2023', '2024']];
 
@@ -217,7 +221,7 @@ class MyEdu extends Component<Props, State> {
                         if (wenHouYU.length === 0) {
                           toast('问候语不能为空');
                         } else {
-                          this.setState({showWenHouYu: true,});
+                          this.setState({showWenHouYu: true, wenHouYU: '', placeHolder: ''});
                         }
                       }}>
                   <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>预览</Text>
@@ -228,13 +232,9 @@ class MyEdu extends Component<Props, State> {
                         maxlength={50}
                         placeholder={placeHolder}
                         style={styleAssign([w(305), h(91), fSize(16), ml(20),
-                          bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20),
-                          {
-                            position: 'fixed',
-                            zIndex: -Infinity
-                          }])}
+                          bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20)])}
                         onInput={(e) => {
-                          this.setState({wenHouYU: e.detail.value});
+                          this.setState({wenHouYU: e.detail.value, wenHouYUTmp: e.detail.value});
                         }}/>
                 <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(30)])}>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{wenHouYU.length}</Text>
@@ -253,8 +253,8 @@ class MyEdu extends Component<Props, State> {
         </View>
         {
           showWenHouYu && <WenHouModal cancle={() => {
-            this.setState({showWenHouYu: false});
-          }} wenHouYu={wenHouYU} userInfo={this.props.userInfo}/>
+            this.setState({showWenHouYu: false, wenHouYU: wenHouYUTmp, placeHolder: this.placeHolder});
+          }} wenHouYu={wenHouYUTmp} userInfo={this.props.userInfo}/>
         }
       </CustomSafeAreaView>
     )
