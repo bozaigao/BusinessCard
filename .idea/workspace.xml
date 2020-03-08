@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/ico_wenhou_home_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/my_home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,26 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="my_home.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/my_home.tsx">
+      <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="200" lean-forward="true" selection-end-line="218" />
+            <state relative-caret-position="373">
+              <caret line="341" column="83" selection-start-line="341" selection-start-column="83" selection-end-line="341" selection-end-column="83" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#107#159#0" expanded="true" />
-                <element signature="e#480#518#0" expanded="true" />
-                <element signature="e#3380#3412#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="341">
-              <caret line="66" column="133" selection-start-line="66" selection-start-column="133" selection-end-line="66" selection-end-column="133" />
             </state>
           </provider>
         </entry>
@@ -172,9 +157,9 @@
         <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
         <option value="$PROJECT_DIR$/src/pages/my_home.tsx" />
         <option value="$PROJECT_DIR$/src/app.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_home.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
       </list>
     </option>
   </component>
@@ -467,12 +452,12 @@
       <workItem from="1583418355812" duration="4750000" />
       <workItem from="1583458131072" duration="26000" />
       <workItem from="1583543199866" duration="23890000" />
-      <workItem from="1583628597752" duration="25004000" />
+      <workItem from="1583628597752" duration="26162000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="916404000" />
+    <option name="totallyTimeSpent" value="917562000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -494,13 +479,13 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19852553" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20074548" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24973376" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Flutter Inspector" order="3" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -990,16 +975,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1638">
-          <caret line="290" column="21" lean-forward="true" selection-start-line="290" selection-start-column="21" selection-end-line="290" selection-end-column="21" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -1009,13 +984,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/my_home.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="200" lean-forward="true" selection-end-line="218" />
+        <state relative-caret-position="232">
+          <caret line="195" column="19" lean-forward="true" selection-start-line="195" selection-start-column="19" selection-end-line="195" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#107#159#0" expanded="true" />
             <element signature="e#480#518#0" expanded="true" />
             <element signature="e#3380#3412#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="341" column="83" selection-start-line="341" selection-start-column="83" selection-end-line="341" selection-end-column="83" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

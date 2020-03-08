@@ -23,7 +23,7 @@ import {
   ml,
   mr,
   mt,
-  op,
+  op, pa, padding,
   pl,
   pr,
   radiusA,
@@ -319,6 +319,33 @@ class PerformInfo extends Component<Props, State> {
                           style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>让同窗校友轻松找到你</Text>
                       </View>
                   }
+                  <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                </View>
+                {/*我的标签*/}
+                <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/mine/my_edu?school=${userInfo.school}&educationBackground=${userInfo.educationBackground}&profession=${userInfo.profession}&schoolfellowGreeting=${userInfo.schoolfellowGreeting}&schoolTimeStart=${userInfo.schoolTimeStart}&schoolTimeEnd=${userInfo.schoolTimeEnd}`
+                        });
+                      }}>
+                  <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
+                    <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的标签</Text>
+                    <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
+                    </TouchableButton>
+                  </View>
+                  <View style={styleAssign([wRatio(100), mb(10), styles.udr, styles.uWrap, styles.uac])}>
+                    {
+                      [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 3].map((value, index) => {
+                        return <View
+                          style={styleAssign([padding([5, 15, 5, 15]), ml(24), mt(10), radiusA(14), bgColor('#E7E7E7'), styles.uac, styles.ujc])}>
+                          <Text
+                            style={styleAssign([fSize(12), color('#343434')])}>90后</Text>
+                        </View>;
+                      })
+                    }
+                  </View>
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>
               </View>
