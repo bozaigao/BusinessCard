@@ -119,6 +119,7 @@ class PerformInfo extends Component<Props, State> {
 
     let {showPersonalInfo, photoUrl, videoUrl, scrollTop} = this.state;
     let {userInfo} = this.props;
+    console.log('哦买噶',userInfo.label,userInfo.label.length)
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -339,11 +340,12 @@ class PerformInfo extends Component<Props, State> {
                   </View>
                   <View style={styleAssign([wRatio(100), mb(10), styles.udr, styles.uWrap, styles.uac])}>
                     {
-                      [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 3].map((value, index) => {
+                      userInfo.label.map((value, index) => {
                         return <View
+                          key={index}
                           style={styleAssign([padding([5, 15, 5, 15]), ml(24), mt(10), radiusA(14), bgColor('#E7E7E7'), styles.uac, styles.ujc])}>
                           <Text
-                            style={styleAssign([fSize(12), color('#343434')])}>90后</Text>
+                            style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
                         </View>;
                       })
                     }

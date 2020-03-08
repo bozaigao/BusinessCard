@@ -7,9 +7,9 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absR,
   absT, bdColor,
@@ -18,7 +18,7 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, mb,
   ml,
   mt,
   padding,
@@ -28,17 +28,21 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
-import TopHeader from "../../compoments/top-header";
+import TopHeader from "../../compoments/top-header/index";
 import {Image, Text, View} from "@tarojs/components";
-import BottomButon from "../../compoments/bottom-buton";
-import TouchableButton from "../../compoments/touchable-button";
-import {cloudBaseUrl} from "../../api/httpurl";
+import BottomButon from "../../compoments/bottom-buton/index";
+import TouchableButton from "../../compoments/touchable-button/index";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 
 interface Props {
+  //更新用户信息
+  update: any;
+  getUserInfo: any;
+  updateUserInfo: any;
 }
 
 interface State {
-
+  chooseTags: string[];
 }
 
 @connect(state => state.login, {...actions})
@@ -60,11 +64,69 @@ class MyTags extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.state = {
+      chooseTags: []
+    }
     console.log(this.viewRef);
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 更新用户信息
+   */
+  update = () => {
+    console.log('函数', this.props)
+    let {chooseTags} = this.state;
+
+    if (chooseTags.length === 0) {
+      toast('请选择标签');
+      return;
+    }
+
+    let paramas = {
+      label: JSON.stringify(chooseTags)
+    };
+
+    console.log('参数错误', paramas);
+
+    this.viewRef && this.viewRef.showLoading();
+    this.props.update(paramas).then((res) => {
+      console.log('更新用户信息', res);
+      this.getUserInfo();
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('信息更新成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+   */
+  getUserInfo = () => {
+    this.props.getUserInfo().then((res) => {
+      this.props.updateUserInfo(res);
+      console.log('获取用户信息', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
   render() {
+    let {chooseTags} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -73,14 +135,14 @@ class MyTags extends Component<Props, State> {
         <TopHeader title={'我的标签'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           {/*我的标签*/}
-          <View style={styleAssign([wRatio(100), h(153), bgColor(commonStyles.whiteColor), mt(10)])}>
+          <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), mt(10)])}>
             <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
               <Text style={styleAssign([fSize(16), color('#343434')])}>我的标签</Text>
               <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>长按拖动可以排序(最多添加4个标签)</Text>
             </View>
-            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8)])}>
+            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8), styles.uWrap])}>
               {
-                ['90后', '夜跑', '旅行', '摄影'].map((value, index) => {
+                chooseTags.map((value, index) => {
                   return (<View
                     key={index}
                     style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
@@ -88,13 +150,17 @@ class MyTags extends Component<Props, State> {
                       padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
                       <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
                       <Image style={styleAssign([w(15), h(15), styles.upa, absT(-5), absR(-5)])}
-                             src={`${cloudBaseUrl}ico_close.png`}/>
+                             src={`${cloudBaseUrl}ico_close.png`}
+                             onClick={() => {
+                               this.state.chooseTags.splice(this.state.chooseTags.indexOf(value), 1);
+                               this.setState({chooseTags: this.state.chooseTags});
+                             }}/>
                     </TouchableButton>
                   </View>);
                 })
               }
             </View>
-            <View style={styleAssign([styles.udr, mt(16), styles.uae])}>
+            <View style={styleAssign([styles.udr, mt(16), styles.uae, mb(20)])}>
               <TouchableButton
                 customStyle={styleAssign([styles.uac, styles.udr, ml(20), bgColor(commonStyles.colorTheme),
                   w(95), h(28), radiusA(14), styles.uac, styles.ujc])}>
@@ -114,10 +180,16 @@ class MyTags extends Component<Props, State> {
               {
                 ['90后', '看电影', '电竞游戏', '运动', '健身', '看书', '旅行'].map((value, index) => {
                   return (<TouchableButton key={index}
-                                customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]), bo(1), bdColor(commonStyles.colorTheme), {
-                                  borderStyle: 'solid'
-                                }])}>
-                    <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme)])}>{value}</Text>
+                                           customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]), bo(1), bdColor(chooseTags.includes(value) ? '#979797' : commonStyles.colorTheme), {
+                                             borderStyle: 'solid'
+                                           }])} onClick={() => {
+                    if (!this.state.chooseTags.includes(value)) {
+                      this.state.chooseTags.push(value);
+                      this.setState({chooseTags: this.state.chooseTags});
+                    }
+                  }}>
+                    <Text
+                      style={styleAssign([fSize(12), color(chooseTags.includes(value) ? '#979797' : commonStyles.colorTheme)])}>{value}</Text>
                   </TouchableButton>);
                 })
               }
@@ -126,7 +198,7 @@ class MyTags extends Component<Props, State> {
         </View>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-
+          this.update();
         }}/>
       </CustomSafeAreaView>
     );
