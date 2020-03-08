@@ -97,7 +97,7 @@ class OtherBusinesscard extends Component<Props, State> {
    */
   getUserInfo = () => {
     console.log('获取用户信息');
-    this.props.getUserInfo().then((res) => {
+    this.props.getUserInfo({userId:this.$router.params.userId}).then((res) => {
       this.props.updateUserInfo(res);
       console.log('获取用户信息', res);
       console.log('属性', this.props.userInfo);

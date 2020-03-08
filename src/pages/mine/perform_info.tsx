@@ -5,7 +5,7 @@
  * @date 2019/12/8
  * @Description: 完善名片
  */
-import Taro, {Component, Config} from '@tarojs/taro'
+import Taro, {Component, Config, InnerAudioContext} from '@tarojs/taro'
 import {Image, ScrollView, Text, Video, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
@@ -56,6 +56,7 @@ interface State {
 
 @connect(state => state.login, {...actions})
 class PerformInfo extends Component<Props, State> {
+  private innerAudioContext: InnerAudioContext;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -70,18 +71,18 @@ class PerformInfo extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.innerAudioContext = Taro.createInnerAudioContext();
     this.state = {
       photoUrl: [],
       videoUrl: '',
       showPersonalInfo: true,
-      scrollTop:0
+      scrollTop: 0
     }
   }
 
-  componentDidShow(){
+  componentDidShow() {
     this.getUserInfo();
   }
-
 
 
   componentDidHide() {
@@ -108,9 +109,13 @@ class PerformInfo extends Component<Props, State> {
     });
   }
 
+  componentWillUnmount() {
+    this.innerAudioContext && this.innerAudioContext.stop();
+  }
+
   render() {
 
-    let {showPersonalInfo, photoUrl, videoUrl,scrollTop} = this.state;
+    let {showPersonalInfo, photoUrl, videoUrl, scrollTop} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -208,16 +213,31 @@ class PerformInfo extends Component<Props, State> {
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
-                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>我的语音</Text>
+                    <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的语音</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                       <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
-                  <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mb(10)])}>
-                    <Image style={styleAssign([w(40), h(40), ml(19)])} src={`${cloudBaseUrl}ico_default.png`}/>
-                    <Image style={styleAssign([w(186), h(41), ml(10)])} src={require('../../assets/ico_voice_bg.png')}/>
-                  </View>
+                  {
+                    userInfo.voiceUrl && userInfo.voiceUrl.length !== 0 ?
+                      <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mb(10)])}>
+                        <Image style={styleAssign([w(40), h(40), radiusA(20), ml(19)])}
+                               src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                        <Image style={styleAssign([w(186), h(41), ml(10)])}
+                               src={require('../../assets/ico_voice_bg.png')}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 console.log(userInfo.voiceUrl)
+                                 this.innerAudioContext.src = userInfo.voiceUrl;
+                                 this.innerAudioContext.play();
+                               }
+                               }/>
+                      </View> :
+                      <View style={styleAssign([wRatio(100), styles.ujc])}>
+                        <Text style={styleAssign([fSize(12), color('#A9A9A9'), ml(20)])}>留下语音介绍，让客户更快认识你</Text>
+                      </View>
+                  }
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>
                 {/*自我描述*/}
@@ -228,7 +248,7 @@ class PerformInfo extends Component<Props, State> {
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
-                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>自我描述</Text>
+                    <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>自我描述</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                       <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
@@ -248,7 +268,7 @@ class PerformInfo extends Component<Props, State> {
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
-                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>我的家乡</Text>
+                    <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的家乡</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                       <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
@@ -268,7 +288,7 @@ class PerformInfo extends Component<Props, State> {
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
-                    <Text style={styleAssign([fSize(14), color('#343434'), ml(20)])}>教育经历</Text>
+                    <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>教育经历</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                       <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
@@ -399,15 +419,15 @@ class PerformInfo extends Component<Props, State> {
           </TouchableButton>
         </ScrollView>
         <NavigationBar style={styleAssign([styles.upa, absT(0), op((300 - scrollTop) / 300)])}>
-        <View
-          style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
-          <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
-                 onClick={() => {
-                   Taro.navigateBack();
-                 }}/>
-          <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>
-          <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
-        </View>
+          <View
+            style={styleAssign([wRatio(100), h(44), styles.ujb, styles.udr, styles.uac])}>
+            <Image style={styleAssign([w(22), h(22), ml(20)])} src={require('../../assets/ico_back_white.png')}
+                   onClick={() => {
+                     Taro.navigateBack();
+                   }}/>
+            <Text style={styleAssign([fSize(19), color(commonStyles.whiteColor)])}>完善名片</Text>
+            <View style={styleAssign([w(22), h(22), bgColor(commonStyles.transparent), mr(20)])}/>
+          </View>
         </NavigationBar>
       </CustomSafeAreaView>
     );
