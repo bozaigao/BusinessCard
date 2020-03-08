@@ -6,37 +6,19 @@
  * @Description: 名片首页
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Button, Image, ScrollView, Text, View} from "@tarojs/components";
+import {Button, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
 import {get, styleAssign} from "../utils/datatool";
-import {
-  bgColor,
-  color,
-  commonStyles,
-  default as styles,
-  fSize,
-  h,
-  ml,
-  mr,
-  mt,
-  radiusA,
-  w,
-  wRatio
-} from "../utils/style";
+import {bgColor, color, commonStyles, default as styles, fSize, h, radiusA, w, wRatio} from "../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
 import * as loginActions from '../actions/login';
 import Card from "./pagecomponent/business-card/index";
-import PersonalInfo from "./pagecomponent/personal-info/index";
 import MyPerson from "./pagecomponent/my-person/index";
-import MyGoods from "./pagecomponent/my-goods/index";
-import JiZhiCard from "./pagecomponent/jizhi-card/index";
-import MyBusiness from "./pagecomponent/my-business/index";
 import ShareModal from "./pagecomponent/share-modal/index";
 import {Enum, User} from "../const/global";
-import {cloudBaseUrl} from "../api/httpurl";
 import NavigationBar from "../compoments/navigation_bar/index";
 
 interface Props {
@@ -177,47 +159,14 @@ class Businesscard extends Component<Props, State> {
                     url: `/pages/businesscard/ming_pian_ma`
                   });
                 }}/>
-          {/*我的个人简介*/}
-          <PersonalInfo/>
           {/*我的人脉*/}
           <MyPerson chooseCallback={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/choose_renmai_tag`
             });
           }}/>
-          {/*我的商品*/}
-          {
-            userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
-              Taro.navigateTo({
-                url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
-              });
-            }} goToGoodsDetail={(itemData) => {
-              Taro.navigateTo({
-                url: `/pages/mine/goods_detail?itemData=${JSON.stringify(itemData)}`
-              });
-            }} goodsList={userInfo.goodsList}/>
-          }
-          {/*我的企业*/}
-          <MyBusiness/>
-          {/*极致名片*/}
-          <JiZhiCard/>
-          {/*关注公众号*/}
-          <View
-            style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
-            <View style={styleAssign([styles.uac, styles.udr])}>
-              <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
-                     src={`${cloudBaseUrl}ico_logo.png`}/>
-              <View style={styleAssign([ml(5)])}>
-                <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>关注极致信息公众号</Text>
-                <Text style={styleAssign([fSize(12), color('#D2D2D2')])}>最新资讯、升级更新早知道！</Text>
-              </View>
-            </View>
-            <View style={styleAssign([styles.uac, styles.ujc, bgColor('#FAF1E5'), w(76), h(27), radiusA(30), mr(11)])}>
-              <Text style={styleAssign([color('#825D22'), fSize(14)])}>马上关注</Text>
-            </View>
-          </View>
           {/*slogan*/}
-          <View style={styleAssign([wRatio(100), h(86), styles.ujc, styles.uac])}>
+          <View style={styleAssign([wRatio(100), h(66), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极易推 给您极致服务</Text>
           </View>
         </ScrollView>

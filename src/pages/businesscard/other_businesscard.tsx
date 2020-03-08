@@ -291,7 +291,7 @@ class OtherBusinesscard extends Component<Props, State> {
           <JiZhiCard/>
           {/*关注公众号*/}
           <View
-            style={styleAssign([wRatio(100), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
+            style={styleAssign([wRatio(100),h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Image style={styleAssign([w(32), h(32), radiusA(4), ml(21)])}
                      src={`${cloudBaseUrl}ico_logo.png`}/>

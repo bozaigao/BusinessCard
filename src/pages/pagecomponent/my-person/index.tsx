@@ -71,30 +71,32 @@ export default class MyPerson extends Component<Props, State> {
                 style={styleAssign([w(303), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
                 onClick={() => {
                   chooseCallback();
-                  this.setState({hasSelected: true});
+                  // this.setState({hasSelected: true});
                 }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即选择</Text>
               </View>
             </View>
           </View>
         }
-        <View
-          style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
-            pl(20), pr(20), mt(16)])}>
-          {
-            hasSelected && ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
-              return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 62 : 0)])}
-                           onClick={() => {
-                             this.setState({currentIndex: index});
-                           }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex === index ? '#E2BB7B' : '#0C0C0C')])}>{value}</Text>
-                <View
-                  style={styleAssign([w(30), h(1), bgColor(currentIndex === index ? '#E2BB7B' : commonStyles.transparent), mt(8)])}/>
-              </View>;
-            })
-          }
-        </View>
+        {
+          hasSelected&&<View
+            style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
+              pl(20), pr(20), mt(16)])}>
+            {
+             ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
+                return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 62 : 0)])}
+                             onClick={() => {
+                               this.setState({currentIndex: index});
+                             }}>
+                  <Text
+                    style={styleAssign([fSize(15), color(currentIndex === index ? '#E2BB7B' : '#0C0C0C')])}>{value}</Text>
+                  <View
+                    style={styleAssign([w(30), h(1), bgColor(currentIndex === index ? '#E2BB7B' : commonStyles.transparent), mt(8)])}/>
+                </View>;
+              })
+            }
+          </View>
+        }
         {
           hasSelected && [1, 2, 3, 4, 5, 6].map((value, index) => {
             console.log(value);
