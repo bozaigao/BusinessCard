@@ -10,7 +10,7 @@ import {Text, Textarea, View} from '@tarojs/components'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -30,8 +30,11 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
 import BottomButon from "../../compoments/bottom-buton";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
+  //更新用户信息
+  update?: any;
 }
 
 interface State {
@@ -60,9 +63,40 @@ class SelfIntro extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
-      desc: '',
+      desc: this.$router.params.content,
       template: 'Hi，您好，我是…公司的…,我在…行业已有…年，主要负责…工作，有着丰富的…经验以及非常专业的相关知识，如果您有意向与我司合作，请直接联系我。'
     }
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/28
+   * @function: 更新用户信息
+   */
+  update = () => {
+    let {desc} = this.state;
+
+    if (desc.length === 0) {
+      toast('内容不能为空');
+      return;
+    }
+
+    this.viewRef && this.viewRef.showLoading();
+    this.props.update({selfDescription: desc}).then((res) => {
+      console.log('更新用户信息', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('保存成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -79,7 +113,7 @@ class SelfIntro extends Component<Props, State> {
          <Textarea
            style={styleAssign([wRatio(80), {marginLeft: '5%'}, h(160), pa(20), bgColor(commonStyles.pageDefaultBackgroundColor),
              mt(20), fSize(14)])}
-           value={''} placeholder={'简单介绍一下自己，有助于加深他人对你的了解哦~'}
+           value={desc} placeholder={'简单介绍一下自己，有助于加深他人对你的了解哦~'}
            maxlength={600}
            onInput={(e) => {
              this.setState({desc: e.detail.value});
@@ -110,7 +144,7 @@ class SelfIntro extends Component<Props, State> {
         </View>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-
+          this.update();
         }}/>
       </CustomSafeAreaView>
     );

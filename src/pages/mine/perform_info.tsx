@@ -246,7 +246,7 @@ class PerformInfo extends Component<Props, State> {
                 <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/pages/mine/self_intro`
+                          url: `/pages/mine/self_intro?content=${userInfo.selfDescription ? userInfo.selfDescription : ''}`
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
@@ -257,8 +257,13 @@ class PerformInfo extends Component<Props, State> {
                     </TouchableButton>
                   </View>
                   <View style={styleAssign([wRatio(100), mb(10)])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！Hi,欢迎来到王嘉怡的名片！</Text>
+                    {
+                      userInfo.selfDescription && userInfo.selfDescription.length !== 0 ?
+                        <Text
+                          style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>{userInfo.selfDescription}</Text> :
+                        <Text
+                          style={styleAssign([fSize(12), color('#A9A9A9'), ml(20), mr(20)])}>让客户进一步深入了解你</Text>
+                    }
                   </View>
                   <View style={styleAssign([w(335), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 </View>
