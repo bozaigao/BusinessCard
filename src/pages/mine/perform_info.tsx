@@ -9,7 +9,8 @@ import Taro, {Component, Config, InnerAudioContext} from '@tarojs/taro'
 import {Image, ScrollView, Text, Video, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
-  absB, absL,
+  absB,
+  absL,
   absR,
   absT,
   bgColor,
@@ -23,7 +24,8 @@ import {
   ml,
   mr,
   mt,
-  op, pa, padding,
+  op,
+  padding,
   pl,
   pr,
   radiusA,
@@ -325,7 +327,7 @@ class PerformInfo extends Component<Props, State> {
                 <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac])}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/pages/mine/my_edu?school=${userInfo.school}&educationBackground=${userInfo.educationBackground}&profession=${userInfo.profession}&schoolfellowGreeting=${userInfo.schoolfellowGreeting}&schoolTimeStart=${userInfo.schoolTimeStart}&schoolTimeEnd=${userInfo.schoolTimeEnd}`
+                          url: `/pages/mine/my_tags`
                         });
                       }}>
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>

@@ -19,8 +19,21 @@
       <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="341" column="83" selection-start-line="341" selection-start-column="83" selection-end-line="341" selection-end-column="83" />
+            <state relative-caret-position="278">
+              <caret line="334" column="62" selection-start-line="334" selection-start-column="62" selection-end-line="334" selection-end-column="62" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#112#183#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_tags.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/my_tags.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -39,7 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;ListItem</find>
       <find>'refreshUserInfo'</find>
       <find>Taro.eventCenter</find>
       <find>la</find>
@@ -56,7 +68,6 @@
       <find>电话</find>
       <find>录音</find>
       <find>自我描述</find>
-      <find>教育经历</find>
       <find>schoolTimeStart</find>
       <find>multiSelectorRange</find>
       <find>this.schoolTimeStart</find>
@@ -69,6 +80,8 @@
       <find>selectorRange</find>
       <find>wenHouYU</find>
       <find>我的家</find>
+      <find>标签</find>
+      <find>教育经历</find>
     </findStrings>
     <replaceStrings>
       <replace>Enum</replace>
@@ -452,12 +465,12 @@
       <workItem from="1583418355812" duration="4750000" />
       <workItem from="1583458131072" duration="26000" />
       <workItem from="1583543199866" duration="23890000" />
-      <workItem from="1583628597752" duration="26162000" />
+      <workItem from="1583628597752" duration="26536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="917562000" />
+    <option name="totallyTimeSpent" value="917936000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -477,7 +490,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20074548" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24973376" />
@@ -563,13 +576,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/shai-xuan-modal/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-213">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/mode-modal/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
@@ -995,12 +1001,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_tags.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="341" column="83" selection-start-line="341" selection-start-column="83" selection-end-line="341" selection-end-column="83" />
+        <state>
+          <caret lean-forward="true" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="334" column="62" selection-start-line="334" selection-start-column="62" selection-end-line="334" selection-end-column="62" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#112#183#0" expanded="true" />
           </folding>
         </state>
       </provider>
