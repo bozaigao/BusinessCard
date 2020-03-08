@@ -71,8 +71,8 @@ class ChooseRenmaiTag extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <View style={styleAssign([wRatio(100), h(iphoneX() ? 184 : 164)])}>
-          <Image style={styleAssign([wRatio(100), h(iphoneX() ? 184 : 164), styles.upa, absT(0)])}
+        <View style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169)])}>
+          <Image style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169), styles.upa, absT(-5)])}
                  src={require('../../assets/ico_xingqu_renmai.png')}/>
           <View style={styleAssign([wRatio(100), styles.upa, absB(30), styles.uac, styles.ujc])}>
             <Text style={styleAssign([fSize(22), color(commonStyles.whiteColor)])}>
