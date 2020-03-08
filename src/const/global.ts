@@ -61,6 +61,8 @@ export interface User {
   company: string;
   //创建时间
   createTime: string;
+  //录音时长
+  voiceDuration:number;
   //详细地址
   detailAddress: string;
   //教育经历-学历

@@ -255,7 +255,7 @@ class AudioRecorder extends Component<Props, State> {
    * @function: 更新用户信息
    */
   update = (path) => {
-    this.props.update({voiceUrl: path}).then((res) => {
+    this.props.update({voiceUrl: path, voiceDuration: this.state.time}).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {

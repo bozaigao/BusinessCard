@@ -9,7 +9,7 @@ import Taro, {Component, Config, InnerAudioContext} from '@tarojs/taro'
 import {Image, ScrollView, Text, Video, View} from '@tarojs/components'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
-  absB,
+  absB, absL,
   absR,
   absT,
   bgColor,
@@ -233,6 +233,8 @@ class PerformInfo extends Component<Props, State> {
                                  this.innerAudioContext.play();
                                }
                                }/>
+                        <Text
+                          style={styleAssign([fSize(11), color('#979797'), styles.upa, absL(110)])}>{`${userInfo.voiceDuration ? userInfo.voiceDuration : '0'}″`}</Text>
                       </View> :
                       <View style={styleAssign([wRatio(100), styles.ujc])}>
                         <Text style={styleAssign([fSize(12), color('#A9A9A9'), ml(20)])}>留下语音介绍，让客户更快认识你</Text>
