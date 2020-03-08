@@ -42,8 +42,8 @@ interface Props {
 }
 
 interface State {
-  top1List: { title: string; subtitle: string; hasEdit: boolean; }[];
-  top2List: { title: string; subtitle: string; hasEdit: boolean; }[];
+  top1List: { title: string; subtitle?: string; value?: string; hasEdit: boolean; }[];
+  top2List: { title: string; subtitle?: string;value?: string; hasEdit: boolean; }[];
   name: string;
   phone: string;
   sex: number;
@@ -88,7 +88,7 @@ class AddCustomer extends Component<Props, State> {
     this.state = {
       top1List: [{title: '备注名', subtitle: '请输入备注名', hasEdit: true},
         {title: '手机', subtitle: '请输入手机号', hasEdit: true},
-        {title: '性别', subtitle: '男', hasEdit: false},
+        {title: '性别', value: '男', hasEdit: false},
         {title: '公司', subtitle: '请输入公司名', hasEdit: true},
         {title: '行业', subtitle: '请选择', hasEdit: false},
         {title: '职位', subtitle: '请输入职位', hasEdit: true}],

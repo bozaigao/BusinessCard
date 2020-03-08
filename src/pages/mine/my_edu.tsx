@@ -39,7 +39,7 @@ interface Props {
 }
 
 interface State {
-  list: { title: string, subtitle?: string, hasEdit?: boolean; }[];
+  list: { title: string, subtitle?: string,value?:string; hasEdit?: boolean; }[];
   wenHouYU: string;
   //这里的tmp主要是解决弹窗把TextArea里面的文字遮不住问题，很奇怪
   wenHouYUTmp: string;
@@ -105,11 +105,12 @@ class MyEdu extends Component<Props, State> {
               list.map((value, index) => {
                 if (value.title === '学历') {
                   return (<Picker mode='selector' onChange={(e) => {
-                    this.state.list[1].subtitle = selectorRange[e.detail.value];
+                    this.state.list[1].value = selectorRange[e.detail.value];
                     this.setState({list: this.state.list});
                   }} range={selectorRange} value={0}>
                     <ListItem textColor={'#727272'}
                               title={value.title}
+                              value={value.value}
                               subTitle={value.subtitle}
                               key={index}
                               hasEdit={value.hasEdit}
@@ -134,11 +135,12 @@ class MyEdu extends Component<Props, State> {
                     }/></Picker>);
                 } else if (value.title === '在校时间') {
                   return (<Picker mode='multiSelector' onChange={(e) => {
-                    this.state.list[3].subtitle = multiSelectorRange[0][e.detail.value[0]] + '-' + multiSelectorRange[2][e.detail.value[2]];
+                    this.state.list[3].value = multiSelectorRange[0][e.detail.value[0]] + '-' + multiSelectorRange[2][e.detail.value[2]];
                     this.setState({list: this.state.list});
                   }} range={multiSelectorRange} value={[4, 0, 0]}>
                     <ListItem textColor={'#727272'}
                               title={value.title}
+                              value={value.value}
                               subTitle={value.subtitle}
                               key={index}
                               hasEdit={value.hasEdit}
@@ -163,6 +165,7 @@ class MyEdu extends Component<Props, State> {
                     }/></Picker>);
                 }
                 return (<ListItem textColor={'#727272'}
+                                  value={value.value}
                                   title={value.title} subTitle={value.subtitle} key={index}
                                   hasEdit={value.hasEdit}
                                   onCLick={(title) => {
