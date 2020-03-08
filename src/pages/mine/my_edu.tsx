@@ -131,11 +131,11 @@ class MyEdu extends Component<Props, State> {
       school: list[0].value && list[0].value,
       educationBackground: list[1].value && list[1].value,
       profession: list[2].value && list[2].value,
-      schoolTimeStart: this.schoolTimeStart,
-      schoolTimeEnd: this.schoolTimeEnd
+      schoolTimeStart: `${this.schoolTimeStart}`,
+      schoolTimeEnd: `${this.schoolTimeEnd}`
     };
 
-    console.log('参数错误',params);
+    console.log('参数错误', params);
     this.props.update(params).then((res) => {
       console.log('更新用户信息', res);
       this.viewRef && this.viewRef.hideLoading();
