@@ -21,7 +21,7 @@ import {
   hRatio,
   ml,
   mt,
-  op,
+  op, radiusA,
   radiusBL,
   radiusBR,
   w,
@@ -29,11 +29,13 @@ import {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../../../api/httpurl";
+import {User} from "../../../const/global";
 
 
 interface Props {
   cancle: any;
   wenHouYu: string;
+  userInfo: User;
 }
 
 interface State {
@@ -43,7 +45,7 @@ export default class WenHouModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {cancle, wenHouYu} = this.props;
+    let {cancle, wenHouYu,userInfo} = this.props;
 
     return (
       <View
@@ -60,14 +62,16 @@ export default class WenHouModal extends PureComponent<Props, State> {
             <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), radiusBL(8), radiusBR(8),
               styles.uac, styles.ujc])}>
               <View style={styleAssign([styles.udr])}>
-                <Image style={styleAssign([w(40), h(40), radiusBR(20)])}
-                       src={`${cloudBaseUrl}ico_default.png`}/>
+                <Image style={styleAssign([w(40), h(40), radiusA(20)])}
+                       src={userInfo.avatar?userInfo.avatar:`${cloudBaseUrl}ico_default.png`}/>
                 <View style={styleAssign([ml(10)])}>
                   <Image style={styleAssign([w(221), h(59)])}
                          src={require('../../../assets/ico_wenhouyu_bg2.png')}/>
                   <View
                     style={styleAssign([wRatio(90), hRatio(90), {marginLeft: '7%'}, styles.ujc, styles.upa, absT(0)])}>
-                    <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{wenHouYu}</Text>
+                    <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{wenHouYu.substr(0, 25)}</Text>
+                    <Text
+                      style={styleAssign([fSize(14), color('#0C0C0C')])}>{wenHouYu.substr(25, wenHouYu.length)}</Text>
                   </View>
                 </View>
               </View>
