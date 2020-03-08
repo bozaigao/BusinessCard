@@ -119,7 +119,7 @@ class PerformInfo extends Component<Props, State> {
 
     let {showPersonalInfo, photoUrl, videoUrl, scrollTop} = this.state;
     let {userInfo} = this.props;
-    console.log('哦买噶',userInfo.label,userInfo.label.length)
+    console.log('哦买噶', userInfo.label, userInfo.label.length)
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -340,7 +340,7 @@ class PerformInfo extends Component<Props, State> {
                   </View>
                   <View style={styleAssign([wRatio(100), mb(10), styles.udr, styles.uWrap, styles.uac])}>
                     {
-                      userInfo.label.map((value, index) => {
+                      userInfo.labelArray.map((value, index) => {
                         return <View
                           key={index}
                           style={styleAssign([padding([5, 15, 5, 15]), ml(24), mt(10), radiusA(14), bgColor('#E7E7E7'), styles.uac, styles.ujc])}>
@@ -350,7 +350,7 @@ class PerformInfo extends Component<Props, State> {
                       })
                     }
                     {
-                      userInfo.label.length===0&&
+                      userInfo.labelArray.length === 0 &&
                       <Text
                         style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20)])}>让志同道合的朋友轻松找到你</Text>
                     }

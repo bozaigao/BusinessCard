@@ -33,18 +33,6 @@ export const getDictItemList = payload => createAction({
 });
 
 
-/**
- * @author 何晏波
- * @QQ 1054539528
- * @date 2019/12/25
- * @function: 查询省份和城市信息
- */
-export const getProvinceCity = payload => createAction({
-  url: DictController.getProvinceCity,
-  payload,
-  method: 'GET'
-});
-
 
 /**
  * @author 何晏波

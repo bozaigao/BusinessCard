@@ -12,13 +12,16 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absR,
-  absT, bdColor,
-  bgColor, bo,
+  absT,
+  bdColor,
+  bgColor,
+  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, mb,
+  h,
+  mb,
   ml,
   mt,
   padding,
@@ -28,6 +31,7 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
+import * as dictActions from '../../actions/dict';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
@@ -39,13 +43,15 @@ interface Props {
   update: any;
   getUserInfo: any;
   updateUserInfo: any;
+  getDictItemList: any;
 }
 
 interface State {
-  chooseTags: string[];
+  chooseTags: any;
+  tags: any[];
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, Object.assign(actions, dictActions))
 class MyTags extends Component<Props, State> {
 
   private viewRef;
@@ -65,10 +71,37 @@ class MyTags extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      chooseTags: []
+      chooseTags:props.userInfo.labelArray,
+      tags: []
     }
     console.log(this.viewRef);
   }
+
+  componentDidShow() {
+    this.getDictItemList();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/8
+   * @function: 获取后台配置标签
+   */
+  getDictItemList = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.getDictItemList({dictCode: 'user_label '}).then((res) => {
+      console.log('获取后台配置标签', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.setState({tags: res});
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
 
   /**
    * @author 何晏波
@@ -126,7 +159,7 @@ class MyTags extends Component<Props, State> {
 
 
   render() {
-    let {chooseTags} = this.state;
+    let {chooseTags, tags} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -178,18 +211,18 @@ class MyTags extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
               styles.uWrap])}>
               {
-                ['90后', '看电影', '电竞游戏', '运动', '健身', '看书', '旅行'].map((value, index) => {
+                tags.map((value, index) => {
                   return (<TouchableButton key={index}
-                                           customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]), bo(1), bdColor(chooseTags.includes(value) ? '#979797' : commonStyles.colorTheme), {
+                                           customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]), bo(1), bdColor(chooseTags.includes(value.itemText) ? '#979797' : commonStyles.colorTheme), {
                                              borderStyle: 'solid'
                                            }])} onClick={() => {
-                    if (!this.state.chooseTags.includes(value)) {
-                      this.state.chooseTags.push(value);
+                    if (!this.state.chooseTags.includes(value.itemText)) {
+                      this.state.chooseTags.push(value.itemText);
                       this.setState({chooseTags: this.state.chooseTags});
                     }
                   }}>
                     <Text
-                      style={styleAssign([fSize(12), color(chooseTags.includes(value) ? '#979797' : commonStyles.colorTheme)])}>{value}</Text>
+                      style={styleAssign([fSize(12), color(chooseTags.includes(value.itemText) ? '#979797' : commonStyles.colorTheme)])}>{value.itemText}</Text>
                   </TouchableButton>);
                 })
               }

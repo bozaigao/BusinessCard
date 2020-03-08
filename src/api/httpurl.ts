@@ -34,6 +34,8 @@ const BASE_URL = StagingUrl,
   DictController = {
     //查询行业信息
     getIndustryList: BASE_URL + 'dict/getIndustryList',
+    //查询各种信息
+    getDictItemList: BASE_URL + 'dict/getDictItemList',
   },
   //文件上传
   FileController = {

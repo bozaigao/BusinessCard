@@ -92,7 +92,7 @@ export interface User {
   villagerGreeting: string;
   schoolfellowGreeting: string;
   //标签列表(json数组)
-  label: string[];
+  labelArray: string[];
   latitude: number;
   longitude: number;
   //登录时间
