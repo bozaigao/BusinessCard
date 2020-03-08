@@ -8,7 +8,7 @@
 import Taro, {Component} from '@tarojs/taro'
 import {Image, Input, Text, View} from "@tarojs/components";
 import {bgColor, color, commonStyles, default as styles, fSize, h, ml, pl, pr, w, wRatio} from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {scaleSize, styleAssign} from "../../utils/datatool";
 import TouchableButton from "../touchable-button";
 
 interface Props {
@@ -48,7 +48,11 @@ export default class ListItem extends Component<Props> {
             hasEdit ? <Input type='text' value={value}
                              maxLength={subTitle && subTitle.includes('手机') ? 11 : -1}
                              placeholder={subTitle}
-                             style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}
+                             style={styleAssign([fSize(14), {textAlign: 'right'},{
+                               position: 'fixed',
+                               zIndex: -Infinity,
+                               right:scaleSize(20)
+                             }])}
                              onInput={onTextChange}/> :
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text
