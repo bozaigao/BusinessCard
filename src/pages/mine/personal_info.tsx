@@ -89,10 +89,10 @@ class PersonalInfo extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
-    // let test = this.$router.params.itemId;
-    let {avatar, name, sex, phone, industry, position, yangshi, wechat, email, birthday, province, city, detailAddress} = props.userInfo;
-    console.log('用户信息', props.userInfo);
+    let {avatar, name, sex, phone, industry, position, yangshi, wechat, email, birthday, province, city, detailAddress, longitude, latitude} = props.userInfo;
 
+    this.longitude = longitude ? longitude : 0;
+    this.latitude = latitude ? latitude : 0;
     this.state = {
       avatar,
       name,
@@ -212,6 +212,8 @@ class PersonalInfo extends Component<Props, State> {
       longitude: this.longitude,
       detailAddress: this.state.titleList2[4].value
     };
+
+    console.log('参数错误', paramas);
 
     this.viewRef && this.viewRef.showLoading();
     this.props.update(paramas).then((res) => {
@@ -430,8 +432,8 @@ class PersonalInfo extends Component<Props, State> {
                             scale: 18,
                             success(res) {
                               console.log(res);
-                              this.latitude = res.latitude;
-                              this.longitude = res.longitude;
+                              that.latitude = res.latitude;
+                              that.longitude = res.longitude;
                               that.state.titleList2[4].value = res.address;
                               that.setState({titleList2: that.state.titleList2});
                             }
