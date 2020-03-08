@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/self_intro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/self_intro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="self_intro.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="self_intro.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/self_intro.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+            <state relative-caret-position="304">
+              <caret line="108" column="9" selection-start-line="106" selection-start-column="26" selection-end-line="108" selection-end-column="9" />
               <folding>
                 <element signature="e#312#378#0" expanded="true" />
               </folding>
@@ -29,25 +28,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+      <file leaf-file-name="my_edu.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="250" column="25" lean-forward="true" selection-start-line="250" selection-start-column="25" selection-end-line="250" selection-end-column="25" />
+            <state relative-caret-position="605">
+              <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="audio_recorder.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="50" column="15" lean-forward="true" selection-start-line="49" selection-start-column="2" selection-end-line="50" selection-end-column="15" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#107#159#0" expanded="true" />
+                <element signature="e#480#518#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,10 +53,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateUserInfo</find>
-      <find>手机</find>
-      <find>phone</find>
-      <find>titleList2</find>
       <find>this.getUserInfo</find>
       <find>this.props.getUserInfo</find>
       <find>titleList1</find>
@@ -94,6 +79,10 @@
       <find>录音</find>
       <find>自我描述</find>
       <find>this.$</find>
+      <find>教育经历</find>
+      <find>schoolTimeStart</find>
+      <find>multiSelectorRange</find>
+      <find>this.schoolTimeStart</find>
     </findStrings>
     <replaceStrings>
       <replace>Enum</replace>
@@ -170,7 +159,6 @@
         <option value="$PROJECT_DIR$/src/api/request.ts" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/choose_renmai_tag.tsx" />
@@ -185,6 +173,7 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/self_intro.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
       </list>
     </option>
   </component>
@@ -471,12 +460,12 @@
       <workItem from="1583418355812" duration="4750000" />
       <workItem from="1583458131072" duration="26000" />
       <workItem from="1583543199866" duration="23890000" />
-      <workItem from="1583628597752" duration="14985000" />
+      <workItem from="1583628597752" duration="16890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="906385000" />
+    <option name="totallyTimeSpent" value="908290000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -496,9 +485,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.24676616" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19852553" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19852553" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -824,13 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="139" column="39" selection-start-line="139" selection-start-column="39" selection-end-line="139" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/company_info.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -994,10 +976,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/self_intro.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+        <state relative-caret-position="304">
+          <caret line="108" column="9" selection-start-line="106" selection-start-column="26" selection-end-line="108" selection-end-column="9" />
           <folding>
             <element signature="e#312#378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="605">
+          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#107#159#0" expanded="true" />
+            <element signature="e#480#518#0" expanded="true" />
           </folding>
         </state>
       </provider>
