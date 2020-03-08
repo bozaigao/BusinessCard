@@ -71,6 +71,8 @@ interface State {
 class PersonalInfo extends Component<Props, State> {
 
   private viewRef;
+  private latitude;
+  private longitude;
 
 
   /**
@@ -206,14 +208,16 @@ class PersonalInfo extends Component<Props, State> {
       birthday,
       province,
       city,
+      latitude: this.latitude,
+      longitude: this.longitude,
       detailAddress: this.state.titleList2[4].value
     };
 
     this.viewRef && this.viewRef.showLoading();
     this.props.update(paramas).then((res) => {
       console.log('更新用户信息', res);
-      this.viewRef && this.viewRef.hideLoading();
       this.getUserInfo();
+      this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('信息更新成功');
         debounce(1000, () => {
@@ -425,6 +429,9 @@ class PersonalInfo extends Component<Props, State> {
                             longitude,
                             scale: 18,
                             success(res) {
+                              console.log(res);
+                              this.latitude = res.latitude;
+                              this.longitude = res.longitude;
                               that.state.titleList2[4].value = res.address;
                               that.setState({titleList2: that.state.titleList2});
                             }

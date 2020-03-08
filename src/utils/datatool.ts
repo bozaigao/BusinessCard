@@ -100,7 +100,8 @@ export function parseData(jsonData) {
 export function toast(msg) {
   Taro.showToast({
     title: msg,
-    icon: 'none'
+    icon: 'none',
+    duration: 1500
   });
 }
 

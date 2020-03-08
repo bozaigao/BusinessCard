@@ -253,19 +253,11 @@ class OtherBusinesscard extends Component<Props, State> {
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                 onClick={()=>{
-                  Taro.getLocation({
-                    type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-                    success (res) {
-                      const latitude = res.latitude
-                      const longitude = res.longitude
-
-                      Taro.openLocation({
-                        latitude,
-                        longitude,
-                        scale: 18
-                      })
-                    }
-                  })
+                  Taro.openLocation({
+                    latitude:userInfo.latitude,
+                    longitude:userInfo.longitude,
+                    scale: 18
+                  });
                 }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>

@@ -34,7 +34,7 @@ export interface Global {
     top: number;
     width: number;
   },
-  menuButton:MenuButton;
+  menuButton: MenuButton;
 }
 
 
@@ -89,6 +89,8 @@ export interface User {
   industry: string;
   //标签列表(json数组)
   label: string;
+  latitude: number;
+  longitude: number;
   //登录时间
   loginTime: string;
   //真实姓名
@@ -349,6 +351,7 @@ export interface BehaviorTrace {
 }
 
 export let BaseCoin = 100;
+
 export enum Orientation {
   up,
   down,
