@@ -114,7 +114,7 @@ class Customer extends Component<Props, State> {
    */
   getCustomerList = (refresh?: boolean) => {
     let status = 0;
-    let {shaiXuanMode, startTime, endTime} = this.state;
+    let {shaiXuanMode, startTime, endTime,name} = this.state;
 
     if (shaiXuanMode === '最后访问时间') {
       status = 0;
@@ -129,7 +129,8 @@ class Customer extends Component<Props, State> {
       pageSize: this.pageSize,
       startDate: startTime,
       endDate: endTime,
-      status
+      status,
+      name
     };
     console.log('搜索参数', params);
     this.props.getCustomerList(params).then((res) => {
