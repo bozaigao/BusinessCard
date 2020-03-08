@@ -18,7 +18,8 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h, iphoneX,
+  h,
+  iphoneX,
   ml,
   mt,
   radiusA,
@@ -27,18 +28,22 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
+import * as dictActions from '../../actions/dict';
 import NavigationBar from "../../compoments/navigation_bar/index";
 import {Image, Text, View} from "@tarojs/components";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   suggestionAdd: any;
+  getDictItemList: any;
 }
 
 interface State {
   chooseValue: string[];
+  interest: any[];
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, Object.assign(actions, dictActions))
 class ChooseRenmaiTag extends Component<Props, State> {
 
   private viewRef;
@@ -59,13 +64,40 @@ class ChooseRenmaiTag extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
-      chooseValue: []
+      chooseValue: [],
+      interest: [],
     }
   }
 
 
+  componentDidShow() {
+    this.getDictItemList();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/8
+   * @function: 获取后台配置标签
+   */
+  getDictItemList = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.getDictItemList({dictCode: 'interest '}).then((res) => {
+      console.log('获取后台配置标签', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.setState({interest: res});
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
-    let {chooseValue} = this.state;
+    let {chooseValue,interest} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -85,21 +117,21 @@ class ChooseRenmaiTag extends Component<Props, State> {
         </View>
         <View style={styleAssign([wRatio(100), styles.udr, styles.uWrap, mt(30), styles.uac, styles.ujc])}>
           {
-            ['摄影', '舞蹈', '旅行', '书画', '健身运动', '电竞游戏', '看书', '骑行', '登山', '音乐', '看电影', '美食', '收藏', '学习', '其他'].map((value, index) => {
+            interest.map((value, index) => {
               return <View
                 onClick={() => {
-                  if (chooseValue.includes(value)) {
-                    this.state.chooseValue.splice(this.state.chooseValue.indexOf(value), 1);
+                  if (chooseValue.includes(value.itemText)) {
+                    this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.itemText), 1);
                   } else {
-                    this.state.chooseValue.push(value);
+                    this.state.chooseValue.push(value.itemText);
                   }
                   this.setState({chooseValue: this.state.chooseValue});
                 }}
                 key={index}
                 style={styleAssign([styles.uac, styles.ujc, w(97), h(39), radiusA(20), mt(20), bo(1),
-                  {borderStyle: 'solid',}, bdColor(chooseValue.includes(value) ? commonStyles.colorTheme : 'rgb(229,229,229)'), ml(index % 3 === 0 ? 0 : 23)])}>
+                  {borderStyle: 'solid',}, bdColor(chooseValue.includes(value.itemText) ? commonStyles.colorTheme : 'rgb(229,229,229)'), ml(index % 3 === 0 ? 0 : 23)])}>
                 <Text style={styleAssign([fSize(14), color('#343434')])}>
-                  {value}
+                  {value.itemText}
                 </Text>
               </View>;
             })
