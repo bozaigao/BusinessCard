@@ -8,13 +8,14 @@ import Taro, {InnerAudioContext, PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
+  absL, absT,
   bdColor,
   bgColor,
   bo,
   color,
   commonStyles,
   fSize,
-  h,
+  h, hRatio,
   ml,
   mr,
   mt,
@@ -32,6 +33,7 @@ interface Props {
 }
 
 interface State {
+  micIsPlaying: boolean;
 }
 
 export default class PersonalInfo extends PureComponent<Props, State> {
@@ -40,16 +42,20 @@ export default class PersonalInfo extends PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.innerAudioContext = Taro.createInnerAudioContext();
+    this.state = {
+      micIsPlaying: false
+    }
+
   }
 
 
-
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.innerAudioContext && this.innerAudioContext.stop();
   }
 
   render() {
     let {userInfo} = this.props;
+    let {micIsPlaying} = this.state;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac])}>
@@ -65,13 +71,22 @@ export default class PersonalInfo extends PureComponent<Props, State> {
           <View style={styleAssign([styles.udr, styles.uac])}>
             <Image style={styleAssign([w(40), h(40), radiusA(20)])}
                    src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
-            <Image style={styleAssign([w(85), h(41), ml(10)])} src={`${cloudBaseUrl}ico_msg_bg.png`}
-                   onClick={(e) => {
-                     e.stopPropagation();
-                     this.innerAudioContext.src = userInfo.voiceUrl;
-                     this.innerAudioContext.play();
-                   }
-                   }/>
+            <View style={styleAssign([w(85), h(41), ml(10)])}>
+              <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absL(0)])}
+                     src={require('../../../assets/ico_mic_bg.png')}
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       this.setState({micIsPlaying: true});
+                       this.innerAudioContext.src = userInfo.voiceUrl;
+                       this.innerAudioContext.play();
+                       this.innerAudioContext.onEnded(() => {
+                         this.setState({micIsPlaying: false});
+                       });
+                     }
+                     }/>
+              <Image style={styleAssign([w(18), h(18), styles.upa, absL(15), absT(10)])}
+                     src={micIsPlaying ? require('../../../assets/mic_play.gif') : require('../../../assets/ico_mic.png')}/>
+            </View>
             <View>
               <View style={styleAssign([w(7), h(7), radiusA(3.6), bgColor('red'), ml(5)])}/>
               <Text
@@ -96,7 +111,8 @@ export default class PersonalInfo extends PureComponent<Props, State> {
             <View style={styleAssign([])}>
               <Text style={styleAssign([fSize(14)])}>教育</Text>
               <Text style={styleAssign([fSize(12)])}>{userInfo.school}</Text>
-              <Text style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
+              <Text
+                style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
             </View>
             <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
               bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>

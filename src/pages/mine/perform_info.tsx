@@ -54,6 +54,7 @@ interface State {
   photoUrl: string[];
   videoUrl: string;
   scrollTop: number;
+  micIsPlaying: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -78,7 +79,8 @@ class PerformInfo extends Component<Props, State> {
       photoUrl: [],
       videoUrl: '',
       showPersonalInfo: true,
-      scrollTop: 0
+      scrollTop: 0,
+      micIsPlaying: false
     }
   }
 
@@ -113,10 +115,9 @@ class PerformInfo extends Component<Props, State> {
   }
 
 
-
   render() {
 
-    let {showPersonalInfo, photoUrl, videoUrl, scrollTop} = this.state;
+    let {showPersonalInfo, photoUrl, videoUrl, scrollTop, micIsPlaying} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -225,15 +226,22 @@ class PerformInfo extends Component<Props, State> {
                       <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mb(10)])}>
                         <Image style={styleAssign([w(40), h(40), radiusA(20), ml(19)])}
                                src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
-                        <Image style={styleAssign([w(186), h(41), ml(10)])}
-                               src={require('../../assets/ico_voice_bg.png')}
-                               onClick={(e) => {
-                                 e.stopPropagation();
-                                 console.log(userInfo.voiceUrl)
-                                 this.innerAudioContext.src = userInfo.voiceUrl;
-                                 this.innerAudioContext.play();
-                               }
-                               }/>
+                        <View style={styleAssign([w(186), h(41), ml(10)])}>
+                          <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absL(0)])}
+                                 src={require('../../assets/ico_wenhouyu_bg2.png')}
+                                 onClick={(e) => {
+                                   e.stopPropagation();
+                                   this.setState({micIsPlaying: true});
+                                   this.innerAudioContext.src = userInfo.voiceUrl;
+                                   this.innerAudioContext.play();
+                                   this.innerAudioContext.onEnded(() => {
+                                     this.setState({micIsPlaying: false});
+                                   });
+                                 }
+                                 }/>
+                          <Image style={styleAssign([w(18), h(18), styles.upa, absL(15), absT(10)])}
+                                 src={micIsPlaying ? require('../../assets/mic_play.gif') : require('../../assets/ico_mic.png')}/>
+                        </View>
                         <Text
                           style={styleAssign([fSize(11), color('#979797'), styles.upa, absL(110)])}>{`${userInfo.voiceDuration ? userInfo.voiceDuration : '0'}″`}</Text>
                       </View> :

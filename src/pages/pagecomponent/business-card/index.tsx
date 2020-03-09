@@ -59,9 +59,14 @@ export default class Card extends PureComponent<Props, State> {
             <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
               <View
                 style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
-              <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
-                <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
-                <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
+              <View style={styleAssign([styles.upa, absL(20), absT(15)])}>
+                <Image style={styleAssign([w(60), h(60), radiusA(30)])}
+                       src={userInfo.avatar}/>
+                <View style={styleAssign([styles.uae, styles.udr, mt(6)])}>
+                  <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
+                  <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
+                </View>
+                <Text style={styleAssign([fSize(12), color('#343434')])}>{userInfo.company}</Text>
               </View>
               <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
                 {/*电话号码*/}
