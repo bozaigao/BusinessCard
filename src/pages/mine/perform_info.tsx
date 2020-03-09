@@ -90,6 +90,11 @@ class PerformInfo extends Component<Props, State> {
 
 
   componentDidHide() {
+    this.setState({micIsPlaying: false});
+    this.innerAudioContext && this.innerAudioContext.stop();
+  }
+
+  componentWillUnmount(){
     this.innerAudioContext && this.innerAudioContext.stop();
   }
 
@@ -111,6 +116,16 @@ class PerformInfo extends Component<Props, State> {
       }
     }).catch(e => {
       console.log('报错啦', e);
+    });
+  }
+
+
+  playMic = () => {
+    this.setState({micIsPlaying: true});
+    this.innerAudioContext.src = this.props.userInfo.voiceUrl;
+    this.innerAudioContext.play();
+    this.innerAudioContext.onEnded(() => {
+      this.setState({micIsPlaying: false});
     });
   }
 
@@ -231,16 +246,16 @@ class PerformInfo extends Component<Props, State> {
                                  src={require('../../assets/ico_wenhouyu_bg2.png')}
                                  onClick={(e) => {
                                    e.stopPropagation();
-                                   this.setState({micIsPlaying: true});
-                                   this.innerAudioContext.src = userInfo.voiceUrl;
-                                   this.innerAudioContext.play();
-                                   this.innerAudioContext.onEnded(() => {
-                                     this.setState({micIsPlaying: false});
-                                   });
+                                   this.playMic();
                                  }
                                  }/>
                           <Image style={styleAssign([w(18), h(18), styles.upa, absL(15), absT(10)])}
-                                 src={micIsPlaying ? require('../../assets/mic_play.gif') : require('../../assets/ico_mic.png')}/>
+                                 src={micIsPlaying ? require('../../assets/mic_play.gif') : require('../../assets/ico_mic.png')}
+                                 onClick={(e) => {
+                                   e.stopPropagation();
+                                   this.playMic();
+                                 }
+                                 }/>
                         </View>
                         <Text
                           style={styleAssign([fSize(11), color('#979797'), styles.upa, absL(110)])}>{`${userInfo.voiceDuration ? userInfo.voiceDuration : '0'}″`}</Text>

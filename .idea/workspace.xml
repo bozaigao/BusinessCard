@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/ico_mic.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/ico_mic_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/mic_play.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/ico_voice_bg.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,8 +20,8 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="78" column="59" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="59" />
+            <state relative-caret-position="228">
+              <caret line="60" column="2" selection-start-line="60" selection-start-column="2" selection-end-line="67" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -35,8 +29,8 @@
       <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="230" column="80" selection-start-line="230" selection-start-column="80" selection-end-line="230" selection-end-column="80" />
+            <state relative-caret-position="531">
+              <caret line="257" column="34" selection-start-line="257" selection-start-column="34" selection-end-line="257" selection-end-column="34" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#112#183#0" expanded="true" />
@@ -56,7 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>自我描述</find>
       <find>schoolTimeStart</find>
       <find>multiSelectorRange</find>
       <find>this.schoolTimeStart</find>
@@ -84,8 +77,9 @@
       <find>share</find>
       <find>showShare</find>
       <find>onStop</find>
-      <find>我的语音</find>
+      <find>didshp</find>
       <find>micIsPlaying</find>
+      <find>我的语音</find>
     </findStrings>
     <replaceStrings>
       <replace>Enum</replace>
@@ -220,12 +214,6 @@
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
@@ -459,12 +447,12 @@
       <workItem from="1583543199866" duration="23890000" />
       <workItem from="1583628597752" duration="34853000" />
       <workItem from="1583714159852" duration="228000" />
-      <workItem from="1583758089532" duration="2425000" />
+      <workItem from="1583758089532" duration="2786000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="928906000" />
+    <option name="totallyTimeSpent" value="929267000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -977,15 +965,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="78" column="59" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="59" />
+        <state relative-caret-position="228">
+          <caret line="60" column="2" selection-start-line="60" selection-start-column="2" selection-end-line="67" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="230" column="80" selection-start-line="230" selection-start-column="80" selection-end-line="230" selection-end-column="80" />
+        <state relative-caret-position="531">
+          <caret line="257" column="34" selection-start-line="257" selection-start-column="34" selection-end-line="257" selection-end-column="34" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#112#183#0" expanded="true" />

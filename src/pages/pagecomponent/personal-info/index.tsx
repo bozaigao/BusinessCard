@@ -49,8 +49,22 @@ export default class PersonalInfo extends PureComponent<Props, State> {
   }
 
 
+  componentDidHide() {
+    this.setState({micIsPlaying: false});
+    this.innerAudioContext && this.innerAudioContext.stop();
+  }
+
   componentWillUnmount() {
     this.innerAudioContext && this.innerAudioContext.stop();
+  }
+
+  playMic = () => {
+    this.setState({micIsPlaying: true});
+    this.innerAudioContext.src = this.props.userInfo.voiceUrl;
+    this.innerAudioContext.play();
+    this.innerAudioContext.onEnded(() => {
+      this.setState({micIsPlaying: false});
+    });
   }
 
   render() {
@@ -76,16 +90,16 @@ export default class PersonalInfo extends PureComponent<Props, State> {
                      src={require('../../../assets/ico_mic_bg.png')}
                      onClick={(e) => {
                        e.stopPropagation();
-                       this.setState({micIsPlaying: true});
-                       this.innerAudioContext.src = userInfo.voiceUrl;
-                       this.innerAudioContext.play();
-                       this.innerAudioContext.onEnded(() => {
-                         this.setState({micIsPlaying: false});
-                       });
+                       this.playMic();
                      }
                      }/>
               <Image style={styleAssign([w(18), h(18), styles.upa, absL(15), absT(10)])}
-                     src={micIsPlaying ? require('../../../assets/mic_play.gif') : require('../../../assets/ico_mic.png')}/>
+                     src={micIsPlaying ? require('../../../assets/mic_play.gif') : require('../../../assets/ico_mic.png')}
+                     onClick={(e) => {
+                       e.stopPropagation();
+                       this.playMic();
+                     }
+                     }/>
             </View>
             <View>
               <View style={styleAssign([w(7), h(7), radiusA(3.6), bgColor('red'), ml(5)])}/>
