@@ -20,7 +20,6 @@ import {
   h,
   hRatio,
   mt,
-  op,
   w,
   wRatio
 } from "../../../utils/style";

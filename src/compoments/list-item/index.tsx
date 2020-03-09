@@ -8,7 +8,7 @@
 import Taro, {Component} from '@tarojs/taro'
 import {Image, Input, Text, View} from "@tarojs/components";
 import {bgColor, color, commonStyles, default as styles, fSize, h, ml, pl, pr, w, wRatio} from "../../utils/style";
-import {scaleSize, styleAssign} from "../../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 import TouchableButton from "../touchable-button";
 
 interface Props {
