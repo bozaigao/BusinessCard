@@ -48,11 +48,7 @@ export default class ListItem extends Component<Props> {
             hasEdit ? <Input type='text' value={value}
                              maxLength={subTitle && subTitle.includes('手机') ? 11 : -1}
                              placeholder={subTitle}
-                             style={styleAssign([fSize(14), {textAlign: 'right'},{
-                               position: 'fixed',
-                               zIndex: -Infinity,
-                               right:scaleSize(20)
-                             }])}
+                             style={styleAssign([fSize(14), {textAlign: 'right'}])}
                              onInput={onTextChange}/> :
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text
