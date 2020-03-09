@@ -53,6 +53,8 @@ export default async function fetch(options) {
 
     if (code === NetworkState.SUCCESS) {
       return data;
+    } else if (url.includes('api.weixin.qq.com')) {
+      return res.data.access_token;
     }
     //token过期
     else if (code === NetworkState.NEED_LOGIN ||

@@ -60,7 +60,7 @@ export const getUserInfo = payload => createAction({
  * @QQ 1054539528
  * @date 2020/3/8
  * @function: 根据用户id获取用户详细信息
-*/
+ */
 export const getUserInfoById = payload => createAction({
   url: UserController.getUserInfoById,
   payload,
@@ -97,10 +97,34 @@ export const update = payload => createAction({
  * @QQ 1054539528
  * @date 2020/3/1
  * @function: 新增建议
-*/
+ */
 export const suggestionAdd = payload => createAction({
   url: UserController.suggestionAdd,
   payload,
   method: 'POST'
 });
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/9
+ * @function: 获取小程序二维码的凭证
+ */
+export const getAccessToken = payload => createAction({
+  url: UserController.getAccessToken,
+  payload,
+  method: 'GET',
+});
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/9
+ * @function: 获取小程序二维码
+ */
+export const getWXacode = payload => createAction({
+  url: `${UserController.getWXacode}?access_token=${payload.access_token}`,
+  payload,
+  method: 'POST',
+});

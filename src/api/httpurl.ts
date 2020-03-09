@@ -25,6 +25,10 @@ const BASE_URL = StagingUrl,
     getUserInfo: BASE_URL + 'user/getUserInfo',
     //根据用户id获取用户详细信息
     getUserInfoById: BASE_URL + 'user/getUserInfoById',
+    //获取小程序二维码的凭证
+    getAccessToken: 'https://api.weixin.qq.com/cgi-bin/token',
+    //获取小程序二维码
+    getWXacode: 'https://api.weixin.qq.com/wxa/getwxacode',
     //更新用户信息
     update: BASE_URL + 'user/update',
     //反馈建议

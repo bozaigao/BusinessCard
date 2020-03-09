@@ -33,6 +33,8 @@ import {User} from "../../const/global";
 
 interface Props {
   suggestionAdd: any;
+  getAccessToken: any;
+  getWXacode: any;
   userInfo: User;
 }
 
