@@ -34,8 +34,10 @@ import TopHeader from "../../compoments/top-header/index";
 import {Image, Text, View} from "@tarojs/components";
 import {cloudBaseUrl} from "../../api/httpurl";
 import BottomButon from "../../compoments/bottom-buton";
+import {User} from "../../const/global";
 
 interface Props {
+  userInfo: User;
 }
 
 interface State {
@@ -66,7 +68,7 @@ class MingpianHaibao extends Component<Props, State> {
 
 
   render() {
-
+    let {userInfo} = this.props;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -82,40 +84,40 @@ class MingpianHaibao extends Component<Props, State> {
               <View
                 style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
               <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
-                <Text style={styleAssign([fSize(18), fWeight('bold')])}>王嘉怡</Text>
-                <Text style={styleAssign([fSize(12), ml(8)])}>销售经理</Text>
+                <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
+                <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
               </View>
               <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
                 {/*电话号码*/}
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>17311239269</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
                 </View>
                 {/*微信号*/}
                 <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>bozaigao</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
                 </View>
                 {/*邮箱*/}
                 <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>邮箱信息未对外公开</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
                 </View>
                 {/*地址*/}
                 <View style={styleAssign([styles.udr, mt(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</Text>
-                  <Image style={styleAssign([w(9), h(11), ml(8),mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
+                  <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
                 </View>
               </View>
             </View>
             {/*简介*/}
-            <Text style={styleAssign([w(294), mt(23), fSize(14), color('#343434')])}>您好，\n 我是美克美家家居集团股份有限公司成都分部的 销售经理王嘉怡
-              这是我的名片，请惠存。
-              \n谢谢！</Text>
+            <Text
+              style={styleAssign([w(294), mt(23), fSize(14), color('#343434')])}>{`您好，\n 我是${userInfo.company}的 ${userInfo.position}${userInfo.name}
+              这是我的名片，请惠存。\n谢谢！`}</Text>
             <View style={styleAssign([mt(20), wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([wRatio(100), styles.uae, styles.udr])}>
               <Image style={styleAssign([w(44), h(44), ml(16), mt(40)])}
@@ -131,4 +133,4 @@ class MingpianHaibao extends Component<Props, State> {
   }
 }
 
-export default MingpianHaibao;«
+export default MingpianHaibao;

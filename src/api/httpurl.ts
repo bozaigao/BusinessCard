@@ -40,6 +40,8 @@ const BASE_URL = StagingUrl,
     getIndustryList: BASE_URL + 'dict/getIndustryList',
     //查询各种信息
     getDictItemList: BASE_URL + 'dict/getDictItemList',
+    //创建小程序码
+    wxacode: BASE_URL + 'utils/wxacode',
   },
   //文件上传
   FileController = {

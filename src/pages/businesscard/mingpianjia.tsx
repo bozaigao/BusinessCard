@@ -12,12 +12,13 @@ import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {styleAssign} from "../../utils/datatool";
 import {bgColor, commonStyles, default as styles} from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/dict';
 import TopHeader from "../../compoments/top-header";
 import {View} from "@tarojs/components";
 import MingPianJiaItem from "../sub_pagecomponent/mingpianjia-item";
 
 interface Props {
+  wxacode:any;
 }
 
 interface State {
@@ -45,6 +46,10 @@ class Mingpianjia extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {}
+  }
+
+
+  componentDidShow(){
   }
 
 

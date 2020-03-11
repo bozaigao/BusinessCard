@@ -6,7 +6,7 @@
  * @Description: 数据字典
 */
 import {createAction} from "../utils/redux";
-import {DictController} from "../api/httpurl";
+import {DictController, DistributionManage} from "../api/httpurl";
 
 const INITIAL_STATE = {}
 
@@ -44,5 +44,18 @@ export const getIndustryList = payload => createAction({
   url: DictController.getIndustryList,
   payload,
   method: 'GET'
+});
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/11
+ * @function: 创建小程序码
+*/
+export const wxacode = payload => createAction({
+  url: DictController.wxacode,
+  payload,
+  method: 'POST'
 });
 

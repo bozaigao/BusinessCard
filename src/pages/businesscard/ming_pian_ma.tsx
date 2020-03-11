@@ -26,7 +26,7 @@ import styles, {
   wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
-import * as actions from '../../actions/login';
+import * as actions from '../../actions/dict';
 import TopHeader from "../../compoments/top-header/index";
 import {cloudBaseUrl} from "../../api/httpurl";
 import {User} from "../../const/global";
@@ -34,7 +34,7 @@ import {User} from "../../const/global";
 interface Props {
   suggestionAdd: any;
   getAccessToken: any;
-  getWXacode: any;
+  wxacode: any;
   userInfo: User;
 }
 
@@ -64,6 +64,27 @@ class MingPianMa extends Component<Props, State> {
     this.state = {
       content: ''
     }
+  }
+
+  componentDidShow() {
+    this.wxacode();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/11
+   * @function: 创建小程序码
+   */
+  wxacode = () => {
+    this.viewRef && this.viewRef.showLoading();
+    console.log('创建小程序码')
+    this.props.wxacode({scene: 'mingpianma', path: '/pages/businesscard/other_businesscard', width: 320}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('创建小程序码', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
