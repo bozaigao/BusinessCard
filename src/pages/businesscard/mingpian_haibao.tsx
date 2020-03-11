@@ -130,7 +130,7 @@ class MingpianHaibao extends Component<Props, State> {
             <View style={styleAssign([mt(20), wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([wRatio(100), styles.uae, styles.udr])}>
               <Image style={styleAssign([w(44), h(44), ml(16), mt(40)])}
-                     src={`${cloudBaseUrl}ico_miniprogram.png`}/>
+                     src={userInfo.wxacode}/>
               <Text style={styleAssign([fSize(12), color('#E2BB7B'), ml(11)])}>长按识别二维码 收下名片</Text>
             </View>
           </View>
