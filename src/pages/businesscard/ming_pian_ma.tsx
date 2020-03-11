@@ -16,7 +16,7 @@ import styles, {
   commonStyles,
   fSize,
   fWeight,
-  h,
+  h, hRatio,
   mb,
   ml,
   mt,
@@ -27,21 +27,22 @@ import styles, {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/dict';
+import * as loginActions from '../../actions/login';
 import TopHeader from "../../compoments/top-header/index";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import {User} from "../../const/global";
 
 interface Props {
-  suggestionAdd: any;
-  getAccessToken: any;
   wxacode: any;
+  getUserInfo: any;
+  updateUserInfo: any;
   userInfo: User;
 }
 
 interface State {
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, Object.assign(actions, loginActions))
 class MingPianMa extends Component<Props, State> {
 
   private viewRef;
@@ -79,9 +80,32 @@ class MingPianMa extends Component<Props, State> {
   wxacode = () => {
     this.viewRef && this.viewRef.showLoading();
     console.log('创建小程序码')
-    this.props.wxacode({scene: 'mingpianma', path: '/pages/businesscard/other_businesscard', width: 320}).then((res) => {
+    this.props.wxacode({
+      scene: 'mingpianma',
+      path: '/pages/businesscard/other_businesscard',
+      width: 320
+    }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.getUserInfo();
+      }
       console.log('创建小程序码', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+   */
+  getUserInfo = () => {
+    this.props.getUserInfo().then((res) => {
+      this.props.updateUserInfo(res);
+      console.log('重新更新用户信息', res)
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -140,7 +164,12 @@ class MingPianMa extends Component<Props, State> {
               <Text style={styleAssign([fSize(14), color('#29292E'), mt(18)])}>
                 请用微信扫码，收下我的名片
               </Text>
-              <Image style={styleAssign([w(236), h(236), mb(20)])} src={`${cloudBaseUrl}ico_erweima.png`}/>
+              <View style={styleAssign([w(236), h(236), mb(20), styles.uac, styles.ujc])}>
+                <Image style={styleAssign([wRatio(100), hRatio(100)])} src={userInfo.wxacode}/>
+                <View style={styleAssign([styles.upa, absT(0), wRatio(100), hRatio(100), styles.uac, styles.ujc])}>
+                  <Image style={styleAssign([w(104), h(104), radiusA(52)])} src={userInfo.avatar}/>
+                </View>
+              </View>
             </View>
           </View>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(32)])}>

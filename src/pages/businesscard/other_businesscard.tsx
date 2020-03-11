@@ -162,38 +162,47 @@ class OtherBusinesscard extends Component<Props, State> {
           scrollY>
           {/*个人名片*/}
           <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
-            <View style={styleAssign([wRatio(95), h(204), bgColor('rgb(211,199,195)'), radiusA(10),
+            <View style={styleAssign([wRatio(100), h(204), bgColor('rgb(211,199,195)'), radiusA(10),
               styles.udr, styles.uje])}>
-              <View
-                style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0), bgColor(commonStyles.whiteColor)])}/>
-              <View style={styleAssign([styles.uae, styles.udr, styles.upa, absR(83), absT(15)])}>
-                <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo && userInfo.name}</Text>
-                <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo && userInfo.position}</Text>
-              </View>
-              <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
-                {/*电话号码*/}
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.phone}</Text>
-                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
+              <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
+                     src={require('../../assets/ico_business_card_bg.png')}/>
+              <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
+                <View
+                  style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
+                <View style={styleAssign([styles.upa, absL(20), absT(15)])}>
+                  <Image style={styleAssign([w(60), h(60), radiusA(30)])}
+                         src={userInfo.avatar}/>
+                  <View style={styleAssign([styles.uae, styles.udr, mt(6)])}>
+                    <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
+                    <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
+                  </View>
+                  <Text style={styleAssign([fSize(12), color('#343434')])}>{userInfo.company}</Text>
                 </View>
-                {/*微信号*/}
-                <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
-                  <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.wechat}</Text>
-                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
-                </View>
-                {/*邮箱*/}
-                <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
-                  <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
-                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
-                </View>
-                {/*地址*/}
-                <View style={styleAssign([styles.udr, mt(8)])}>
-                  <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo && userInfo.detailAddress}</Text>
-                  <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
+                  {/*电话号码*/}
+                  <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
+                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
+                  </View>
+                  {/*微信号*/}
+                  <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
+                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
+                  </View>
+                  {/*邮箱*/}
+                  <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
+                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
+                  </View>
+                  {/*地址*/}
+                  <View style={styleAssign([styles.udr, mt(8)])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
+                    <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                  </View>
                 </View>
               </View>
             </View>

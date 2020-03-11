@@ -99,6 +99,8 @@ export interface User {
   loginTime: string;
   //真实姓名
   name: string;
+  //小程序码
+  wxacode: string;
   //昵称
   nickname: string;
   //微信授权的openid

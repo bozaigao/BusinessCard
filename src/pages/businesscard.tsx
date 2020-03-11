@@ -32,7 +32,7 @@ interface State {
   showShare: boolean;
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), {...actions, ...loginActions})
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions,loginActions))
 class Businesscard extends Component<Props, State> {
 
   private viewRef;
