@@ -68,7 +68,9 @@ class MingPianMa extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.wxacode();
+    if (this.props.userInfo.wxacode.length === 0) {
+      this.wxacode();
+    }
   }
 
   /**
