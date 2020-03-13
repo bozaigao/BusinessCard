@@ -50,7 +50,7 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
             console.log(value);
             return (<touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(90), style_1.default.udr, style_1.default.uac, { marginLeft: '5%' }, style_1.mt(10), style_1.h(152), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor)])} key={index} onClick={() => {
                 taro_1.default.navigateTo({
-                    url: `/pages/businesscard/goods_detail?itemData=${JSON.stringify(value)}`
+                    url: `/pages/mine/goods_detail?itemData=${JSON.stringify(value)}`
                 });
             }}>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(4)])} src={value.carouselUrl ? datatool_1.parseData(value.carouselUrl)[0] : ''}/>

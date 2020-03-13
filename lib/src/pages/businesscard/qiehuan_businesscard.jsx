@@ -24,7 +24,8 @@ const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const touchable_button_1 = require("../../compoments/touchable-button");
-const qiehuan_item_1 = require("./qiehuan-item");
+const qiehuan_item_1 = require("../sub_pagecomponent/qiehuan-item");
+const httpurl_1 = require("../../api/httpurl");
 let QiehuanBusinesscard = class QiehuanBusinesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -58,7 +59,7 @@ let QiehuanBusinesscard = class QiehuanBusinesscard extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.mt(16), style_1.default.uac, style_1.default.ujc, style_1.default.udr, style_1.w(335), style_1.h(128), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.padding([20, 16, 20, 16])])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(25)])} src={require('../../assets/ico_add.png')}/>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(25)])} src={`${httpurl_1.cloudBaseUrl}ico_add.png`}/>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#CECECE'), style_1.ml(10)])}>添加新名片</components_1.Text>
             </touchable_button_1.default>
           </components_1.View>

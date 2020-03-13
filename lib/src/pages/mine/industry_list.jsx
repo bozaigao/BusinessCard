@@ -58,7 +58,7 @@ let IndustryList = class IndustryList extends taro_1.Component {
     }
     componentWillUnmount() {
     }
-    componentDidMount() {
+    componentDidShow() {
         this.getIndustryList();
     }
     componentDidHide() {

@@ -90,10 +90,13 @@ class Businesscard extends Component<Props, State> {
    * @function: 获取用户信息
    */
   getUserInfo = () => {
+    this.viewRef&&this.viewRef.showLoading();
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
+      this.viewRef&&this.viewRef.hideLoading();
       console.log('重新更新用户信息', res)
     }).catch(e => {
+      this.viewRef&&this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }

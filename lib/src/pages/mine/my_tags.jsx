@@ -15,16 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 //@ts-ignore
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 //@ts-ignore
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
-const top_header_1 = require("../../compoments/top-header");
+const dictActions = require("../../actions/dict");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const bottom_buton_1 = require("../../compoments/bottom-buton");
-const touchable_button_1 = require("../../compoments/touchable-button");
+const index_3 = require("../../compoments/bottom-buton/index");
+const index_4 = require("../../compoments/touchable-button/index");
+const httpurl_1 = require("../../api/httpurl");
 let MyTags = class MyTags extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -38,39 +40,116 @@ let MyTags = class MyTags extends taro_1.Component {
         this.config = {
             disableScroll: true
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/8
+         * @function: 获取后台配置标签
+         */
+        this.getDictItemList = () => {
+            this.viewRef && this.viewRef.showLoading();
+            this.props.getDictItemList({ dictCode: 'user_label ' }).then((res) => {
+                console.log('获取后台配置标签', res);
+                this.viewRef && this.viewRef.hideLoading();
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ tags: res });
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/28
+         * @function: 更新用户信息
+         */
+        this.update = () => {
+            console.log('函数', this.props);
+            let { chooseTags } = this.state;
+            if (chooseTags.length === 0) {
+                datatool_1.toast('请选择标签');
+                return;
+            }
+            let paramas = {
+                label: JSON.stringify(chooseTags)
+            };
+            console.log('参数错误', paramas);
+            this.viewRef && this.viewRef.showLoading();
+            this.props.update(paramas).then((res) => {
+                console.log('更新用户信息', res);
+                this.getUserInfo();
+                this.viewRef && this.viewRef.hideLoading();
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    datatool_1.toast('信息更新成功');
+                    datatool_1.debounce(1000, () => {
+                        taro_1.default.navigateBack();
+                    });
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/29
+         * @function: 获取用户信息
+         */
+        this.getUserInfo = () => {
+            this.props.getUserInfo().then((res) => {
+                this.props.updateUserInfo(res);
+                console.log('获取用户信息', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
+        this.state = {
+            chooseTags: props.userInfo.labelArray,
+            tags: []
+        };
         console.log(this.viewRef);
     }
+    componentDidShow() {
+        this.getDictItemList();
+    }
     render() {
-        return (<safe_area_view_1.default ref={(ref) => {
+        let { chooseTags, tags } = this.state;
+        return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={'我的标签'}/>
+        <index_2.default title={'我的标签'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(153), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(16)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>我的标签</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(20)])}>长按拖动可以排序(最多添加4个标签)</components_1.Text>
             </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8)])}>
-              {['90后', '夜跑', '旅行', '摄影'].map((value, index) => {
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8), style_1.default.uWrap])}>
+              {chooseTags.map((value, index) => {
             return (<components_1.View key={index} style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.padding([6, 15, 6, 15]), style_1.radiusA(14)])}>
-                    <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.radiusA(14),
+                    <index_4.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.radiusA(14),
                 style_1.padding([6, 15, 6, 15]), style_1.bgColor('#E7E7E7')])}>
                       <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{value}</components_1.Text>
-                      <components_1.Image style={datatool_1.styleAssign([style_1.w(15), style_1.h(15), style_1.default.upa, style_1.absT(-5), style_1.absR(-5)])} src={require('../../assets/ico_close.png')}/>
-                    </touchable_button_1.default>
+                      <components_1.Image style={datatool_1.styleAssign([style_1.w(15), style_1.h(15), style_1.default.upa, style_1.absT(-5), style_1.absR(-5)])} src={`${httpurl_1.cloudBaseUrl}ico_close.png`} onClick={() => {
+                this.state.chooseTags.splice(this.state.chooseTags.indexOf(value), 1);
+                this.setState({ chooseTags: this.state.chooseTags });
+            }}/>
+                    </index_4.default>
                   </components_1.View>);
         })}
             </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.mt(16), style_1.default.uae])}>
-              <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.bgColor(style_1.commonStyles.colorTheme),
+            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.mt(16), style_1.default.uae, style_1.mb(20)])}>
+              <index_4.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.bgColor(style_1.commonStyles.colorTheme),
             style_1.w(95), style_1.h(28), style_1.radiusA(14), style_1.default.uac, style_1.default.ujc])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(12)])} src={require('../../assets/ico_black_add.png')}/>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(12)])} src={`${httpurl_1.cloudBaseUrl}ico_black_add.png`}/>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>自定义标签</components_1.Text>
                 </components_1.View>
-              </touchable_button_1.default>
+              </index_4.default>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(14)])}>（仅限于兴趣爱好）</components_1.Text>
             </components_1.View>
           </components_1.View>
@@ -79,24 +158,30 @@ let MyTags = class MyTags extends taro_1.Component {
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(20), style_1.mt(16)])}>常用标签</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8),
             style_1.default.uWrap])}>
-              {['90后', '看电影', '电竞游戏', '运动', '健身', '看书', '旅行'].map((value, index) => {
-            return (<touchable_button_1.default key={index} customStyle={datatool_1.styleAssign([style_1.ml(24), style_1.mt(12), style_1.radiusA(14), style_1.padding([6, 16, 6, 16]), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme), {
+              {tags.map((value, index) => {
+            return (<index_4.default key={index} customStyle={datatool_1.styleAssign([style_1.ml(24), style_1.mt(12), style_1.radiusA(14), style_1.padding([6, 16, 6, 16]), style_1.bo(1), style_1.bdColor(chooseTags.includes(value.itemText) ? '#979797' : style_1.commonStyles.colorTheme), {
                     borderStyle: 'solid'
-                }])}>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme)])}>{value}</components_1.Text>
-                  </touchable_button_1.default>);
+                }])} onClick={() => {
+                if (!this.state.chooseTags.includes(value.itemText)) {
+                    this.state.chooseTags.push(value.itemText);
+                    this.setState({ chooseTags: this.state.chooseTags });
+                }
+            }}>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(chooseTags.includes(value.itemText) ? '#979797' : style_1.commonStyles.colorTheme)])}>{value.itemText}</components_1.Text>
+                  </index_4.default>);
         })}
             </components_1.View>
           </components_1.View>
         </components_1.View>
         
-        <bottom_buton_1.default title={'保存'} onClick={() => {
+        <index_3.default title={'保存'} onClick={() => {
+            this.update();
         }}/>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 MyTags = __decorate([
-    redux_1.connect(state => state.login, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign(actions, dictActions))
 ], MyTags);
 exports.default = MyTags;
 //# sourceMappingURL=my_tags.jsx.map

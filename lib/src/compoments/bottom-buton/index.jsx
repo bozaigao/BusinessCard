@@ -15,11 +15,14 @@ const touchable_button_1 = require("../touchable-button");
 class BottomButon extends taro_1.Component {
     render() {
         let { title, onClick } = this.props;
-        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(64), style_1.default.uac, style_1.default.ujc])}>
-        <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.radiusA(2), style_1.bgColor(style_1.commonStyles.colorTheme),
+        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor('rgb(184,186,190)'), style_1.op(0.5)])}/>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(68), style_1.default.uac, style_1.default.ujc])}>
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(44), style_1.radiusA(2), style_1.bgColor(style_1.commonStyles.colorTheme),
             style_1.default.uac, style_1.default.ujc])} onClick={onClick}>
-          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>{title}</components_1.Text>
-        </touchable_button_1.default>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>{title}</components_1.Text>
+          </touchable_button_1.default>
+        </components_1.View>
       </components_1.View>);
     }
 }

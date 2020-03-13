@@ -24,6 +24,10 @@ const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
+const touchable_button_1 = require("../../compoments/touchable-button");
+const list_item_1 = require("../../compoments/list-item");
+const httpurl_1 = require("../../api/httpurl");
+const global_1 = require("../../const/global");
 let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -37,14 +41,117 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         this.config = {
             disableScroll: true
         };
-        this.state = {
-            signInPageDetail: { dateIntegrals: [], signInCount: 0 },
-            listData: [{ title: '姓名', value: 'JY-W' }, { title: '公司', value: '美克美家家居集团有限公司' }, { title: '行业', value: '家居' },
-                { title: '职位', value: '销售经理' }, { title: '地区', value: '成都' }, { title: '微信号', value: '15982468866' }, {
-                    title: '邮箱',
-                    value: '98248866@168.com'
-                }]
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/28
+         * @function: 更新用户信息
+         */
+        this.update = () => {
+            let { listData, showPhone } = this.state;
+            if (!listData[0].value || listData[0].value.length === 0) {
+                datatool_1.toast('请先填写姓名');
+                return;
+            }
+            if (!listData[1].value || listData[1].value.length === 0) {
+                datatool_1.toast('请先填写公司');
+                return;
+            }
+            if (!listData[2].value || listData[2].value.length === 0) {
+                datatool_1.toast('请先填写行业');
+                return;
+            }
+            this.viewRef && this.viewRef.showLoading();
+            this.props.update({
+                avatar: this.avatar,
+                name: listData[0].value,
+                company: listData[1].value,
+                industry: listData[2].value,
+                position: listData[3].value,
+                province: this.province,
+                city: this.city,
+                wechat: listData[5].value,
+                email: listData[6].value,
+                showPhone
+            }).then((res) => {
+                this.viewRef && this.viewRef.hideLoading();
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    datatool_1.toast('名片创建成功');
+                    datatool_1.debounce(1000, () => {
+                        taro_1.default.navigateBack();
+                    });
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2019/12/28
+         * @function: 将文件通过微信Api上传到服务端
+         */
+        this.uploadFileTpWx = (path) => {
+            let that = this;
+            let token = datatool_1.get(global_1.Enum.TOKEN);
+            taro_1.default.uploadFile({
+                url: httpurl_1.FileController.uploadPicture,
+                filePath: path,
+                name: 'file',
+                header: {
+                    'token': token
+                },
+                success(res) {
+                    that.avatar = datatool_1.parseData(res.data).data;
+                    console.log('上传文件', datatool_1.parseData(res.data).data);
+                }
+            });
+        };
+        let { name, avatar, company, industry, position, province, city, wechat, email, showPhone } = props.userInfo;
+        this.avatar = avatar;
+        this.province = province;
+        this.city = city;
+        this.state = {
+            showPhone,
+            signInPageDetail: { dateIntegrals: [], signInCount: 0 },
+            listData: [
+                { title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true },
+                {
+                    title: '公司',
+                    subtitle: '请输入公司名',
+                    value: company,
+                    hasEdit: true,
+                    must: true
+                }, {
+                    title: '行业',
+                    subtitle: '请选择行业',
+                    value: industry,
+                    must: true
+                },
+                { title: '职位', subtitle: '请输入职业', value: position, hasEdit: true },
+                { title: '地区', subtitle: '请选择地区', value: province + city, },
+                {
+                    title: '微信号',
+                    subtitle: '请输入微信号',
+                    value: wechat,
+                    hasEdit: true
+                }, {
+                    title: '邮箱',
+                    subtitle: '请输入邮箱',
+                    value: email,
+                    hasEdit: true
+                }
+            ],
+            avatar: avatar
+        };
+    }
+    componentDidShow() {
+        taro_1.default.eventCenter.on('industry', (industry) => {
+            console.log('参数回调', industry);
+            this.state.listData[2].value = industry;
+            this.setState({ listData: this.state.listData });
+        });
     }
     render() {
         console.log(this.viewRef);
@@ -52,74 +159,88 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         if (typeof signInPageDetail.signInCount === 'undefined') {
             signInPageDetail.signInCount = 0;
         }
-        let { listData } = this.state;
+        let { listData, avatar, showPhone } = this.state;
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
-        }} customStyle={datatool_1.styleAssign([style_1.bgColor('#2B2A2F')])} notNeedBottomPadding={true}>
-        <top_header_1.default title={'名片信息'} textColor={style_1.commonStyles.whiteColor} backgroundColor={'#2B2A2F'}/>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.colorTheme)])} scrollY>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(60)])}/>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(10), style_1.absR(0), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            
-            <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(197), style_1.radiusA(5), style_1.bgColor(style_1.commonStyles.whiteColor), { boxShadow: '0px 2px 4px 0px rgba(230,230,230,0.5' }])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ma(20)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(71), style_1.h(71), style_1.radiusA(4)])} src={require('../../assets/ico_default.png')}/>
-                <components_1.View style={datatool_1.styleAssign([style_1.ml(13)])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.colorTheme)])}>JY-W</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(8)])}>公司</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>职位</components_1.Text>
-                </components_1.View>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(295), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20)])}/>
-              
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(19)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(9), style_1.h(12)])} src={require('../../assets/ico_phone.png')} mode={'aspectFit'}/>
-                <components_1.Text style={datatool_1.styleAssign([style_1.ml(15), style_1.fSize(12), style_1.color('#727272')])}>15982468866</components_1.Text>
-              </components_1.View>
-              
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(10)])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(9), style_1.h(12)])} src={require('../../assets/ico_location.png')} mode={'aspectFit'}/>
-                <components_1.Text style={datatool_1.styleAssign([style_1.ml(15), style_1.fSize(12), style_1.color('#727272')])}>四川成都</components_1.Text>
-              </components_1.View>
-            </components_1.View>
-            
-            {listData.map((item, index) => {
-            console.log(item);
-            return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])} key={index}>
-                  <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.default.uac, style_1.default.udr, style_1.pl(21), style_1.pr(21)])}>
-                    {(index === 0 || index === 1) ? <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('red')])}>*</components_1.Text>
-                          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#727272')])}>{item.title}</components_1.Text>
-                        </components_1.View> :
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#727272')])}>{item.title}</components_1.Text>}
-                    <components_1.Input type='text' value={item.value} style={datatool_1.styleAssign([style_1.wRatio(70), style_1.ml(32), style_1.fSize(14)])}/>
-                  </components_1.View>
-                  <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
-                </components_1.View>);
+        }} notNeedBottomPadding={true}>
+        <top_header_1.default title={'创建名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
+          
+          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
+            style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pl(20), style_1.pr(20)])} onClick={() => {
+            taro_1.default.chooseImage({ count: 1 }).then((res) => {
+                console.log('图片路径', res.tempFiles[0].path);
+                this.setState({ avatar: res.tempFiles[0].path });
+                this.uploadFileTpWx(res.tempFiles[0].path);
+            });
+        }}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>头像</components_1.Text>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(60), style_1.h(60), style_1.radiusA(30)])} src={avatar && avatar.length !== 0 ? avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
+          </touchable_button_1.default>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+          
+          {listData.map((value, index) => {
+            if (value.title === '地区') {
+                return (<components_1.Picker mode='region' onChange={(e) => {
+                    console.log(e.detail);
+                    this.province = e.detail.value[0];
+                    this.city = e.detail.value[1] + e.detail.value[2];
+                    this.state.listData[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                    this.setState({
+                        listData: this.state.listData
+                    });
+                }} value={[]}>
+                  <list_item_1.default title={value.title} must={value.must} subTitle={value.subtitle} value={value.value} key={index} hasEdit={value.hasEdit}/>
+                </components_1.Picker>);
+            }
+            return (<list_item_1.default title={value.title} must={value.must} subTitle={value.subtitle} key={index} value={value.value} hasEdit={value.hasEdit} onCLick={(title) => {
+                if (title === '行业') {
+                    taro_1.default.navigateTo({
+                        url: `/pages/mine/industry_list`
+                    });
+                }
+            }} onTextChange={(e) => {
+                if (value.title === '姓名') {
+                    this.state.listData[0].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
+                else if (value.title === '公司') {
+                    this.state.listData[1].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
+                else if (value.title === '行业') {
+                    this.state.listData[2].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
+                else if (value.title === '职位') {
+                    this.state.listData[3].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
+                else if (value.title === '微信号') {
+                    this.state.listData[5].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
+                else if (value.title === '邮箱') {
+                    this.state.listData[6].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
+                console.log(e);
+            }}/>);
         })}
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.pl(20), style_1.pr(20), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>名片展示邮箱号</components_1.Text>
-                <components_1.Switch color={'#E2BB7B'}/>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.pl(20), style_1.pr(20), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>分享自己的名片给朋友时展示手机号</components_1.Text>
-                <components_1.Switch color={'#E2BB7B'}/>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            
-            
-            <bottom_buton_1.default title={'创建名片'} onClick={() => {
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+          
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.pl(20), style_1.pr(20), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>分享自己的名片给朋友时展示手机号</components_1.Text>
+              <components_1.Switch color={'#E2BB7B'} checked={showPhone === 1} onChange={(e) => {
+            this.setState({ showPhone: e.detail.value ? 1 : 0 });
         }}/>
+            </components_1.View>
+            <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
           </components_1.View>
         </components_1.ScrollView>
+        
+        <bottom_buton_1.default title={'保存'} onClick={this.update}/>
       </safe_area_view_1.default>);
     }
 };

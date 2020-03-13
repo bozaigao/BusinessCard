@@ -47,9 +47,13 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
          * @function: 手动录入客户
          */
         this.addPrivateCustomer = () => {
-            let { name, sex, company, phone, position, wechat, birthday, province, city, industry, desc, detailAddress } = this.state;
+            let { name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress } = this.state;
             if (phone.length === 0) {
                 datatool_1.toast('手机不能为空');
+                return;
+            }
+            if (phone.length !== 11 || !phone.startsWith('1')) {
+                datatool_1.toast('手机号非法');
                 return;
             }
             if (industry.length === 0) {
@@ -74,11 +78,11 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
             this.props.addPrivateCustomer(paramas).then((res) => {
                 console.log('手动录入客户', res);
                 this.viewRef && this.viewRef.hideLoading();
-                if (res) {
+                if (res !== httpurl_1.NetworkState.FAIL) {
                     datatool_1.toast('录入成功');
-                }
-                else {
-                    datatool_1.toast('录入失败');
+                    datatool_1.debounce(1000, () => {
+                        taro_1.default.navigateBack();
+                    });
                 }
             }).catch(e => {
                 this.viewRef && this.viewRef.hideLoading();
@@ -135,7 +139,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
         this.state = {
             top1List: [{ title: '备注名', subtitle: '请输入备注名', hasEdit: true },
                 { title: '手机', subtitle: '请输入手机号', hasEdit: true },
-                { title: '性别', subtitle: '男', hasEdit: false },
+                { title: '性别', value: '男', hasEdit: false },
                 { title: '公司', subtitle: '请输入公司名', hasEdit: true },
                 { title: '行业', subtitle: '请选择', hasEdit: false },
                 { title: '职位', subtitle: '请输入职位', hasEdit: true }],
@@ -166,7 +170,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
     componentWillUnmount() {
         taro_1.default.eventCenter.off();
     }
-    componentDidMount() {
+    componentDidShow() {
         taro_1.default.eventCenter.on('industry', (industry) => {
             console.log('参数回调', industry);
             this.state.top1List[4].subtitle = industry;
@@ -193,14 +197,14 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                     console.log('男');
                     this.setState({ sex: 1 });
                 }}>
-                            <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.radiusA(9)])} src={sex === 1 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
+                            <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.radiusA(9)])} src={sex === 1 ? `${httpurl_1.cloudBaseUrl}ico_checked.png` : `${httpurl_1.cloudBaseUrl}ico_nochecked.png`}/>
                             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797'), style_1.ml(10)])}>男</components_1.Text>
                           </touchable_button_1.default>
                           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mr(20)])} onClick={() => {
                     console.log('女');
                     this.setState({ sex: 2 });
                 }}>
-                            <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.radiusA(9)])} src={sex === 2 ? require('../../assets/ico_checked.png') : require('../../assets/ico_nochecked.png')}/>
+                            <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.radiusA(9)])} src={sex === 2 ? `${httpurl_1.cloudBaseUrl}ico_checked.png` : `${httpurl_1.cloudBaseUrl}ico_nochecked.png`}/>
                             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797'), style_1.ml(10)])}>女</components_1.Text>
                           </touchable_button_1.default>
                         </components_1.View>
@@ -286,15 +290,21 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
             }} textColor={'#727272'}/>);
         })}
           </components_1.View>
-
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(183), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(203), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#CECECE'), style_1.ml(20), style_1.mt(18)])}>描述</components_1.Text>
-            <components_1.Textarea value={desc} style={datatool_1.styleAssign([style_1.ml(20), style_1.w(300), style_1.pa(20), style_1.mr(20), style_1.fSize(14), style_1.radiusA(4), style_1.mt(4), style_1.h(91),
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(160)])}>
+            <components_1.Textarea value={desc} style={datatool_1.styleAssign([style_1.ml(20), style_1.w(300), style_1.pa(20), style_1.mr(20), style_1.fSize(14), style_1.radiusA(4), style_1.mt(4), style_1.h(160),
             style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} onInput={(e) => {
             this.setState({ desc: e.detail.value });
-        }} placeholder={'请输入您对客户的备注描述，帮助您更好地追踪客户~'}/>
+        }} placeholder={'请输入您对客户的备注描述，帮助您更好地追踪客户~'} maxlength={600}/>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.upa, style_1.absR(30), style_1.absB(10)])}>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>{desc.length}</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#CECECE')])}>/600</components_1.Text>
+              </components_1.View>
+            </components_1.View>
           </components_1.View>
-          {avatar.path.length === 0 ? <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.mt(10), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
+          {avatar.path.length === 0 ? <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             taro_1.default.chooseImage({ count: 1 }).then((res) => {
                 console.log('路径', res);
                 this.setState({ avatar: res.tempFiles[0] });
@@ -307,14 +317,16 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                 <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(176), style_1.mt(16), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(40), style_1.h(40), style_1.radiusA(20), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.default.uac, style_1.default.ujc])}>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(19)])} src={require('../../assets/ico_camera.png')}/>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(19)])} src={`${httpurl_1.cloudBaseUrl}ico_camera.png`}/>
                   </components_1.View>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#ACADAD'), style_1.mt(10)])}>添加与客户相关的图片</components_1.Text>
                 </components_1.View>
               </touchable_button_1.default> :
-            <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204)])} src={avatar.path}/>}
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc])}>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(335), style_1.h(176)])} src={avatar.path} mode={'aspectFit'}/>
+              </components_1.View>}
         </components_1.ScrollView>
-
+        
         <bottom_buton_1.default title={'保存'} onClick={() => {
             this.addPrivateCustomer();
         }}/>

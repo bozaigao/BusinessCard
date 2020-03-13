@@ -20,10 +20,10 @@ const safe_area_view_1 = require("../../compoments/safe-area-view");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
-const actions = require("../../actions/login");
+const actions = require("../../actions/dict");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
-const mingpianjia_item_1 = require("./mingpianjia-item");
+const mingpianjia_item_1 = require("../sub_pagecomponent/mingpianjia-item");
 let Mingpianjia = class Mingpianjia extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -39,6 +39,8 @@ let Mingpianjia = class Mingpianjia extends taro_1.Component {
         };
         console.log(this.viewRef);
         this.state = {};
+    }
+    componentDidShow() {
     }
     render() {
         return (<safe_area_view_1.default ref={(ref) => {

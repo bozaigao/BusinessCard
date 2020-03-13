@@ -6,78 +6,239 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * @filename mingpian_haibao.tsx
- * @author 何晏波
- * @QQ 1054539528
- * @date 2019/12/17
- * @Description: 名片海报
- */
 const taro_1 = require("@tarojs/taro");
-//@ts-ignore
-const safe_area_view_1 = require("../../compoments/safe-area-view");
-//@ts-ignore
+const components_1 = require("@tarojs/components");
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
-const redux_1 = require("@tarojs/redux");
+const index_1 = require("../../compoments/top-header/index");
 const actions = require("../../actions/login");
-const top_header_1 = require("../../compoments/top-header");
-const components_1 = require("@tarojs/components");
-const touchable_button_1 = require("../../compoments/touchable-button");
+const index_2 = require("../../compoments/safe-area-view/index");
+const index_3 = require("../../compoments/bottom-buton/index");
+const redux_1 = require("@tarojs/redux");
 let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
     constructor(props) {
         super(props);
-        /**
-         * 指定config的类型声明为: Taro.Config
-         *
-         * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-         * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-         * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-         */
         this.config = {
-            disableScroll: true
+            navigationBarTitleText: 'canvas测试'
         };
-        console.log(this.viewRef);
+        this.state = {
+            imageTempPath: ''
+        };
+    }
+    componentWillMount() {
+        this.drawBall();
+    }
+    drawBall() {
+        this.viewRef && this.viewRef.showLoading();
+        let { userInfo } = this.props;
+        const context = taro_1.default.createCanvasContext('canvas', this);
+        //@ts-ignore
+        const that = this;
+        taro_1.default.getImageInfo({
+            src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
+        }).then((res) => {
+            this.roundRectColor(context, 0, 0, 335, 434, 16);
+            //@ts-ignore
+            context.drawImage(res.path, 10, 10, 313, 194);
+            //电话
+            taro_1.default.getImageInfo({
+                src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile.png?sign=16ccd18da0a7c3bbcbb3bf1f8a582b0d&t=1584026985`,
+            }).then((res) => {
+                //@ts-ignore
+                context.drawImage(res.path, 295, 90, 11, 9);
+                context.setFontSize(12);
+                context.setFillStyle('#343434');
+                context.setTextAlign('right');
+                context.fillText(userInfo.phone, 290, 100);
+                //微信
+                taro_1.default.getImageInfo({
+                    src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat.png?sign=d69e311e5b1e06c521c064611bd9d30a&t=1584028318`,
+                }).then((res) => {
+                    //@ts-ignore
+                    context.drawImage(res.path, 295, 110, 12, 10);
+                    context.setTextAlign('right');
+                    context.fillText(userInfo.wechat, 290, 120);
+                    //邮箱
+                    taro_1.default.getImageInfo({
+                        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email.png?sign=f35e0d13f139b041fdb849c2e143e5ce&t=1584030793`,
+                    }).then((res) => {
+                        //@ts-ignore
+                        context.drawImage(res.path, 295, 130, 12, 10);
+                        context.setTextAlign('right');
+                        context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 290, 140);
+                        //地址
+                        taro_1.default.getImageInfo({
+                            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location.png?sign=c3abda7fa28594034f71a597086f5864&t=1584030919`,
+                        }).then((res) => {
+                            //@ts-ignore
+                            context.drawImage(res.path, 295, 150, 12, 10);
+                            context.setTextAlign('right');
+                            context.fillText(userInfo.detailAddress, 290, 160);
+                            //小程序码
+                            taro_1.default.getImageInfo({
+                                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+                            }).then((res) => {
+                                //@ts-ignore
+                                context.drawImage(res.path, 15, 360, 44, 44);
+                                context.setTextAlign('right');
+                                taro_1.default.getImageInfo({
+                                    src: userInfo.avatar,
+                                }).then((res) => {
+                                    let arcWidth = 60;
+                                    //x-轴坐标
+                                    let xCoor = 30;
+                                    //y-轴坐标
+                                    let yCoor = 20;
+                                    context.beginPath();
+                                    context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false);
+                                    context.clip();
+                                    //@ts-ignore
+                                    context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
+                                    context.restore();
+                                    context.setFontSize(18);
+                                    context.setFillStyle(style_1.commonStyles.colorTheme);
+                                    context.fillText(userInfo.name, 34, 115);
+                                    context.setFontSize(12);
+                                    context.fillText(userInfo.position, 100, 115);
+                                    context.fillText(userInfo.company, 34, 140);
+                                    context.setFontSize(14);
+                                    context.fillText('您好,', 15, 240);
+                                    that.fillTextWrap(context, `我是${userInfo.company}的 ${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
+                                    context.fillText('这是我的名片，请惠存。', 15, 300);
+                                    context.fillText('谢谢!', 15, 320);
+                                    context.setFillStyle('#E2BB7B');
+                                    context.fillText('长按识别二维码 收下名片', 70, 390);
+                                    context.setStrokeStyle(style_1.commonStyles.pageDefaultBackgroundColor);
+                                    context.moveTo(0, 340);
+                                    context.lineTo(335, 340);
+                                    context.stroke();
+                                    context.draw(false, () => {
+                                        that.viewRef && that.viewRef.hideLoading();
+                                        taro_1.default.canvasToTempFilePath({
+                                            canvasId: 'canvas',
+                                            success: function (res) {
+                                                console.log('获得图片临时路径', res);
+                                                // 获得图片临时路径
+                                                that.setState({
+                                                    imageTempPath: res.tempFilePath
+                                                });
+                                            }
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    }
+    /**
+     * @author 何晏波
+     * @QQ 1054539528
+     * @date 2020/3/12
+     * @function: 绘制圆角填充色矩形
+     */
+    roundRectColor(context, x, y, w, h, r) {
+        context.save();
+        context.setFillStyle(style_1.commonStyles.whiteColor);
+        context.setStrokeStyle(style_1.commonStyles.whiteColor);
+        context.setLineJoin('round'); //交点设置成圆角
+        context.setLineWidth(r);
+        context.strokeRect(x + r / 2, y + r / 2, w - r, h - r);
+        context.fillRect(x + r, y + r, w - r * 2, h - r * 2);
+        context.stroke();
+        context.closePath();
+    }
+    /**
+     * @author 何晏波
+     * @QQ 1054539528
+     * @date 2020/3/12
+     * @function: 保存s存图片
+     */
+    saveImage() {
+        // 查看是否授权
+        taro_1.default.getSetting({
+            complete() {
+                console.log(444);
+            }
+        }).then(res => {
+            if (res.authSetting['scope.writePhotosAlbum']) {
+                console.log('保存图片', this.state.imageTempPath);
+                taro_1.default.saveImageToPhotosAlbum({
+                    filePath: this.state.imageTempPath
+                }).then(res => {
+                    console.log(res);
+                });
+            }
+            else {
+                taro_1.default.authorize({
+                    scope: 'scope.writePhotosAlbum',
+                }).then(() => {
+                    taro_1.default.saveImageToPhotosAlbum({
+                        filePath: this.state.imageTempPath
+                    }).then(res => {
+                        console.log(res);
+                    });
+                });
+            }
+        }).catch((e) => {
+            console.log(e);
+        });
+    }
+    /**
+     * @author 何晏波
+     * @QQ 1054539528
+     * @date 2020/3/12
+     * @function: 文字换行
+     */
+    fillTextWrap(ctx, text, x, y, maxWidth, lineHeight, fontSize) {
+        // 设定默认最大宽度
+        const systemInfo = taro_1.default.getSystemInfoSync();
+        const deciveWidth = systemInfo.screenWidth;
+        maxWidth = maxWidth || deciveWidth;
+        lineHeight = lineHeight || 20;
+        // 校验参数
+        if (typeof text !== 'string' || typeof x !== 'number' || typeof y !== 'number') {
+            return;
+        }
+        // 字符串分割为数组
+        const arrText = text.split('');
+        // 当前字符串及宽度
+        let currentText = '';
+        let currentWidth;
+        ctx.setFontSize(fontSize);
+        ctx.setFillStyle('#3A3A3A');
+        ctx.setTextAlign('justify');
+        for (let letter of arrText) {
+            currentText += letter;
+            currentWidth = ctx.measureText(currentText).width;
+            if (currentWidth > maxWidth) {
+                ctx.fillText(currentText, x, y);
+                currentText = '';
+                y += lineHeight;
+            }
+        }
+        if (currentText) {
+            ctx.fillText(currentText, x, y);
+        }
     }
     render() {
-        return (<safe_area_view_1.default ref={(ref) => {
+        return (<index_2.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={'名片海报'}/>
-        <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.default.uac])}>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(434), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(20), style_1.radiusA(4), style_1.default.uac])}>
-            
-            <components_1.View style={datatool_1.styleAssign([style_1.mt(20), style_1.wRatio(95), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
-            style_1.default.udr, style_1.default.uje])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.radiusA(10), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={require('../../assets/ico_default.png')}/>
-              <components_1.View style={datatool_1.styleAssign([style_1.ma(20)])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>王嘉怡</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12)])}>销售经理</components_1.Text>
-                </components_1.View>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(30), style_1.mt(5)])}>15982468866@qq.com</components_1.Text>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.mt(5)])}>{`四川省成都市武侯区盛和\n二路18号富森美家居`}</components_1.Text>
-              </components_1.View>
-            </components_1.View>
-            
-            <components_1.Text style={datatool_1.styleAssign([style_1.w(294), style_1.mt(23), style_1.fSize(14), style_1.color('#343434')])}>您好， 我是美克美家家居集团股份有限公司成都分部的 销售经理王嘉怡
-              这是我的名片，请惠存。
-              谢谢！</components_1.Text>
-            <components_1.View style={datatool_1.styleAssign([style_1.mt(20), style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uae, style_1.default.udr])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(44), style_1.h(44), style_1.ml(16), style_1.mt(40)])} src={require('../../assets/ico_miniprogram.png')}/>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#E2BB7B'), style_1.ml(11)])}>长按识别二维码 收下名片</components_1.Text>
-            </components_1.View>
+        <index_1.default title={'名片海报'}/>
+        <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+            <canvas style="width: 335px; height: 434px;background:#fff;margin-top:20px;border-radius:4px;" canvas-id="canvas"/>
           </components_1.View>
-          
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(56), style_1.default.upa, style_1.absB(0), style_1.default.uac, style_1.default.ujc])}>
-            <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc,
-            style_1.w(335), style_1.h(56), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.colorTheme)])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>保存名片海报后分享</components_1.Text>
-            </touchable_button_1.default>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uje])}>
+            <index_3.default title={'保存名片海报后分享'} onClick={() => {
+            this.saveImage();
+        }}/>
           </components_1.View>
         </components_1.View>
-      </safe_area_view_1.default>);
+      </index_2.default>);
     }
 };
 MingpianHaibao = __decorate([

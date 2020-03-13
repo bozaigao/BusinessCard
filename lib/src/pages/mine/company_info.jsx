@@ -24,7 +24,8 @@ const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
-const list_item_1 = require("./list-item");
+const list_item_1 = require("../sub_pagecomponent/list-item");
+const httpurl_1 = require("../../api/httpurl");
 let CompanyInfo = class CompanyInfo extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -53,7 +54,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
         })}
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(230), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mb(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.ml(36), style_1.w(160), style_1.mt(16)])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(160), style_1.h(160)])} src={require('../../assets/ico_click_upload.png')} onClick={() => {
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(160), style_1.h(160)])} src={`${httpurl_1.cloudBaseUrl}ico_click_upload.png`} onClick={() => {
             taro_1.default.chooseImage({ count: 1 }).then(() => {
             });
         }}/>
@@ -63,7 +64,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
           
           <list_item_1.default title={'企业视频'}/>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(193), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mb(10)])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(305), style_1.h(160)])} src={require('../../assets/ico_upload_video.png')} onClick={() => {
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(305), style_1.h(160)])} src={`${httpurl_1.cloudBaseUrl}ico_upload_video.png`} onClick={() => {
             taro_1.default.chooseVideo({ compressed: true }).then(() => {
             });
         }}/>

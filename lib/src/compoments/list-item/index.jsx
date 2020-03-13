@@ -14,7 +14,7 @@ const datatool_1 = require("../../utils/datatool");
 const touchable_button_1 = require("../touchable-button");
 class ListItem extends taro_1.Component {
     render() {
-        let { title, subTitle, hasEdit, onCLick, notHasUnderline, onTextChange, textColor } = this.props;
+        let { title, subTitle, value, hasEdit, onCLick, notHasUnderline, onTextChange, textColor, must } = this.props;
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
         <touchable_button_1.default onClick={() => {
             if (onCLick) {
@@ -22,10 +22,13 @@ class ListItem extends taro_1.Component {
             }
         }} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.udr, style_1.default.uac,
             style_1.default.ujb, style_1.pl(20), style_1.pr(20)])}>
-          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(textColor ? textColor : '#0C0C0C')])}>{title}</components_1.Text>
-          {hasEdit ? <components_1.Input type='text' value={''} placeholder={subTitle} style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14), { textAlign: 'right' }])} onInput={onTextChange}/> :
+          <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+            {must && <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.redColor)])}>*</components_1.Text>}
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(textColor ? textColor : '#0C0C0C')])}>{title}</components_1.Text>
+          </components_1.View>
+          {hasEdit ? <components_1.Input type='text' value={value} maxLength={subTitle && subTitle.includes('手机') ? 11 : -1} placeholder={subTitle} style={datatool_1.styleAssign([style_1.fSize(14), { textAlign: 'right' }])} onInput={onTextChange}/> :
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797')])}>{subTitle ? subTitle : ''}</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(value && value.length !== 0 ? '#0C0C0C' : '#979797')])}>{value ? value : subTitle}</components_1.Text>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(8), style_1.h(14), style_1.ml(9)])} src={require('../../assets/ico_next.png')}/>
               </components_1.View>}
         </touchable_button_1.default>

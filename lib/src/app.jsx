@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("@tarojs/async-await");
 const taro_1 = require("@tarojs/taro");
 const redux_1 = require("@tarojs/redux");
-const businesscard_1 = require("./pages/businesscard/businesscard");
+const businesscard_1 = require("./pages/businesscard");
 const store_1 = require("./store");
 require("./app.scss");
 // 如果需要在 h5 环境中开启 React Devtools
@@ -25,43 +25,105 @@ class App extends taro_1.Component {
         this.config = {
             pages: [
                 //主界面
-                "pages/businesscard/businesscard",
-                "pages/radarscan/radarscan",
-                "pages/customer/customer",
-                "pages/mine/mine",
-                //名片模块子页面
-                "pages/businesscard/add_businesscard",
-                "pages/businesscard/qiehuan_businesscard",
-                "pages/businesscard/mingpian_haibao",
-                "pages/businesscard/more_goods",
-                "pages/businesscard/goods_detail",
-                "pages/businesscard/task_center",
-                "pages/businesscard/tool_box",
-                "pages/businesscard/haibao",
-                "pages/businesscard/add_task",
-                "pages/businesscard/mingpianjia",
-                "pages/businesscard/goods_manage",
-                "pages/businesscard/add_goods",
-                //客户模块子页面
-                "pages/customer/customer_detail",
-                "pages/customer/add_customer",
-                //我的模块子页面
-                "pages/mine/personal_info",
-                "pages/mine/contact_way",
-                "pages/mine/setting_page",
-                "pages/mine/feedback",
-                "pages/mine/my_tags",
-                "pages/mine/company_info",
-                "pages/mine/my_edu",
-                "pages/mine/self_intro",
-                "pages/mine/audio_recorder",
-                "pages/mine/industry_list",
-                "pages/mine/perform_info",
+                "pages/businesscard",
+                "pages/radarscan",
+                "pages/customer",
+                "pages/mine",
             ],
+            subPackages: [
+                {
+                    //名片模块子页面
+                    root: 'pages/businesscard',
+                    pages: [
+                        "add_businesscard",
+                        "qiehuan_businesscard",
+                        "mingpian_haibao",
+                        "more_goods",
+                        "mingpianjia",
+                        "my_collect",
+                        "other_businesscard",
+                        "ming_pian_ma",
+                        "choose_renmai_tag"
+                    ]
+                },
+                //雷达模块子界面
+                {
+                    root: 'pages/radarscan',
+                    pages: [
+                        "radar_detail"
+                    ]
+                },
+                //客户模块子页面
+                {
+                    root: 'pages/customer',
+                    pages: [
+                        "customer_detail",
+                        "customer_ziliao",
+                        "add_customer",
+                        "customer_remark",
+                        "add_genjin",
+                    ]
+                },
+                //我的模块子页面
+                {
+                    root: 'pages/mine',
+                    pages: [
+                        "personal_info",
+                        "add_task",
+                        "tool_box",
+                        "haibao",
+                        "goods_detail",
+                        "goods_manage",
+                        "add_goods",
+                        "task_center",
+                        "contact_way",
+                        "setting_page",
+                        "feedback",
+                        "my_tags",
+                        "company_info",
+                        "my_edu",
+                        "self_intro",
+                        "audio_recorder",
+                        "industry_list",
+                        "perform_info",
+                        "my_photo",
+                        "my_video",
+                        "fenxiao_center",
+                        "data_center",
+                        "my_customer",
+                        "tixian",
+                        "tixian_recorder",
+                        "tixian_page",
+                        "about_us",
+                        "help",
+                        "tequan",
+                        "choose_customer",
+                        "radar_gongneng",
+                        "open_message_notice",
+                        "update_card_style",
+                        "get_renmai",
+                        "open_shop",
+                        "view_card",
+                        "how_share_card",
+                        "how_perform_card",
+                        "introduce",
+                        "renmai_taocan_detail",
+                        "my_home"
+                    ]
+                }
+            ],
+            permission: {
+                "scope.userLocation": {
+                    "desc": "获取你的详细位置信息"
+                },
+                "scope.record": {
+                    "desc": "获取你的个人录音"
+                },
+            },
             window: {
                 backgroundTextStyle: 'light',
                 navigationBarBackgroundColor: '#fff',
-                navigationBarTextStyle: 'white',
+                navigationBarTextStyle: 'black',
                 pageOrientation: 'portrait',
                 navigationStyle: 'custom'
             },
@@ -71,47 +133,44 @@ class App extends taro_1.Component {
                 backgroundColor: '#FFFFFF',
                 borderStyle: 'white',
                 list: [{
-                        pagePath: "pages/businesscard/businesscard",
+                        pagePath: "pages/businesscard",
                         iconPath: "./assets/ico_tabar_businesscard_normal.png",
                         selectedIconPath: "./assets/ico_tabar_businesscard_pressed.png",
                         text: "名片",
                     }, {
-                        pagePath: "pages/radarscan/radarscan",
+                        pagePath: "pages/radarscan",
                         iconPath: "./assets/ico_tabar_radarscan_normal.png",
                         selectedIconPath: "./assets/ico_tabar_radarscan_pressed.png",
                         text: "雷达",
                     }, {
-                        pagePath: "pages/customer/customer",
+                        pagePath: "pages/customer",
                         iconPath: "./assets/ico_tabar_customer_normal.png",
                         selectedIconPath: "./assets/ico_tabar_customer_pressed.png",
                         text: "客户",
                     }, {
-                        pagePath: "pages/mine/mine",
+                        pagePath: "pages/mine",
                         iconPath: "./assets/ico_tabar_mine_normal.png",
                         selectedIconPath: "./assets/ico_tabar_mine_pressed.png",
                         text: "我的",
                     }]
             }
         };
-        console.log('呵呵', global);
+        //获取胶囊按钮位置信息为后面自定义导航条做准备
+        global.menuButton = taro_1.default.getMenuButtonBoundingClientRect();
         global.debug = true;
         taro_1.default.getSystemInfo({
             success: res => {
                 global = Object.assign(global, res, { debug: true });
                 if (res.model && res.model.includes('iPhone X')) {
                     global.iphoneX = true;
-                    console.log('是iphoneX机型');
                 }
                 else if (res.platform === 'ios' && res.screenHeight === 812 && res.screenWidth === 375 ||
                     res.screenHeight === 896 && res.screenWidth === 414) {
                     global.iphoneX = true;
-                    console.log('是iphoneX机型');
                 }
                 else {
                     global.iphoneX = false;
-                    console.log('不是iphoneX机型');
                 }
-                console.log('设备信息', global);
             }
         }).then(res => console.log(res));
         //生产环境屏蔽所有log信息优化性能
@@ -127,6 +186,8 @@ class App extends taro_1.Component {
             console.error = () => {
             };
         }
+        console.log('设备信息', global);
+        console.log('胶囊信息', global.menuButton);
     }
     componentWillMount() {
     }
@@ -144,5 +205,7 @@ class App extends taro_1.Component {
       </redux_1.Provider>);
     }
 }
-taro_1.default.render(<App />, document.getElementById('app'));
+taro_1.default
+    .render(<App />, document
+    .getElementById('app'));
 //# sourceMappingURL=app.jsx.map
