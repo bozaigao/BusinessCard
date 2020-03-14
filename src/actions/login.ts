@@ -105,26 +105,15 @@ export const suggestionAdd = payload => createAction({
 });
 
 
-/**
- * @author 何晏波
- * @QQ 1054539528
- * @date 2020/3/9
- * @function: 获取小程序二维码的凭证
- */
-export const getAccessToken = payload => createAction({
-  url: UserController.getAccessToken,
-  payload,
-  method: 'GET',
-});
 
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/9
- * @function: 获取小程序二维码
- */
-export const getWXacode = payload => createAction({
-  url: `${UserController.getWXacode}?access_token=${payload.access_token}`,
+ * @date 2020/3/14
+ * @function: 人脉推荐行业和兴趣设置
+*/
+export const recommendSetting = payload => createAction({
+  url: UserController.recommendSetting,
   payload,
-  method: 'POST',
+  method: 'POST'
 });

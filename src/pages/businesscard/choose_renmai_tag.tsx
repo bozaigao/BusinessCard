@@ -20,17 +20,21 @@ import {
   fSize,
   h,
   iphoneX,
+  mb,
   ml,
   mt,
+  padding,
+  pl,
+  pr,
   radiusA,
   w,
-  wRatio, padding, pl, pr, mb
+  wRatio
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import * as dictActions from '../../actions/dict';
 import NavigationBar from "../../compoments/navigation_bar/index";
-import {Image, Text, View, ScrollView} from "@tarojs/components";
+import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {NetworkState} from "../../api/httpurl";
 
 interface Props {
@@ -145,7 +149,11 @@ class ChooseRenmaiTag extends Component<Props, State> {
           <View
             style={styleAssign([w(181), h(46), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), radiusA(23)])}
             onClick={() => {
-              Taro.navigateBack();
+              if (chooseValue.length !== 0) {
+                Taro.redirectTo({
+                  url: `/pages/businesscard/choose_industry_tag?renmai=${JSON.stringify(chooseValue)}`
+                });
+              }
             }}>
             <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>
               {`选好了(${chooseValue.length})`}

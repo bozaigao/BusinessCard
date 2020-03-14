@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -36,6 +36,7 @@ import {NetworkState} from "../../api/httpurl";
 interface Props {
   suggestionAdd: any;
   getIndustryTags: any;
+  recommendSetting: any;
 }
 
 interface State {
@@ -47,6 +48,7 @@ interface State {
 class ChooseIndustryTag extends Component<Props, State> {
 
   private viewRef;
+  private renmai;
 
 
   /**
@@ -63,6 +65,7 @@ class ChooseIndustryTag extends Component<Props, State> {
   constructor(props) {
     super(props);
     console.log(this.viewRef);
+    this.renmai = this.$router.params.renmai;
     this.state = {
       chooseValue: [],
       interest: [],
@@ -72,6 +75,36 @@ class ChooseIndustryTag extends Component<Props, State> {
 
   componentDidShow() {
     this.getIndustryTags();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/14
+   * @function: 人脉推荐行业和兴趣设置
+   */
+  recommendSetting = () => {
+    let {chooseValue} = this.state;
+
+    if (chooseValue.length === 0) {
+      toast('请先选择标签');
+      return;
+    }
+    this.viewRef && this.viewRef.showLoading();
+    this.props.recommendSetting({
+      interest: this.renmai,
+      industry: JSON.stringify(chooseValue)
+    }).then((res) => {
+      console.log('人脉推荐行业和兴趣设置', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        Taro.navigateBack();
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -145,7 +178,7 @@ class ChooseIndustryTag extends Component<Props, State> {
           <View
             style={styleAssign([w(181), h(46), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), radiusA(23)])}
             onClick={() => {
-              Taro.navigateBack();
+              this.recommendSetting();
             }}>
             <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>
               {`选好了(${chooseValue.length})`}
