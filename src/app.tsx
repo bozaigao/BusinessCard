@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      "pages/company_info",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -119,7 +120,7 @@ class App extends Component {
           "setting_page",
           "feedback",
           "my_tags",
-          "company_info",
+          // "company_info",
           "my_edu",
           "self_intro",
           "audio_recorder",

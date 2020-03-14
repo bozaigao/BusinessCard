@@ -114,7 +114,7 @@ class MingpianHaibao extends Component<Props, State> {
                   context.fillText(userInfo.company, 34, 140);
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
-                  that.fillTextWrap(context, `我是${userInfo.company}的 ${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
+                  that.fillTextWrap(context, `我是${userInfo.company}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);

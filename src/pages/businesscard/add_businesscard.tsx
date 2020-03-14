@@ -158,7 +158,7 @@ class AddBusinesscard extends Component<Props, State> {
         if (this.props.userInfo.cardPercent === 0) {
           toast('名片创建成功');
         } else {
-          toast('名片完善成功');ø
+          toast('名片完善成功');
         }
         debounce(1000, () => {
           Taro.navigateBack();
