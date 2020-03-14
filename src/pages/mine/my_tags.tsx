@@ -71,7 +71,7 @@ class MyTags extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      chooseTags:props.userInfo.labelArray,
+      chooseTags: props.userInfo.labelArray,
       tags: []
     }
     console.log(this.viewRef);
@@ -217,8 +217,12 @@ class MyTags extends Component<Props, State> {
                                              borderStyle: 'solid'
                                            }])} onClick={() => {
                     if (!this.state.chooseTags.includes(value.itemText)) {
-                      this.state.chooseTags.push(value.itemText);
-                      this.setState({chooseTags: this.state.chooseTags});
+                      if (chooseTags.length < 4) {
+                        this.state.chooseTags.push(value.itemText);
+                        this.setState({chooseTags: this.state.chooseTags});
+                      } else {
+                        toast('最多添加4个标签');
+                      }
                     }
                   }}>
                     <Text
