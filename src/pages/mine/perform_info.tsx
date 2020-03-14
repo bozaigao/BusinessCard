@@ -94,7 +94,7 @@ class PerformInfo extends Component<Props, State> {
     this.innerAudioContext && this.innerAudioContext.stop();
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.innerAudioContext && this.innerAudioContext.stop();
   }
 
@@ -232,7 +232,8 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的语音</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Text
+                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.voiceUrl && userInfo.voiceUrl.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
@@ -276,7 +277,7 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>自我描述</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.selfDescription && userInfo.selfDescription.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
@@ -301,7 +302,7 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的家乡</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.province || userInfo.city ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
@@ -326,7 +327,7 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>教育经历</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{ userInfo.school && userInfo.school.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
@@ -355,7 +356,7 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的标签</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>编辑</Text>
+                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{ userInfo.labelArray && userInfo.labelArray.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
