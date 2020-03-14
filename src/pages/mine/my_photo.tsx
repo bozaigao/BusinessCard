@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   absR,
   absT,
@@ -231,7 +231,9 @@ class MyPhoto extends Component<Props, State> {
       if (res !== NetworkState.FAIL) {
         toast('信息更新成功');
       }
-      Taro.navigateBack();
+      debounce(1000, () => {
+        Taro.navigateBack();
+      });
 
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
