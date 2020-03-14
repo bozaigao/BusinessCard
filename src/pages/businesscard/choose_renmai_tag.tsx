@@ -24,13 +24,13 @@ import {
   mt,
   radiusA,
   w,
-  wRatio
+  wRatio, padding, pl, pr, mb
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import * as dictActions from '../../actions/dict';
 import NavigationBar from "../../compoments/navigation_bar/index";
-import {Image, Text, View} from "@tarojs/components";
+import {Image, Text, View, ScrollView} from "@tarojs/components";
 import {NetworkState} from "../../api/httpurl";
 
 interface Props {
@@ -115,28 +115,32 @@ class ChooseRenmaiTag extends Component<Props, State> {
             </Text>
           </View>
         </View>
-        <View style={styleAssign([wRatio(100), styles.udr, styles.uWrap, mt(30), styles.uac, styles.ujc])}>
-          {
-            interest.map((value, index) => {
-              return <View
-                onClick={() => {
-                  if (chooseValue.includes(value.itemText)) {
-                    this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.itemText), 1);
-                  } else {
-                    this.state.chooseValue.push(value.itemText);
-                  }
-                  this.setState({chooseValue: this.state.chooseValue});
-                }}
-                key={index}
-                style={styleAssign([styles.uac, styles.ujc, w(97), h(39), radiusA(20), mt(20), bo(1),
-                  {borderStyle: 'solid',}, bdColor(chooseValue.includes(value.itemText) ? commonStyles.colorTheme : 'rgb(229,229,229)'), ml(index % 3 === 0 ? 0 : 23)])}>
-                <Text style={styleAssign([fSize(14), color('#343434')])}>
-                  {value.itemText}
-                </Text>
-              </View>;
-            })
-          }
-        </View>
+        <ScrollView
+          style={styleAssign([styles.uf1, mt(30), styles.uac, bgColor(commonStyles.whiteColor)])}
+          scrollY>
+          <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, styles.uja, pl(20), pr(20)])}>
+            {
+              interest.map((value, index) => {
+                return <View
+                  onClick={() => {
+                    if (chooseValue.includes(value.itemText)) {
+                      this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.itemText), 1);
+                    } else {
+                      this.state.chooseValue.push(value.itemText);
+                    }
+                    this.setState({chooseValue: this.state.chooseValue});
+                  }}
+                  key={index}
+                  style={styleAssign([styles.uac, styles.ujc, padding([9, 35, 9, 35]), radiusA(20), mt(20), bo(1),
+                    {borderStyle: 'solid',}, bdColor(chooseValue.includes(value.itemText) ? commonStyles.colorTheme : 'rgb(229,229,229)'), ml(index % 3 === 0 ? 0 : 23)])}>
+                  <Text style={styleAssign([fSize(14), color('#343434')])}>
+                    {value.itemText}
+                  </Text>
+                </View>;
+              })
+            }
+          </View>
+        </ScrollView>
         <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(56)])}>
           <View
             style={styleAssign([w(181), h(46), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), radiusA(23)])}
@@ -148,7 +152,7 @@ class ChooseRenmaiTag extends Component<Props, State> {
             </Text>
           </View>
         </View>
-        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(32)])}>
+        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(32), mb(20)])}>
           <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>
             极易推 给你极致服务
           </Text>

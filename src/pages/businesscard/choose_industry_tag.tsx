@@ -108,10 +108,10 @@ class ChooseIndustryTag extends Component<Props, State> {
                  src={require('../../assets/ico_xingqu_renmai.png')}/>
           <View style={styleAssign([wRatio(100), styles.upa, absB(30), styles.uac, styles.ujc])}>
             <Text style={styleAssign([fSize(22), color(commonStyles.whiteColor)])}>
-              选择你感兴趣的人脉
+              选择你期待的行业人脉
             </Text>
             <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>
-              选择后将为你优先推荐此兴趣人脉
+              选择后将为你优先推荐相关行业人脉
             </Text>
           </View>
         </View>
