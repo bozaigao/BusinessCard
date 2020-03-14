@@ -56,7 +56,13 @@ export default class MyPerson extends Component<Props, State> {
             <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>人脉机遇</Text>
           </View>
           {
-            hasSelected && <View style={styleAssign([styles.uac, styles.udr])}>
+            hasSelected && <View style={styleAssign([styles.uac, styles.udr])}
+                                 onClick={() => {
+                                   Taro.navigateTo({
+                                     url: `/pages/businesscard/choose_renmai_tag`
+                                   });
+                                 }
+                                 }>
               <Text style={styleAssign([fSize(12), color('#979797')])}>重新选择</Text>
               <Image style={styleAssign([w(7), h(12), ml(12)])} src={require('../../../assets/ico_next.png')}/>
             </View>
