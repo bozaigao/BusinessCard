@@ -20,16 +20,21 @@ import MyPerson from "./pagecomponent/my-person/index";
 import ShareModal from "./pagecomponent/share-modal/index";
 import {User} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
+import {NetworkState} from "../api/httpurl";
+import {recommendSetting} from "../actions/login";
 
 interface Props {
   //获取用户信息
   getUserInfo: any;
   updateUserInfo: any;
+  getRecommendSetting: any;
+  recommendSettingStatus: any;
   userInfo: User;
 }
 
 interface State {
   showShare: boolean;
+  recommendIsSet: boolean;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
@@ -52,16 +57,51 @@ class Businesscard extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      showShare: false
+      showShare: false,
+      recommendIsSet: false,
     }
   }
 
   componentDidShow() {
     this.getUserInfo();
+    this.getRecommendSetting();
+    this.recommendSettingStatus();
   }
 
   componentWillUnmount() {
     Taro.eventCenter.off('showJiFenModal');
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/14
+   * @function: 人脉推荐是否设置
+   */
+  recommendSettingStatus = () => {
+    this.props.recommendSettingStatus().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({recommendIsSet: res === 1});
+      }
+      console.log('人脉推荐是否设置', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/14
+   * @function: 人脉推荐行业和兴趣设置查询
+   */
+  getRecommendSetting = () => {
+    this.props.getRecommendSetting().then((res) => {
+      console.log('人脉推荐行业和兴趣设置查询', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -110,7 +150,7 @@ class Businesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare} = this.state;
+    let {showShare,recommendIsSet} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -159,7 +199,7 @@ class Businesscard extends Component<Props, State> {
             Taro.navigateTo({
               url: `/pages/businesscard/choose_renmai_tag`
             });
-          }}/>
+          }} hasSelected={recommendIsSet}/>
           {/*slogan*/}
           <View style={styleAssign([wRatio(100), h(66), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极易推 给您极致服务</Text>

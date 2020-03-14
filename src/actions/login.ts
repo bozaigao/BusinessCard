@@ -117,3 +117,28 @@ export const recommendSetting = payload => createAction({
   payload,
   method: 'POST'
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/14
+ * @function: 人脉推荐行业和兴趣设置查询
+*/
+export const getRecommendSetting = payload => createAction({
+  url: UserController.getRecommendSetting,
+  payload,
+  method: 'GET',
+});
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/14
+ * @function: 人脉推荐是否设置
+ */
+export const recommendSettingStatus = payload => createAction({
+  url: UserController.recommendSettingStatus,
+  payload,
+  method: 'GET',
+});

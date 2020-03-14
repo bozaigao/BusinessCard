@@ -28,23 +28,23 @@ import RenMaiItem from "../renmai-item";
 
 
 interface Props {
-  chooseCallback:any;
+  chooseCallback: any;
+  hasSelected: boolean;
 }
 
 interface State {
-  hasSelected: boolean;
   currentIndex: number;
 }
 
 export default class MyPerson extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.setState({hasSelected: false, currentIndex: 0});
+    this.setState({currentIndex: 0});
   }
 
   render() {
-    let {hasSelected, currentIndex} = this.state;
-    let {chooseCallback} = this.props;
+    let {currentIndex} = this.state;
+    let {chooseCallback, hasSelected} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -79,11 +79,11 @@ export default class MyPerson extends Component<Props, State> {
           </View>
         }
         {
-          hasSelected&&<View
+          hasSelected && <View
             style={styleAssign([wRatio(100), h(50), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
               pl(20), pr(20), mt(16)])}>
             {
-             ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
+              ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
                 return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 62 : 0)])}
                              onClick={() => {
                                this.setState({currentIndex: index});
