@@ -301,7 +301,7 @@ class OtherBusinesscard extends Component<Props, State> {
             }} goodsList={userInfo.goodsList}/>
           }
           {/*我的企业*/}
-          <MyBusiness/>
+          <MyBusiness userInfo={userInfo}/>
           {/*极致名片*/}
           <JiZhiCard/>
           {/*关注公众号*/}
