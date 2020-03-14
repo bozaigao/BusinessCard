@@ -31,7 +31,7 @@ class MingpianHaibao extends Component<Props, State> {
     }
   }
 
-  componentWillMount(): void {
+  componentDidMount() {
     this.drawBall()
   }
 
@@ -115,8 +115,6 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
                   that.fillTextWrap(context, `我是${userInfo.company}的 ${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
-                  context.fillText('这是我的名片，请惠存。', 15, 300);
-                  context.fillText('谢谢!', 15, 320);
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
@@ -151,11 +149,11 @@ class MingpianHaibao extends Component<Props, State> {
    * @date 2020/3/12
    * @function: 绘制圆角填充色矩形
    */
-  roundRectColor(context, x, y, w, h, r) {  //绘制圆角矩形（纯色填充）
+  roundRectColor(context, x, y, w, h, r) { //绘制圆角矩形（纯色填充）
     context.save();
     context.setFillStyle(commonStyles.whiteColor);
     context.setStrokeStyle(commonStyles.whiteColor)
-    context.setLineJoin('round');  //交点设置成圆角
+    context.setLineJoin('round'); //交点设置成圆角
     context.setLineWidth(r);
     context.strokeRect(x + r / 2, y + r / 2, w - r, h - r);
     context.fillRect(x + r, y + r, w - r * 2, h - r * 2);
@@ -222,6 +220,7 @@ class MingpianHaibao extends Component<Props, State> {
     // 当前字符串及宽度
     let currentText = '';
     let currentWidth;
+
     ctx.setFontSize(fontSize);
     ctx.setFillStyle('#3A3A3A');
     ctx.setTextAlign('justify');
@@ -236,6 +235,8 @@ class MingpianHaibao extends Component<Props, State> {
     }
     if (currentText) {
       ctx.fillText(currentText, x, y);
+      ctx.fillText('这是我的名片，请惠存。', x, y+20);
+      ctx.fillText('谢谢!', x, y+40);
     }
   }
 

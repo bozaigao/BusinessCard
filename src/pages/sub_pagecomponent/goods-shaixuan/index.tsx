@@ -132,5 +132,3 @@ export default class GoodsShaiXuan extends PureComponent<Props, State> {
 }
 
 
-
-

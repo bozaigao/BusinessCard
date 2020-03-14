@@ -132,6 +132,7 @@ class Customer extends Component<Props, State> {
       status,
       name
     };
+
     console.log('搜索参数', params);
     this.props.getCustomerList(params).then((res) => {
       console.log('获取客户列表', res);

@@ -229,8 +229,8 @@ export function formartSecond(seconds: number) {
   }
   else if (seconds % 60 === 0) {
     return `${seconds / 60}分钟`;
-  } else {
-    return `${seconds / 60}分${seconds % 60}秒`;
   }
+    return `${seconds / 60}分${seconds % 60}秒`;
+
 }
 
