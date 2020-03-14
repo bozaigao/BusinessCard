@@ -17,7 +17,7 @@ import {
   default as styles,
   fSize,
   h,
-  ml,
+  ml, mr,
   op,
   pl,
   pr,
@@ -28,7 +28,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header";
-import {Image, Picker, ScrollView, Switch, Text, View} from "@tarojs/components";
+import {Button, Image, Picker, ScrollView, Switch, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton";
 import TouchableButton from "../../compoments/touchable-button";
 import ListItem from "../../compoments/list-item";
@@ -43,7 +43,7 @@ interface Props {
 
 interface State {
   signInPageDetail: any;
-  listData: { title: string; subtitle: string; value: string; hasEdit?: boolean; must?: boolean; }[];
+  listData: { title: string; subtitle?: string; value?: string; hasEdit?: boolean; must?: boolean; }[];
   avatar: string;
   showPhone: number;
 }
@@ -80,6 +80,7 @@ class AddBusinesscard extends Component<Props, State> {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
       listData: [
         {title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true},
+        {title: '手机'},
         {
           title: '公司',
           subtitle: '请输入公司名',
@@ -251,6 +252,27 @@ class AddBusinesscard extends Component<Props, State> {
                             key={index}
                             hasEdit={value.hasEdit}/>
                 </Picker>);
+              } else if (value.title === '手机') {
+                return <View style={styleAssign([wRatio(100)])}>
+                  <View
+                    style={styleAssign([wRatio(100), h(55), bgColor(commonStyles.whiteColor), styles.udr, styles.uac,
+                      styles.ujb, pl(20), pr(5)])}>
+                    <View style={styleAssign([styles.uac, styles.udr])}>
+                      <Text style={styleAssign([fSize(14), color(commonStyles.redColor)])}>*</Text>
+                      <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{value.title}</Text>
+                    </View>
+                    <Button style={styleAssign([styles.uac, styles.udr,mr(0), bgColor(commonStyles.whiteColor)])}
+                            openType={'getPhoneNumber'}
+                            onGetPhoneNumber={(e) => {
+                              console.log('获取手机号',e);
+                            }}>
+                      <Text
+                        style={styleAssign([fSize(14), color('#825D22'), styles.utxdu])}>获取手机号</Text>
+                    </Button>
+                  </View>
+                  <View
+                    style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), {marginLeft: '5%'}])}/>
+                </View>;
               }
               return (<ListItem title={value.title}
                                 must={value.must}
