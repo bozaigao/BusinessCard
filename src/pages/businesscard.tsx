@@ -21,7 +21,6 @@ import ShareModal from "./pagecomponent/share-modal/index";
 import {User} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
 import {NetworkState} from "../api/httpurl";
-import {recommendSetting} from "../actions/login";
 
 interface Props {
   //获取用户信息
@@ -29,12 +28,14 @@ interface Props {
   updateUserInfo: any;
   getRecommendSetting: any;
   recommendSettingStatus: any;
+  getRecommend: any;
   userInfo: User;
 }
 
 interface State {
   showShare: boolean;
   recommendIsSet: boolean;
+  recommendList: any[];
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
@@ -59,6 +60,7 @@ class Businesscard extends Component<Props, State> {
     this.state = {
       showShare: false,
       recommendIsSet: false,
+      recommendList: []
     }
   }
 
@@ -66,11 +68,31 @@ class Businesscard extends Component<Props, State> {
     this.getUserInfo();
     this.getRecommendSetting();
     this.recommendSettingStatus();
+    this.getRecommend('schoolfellow');
   }
 
   componentWillUnmount() {
-    Taro.eventCenter.off('showJiFenModal');
+    Taro.eventCenter.off('recommend');
   }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/14
+   * @function: 获取人脉推荐
+   */
+  getRecommend = (recommendType) => {
+    this.props.getRecommend({recommendType}).then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({recommendList: res});
+      }
+      console.log('获取人脉推荐', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
 
   /**
    * @author 何晏波
@@ -150,7 +172,7 @@ class Businesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare,recommendIsSet} = this.state;
+    let {showShare, recommendIsSet, recommendList} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -199,7 +221,18 @@ class Businesscard extends Component<Props, State> {
             Taro.navigateTo({
               url: `/pages/businesscard/choose_renmai_tag`
             });
-          }} hasSelected={recommendIsSet}/>
+          }} hasSelected={recommendIsSet} recommendList={recommendList}
+                    indexChangeCallback={(index) => {
+                      if (index === 0) {
+                        this.getRecommend('recommend');
+                      } else if (index === 1) {
+                        this.getRecommend('interest');
+                      } else if (index === 2) {
+                        this.getRecommend('villager');
+                      } else if (index === 3) {
+                        this.getRecommend('schoolfellow');
+                      }
+                    }}/>
           {/*slogan*/}
           <View style={styleAssign([wRatio(100), h(66), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极易推 给您极致服务</Text>

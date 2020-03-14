@@ -34,7 +34,9 @@ const BASE_URL = StagingUrl,
     //人脉推荐行业和兴趣设置查询
     getRecommendSetting: BASE_URL + 'user/getRecommendSetting',
     //人脉推荐是否设置
-    recommendSettingStatus: BASE_URL + '/user/recommendSettingStatus',
+    recommendSettingStatus: BASE_URL + 'user/recommendSettingStatus',
+    //人脉推荐
+    getRecommend: BASE_URL + 'user/recommend',
   },
   //数据字典
   DictController = {

@@ -142,3 +142,16 @@ export const recommendSettingStatus = payload => createAction({
   payload,
   method: 'GET',
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/14
+ * @function: 获取人脉推荐
+ */
+export const getRecommend = payload => createAction({
+  url: UserController.getRecommend,
+  payload,
+  method: 'GET',
+});

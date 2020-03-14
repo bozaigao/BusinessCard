@@ -29,7 +29,9 @@ import RenMaiItem from "../renmai-item";
 
 interface Props {
   chooseCallback: any;
+  indexChangeCallback: any;
   hasSelected: boolean;
+  recommendList: any[];
 }
 
 interface State {
@@ -44,7 +46,7 @@ export default class MyPerson extends Component<Props, State> {
 
   render() {
     let {currentIndex} = this.state;
-    let {chooseCallback, hasSelected} = this.props;
+    let {chooseCallback, hasSelected, recommendList, indexChangeCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -71,7 +73,6 @@ export default class MyPerson extends Component<Props, State> {
                 style={styleAssign([w(303), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
                 onClick={() => {
                   chooseCallback();
-                  // this.setState({hasSelected: true});
                 }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即选择</Text>
               </View>
@@ -86,7 +87,9 @@ export default class MyPerson extends Component<Props, State> {
               ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
                 return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 62 : 0)])}
                              onClick={() => {
-                               this.setState({currentIndex: index});
+                               this.setState({currentIndex: index}, () => {
+                                 indexChangeCallback(index);
+                               });
                              }}>
                   <Text
                     style={styleAssign([fSize(15), color(currentIndex === index ? '#E2BB7B' : '#0C0C0C')])}>{value}</Text>
@@ -98,7 +101,7 @@ export default class MyPerson extends Component<Props, State> {
           </View>
         }
         {
-          hasSelected && [1, 2, 3, 4, 5, 6].map((value, index) => {
+          hasSelected && recommendList.map((value, index) => {
             console.log(value);
             return <RenMaiItem key={index}/>;
           })
