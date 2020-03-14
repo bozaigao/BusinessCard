@@ -80,7 +80,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
           </View>
         </View>
         <View
-          style={styleAssign([wRatio(95), h(355), bgColor(commonStyles.whiteColor), radiusA(4),
+          style={styleAssign([wRatio(95), bgColor(commonStyles.whiteColor), radiusA(4),
             {marginLeft: '2.5%'}, mt(16), pa(16)])}>
           <View style={styleAssign([styles.udr, styles.uac])}>
             <Image style={styleAssign([w(40), h(40), radiusA(20)])}
@@ -133,11 +133,11 @@ export default class PersonalInfo extends PureComponent<Props, State> {
               <Text style={styleAssign([fSize(12)])}>校友</Text>
             </View>
           </View>
-          <View style={styleAssign([wRatio(100), h(68), mt(10), styles.udr, styles.uac, styles.uja])}>
+          <View style={styleAssign([wRatio(100), mt(10), styles.udr, styles.uac])}>
             {
               userInfo.labelArray.map((value, index) => {
                 return <View key={index}
-                             style={styleAssign([w(58), h(28), styles.uac, styles.ujc, radiusA(14), bgColor('#E7E7E7')])}>
+                             style={styleAssign([w(58), h(28), ml(index !== 0 ? 10 : 0), styles.uac, styles.ujc, radiusA(14), bgColor('#E7E7E7')])}>
                   <Text style={styleAssign([color('#343434'), fSize(12)])}>{value}</Text>
                 </View>
               })
