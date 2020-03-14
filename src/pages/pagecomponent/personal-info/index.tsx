@@ -8,14 +8,16 @@ import Taro, {InnerAudioContext, PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
-  absL, absT,
+  absL,
+  absT,
   bdColor,
   bgColor,
   bo,
   color,
   commonStyles,
   fSize,
-  h, hRatio,
+  h,
+  hRatio,
   ml,
   mr,
   mt,
@@ -82,67 +84,81 @@ export default class PersonalInfo extends PureComponent<Props, State> {
         <View
           style={styleAssign([wRatio(95), bgColor(commonStyles.whiteColor), radiusA(4),
             {marginLeft: '2.5%'}, mt(16), pa(16)])}>
-          <View style={styleAssign([styles.udr, styles.uac])}>
-            <Image style={styleAssign([w(40), h(40), radiusA(20)])}
-                   src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
-            <View style={styleAssign([w(85), h(41), ml(10)])}>
-              <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absL(0)])}
-                     src={require('../../../assets/ico_mic_bg.png')}
-                     onClick={(e) => {
-                       e.stopPropagation();
-                       this.playMic();
-                     }
-                     }/>
-              <Image style={styleAssign([w(18), h(18), styles.upa, absL(15), absT(10)])}
-                     src={micIsPlaying ? require('../../../assets/mic_play.gif') : require('../../../assets/ico_mic.png')}
-                     onClick={(e) => {
-                       e.stopPropagation();
-                       this.playMic();
-                     }
-                     }/>
+          {
+            userInfo.voiceUrl && userInfo.voiceUrl.length !== 0 &&
+            <View style={styleAssign([styles.udr, styles.uac])}>
+              <Image style={styleAssign([w(40), h(40), radiusA(20)])}
+                     src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
+              <View style={styleAssign([w(85), h(41), ml(10)])}>
+                <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absL(0)])}
+                       src={require('../../../assets/ico_mic_bg.png')}
+                       onClick={(e) => {
+                         e.stopPropagation();
+                         this.playMic();
+                       }
+                       }/>
+                <Image style={styleAssign([w(18), h(18), styles.upa, absL(15), absT(10)])}
+                       src={micIsPlaying ? require('../../../assets/mic_play.gif') : require('../../../assets/ico_mic.png')}
+                       onClick={(e) => {
+                         e.stopPropagation();
+                         this.playMic();
+                       }
+                       }/>
+              </View>
+              <View>
+                <View style={styleAssign([w(7), h(7), radiusA(3.6), bgColor('red'), ml(5)])}/>
+                <Text
+                  style={styleAssign([fSize(11), color('#979797'), ml(8), mt(5)])}>{`${userInfo.voiceDuration}″`}</Text>
+              </View>
             </View>
-            <View>
-              <View style={styleAssign([w(7), h(7), radiusA(3.6), bgColor('red'), ml(5)])}/>
-              <Text
-                style={styleAssign([fSize(11), color('#979797'), ml(8), mt(5)])}>{`${userInfo.voiceDuration}″`}</Text>
-            </View>
-          </View>
-          <Text
-            style={styleAssign([fSize(14), color('#343434'), mt(16)])}>{userInfo.selfDescription}</Text>
+          }
+          {
+            userInfo.selfDescription.length !== 0 && <Text
+              style={styleAssign([fSize(14), color('#343434'), mt(16)])}>{userInfo.selfDescription}</Text>
+          }
           {/*家乡*/}
-          <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(24)])}>
-            <View style={styleAssign([])}>
-              <Text style={styleAssign([fSize(14)])}>家乡</Text>
-              <Text style={styleAssign([fSize(12)])}>{`${userInfo.province} ${userInfo.city}`}</Text>
+          {
+            (userInfo.province.length !== 0 || userInfo.city.length !== 0) &&
+            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(24)])}>
+              <View style={styleAssign([])}>
+                <Text style={styleAssign([fSize(14)])}>家乡</Text>
+                <Text style={styleAssign([fSize(12)])}>{`${userInfo.province} ${userInfo.city}`}</Text>
+              </View>
+              <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
+                bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
+                <Text style={styleAssign([fSize(12)])}>同乡</Text>
+              </View>
             </View>
-            <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
-              bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
-              <Text style={styleAssign([fSize(12)])}>同乡</Text>
-            </View>
-          </View>
+          }
           {/*教育*/}
-          <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(24)])}>
-            <View style={styleAssign([])}>
-              <Text style={styleAssign([fSize(14)])}>教育</Text>
-              <Text style={styleAssign([fSize(12)])}>{userInfo.school}</Text>
-              <Text
-                style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
+          {
+            userInfo.school.length !== 0 &&
+            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(24)])}>
+              <View style={styleAssign([])}>
+                <Text style={styleAssign([fSize(14)])}>教育</Text>
+                <Text style={styleAssign([fSize(12)])}>{userInfo.school}</Text>
+                <Text
+                  style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
+              </View>
+              <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
+                bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
+                <Text style={styleAssign([fSize(12)])}>校友</Text>
+              </View>
             </View>
-            <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
-              bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
-              <Text style={styleAssign([fSize(12)])}>校友</Text>
+          }
+          {
+            userInfo.labelArray.length !== 0 &&
+            <View style={styleAssign([wRatio(100), mt(10), styles.udr, styles.uac])}>
+              {
+                userInfo.labelArray.map((value, index) => {
+                  return <View key={index}
+                               style={styleAssign([w(58), h(28), ml(index !== 0 ? 10 : 0), styles.uac, styles.ujc, radiusA(14), bgColor('#E7E7E7')])}>
+                    <Text style={styleAssign([color('#343434'), fSize(12)])}>{value}</Text>
+                  </View>
+                })
+              }
             </View>
-          </View>
-          <View style={styleAssign([wRatio(100), mt(10), styles.udr, styles.uac])}>
-            {
-              userInfo.labelArray.map((value, index) => {
-                return <View key={index}
-                             style={styleAssign([w(58), h(28), ml(index !== 0 ? 10 : 0), styles.uac, styles.ujc, radiusA(14), bgColor('#E7E7E7')])}>
-                  <Text style={styleAssign([color('#343434'), fSize(12)])}>{value}</Text>
-                </View>
-              })
-            }
-          </View>
+          }
         </View>
       </View>
     );

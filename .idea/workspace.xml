@@ -33,8 +33,12 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
+            <state relative-caret-position="3256">
+              <caret line="148" column="11" lean-forward="true" selection-start-line="148" selection-start-column="11" selection-end-line="148" selection-end-column="11" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#79#147#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -466,12 +470,12 @@
       <workItem from="1584022117058" duration="10030000" />
       <workItem from="1584082184157" duration="1042000" />
       <workItem from="1584108545662" duration="1131000" />
-      <workItem from="1584146091743" duration="12809000" />
+      <workItem from="1584146091743" duration="13130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="966716000" />
+    <option name="totallyTimeSpent" value="967037000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1001,8 +1005,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/personal-info/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="135" column="48" selection-start-line="135" selection-start-column="48" selection-end-line="135" selection-end-column="48" />
+        <state relative-caret-position="3256">
+          <caret line="148" column="11" lean-forward="true" selection-start-line="148" selection-start-column="11" selection-end-line="148" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#79#147#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
