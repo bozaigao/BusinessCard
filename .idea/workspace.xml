@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,13 +16,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mingpian_haibao.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mingpian_haibao.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="189" column="43" selection-start-line="189" selection-start-column="43" selection-end-line="189" selection-end-column="43" />
+            <state relative-caret-position="374">
+              <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
               <folding>
                 <element signature="e#0#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_businesscard.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3520">
+              <caret line="160" column="27" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#262#344#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,7 +160,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showShare</find>
       <find>onStop</find>
       <find>didshp</find>
       <find>我的语音</find>
@@ -174,10 +185,11 @@
       <find>ming p</find>
       <find>other_businesscard</find>
       <find>当前无</find>
-      <find>save</find>
       <find>cardPercent</find>
       <find>创建</find>
       <find>创建你的</find>
+      <find>save</find>
+      <find>名片创建</find>
     </findStrings>
     <replaceStrings>
       <replace>Enum</replace>
@@ -218,7 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/mine/feedback.tsx" />
         <option value="$PROJECT_DIR$/src/reducers/index.ts" />
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/level-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/actions/tequan.ts" />
@@ -269,6 +280,7 @@
         <option value="$PROJECT_DIR$/src/const/global.ts" />
         <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx" />
       </list>
     </option>
   </component>
@@ -550,12 +562,12 @@
       <workItem from="1584022117058" duration="10030000" />
       <workItem from="1584082184157" duration="1042000" />
       <workItem from="1584108545662" duration="1131000" />
-      <workItem from="1584146091743" duration="3121000" />
+      <workItem from="1584146091743" duration="3329000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="957028000" />
+    <option name="totallyTimeSpent" value="957236000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -723,13 +735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
           <caret line="85" column="61" lean-forward="true" selection-start-line="85" selection-start-column="61" selection-end-line="85" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-742">
-          <caret line="247" column="53" lean-forward="true" selection-start-line="247" selection-start-column="53" selection-end-line="247" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -1040,10 +1045,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="189" column="43" selection-start-line="189" selection-start-column="43" selection-end-line="189" selection-end-column="43" />
+        <state relative-caret-position="374">
+          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/add_businesscard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3520">
+          <caret line="160" column="27" selection-start-line="160" selection-start-column="27" selection-end-line="160" selection-end-column="27" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#262#344#0" expanded="true" />
           </folding>
         </state>
       </provider>
