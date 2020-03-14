@@ -84,7 +84,7 @@ class MingPianMa extends Component<Props, State> {
     console.log('创建小程序码')
     this.props.wxacode({
       scene: 'mingpianma',
-      path: '/pages/businesscard/other_businesscard',
+      path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`,
       width: 320
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();

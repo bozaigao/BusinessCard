@@ -1,6 +1,6 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {View} from '@tarojs/components'
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {bgColor, commonStyles, default as styles} from "../../utils/style";
 import TopHeader from "../../compoments/top-header/index";
 import * as actions from '../../actions/login';
@@ -36,7 +36,7 @@ class MingpianHaibao extends Component<Props, State> {
   }
 
   drawBall() {
-    this.viewRef&&this.viewRef.showLoading();
+    this.viewRef && this.viewRef.showLoading();
     let {userInfo} = this.props;
 
     const context = Taro.createCanvasContext('canvas', this)
@@ -122,7 +122,7 @@ class MingpianHaibao extends Component<Props, State> {
                   context.lineTo(335, 340);
                   context.stroke();
                   context.draw(false, () => {
-                    that.viewRef&&that.viewRef.hideLoading();
+                    that.viewRef && that.viewRef.hideLoading();
                     Taro.canvasToTempFilePath({
                       canvasId: 'canvas',
                       success: function (res) {
@@ -169,6 +169,9 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 保存s存图片
    */
   saveImage() {
+    let that = this;
+
+    that.viewRef && that.viewRef.showLoading();
     // 查看是否授权
     Taro.getSetting({
       complete() {
@@ -180,6 +183,8 @@ class MingpianHaibao extends Component<Props, State> {
         Taro.saveImageToPhotosAlbum({
           filePath: this.state.imageTempPath
         }).then(res => {
+          that.viewRef && that.viewRef.hideLoading();
+          toast('名片码保存成功');
           console.log(res)
         })
       } else {
@@ -189,6 +194,8 @@ class MingpianHaibao extends Component<Props, State> {
           Taro.saveImageToPhotosAlbum({
             filePath: this.state.imageTempPath
           }).then(res => {
+            that.viewRef && that.viewRef.hideLoading();
+            toast('名片码保存成功');
             console.log(res)
           })
         })
@@ -235,8 +242,8 @@ class MingpianHaibao extends Component<Props, State> {
     }
     if (currentText) {
       ctx.fillText(currentText, x, y);
-      ctx.fillText('这是我的名片，请惠存。', x, y+20);
-      ctx.fillText('谢谢!', x, y+40);
+      ctx.fillText('这是我的名片，请惠存。', x, y + 20);
+      ctx.fillText('谢谢!', x, y + 40);
     }
   }
 

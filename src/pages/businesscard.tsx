@@ -32,7 +32,7 @@ interface State {
   showShare: boolean;
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions,loginActions))
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
 class Businesscard extends Component<Props, State> {
 
   private viewRef;
@@ -90,13 +90,10 @@ class Businesscard extends Component<Props, State> {
    * @function: 获取用户信息
    */
   getUserInfo = () => {
-    this.viewRef&&this.viewRef.showLoading();
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
-      this.viewRef&&this.viewRef.hideLoading();
       console.log('重新更新用户信息', res)
     }).catch(e => {
-      this.viewRef&&this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -115,8 +112,6 @@ class Businesscard extends Component<Props, State> {
 
     let {showShare} = this.state;
     let {userInfo} = this.props;
-
-    console.log('呵呵', this.viewRef);
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -181,7 +176,8 @@ class Businesscard extends Component<Props, State> {
           });
         }} style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
-            <Text style={styleAssign([fSize(14), color('#825D22')])}>创建您的专属名片</Text>
+            <Text
+              style={styleAssign([fSize(14), color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}，点击完善` : '创建您的专属名片'}</Text>
           </View>
         </Button>
         {

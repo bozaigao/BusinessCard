@@ -55,6 +55,8 @@ export interface User {
   birthday: string;
   //名片竞争力
   cardCompetitiveness: string;
+  //名片资料完成度
+  cardPercent:number;
   // 城市
   city: string;
   //公司
