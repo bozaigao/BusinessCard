@@ -1,9 +1,9 @@
 /**
- * @filename choose_renmai_tag.tsx
+ * @filename choose_industry_tag.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/7
- * @Description: 选择兴趣人脉
+ * @date 2020/3/14
+ * @Description: 选择行业人脉
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
@@ -19,9 +19,9 @@ import {
   default as styles,
   fSize,
   h,
-  iphoneX,
+  iphoneX, mb,
   ml,
-  mt,
+  mt, padding, pl, pr,
   radiusA,
   w,
   wRatio
@@ -30,12 +30,12 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import * as dictActions from '../../actions/dict';
 import NavigationBar from "../../compoments/navigation_bar/index";
-import {Image, Text, View} from "@tarojs/components";
+import {Image, Text, View, ScrollView} from "@tarojs/components";
 import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   suggestionAdd: any;
-  getDictItemList: any;
+  getIndustryTags: any;
 }
 
 interface State {
@@ -44,7 +44,7 @@ interface State {
 }
 
 @connect(state => state.login, Object.assign(actions, dictActions))
-class ChooseRenmaiTag extends Component<Props, State> {
+class ChooseIndustryTag extends Component<Props, State> {
 
   private viewRef;
 
@@ -71,7 +71,7 @@ class ChooseRenmaiTag extends Component<Props, State> {
 
 
   componentDidShow() {
-    this.getDictItemList();
+    this.getIndustryTags();
   }
 
 
@@ -79,11 +79,11 @@ class ChooseRenmaiTag extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/3/8
-   * @function: 获取后台配置标签
+   * @function: 人脉推荐查询二级行业信息
    */
-  getDictItemList = () => {
+  getIndustryTags = () => {
     this.viewRef && this.viewRef.showLoading();
-    this.props.getDictItemList({dictCode: 'interest '}).then((res) => {
+    this.props.getIndustryTags({dictCode: 'interest '}).then((res) => {
       console.log('获取后台配置标签', res);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
@@ -115,28 +115,32 @@ class ChooseRenmaiTag extends Component<Props, State> {
             </Text>
           </View>
         </View>
-        <View style={styleAssign([wRatio(100), styles.udr, styles.uWrap, mt(30), styles.uac, styles.ujc])}>
-          {
-            interest.map((value, index) => {
-              return <View
-                onClick={() => {
-                  if (chooseValue.includes(value.itemText)) {
-                    this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.itemText), 1);
-                  } else {
-                    this.state.chooseValue.push(value.itemText);
-                  }
-                  this.setState({chooseValue: this.state.chooseValue});
-                }}
-                key={index}
-                style={styleAssign([styles.uac, styles.ujc, w(97), h(39), radiusA(20), mt(20), bo(1),
-                  {borderStyle: 'solid',}, bdColor(chooseValue.includes(value.itemText) ? commonStyles.colorTheme : 'rgb(229,229,229)'), ml(index % 3 === 0 ? 0 : 23)])}>
-                <Text style={styleAssign([fSize(14), color('#343434')])}>
-                  {value.itemText}
-                </Text>
-              </View>;
-            })
-          }
-        </View>
+        <ScrollView
+          style={styleAssign([styles.uf1, mt(30), styles.uac, bgColor(commonStyles.whiteColor)])}
+          scrollY>
+          <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, styles.uja, pl(20), pr(20)])}>
+            {
+              interest.map((value, index) => {
+                return <View
+                  onClick={() => {
+                    if (chooseValue.includes(value.name)) {
+                      this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.name), 1);
+                    } else {
+                      this.state.chooseValue.push(value.name);
+                    }
+                    this.setState({chooseValue: this.state.chooseValue});
+                  }}
+                  key={index}
+                  style={styleAssign([styles.uac, styles.ujc, padding([9, 35, 9, 35]), radiusA(20), mt(20), ml(20), bo(1),
+                    {borderStyle: 'solid',}, bdColor(chooseValue.includes(value.name) ? commonStyles.colorTheme : 'rgb(229,229,229)'), ml(index % 3 === 0 ? 0 : 23)])}>
+                  <Text style={styleAssign([fSize(14), color('#343434')])}>
+                    {value.name}
+                  </Text>
+                </View>;
+              })
+            }
+          </View>
+        </ScrollView>
         <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(56)])}>
           <View
             style={styleAssign([w(181), h(46), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), radiusA(23)])}
@@ -148,7 +152,7 @@ class ChooseRenmaiTag extends Component<Props, State> {
             </Text>
           </View>
         </View>
-        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(32)])}>
+        <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(32), mb(20)])}>
           <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>
             极易推 给你极致服务
           </Text>
@@ -157,9 +161,7 @@ class ChooseRenmaiTag extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), styles.udr, styles.uac])}>
             <View style={styleAssign([w(40), h(40), styles.uac, styles.ujc, ml(10)])}
                   onClick={() => {
-                    Taro.redirectTo({
-                      url: `/pages/businesscard/choose_industry_tag`
-                    });
+                    Taro.navigateBack();
                   }}>
               <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor), styles.utxdu])}>
                 跳过
@@ -172,4 +174,4 @@ class ChooseRenmaiTag extends Component<Props, State> {
   }
 }
 
-export default ChooseRenmaiTag;
+export default ChooseIndustryTag;

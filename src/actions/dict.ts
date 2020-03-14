@@ -49,6 +49,19 @@ export const getIndustryList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
+ * @date 2020/3/14
+ * @function: 人脉推荐查询二级行业信息
+*/
+export const getIndustryTags = payload => createAction({
+  url: DictController.getIndustryTags,
+  payload,
+  method: 'GET'
+});
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
  * @date 2020/3/11
  * @function: 创建小程序码
 */

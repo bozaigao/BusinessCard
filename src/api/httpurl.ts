@@ -38,6 +38,8 @@ const BASE_URL = StagingUrl,
   DictController = {
     //查询行业信息
     getIndustryList: BASE_URL + 'dict/getIndustryList',
+    //人脉推荐查询二级行业信息
+    getIndustryTags: BASE_URL + 'dict/getIndustryListV2',
     //查询各种信息
     getDictItemList: BASE_URL + 'dict/getDictItemList',
     //创建小程序码
