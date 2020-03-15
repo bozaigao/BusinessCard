@@ -10,7 +10,7 @@ import {Button, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../utils/datatool";
+import {get, save, styleAssign} from "../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, radiusA, w, wRatio} from "../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
@@ -21,6 +21,9 @@ import ShareModal from "./pagecomponent/share-modal/index";
 import {User} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
 import {NetworkState} from "../api/httpurl";
+import BusinessCardGuide1 from "./pagecomponent/business-card-guide1";
+import BusinessCardGuide2 from "./pagecomponent/business-card-guide2";
+import BusinessCardGuide3 from "./pagecomponent/business-card-guide3";
 
 interface Props {
   //获取用户信息
@@ -35,6 +38,9 @@ interface Props {
 interface State {
   showShare: boolean;
   recommendIsSet: boolean;
+  showGuide1: boolean;
+  showGuide2: boolean;
+  showGuide3: boolean;
   recommendList: any[];
 }
 
@@ -60,7 +66,10 @@ class Businesscard extends Component<Props, State> {
     this.state = {
       showShare: false,
       recommendIsSet: false,
-      recommendList: []
+      recommendList: [],
+      showGuide1: false,
+      showGuide2: false,
+      showGuide3: false,
     }
   }
 
@@ -69,6 +78,18 @@ class Businesscard extends Component<Props, State> {
     this.getRecommendSetting();
     this.recommendSettingStatus();
     this.getRecommend('schoolfellow');
+
+    let showGuide1 = get('business_guide1');
+
+    this.setState({showGuide1: !showGuide1});
+
+    let showGuide2 = get('business_guide2');
+
+    this.setState({showGuide2: !showGuide2 && !!showGuide1});
+
+    let showGuide3 = get('business_guide3');
+
+    this.setState({showGuide3: !showGuide3 && !!showGuide2 && !!showGuide1});
   }
 
   componentWillUnmount() {
@@ -172,7 +193,7 @@ class Businesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, recommendIsSet, recommendList} = this.state;
+    let {showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -262,6 +283,51 @@ class Businesscard extends Component<Props, State> {
           } haibao={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/mingpian_haibao`
+            });
+          }
+          }/>
+        }
+        {
+          showGuide1 && <BusinessCardGuide1 cancle={() => {
+            save('business_guide1', true);
+            this.setState({showGuide1: false, showGuide2: true});
+          }
+          } createCard={() => {
+            save('business_guide1', true);
+            this.setState({showGuide1: false, showGuide2: true}, () => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/add_businesscard`
+              });
+            });
+          }
+          }/>
+        }
+        {
+          showGuide2 && <BusinessCardGuide2 cancle={() => {
+            save('business_guide2', true);
+            this.setState({showGuide2: false, showGuide3: false});
+          }
+          } viewCard={() => {
+            save('business_guide2', true);
+            this.setState({showGuide2: false, showGuide3: false}, () => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+              });
+            });
+          }
+          }/>
+        }
+        {
+          showGuide3 && <BusinessCardGuide3 cancle={() => {
+            save('business_guide3', true);
+            this.setState({showGuide3: false});
+          }
+          } createCard={() => {
+            save('business_guide3', true);
+            this.setState({showGuide3: false}, () => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/add_businesscard`
+              });
             });
           }
           }/>
