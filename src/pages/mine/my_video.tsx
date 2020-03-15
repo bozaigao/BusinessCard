@@ -77,11 +77,6 @@ class MyVideo extends Component<Props, State> {
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, callback) => {
-    if (path.length === 0) {
-      toast('请选择视频');
-      return;
-    }
-
     if (path.includes('tmp')) {
       this.viewRef && this.viewRef.showLoading();
       let that = this;

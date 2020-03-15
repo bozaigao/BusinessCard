@@ -218,10 +218,6 @@ class MyPhoto extends Component<Props, State> {
    * @function: 更新用户信息
    */
   update = () => {
-    if (this.state.myPhotoUrl.length === 0) {
-      toast('请选择照片');
-      return;
-    }
     this.viewRef && this.viewRef.showLoading();
     this.props.update({
       photoUrl: JSON.stringify(this.state.myPhotoUrl),
