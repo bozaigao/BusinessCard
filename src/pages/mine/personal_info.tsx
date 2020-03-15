@@ -122,7 +122,7 @@ class PersonalInfo extends Component<Props, State> {
   }
 
 
-  componentDidShow() {
+  componentDidMount() {
     console.log('用户信息', this.props.userInfo);
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
@@ -132,9 +132,6 @@ class PersonalInfo extends Component<Props, State> {
     });
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off();
-  }
 
   /**
    * @author 何晏波

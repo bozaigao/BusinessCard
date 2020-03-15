@@ -118,11 +118,8 @@ class AddCustomer extends Component<Props, State> {
     console.log(this.props, nextProps)
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off();
-  }
 
-  componentDidShow() {
+  componentDidMount() {
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
       this.state.top1List[4].subtitle = industry;
