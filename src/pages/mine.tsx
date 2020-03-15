@@ -14,7 +14,8 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio,
+  h,
+  hRatio,
   iphoneX,
   mb,
   ml,
@@ -24,7 +25,7 @@ import {
   w,
   wRatio
 } from "../utils/style";
-import {styleAssign} from "../utils/datatool";
+import {get, save, styleAssign} from "../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../actions/login";
 import {User} from "../const/global";
@@ -33,6 +34,8 @@ import ListItem from "../compoments/list-item/index";
 import {cloudBaseUrl} from "../api/httpurl";
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 import NavigationBar from "../compoments/navigation_bar/index";
+import MyGuide1 from "./pagecomponent/mine_guide1";
+import MyGuide2 from "./pagecomponent/mine_guide2";
 
 
 interface Props {
@@ -43,6 +46,8 @@ interface Props {
 }
 
 interface State {
+  showGuide1: boolean;
+  showGuide2: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -61,11 +66,19 @@ class Mine extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.state = {showGuide1: false, showGuide2: false}
   }
 
 
   componentDidShow() {
     this.getUserInfo();
+    let showGuide1 = get('mine_guide1');
+
+    this.setState({showGuide1: !showGuide1});
+
+    let showGuide2 = get('mine_guide2');
+
+    this.setState({showGuide2: !showGuide2 && !!showGuide1});
   }
 
   componentDidHide() {
@@ -91,6 +104,7 @@ class Mine extends Component<Props, State> {
   render() {
 
     let {userInfo} = this.props;
+    let {showGuide1, showGuide2} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -233,6 +247,36 @@ class Mine extends Component<Props, State> {
           </View>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
         </View>
+        {
+          showGuide1 && <MyGuide1 cancle={() => {
+            save('mine_guide1', true);
+            this.setState({showGuide1: false, showGuide2: true});
+          }
+          } viewFenXiao={() => {
+            save('mine_guide1', true);
+            this.setState({showGuide1: false, showGuide2: true}, () => {
+              Taro.navigateTo({
+                url: `/pages/mine/fenxiao_center`
+              });
+            });
+          }
+          }/>
+        }
+        {
+          showGuide2 && <MyGuide2 cancle={() => {
+            save('mine_guide2', true);
+            this.setState({showGuide2: false});
+          }
+          } openTeQuan={() => {
+            save('mine_guide2', true);
+            this.setState({showGuide2: false}, () => {
+              Taro.navigateTo({
+                url: `/pages/mine/tequan`
+              });
+            });
+          }
+          }/>
+        }
       </CustomSafeAreaView>
     );
   }
