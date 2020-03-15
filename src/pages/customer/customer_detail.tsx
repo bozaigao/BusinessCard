@@ -40,6 +40,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
+import './index.scss';
 
 interface Props {
   deleteCustomer?: any;
@@ -146,12 +147,12 @@ class CustomerDetail extends Component<Props, State> {
             return <View key={index}
                          style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60), bgColor('red')])}>
               <View
-                style={styleAssign([wRatio(100), h(74), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
+                style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
                 <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
                   <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
                 </View>
-                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}>{value.followUpContent}</Text>
+                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])} className={'.textStyle'}>{value.followUpContent}</Text>
               </View>
               <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
             </View>;
