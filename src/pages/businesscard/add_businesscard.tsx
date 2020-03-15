@@ -17,7 +17,8 @@ import {
   default as styles,
   fSize,
   h,
-  ml, mr,
+  ml,
+  mr,
   op,
   pl,
   pr,
@@ -39,6 +40,7 @@ interface Props {
   userInfo: User;
   //更新用户信息
   update: any;
+  decryptPhone: any;
 }
 
 interface State {
@@ -80,7 +82,7 @@ class AddBusinesscard extends Component<Props, State> {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
       listData: [
         {title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true},
-        {title: '手机'},
+        {title: '手机', value: ''},
         {
           title: '公司',
           subtitle: '请输入公司名',
@@ -106,7 +108,7 @@ class AddBusinesscard extends Component<Props, State> {
           value: email,
           hasEdit: true
         }],
-      avatar: avatar
+      avatar: avatar,
     }
   }
 
@@ -118,6 +120,32 @@ class AddBusinesscard extends Component<Props, State> {
 
       this.setState({listData: this.state.listData});
     })
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/15
+   * @function: 解密微信小程序手机号
+   */
+  decryptPhone = (data) => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.decryptPhone({encryptedData: data.encryptedData, iv: data.iv, cloudID: data.cloudID}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        let {listData} = this.state;
+        let temp = listData;
+
+        temp[1].value = res;
+        this.setState({listData: temp}, () => {
+          console.log('解密微信小程序手机号', res)
+        });
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
   /**
@@ -152,7 +180,8 @@ class AddBusinesscard extends Component<Props, State> {
       city: this.city,
       wechat: listData[6].value,
       email: listData[7].value,
-      showPhone
+      showPhone,
+      phone: listData[1].value
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
@@ -261,14 +290,21 @@ class AddBusinesscard extends Component<Props, State> {
                       <Text style={styleAssign([fSize(14), color(commonStyles.redColor)])}>*</Text>
                       <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{value.title}</Text>
                     </View>
-                    <Button style={styleAssign([styles.uac, styles.udr,mr(0), bgColor(commonStyles.whiteColor)])}
-                            openType={'getPhoneNumber'}
-                            onGetPhoneNumber={(e) => {
-                              console.log('获取手机号',e);
-                            }}>
-                      <Text
-                        style={styleAssign([fSize(14), color('#825D22'), styles.utxdu])}>获取手机号</Text>
-                    </Button>
+                    {
+                      value.value && value.value.length !== 0 ?
+                        <Text
+                          style={styleAssign([fSize(14), mr(20), color(commonStyles.colorTheme)])}>{value.value}</Text> :
+                        <Button style={styleAssign([styles.uac, styles.udr, mr(0), bgColor(commonStyles.whiteColor)])}
+                                openType={'getPhoneNumber'}
+                                onGetPhoneNumber={(e) => {
+                                  console.log('获取手机号', e);
+                                  this.decryptPhone(e.detail);
+                                }}>
+                          <Text
+                            style={styleAssign([fSize(14), color('#825D22'), styles.utxdu])}>获取手机号</Text>
+                        </Button>
+
+                    }
                   </View>
                   <View
                     style={styleAssign([wRatio(90), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), {marginLeft: '5%'}])}/>

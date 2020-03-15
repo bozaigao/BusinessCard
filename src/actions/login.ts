@@ -155,3 +155,16 @@ export const getRecommend = payload => createAction({
   payload,
   method: 'GET',
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/14
+ * @function: 解密微信小程序手机号
+ */
+export const decryptPhone = payload => createAction({
+  url: UserController.decryptPhone,
+  payload,
+  method: 'GET',
+});

@@ -37,6 +37,8 @@ const BASE_URL = StagingUrl,
     recommendSettingStatus: BASE_URL + 'user/recommendSettingStatus',
     //人脉推荐
     getRecommend: BASE_URL + 'user/recommend',
+    //解密微信小程序手机号
+    decryptPhone: BASE_URL + 'utils/decryptPhone',
   },
   //数据字典
   DictController = {
