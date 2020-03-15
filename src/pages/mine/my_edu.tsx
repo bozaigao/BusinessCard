@@ -157,8 +157,19 @@ class MyEdu extends Component<Props, State> {
   render() {
 
     let {list, wenHouYU, showWenHouYu, placeHolder, wenHouYUTmp} = this.state;
-    let selectorRange = ['博士', '研究生', '专科', '高中'];
-    let multiSelectorRange = [['2015', '2016', '2017', '2018', '2019'], ['到'], ['2020', '2021', '2022', '2023', '2024']];
+    let selectorRange = ['高中', '中专', '大专', '本科', '研究生', '硕士', '博士'];
+    let multiSelectorRange: any = [];
+    let startTime: any = [], endTime: any = [];
+
+    for (let i = 1977; i < 2051; i++) {
+      startTime.push(`${i}`);
+    }
+    for (let j = 1980; j < 2051; j++) {
+      endTime.push(`${j}`);
+    }
+    multiSelectorRange.push(startTime);
+    multiSelectorRange.push(['到']);
+    multiSelectorRange.push(endTime);
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
