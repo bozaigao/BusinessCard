@@ -157,7 +157,7 @@ class AddGoods extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('商品更新成功');
-        debounce(1000,()=>{
+        debounce(1000, () => {
           Taro.navigateBack();
         });
       }
@@ -210,7 +210,7 @@ class AddGoods extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('商品添加成功');
-        debounce(1000,()=>{
+        debounce(1000, () => {
           Taro.navigateBack();
         });
       }
@@ -290,6 +290,7 @@ class AddGoods extends Component<Props, State> {
                       style={styleAssign([wRatio(100), h(55), pl(20), pr(20), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
                       <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{value.title}</Text>
                       <Input
+                        maxLength={15}
                         type={value.title === '商品名称' ? 'text' : 'number'}
                         value={value.title === '商品名称' ? name : price}
                         style={styleAssign([ml(16), fSize(14), {textAlign: 'right'}])}

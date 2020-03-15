@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,20 +37,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_goods.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="add_goods.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/add_goods.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
+            <state relative-caret-position="403">
+              <caret line="292" column="37" selection-start-line="292" selection-start-column="37" selection-end-line="292" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="my_edu.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="my_edu.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="343">
-              <caret line="159" column="27" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
+              <caret line="159" column="57" lean-forward="true" selection-start-line="159" selection-start-column="57" selection-end-line="159" selection-end-column="57" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -110,8 +110,8 @@
       <find>分销</find>
       <find>分销中心</find>
       <find>新增</find>
-      <find>添加商品</find>
       <find>教育经历</find>
+      <find>添加商品</find>
     </findStrings>
     <replaceStrings>
       <replace>ico_default.png</replace>
@@ -201,8 +201,8 @@
         <option value="$PROJECT_DIR$/src/api/httpurl.ts" />
         <option value="$PROJECT_DIR$/src/pages/mine/fenxiao_center.tsx" />
         <option value="$PROJECT_DIR$/src/actions/distribution.ts" />
-        <option value="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" />
       </list>
     </option>
   </component>
@@ -491,12 +491,12 @@
       <workItem from="1584082184157" duration="1042000" />
       <workItem from="1584108545662" duration="1131000" />
       <workItem from="1584146091743" duration="18931000" />
-      <workItem from="1584250343909" duration="17113000" />
+      <workItem from="1584250343909" duration="17246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="989951000" />
+    <option name="totallyTimeSpent" value="990084000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1071,20 +1071,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/add_goods.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/my_edu.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
-          <caret line="159" column="27" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
+          <caret line="159" column="57" lean-forward="true" selection-start-line="159" selection-start-column="57" selection-end-line="159" selection-end-column="57" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/add_goods.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="292" column="37" selection-start-line="292" selection-start-column="37" selection-end-line="292" selection-end-column="37" />
         </state>
       </provider>
     </entry>
