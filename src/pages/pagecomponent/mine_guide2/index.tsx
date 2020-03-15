@@ -53,8 +53,8 @@ export default class MyGuide2 extends PureComponent<Props, State> {
         <TouchableButton
           customStyle={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.blackColor), op(0.5), styles.upa, absT(0), absR(0),])}/>
         <View
-          style={styleAssign([wRatio(100), styles.uac, styles.upa, {top: iphoneX() ? pxTransform(412) : pxTransform(282)}])}>
-          <Image style={styleAssign([w(66), h(28), styles.upa, absR(20)])}
+          style={styleAssign([wRatio(100), styles.uac, styles.upa, {top: iphoneX() ? pxTransform(320) : pxTransform(265)}])}>
+          <Image style={styleAssign([w(66), h(28), styles.upa, absR(25)])}
                  src={require('../../../assets/open_tequan.png')}
                  onClick={openTeQuan}/>
           <View style={styleAssign([wRatio(100), styles.uac, mt(30)])}>
