@@ -75,9 +75,7 @@ export default class WenHouModal extends PureComponent<Props, State> {
                          src={require('../../../assets/ico_wenhouyu_bg2.png')}/>
                   <View
                     style={styleAssign([wRatio(90), hRatio(90), {marginLeft: '7%'}, styles.ujc, styles.upa, absT(0)])}>
-                    <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{wenHouYu.substr(0, 25)}</Text>
-                    <Text
-                      style={styleAssign([fSize(14), color('#0C0C0C')])}>{wenHouYu.substr(25, wenHouYu.length)}</Text>
+                    <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>{wenHouYu}</Text>
                   </View>
                 </View>
               </View>

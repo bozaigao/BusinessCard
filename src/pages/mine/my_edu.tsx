@@ -240,7 +240,7 @@ class MyEdu extends Component<Props, State> {
               </View>
               <View style={styleAssign([wRatio(100), h(131), bgColor(commonStyles.whiteColor)])}>
               <Textarea value={wenHouYU}
-                        maxlength={50}
+                        maxlength={25}
                         placeholder={placeHolder}
                         style={styleAssign([w(305), h(91), fSize(16), ml(20),
                           bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20)])}
@@ -249,7 +249,7 @@ class MyEdu extends Component<Props, State> {
                         }}/>
                 <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(30)])}>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{wenHouYU.length}</Text>
-                  <Text style={styleAssign([fSize(12), color('#CECECE')])}>/50</Text>
+                  <Text style={styleAssign([fSize(12), color('#CECECE')])}>/25</Text>
                 </View>
                 <View
                   style={styleAssign([wRatio(100), h(20), bgColor(commonStyles.whiteColor), styles.upa, absR(0), absB(0)])}/>
