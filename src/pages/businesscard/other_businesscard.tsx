@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign} from "../../utils/datatool";
+import {get, save, styleAssign} from "../../utils/datatool";
 import {
   absB,
   absL,
@@ -47,6 +47,7 @@ import ShareModal from "../pagecomponent/share-modal/index";
 import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
+import OtherBusinessCardGuide from "../pagecomponent/other-business-card-guide";
 
 interface Props {
   //获取用户信息
@@ -56,6 +57,7 @@ interface Props {
 interface State {
   showShare: boolean;
   userInfo: User;
+  showGuide: boolean;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), {...actions, ...loginActions})
@@ -79,13 +81,17 @@ class OtherBusinesscard extends Component<Props, State> {
     super(props);
     this.state = {
       showShare: false,
-      userInfo: null
+      userInfo: null,
+      showGuide: false
     }
   }
 
   componentDidShow() {
     console.log(this.viewRef);
     this.getUserInfoById();
+    let showGuide = get('other_business_guide');
+
+    this.setState({showGuide: !showGuide});
   }
 
 
@@ -123,7 +129,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, userInfo} = this.state;
+    let {showShare, userInfo, showGuide} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -201,7 +207,8 @@ class OtherBusinesscard extends Component<Props, State> {
                   <View style={styleAssign([styles.udr, mt(8)])}>
                     <Text
                       style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
-                    <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                    <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])}
+                           src={`${cloudBaseUrl}ico_card_location.png`}/>
                   </View>
                 </View>
               </View>
@@ -333,6 +340,21 @@ class OtherBusinesscard extends Component<Props, State> {
           } haibao={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/mingpian_haibao`
+            });
+          }
+          }/>
+        }
+        {
+          showGuide && <OtherBusinessCardGuide cancle={() => {
+            save('other_business_guide', true);
+            this.setState({showGuide: false});
+          }
+          } goToMyCard={() => {
+            save('other_business_guide', true);
+            this.setState({showGuide: false}, () => {
+              Taro.reLaunch({
+                url: `/pages/businesscard`
+              });
             });
           }
           }/>
