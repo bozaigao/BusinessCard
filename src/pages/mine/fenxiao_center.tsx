@@ -34,13 +34,14 @@ import {styleAssign} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {BaseCoin, User} from "../../const/global";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar";
 
 
 interface Props {
   //分销中心主页-我的收益
   userIncome: any;
+  myCustomerCount: any;
   userInfo: User;
 }
 
@@ -55,6 +56,8 @@ interface State {
   withdrawIncome: number;
   //已提现金额 单位分
   withdrawIncomeStat: number;
+  //新增客户数量
+  newAddCustomerNum: number;
 }
 
 
@@ -79,18 +82,14 @@ class FenxiaoCenter extends Component<Props, State> {
       noSettlement: 0,
       totalIncome: 0,
       withdrawIncome: 0,
-      withdrawIncomeStat: 0
+      withdrawIncomeStat: 0,
+      newAddCustomerNum: 0
     }
   }
 
   componentWillMount() {
     this.userIncome();
-  }
-
-  componentDidShow() {
-  }
-
-  componentDidHide() {
+    this.myCustomerCount();
   }
 
 
@@ -117,10 +116,30 @@ class FenxiaoCenter extends Component<Props, State> {
     });
   }
 
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/15
+   * @function: 我的新增客户数量
+   */
+  myCustomerCount = () => {
+    this.props.myCustomerCount().then((res) => {
+      console.log('我的新增客户数量', res);
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          newAddCustomerNum: res,
+        });
+      }
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
   render() {
 
     let {userInfo} = this.props;
-    let {level, noSettlement, totalIncome, withdrawIncome, withdrawIncomeStat} = this.state;
+    let {level, noSettlement, totalIncome, withdrawIncome, withdrawIncomeStat, newAddCustomerNum} = this.state;
     let levelIcon = require('../../assets/ico_gold.png');
 
     switch (level) {
@@ -295,12 +314,15 @@ class FenxiaoCenter extends Component<Props, State> {
                 <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(14)])}>
                   我的客户
                 </Text>
-                <View style={styleAssign([w(54), h(21), ml(25), radiusA(4), bgColor('#FA6B57'),
-                  styles.uac, styles.ujc])}>
-                  <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
-                    新增3人
-                  </Text>
-                </View>
+                {
+                  newAddCustomerNum !== 0 &&
+                  <View style={styleAssign([w(54), h(21), ml(25), radiusA(4), bgColor('#FA6B57'),
+                    styles.uac, styles.ujc])}>
+                    <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+                      {`新增${newAddCustomerNum}人`}
+                    </Text>
+                  </View>
+                }
               </View>
               <Image style={styleAssign([w(7), h(12)])} src={require('../../assets/ico_next.png')}/>
             </View>

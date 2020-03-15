@@ -142,6 +142,8 @@ const BASE_URL = StagingUrl,
     withdraw: BASE_URL + 'distribution/withdraw',
     //提现记录
     withdrawList: BASE_URL + 'distribution/withdrawList',
+    //我的新增客户数量
+    myCustomerCount: BASE_URL + 'distribution/myCustomerCount',
   },
   //特区中心
   TeQuanManage = {

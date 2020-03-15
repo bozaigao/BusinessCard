@@ -83,3 +83,16 @@ export const withdrawList = payload => createAction({
   payload,
   method: 'GET'
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/15
+ * @function: 我的新增客户数量
+*/
+export const myCustomerCount = payload => createAction({
+  url: DistributionManage.myCustomerCount,
+  payload,
+  method: 'POST'
+});
