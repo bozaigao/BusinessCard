@@ -305,11 +305,11 @@ class Businesscard extends Component<Props, State> {
         {
           showGuide2 && <BusinessCardGuide2 cancle={() => {
             save('business_guide2', true);
-            this.setState({showGuide2: false, showGuide3: false});
+            this.setState({showGuide2: false, showGuide3: true});
           }
           } viewCard={() => {
             save('business_guide2', true);
-            this.setState({showGuide2: false, showGuide3: false}, () => {
+            this.setState({showGuide2: false, showGuide3: true}, () => {
               Taro.navigateTo({
                 url: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
               });
@@ -322,13 +322,9 @@ class Businesscard extends Component<Props, State> {
             save('business_guide3', true);
             this.setState({showGuide3: false});
           }
-          } createCard={() => {
+          } shareCard={() => {
             save('business_guide3', true);
-            this.setState({showGuide3: false}, () => {
-              Taro.navigateTo({
-                url: `/pages/businesscard/add_businesscard`
-              });
-            });
+            this.setState({showGuide3: false, showShare: true});
           }
           }/>
         }
