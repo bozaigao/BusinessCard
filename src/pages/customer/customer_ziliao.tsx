@@ -25,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign, wrapSafe} from "../../utils/datatool";
+import {styleAssign, transformTime, wrapSafe} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -99,7 +99,7 @@ class CustomerZiLiao extends Component<Props, State> {
   }
 
 
-  componentDidShow(){
+  componentDidShow() {
     this.getCustomerDetail();
   }
 
@@ -154,11 +154,11 @@ class CustomerZiLiao extends Component<Props, State> {
                   {customer.position}
                 </Text>
                 <View style={styleAssign([styles.uac, styles.udr])}
-                onClick={()=>{
-                  Taro.navigateTo({
-                    url: `/pages/customer/customer_remark?id=${this.id}`
-                  });
-                }}>
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/customer/customer_remark?id=${this.id}`
+                        });
+                      }}>
                   <Text style={styleAssign([fSize(14), color('#343434')])}>
                     添加备注
                   </Text>
@@ -194,7 +194,7 @@ class CustomerZiLiao extends Component<Props, State> {
           {
             [{title: '地区', value: wrapSafe(customer.province + customer.city)},
               {title: '详细地址', value: wrapSafe(customer.detailAddress)},
-              {title: '生日', value: wrapSafe(customer.birthday)},
+              {title: '生日', value: transformTime(customer.birthday)},
               {title: '微信号', value: wrapSafe(customer.wechat)},
               {title: '邮箱', value: wrapSafe(customer.email)}].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
