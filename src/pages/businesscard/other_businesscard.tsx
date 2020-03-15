@@ -81,6 +81,7 @@ class OtherBusinesscard extends Component<Props, State> {
     super(props);
     this.state = {
       showShare: false,
+      //@ts-ignore
       userInfo: null,
       showGuide: false
     }

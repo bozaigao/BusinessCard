@@ -47,8 +47,6 @@ interface State {
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
 class Businesscard extends Component<Props, State> {
 
-  private viewRef;
-
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -197,9 +195,7 @@ class Businesscard extends Component<Props, State> {
     let {userInfo} = this.props;
 
     return (
-      <CustomSafeAreaView ref={(ref) => {
-        this.viewRef = ref;
-      }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
+      <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           notNeedBottomPadding={true}
       >
         {/*切换名片*/}

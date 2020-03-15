@@ -5,7 +5,7 @@
  * @date 2020/3/15
  * @Description: 别人名片指引页
  */
-import Taro, {PureComponent, pxTransform} from "@tarojs/taro";
+import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import {

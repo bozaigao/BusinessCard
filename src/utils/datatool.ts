@@ -171,8 +171,8 @@ function formatDate(date) {
 
 //获得某月的天数
 function getMonthDays(myMonth) {
-  let monthStartDate = new Date(nowYear, myMonth, 1);
-  let monthEndDate = new Date(nowYear, myMonth + 1, 1);
+  let monthStartDate: any = new Date(nowYear, myMonth, 1);
+  let monthEndDate: any = new Date(nowYear, myMonth + 1, 1);
   let days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
 
   return days;
@@ -230,7 +230,7 @@ export function formartSecond(seconds: number) {
   else if (seconds % 60 === 0) {
     return `${seconds / 60}分钟`;
   }
-    return `${seconds / 60}分${seconds % 60}秒`;
+  return `${seconds / 60}分${seconds % 60}秒`;
 
 }
 

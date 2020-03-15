@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/guide_leida.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/pagecomponent/leida-guide/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/radarscan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radarscan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/datatool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/datatool.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +22,13 @@
       <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="83" column="45" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="83" selection-end-column="45" />
+            <state relative-caret-position="340">
+              <caret line="199" column="7" lean-forward="true" selection-start-line="199" selection-start-column="7" selection-end-line="199" selection-end-column="7" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#112#164#0" expanded="true" />
+                <element signature="e#327#384#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/leida-guide/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
-              <caret line="69" column="3" lean-forward="true" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+            <state relative-caret-position="505">
+              <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#106#155#0" expanded="true" />
@@ -56,8 +61,22 @@
       <file leaf-file-name="other_businesscard.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1078">
-              <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
+            <state relative-caret-position="-4149">
+              <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#119#171#0" expanded="true" />
+                <element signature="e#336#396#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datatool.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="497">
+              <caret line="174" column="23" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -65,11 +84,11 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="44" column="12" lean-forward="true" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
+            <state relative-caret-position="291">
+              <caret line="58" column="29" lean-forward="true" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#108#170#0" expanded="true" />
+                <element signature="e#108#157#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>我的个人</find>
       <find>getIndu</find>
       <find>Scroll</find>
       <find>interest</find>
@@ -114,8 +132,9 @@
       <find>viewCa</find>
       <find>showGuide1</find>
       <find>BusinessCardGuide1</find>
-      <find>to</find>
       <find>didS</find>
+      <find>viewRef</find>
+      <find>to</find>
     </findStrings>
     <replaceStrings>
       <replace>ico_default.png</replace>
@@ -162,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/pages/choose_renmai_tag.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
-        <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/self_intro.tsx" />
@@ -202,11 +220,12 @@
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/business-card-guide1/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/business-card-guide2/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/business-card-guide3/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/radarscan.tsx" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/leida-guide/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
+        <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
       </list>
     </option>
   </component>
@@ -262,7 +281,28 @@
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="businesscard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="pagecomponent" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="pagecomponent" type="462c0819:PsiDirectoryNode" />
+              <item name="other-business-card-guide" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
+              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -490,12 +530,12 @@
       <workItem from="1584082184157" duration="1042000" />
       <workItem from="1584108545662" duration="1131000" />
       <workItem from="1584146091743" duration="18931000" />
-      <workItem from="1584250343909" duration="6527000" />
+      <workItem from="1584250343909" duration="6667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="979365000" />
+    <option name="totallyTimeSpent" value="979505000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -959,13 +999,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/request.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1006,31 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="44" column="12" lean-forward="true" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#108#170#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1078">
-          <caret line="49" column="80" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="83" column="45" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="83" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/radarscan.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
@@ -1043,12 +1051,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/leida-guide/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
-          <caret line="69" column="3" lean-forward="true" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+        <state relative-caret-position="505">
+          <caret line="65" column="36" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#106#155#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="199" column="7" lean-forward="true" selection-start-line="199" selection-start-column="7" selection-end-line="199" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#112#164#0" expanded="true" />
+            <element signature="e#327#384#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/other-business-card-guide/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="58" column="29" lean-forward="true" selection-start-line="58" selection-start-column="29" selection-end-line="58" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#108#157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4149">
+          <caret line="86" column="5" lean-forward="true" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#119#171#0" expanded="true" />
+            <element signature="e#336#396#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="174" column="23" selection-start-line="174" selection-start-column="23" selection-end-line="174" selection-end-column="23" />
         </state>
       </provider>
     </entry>
