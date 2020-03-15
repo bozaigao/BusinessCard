@@ -8,13 +8,14 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import {Image, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
-import {styleAssign, toast} from "../utils/datatool";
+import {get, save, styleAssign, toast} from "../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, mt, w, wRatio} from "../utils/style";
 import RadarItem from "./pagecomponent/radar-item/index";
 import * as actions from '../actions/radar';
 import {connect} from "@tarojs/redux";
 import {RadarModel} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
+import LeiDaGuide from "./pagecomponent/leida-guide";
 
 interface Props {
   //查询我的雷达数据列表
@@ -23,6 +24,7 @@ interface Props {
 
 interface State {
   records: RadarModel[];
+  showGuide:boolean;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), {...actions})
@@ -45,7 +47,8 @@ class Radarscan extends Component<Props, State> {
     this.pageNo = 1;
     this.pageSize = 10;
     this.state = {
-      records: []
+      records: [],
+      showGuide:false
     }
   }
 
@@ -55,6 +58,9 @@ class Radarscan extends Component<Props, State> {
 
   componentDidShow() {
     this.refresh();
+    let showGuide = get('radar_guide');
+
+    this.setState({showGuide: !showGuide});
   }
 
   refresh = () => {
@@ -89,7 +95,7 @@ class Radarscan extends Component<Props, State> {
   }
 
   render() {
-    let {records} = this.state;
+    let {records,showGuide} = this.state;
 
     return (
       <CustomSafeAreaView
@@ -125,6 +131,13 @@ class Radarscan extends Component<Props, State> {
                 })
               }
             </ScrollView>
+        }
+        {
+          showGuide && <LeiDaGuide cancle={() => {
+            save('radar_guide', true);
+            this.setState({showGuide: false});
+          }
+          }/>
         }
       </CustomSafeAreaView>
     )
