@@ -114,7 +114,7 @@ class AddBusinesscard extends Component<Props, State> {
   componentDidShow() {
     Taro.eventCenter.on('industry', (industry) => {
       console.log('参数回调', industry);
-      this.state.listData[2].value = industry;
+      this.state.listData[3].value = industry;
 
       this.setState({listData: this.state.listData});
     })
@@ -133,11 +133,11 @@ class AddBusinesscard extends Component<Props, State> {
       toast('请先填写姓名');
       return;
     }
-    if (!listData[1].value || listData[1].value.length === 0) {
+    if (!listData[2].value || listData[2].value.length === 0) {
       toast('请先填写公司');
       return;
     }
-    if (!listData[2].value || listData[2].value.length === 0) {
+    if (!listData[3].value || listData[3].value.length === 0) {
       toast('请先填写行业');
       return;
     }
@@ -145,13 +145,13 @@ class AddBusinesscard extends Component<Props, State> {
     this.props.update({
       avatar: this.avatar,
       name: listData[0].value,
-      company: listData[1].value,
-      industry: listData[2].value,
-      position: listData[3].value,
+      company: listData[2].value,
+      industry: listData[3].value,
+      position: listData[4].value,
       province: this.province,
       city: this.city,
-      wechat: listData[5].value,
-      email: listData[6].value,
+      wechat: listData[6].value,
+      email: listData[7].value,
       showPhone
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
@@ -240,7 +240,7 @@ class AddBusinesscard extends Component<Props, State> {
                   console.log(e.detail)
                   this.province = e.detail.value[0];
                   this.city = e.detail.value[1] + e.detail.value[2];
-                  this.state.listData[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                  this.state.listData[5].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
                   this.setState({
                     listData: this.state.listData
                   })
@@ -292,19 +292,19 @@ class AddBusinesscard extends Component<Props, State> {
                   this.state.listData[0].value = e.detail.value;
                   this.setState({listData: this.state.listData});
                 } else if (value.title === '公司') {
-                  this.state.listData[1].value = e.detail.value;
-                  this.setState({listData: this.state.listData});
-                } else if (value.title === '行业') {
                   this.state.listData[2].value = e.detail.value;
                   this.setState({listData: this.state.listData});
-                } else if (value.title === '职位') {
+                } else if (value.title === '行业') {
                   this.state.listData[3].value = e.detail.value;
                   this.setState({listData: this.state.listData});
+                } else if (value.title === '职位') {
+                  this.state.listData[4].value = e.detail.value;
+                  this.setState({listData: this.state.listData});
                 } else if (value.title === '微信号') {
-                  this.state.listData[5].value = e.detail.value;
+                  this.state.listData[6].value = e.detail.value;
                   this.setState({listData: this.state.listData});
                 } else if (value.title === '邮箱') {
-                  this.state.listData[6].value = e.detail.value;
+                  this.state.listData[7].value = e.detail.value;
                   this.setState({listData: this.state.listData});
                 }
                 console.log(e);

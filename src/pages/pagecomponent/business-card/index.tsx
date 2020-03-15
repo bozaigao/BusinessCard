@@ -70,11 +70,13 @@ export default class Card extends PureComponent<Props, State> {
               </View>
               <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
                 {/*电话号码*/}
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
-                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
-                </View>
+                {
+                  userInfo.showPhone === 1 && <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
+                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
+                  </View>
+                }
                 {/*微信号*/}
                 <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                   <Text
