@@ -33,7 +33,7 @@ import BottomButon from "../../compoments/bottom-buton/index";
 import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
-import {CustomerModel} from "../../const/global";
+import {CustomerModel, timeMap} from "../../const/global";
 import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer";
 
 interface Props {
@@ -75,7 +75,7 @@ class AddTask extends Component<Props, State> {
     }
   }
 
-  componentDidShow(){
+  componentDidShow() {
     Taro.eventCenter.on('chooseCustomer', (chooseCustomer) => {
       this.setState({chooseCustomer});
     });
@@ -103,7 +103,24 @@ class AddTask extends Component<Props, State> {
       toast('日期不能为空');
       return;
     }
+    let myyear = new Date().getFullYear();
+    let mymonth = new Date().getMonth() + 1;
+    let myweekday = new Date().getDate();
+    let dateTime = new Date(date).getTime();
 
+    if (mymonth < 10) {
+      mymonth = '0' + mymonth;
+    }
+    if (myweekday < 10) {
+      myweekday = '0' + myweekday;
+    }
+
+    let currentTime = new Date(`${myyear}-${mymonth}-${myweekday}`).getTime();
+
+    if (dateTime < currentTime) {
+      toast('不能选择之前的日期');
+      return;
+    }
     let paramas = {
       theme,
       date,
@@ -165,6 +182,7 @@ class AddTask extends Component<Props, State> {
                     }} maxlength={50}/>
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <Picker mode='date' onChange={(e) => {
+            console.log('时间选择', e)
             this.setState({date: e.detail.value});
           }} value={date} style={styleAssign([wRatio(100)])}>
             <TouchableButton

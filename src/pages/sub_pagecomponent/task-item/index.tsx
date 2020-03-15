@@ -27,6 +27,7 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
 import {TaskModel} from "../../../const/global";
+import './index.scss';
 
 
 interface Props {
@@ -45,9 +46,10 @@ export default class TaskItem extends PureComponent<Props, State> {
     return (
       <View style={styleAssign([wRatio(100), h(143), styles.uac, styles.ujc, mt(10), mb(10)])}>
         <View style={styleAssign([w(335), h(153), bgColor(commonStyles.whiteColor), radiusA(4)])}>
-          <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb,
+          <View style={styleAssign([w(335), styles.uac, styles.udr, styles.ujb,
             pl(16), pr(16), pt(20)])}>
-            <Text style={styleAssign([fSize(16), color('#343434')])}>{itemData.theme}</Text>
+            <Text style={styleAssign([fSize(16), color('#343434'), w(200), h(40)])}
+                  className={'.textStyle'}>{itemData.theme}</Text>
             {
               itemData.status !== 1 && <TouchableButton
                 onClick={() => {
