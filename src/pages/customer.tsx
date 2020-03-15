@@ -24,7 +24,7 @@ import {
   w,
   wRatio
 } from "../utils/style";
-import {getToday, styleAssign, toast} from "../utils/datatool";
+import {get, getToday, save, styleAssign, toast} from "../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../actions/customer";
@@ -35,6 +35,7 @@ import ModeModal from "./pagecomponent/mode-modal/index";
 import ShaiXuanModal from "./pagecomponent/shai-xuan-modal/index";
 import NavigationBar from "../compoments/navigation_bar/index";
 import SanJiao from "../compoments/sanjiao/index";
+import CustomerGuide from "./pagecomponent/customer-guide";
 
 interface Props {
   getCustomerList?: any;
@@ -47,6 +48,7 @@ interface State {
   showMode: boolean;
   shaiXuanValue: string;
   showShaiXuan: boolean;
+  showGuide: boolean;
   //筛选开始时间
   startTime: string;
   //筛选结束时间
@@ -72,7 +74,8 @@ class Customer extends Component<Props, State> {
       showShaiXuan: false,
       startTime: '2020-01-01',
       endTime: getToday(),
-      name: ''
+      name: '',
+      showGuide:false
     }
   }
 
@@ -86,6 +89,9 @@ class Customer extends Component<Props, State> {
     Taro.eventCenter.on('refreshCustomerList', () => {
       this.refresh();
     })
+    let showGuide = get('customer_guide');
+
+    this.setState({showGuide: !showGuide});
   }
 
   componentWillUnmount() {
@@ -152,7 +158,7 @@ class Customer extends Component<Props, State> {
 
   render() {
 
-    let {customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan} = this.state;
+    let {customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan,showGuide} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -270,6 +276,13 @@ class Customer extends Component<Props, State> {
               this.setState({showShaiXuan: false});
             }
             }/>
+        }
+        {
+          showGuide && <CustomerGuide cancle={() => {
+            save('customer_guide', true);
+            this.setState({showGuide: false});
+          }
+          }/>
         }
       </CustomSafeAreaView>
     )
