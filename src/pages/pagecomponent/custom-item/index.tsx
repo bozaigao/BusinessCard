@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {styleAssign, transformTime} from "../../../utils/datatool";
 import styles, {
   absB,
   absR,
@@ -25,14 +25,14 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
-import {CustomerModel} from "../../../const/global";
 import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
   onClick: any;
-  genJinCallback:any;
-  customer: CustomerModel;
+  genJinCallback: any;
+  customer: any;
+  mode: string;
 }
 
 interface State {
@@ -41,7 +41,7 @@ interface State {
 export default class CustomItem extends PureComponent<Props, State> {
 
   render() {
-    let {onClick, customer,genJinCallback} = this.props;
+    let {onClick, customer, genJinCallback, mode} = this.props;
 
     return (
       <TouchableButton
@@ -53,7 +53,7 @@ export default class CustomItem extends PureComponent<Props, State> {
               <Image style={styleAssign([w(60), h(60), radiusA(30)])}
                      src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
               <Image style={styleAssign([w(16), h(16), styles.upa, absB(0), absR(0)])}
-                     src={customer.sex === 1 ?`${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
+                     src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
             </View>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(16), color('#343434')])}>{customer.name}</Text>
@@ -74,7 +74,8 @@ export default class CustomItem extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
-            <Text style={styleAssign([color('#979797'), fSize(14), ml(16)])}>最后转入 12-16 11:15</Text>
+            <Text
+              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${transformTime(customer.followUpDate)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}>

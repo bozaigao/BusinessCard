@@ -75,7 +75,7 @@ class Customer extends Component<Props, State> {
       startTime: '2020-01-01',
       endTime: getToday(),
       name: '',
-      showGuide:false
+      showGuide: false
     }
   }
 
@@ -120,7 +120,7 @@ class Customer extends Component<Props, State> {
    */
   getCustomerList = (refresh?: boolean) => {
     let status = 0;
-    let {shaiXuanMode, startTime, endTime,name} = this.state;
+    let {shaiXuanMode, startTime, endTime, name} = this.state;
 
     if (shaiXuanMode === '最后访问时间') {
       status = 0;
@@ -158,7 +158,7 @@ class Customer extends Component<Props, State> {
 
   render() {
 
-    let {customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan,showGuide} = this.state;
+    let {customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -220,17 +220,19 @@ class Customer extends Component<Props, State> {
               {
                 customerList.map((value: CustomerModel, index) => {
                   console.log(value);
-                  return (<CustomItem key={index} customer={value} onClick={() => {
-                    Taro.navigateTo({
-                      url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
-                    });
-                  }}
-                                      genJinCallback={(customer) => {
-                                        Taro.navigateTo({
-                                          url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-                                        });
-                                      }
-                                      }/>);
+                  return (
+                    <CustomItem key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)}
+                                onClick={() => {
+                                  Taro.navigateTo({
+                                    url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
+                                  });
+                                }}
+                                genJinCallback={(customer) => {
+                                  Taro.navigateTo({
+                                    url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+                                  });
+                                }
+                                }/>);
                 })
               }
             </ScrollView>
