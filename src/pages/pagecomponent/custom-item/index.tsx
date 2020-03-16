@@ -78,10 +78,22 @@ export default class CustomItem extends PureComponent<Props, State> {
               style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${transformTime(customer.followUpDate)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
-            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}>
+            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    Taro.navigateTo({
+                      url: `/pages/businesscard/other_businesscard?userId=${customer.id}`
+                    });
+                  }}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(14)])}>查看名片</Text>
             </View>
-            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
+            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    Taro.makePhoneCall({
+                      phoneNumber: customer.phone
+                    })
+                  }}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(14), styles.utxdu])}>拨打电话</Text>
             </View>
           </View>

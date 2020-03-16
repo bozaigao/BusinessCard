@@ -273,7 +273,7 @@ class OtherBusinesscard extends Component<Props, State> {
                     {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                   onClick={() => {
                     Taro.makePhoneCall({
-                      phoneNumber: userInfo.phone //仅为示例，并非真实的电话号码
+                      phoneNumber: userInfo.phone
                     })
                   }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>

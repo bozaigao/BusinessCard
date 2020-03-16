@@ -219,7 +219,7 @@ class CustomerDetail extends Component<Props, State> {
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                 onClick={() => {
                   Taro.makePhoneCall({
-                    phoneNumber: '15982468866' //仅为示例，并非真实的电话号码
+                    phoneNumber: '15982468866'
                   })
                 }}>
                 <View style={styleAssign([styles.uac, styles.udr])}>
