@@ -200,6 +200,10 @@ class MingpianHaibao extends Component<Props, State> {
           }).then(res => {
             that.viewRef && that.viewRef.hideLoading();
             toast('名片码保存成功');
+            Taro.previewImage({
+              current: this.state.imageTempPath, // 当前显示图片的http链接
+              urls: [this.state.imageTempPath] // 需要预览的图片http链接列表
+            })
             console.log(res)
           })
         })
