@@ -22,9 +22,11 @@ import {
   hRatio,
   ml,
   mt,
-  op, pb,
+  op,
+  pb,
   pl,
-  pr, pt,
+  pr,
+  pt,
   radiusA,
   radiusTL,
   radiusTR,
@@ -35,9 +37,10 @@ import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
+import * as loginActions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel, FlowUpListModel} from "../../const/global";
+import {CustomerModel, FlowUpListModel, User} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
@@ -45,6 +48,8 @@ import './index.scss';
 interface Props {
   deleteCustomer?: any;
   followUpList?: any;
+  //获取用户信息
+  getUserInfoById: any;
 }
 
 interface State {
@@ -52,9 +57,10 @@ interface State {
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
+  userInfo: User;
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, Object.assign(actions, loginActions))
 class CustomerDetail extends Component<Props, State> {
   private viewRef;
   /**
@@ -76,7 +82,8 @@ class CustomerDetail extends Component<Props, State> {
       customer: parseData(this.$router.params.itemData),
       showOperate: false,
       currentIndex: 0,
-      flowUpList: []
+      flowUpList: [],
+      userInfo: null
     }
   }
 
@@ -87,11 +94,25 @@ class CustomerDetail extends Component<Props, State> {
   componentWillUnmount() {
   }
 
-  componentDidShow(){
+  componentDidShow() {
+    this.getUserInfoById();
     this.followUpList();
   }
 
-  componentDidHide() {
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+   */
+  getUserInfoById = () => {
+    console.log('获取用户信息');
+    this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
+      this.setState({userInfo: res});
+      console.log('获取用户信息', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
   /**
@@ -104,7 +125,10 @@ class CustomerDetail extends Component<Props, State> {
     console.log('查询客户跟进信息记录');
     this.props.followUpList({id: this.state.customer.id}).then((res) => {
       console.log('查询客户跟进信息记录', res);
-      this.setState({flowUpList: res});
+      if (res && res !== NetworkState.FAIL){
+        this.setState({flowUpList: res});
+      }
+
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -135,7 +159,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList, userInfo} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -152,7 +176,8 @@ class CustomerDetail extends Component<Props, State> {
                   <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
                 </View>
-                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])} className={'.textStyle'}>{value.followUpContent}</Text>
+                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}
+                      className={'.textStyle'}>{value.followUpContent}</Text>
               </View>
               <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
             </View>;
@@ -173,170 +198,180 @@ class CustomerDetail extends Component<Props, State> {
                             this.viewRef = ref;
                           }}>
         <TopHeader title={''}/>
-        <ScrollView
-          style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-          scrollY>
-          <View style={styleAssign([styles.uac, wRatio(100), bgColor(commonStyles.whiteColor)])}>
-            <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, pl(20), pr(20),
-              bgColor(commonStyles.whiteColor)])}>
-              <View style={styleAssign([styles.uac, styles.ujc, w(40), h(40)])}
-                    onClick={() => {
-                      this.setState({showOperate: true});
-                    }}>
-                <Image style={styleAssign([w(19), h(4)])} src={`${cloudBaseUrl}ico_dot.png`}/>
-              </View>
-              <View style={styleAssign([styles.uac])}>
-                <View style={styleAssign([w(98), h(98)])}>
-                  <Image style={styleAssign([w(98), h(98), radiusA(49)])}
-                         src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
-                  <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
-                         src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
+        {
+          userInfo && <ScrollView
+            style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+            scrollY>
+            <View style={styleAssign([styles.uac, wRatio(100), bgColor(commonStyles.whiteColor)])}>
+              <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, pl(20), pr(20),
+                bgColor(commonStyles.whiteColor)])}>
+                <View style={styleAssign([styles.uac, styles.ujc, w(40), h(40)])}
+                      onClick={() => {
+                        this.setState({showOperate: true});
+                      }}>
+                  <Image style={styleAssign([w(19), h(4)])} src={`${cloudBaseUrl}ico_dot.png`}/>
                 </View>
-                <Text style={styleAssign([fSize(22), color('#343434'), mt(11)])}>{customer.name}</Text>
-                <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([fSize(12), color('#979797')])}>来自</Text>
-                  <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>名片扫码</Text>
+                <View style={styleAssign([styles.uac])}>
+                  <View style={styleAssign([w(98), h(98)])}>
+                    <Image style={styleAssign([w(98), h(98), radiusA(49)])}
+                           src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                    <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
+                           src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
+                  </View>
+                  <Text style={styleAssign([fSize(22), color('#343434'), mt(11)])}>{customer.name}</Text>
+                  <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
+                  <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Text style={styleAssign([fSize(12), color('#979797')])}>来自</Text>
+                    <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.source}</Text>
+                  </View>
+                </View>
+                <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/customer/customer_ziliao?id=${customer.id}`
+                        });
+                      }}>
+                  <Text style={styleAssign([fSize(15), color('#343434')])}>资料</Text>
+                  <Image style={styleAssign([w(7), h(12), ml(8)])}
+                         src={`${cloudBaseUrl}ico_next.png`}/>
                 </View>
               </View>
-              <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
-                    onClick={() => {
-                      Taro.navigateTo({
-                        url: `/pages/customer/customer_ziliao?id=${customer.id}`
-                      });
-                    }}>
-                <Text style={styleAssign([fSize(15), color('#343434')])}>资料</Text>
-                <Image style={styleAssign([w(7), h(12), ml(8)])}
-                       src={`${cloudBaseUrl}ico_next.png`}/>
-              </View>
-            </View>
-            {/*加微信、联系地址*/}
-            <View
-              style={styleAssign([wRatio(95), styles.uac, styles.udr, h(100), bgColor(commonStyles.whiteColor)])}>
+              {/*加微信、联系地址*/}
               <View
-                style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
-                  bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4),
-                  {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
-                onClick={() => {
-                  Taro.makePhoneCall({
-                    phoneNumber: '15982468866'
-                  })
-                }}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
-                  <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
-                </View>
-                <Text style={styleAssign([color('#979797'), fSize(12)])}>15982468866</Text>
-              </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
-                bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
-                {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
-                    onClick={() => {
-                      Taro.setClipboardData({
-                        data: 'bozaigao98'
-                      });
-                      // Taro.getClipboardData({
-                      //   success(res) {
-                      //     console.log('拷贝文件', res.data) // data
-                      //   }
-                      // })
-                    }}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_wechat_gray.png')}/>
-                  <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
-                </View>
-                <Text style={styleAssign([color('#979797'), fSize(12)])}>点击添加微信</Text>
-              </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
-                bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
-                {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_location_gray.png')}/>
-                  <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
-                </View>
-                <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styleAssign([wRatio(100)])}>
-            <View style={styleAssign([styles.udr, styles.uac, styles.ujb,
-              wRatio(100), h(44), bgColor(commonStyles.whiteColor), mt(12)])}>
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 0});
-                    }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 0 ? '#343434' : '#E2BB7B')])}>轨迹</Text>
-              </View>
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 1});
-                    }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>跟进</Text>
-              </View>
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 2});
-                    }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 2 ? '#343434' : '#E2BB7B')])}>标签</Text>
-              </View>
-              <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
-                    onClick={() => {
-                      this.setState({currentIndex: 3});
-                    }}>
-                <Text
-                  style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
-              </View>
-            </View>
-            <View style={styleAssign([styles.uac, styles.udr, styles.ujb, wRatio(100)])}>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                style={styleAssign([wRatio(95), styles.uac, styles.udr, h(100), bgColor(commonStyles.whiteColor)])}>
                 <View
-                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 0 ? commonStyles.whiteColor : '#E2BB7B')])}/>
-              </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
-                <View
-                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 1 ? commonStyles.whiteColor : '#E2BB7B')])}/>
-              </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
-                <View
-                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 2 ? commonStyles.whiteColor : '#E2BB7B')])}/>
-              </View>
-              <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
-                <View
-                  style={styleAssign([w(44), h(1), bgColor(currentIndex !== 3 ? commonStyles.whiteColor : '#E2BB7B')])}/>
-              </View>
-            </View>
-          </View>
-          {childView}
-        </ScrollView>{
-        showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
-                             onClick={() => {
-                               this.setState({showOperate: false});
-                             }}>
-          <View
-            style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
-          <View
-            style={styleAssign([wRatio(100), h(185), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
-              styles.upa, absB(0)])}>
-            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
-            </View>
-            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                  style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
+                    bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4),
+                    {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                   onClick={() => {
-                    this.deleteCustomer(customer.id);
+                    Taro.makePhoneCall({
+                      phoneNumber: userInfo.phone
+                    })
                   }}>
-              <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
+                  <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
+                    <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
+                  </View>
+                  <Text style={styleAssign([color('#979797'), fSize(12)])}>{userInfo.phone}</Text>
+                </View>
+                <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
+                  bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
+                  {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
+                      onClick={() => {
+                        Taro.setClipboardData({
+                          data: userInfo.wechat
+                        });
+                        // Taro.getClipboardData({
+                        //   success(res) {
+                        //     console.log('拷贝文件', res.data) // data
+                        //   }
+                        // })
+                      }}>
+                  <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_wechat_gray.png')}/>
+                    <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
+                  </View>
+                  <Text style={styleAssign([color('#979797'), fSize(12)])}>点击添加微信</Text>
+                </View>
+                <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
+                  bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
+                  {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
+                      onClick={() => {
+                        Taro.openLocation({
+                          latitude: userInfo.latitude,
+                          longitude: userInfo.longitude,
+                          scale: 18
+                        });
+                      }}>
+                  <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_location_gray.png')}/>
+                    <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
+                  </View>
+                  <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
+                </View>
+              </View>
             </View>
-            <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
-              <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
+            <View style={styleAssign([wRatio(100)])}>
+              <View style={styleAssign([styles.udr, styles.uac, styles.ujb,
+                wRatio(100), h(44), bgColor(commonStyles.whiteColor), mt(12)])}>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                      onClick={() => {
+                        this.setState({currentIndex: 0});
+                      }}>
+                  <Text
+                    style={styleAssign([fSize(15), color(currentIndex !== 0 ? '#343434' : '#E2BB7B')])}>轨迹</Text>
+                </View>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                      onClick={() => {
+                        this.setState({currentIndex: 1});
+                      }}>
+                  <Text
+                    style={styleAssign([fSize(15), color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>跟进</Text>
+                </View>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                      onClick={() => {
+                        this.setState({currentIndex: 2});
+                      }}>
+                  <Text
+                    style={styleAssign([fSize(15), color(currentIndex !== 2 ? '#343434' : '#E2BB7B')])}>标签</Text>
+                </View>
+                <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
+                      onClick={() => {
+                        this.setState({currentIndex: 3});
+                      }}>
+                  <Text
+                    style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
+                </View>
+              </View>
+              <View style={styleAssign([styles.uac, styles.udr, styles.ujb, wRatio(100)])}>
+                <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                  <View
+                    style={styleAssign([w(44), h(1), bgColor(currentIndex !== 0 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+                </View>
+                <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                  <View
+                    style={styleAssign([w(44), h(1), bgColor(currentIndex !== 1 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+                </View>
+                <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                  <View
+                    style={styleAssign([w(44), h(1), bgColor(currentIndex !== 2 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+                </View>
+                <View style={styleAssign([styles.uac, styles.ujc, styles.uf1])}>
+                  <View
+                    style={styleAssign([w(44), h(1), bgColor(currentIndex !== 3 ? commonStyles.whiteColor : '#E2BB7B')])}/>
+                </View>
+              </View>
+            </View>
+            {childView}
+          </ScrollView>
+        }
+        {
+          showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                               onClick={() => {
+                                 this.setState({showOperate: false});
+                               }}>
+            <View
+              style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
+            <View
+              style={styleAssign([wRatio(100), h(185), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
+                styles.upa, absB(0)])}>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      this.deleteCustomer(customer.id);
+                    }}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
+              </View>
+              <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+                <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
+              </View>
             </View>
           </View>
-        </View>
-      }
+        }
         {/*添加跟进*/}
         {
           currentIndex === 1 && <BottomButon title={'添加跟进'} onClick={() => {

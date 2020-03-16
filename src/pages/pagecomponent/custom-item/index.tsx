@@ -58,7 +58,7 @@ export default class CustomItem extends PureComponent<Props, State> {
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(16), color('#343434')])}>{customer.name}</Text>
               <Text style={styleAssign([fSize(12), color('#979797'), mt(4)])}>{customer.position}</Text>
-              <Text style={styleAssign([fSize(12), color('#979797'), mt(3)])}>来自小程序搜索</Text>
+              <Text style={styleAssign([fSize(12), color('#979797'), mt(3)])}>{`来自${customer.source}`}</Text>
             </View>
           </View>
           <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
@@ -75,7 +75,7 @@ export default class CustomItem extends PureComponent<Props, State> {
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
             <Text
-              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${transformTime(customer.followUpDate)}`}</Text>
+              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${transformTime(customer.creatTime)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}
