@@ -49,7 +49,7 @@ interface Props {
   deleteCustomer?: any;
   followUpList?: any;
   //获取用户信息
-  getUserInfoById: any;
+  getCustomerDetail: any;
 }
 
 interface State {
@@ -95,7 +95,7 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.getUserInfoById();
+    this.getCustomerDetail();
     this.followUpList();
   }
 
@@ -103,13 +103,13 @@ class CustomerDetail extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2019/12/29
-   * @function: 获取用户信息
+   * @function: 获取客户详情
    */
-  getUserInfoById = () => {
-    console.log('获取用户信息');
-    this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
+  getCustomerDetail = () => {
+    console.log('获取客户详情');
+    this.props.getCustomerDetail({id: this.$router.params.userId}).then((res) => {
       this.setState({userInfo: res});
-      console.log('获取用户信息', res);
+      console.log('获取客户详情', res);
     }).catch(e => {
       console.log('报错啦', e);
     });
@@ -125,7 +125,7 @@ class CustomerDetail extends Component<Props, State> {
     console.log('查询客户跟进信息记录');
     this.props.followUpList({id: this.state.customer.id}).then((res) => {
       console.log('查询客户跟进信息记录', res);
-      if (res && res !== NetworkState.FAIL){
+      if (res && res !== NetworkState.FAIL) {
         this.setState({flowUpList: res});
       }
 
