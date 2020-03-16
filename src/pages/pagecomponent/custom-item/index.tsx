@@ -42,6 +42,15 @@ export default class CustomItem extends PureComponent<Props, State> {
 
   render() {
     let {onClick, customer, genJinCallback, mode} = this.props;
+    let time;
+
+    if (mode === '最后访问') {
+      time = transformTime(customer.recentDate);
+    } else if (mode === '最后跟进') {
+      time = transformTime(customer.followUpDate);
+    } else if (mode === '最后转入') {
+      time = transformTime(customer.createUpDate);
+    }
 
     return (
       <TouchableButton
@@ -75,7 +84,7 @@ export default class CustomItem extends PureComponent<Props, State> {
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
             <Text
-              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${transformTime(customer.creatTime)}`}</Text>
+              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${time}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}

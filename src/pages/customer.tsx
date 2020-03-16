@@ -119,15 +119,15 @@ class Customer extends Component<Props, State> {
    * @function: 获取客户列表
    */
   getCustomerList = (refresh?: boolean) => {
-    let status = 0;
+    let status = 'visit';
     let {shaiXuanMode, startTime, endTime, name} = this.state;
 
     if (shaiXuanMode === '最后访问时间') {
-      status = 0;
+      status = 'visit';
     } else if (shaiXuanMode === '最后跟进时间') {
-      status = 1;
+      status = 'follow';
     } else if (shaiXuanMode === '最后转入时间') {
-      status = 2;
+      status = 'create';
     }
 
     let params = {
@@ -221,18 +221,19 @@ class Customer extends Component<Props, State> {
                 customerList.map((value: CustomerModel, index) => {
                   console.log(value);
                   return (
-                    <CustomItem key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)}
-                                onClick={() => {
-                                  Taro.navigateTo({
-                                    url: `/pages/customer/customer_detail?userId=${value.id}`
-                                  });
-                                }}
-                                genJinCallback={(customer) => {
-                                  Taro.navigateTo({
-                                    url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-                                  });
-                                }
-                                }/>);
+                    <CustomItem
+                      key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)}
+                      onClick={() => {
+                        Taro.navigateTo({
+                          url: `/pages/customer/customer_detail?userId=${value.id}`
+                        });
+                      }}
+                      genJinCallback={(customer) => {
+                        Taro.navigateTo({
+                          url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+                        });
+                      }
+                      }/>);
                 })
               }
             </ScrollView>
