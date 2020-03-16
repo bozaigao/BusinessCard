@@ -42,8 +42,8 @@ interface Props {
 }
 
 interface State {
-  top1List: { title: string; subtitle?: string; value?: string; hasEdit: boolean; }[];
-  top2List: { title: string; subtitle?: string;value?: string; hasEdit: boolean; }[];
+  top1List: { title: string; subtitle?: string; value?: string; hasEdit: boolean; must?: boolean; }[];
+  top2List: { title: string; subtitle?: string; value?: string; hasEdit: boolean; must?: boolean; }[];
   name: string;
   phone: string;
   sex: number;
@@ -86,8 +86,8 @@ class AddCustomer extends Component<Props, State> {
     this.uploadResultArr = [];
     this.avatarArr = [];
     this.state = {
-      top1List: [{title: '备注名', subtitle: '请输入备注名', hasEdit: true},
-        {title: '手机', subtitle: '请输入手机号', hasEdit: true},
+      top1List: [{title: '备注名', subtitle: '请输入备注名', hasEdit: true, must: true},
+        {title: '手机', subtitle: '请输入手机号', hasEdit: true, must: true},
         {title: '性别', value: '男', hasEdit: false},
         {title: '公司', subtitle: '请输入公司名', hasEdit: true},
         {title: '行业', subtitle: '请选择', hasEdit: false},
@@ -141,16 +141,16 @@ class AddCustomer extends Component<Props, State> {
 
     let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress} = this.state;
 
+    if (name.length === 0) {
+      toast('备注名不能为空');
+      return;
+    }
     if (phone.length === 0) {
       toast('手机不能为空');
       return;
     }
     if (phone.length !== 11 || !phone.startsWith('1')) {
       toast('手机号非法');
-      return;
-    }
-    if (industry.length === 0) {
-      toast('行业不能为空');
       return;
     }
 
@@ -240,6 +240,7 @@ class AddCustomer extends Component<Props, State> {
                 }
 
                 return (<ListItem title={value.title} subTitle={value.subtitle} key={index}
+                                  must={value.must}
                                   hasEdit={value.hasEdit}
                                   onCLick={(title) => {
                                     if (title === '行业') {
