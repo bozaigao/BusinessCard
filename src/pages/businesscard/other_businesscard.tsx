@@ -163,7 +163,7 @@ class OtherBusinesscard extends Component<Props, State> {
                           notNeedBottomPadding={true}
       >
         {/*切换名片*/}
-        {userInfo && <NavigationBar>
+        <NavigationBar>
           <View
             style={styleAssign([wRatio(100), styles.ujb, styles.uac, styles.udr])}>
             <View
@@ -187,7 +187,7 @@ class OtherBusinesscard extends Component<Props, State> {
             </TouchableButton>
             <View style={styleAssign([mr(23), w(95), h(32), bgColor(commonStyles.transparent)])}/>
           </View>
-        </NavigationBar>}
+        </NavigationBar>
         {userInfo && <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
