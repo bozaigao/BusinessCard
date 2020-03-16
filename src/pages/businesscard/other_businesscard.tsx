@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {get, save, styleAssign} from "../../utils/datatool";
+import {get, save, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absL,
@@ -38,6 +38,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
 import * as loginActions from '../../actions/login';
+import * as businessCardActtions from '../../actions/business_card';
 import PersonalInfo from "../pagecomponent/personal-info/index";
 import MyGoods from "../pagecomponent/my-goods/index";
 import JiZhiCard from "../pagecomponent/jizhi-card/index";
@@ -45,13 +46,15 @@ import MyBusiness from "../pagecomponent/my-business/index";
 import TouchableButton from "../../compoments/touchable-button/index";
 import ShareModal from "../pagecomponent/share-modal/index";
 import {User} from "../../const/global";
-import {cloudBaseUrl} from "../../api/httpurl";
+import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
 import OtherBusinessCardGuide from "../pagecomponent/other-business-card-guide";
 
 interface Props {
   //获取用户信息
   getUserInfoById: any;
+  //收藏名片
+  updateMyCollect: any;
 }
 
 interface State {
@@ -60,7 +63,7 @@ interface State {
   showGuide: boolean;
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), {...actions, ...loginActions})
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActtions))
 class OtherBusinesscard extends Component<Props, State> {
 
   private viewRef;
@@ -93,6 +96,27 @@ class OtherBusinesscard extends Component<Props, State> {
     let showGuide = get('other_business_guide');
 
     this.setState({showGuide: !showGuide});
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/16
+   * @function: 更新我收藏的名片
+   */
+  updateMyCollect = (type: number, collectedUserId: number) => {
+    this.viewRef.showLoading();
+    this.props.updateMyCollect({type, collectedUserId}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('更新我收藏的名片', res);
+      if (res !== NetworkState.FAIL) {
+        toast('收藏成功');
+      }
+    }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -234,6 +258,7 @@ class OtherBusinesscard extends Component<Props, State> {
                     customStyle={styleAssign([w(160), radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),
                       bdColor(commonStyles.colorTheme), bgColor(commonStyles.colorTheme)])}
                     onClick={() => {
+                      this.updateMyCollect(1, userInfo.id);
                     }}>
                     <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>收藏名片</Text>
                   </TouchableButton>
