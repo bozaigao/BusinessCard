@@ -23,7 +23,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -100,6 +100,20 @@ class CustomerRemark extends Component<Props, State> {
    * @function: 修改客户备注等信息
    */
   updatePrivateCustomer = () => {
+    let {name, phone} = this.state;
+
+    if (name.length === 0) {
+      toast('请输入备注名');
+      return;
+    }
+    if (phone.length === 0) {
+      toast('请输入手机号');
+      return;
+    }
+    if (phone.length !== 11 && !phone.startsWith('1')) {
+      toast('请输入合法手机号');
+      return;
+    }
     this.viewRef && this.viewRef.showLoading();
     this.props.updatePrivateCustomer({
       id: this.id,
@@ -111,6 +125,9 @@ class CustomerRemark extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('修改成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
       }
       console.log('获取客户详细资料', res);
     }).catch(e => {
