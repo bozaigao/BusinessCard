@@ -44,6 +44,7 @@ import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
+import DeleteNoticeModal from "../sub_pagecomponent/delete-notice";
 
 interface Props {
   deleteCustomer?: any;
@@ -54,6 +55,7 @@ interface Props {
 
 interface State {
   showOperate: boolean;
+  showDeleteNotice: boolean;
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
@@ -78,10 +80,12 @@ class CustomerDetail extends Component<Props, State> {
     console.log('呵呵', parseData(this.$router.params.itemData));
 
     this.state = {
+      //@ts-ignore
       customer: null,
       showOperate: false,
       currentIndex: 0,
       flowUpList: [],
+      showDeleteNotice: false
     }
   }
 
@@ -157,7 +161,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -220,7 +224,7 @@ class CustomerDetail extends Component<Props, State> {
                   <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
                   <View style={styleAssign([styles.uac, styles.udr])}>
                     <Text style={styleAssign([fSize(12), color('#979797')])}>来自</Text>
-                    <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.source}</Text>
+                    <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.type}</Text>
                   </View>
                 </View>
                 <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
@@ -360,7 +364,7 @@ class CustomerDetail extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.deleteCustomer(customer.id);
+                      this.setState({showDeleteNotice: true});
                     }}>
                 <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
               </View>
@@ -378,6 +382,15 @@ class CustomerDetail extends Component<Props, State> {
               url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
             });
           }}/>
+        }
+        {
+          showDeleteNotice && <DeleteNoticeModal cancelCallback={() => {
+            this.setState({showDeleteNotice: false});
+          }
+          } confirmCallback={() => {
+            this.deleteCustomer(customer.id);
+          }
+          }/>
         }
       </CustomSafeAreaView>
     )

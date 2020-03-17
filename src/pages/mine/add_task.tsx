@@ -33,7 +33,7 @@ import BottomButon from "../../compoments/bottom-buton/index";
 import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
-import {CustomerModel, timeMap} from "../../const/global";
+import {CustomerModel} from "../../const/global";
 import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer";
 
 interface Props {
@@ -109,9 +109,11 @@ class AddTask extends Component<Props, State> {
     let dateTime = new Date(date).getTime();
 
     if (mymonth < 10) {
+      //@ts-ignore
       mymonth = '0' + mymonth;
     }
     if (myweekday < 10) {
+      //@ts-ignore
       myweekday = '0' + myweekday;
     }
 
