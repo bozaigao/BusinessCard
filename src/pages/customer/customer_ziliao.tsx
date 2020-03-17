@@ -25,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign, transformTime, wrapSafe} from "../../utils/datatool";
+import {parseData, styleAssign, transformTime, wrapSafe} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -218,7 +218,7 @@ class CustomerZiLiao extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
               styles.uWrap])}>
               {
-                ['90后', '看电影', '电竞游戏', '运动', '健身', '看书', '旅行'].map((value, index) => {
+                customer.label && parseData(customer.label).map((value, index) => {
                   return (<TouchableButton key={index}
                                            customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]),
                                              bgColor('#EFEFEF')])}>
