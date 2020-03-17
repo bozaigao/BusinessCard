@@ -128,9 +128,11 @@ class Mine extends Component<Props, State> {
                     style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
                   <View
                     style={styleAssign([w(140), h(6), radiusA(3), mt(13), styles.udr, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-                    <View style={styleAssign([w(113), h(6), radiusA(3), styles.uac, bgColor('#E2BB7B')])}/>
+                    <View
+                      style={styleAssign([wRatio(userInfo.cardPercent), h(6), radiusA(3), styles.uac, bgColor('#E2BB7B')])}/>
                   </View>
-                  <Text style={styleAssign([fSize(10), color(commonStyles.whiteColor), mt(8)])}>完善度88%</Text>
+                  <Text
+                    style={styleAssign([fSize(10), color(commonStyles.whiteColor), mt(8)])}>{`完善度${userInfo.cardPercent}%`}</Text>
                 </View>
               </View>
               {/*完善名片*/}
