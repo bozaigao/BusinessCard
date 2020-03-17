@@ -28,6 +28,7 @@ const index_4 = require("./pagecomponent/mode-modal/index");
 const index_5 = require("./pagecomponent/shai-xuan-modal/index");
 const index_6 = require("../compoments/navigation_bar/index");
 const index_7 = require("../compoments/sanjiao/index");
+const customer_guide_1 = require("./pagecomponent/customer-guide");
 let Customer = class Customer extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -46,16 +47,16 @@ let Customer = class Customer extends taro_1.Component {
          * @function: 获取客户列表
          */
         this.getCustomerList = (refresh) => {
-            let status = 0;
+            let status = 'visit';
             let { shaiXuanMode, startTime, endTime, name } = this.state;
             if (shaiXuanMode === '最后访问时间') {
-                status = 0;
+                status = 'visit';
             }
             else if (shaiXuanMode === '最后跟进时间') {
-                status = 1;
+                status = 'follow';
             }
             else if (shaiXuanMode === '最后转入时间') {
-                status = 2;
+                status = 'create';
             }
             let params = {
                 pageNo: this.pageNo,
@@ -92,7 +93,8 @@ let Customer = class Customer extends taro_1.Component {
             showShaiXuan: false,
             startTime: '2020-01-01',
             endTime: datatool_1.getToday(),
-            name: ''
+            name: '',
+            showGuide: false
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -103,6 +105,8 @@ let Customer = class Customer extends taro_1.Component {
         taro_1.default.eventCenter.on('refreshCustomerList', () => {
             this.refresh();
         });
+        let showGuide = datatool_1.get('customer_guide');
+        this.setState({ showGuide: !showGuide });
     }
     componentWillUnmount() {
         taro_1.default.eventCenter.off();
@@ -111,7 +115,7 @@ let Customer = class Customer extends taro_1.Component {
         console.log('componentDidShow');
     }
     render() {
-        let { customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan } = this.state;
+        let { customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.ujb])}>
           <index_6.default>
@@ -159,9 +163,9 @@ let Customer = class Customer extends taro_1.Component {
             }} style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac])} scrollY>
               {customerList.map((value, index) => {
                 console.log(value);
-                return (<index_2.default key={index} customer={value} onClick={() => {
+                return (<index_2.default key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)} onClick={() => {
                     taro_1.default.navigateTo({
-                        url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}`
+                        url: `/pages/customer/customer_detail?userId=${value.id}`
                     });
                 }} genJinCallback={(customer) => {
                     taro_1.default.navigateTo({
@@ -192,6 +196,10 @@ let Customer = class Customer extends taro_1.Component {
             this.setState({ showShaiXuan: false, showMode: true });
         }} cancelCallback={() => {
             this.setState({ showShaiXuan: false });
+        }}/>}
+        {showGuide && <customer_guide_1.default cancle={() => {
+            datatool_1.save('customer_guide', true);
+            this.setState({ showGuide: false });
         }}/>}
       </index_1.default>);
     }

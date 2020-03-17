@@ -44,6 +44,29 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         /**
          * @author 何晏波
          * @QQ 1054539528
+         * @date 2020/3/15
+         * @function: 解密微信小程序手机号
+         */
+        this.decryptPhone = (data) => {
+            this.viewRef && this.viewRef.showLoading();
+            this.props.decryptPhone({ encryptedData: data.encryptedData, iv: data.iv, cloudID: data.cloudID }).then((res) => {
+                this.viewRef && this.viewRef.hideLoading();
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    let { listData } = this.state;
+                    let temp = listData;
+                    temp[1].value = res;
+                    this.setState({ listData: temp }, () => {
+                        console.log('解密微信小程序手机号', res);
+                    });
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
          * @date 2019/12/28
          * @function: 更新用户信息
          */
@@ -53,11 +76,11 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                 datatool_1.toast('请先填写姓名');
                 return;
             }
-            if (!listData[1].value || listData[1].value.length === 0) {
+            if (!listData[2].value || listData[2].value.length === 0) {
                 datatool_1.toast('请先填写公司');
                 return;
             }
-            if (!listData[2].value || listData[2].value.length === 0) {
+            if (!listData[3].value || listData[3].value.length === 0) {
                 datatool_1.toast('请先填写行业');
                 return;
             }
@@ -65,18 +88,24 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             this.props.update({
                 avatar: this.avatar,
                 name: listData[0].value,
-                company: listData[1].value,
-                industry: listData[2].value,
-                position: listData[3].value,
+                company: listData[2].value,
+                industry: listData[3].value,
+                position: listData[4].value,
                 province: this.province,
                 city: this.city,
-                wechat: listData[5].value,
-                email: listData[6].value,
-                showPhone
+                wechat: listData[6].value,
+                email: listData[7].value,
+                showPhone,
+                phone: listData[1].value
             }).then((res) => {
                 this.viewRef && this.viewRef.hideLoading();
                 if (res !== httpurl_1.NetworkState.FAIL) {
-                    datatool_1.toast('名片创建成功');
+                    if (this.props.userInfo.cardPercent === 0) {
+                        datatool_1.toast('名片创建成功');
+                    }
+                    else {
+                        datatool_1.toast('名片完善成功');
+                    }
                     datatool_1.debounce(1000, () => {
                         taro_1.default.navigateBack();
                     });
@@ -117,6 +146,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             signInPageDetail: { dateIntegrals: [], signInCount: 0 },
             listData: [
                 { title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true },
+                { title: '手机', value: '' },
                 {
                     title: '公司',
                     subtitle: '请输入公司名',
@@ -143,13 +173,13 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                     hasEdit: true
                 }
             ],
-            avatar: avatar
+            avatar: avatar,
         };
     }
-    componentDidShow() {
+    componentDidMount() {
         taro_1.default.eventCenter.on('industry', (industry) => {
             console.log('参数回调', industry);
-            this.state.listData[2].value = industry;
+            this.state.listData[3].value = industry;
             this.setState({ listData: this.state.listData });
         });
     }
@@ -163,7 +193,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} notNeedBottomPadding={true}>
-        <top_header_1.default title={'创建名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
+        <top_header_1.default title={this.props.userInfo.cardPercent === 0 ? '创建名片' : '完善名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
@@ -185,13 +215,33 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                     console.log(e.detail);
                     this.province = e.detail.value[0];
                     this.city = e.detail.value[1] + e.detail.value[2];
-                    this.state.listData[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                    this.state.listData[5].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
                     this.setState({
                         listData: this.state.listData
                     });
                 }} value={[]}>
                   <list_item_1.default title={value.title} must={value.must} subTitle={value.subtitle} value={value.value} key={index} hasEdit={value.hasEdit}/>
                 </components_1.Picker>);
+            }
+            else if (value.title === '手机') {
+                return <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.udr, style_1.default.uac,
+                    style_1.default.ujb, style_1.pl(20), style_1.pr(5)])}>
+                    <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.redColor)])}>*</components_1.Text>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>{value.title}</components_1.Text>
+                    </components_1.View>
+                    {value.value && value.value.length !== 0 ?
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.mr(20), style_1.color(style_1.commonStyles.colorTheme)])}>{value.value}</components_1.Text> :
+                    <components_1.Button style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mr(0), style_1.bgColor(style_1.commonStyles.whiteColor)])} openType={'getPhoneNumber'} onGetPhoneNumber={(e) => {
+                        console.log('获取手机号', e);
+                        this.decryptPhone(e.detail);
+                    }}>
+                          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22'), style_1.default.utxdu])}>获取手机号</components_1.Text>
+                        </components_1.Button>}
+                  </components_1.View>
+                  <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), { marginLeft: '5%' }])}/>
+                </components_1.View>;
             }
             return (<list_item_1.default title={value.title} must={value.must} subTitle={value.subtitle} key={index} value={value.value} hasEdit={value.hasEdit} onCLick={(title) => {
                 if (title === '行业') {
@@ -205,23 +255,23 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                     this.setState({ listData: this.state.listData });
                 }
                 else if (value.title === '公司') {
-                    this.state.listData[1].value = e.detail.value;
-                    this.setState({ listData: this.state.listData });
-                }
-                else if (value.title === '行业') {
                     this.state.listData[2].value = e.detail.value;
                     this.setState({ listData: this.state.listData });
                 }
-                else if (value.title === '职位') {
+                else if (value.title === '行业') {
                     this.state.listData[3].value = e.detail.value;
                     this.setState({ listData: this.state.listData });
                 }
+                else if (value.title === '职位') {
+                    this.state.listData[4].value = e.detail.value;
+                    this.setState({ listData: this.state.listData });
+                }
                 else if (value.title === '微信号') {
-                    this.state.listData[5].value = e.detail.value;
+                    this.state.listData[6].value = e.detail.value;
                     this.setState({ listData: this.state.listData });
                 }
                 else if (value.title === '邮箱') {
-                    this.state.listData[6].value = e.detail.value;
+                    this.state.listData[7].value = e.detail.value;
                     this.setState({ listData: this.state.listData });
                 }
                 console.log(e);

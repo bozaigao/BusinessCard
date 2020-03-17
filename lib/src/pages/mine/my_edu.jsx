@@ -114,8 +114,18 @@ let MyEdu = class MyEdu extends taro_1.Component {
     }
     render() {
         let { list, wenHouYU, showWenHouYu, placeHolder, wenHouYUTmp } = this.state;
-        let selectorRange = ['博士', '研究生', '专科', '高中'];
-        let multiSelectorRange = [['2015', '2016', '2017', '2018', '2019'], ['到'], ['2020', '2021', '2022', '2023', '2024']];
+        let selectorRange = ['高中', '中专', '大专', '本科', '研究生', '硕士', '博士'];
+        let multiSelectorRange = [];
+        let startTime = [], endTime = [];
+        for (let i = 1977; i < 2051; i++) {
+            startTime.push(`${i}`);
+        }
+        for (let j = 1980; j < 2051; j++) {
+            endTime.push(`${j}`);
+        }
+        multiSelectorRange.push(startTime);
+        multiSelectorRange.push(['到']);
+        multiSelectorRange.push(endTime);
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
             this.viewRef = ref;
         }}>
@@ -166,13 +176,13 @@ let MyEdu = class MyEdu extends taro_1.Component {
                 </components_1.View>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(131), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-              <components_1.Textarea value={wenHouYU} maxlength={50} placeholder={placeHolder} style={datatool_1.styleAssign([style_1.w(305), style_1.h(91), style_1.fSize(16), style_1.ml(20),
+              <components_1.Textarea value={wenHouYU} maxlength={25} placeholder={placeHolder} style={datatool_1.styleAssign([style_1.w(305), style_1.h(91), style_1.fSize(16), style_1.ml(20),
             style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.pa(16), style_1.mb(20)])} onInput={(e) => {
             this.setState({ wenHouYU: e.detail.value, wenHouYUTmp: e.detail.value });
         }}/>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.upa, style_1.absR(30), style_1.absB(30)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>{wenHouYU.length}</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#CECECE')])}>/50</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#CECECE')])}>/25</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(20), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.upa, style_1.absR(0), style_1.absB(0)])}/>
               </components_1.View>

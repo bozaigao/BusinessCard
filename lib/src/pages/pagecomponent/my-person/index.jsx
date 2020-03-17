@@ -15,18 +15,22 @@ const renmai_item_1 = require("../renmai-item");
 class MyPerson extends taro_1.Component {
     constructor(props) {
         super(props);
-        this.setState({ hasSelected: false, currentIndex: 0 });
+        this.setState({ currentIndex: 0 });
     }
     render() {
-        let { hasSelected, currentIndex } = this.state;
-        let { chooseCallback } = this.props;
+        let { currentIndex } = this.state;
+        let { chooseCallback, hasSelected, recommendList, indexChangeCallback } = this.props;
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.ml(20), style_1.mr(20), style_1.mt(32)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
             <components_1.View style={datatool_1.styleAssign([style_1.w(3), style_1.h(22), style_1.bgColor('#E2BB7B')])}/>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.colorTheme), style_1.ml(8)])}>人脉机遇</components_1.Text>
           </components_1.View>
-          {hasSelected && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+          {hasSelected && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/choose_renmai_tag`
+            });
+        }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>重新选择</components_1.Text>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(12)])} src={require('../../../assets/ico_next.png')}/>
             </components_1.View>}
@@ -39,7 +43,6 @@ class MyPerson extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.mt(13)])}>名片完善度越高，获得人脉数据越丰富，精准</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.w(303), style_1.h(44), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.default.uac, style_1.default.ujc, style_1.mt(20)])} onClick={() => {
                 chooseCallback();
-                // this.setState({hasSelected: true});
             }}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>立即选择</components_1.Text>
               </components_1.View>
@@ -49,14 +52,16 @@ class MyPerson extends taro_1.Component {
             style_1.pl(20), style_1.pr(20), style_1.mt(16)])}>
             {['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
             return <components_1.View key={index} style={datatool_1.styleAssign([style_1.default.uac, style_1.ml(index !== 0 ? 62 : 0)])} onClick={() => {
-                this.setState({ currentIndex: index });
+                this.setState({ currentIndex: index }, () => {
+                    indexChangeCallback(index);
+                });
             }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex === index ? '#E2BB7B' : '#0C0C0C')])}>{value}</components_1.Text>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(30), style_1.h(1), style_1.bgColor(currentIndex === index ? '#E2BB7B' : style_1.commonStyles.transparent), style_1.mt(8)])}/>
                 </components_1.View>;
         })}
           </components_1.View>}
-        {hasSelected && [1, 2, 3, 4, 5, 6].map((value, index) => {
+        {hasSelected && recommendList.map((value, index) => {
             console.log(value);
             return <renmai_item_1.default key={index}/>;
         })}

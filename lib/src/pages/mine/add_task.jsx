@@ -56,6 +56,21 @@ let AddTask = class AddTask extends taro_1.Component {
                 datatool_1.toast('日期不能为空');
                 return;
             }
+            let myyear = new Date().getFullYear();
+            let mymonth = new Date().getMonth() + 1;
+            let myweekday = new Date().getDate();
+            let dateTime = new Date(date).getTime();
+            if (mymonth < 10) {
+                mymonth = '0' + mymonth;
+            }
+            if (myweekday < 10) {
+                myweekday = '0' + myweekday;
+            }
+            let currentTime = new Date(`${myyear}-${mymonth}-${myweekday}`).getTime();
+            if (dateTime < currentTime) {
+                datatool_1.toast('不能选择之前的日期');
+                return;
+            }
             let paramas = {
                 theme,
                 date,
@@ -121,6 +136,7 @@ let AddTask = class AddTask extends taro_1.Component {
         }} maxlength={50}/>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           <components_1.Picker mode='date' onChange={(e) => {
+            console.log('时间选择', e);
             this.setState({ date: e.detail.value });
         }} value={date} style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <index_4.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.h(51), style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {

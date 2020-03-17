@@ -27,6 +27,10 @@ const index_2 = require("./pagecomponent/business-card/index");
 const index_3 = require("./pagecomponent/my-person/index");
 const index_4 = require("./pagecomponent/share-modal/index");
 const index_5 = require("../compoments/navigation_bar/index");
+const httpurl_1 = require("../api/httpurl");
+const business_card_guide1_1 = require("./pagecomponent/business-card-guide1");
+const business_card_guide2_1 = require("./pagecomponent/business-card-guide2");
+const business_card_guide3_1 = require("./pagecomponent/business-card-guide3");
 let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -39,6 +43,51 @@ let Businesscard = class Businesscard extends taro_1.Component {
          */
         this.config = {
             disableScroll: true
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/14
+         * @function: 获取人脉推荐
+         */
+        this.getRecommend = (recommendType) => {
+            this.props.getRecommend({ recommendType }).then((res) => {
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ recommendList: res });
+                }
+                console.log('获取人脉推荐', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/14
+         * @function: 人脉推荐是否设置
+         */
+        this.recommendSettingStatus = () => {
+            this.props.recommendSettingStatus().then((res) => {
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ recommendIsSet: res === 1 });
+                }
+                console.log('人脉推荐是否设置', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/14
+         * @function: 人脉推荐行业和兴趣设置查询
+         */
+        this.getRecommendSetting = () => {
+            this.props.getRecommendSetting().then((res) => {
+                console.log('人脉推荐行业和兴趣设置查询', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
         };
         /**
          * @author 何晏波
@@ -62,25 +111,36 @@ let Businesscard = class Businesscard extends taro_1.Component {
          * @function: 获取用户信息
          */
         this.getUserInfo = () => {
-            this.viewRef && this.viewRef.showLoading();
             this.props.getUserInfo().then((res) => {
                 this.props.updateUserInfo(res);
-                this.viewRef && this.viewRef.hideLoading();
                 console.log('重新更新用户信息', res);
             }).catch(e => {
-                this.viewRef && this.viewRef.hideLoading();
                 console.log('报错啦', e);
             });
         };
         this.state = {
-            showShare: false
+            showShare: false,
+            recommendIsSet: false,
+            recommendList: [],
+            showGuide1: false,
+            showGuide2: false,
+            showGuide3: false,
         };
     }
     componentDidShow() {
         this.getUserInfo();
+        this.getRecommendSetting();
+        this.recommendSettingStatus();
+        this.getRecommend('schoolfellow');
+        let showGuide1 = datatool_1.get('business_guide1');
+        this.setState({ showGuide1: !showGuide1 });
+        let showGuide2 = datatool_1.get('business_guide2');
+        this.setState({ showGuide2: !showGuide2 && !!showGuide1 });
+        let showGuide3 = datatool_1.get('business_guide3');
+        this.setState({ showGuide3: !showGuide3 && !!showGuide2 && !!showGuide1 });
     }
     componentWillUnmount() {
-        taro_1.default.eventCenter.off('showJiFenModal');
+        taro_1.default.eventCenter.off('recommend');
     }
     //@ts-ignore
     onShareAppMessage(res) {
@@ -90,12 +150,9 @@ let Businesscard = class Businesscard extends taro_1.Component {
         };
     }
     render() {
-        let { showShare } = this.state;
+        let { showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3 } = this.state;
         let { userInfo } = this.props;
-        console.log('呵呵', this.viewRef);
-        return (<index_1.default ref={(ref) => {
-            this.viewRef = ref;
-        }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
+        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         
         <index_5.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.ujc])}>
@@ -128,6 +185,19 @@ let Businesscard = class Businesscard extends taro_1.Component {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/choose_renmai_tag`
             });
+        }} hasSelected={recommendIsSet} recommendList={recommendList} indexChangeCallback={(index) => {
+            if (index === 0) {
+                this.getRecommend('recommend');
+            }
+            else if (index === 1) {
+                this.getRecommend('interest');
+            }
+            else if (index === 2) {
+                this.getRecommend('villager');
+            }
+            else if (index === 3) {
+                this.getRecommend('schoolfellow');
+            }
         }}/>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(66), style_1.default.ujc, style_1.default.uac])}>
@@ -145,7 +215,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
             });
         }} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(41), style_1.default.uac, style_1.default.ujc, style_1.bgColor('#FAF1E5'), style_1.radiusA(30)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22')])}>创建您的专属名片</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}，点击完善` : '创建您的专属名片'}</components_1.Text>
           </components_1.View>
         </components_1.Button>
         {showShare && <index_4.default cancle={() => {
@@ -155,6 +225,35 @@ let Businesscard = class Businesscard extends taro_1.Component {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/mingpian_haibao`
             });
+        }}/>}
+        {showGuide1 && <business_card_guide1_1.default cancle={() => {
+            datatool_1.save('business_guide1', true);
+            this.setState({ showGuide1: false, showGuide2: true });
+        }} createCard={() => {
+            datatool_1.save('business_guide1', true);
+            this.setState({ showGuide1: false, showGuide2: true }, () => {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/add_businesscard`
+                });
+            });
+        }}/>}
+        {showGuide2 && <business_card_guide2_1.default cancle={() => {
+            datatool_1.save('business_guide2', true);
+            this.setState({ showGuide2: false, showGuide3: true });
+        }} viewCard={() => {
+            datatool_1.save('business_guide2', true);
+            this.setState({ showGuide2: false, showGuide3: true }, () => {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+                });
+            });
+        }}/>}
+        {showGuide3 && <business_card_guide3_1.default cancle={() => {
+            datatool_1.save('business_guide3', true);
+            this.setState({ showGuide3: false });
+        }} shareCard={() => {
+            datatool_1.save('business_guide3', true);
+            this.setState({ showGuide3: false, showShare: true });
         }}/>}
       </index_1.default>);
     }

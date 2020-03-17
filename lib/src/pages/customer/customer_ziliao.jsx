@@ -150,7 +150,7 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           {[{ title: '地区', value: datatool_1.wrapSafe(customer.province + customer.city) },
             { title: '详细地址', value: datatool_1.wrapSafe(customer.detailAddress) },
-            { title: '生日', value: datatool_1.wrapSafe(customer.birthday) },
+            { title: '生日', value: datatool_1.transformTime(customer.birthday) },
             { title: '微信号', value: datatool_1.wrapSafe(customer.wechat) },
             { title: '邮箱', value: datatool_1.wrapSafe(customer.email) }].map((value, inedx) => {
             return <components_1.View key={inedx} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>

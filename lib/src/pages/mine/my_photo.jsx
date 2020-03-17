@@ -90,10 +90,6 @@ let MyPhoto = class MyPhoto extends taro_1.Component {
          * @function: 更新用户信息
          */
         this.update = () => {
-            if (this.state.myPhotoUrl.length === 0) {
-                datatool_1.toast('请选择照片');
-                return;
-            }
             this.viewRef && this.viewRef.showLoading();
             this.props.update({
                 photoUrl: JSON.stringify(this.state.myPhotoUrl),
@@ -103,7 +99,9 @@ let MyPhoto = class MyPhoto extends taro_1.Component {
                 if (res !== httpurl_1.NetworkState.FAIL) {
                     datatool_1.toast('信息更新成功');
                 }
-                taro_1.default.navigateBack();
+                datatool_1.debounce(1000, () => {
+                    taro_1.default.navigateBack();
+                });
             }).catch(e => {
                 this.viewRef && this.viewRef.hideLoading();
                 console.log('报错啦', e);

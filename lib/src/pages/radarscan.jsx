@@ -22,6 +22,7 @@ const index_2 = require("./pagecomponent/radar-item/index");
 const actions = require("../actions/radar");
 const redux_1 = require("@tarojs/redux");
 const index_3 = require("../compoments/navigation_bar/index");
+const leida_guide_1 = require("./pagecomponent/leida-guide");
 let Radarscan = class Radarscan extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -68,16 +69,19 @@ let Radarscan = class Radarscan extends taro_1.Component {
         this.pageNo = 1;
         this.pageSize = 10;
         this.state = {
-            records: []
+            records: [],
+            showGuide: false
         };
     }
     componentWillUnmount() {
     }
     componentDidShow() {
         this.refresh();
+        let showGuide = datatool_1.get('radar_guide');
+        this.setState({ showGuide: !showGuide });
     }
     render() {
-        let { records } = this.state;
+        let { records, showGuide } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         
         <index_3.default>
@@ -89,7 +93,7 @@ let Radarscan = class Radarscan extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(78), style_1.h(69)])} src={require('../assets/ico_no_data.png')}/>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434'), style_1.mt(31)])}>当前无暂记录</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434'), style_1.mt(31)])}>当前暂无记录</components_1.Text>
               </components_1.View>
             </components_1.View> :
             <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY onScrollToUpper={() => {
@@ -102,6 +106,10 @@ let Radarscan = class Radarscan extends taro_1.Component {
                 return (<index_2.default key={index} item={value}/>);
             })}
             </components_1.ScrollView>}
+        {showGuide && <leida_guide_1.default cancle={() => {
+            datatool_1.save('radar_guide', true);
+            this.setState({ showGuide: false });
+        }}/>}
       </index_1.default>);
     }
 };

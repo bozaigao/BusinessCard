@@ -40,7 +40,7 @@ import * as actions from "../../actions/customer";
 import * as loginActions from "../../actions/login";
 import TopHeader from "../../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel, FlowUpListModel, User} from "../../const/global";
+import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
@@ -57,7 +57,6 @@ interface State {
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
-  userInfo: User;
 }
 
 @connect(state => state.login, Object.assign(actions, loginActions))
@@ -79,11 +78,10 @@ class CustomerDetail extends Component<Props, State> {
     console.log('呵呵', parseData(this.$router.params.itemData));
 
     this.state = {
-      customer: parseData(this.$router.params.itemData),
+      customer: null,
       showOperate: false,
       currentIndex: 0,
       flowUpList: [],
-      userInfo: null
     }
   }
 
@@ -108,7 +106,7 @@ class CustomerDetail extends Component<Props, State> {
   getCustomerDetail = () => {
     console.log('获取客户详情');
     this.props.getCustomerDetail({id: this.$router.params.userId}).then((res) => {
-      this.setState({userInfo: res});
+      this.setState({customer: res});
       console.log('获取客户详情', res);
     }).catch(e => {
       console.log('报错啦', e);
@@ -159,7 +157,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList, userInfo} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -199,7 +197,7 @@ class CustomerDetail extends Component<Props, State> {
                           }}>
         <TopHeader title={''}/>
         {
-          userInfo && <ScrollView
+          customer && <ScrollView
             style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
             scrollY>
             <View style={styleAssign([styles.uac, wRatio(100), bgColor(commonStyles.whiteColor)])}>
@@ -227,6 +225,7 @@ class CustomerDetail extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
                       onClick={() => {
+                        console.log(customer)
                         Taro.navigateTo({
                           url: `/pages/customer/customer_ziliao?id=${customer.id}`
                         });
@@ -245,21 +244,21 @@ class CustomerDetail extends Component<Props, State> {
                     {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                   onClick={() => {
                     Taro.makePhoneCall({
-                      phoneNumber: userInfo.phone
+                      phoneNumber: customer.phone
                     })
                   }}>
                   <View style={styleAssign([styles.uac, styles.udr])}>
                     <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
                   </View>
-                  <Text style={styleAssign([color('#979797'), fSize(12)])}>{userInfo.phone}</Text>
+                  <Text style={styleAssign([color('#979797'), fSize(12)])}>{customer.phone}</Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                       onClick={() => {
                         Taro.setClipboardData({
-                          data: userInfo.wechat
+                          data: customer.wechat
                         });
                         // Taro.getClipboardData({
                         //   success(res) {
@@ -278,8 +277,8 @@ class CustomerDetail extends Component<Props, State> {
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                       onClick={() => {
                         Taro.openLocation({
-                          latitude: userInfo.latitude,
-                          longitude: userInfo.longitude,
+                          latitude: customer.latitude,
+                          longitude: customer.longitude,
                           scale: 18
                         });
                       }}>

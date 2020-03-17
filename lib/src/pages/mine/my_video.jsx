@@ -46,10 +46,6 @@ let MyVideo = class MyVideo extends taro_1.Component {
          * @function: 将文件通过微信Api上传到服务端
          */
         this.uploadFileTpWx = (path, callback) => {
-            if (path.length === 0) {
-                datatool_1.toast('请选择视频');
-                return;
-            }
             if (path.includes('tmp')) {
                 this.viewRef && this.viewRef.showLoading();
                 let that = this;

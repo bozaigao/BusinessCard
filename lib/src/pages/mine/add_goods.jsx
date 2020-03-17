@@ -190,7 +190,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
         console.log('传递参数', this.itemData);
         this.state = {
             name: this.itemData ? this.itemData.name : '',
-            price: this.itemData ? String(this.itemData.price) : '0',
+            price: this.itemData ? String(this.itemData.price) : '',
             introduction: this.itemData ? this.itemData.introduction : '',
             carouselUrlsLocal: carouselUrlsLocalTmp,
             detailUrlsLocal: detailUrlsLocalTmp,
@@ -219,7 +219,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
             return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])} key={index}>
                     <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.pl(20), style_1.pr(20), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
                       <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>{value.title}</components_1.Text>
-                      <components_1.Input type={value.title === '商品名称' ? 'text' : 'number'} value={value.title === '商品名称' ? name : price} style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14), { textAlign: 'right' }])} placeholder={value.placeHolder} onInput={(e) => {
+                      <components_1.Input maxLength={15} type={value.title === '商品名称' ? 'text' : 'number'} value={value.title === '商品名称' ? name : price} style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14), { textAlign: 'right' }])} placeholder={value.placeHolder} onInput={(e) => {
                 if (value.title === '商品名称') {
                     this.setState({ name: e.detail.value });
                 }

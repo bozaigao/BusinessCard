@@ -177,16 +177,13 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
             ],
         };
     }
-    componentDidShow() {
+    componentDidMount() {
         console.log('用户信息', this.props.userInfo);
         taro_1.default.eventCenter.on('industry', (industry) => {
             console.log('参数回调', industry);
             this.state.titleList1[3].value = industry;
             this.setState({ industry, titleList1: this.state.titleList1 });
         });
-    }
-    componentWillUnmount() {
-        taro_1.default.eventCenter.off();
     }
     render() {
         let { avatar, titleList1, titleList2, sex } = this.state;

@@ -126,13 +126,13 @@ let MyHome = class MyHome extends taro_1.Component {
                 </components_1.View>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(131), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-              <components_1.Textarea value={wenHouYU} maxlength={50} placeholder={placeHolder} style={datatool_1.styleAssign([style_1.w(305), style_1.h(91), style_1.fSize(16), style_1.ml(20),
+              <components_1.Textarea value={wenHouYU} maxlength={25} placeholder={placeHolder} style={datatool_1.styleAssign([style_1.w(305), style_1.h(91), style_1.fSize(16), style_1.ml(20),
             style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.pa(16), style_1.mb(20)])} onInput={(e) => {
             this.setState({ wenHouYU: e.detail.value, wenHouYUTmp: e.detail.value });
         }}/>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.upa, style_1.absR(30), style_1.absB(30)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>{wenHouYU.length}</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#CECECE')])}>/50</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#CECECE')])}>/25</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(20), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.upa, style_1.absR(0), style_1.absB(0)])}/>
               </components_1.View>

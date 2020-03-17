@@ -48,16 +48,16 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
          */
         this.addPrivateCustomer = () => {
             let { name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress } = this.state;
+            if (name.length === 0) {
+                datatool_1.toast('备注名不能为空');
+                return;
+            }
             if (phone.length === 0) {
                 datatool_1.toast('手机不能为空');
                 return;
             }
             if (phone.length !== 11 || !phone.startsWith('1')) {
                 datatool_1.toast('手机号非法');
-                return;
-            }
-            if (industry.length === 0) {
-                datatool_1.toast('行业不能为空');
                 return;
             }
             let paramas = {
@@ -137,8 +137,8 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
         this.uploadResultArr = [];
         this.avatarArr = [];
         this.state = {
-            top1List: [{ title: '备注名', subtitle: '请输入备注名', hasEdit: true },
-                { title: '手机', subtitle: '请输入手机号', hasEdit: true },
+            top1List: [{ title: '备注名', subtitle: '请输入备注名', hasEdit: true, must: true },
+                { title: '手机', subtitle: '请输入手机号', hasEdit: true, must: true },
                 { title: '性别', value: '男', hasEdit: false },
                 { title: '公司', subtitle: '请输入公司名', hasEdit: true },
                 { title: '行业', subtitle: '请选择', hasEdit: false },
@@ -167,10 +167,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
     componentWillReceiveProps(nextProps) {
         console.log(this.props, nextProps);
     }
-    componentWillUnmount() {
-        taro_1.default.eventCenter.off();
-    }
-    componentDidShow() {
+    componentDidMount() {
         taro_1.default.eventCenter.on('industry', (industry) => {
             console.log('参数回调', industry);
             this.state.top1List[4].subtitle = industry;
@@ -212,7 +209,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                       <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), { marginLeft: '5%' }])}/>
                     </components_1.View>);
             }
-            return (<list_item_1.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onCLick={(title) => {
+            return (<list_item_1.default title={value.title} subTitle={value.subtitle} key={index} must={value.must} hasEdit={value.hasEdit} onCLick={(title) => {
                 if (title === '行业') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/industry_list`,

@@ -36,8 +36,7 @@ class WenHouModal extends taro_1.PureComponent {
                 <components_1.View style={datatool_1.styleAssign([style_1.ml(10)])}>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(221), style_1.h(59)])} src={require('../../../assets/ico_wenhouyu_bg2.png')}/>
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.hRatio(90), { marginLeft: '7%' }, style_1.default.ujc, style_1.default.upa, style_1.absT(0)])}>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>{wenHouYu.substr(0, 25)}</components_1.Text>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>{wenHouYu.substr(25, wenHouYu.length)}</components_1.Text>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>{wenHouYu}</components_1.Text>
                   </components_1.View>
                 </components_1.View>
               </components_1.View>

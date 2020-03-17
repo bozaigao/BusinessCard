@@ -103,8 +103,8 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(23), style_1.h(23), style_1.radiusA(11.5), style_1.default.upa, style_1.absB(2), style_1.absR(2)])} src={userInfo.sex === 1 ? `${httpurl_1.cloudBaseUrl}ico_nan.png` : `${httpurl_1.cloudBaseUrl}ico_nv.png`}/>
               </components_1.View>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#343434'), style_1.mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.company ? userInfo.company : ''}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.educationBackground)}</components_1.Text>
+              {userInfo.company && <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#727272'), style_1.mt(4)])}>{`${userInfo.company}-${userInfo.position}`}</components_1.Text>}
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{`${userInfo.school}•${userInfo.profession}`}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.selfDescription)}</components_1.Text>
             </components_1.View>
@@ -160,7 +160,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(38), style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#0C0C0C'), style_1.ml(20)])}>我的语音</components_1.Text>
                     <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mr(20)])}>
-                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>编辑</components_1.Text>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>{userInfo.voiceUrl && userInfo.voiceUrl.length !== 0 ? '编辑' : '添加'}</components_1.Text>
                       <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(6)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
                     </touchable_button_1.default>
                   </components_1.View>
@@ -193,7 +193,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(38), style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#0C0C0C'), style_1.ml(20)])}>自我描述</components_1.Text>
                     <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mr(20)])}>
-                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>编辑</components_1.Text>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>{userInfo.selfDescription && userInfo.selfDescription.length !== 0 ? '编辑' : '添加'}</components_1.Text>
                       <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(6)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
                     </touchable_button_1.default>
                   </components_1.View>
@@ -213,7 +213,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(38), style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#0C0C0C'), style_1.ml(20)])}>我的家乡</components_1.Text>
                     <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mr(20)])}>
-                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>编辑</components_1.Text>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>{userInfo.province || userInfo.city ? '编辑' : '添加'}</components_1.Text>
                       <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(6)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
                     </touchable_button_1.default>
                   </components_1.View>
@@ -233,7 +233,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(38), style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#0C0C0C'), style_1.ml(20)])}>教育经历</components_1.Text>
                     <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mr(20)])}>
-                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>编辑</components_1.Text>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>{userInfo.school && userInfo.school.length !== 0 ? '编辑' : '添加'}</components_1.Text>
                       <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(6)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
                     </touchable_button_1.default>
                   </components_1.View>
@@ -256,7 +256,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(38), style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#0C0C0C'), style_1.ml(20)])}>我的标签</components_1.Text>
                     <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mr(20)])}>
-                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>编辑</components_1.Text>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9')])}>{userInfo.labelArray && userInfo.labelArray.length !== 0 ? '编辑' : '添加'}</components_1.Text>
                       <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(6)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
                     </touchable_button_1.default>
                   </components_1.View>

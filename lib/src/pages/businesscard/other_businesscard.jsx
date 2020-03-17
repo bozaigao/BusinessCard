@@ -23,6 +23,7 @@ const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/task_center");
 const loginActions = require("../../actions/login");
+const businessCardActtions = require("../../actions/business_card");
 const index_2 = require("../pagecomponent/personal-info/index");
 const index_3 = require("../pagecomponent/my-goods/index");
 const index_4 = require("../pagecomponent/jizhi-card/index");
@@ -31,6 +32,7 @@ const index_6 = require("../../compoments/touchable-button/index");
 const index_7 = require("../pagecomponent/share-modal/index");
 const httpurl_1 = require("../../api/httpurl");
 const index_8 = require("../../compoments/navigation_bar/index");
+const other_business_card_guide_1 = require("../pagecomponent/other-business-card-guide");
 let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -43,6 +45,25 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
          */
         this.config = {
             disableScroll: true
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/16
+         * @function: 更新我收藏的名片
+         */
+        this.updateMyCollect = (type, collectedUserId) => {
+            this.viewRef.showLoading();
+            this.props.updateMyCollect({ type, collectedUserId }).then((res) => {
+                this.viewRef.hideLoading();
+                console.log('更新我收藏的名片', res);
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    datatool_1.toast('收藏成功');
+                }
+            }).catch(e => {
+                this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
         };
         /**
          * @author 何晏波
@@ -61,12 +82,16 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
         };
         this.state = {
             showShare: false,
-            userInfo: null
+            //@ts-ignore
+            userInfo: null,
+            showGuide: false
         };
     }
     componentDidShow() {
         console.log(this.viewRef);
         this.getUserInfoById();
+        let showGuide = datatool_1.get('other_business_guide');
+        this.setState({ showGuide: !showGuide });
     }
     componentWillUnmount() {
         taro_1.default.eventCenter.off('showJiFenModal');
@@ -81,12 +106,12 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
         };
     }
     render() {
-        let { showShare, userInfo } = this.state;
+        let { showShare, userInfo, showGuide } = this.state;
         return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         
-        {userInfo && <index_8.default>
+        <index_8.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.ujb, style_1.default.uac, style_1.default.udr])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(23), style_1.w(95), style_1.h(32), style_1.radiusA(16), style_1.bdColor('#E5E5E5'), style_1.bo(1), { borderStyle: 'solid' }])} onClick={() => {
             taro_1.default.reLaunch({
@@ -105,7 +130,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             </index_6.default>
             <components_1.View style={datatool_1.styleAssign([style_1.mr(23), style_1.w(95), style_1.h(32), style_1.bgColor(style_1.commonStyles.transparent)])}/>
           </components_1.View>
-        </index_8.default>}
+        </index_8.default>
         {userInfo && <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(10)])}>
@@ -124,10 +149,10 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uae, style_1.default.upa, style_1.absB(26), style_1.absR(24)])}>
                   
-                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.phone}</components_1.Text>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
-                  </components_1.View>
+                  {userInfo.showPhone === 1 && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.phone}</components_1.Text>
+                      <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
+                    </components_1.View>}
                   
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(8)])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.wechat}</components_1.Text>
@@ -159,6 +184,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                   </index_6.default>
                   <index_6.default customStyle={datatool_1.styleAssign([style_1.w(160), style_1.radiusA(4), style_1.ml(15), style_1.default.uac, style_1.default.ujc, style_1.bo(1), style_1.h(44),
             style_1.bdColor(style_1.commonStyles.colorTheme), style_1.bgColor(style_1.commonStyles.colorTheme)])} onClick={() => {
+            this.updateMyCollect(1, userInfo.id);
         }}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.whiteColor)])}>收藏名片</components_1.Text>
                   </index_6.default>
@@ -170,7 +196,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.makePhoneCall({
-                phoneNumber: userInfo.phone //仅为示例，并非真实的电话号码
+                phoneNumber: userInfo.phone
             });
         }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>拨打电话</components_1.Text>
@@ -226,7 +252,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             });
         }} goodsList={userInfo.goodsList}/>}
           
-          <index_5.default />
+          <index_5.default userInfo={userInfo}/>
           
           <index_4.default />
           
@@ -255,11 +281,22 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                 url: `/pages/businesscard/mingpian_haibao`
             });
         }}/>}
+        {showGuide && <other_business_card_guide_1.default cancle={() => {
+            datatool_1.save('other_business_guide', true);
+            this.setState({ showGuide: false });
+        }} goToMyCard={() => {
+            datatool_1.save('other_business_guide', true);
+            this.setState({ showGuide: false }, () => {
+                taro_1.default.reLaunch({
+                    url: `/pages/businesscard`
+                });
+            });
+        }}/>}
       </index_1.default>);
     }
 };
 OtherBusinesscard = __decorate([
-    redux_1.connect(state => Object.assign(state.taskCenter, state.login), Object.assign({}, actions, loginActions))
+    redux_1.connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActtions))
 ], OtherBusinesscard);
 exports.default = OtherBusinesscard;
 //# sourceMappingURL=other_businesscard.jsx.map

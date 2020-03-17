@@ -58,24 +58,40 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
                 console.log('报错啦', e);
             });
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/15
+         * @function: 我的新增客户数量
+         */
+        this.myCustomerCount = () => {
+            this.props.myCustomerCount().then((res) => {
+                console.log('我的新增客户数量', res);
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({
+                        newAddCustomerNum: res,
+                    });
+                }
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
         this.state = {
             level: 'gold',
             noSettlement: 0,
             totalIncome: 0,
             withdrawIncome: 0,
-            withdrawIncomeStat: 0
+            withdrawIncomeStat: 0,
+            newAddCustomerNum: 0
         };
     }
     componentWillMount() {
         this.userIncome();
-    }
-    componentDidShow() {
-    }
-    componentDidHide() {
+        this.myCustomerCount();
     }
     render() {
         let { userInfo } = this.props;
-        let { level, noSettlement, totalIncome, withdrawIncome, withdrawIncomeStat } = this.state;
+        let { level, noSettlement, totalIncome, withdrawIncome, withdrawIncomeStat, newAddCustomerNum } = this.state;
         let levelIcon = require('../../assets/ico_gold.png');
         switch (level) {
             case 'gold':
@@ -235,12 +251,13 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(14)])}>
                   我的客户
                 </components_1.Text>
-                <components_1.View style={datatool_1.styleAssign([style_1.w(54), style_1.h(21), style_1.ml(25), style_1.radiusA(4), style_1.bgColor('#FA6B57'),
-            style_1.default.uac, style_1.default.ujc])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>
-                    新增3人
-                  </components_1.Text>
-                </components_1.View>
+                {newAddCustomerNum !== 0 &&
+            <components_1.View style={datatool_1.styleAssign([style_1.w(54), style_1.h(21), style_1.ml(25), style_1.radiusA(4), style_1.bgColor('#FA6B57'),
+                style_1.default.uac, style_1.default.ujc])}>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>
+                      {`新增${newAddCustomerNum}人`}
+                    </components_1.Text>
+                  </components_1.View>}
               </components_1.View>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12)])} src={require('../../assets/ico_next.png')}/>
             </components_1.View>

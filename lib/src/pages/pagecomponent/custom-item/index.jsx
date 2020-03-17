@@ -15,7 +15,17 @@ const index_1 = require("../../../compoments/touchable-button/index");
 const httpurl_1 = require("../../../api/httpurl");
 class CustomItem extends taro_1.PureComponent {
     render() {
-        let { onClick, customer, genJinCallback } = this.props;
+        let { onClick, customer, genJinCallback, mode } = this.props;
+        let time;
+        if (mode === '最后访问') {
+            time = datatool_1.transformTime(customer.recentDate);
+        }
+        else if (mode === '最后跟进') {
+            time = datatool_1.transformTime(customer.followUpDate);
+        }
+        else if (mode === '最后转入') {
+            time = datatool_1.transformTime(customer.createUpDate);
+        }
         return (<index_1.default onClick={onClick} customStyle={datatool_1.styleAssign([style_1.radiusA(4), { width: '95%' }, { marginLeft: '2.5%' }, style_1.h(142), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(14)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(20)])}>
@@ -26,7 +36,7 @@ class CustomItem extends taro_1.PureComponent {
             <components_1.View style={datatool_1.styleAssign([style_1.ml(16)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>{customer.name}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.mt(4)])}>{customer.position}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.mt(3)])}>来自小程序搜索</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.mt(3)])}>{`来自${customer.source}`}</components_1.Text>
             </components_1.View>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc,
@@ -41,13 +51,23 @@ class CustomItem extends taro_1.PureComponent {
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.mt(15)])}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.ujb, style_1.default.udr])}>
           <components_1.View style={datatool_1.styleAssign([style_1.hRatio(100), style_1.default.uac, style_1.default.ujc])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(14), style_1.ml(16)])}>最后转入 12-16 11:15</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(14), style_1.ml(16)])}>{`${mode} ${time}`}</components_1.Text>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.w(80), style_1.hRatio(100), style_1.default.uac, style_1.default.ujc, style_1.default.utxdu])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.w(80), style_1.hRatio(100), style_1.default.uac, style_1.default.ujc, style_1.default.utxdu])} onClick={(e) => {
+            e.stopPropagation();
+            taro_1.default.navigateTo({
+                url: `/pages/businesscard/other_businesscard?userId=${customer.id}`
+            });
+        }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(14)])}>查看名片</components_1.Text>
             </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.w(80), style_1.hRatio(100), style_1.default.uac, style_1.default.ujc])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.w(80), style_1.hRatio(100), style_1.default.uac, style_1.default.ujc])} onClick={(e) => {
+            e.stopPropagation();
+            taro_1.default.makePhoneCall({
+                phoneNumber: customer.phone
+            });
+        }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(14), style_1.default.utxdu])}>拨打电话</components_1.Text>
             </components_1.View>
           </components_1.View>

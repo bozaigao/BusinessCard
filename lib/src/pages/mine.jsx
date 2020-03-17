@@ -24,6 +24,8 @@ const index_2 = require("../compoments/list-item/index");
 const httpurl_1 = require("../api/httpurl");
 const index_3 = require("../compoments/safe-area-view/index");
 const index_4 = require("../compoments/navigation_bar/index");
+const mine_guide1_1 = require("./pagecomponent/mine_guide1");
+const mine_guide2_1 = require("./pagecomponent/mine_guide2");
 let Mine = class Mine extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -52,14 +54,20 @@ let Mine = class Mine extends taro_1.Component {
                 console.log('报错啦', e);
             });
         };
+        this.state = { showGuide1: false, showGuide2: false };
     }
     componentDidShow() {
         this.getUserInfo();
+        let showGuide1 = datatool_1.get('mine_guide1');
+        this.setState({ showGuide1: !showGuide1 });
+        let showGuide2 = datatool_1.get('mine_guide2');
+        this.setState({ showGuide2: !showGuide2 && !!showGuide1 });
     }
     componentDidHide() {
     }
     render() {
         let { userInfo } = this.props;
+        let { showGuide1, showGuide2 } = this.state;
         return (<index_3.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
           <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? 264 : 244), style_1.default.upa, style_1.absT(0)])} src={require('../assets/ico_mine_bg.png')}/>
@@ -185,6 +193,28 @@ let Mine = class Mine extends taro_1.Component {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
         </components_1.View>
+        {showGuide1 && <mine_guide1_1.default cancle={() => {
+            datatool_1.save('mine_guide1', true);
+            this.setState({ showGuide1: false, showGuide2: true });
+        }} viewFenXiao={() => {
+            datatool_1.save('mine_guide1', true);
+            this.setState({ showGuide1: false, showGuide2: true }, () => {
+                taro_1.default.navigateTo({
+                    url: `/pages/mine/fenxiao_center`
+                });
+            });
+        }}/>}
+        {showGuide2 && <mine_guide2_1.default cancle={() => {
+            datatool_1.save('mine_guide2', true);
+            this.setState({ showGuide2: false });
+        }} openTeQuan={() => {
+            datatool_1.save('mine_guide2', true);
+            this.setState({ showGuide2: false }, () => {
+                taro_1.default.navigateTo({
+                    url: `/pages/mine/tequan`
+                });
+            });
+        }}/>}
       </index_3.default>);
     }
 };

@@ -32,10 +32,10 @@ class Card extends taro_1.PureComponent {
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uae, style_1.default.upa, style_1.absB(26), style_1.absR(24)])}>
                 
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.phone}</components_1.Text>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
-                </components_1.View>
+                {userInfo.showPhone === 1 && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.phone}</components_1.Text>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
+                  </components_1.View>}
                 
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(8)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.wechat}</components_1.Text>

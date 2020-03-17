@@ -43,7 +43,8 @@ class App extends taro_1.Component {
                         "my_collect",
                         "other_businesscard",
                         "ming_pian_ma",
-                        "choose_renmai_tag"
+                        "choose_renmai_tag",
+                        "choose_industry_tag"
                     ]
                 },
                 //雷达模块子界面

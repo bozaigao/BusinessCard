@@ -198,22 +198,33 @@ export interface TaskModel {
 
 
 export interface CustomerModel {
-  avatar: string,
-  city: string,
-  company: string,
-  detailAddress: string,
-  id: number,
-  intentionGrade: string,
-  label: string,
-  name: string,
-  phone: string,
-  position: string,
-  province: string,
-  recentDate: string,
-  sex: number,
-  source: string,
-  type: number,
-  userId: number
+  aboutUrl: string;
+  avatar: string;
+  birthday: string;
+  city: string;
+  company: string;
+  createTime: string;
+  customerUserId: string;
+  detailAddress: string;
+  email: string;
+  followUpDate: string;
+  id: number;
+  industry: string;
+  intentionGrade: string;
+  label: string;
+  latitude: number;
+  longitude: number;v
+  name: string;
+  phone: string;
+  position: string;
+  province: string;
+  recentDate: string;
+  remark: string;
+  sex: number;
+  type: number;
+  updateTime: string;
+  userId: number;
+  wechat: string;
 }
 
 export interface CustomerDetailModel {

@@ -20,10 +20,12 @@ const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/customer");
+const loginActions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
 const httpurl_1 = require("../../api/httpurl");
+require("./index.scss");
 let CustomerDetail = class CustomerDetail extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -40,6 +42,21 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
         /**
          * @author 何晏波
          * @QQ 1054539528
+         * @date 2019/12/29
+         * @function: 获取客户详情
+         */
+        this.getCustomerDetail = () => {
+            console.log('获取客户详情');
+            this.props.getCustomerDetail({ id: this.$router.params.userId }).then((res) => {
+                this.setState({ userInfo: res });
+                console.log('获取客户详情', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
          * @date 2020/1/28
          * @function:
          */
@@ -47,7 +64,9 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             console.log('查询客户跟进信息记录');
             this.props.followUpList({ id: this.state.customer.id }).then((res) => {
                 console.log('查询客户跟进信息记录', res);
-                this.setState({ flowUpList: res });
+                if (res && res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ flowUpList: res });
+                }
             }).catch(e => {
                 console.log('报错啦', e);
             });
@@ -78,7 +97,8 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             customer: datatool_1.parseData(this.$router.params.itemData),
             showOperate: false,
             currentIndex: 0,
-            flowUpList: []
+            flowUpList: [],
+            userInfo: null
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -87,12 +107,11 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
     componentWillUnmount() {
     }
     componentDidShow() {
+        this.getCustomerDetail();
         this.followUpList();
     }
-    componentDidHide() {
-    }
     render() {
-        let { showOperate, customer, currentIndex, flowUpList } = this.state;
+        let { showOperate, customer, currentIndex, flowUpList, userInfo } = this.state;
         let childView;
         if (currentIndex === 0) {
             childView = <components_1.View />;
@@ -101,12 +120,12 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             childView = <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10)])}>
         {flowUpList.map((value, index) => {
                 return <components_1.View key={index} style={datatool_1.styleAssign([style_1.wRatio(95), { marginLeft: '2.5%' }, style_1.hRatio(60), style_1.bgColor('red')])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(74), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pl(16), style_1.pr(16), style_1.pt(10), style_1.pb(10)])}>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pl(16), style_1.pr(16), style_1.pt(10), style_1.pb(10)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.default.ujb])}>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(27), style_1.h(27)])} src={`${httpurl_1.cloudBaseUrl}ico_default.png`}/>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>{datatool_1.transformTime(value.createTime)}</components_1.Text>
                 </components_1.View>
-                <components_1.Text style={datatool_1.styleAssign([style_1.mt(10), style_1.fSize(12), style_1.color('#343434')])}>{value.followUpContent}</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.mt(10), style_1.fSize(12), style_1.color('#343434')])} className={'.textStyle'}>{value.followUpContent}</components_1.Text>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor('#F7F7F7')])}/>
             </components_1.View>;
@@ -126,56 +145,56 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             this.viewRef = ref;
         }}>
         <top_header_1.default title={''}/>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb, style_1.pl(20), style_1.pr(20),
+        {userInfo && <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb, style_1.pl(20), style_1.pr(20),
             style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.w(40), style_1.h(40)])} onClick={() => {
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.w(40), style_1.h(40)])} onClick={() => {
             this.setState({ showOperate: true });
         }}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(19), style_1.h(4)])} src={`${httpurl_1.cloudBaseUrl}ico_dot.png`}/>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.w(98), style_1.h(98)])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(98), style_1.h(98), style_1.radiusA(49)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absB(0), style_1.absR(0)])} src={customer.sex === 1 ? `${httpurl_1.cloudBaseUrl}ico_nan.png` : `${httpurl_1.cloudBaseUrl}ico_nv.png`}/>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(19), style_1.h(4)])} src={`${httpurl_1.cloudBaseUrl}ico_dot.png`}/>
                 </components_1.View>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(22), style_1.color('#343434'), style_1.mt(11)])}>{customer.name}</components_1.Text>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>{customer.company}</components_1.Text>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>来自</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#E2BB7B')])}>名片扫码</components_1.Text>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.w(98), style_1.h(98)])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(98), style_1.h(98), style_1.radiusA(49)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absB(0), style_1.absR(0)])} src={customer.sex === 1 ? `${httpurl_1.cloudBaseUrl}ico_nan.png` : `${httpurl_1.cloudBaseUrl}ico_nv.png`}/>
+                  </components_1.View>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(22), style_1.color('#343434'), style_1.mt(11)])}>{customer.name}</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>{customer.company}</components_1.Text>
+                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>来自</components_1.Text>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#E2BB7B')])}>{customer.source}</components_1.Text>
+                  </components_1.View>
                 </components_1.View>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.h(25), style_1.mt(15)])} onClick={() => {
+                <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.h(25), style_1.mt(15)])} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/customer/customer_ziliao?id=${customer.id}`
             });
         }}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434')])}>资料</components_1.Text>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434')])}>资料</components_1.Text>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
+                </components_1.View>
               </components_1.View>
-            </components_1.View>
-            
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
+              
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.makePhoneCall({
-                phoneNumber: '15982468866' //仅为示例，并非真实的电话号码
+                phoneNumber: userInfo.phone
             });
         }}>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>拨打电话</components_1.Text>
+                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>拨打电话</components_1.Text>
+                  </components_1.View>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>{userInfo.phone}</components_1.Text>
                 </components_1.View>
-                <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>15982468866</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.setClipboardData({
-                data: 'bozaigao98'
+                data: userInfo.wechat
             });
             // Taro.getClipboardData({
             //   success(res) {
@@ -183,84 +202,91 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             //   }
             // })
         }}>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_wechat_gray.png')}/>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>加微信</components_1.Text>
+                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_wechat_gray.png')}/>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>加微信</components_1.Text>
+                  </components_1.View>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击添加微信</components_1.Text>
                 </components_1.View>
-                <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击添加微信</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
-            { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_location_gray.png')}/>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>联系地址</components_1.Text>
+            { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
+            taro_1.default.openLocation({
+                latitude: userInfo.latitude,
+                longitude: userInfo.longitude,
+                scale: 18
+            });
+        }}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_location_gray.png')}/>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>联系地址</components_1.Text>
+                  </components_1.View>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击立即定位</components_1.Text>
                 </components_1.View>
-                <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击立即定位</components_1.Text>
               </components_1.View>
             </components_1.View>
-          </components_1.View>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.default.ujb,
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.default.ujb,
             style_1.wRatio(100), style_1.h(44), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(12)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
             this.setState({ currentIndex: 0 });
         }}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 0 ? '#343434' : '#E2BB7B')])}>轨迹</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 0 ? '#343434' : '#E2BB7B')])}>轨迹</components_1.Text>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
             this.setState({ currentIndex: 1 });
         }}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>跟进</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 1 ? '#343434' : '#E2BB7B')])}>跟进</components_1.Text>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
             this.setState({ currentIndex: 2 });
         }}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 2 ? '#343434' : '#E2BB7B')])}>标签</components_1.Text>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 2 ? '#343434' : '#E2BB7B')])}>标签</components_1.Text>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.h(44)])} onClick={() => {
             this.setState({ currentIndex: 3 });
         }}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</components_1.Text>
+                </components_1.View>
+              </components_1.View>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.wRatio(100)])}>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 0 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 1 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 2 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
+                  <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 3 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
+                </components_1.View>
               </components_1.View>
             </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.wRatio(100)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 0 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 1 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 2 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
-              </components_1.View>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.w(44), style_1.h(1), style_1.bgColor(currentIndex !== 3 ? style_1.commonStyles.whiteColor : '#E2BB7B')])}/>
-              </components_1.View>
-            </components_1.View>
-          </components_1.View>
-          {childView}
-        </components_1.ScrollView>{showOperate && <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), { position: 'fixed' }, style_1.absT(0)])} onClick={() => {
+            {childView}
+          </components_1.ScrollView>}
+        {showOperate && <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), { position: 'fixed' }, style_1.absT(0)])} onClick={() => {
             this.setState({ showOperate: false });
         }}>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.op(0.3), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.bgColor(style_1.commonStyles.colorTheme)])}/>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(185), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusTL(10), style_1.radiusTR(10),
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.op(0.3), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.bgColor(style_1.commonStyles.colorTheme)])}/>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(185), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusTL(10), style_1.radiusTR(10),
             style_1.default.upa, style_1.absB(0)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.color('#E2BB7B'), style_1.fSize(18)])}>查看名片</components_1.Text>
-            </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])} onClick={() => {
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])}>
+                <components_1.Text style={datatool_1.styleAssign([style_1.color('#E2BB7B'), style_1.fSize(18)])}>查看名片</components_1.Text>
+              </components_1.View>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])} onClick={() => {
             this.deleteCustomer(customer.id);
         }}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.color('#29292E'), style_1.fSize(18)])}>移除客户</components_1.Text>
+                <components_1.Text style={datatool_1.styleAssign([style_1.color('#29292E'), style_1.fSize(18)])}>移除客户</components_1.Text>
+              </components_1.View>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(5), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])}>
+                <components_1.Text style={datatool_1.styleAssign([style_1.color('#29292E'), style_1.fSize(18)])}>取消</components_1.Text>
+              </components_1.View>
             </components_1.View>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(5), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.color('#29292E'), style_1.fSize(18)])}>取消</components_1.Text>
-            </components_1.View>
-          </components_1.View>
-        </components_1.View>}
+          </components_1.View>}
         
         {currentIndex === 1 && <bottom_buton_1.default title={'添加跟进'} onClick={() => {
             taro_1.default.navigateTo({
@@ -271,7 +297,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
     }
 };
 CustomerDetail = __decorate([
-    redux_1.connect(state => state.login, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign(actions, loginActions))
 ], CustomerDetail);
 exports.default = CustomerDetail;
 //# sourceMappingURL=customer_detail.jsx.map

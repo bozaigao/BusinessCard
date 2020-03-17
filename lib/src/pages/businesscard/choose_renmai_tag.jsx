@@ -80,8 +80,9 @@ let ChooseRenmaiTag = class ChooseRenmaiTag extends taro_1.Component {
             </components_1.Text>
           </components_1.View>
         </components_1.View>
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uWrap, style_1.mt(30), style_1.default.uac, style_1.default.ujc])}>
-          {interest.map((value, index) => {
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.mt(30), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uWrap, style_1.default.udr, style_1.default.uac, style_1.default.uja, style_1.pl(20), style_1.pr(20)])}>
+            {interest.map((value, index) => {
             return <components_1.View onClick={() => {
                 if (chooseValue.includes(value.itemText)) {
                     this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.itemText), 1);
@@ -90,24 +91,29 @@ let ChooseRenmaiTag = class ChooseRenmaiTag extends taro_1.Component {
                     this.state.chooseValue.push(value.itemText);
                 }
                 this.setState({ chooseValue: this.state.chooseValue });
-            }} key={index} style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.w(97), style_1.h(39), style_1.radiusA(20), style_1.mt(20), style_1.bo(1),
+            }} key={index} style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.padding([9, 35, 9, 35]), style_1.radiusA(20), style_1.mt(20), style_1.bo(1),
                 { borderStyle: 'solid', }, style_1.bdColor(chooseValue.includes(value.itemText) ? style_1.commonStyles.colorTheme : 'rgb(229,229,229)'), style_1.ml(index % 3 === 0 ? 0 : 23)])}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>
-                  {value.itemText}
-                </components_1.Text>
-              </components_1.View>;
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>
+                    {value.itemText}
+                  </components_1.Text>
+                </components_1.View>;
         })}
-        </components_1.View>
+          </components_1.View>
+        </components_1.ScrollView>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.mt(56)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(181), style_1.h(46), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(23)])} onClick={() => {
-            taro_1.default.navigateBack();
+            if (chooseValue.length !== 0) {
+                taro_1.default.redirectTo({
+                    url: `/pages/businesscard/choose_industry_tag?renmai=${JSON.stringify(chooseValue)}`
+                });
+            }
         }}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.whiteColor)])}>
               {`选好了(${chooseValue.length})`}
             </components_1.Text>
           </components_1.View>
         </components_1.View>
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.mt(32)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.mt(32), style_1.mb(20)])}>
           <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>
             极易推 给你极致服务
           </components_1.Text>
@@ -115,7 +121,9 @@ let ChooseRenmaiTag = class ChooseRenmaiTag extends taro_1.Component {
         <index_2.default style={datatool_1.styleAssign([style_1.default.upa, style_1.absT(0)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac])}>
             <components_1.View style={datatool_1.styleAssign([style_1.w(40), style_1.h(40), style_1.default.uac, style_1.default.ujc, style_1.ml(10)])} onClick={() => {
-            taro_1.default.navigateBack();
+            taro_1.default.redirectTo({
+                url: `/pages/businesscard/choose_industry_tag`
+            });
         }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color(style_1.commonStyles.whiteColor), style_1.default.utxdu])}>
                 跳过

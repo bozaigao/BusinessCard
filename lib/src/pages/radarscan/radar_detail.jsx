@@ -155,7 +155,7 @@ let RadarDetail = class RadarDetail extends taro_1.Component {
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.makePhoneCall({
-                phoneNumber: '15982468866' //仅为示例，并非真实的电话号码
+                phoneNumber: '15982468866'
             });
         }}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>

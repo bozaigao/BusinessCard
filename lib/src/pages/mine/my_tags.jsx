@@ -163,8 +163,13 @@ let MyTags = class MyTags extends taro_1.Component {
                     borderStyle: 'solid'
                 }])} onClick={() => {
                 if (!this.state.chooseTags.includes(value.itemText)) {
-                    this.state.chooseTags.push(value.itemText);
-                    this.setState({ chooseTags: this.state.chooseTags });
+                    if (chooseTags.length < 4) {
+                        this.state.chooseTags.push(value.itemText);
+                        this.setState({ chooseTags: this.state.chooseTags });
+                    }
+                    else {
+                        datatool_1.toast('最多添加4个标签');
+                    }
                 }
             }}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(chooseTags.includes(value.itemText) ? '#979797' : style_1.commonStyles.colorTheme)])}>{value.itemText}</components_1.Text>

@@ -25,7 +25,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
             imageTempPath: ''
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         this.drawBall();
     }
     drawBall() {
@@ -103,9 +103,7 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
                                     context.fillText(userInfo.company, 34, 140);
                                     context.setFontSize(14);
                                     context.fillText('您好,', 15, 240);
-                                    that.fillTextWrap(context, `我是${userInfo.company}的 ${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
-                                    context.fillText('这是我的名片，请惠存。', 15, 300);
-                                    context.fillText('谢谢!', 15, 320);
+                                    that.fillTextWrap(context, `我是${userInfo.company}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                                     context.setFillStyle('#E2BB7B');
                                     context.fillText('长按识别二维码 收下名片', 70, 390);
                                     context.setStrokeStyle(style_1.commonStyles.pageDefaultBackgroundColor);
@@ -157,6 +155,8 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
      * @function: 保存s存图片
      */
     saveImage() {
+        let that = this;
+        that.viewRef && that.viewRef.showLoading();
         // 查看是否授权
         taro_1.default.getSetting({
             complete() {
@@ -168,6 +168,12 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
                 taro_1.default.saveImageToPhotosAlbum({
                     filePath: this.state.imageTempPath
                 }).then(res => {
+                    that.viewRef && that.viewRef.hideLoading();
+                    datatool_1.toast('名片码保存成功');
+                    taro_1.default.previewImage({
+                        current: this.state.imageTempPath,
+                        urls: [this.state.imageTempPath] // 需要预览的图片http链接列表
+                    });
                     console.log(res);
                 });
             }
@@ -178,6 +184,12 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
                     taro_1.default.saveImageToPhotosAlbum({
                         filePath: this.state.imageTempPath
                     }).then(res => {
+                        that.viewRef && that.viewRef.hideLoading();
+                        datatool_1.toast('名片码保存成功');
+                        taro_1.default.previewImage({
+                            current: this.state.imageTempPath,
+                            urls: [this.state.imageTempPath] // 需要预览的图片http链接列表
+                        });
                         console.log(res);
                     });
                 });
@@ -221,6 +233,8 @@ let MingpianHaibao = class MingpianHaibao extends taro_1.Component {
         }
         if (currentText) {
             ctx.fillText(currentText, x, y);
+            ctx.fillText('这是我的名片，请惠存。', x, y + 20);
+            ctx.fillText('谢谢!', x, y + 40);
         }
     }
     render() {
