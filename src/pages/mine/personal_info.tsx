@@ -369,7 +369,7 @@ class PersonalInfo extends Component<Props, State> {
 
                 if (value.title === '生日') {
                   return (<Picker mode='date' onChange={(e) => {
-                    titleList2[3].value = e.detail.value;
+                    titleList2[2].value = e.detail.value;
                     this.setState({
                       titleList2,
                       birthday: e.detail.value
@@ -384,7 +384,7 @@ class PersonalInfo extends Component<Props, State> {
                 } else if (value.title === '地区') {
                   return (<Picker mode='region' onChange={(e) => {
                     console.log(e.detail)
-                    titleList2[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                    titleList2[3].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
                     this.setState({
                       titleList2,
                       province: e.detail.value[0],
