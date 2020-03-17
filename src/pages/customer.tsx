@@ -136,8 +136,11 @@ class Customer extends Component<Props, State> {
       startDate: startTime,
       endDate: endTime,
       status,
-      name
     };
+
+    if (name.length !== 0) {
+      Object.assign(params, {name});
+    }
 
     console.log('搜索参数', params);
     this.props.getCustomerList(params).then((res) => {

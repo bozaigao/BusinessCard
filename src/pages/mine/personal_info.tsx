@@ -166,7 +166,7 @@ class PersonalInfo extends Component<Props, State> {
    */
   update = () => {
     console.log('函数', this.props)
-    let {avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city} = this.state;
+    let {avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city, email} = this.state;
 
     if (avatar.length === 0) {
       toast('头像不能为空');
@@ -197,6 +197,7 @@ class PersonalInfo extends Component<Props, State> {
       avatar,
       name,
       sex,
+      email,
       phone,
       industry,
       position,
@@ -210,7 +211,7 @@ class PersonalInfo extends Component<Props, State> {
       detailAddress: this.state.titleList2[4].value
     };
 
-    console.log('参数错误', paramas);
+    console.log('更新用户信息', paramas);
 
     this.viewRef && this.viewRef.showLoading();
     this.props.update(paramas).then((res) => {
@@ -336,6 +337,9 @@ class PersonalInfo extends Component<Props, State> {
                     this.setState({name: e.detail.value});
                   } else if (value.title === '手机') {
                     this.setState({phone: e.detail.value});
+                  } else if (value.title === '职位') {
+                    console.log('职位', e.detail.value);
+                    this.setState({position: e.detail.value});
                   }
                 }
                 }/>);
@@ -392,16 +396,7 @@ class PersonalInfo extends Component<Props, State> {
                       title={value.title} subTitle={value.subtitle}
                       value={value.value}
                       key={index}
-                      hasEdit={value.hasEdit}
-                      onTextChange={(e) => {
-                        console.log(e);
-                        if (value.title === '邮箱') {
-                          this.setState({email: e.detail.value});
-                        } else if (value.title === '地址') {
-                          this.setState({detailAddress: e.detail.value});
-                        }
-                      }
-                      }/>
+                      hasEdit={value.hasEdit}/>
                   </Picker>);
                 }
                 return (<ListItem
@@ -409,6 +404,14 @@ class PersonalInfo extends Component<Props, State> {
                   value={value.value}
                   title={value.title} subTitle={value.subtitle} key={index}
                   hasEdit={value.hasEdit}
+                  onTextChange={(e) => {
+                    console.log(e);
+                    if (value.title === '邮箱') {
+                      console.log('邮箱', e.detail.value);
+                      this.setState({email: e.detail.value});
+                    }
+                  }
+                  }
                   onCLick={(title) => {
                     if (title === '我的标签') {
                       Taro.navigateTo({
