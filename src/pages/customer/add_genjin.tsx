@@ -25,7 +25,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -98,6 +98,9 @@ class AddGenJin extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         toast('添加成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
