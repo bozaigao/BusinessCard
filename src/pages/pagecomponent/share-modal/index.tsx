@@ -19,7 +19,7 @@ import {
   fSize,
   h,
   hRatio,
-  mt,
+  mt, op,
   w,
   wRatio
 } from "../../../utils/style";
@@ -49,7 +49,7 @@ export default class ShareModal extends PureComponent<Props, State> {
         }, absT(0), absR(0), wRatio(100), hRatio(100)])}>
         <TouchableButton
           onClick={cancle}
-          customStyle={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(0), absR(0)])}/>
+          customStyle={styleAssign([wRatio(100), hRatio(100), styles.upa, bgColor(commonStyles.blackColor), op(0.5), absT(0), absR(0)])}/>
         <View style={styleAssign([wRatio(100), h(194), bgColor(commonStyles.whiteColor), styles.upa, absB(0)])}>
           {/*微信分享、名片海报*/}
           <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac])}>
