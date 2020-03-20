@@ -153,7 +153,7 @@ class MyCustomer extends Component<Props, State> {
           <View
             style={styleAssign([{width: '80%'}, h(29), op(0.7), bgColor(commonStyles.whiteColor),
               radiusA(26), styles.uac, styles.udr, mt(10)])}>
-            <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../../../assets/ico_search.png')}/>
+            <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
             <Input type='text' placeholder='搜索客户姓名/ID' style={styleAssign([ml(16), fSize(14)])}
                    onInput={(e) => {
                      this.setState({content: e.detail.value}, () => {
