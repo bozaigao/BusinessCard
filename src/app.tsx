@@ -22,10 +22,10 @@ class App extends Component {
 
     //获取胶囊按钮位置信息为后面自定义导航条做准备
     global.menuButton = Taro.getMenuButtonBoundingClientRect();
-    global.debug = false;
+    global.debug = true;
     Taro.getSystemInfo({
       success: res => {
-        global = Object.assign(global, res, {debug: false});
+        global = Object.assign(global, res, {debug: true});
         if (res.model && res.model.includes('iPhone X')) {
           global.iphoneX = true;
         } else if (res.platform === 'ios' && res.screenHeight === 812 && res.screenWidth === 375 ||
