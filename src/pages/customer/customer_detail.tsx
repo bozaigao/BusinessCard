@@ -120,7 +120,7 @@ class CustomerDetail extends Component<Props, State> {
    */
   getCustomerDetail = () => {
     console.log('获取客户详情');
-    this.props.getCustomerDetail({id: this.$router.params.userId}).then((res) => {
+    this.props.getCustomerDetail({id: this.$router.params.id}).then((res) => {
       this.setState({customer: res});
       console.log('获取客户详情', res);
     }).catch(e => {
