@@ -38,6 +38,8 @@ interface Props {
   viewMyCardCallback: any;
   gotoCardCallback: any;
   userInfo: User;
+  holderCount: number;
+  visitorCount: number;
 }
 
 interface State {
@@ -46,6 +48,7 @@ interface State {
 export default class Card extends PureComponent<Props, State> {
 
   render() {
+    let {holderCount,visitorCount} = this.props;
 
     let {shareClick, collectCallback, visitorCallback, viewMyCardCallback, gotoCardCallback, userInfo} = this.props;
 
@@ -111,7 +114,7 @@ export default class Card extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(20)])}>
             <View style={styleAssign([styles.uf1, styles.uac])}
                   onClick={collectCallback}>
-              <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>118</Text>
+              <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>{holderCount}</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_star_gray.png`}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>收藏</Text>
@@ -119,7 +122,7 @@ export default class Card extends PureComponent<Props, State> {
             </View>
             <View style={styleAssign([w(1), h(25), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([styles.uf1, styles.uac])} onClick={visitorCallback}>
-              <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>230</Text>
+              <Text style={styleAssign([fSize(18), color('#343434'), fWeight('bold')])}>{visitorCount}</Text>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(11), h(11)])} src={`${cloudBaseUrl}ico_person_gray.png`}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>访客</Text>

@@ -32,6 +32,7 @@ interface Props {
   getRecommendSetting: any;
   recommendSettingStatus: any;
   getRecommend: any;
+  getCardHolderVisitorCount: any;
   userInfo: User;
 }
 
@@ -42,6 +43,8 @@ interface State {
   showGuide2: boolean;
   showGuide3: boolean;
   recommendList: any[];
+  holderCount: number;
+  visitorCount: number;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
@@ -68,10 +71,13 @@ class Businesscard extends Component<Props, State> {
       showGuide1: false,
       showGuide2: false,
       showGuide3: false,
+      holderCount: 0,
+      visitorCount: 0
     }
   }
 
   componentDidShow() {
+    this.getCardHolderVisitorCount();
     this.getUserInfo();
     this.getRecommendSetting();
     this.recommendSettingStatus();
@@ -92,6 +98,27 @@ class Businesscard extends Component<Props, State> {
 
   componentWillUnmount() {
     Taro.eventCenter.off('recommend');
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/21
+   * @function: 查询用户访客和收藏数
+   */
+  getCardHolderVisitorCount = () => {
+    this.props.getCardHolderVisitorCount().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          holderCount: res.holderCount,
+          visitorCount: res.visitorCount
+        });
+      }
+      console.log('查询用户访客和收藏数', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -191,7 +218,7 @@ class Businesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3} = this.state;
+    let {showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -210,6 +237,8 @@ class Businesscard extends Component<Props, State> {
           scrollY>
           {/*个人名片*/}
           <Card
+            holderCount={holderCount}
+            visitorCount={visitorCount}
             userInfo={this.props.userInfo}
             shareClick={() => {
               this.setState({showShare: true});

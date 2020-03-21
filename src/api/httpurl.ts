@@ -39,6 +39,8 @@ const BASE_URL = StagingUrl,
     getRecommend: BASE_URL + 'user/recommend',
     //解密微信小程序手机号
     decryptPhone: BASE_URL + 'utils/decryptPhone',
+    //查询用户访客和收藏数
+    getCardHolderVisitorCount: BASE_URL + 'user/getCardHolderVisitorCount',
   },
   //数据字典
   DictController = {

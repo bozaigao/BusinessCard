@@ -168,3 +168,16 @@ export const decryptPhone = payload => createAction({
   payload,
   method: 'GET',
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/21
+ * @function: 查询用户访客和收藏数
+*/
+export const getCardHolderVisitorCount = payload => createAction({
+  url: UserController.getCardHolderVisitorCount,
+  payload,
+  method: 'GET',
+});
