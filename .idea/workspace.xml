@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/ico_business_card_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/ico_business_card_bg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,24 +17,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="148" column="34" selection-start-line="148" selection-start-column="34" selection-end-line="148" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="296" column="36" selection-start-line="296" selection-start-column="36" selection-end-line="296" selection-end-column="36" />
+            <state relative-caret-position="222">
+              <caret line="242" column="13" selection-start-line="242" selection-start-column="13" selection-end-line="242" selection-end-column="13" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#112#164#0" expanded="true" />
                 <element signature="e#327#384#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#79#128#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -78,9 +82,9 @@
       <find>recommendIsSet</find>
       <find>no_data</find>
       <find>hasSelected</find>
-      <find>currentIndex</find>
       <find>indexChangeCallback</find>
       <find>getRecommend</find>
+      <find>currentIndex</find>
     </findStrings>
     <replaceStrings>
       <replace>ico_default.png</replace>
@@ -171,10 +175,10 @@
         <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
         <option value="$PROJECT_DIR$/src/api/httpurl.ts" />
         <option value="$PROJECT_DIR$/src/actions/login.ts" />
-        <option value="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/renmai-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx" />
       </list>
     </option>
   </component>
@@ -223,12 +227,6 @@
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -261,19 +259,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/pages/customer" />
-      <recent name="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item" />
-      <recent name="$PROJECT_DIR$/src/assets" />
-      <recent name="$PROJECT_DIR$/src/pages/pagecomponent/mine_guide2" />
-      <recent name="$PROJECT_DIR$/src/pages/pagecomponent/mine_guide1" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/mine" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/src/pages/businesscard" />
       <recent name="$PROJECT_DIR$/src/pages/pagecomponent" />
       <recent name="$PROJECT_DIR$/src/pages/sub_pagecomponent" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/src/pages/customer" />
+      <recent name="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item" />
+      <recent name="$PROJECT_DIR$/src/pages/pagecomponent/mine_guide2" />
+      <recent name="$PROJECT_DIR$/src/pages/pagecomponent/mine_guide1" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -467,12 +465,12 @@
       <workItem from="1584692018997" duration="3842000" />
       <workItem from="1584717639818" duration="735000" />
       <workItem from="1584748081673" duration="460000" />
-      <workItem from="1584753328446" duration="8701000" />
+      <workItem from="1584753328446" duration="9555000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1026081000" />
+    <option name="totallyTimeSpent" value="1026935000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -492,9 +490,9 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.23482586" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.23482586" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20063192" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20063192" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -578,20 +576,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_photo.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="215" column="13" selection-start-line="215" selection-start-column="13" selection-end-line="215" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/my_video.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="89" column="24" lean-forward="true" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/components/types/Text.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -904,17 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="124" column="102" selection-start-line="124" selection-start-column="102" selection-end-line="124" selection-end-column="102" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#79#128#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/request.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -940,21 +913,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/ico_no_data.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/my-person/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="148" column="34" selection-start-line="148" selection-start-column="34" selection-end-line="148" selection-end-column="34" />
+        <state relative-caret-position="25">
+          <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/ico_business_card_bg.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="296" column="36" selection-start-line="296" selection-start-column="36" selection-end-line="296" selection-end-column="36" />
+        <state relative-caret-position="222">
+          <caret line="242" column="13" selection-start-line="242" selection-start-column="13" selection-end-line="242" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#112#164#0" expanded="true" />
             <element signature="e#327#384#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/pagecomponent/business-card/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="55" column="61" selection-start-line="55" selection-start-column="61" selection-end-line="55" selection-end-column="61" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#79#128#0" expanded="true" />
           </folding>
         </state>
       </provider>
