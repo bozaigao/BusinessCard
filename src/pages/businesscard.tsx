@@ -58,7 +58,7 @@ interface State {
   showGuide2: boolean;
   showGuide3: boolean;
   recommendList: any[];
-  imageTempPath:string;
+  imageTempPath: string;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
@@ -85,7 +85,7 @@ class Businesscard extends Component<Props, State> {
       showGuide1: false,
       showGuide2: false,
       showGuide3: false,
-      imageTempPath:''
+      imageTempPath: ''
     }
   }
 
@@ -126,54 +126,79 @@ class Businesscard extends Component<Props, State> {
     }).then((res) => {
       this.roundRectColor(context, 0, 0, 335, 204, 16);
       //@ts-ignore
-      context.drawImage(res.path, 10, 10, 335, 204);
+      context.drawImage(res.path, 0, 0, 335, 204);
       //电话
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile.png?sign=16ccd18da0a7c3bbcbb3bf1f8a582b0d&t=1584026985`,
       }).then((res) => {
         //@ts-ignore
-        context.drawImage(res.path, 325, 90, 11, 9);
+        context.drawImage(res.path, 305, 90, 11, 9);
         context.setFontSize(12);
         context.setFillStyle('#343434');
         context.setTextAlign('right');
-        context.fillText(userInfo.phone, 310, 100);
+        context.fillText(userInfo.phone, 290, 100);
         //微信
         Taro.getImageInfo({
           src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat.png?sign=d69e311e5b1e06c521c064611bd9d30a&t=1584028318`,
         }).then((res) => {
           //@ts-ignore
-          context.drawImage(res.path, 325, 110, 12, 10);
+          context.drawImage(res.path, 305, 110, 12, 10);
           context.setTextAlign('right');
-          context.fillText(userInfo.wechat, 310, 120);
+          context.fillText(userInfo.wechat, 290, 120);
           //邮箱
           Taro.getImageInfo({
             src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email.png?sign=f35e0d13f139b041fdb849c2e143e5ce&t=1584030793`,
           }).then((res) => {
             //@ts-ignore
-            context.drawImage(res.path, 325, 130, 12, 10);
+            context.drawImage(res.path, 305, 130, 12, 10);
             context.setTextAlign('right');
-            context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 310, 140);
+            context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 290, 140);
             //地址
             Taro.getImageInfo({
               src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location.png?sign=c3abda7fa28594034f71a597086f5864&t=1584030919`,
             }).then((res) => {
               //@ts-ignore
-              context.drawImage(res.path, 325, 150, 12, 10);
+              context.drawImage(res.path, 305, 150, 12, 10);
               context.setTextAlign('right');
-              context.fillText(userInfo.detailAddress, 310, 160);
+              context.fillText(userInfo.detailAddress, 290, 160);
               console.log('执行到这里啦');
-              context.draw(false, () => {
-                Taro.hideLoading();
-                Taro.canvasToTempFilePath({
-                  canvasId: 'canvas',
-                  success: function (res) {
-                    console.log('获得图片临时路径', res);
-                    // 获得图片临时路径
-                    that.setState({
-                      imageTempPath: res.tempFilePath
-                    })
-                  }
-                })
+              context.setTextAlign('right');
+              Taro.getImageInfo({
+                src: userInfo.avatar,
+              }).then((res) => {
+
+                let arcWidth = 60;
+                //x-轴坐标
+                let xCoor = 30;
+                //y-轴坐标
+                let yCoor = 20;
+
+                context.beginPath();
+                context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false)
+                context.clip();
+                //@ts-ignore
+                context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
+                context.restore();
+                context.setFontSize(18);
+                context.setFillStyle(commonStyles.colorTheme);
+                context.fillText(userInfo.name, 34, 115);
+                context.setFontSize(12);
+                context.fillText(userInfo.position, 100, 115);
+                context.fillText(userInfo.company, 34, 140);
+                context.draw(false, () => {
+                  Taro.hideLoading();
+
+                  Taro.canvasToTempFilePath({
+                    canvasId: 'canvas',
+                    success: function (res) {
+                      console.log('获得图片临时路径', res);
+                      // 获得图片临时路径
+                      that.setState({
+                        imageTempPath: res.tempFilePath,
+                      })
+                    }
+                  })
+                });
               });
             });
           });
@@ -327,10 +352,10 @@ class Businesscard extends Component<Props, State> {
           {
             userInfo && userInfo.id &&
             <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
-              <View style={styleAssign([wRatio(100), h(249),styles.uac, bgColor(commonStyles.redColor), radiusA(10)])}>
+              <View style={styleAssign([w(335), h(249), styles.uac, bgColor(commonStyles.whiteColor), radiusA(10)])}>
                 <canvas style="width: 335px; height: 204px;background:#fff;"
                         canvas-id="canvas"/>
-                <View style={styleAssign([w(335), h(45), styles.udr, styles.uac, styles.ujb])}
+                <View style={styleAssign([wRatio(100), h(45), styles.udr, styles.uac, styles.ujb])}
                       onClick={() => {
                         Taro.navigateTo({
                           url: `/pages/businesscard/ming_pian_ma`
