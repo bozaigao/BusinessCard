@@ -37,6 +37,7 @@ import {Image, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
+import CustomTag from "../sub_pagecomponent/custom-tag";
 
 interface Props {
   //更新用户信息
@@ -49,6 +50,7 @@ interface Props {
 interface State {
   chooseTags: any;
   tags: any[];
+  showTagEdit: boolean;
 }
 
 @connect(state => state.login, Object.assign(actions, dictActions))
@@ -72,7 +74,8 @@ class MyTags extends Component<Props, State> {
     super(props);
     this.state = {
       chooseTags: props.userInfo.labelArray,
-      tags: []
+      tags: [],
+      showTagEdit: false
     }
     console.log(this.viewRef);
   }
@@ -159,7 +162,7 @@ class MyTags extends Component<Props, State> {
 
 
   render() {
-    let {chooseTags, tags} = this.state;
+    let {chooseTags, tags, showTagEdit} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -196,7 +199,10 @@ class MyTags extends Component<Props, State> {
             <View style={styleAssign([styles.udr, mt(16), styles.uae, mb(20)])}>
               <TouchableButton
                 customStyle={styleAssign([styles.uac, styles.udr, ml(20), bgColor(commonStyles.colorTheme),
-                  w(95), h(28), radiusA(14), styles.uac, styles.ujc])}>
+                  w(95), h(28), radiusA(14), styles.uac, styles.ujc])}
+                onClick={() => {
+                  this.setState({showTagEdit: true});
+                }}>
                 <View style={styleAssign([styles.udr, styles.uac])}>
                   <Image style={styleAssign([w(12), h(12)])} src={`${cloudBaseUrl}ico_black_add.png`}/>
                   <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>自定义标签</Text>
@@ -237,6 +243,27 @@ class MyTags extends Component<Props, State> {
         <BottomButon title={'保存'} onClick={() => {
           this.update();
         }}/>
+        {
+          showTagEdit && <CustomTag cancelCallback={() => {
+            this.setState({showTagEdit: false});
+          }
+          } confirmCallback={(content) => {
+            this.setState({showTagEdit: false}, () => {
+              if (!this.state.chooseTags.includes(content)) {
+                if (chooseTags.length < 4) {
+                  this.state.chooseTags.push(content);
+                  this.setState({chooseTags: this.state.chooseTags});
+                } else {
+                  toast('最多添加4个标签');
+                }
+              } else {
+                toast('已经有该标签');
+              }
+            });
+          }
+          }
+          />
+        }
       </CustomSafeAreaView>
     );
   }

@@ -171,7 +171,7 @@ class PerformInfo extends Component<Props, State> {
               <Text
                 style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</Text>
               <Text
-                style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{wrapSafe(userInfo.selfDescription)}</Text>
+                style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{wrapSafe(userInfo.industry)}</Text>
             </View>
             {/*编辑*/}
             <View style={styleAssign([styles.uac, styles.upa, absR(10), absB(150)])}>
