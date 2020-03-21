@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 import {
   absB,
-  absR,
+  absR, absT,
   bgColor,
   color,
   commonStyles,
@@ -74,10 +74,10 @@ class CustomerRemark extends Component<Props, State> {
     this.uploadCount = 0;
     this.uploadResultArr = [];
     this.state = {
-      name: '',
-      phone: '',
-      desc: '',
-      avatar: {path: ''},
+      name: this.$router.params.name,
+      phone: this.$router.params.phone,
+      desc: this.$router.params.remark,
+      avatar: {path: this.$router.params.aboutUrl},
     }
   }
 
@@ -185,7 +185,7 @@ class CustomerRemark extends Component<Props, State> {
 
 
   render() {
-    let {desc, avatar} = this.state;
+    let {desc, avatar, phone, name} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -197,12 +197,14 @@ class CustomerRemark extends Component<Props, State> {
           style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor)])}
           scrollY>
           <ListItem title={'备注名'} subTitle={'请输入备注名'}
+                    value={name}
                     hasEdit={true}
                     onTextChange={(data) => {
                       this.setState({name: data.detail.value});
                     }
                     } textColor={'#727272'}/>
           <ListItem title={'手机'} subTitle={'请输入手机号'}
+                    value={phone}
                     hasEdit={true}
                     onTextChange={(data) => {
                       this.setState({phone: data.detail.value});
@@ -249,9 +251,17 @@ class CustomerRemark extends Component<Props, State> {
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加与客户相关的图片</Text>
                 </View>
               </TouchableButton> :
-              <View style={styleAssign([styles.uac, styles.ujc, mt(26)])}>
-                <Image style={styleAssign([w(335), h(176)])} src={avatar.path}
-                       mode={'aspectFit'}/>
+              <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(30)])}>
+                <View style={styleAssign([w(335), h(176)])}>
+                  <Image style={styleAssign([w(335), h(176)])} src={avatar.path}
+                         mode={'aspectFit'}/>
+                  <Image style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
+                         src={`${cloudBaseUrl}ico_close.png`}
+                         onClick={() => {
+                           this.avatarArr = [];
+                           this.setState({avatar: {path: ''}});
+                         }}/>
+                </View>
               </View>
           }
         </ScrollView>

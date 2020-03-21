@@ -14,7 +14,7 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio, margin,
+  hRatio,
   mb,
   ml,
   mt,
@@ -156,7 +156,7 @@ class CustomerZiLiao extends Component<Props, State> {
                 <View style={styleAssign([styles.uac, styles.udr])}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/pages/customer/customer_remark?id=${this.id}`
+                          url: `/pages/customer/customer_remark?id=${this.id}&name=${customer.name}&phone=${customer.phone}&remark=${customer.remark}&aboutUrl=${customer.aboutUrl}`
                         });
                       }}>
                   <Text style={styleAssign([fSize(14), color('#343434')])}>
@@ -243,8 +243,8 @@ class CustomerZiLiao extends Component<Props, State> {
                     {customer.remark}
                   </Text>
                 </View>
-                <View style={styleAssign([styles.uac, styles.ujc, mt(20), mb(20)])}>
-                  <Image style={styleAssign([wRatio(100), h(176)])} src={customer.aboutUrl}
+                <View style={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
+                  <Image style={styleAssign([wRatio(100), h(176), mt(20), mb(20)])} src={customer.aboutUrl}
                          mode={'aspectFit'}/>
                 </View>
               </View>
