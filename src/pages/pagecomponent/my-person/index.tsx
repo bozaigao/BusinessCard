@@ -109,7 +109,7 @@ export default class MyPerson extends Component<Props, State> {
         {
           hasSelected && recommendList.map((value, index) => {
             console.log(value);
-            return <RenMaiItem key={index}/>;
+            return <RenMaiItem key={index} item={value}/>;
           })
         }
         {

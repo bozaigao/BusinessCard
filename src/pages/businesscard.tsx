@@ -81,7 +81,7 @@ class Businesscard extends Component<Props, State> {
     this.getUserInfo();
     this.getRecommendSetting();
     this.recommendSettingStatus();
-    this.getRecommend('schoolfellow');
+    this.getRecommend('recommend');
 
     let showGuide1 = get('business_guide1');
 
@@ -267,7 +267,8 @@ class Businesscard extends Component<Props, State> {
             Taro.navigateTo({
               url: `/pages/businesscard/choose_renmai_tag`
             });
-          }} hasSelected={recommendIsSet} recommendList={recommendList}
+          }} hasSelected={recommendIsSet}
+                    recommendList={recommendList}
                     indexChangeCallback={(index) => {
                       if (index === 0) {
                         this.getRecommend('recommend');
