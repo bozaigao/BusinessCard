@@ -242,7 +242,7 @@ class AddBusinesscard extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} notNeedBottomPadding={true}>
-        <TopHeader title={this.props.userInfo.cardPercent === 0 ? '创建名片' : '完善名片'}
+        <TopHeader title={'创建名片'}
                    backgroundColor={commonStyles.whiteColor}/>
         <ScrollView style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                     scrollY>
