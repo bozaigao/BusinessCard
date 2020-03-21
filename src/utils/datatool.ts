@@ -209,7 +209,6 @@ export function getMonthEndDate() {
   return formatDate(monthEndDate); //返回当月结束时间
 }
 
-
 //获得半年的开始日期
 export function getHalfYearStartDate() {
   let quarterStartDate;
