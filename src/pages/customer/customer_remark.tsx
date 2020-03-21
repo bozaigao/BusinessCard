@@ -110,7 +110,7 @@ class CustomerRemark extends Component<Props, State> {
       toast('请输入手机号');
       return;
     }
-    if (phone.length !== 11 && !phone.startsWith('1')) {
+    if (phone.length !== 11 || !phone.startsWith('1')) {
       toast('请输入合法手机号');
       return;
     }
