@@ -257,17 +257,22 @@ class Businesscard extends Component<Props, State> {
         </ScrollView>
         {/*创建名片*/}
         <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
-          // console.log('更新用户信息', token);
-          if (!userInfo.avatar) {
-            this.updateUserInfo(data.detail);
+          if (userInfo.cardPercent) {
+            Taro.navigateTo({
+              url: `/pages/mine/perform_info`
+            });
+          } else {
+            if (!userInfo.avatar) {
+              this.updateUserInfo(data.detail);
+            }
+            Taro.navigateTo({
+              url: `/pages/businesscard/add_businesscard`
+            });
           }
-          Taro.navigateTo({
-            url: `/pages/businesscard/add_businesscard`
-          });
         }} style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
             <Text
-              style={styleAssign([fSize(14), color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}，点击完善` : '创建您的专属名片'}</Text>
+              style={styleAssign([fSize(14), color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}%，点击完善` : '创建您的专属名片'}</Text>
           </View>
         </Button>
         {
