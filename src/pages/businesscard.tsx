@@ -279,6 +279,11 @@ class Businesscard extends Component<Props, State> {
                       } else if (index === 3) {
                         this.getRecommend('schoolfellow');
                       }
+                    }}
+                    performCard={() => {
+                      Taro.navigateTo({
+                        url: `/pages/mine/perform_info`
+                      });
                     }}/>
           {/*slogan*/}
           <View style={styleAssign([wRatio(100), h(66), styles.ujc, styles.uac])}>

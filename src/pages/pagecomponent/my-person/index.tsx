@@ -13,7 +13,7 @@ import styles, {
   color,
   commonStyles,
   fSize,
-  h,
+  h, mb,
   ml,
   mr,
   mt,
@@ -32,6 +32,7 @@ interface Props {
   indexChangeCallback: any;
   hasSelected: boolean;
   recommendList: any[];
+  performCard: any;
 }
 
 interface State {
@@ -46,7 +47,16 @@ export default class MyPerson extends Component<Props, State> {
 
   render() {
     let {currentIndex} = this.state;
-    let {chooseCallback, hasSelected, recommendList, indexChangeCallback} = this.props;
+    let {chooseCallback, hasSelected, recommendList, indexChangeCallback,performCard} = this.props;
+    let noticeText = '';
+
+    if (currentIndex === 1) {
+      noticeText = '完善你的名片信息，发现更多志趣相投的朋友';
+    } else if (currentIndex === 2) {
+      noticeText = '完善你的名片信息，发现更多同乡，促进交流';
+    } else if (currentIndex === 3) {
+      noticeText = '完善你的名片信息，发现更多校友，促进交流';
+    }
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -113,7 +123,7 @@ export default class MyPerson extends Component<Props, State> {
           })
         }
         {
-          hasSelected &&
+          hasSelected && currentIndex === 0 &&
           <View style={styleAssign([wRatio(100), h(226), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc])}>
             <View style={styleAssign([styles.uac])}>
               <View style={styleAssign([styles.uac, styles.ujc, styles.udr, w(160)])}>
@@ -134,6 +144,24 @@ export default class MyPerson extends Component<Props, State> {
               </View>
             </View>
           </View>
+        }
+        {
+          hasSelected && recommendList.length === 0 &&
+          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
+            <View
+              style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
+              <View style={styleAssign([styles.uac])}>
+                <Image style={styleAssign([w(78), h(69), mt(47)])} src={require('../../../assets/ico_no_data.png')}/>
+                <Text style={styleAssign([fSize(14), color('#343434'), mt(31)])}>{noticeText}</Text>
+                <View
+                  style={styleAssign([w(303), h(44), bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc, mt(24), mb(29)])}
+                  onClick={performCard}>
+                  <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即完善名片</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+
         }
 
       </View>
