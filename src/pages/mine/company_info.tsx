@@ -115,7 +115,7 @@ class CompanyInfo extends Component<Props, State> {
 
 
   render() {
-    let {enterpriseName, enterpriseWebsite, enterpriseLogoLocal, enterpriseVideoLocal,enterpriseLogo} = this.state;
+    let {enterpriseName, enterpriseWebsite, enterpriseLogoLocal, enterpriseVideoLocal, enterpriseLogo} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -173,7 +173,7 @@ class CompanyInfo extends Component<Props, State> {
                              Taro.chooseImage({count: 1}).then((res) => {
                                console.log(res)
                                this.setState({enterpriseLogoLocal: res.tempFilePaths[0]});
-                               this.uploadFileTpWx(res.tempFilePaths[0]);
+                               this.uploadFileTpWx(res.tempFilePaths[0], 'image');
                              });
                            }}/>
                     <Text style={styleAssign([fSize(12), color('#B7B7B7'), mt(14)])}>建议尺寸：350px*350px</Text>
@@ -232,7 +232,7 @@ class CompanyInfo extends Component<Props, State> {
             toast('请选择logo');
             return;
           }
-          this.uploadFileTpWx(enterpriseVideoLocal, () => {
+          this.uploadFileTpWx(enterpriseVideoLocal, 'video', () => {
             this.update();
           });
         }}/>
@@ -247,10 +247,10 @@ class CompanyInfo extends Component<Props, State> {
    * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
-  uploadFileTpWx = (path, callback?: any) => {
+  uploadFileTpWx = (path, type, callback?: any) => {
     let {enterpriseVideo} = this.state;
 
-    if (callback && enterpriseVideo.length !== 0) {
+    if (callback && enterpriseVideo.length !== 0 || path.length === 0) {
       callback();
       return;
     }
@@ -259,7 +259,7 @@ class CompanyInfo extends Component<Props, State> {
 
     this.viewRef && this.viewRef.showLoading();
     Taro.uploadFile({
-      url: FileController.uploadPicture,
+      url: type === 'image' ? FileController.uploadPicture : FileController.uploadVideo,
       filePath: path,
       name: 'file',
       header: {
@@ -267,10 +267,10 @@ class CompanyInfo extends Component<Props, State> {
       },
       success(res) {
         that.viewRef && that.viewRef.hideLoading();
-        if (!callback) {
+        if (type === 'image') {
           that.setState({enterpriseLogo: parseData(res.data).data});
         } else {
-          that.setState({enterpriseVideo: parseData(res.data).data},()=>{
+          that.setState({enterpriseVideo: parseData(res.data).data}, () => {
             callback();
           });
         }
