@@ -45,6 +45,7 @@ import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
 import DeleteNoticeModal from "../sub_pagecomponent/delete-notice";
+import ShareInvite from "../pagecomponent/share-invite";
 
 interface Props {
   deleteCustomer?: any;
@@ -56,6 +57,7 @@ interface Props {
 interface State {
   showOperate: boolean;
   showDeleteNotice: boolean;
+  showShareInvite: boolean;
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
@@ -85,7 +87,8 @@ class CustomerDetail extends Component<Props, State> {
       showOperate: false,
       currentIndex: 0,
       flowUpList: [],
-      showDeleteNotice: false
+      showDeleteNotice: false,
+      showShareInvite: false
     }
   }
 
@@ -99,6 +102,14 @@ class CustomerDetail extends Component<Props, State> {
   componentDidShow() {
     this.getCustomerDetail();
     this.followUpList();
+  }
+
+  //@ts-ignore
+  onShareAppMessage(res) {
+    return {
+      title: `快来使用极致推小程序吧`,
+      path: `/pages/businesscard`
+    }
   }
 
   /**
@@ -161,7 +172,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -360,10 +371,14 @@ class CustomerDetail extends Component<Props, State> {
                 styles.upa, absB(0)])}>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.setState({showOperate: false},()=>{
-                        Taro.navigateTo({
-                          url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}`
-                        });
+                      this.setState({showOperate: false}, () => {
+                        if (customer.type === 1) {
+                          Taro.navigateTo({
+                            url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}`
+                          });
+                        } else {
+                          this.setState({showShareInvite: true});
+                        }
                       });
                     }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
@@ -398,6 +413,13 @@ class CustomerDetail extends Component<Props, State> {
             this.deleteCustomer(customer.id);
           }
           }/>
+        }
+        {
+          showShareInvite && <ShareInvite cancelCallback={() => {
+            this.setState({showShareInvite: false});
+          }} confirmCallback={() => {
+            this.setState({showShareInvite: false});
+          }}/>
         }
       </CustomSafeAreaView>
     )

@@ -31,6 +31,7 @@ import {cloudBaseUrl} from "../../../api/httpurl";
 interface Props {
   onClick: any;
   genJinCallback: any;
+  viewCardCallback: any;
   customer: any;
   mode: string;
 }
@@ -41,7 +42,7 @@ interface State {
 export default class CustomItem extends PureComponent<Props, State> {
 
   render() {
-    let {onClick, customer, genJinCallback, mode} = this.props;
+    let {onClick, customer, genJinCallback, mode,viewCardCallback} = this.props;
     let time;
 
     if (mode === '最后访问') {
@@ -90,9 +91,7 @@ export default class CustomItem extends PureComponent<Props, State> {
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}
                   onClick={(e) => {
                     e.stopPropagation();
-                    Taro.navigateTo({
-                      url: `/pages/businesscard/other_businesscard?userId=${customer.id}`
-                    });
+                    viewCardCallback();
                   }}>
               <Text style={styleAssign([color(commonStyles.colorTheme), fSize(14)])}>查看名片</Text>
             </View>

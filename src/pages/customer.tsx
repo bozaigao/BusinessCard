@@ -36,6 +36,7 @@ import ShaiXuanModal from "./pagecomponent/shai-xuan-modal/index";
 import NavigationBar from "../compoments/navigation_bar/index";
 import SanJiao from "../compoments/sanjiao/index";
 import CustomerGuide from "./pagecomponent/customer-guide";
+import ShareInvite from "./pagecomponent/share-invite";
 
 interface Props {
   getCustomerList?: any;
@@ -46,6 +47,7 @@ interface State {
   totalCustomers: number;
   shaiXuanMode: string;
   showMode: boolean;
+  showShareInvite: boolean;
   shaiXuanValue: string;
   showShaiXuan: boolean;
   showGuide: boolean;
@@ -75,7 +77,8 @@ class Customer extends Component<Props, State> {
       startTime: '2020-01-01',
       endTime: getToday(),
       name: '',
-      showGuide: false
+      showGuide: false,
+      showShareInvite: false
     }
   }
 
@@ -159,9 +162,18 @@ class Customer extends Component<Props, State> {
   }
 
 
+  //@ts-ignore
+  onShareAppMessage(res) {
+    return {
+      title: `快来使用极致推小程序吧`,
+      path: `/pages/businesscard`
+    }
+  }
+
+
   render() {
 
-    let {customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide} = this.state;
+    let {customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide, showShareInvite} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -231,6 +243,16 @@ class Customer extends Component<Props, State> {
                           url: `/pages/customer/customer_detail?userId=${value.id}`
                         });
                       }}
+                      viewCardCallback={() => {
+                        if (value.type === 2) {
+                          this.setState({showShareInvite: true});
+                        } else {
+                          Taro.navigateTo({
+                            url: `/pages/businesscard/other_businesscard?userId=${value.id}`
+                          });
+                        }
+                      }
+                      }
                       genJinCallback={(customer) => {
                         Taro.navigateTo({
                           url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
@@ -289,6 +311,13 @@ class Customer extends Component<Props, State> {
             this.setState({showGuide: false});
           }
           }/>
+        }
+        {
+          showShareInvite && <ShareInvite cancelCallback={() => {
+            this.setState({showShareInvite: false});
+          }} confirmCallback={() => {
+            this.setState({showShareInvite: false});
+          }}/>
         }
       </CustomSafeAreaView>
     )
