@@ -13,6 +13,7 @@ import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, radiusA, w, 
 
 interface Props {
   item: any;
+  collectCard:any;
 }
 
 interface State {
@@ -21,7 +22,7 @@ interface State {
 export default class RenMaiItem extends PureComponent<Props, State> {
 
   render() {
-    let {item} = this.props;
+    let {item,collectCard} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -43,7 +44,10 @@ export default class RenMaiItem extends PureComponent<Props, State> {
           </View>
           <View
             style={styleAssign([w(64), h(28), radiusA(2), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mr(20)])}>
-            <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>
+            <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}
+            onClick={()=>{
+              collectCard(item.userId);
+            }}>
               收藏名片
             </Text>
           </View>

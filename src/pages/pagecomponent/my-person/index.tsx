@@ -34,6 +34,7 @@ interface Props {
   recommendList: any[];
   performCard: any;
   currentIndex: number;
+  collectCard: any;
 }
 
 interface State {
@@ -45,7 +46,7 @@ export default class MyPerson extends Component<Props, State> {
   }
 
   render() {
-    let {chooseCallback, hasSelected, recommendList, indexChangeCallback,performCard,currentIndex} = this.props;
+    let {chooseCallback, hasSelected, recommendList, indexChangeCallback, performCard, currentIndex, collectCard} = this.props;
     let noticeText = '';
 
     if (currentIndex === 1) {
@@ -115,7 +116,7 @@ export default class MyPerson extends Component<Props, State> {
         {
           hasSelected && recommendList.map((value, index) => {
             console.log(value);
-            return <RenMaiItem key={index} item={value}/>;
+            return <RenMaiItem key={index} item={value} collectCard={collectCard}/>;
           })
         }
         {

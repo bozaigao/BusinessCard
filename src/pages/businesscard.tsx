@@ -10,11 +10,12 @@ import {Button, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {get, save, styleAssign} from "../utils/datatool";
+import {get, save, styleAssign, toast} from "../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, radiusA, w, wRatio} from "../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
 import * as loginActions from '../actions/login';
+import * as businessCardActions from '../actions/business_card';
 import Card from "./pagecomponent/business-card/index";
 import MyPerson from "./pagecomponent/my-person/index";
 import ShareModal from "./pagecomponent/share-modal/index";
@@ -33,6 +34,7 @@ interface Props {
   recommendSettingStatus: any;
   getRecommend: any;
   getCardHolderVisitorCount: any;
+  updateMyCollect: any;
   userInfo: User;
 }
 
@@ -48,7 +50,7 @@ interface State {
   currentIndex: number;
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions))
 class Businesscard extends Component<Props, State> {
 
 
@@ -63,6 +65,7 @@ class Businesscard extends Component<Props, State> {
     disableScroll: true
   }
   private recommendType;
+  private viewRef;
 
   constructor(props) {
     super(props);
@@ -219,6 +222,27 @@ class Businesscard extends Component<Props, State> {
     }
   }
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/16
+   * @function: 更新我收藏的名片
+   */
+  updateMyCollect = (type: number, collectedUserId: number) => {
+    this.viewRef.showLoading();
+    this.props.updateMyCollect({type, collectedUserId}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('更新我收藏的名片', res);
+      if (res !== NetworkState.FAIL) {
+        this.getCardHolderVisitorCount();
+        toast('收藏成功');
+      }
+    }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
 
   render() {
 
@@ -228,6 +252,9 @@ class Businesscard extends Component<Props, State> {
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           notNeedBottomPadding={true}
+                          ref={(ref) => {
+                            this.viewRef = ref;
+                          }}
       >
         {/*切换名片*/}
         <NavigationBar>
@@ -275,6 +302,9 @@ class Businesscard extends Component<Props, State> {
               });
             }} hasSelected={recommendIsSet}
             recommendList={recommendList}
+            collectCard={(userId) => {
+              this.updateMyCollect(1, userId);
+            }}
             indexChangeCallback={(index) => {
               if (index === 0) {
                 this.recommendType = 'recommend';
