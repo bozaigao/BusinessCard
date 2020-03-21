@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {get, save, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, save, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absL,
@@ -145,10 +145,12 @@ class OtherBusinesscard extends Component<Props, State> {
   //@ts-ignore
   onShareAppMessage(res) {
     console.log('名片分享');
-    return {
-      title: '名片分享',
-      path: '/pages/businesscard/other_businesscard'
-    }
+    debounce(500,()=>{
+      return {
+        title: '名片分享',
+        path: '/pages/businesscard/other_businesscard'
+      }
+    });
   }
 
 
