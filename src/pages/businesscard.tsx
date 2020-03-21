@@ -45,6 +45,7 @@ interface State {
   recommendList: any[];
   holderCount: number;
   visitorCount: number;
+  currentIndex: number;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
@@ -61,9 +62,11 @@ class Businesscard extends Component<Props, State> {
   config: Config = {
     disableScroll: true
   }
+  private recommendType;
 
   constructor(props) {
     super(props);
+    this.recommendType = 'recommend';
     this.state = {
       showShare: false,
       recommendIsSet: false,
@@ -72,7 +75,8 @@ class Businesscard extends Component<Props, State> {
       showGuide2: false,
       showGuide3: false,
       holderCount: 0,
-      visitorCount: 0
+      visitorCount: 0,
+      currentIndex: 0
     }
   }
 
@@ -81,7 +85,7 @@ class Businesscard extends Component<Props, State> {
     this.getUserInfo();
     this.getRecommendSetting();
     this.recommendSettingStatus();
-    this.getRecommend('recommend');
+    this.getRecommend();
 
     let showGuide1 = get('business_guide1');
 
@@ -128,8 +132,8 @@ class Businesscard extends Component<Props, State> {
    * @date 2020/3/14
    * @function: 获取人脉推荐
    */
-  getRecommend = (recommendType) => {
-    this.props.getRecommend({recommendType}).then((res) => {
+  getRecommend = () => {
+    this.props.getRecommend({recommendType: this.recommendType}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({recommendList: res});
       }
@@ -218,7 +222,7 @@ class Businesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount} = this.state;
+    let {showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex} = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -263,28 +267,42 @@ class Businesscard extends Component<Props, State> {
               });
             }}/>
           {/*我的人脉*/}
-          <MyPerson chooseCallback={() => {
-            Taro.navigateTo({
-              url: `/pages/businesscard/choose_renmai_tag`
-            });
-          }} hasSelected={recommendIsSet}
-                    recommendList={recommendList}
-                    indexChangeCallback={(index) => {
-                      if (index === 0) {
-                        this.getRecommend('recommend');
-                      } else if (index === 1) {
-                        this.getRecommend('interest');
-                      } else if (index === 2) {
-                        this.getRecommend('villager');
-                      } else if (index === 3) {
-                        this.getRecommend('schoolfellow');
-                      }
-                    }}
-                    performCard={() => {
-                      Taro.navigateTo({
-                        url: `/pages/mine/perform_info`
-                      });
-                    }}/>
+          <MyPerson
+            currentIndex={currentIndex}
+            chooseCallback={() => {
+              Taro.navigateTo({
+                url: `/pages/businesscard/choose_renmai_tag`
+              });
+            }} hasSelected={recommendIsSet}
+            recommendList={recommendList}
+            indexChangeCallback={(index) => {
+              if (index === 0) {
+                this.recommendType = 'recommend';
+                this.setState({currentIndex: index}, () => {
+                  this.getRecommend();
+                })
+              } else if (index === 1) {
+                this.recommendType = 'interest';
+                this.setState({currentIndex: index}, () => {
+                  this.getRecommend();
+                })
+              } else if (index === 2) {
+                this.recommendType = 'villager';
+                this.setState({currentIndex: index}, () => {
+                  this.getRecommend();
+                })
+              } else if (index === 3) {
+                this.recommendType = 'schoolfellow';
+                this.setState({currentIndex: index}, () => {
+                  this.getRecommend();
+                })
+              }
+            }}
+            performCard={() => {
+              Taro.navigateTo({
+                url: `/pages/mine/perform_info`
+              });
+            }}/>
           {/*slogan*/}
           <View style={styleAssign([wRatio(100), h(66), styles.ujc, styles.uac])}>
             <Text style={styleAssign([fSize(18), color('#D2D2D2')])}>极易推 给您极致服务</Text>

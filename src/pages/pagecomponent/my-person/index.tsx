@@ -33,21 +33,19 @@ interface Props {
   hasSelected: boolean;
   recommendList: any[];
   performCard: any;
+  currentIndex: number;
 }
 
 interface State {
-  currentIndex: number;
 }
 
 export default class MyPerson extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.setState({currentIndex: 0});
   }
 
   render() {
-    let {currentIndex} = this.state;
-    let {chooseCallback, hasSelected, recommendList, indexChangeCallback,performCard} = this.props;
+    let {chooseCallback, hasSelected, recommendList, indexChangeCallback,performCard,currentIndex} = this.props;
     let noticeText = '';
 
     if (currentIndex === 1) {
@@ -103,9 +101,7 @@ export default class MyPerson extends Component<Props, State> {
               ['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
                 return <View key={index} style={styleAssign([styles.uac, ml(index !== 0 ? 62 : 0)])}
                              onClick={() => {
-                               this.setState({currentIndex: index}, () => {
-                                 indexChangeCallback(index);
-                               });
+                               indexChangeCallback(index);
                              }}>
                   <Text
                     style={styleAssign([fSize(15), color(currentIndex === index ? '#E2BB7B' : '#0C0C0C')])}>{value}</Text>
