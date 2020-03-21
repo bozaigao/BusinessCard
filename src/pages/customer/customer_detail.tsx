@@ -358,7 +358,14 @@ class CustomerDetail extends Component<Props, State> {
             <View
               style={styleAssign([wRatio(100), h(185), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
                 styles.upa, absB(0)])}>
-              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
+              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      this.setState({showOperate: false},()=>{
+                        Taro.navigateTo({
+                          url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}`
+                        });
+                      });
+                    }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
               </View>
               <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
