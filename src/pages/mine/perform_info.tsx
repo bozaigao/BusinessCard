@@ -310,9 +310,9 @@ class PerformInfo extends Component<Props, State> {
                   </View>
                   <View style={styleAssign([wRatio(100), mb(10)])}>
                     {
-                      userInfo.province || userInfo.city ?
+                      userInfo.hometownProvince || userInfo.hometownCity ?
                         <Text
-                          style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>{`${userInfo.province} ${userInfo.city}`}</Text> :
+                          style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>{`${userInfo.hometownProvince} ${userInfo.hometownCity}`}</Text> :
                         <Text
                           style={styleAssign([fSize(12), color('#A9A9A9'), ml(20), mr(20)])}>完善家乡信息，增加更多人脉</Text>
                     }

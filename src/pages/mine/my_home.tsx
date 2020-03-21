@@ -114,8 +114,8 @@ class MyHome extends Component<Props, State> {
 
     this.viewRef && this.viewRef.showLoading();
     let params = {
-      province: this.province,
-      city: this.city,
+      hometownProvince: this.province,
+      hometownCity: this.city,
       villagerGreeting: wenHouYU
     };
 
