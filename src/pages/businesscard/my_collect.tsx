@@ -402,7 +402,7 @@ class MyCollect extends Component<Props, State> {
         {
           showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
                                onClick={() => {
-                                 this.setState({showOperate: false, showDeleteNotice: true});
+                                 this.setState({showOperate: false});
                                }}>
             <View
               style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>

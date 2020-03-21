@@ -363,10 +363,13 @@ class Businesscard extends Component<Props, State> {
             this.setState({showShare: false});
           }
           } wechatShare={() => {
+            this.setState({showShare: false});
           }
           } haibao={() => {
-            Taro.navigateTo({
-              url: `/pages/businesscard/mingpian_haibao`
+            this.setState({showShare: false},()=>{
+              Taro.navigateTo({
+                url: `/pages/businesscard/mingpian_haibao`
+              });
             });
           }
           }/>
