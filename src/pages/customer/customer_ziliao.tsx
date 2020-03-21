@@ -14,7 +14,7 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio,
+  hRatio, margin,
   mb,
   ml,
   mt,
@@ -213,21 +213,43 @@ class CustomerZiLiao extends Component<Props, State> {
             })
           }
           {/*常用标签*/}
-          <View style={styleAssign([wRatio(100), h(154), mt(8), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>Ta的标签</Text>
-            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
-              styles.uWrap])}>
-              {
-                customer.label && parseData(customer.label).map((value, index) => {
-                  return (<TouchableButton key={index}
-                                           customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]),
-                                             bgColor('#EFEFEF')])}>
-                    <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme)])}>{value}</Text>
-                  </TouchableButton>);
-                })
-              }
+          {
+            customer.label && parseData(customer.label).length !== 0 &&
+            <View style={styleAssign([wRatio(100), h(154), mt(8), bgColor(commonStyles.whiteColor)])}>
+              <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>Ta的标签</Text>
+              <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
+                styles.uWrap])}>
+                {
+                  parseData(customer.label).map((value, index) => {
+                    return (<TouchableButton key={index}
+                                             customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]),
+                                               bgColor('#EFEFEF')])}>
+                      <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme)])}>{value}</Text>
+                    </TouchableButton>);
+                  })
+                }
+              </View>
             </View>
-          </View>
+          }
+          {
+            customer.aboutUrl.length !== 0 &&
+            <View style={styleAssign([wRatio(100), h(154), mt(8), bgColor(commonStyles.whiteColor)])}>
+              <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>描述</Text>
+              <View style={styleAssign([wRatio(100), mt(8),])}>
+                <View
+                  style={styleAssign([wRatio(90), {marginLeft: '5%'}, bgColor(commonStyles.pageDefaultBackgroundColor),
+                    padding([13, 16, 13, 16])])}>
+                  <Text style={styleAssign([fSize(14), color('#343434')])}>
+                    {customer.remark}
+                  </Text>
+                </View>
+                <View style={styleAssign([styles.uac, styles.ujc, mt(20), mb(20)])}>
+                  <Image style={styleAssign([wRatio(100), h(176)])} src={customer.aboutUrl}
+                         mode={'aspectFit'}/>
+                </View>
+              </View>
+            </View>
+          }
         </ScrollView>
       </CustomSafeAreaView>
     )

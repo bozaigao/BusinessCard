@@ -249,7 +249,7 @@ class CustomerRemark extends Component<Props, State> {
                   <Text style={styleAssign([fSize(12), color('#ACADAD'), mt(10)])}>添加与客户相关的图片</Text>
                 </View>
               </TouchableButton> :
-              <View style={styleAssign([styles.uac, styles.ujc])}>
+              <View style={styleAssign([styles.uac, styles.ujc, mt(26)])}>
                 <Image style={styleAssign([w(335), h(176)])} src={avatar.path}
                        mode={'aspectFit'}/>
               </View>
