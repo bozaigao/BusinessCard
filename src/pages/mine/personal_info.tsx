@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {debounce, get, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {debounce, get, isLegalEmail, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -190,6 +190,11 @@ class PersonalInfo extends Component<Props, State> {
     }
     if (position.length === 0) {
       toast('职位不能为空');
+      return;
+    }
+
+    if (!isLegalEmail(email)) {
+      toast('请输入有效的邮箱');
       return;
     }
 

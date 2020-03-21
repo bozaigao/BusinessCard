@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view";
 //@ts-ignore
-import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, isLegalEmail, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   bgColor,
   color,
@@ -167,6 +167,11 @@ class AddBusinesscard extends Component<Props, State> {
     }
     if (!listData[3].value || listData[3].value.length === 0) {
       toast('请先填写行业');
+      return;
+    }
+
+    if (!isLegalEmail(listData[7].value)) {
+      toast('请输入有效的邮箱');
       return;
     }
     this.viewRef && this.viewRef.showLoading();

@@ -234,3 +234,22 @@ export function formartSecond(seconds: number) {
 
 }
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/21
+ * @function: 判断是否为有效的邮箱
+ */
+export function isLegalEmail(email) {
+  //对电子邮件的验证
+  let myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+
+  //@ts-ignore
+  if (!myreg.test(email)) {
+    toast('请输入有效的邮箱');
+    return false;
+  }
+  return true;
+}
+

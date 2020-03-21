@@ -24,7 +24,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {debounce, get, parseData, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, isLegalEmail, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -139,7 +139,7 @@ class AddCustomer extends Component<Props, State> {
    */
   addPrivateCustomer = () => {
 
-    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress} = this.state;
+    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress,email} = this.state;
 
     if (name.length === 0) {
       toast('备注名不能为空');
@@ -151,6 +151,11 @@ class AddCustomer extends Component<Props, State> {
     }
     if (phone.length !== 11 || !phone.startsWith('1')) {
       toast('手机号非法');
+      return;
+    }
+
+    if (!isLegalEmail(email)) {
+      toast('请输入有效的邮箱');
       return;
     }
 
@@ -168,6 +173,7 @@ class AddCustomer extends Component<Props, State> {
       birthday,
       wechat,
       avatar: this.avatarArr[0],
+      email
     };
 
     this.viewRef && this.viewRef.showLoading();
