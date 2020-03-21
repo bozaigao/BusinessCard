@@ -36,6 +36,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/business_card';
 import * as visitorActions from '../../actions/visitor';
+import * as customerActions from '../../actions/customer';
 import {CollectItemModel, Orientation, User, VisitorRecordModel} from "../../const/global";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import CollectItem from "../sub_pagecomponent/collect-item";
@@ -55,6 +56,7 @@ interface Props {
   updateMyCollect: any;
   //查询我的访客列表
   getVisitorList: any;
+  addCustomer: any;
 }
 
 interface State {
@@ -78,7 +80,7 @@ interface State {
   shaiXuanTimes: number;
 }
 
-@connect(state => state.login, {...actions, ...visitorActions})
+@connect(state => state.login, {...actions, ...visitorActions, ...customerActions})
 class MyCollect extends Component<Props, State> {
 
   private viewRef;
@@ -103,7 +105,7 @@ class MyCollect extends Component<Props, State> {
     this.pageNo = 1;
     this.pageSize = 10;
     this.state = {
-      currentIndex: parseInt(this.$router.params.currentIndex),
+      currentIndex: parseInt(this.$router.params.currentIndex, 10),
       collectSubCurrentIndex: 0,
       visitorSubCurrentIndex: 0,
       showOperate: false,
@@ -175,6 +177,27 @@ class MyCollect extends Component<Props, State> {
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/21
+   * @function: 置为客户
+   */
+  addCustomer = (userId) => {
+    this.viewRef.showLoading();
+    this.props.addCustomer({customerUserId: userId}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('置为客户', res);
+      if (res !== NetworkState.FAIL) {
+        toast('设置成功');
+      }
+    }).catch(e => {
+      this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -273,7 +296,11 @@ class MyCollect extends Component<Props, State> {
               return (<CollectItem key={index} operate={(item) => {
                 this.collectItemModel = item;
                 this.setState({showOperate: true});
-              }} item={value}/>);
+              }} item={value}
+                                   setCustomer={(userId) => {
+                                     this.addCustomer(userId);
+                                   }
+                                   }/>);
             })
           }
         </ScrollView>

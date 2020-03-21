@@ -31,6 +31,7 @@ import {cloudBaseUrl} from "../../../api/httpurl";
 
 interface Props {
   operate: any;
+  setCustomer: any;
   item: CollectItemModel;
 }
 
@@ -40,7 +41,7 @@ interface State {
 export default class CollectItem extends PureComponent<Props, State> {
 
   render() {
-    let {operate, item} = this.props;
+    let {operate, item, setCustomer} = this.props;
 
     return (
       <TouchableButton
@@ -60,7 +61,10 @@ export default class CollectItem extends PureComponent<Props, State> {
             </View>
           </View>
           <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
-            w(72), h(28), radiusA(4), mr(16)])}>
+            w(72), h(28), radiusA(4), mr(16)])}
+                onClick={()=>{
+                  setCustomer(item.userId);
+                }}>
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>置为客户</Text>
           </View>
         </View>
