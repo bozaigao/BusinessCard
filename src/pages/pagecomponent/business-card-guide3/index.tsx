@@ -54,7 +54,7 @@ export default class BusinessCardGuide3 extends PureComponent<Props, State> {
         <TouchableButton
           customStyle={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.blackColor), op(0.5), styles.upa, absT(0), absR(0),])}/>
         <View
-          style={styleAssign([wRatio(100), h(224), styles.uac, styles.upa, {top: iphoneX() ? pxTransform(563) : pxTransform(516)}])}>
+          style={styleAssign([wRatio(100), h(224), styles.uac, styles.upa, {top: iphoneX() ? pxTransform(580) : pxTransform(540)}])}>
           <Text
             style={styleAssign([w(216), h(50), fSize(18), color(commonStyles.whiteColor)])}>点击这里可以将自己的名片分享出去让更多人看到哦！</Text>
           <View
