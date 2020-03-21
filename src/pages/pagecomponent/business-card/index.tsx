@@ -8,6 +8,10 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {
+  absB,
+  absL,
+  absR,
+  absT,
   bdColor,
   bgColor,
   bo,
@@ -16,8 +20,7 @@ import styles, {
   fSize,
   fWeight,
   h,
-  ml,
-  mr,
+  ml, mr,
   mt,
   radiusA,
   w,
@@ -38,119 +41,61 @@ interface Props {
 }
 
 interface State {
-  imageTempPath: string;
 }
 
 export default class Card extends PureComponent<Props, State> {
 
-
-  componentDidMount() {
-    this.drawBall()
-  }
-
-
-  drawBall() {
-    Taro.showLoading({
-      title: '加载中',
-    });
-    let {userInfo} = this.props;
-
-    console.log('用户基本资料', userInfo);
-
-    const context = Taro.createCanvasContext('canvas', this)
-    //@ts-ignore
-    const that = this;
-
-    Taro.getImageInfo({
-      src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
-    }).then((res) => {
-      this.roundRectColor(context, 0, 0, 335, 204, 16);
-      //@ts-ignore
-      context.drawImage(res.path, 10, 10, 335, 204);
-      //电话
-      Taro.getImageInfo({
-        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile.png?sign=16ccd18da0a7c3bbcbb3bf1f8a582b0d&t=1584026985`,
-      }).then((res) => {
-        //@ts-ignore
-        context.drawImage(res.path, 295, 90, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle('#343434');
-        context.setTextAlign('right');
-        context.fillText(userInfo.phone, 290, 100);
-        //微信
-        Taro.getImageInfo({
-          src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat.png?sign=d69e311e5b1e06c521c064611bd9d30a&t=1584028318`,
-        }).then((res) => {
-          //@ts-ignore
-          context.drawImage(res.path, 295, 110, 12, 10);
-          context.setTextAlign('right');
-          context.fillText(userInfo.wechat, 290, 120);
-          //邮箱
-          Taro.getImageInfo({
-            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email.png?sign=f35e0d13f139b041fdb849c2e143e5ce&t=1584030793`,
-          }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 295, 130, 12, 10);
-            context.setTextAlign('right');
-            context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 290, 140);
-            //地址
-            Taro.getImageInfo({
-              src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location.png?sign=c3abda7fa28594034f71a597086f5864&t=1584030919`,
-            }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 295, 150, 12, 10);
-              context.setTextAlign('right');
-              context.fillText(userInfo.detailAddress, 290, 160);
-              console.log('执行到这里啦');
-              context.draw(false, () => {
-                Taro.hideLoading();
-                Taro.canvasToTempFilePath({
-                  canvasId: 'canvas',
-                  success: function (res) {
-                    console.log('获得图片临时路径', res);
-                    // 获得图片临时路径
-                    that.setState({
-                      imageTempPath: res.tempFilePath
-                    })
-                  }
-                })
-              });
-            });
-          });
-        });
-      });
-    });
-  }
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2020/3/12
-   * @function: 绘制圆角填充色矩形
-   */
-  roundRectColor(context, x, y, w, h, r) { //绘制圆角矩形（纯色填充）
-    context.save();
-    context.setFillStyle(commonStyles.whiteColor);
-    context.setStrokeStyle(commonStyles.whiteColor)
-    context.setLineJoin('round'); //交点设置成圆角
-    context.setLineWidth(r);
-    context.strokeRect(x + r / 2, y + r / 2, w - r, h - r);
-    context.fillRect(x + r, y + r, w - r * 2, h - r * 2);
-    context.stroke();
-    context.closePath();
-  }
-
-
   render() {
 
     let {shareClick, collectCallback, visitorCallback, viewMyCardCallback, gotoCardCallback, userInfo} = this.props;
-    let {imageTempPath} = this.state;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
         <View style={styleAssign([wRatio(95), h(249), bgColor(commonStyles.whiteColor), radiusA(10)])}>
-          <canvas style="width: 335px; height: 204px;background:#fff;margin-top:20px;border-radius:4px;"
-                  canvas-id="canvas"/>
+          <View style={styleAssign([wRatio(100), h(204), bgColor('rgb(211,199,195)'), radiusA(10),
+            styles.udr, styles.uje])}>
+            <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
+                   src={require('../../../assets/ico_business_card_bg.png')}/>
+            <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
+              <View
+                style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
+              <View style={styleAssign([styles.upa, absL(20), absT(15)])}>
+                <Image style={styleAssign([w(60), h(60), radiusA(30)])}
+                       src={userInfo.avatar}/>
+                <View style={styleAssign([styles.uae, styles.udr, mt(6)])}>
+                  <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
+                  <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
+                </View>
+                <Text style={styleAssign([fSize(12), color('#343434')])}>{userInfo.company}</Text>
+              </View>
+              <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
+                {/*电话号码*/}
+                <View style={styleAssign([styles.uac, styles.udr])}>
+                  <Text
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
+                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
+                </View>
+                {/*微信号*/}
+                <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
+                  <Text
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
+                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
+                </View>
+                {/*邮箱*/}
+                <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
+                  <Text
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
+                  <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
+                </View>
+                {/*地址*/}
+                <View style={styleAssign([styles.udr, mt(8)])}>
+                  <Text
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
+                  <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])} src={`${cloudBaseUrl}ico_card_location.png`}/>
+                </View>
+              </View>
+            </View>
+          </View>
           <View style={styleAssign([wRatio(100), h(45), styles.udr, styles.uac, styles.ujb])}
                 onClick={gotoCardCallback}>
             <Text
@@ -194,9 +139,7 @@ export default class Card extends PureComponent<Props, State> {
               <TouchableButton
                 customStyle={styleAssign([w(160), radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),
                   bdColor(commonStyles.colorTheme), bgColor(commonStyles.colorTheme)])}
-                onClick={() => {
-                  shareClick(imageTempPath);
-                }}>
+                onClick={shareClick}>
                 <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>分享名片</Text>
               </TouchableButton>
             </View>
