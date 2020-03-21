@@ -305,7 +305,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 </View>
               </View>
               <View style={styleAssign([wRatio(100), h(61), styles.udr, styles.uac, styles.ujb, pl(20), pr(20)])}>
-                <View style={styleAssign([styles.udr, styles.uac, bgColor('red'), w(180)])}>
+                <View style={styleAssign([styles.udr, styles.uac, w(180)])}>
                   {
                     [1, 2, 3, 4, 5].map((value, index) => {
                       console.log(value);
