@@ -32,11 +32,12 @@ import {Image, Input, ScrollView, Text, Video, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
 import ListItem from "../sub_pagecomponent/list-item/index";
 import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
-import {Enum} from "../../const/global";
+import {Enum, User} from "../../const/global";
 
 interface Props {
   //更新用户信息
   update: any;
+  userInfo: User;
 }
 
 interface State {
@@ -69,12 +70,12 @@ class CompanyInfo extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
-      enterpriseName: '',
-      enterpriseWebsite: '',
-      enterpriseLogo: '',
-      enterpriseLogoLocal: '',
-      enterpriseVideo: '',
-      enterpriseVideoLocal: '',
+      enterpriseName: props.userInfo.enterpriseName,
+      enterpriseWebsite: props.userInfo.enterpriseWebsite,
+      enterpriseLogo: props.userInfo.enterpriseLogo,
+      enterpriseLogoLocal: props.userInfo.enterpriseLogo,
+      enterpriseVideo: props.userInfo.enterpriseVideo,
+      enterpriseVideoLocal: props.userInfo.enterpriseVideo,
     }
   }
 
