@@ -194,7 +194,7 @@ class CustomerZiLiao extends Component<Props, State> {
           {
             [{title: '地区', value: wrapSafe(customer.province + customer.city)},
               {title: '详细地址', value: wrapSafe(customer.detailAddress)},
-              {title: '生日', value: transformTime(customer.birthday)},
+              {title: '生日', value: customer.birthday ? transformTime(customer.birthday) : ''},
               {title: '微信号', value: wrapSafe(customer.wechat)},
               {title: '邮箱', value: wrapSafe(customer.email)}].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
