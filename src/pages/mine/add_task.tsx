@@ -126,7 +126,6 @@ class AddTask extends Component<Props, State> {
     let paramas = {
       theme,
       date,
-      userIds: JSON.stringify([1]),
       remark
     };
 
@@ -136,7 +135,7 @@ class AddTask extends Component<Props, State> {
       for (let i = 0; i < chooseCustomer.length; i++) {
         userIds.push(chooseCustomer[i].id);
       }
-      Object.assign(paramas, {userIds: JSON.stringify(userIds)});
+      Object.assign(paramas, {customerIds: JSON.stringify(userIds)});
     }
 
     this.viewRef && this.viewRef.showLoading();

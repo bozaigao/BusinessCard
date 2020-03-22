@@ -44,11 +44,11 @@ export default class TaskItem extends PureComponent<Props, State> {
     let {itemData, finishCallback} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(100), h(143), styles.uac, styles.ujc, mt(10), mb(10)])}>
-        <View style={styleAssign([w(335), h(153), bgColor(commonStyles.whiteColor), radiusA(4)])}>
+      <View style={styleAssign([wRatio(100),styles.uac, styles.ujc, mt(10), mb(10)])}>
+        <View style={styleAssign([w(335), bgColor(commonStyles.whiteColor), radiusA(4)])}>
           <View style={styleAssign([w(335), styles.uac, styles.udr, styles.ujb,
             pl(16), pr(16), pt(20)])}>
-            <Text style={styleAssign([fSize(16), color('#343434'), w(200), h(40)])}
+            <Text style={styleAssign([fSize(16), color('#343434'), w(200)])}
                   className={'.textStyle'}>{itemData.theme}</Text>
             {
               itemData.status !== 1 && <TouchableButton
@@ -60,10 +60,9 @@ export default class TaskItem extends PureComponent<Props, State> {
               </TouchableButton>
             }
           </View>
-          <Text style={styleAssign([fSize(12), color('#343434'), mt(10), ml(20)])}>{itemData.remark}</Text>
           <View
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-          <View style={styleAssign([styles.uf1, styles.uac, styles.udr, styles.ujb])}>
+          <View style={styleAssign([wRatio(100),h(40), styles.uac, styles.udr, styles.ujb])}>
             <Text
               style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{transformTime(itemData.date)}</Text>
             <TouchableButton customStyle={styleAssign([styles.uac, styles.ujc, mr(16), styles.utxdu])}>
