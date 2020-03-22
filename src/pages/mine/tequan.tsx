@@ -83,10 +83,10 @@ class TeQuan extends Component<Props, State> {
     this.state = {
       packageId: 0,
       currentIndex: 0,
-      title1: '查看访客无限制',
-      subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
+      title1: '获取人脉资源，增加客户来源',
+      subtitle1: '开通人脉扩展功能，突破每日推送人脉名额限制 根据您的期望人脉选择及个人名片信息，精准推送人脉，提升获客率',
       title2: '特权介绍',
-      subtitle2: '• 可查看全部访客的信息',
+      subtitle2: '• 可查看更多人脉',
       packageList: [],
       scrollTop: 0
     }
@@ -216,17 +216,17 @@ class TeQuan extends Component<Props, State> {
                   this.packageList();
                   if (this.state.currentIndex === 0) {
                     this.setState({
-                      title1: '查看访客无限制',
-                      subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
-                      title2: '特权介绍',
-                      subtitle2: '• 可查看全部访客的信息'
-                    });
-                  } else if (this.state.currentIndex === 1) {
-                    this.setState({
                       title1: '获取人脉资源，增加客户来源',
                       subtitle1: '开通人脉扩展功能，突破每日推送人脉名额限制 根据您的期望人脉选择及个人名片信息，精准推送人脉，提升获客率',
                       title2: '特权介绍',
                       subtitle2: '• 可查看更多人脉'
+                    });
+                  } else if (this.state.currentIndex === 1) {
+                    this.setState({
+                      title1: '查看访客无限制',
+                      subtitle1: '查看来访人员不再限制在7天内，开通此特权之后可查看所有访客信息，并获取专属个人访客分析',
+                      title2: '特权介绍',
+                      subtitle2: '• 可查看全部访客的信息'
                     });
                   } else if (this.state.currentIndex === 2) {
                     this.setState({
@@ -239,19 +239,20 @@ class TeQuan extends Component<Props, State> {
                 });
               }}>
               {
-                [{
-                  title: '查看全部访客',
-                  subTitle: '随时了解谁对你感兴趣',
-                  bg: 'ico_tequan1.png',
-                  logo: 'ico_tequan1_logo.png',
-                  buttonTitle: '新用户1元试用',
-                  right: '最低￥198起'
-                },
+                [
                   {
                     title: '结识更多人脉',
                     subTitle: '会员每月增30个精准人脉推荐',
                     bg: 'ico_tequan3.png',
                     logo: 'ico_tequan3_logo.png',
+                    buttonTitle: '新用户1元试用',
+                    right: '最低￥198起'
+                  },
+                  {
+                    title: '查看全部访客',
+                    subTitle: '随时了解谁对你感兴趣',
+                    bg: 'ico_tequan1.png',
+                    logo: 'ico_tequan1_logo.png',
                     buttonTitle: '新用户1元试用',
                     right: '最低￥198起'
                   }, {
@@ -286,7 +287,7 @@ class TeQuan extends Component<Props, State> {
               <View style={styleAssign([styles.udr, styles.uac])}
                     onClick={() => {
                       Taro.navigateTo({
-                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'fangke' : 'renmai'}&packageId=${packageList[0].packageId}`
+                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop') }&packageId=${packageList[0].packageId}`
                       });
                     }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>详情</Text>
