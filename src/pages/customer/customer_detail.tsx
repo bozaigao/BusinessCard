@@ -235,7 +235,7 @@ class CustomerDetail extends Component<Props, State> {
                   <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
                   <View style={styleAssign([styles.uac, styles.udr])}>
                     <Text style={styleAssign([fSize(12), color('#979797')])}>来自</Text>
-                    <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.type}</Text>
+                    <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.source}</Text>
                   </View>
                 </View>
                 <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
@@ -285,7 +285,8 @@ class CustomerDetail extends Component<Props, State> {
                     <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_wechat_gray.png')}/>
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
                   </View>
-                  <Text style={styleAssign([color('#979797'), fSize(12)])}>点击添加微信</Text>
+                  <Text
+                    style={styleAssign([color('#979797'), fSize(12)])}>{`${customer.wechat ? customer.wechat : '点击添加微信'}`}</Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
@@ -301,7 +302,8 @@ class CustomerDetail extends Component<Props, State> {
                     <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_location_gray.png')}/>
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   </View>
-                  <Text style={styleAssign([color('#979797'), fSize(12)])}>点击立即定位</Text>
+                  <Text
+                    style={styleAssign([color('#979797'), fSize(12)])}>{customer.detailAddress ? customer.detailAddress : '点击立即定位'}</Text>
                 </View>
               </View>
             </View>

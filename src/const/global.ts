@@ -221,6 +221,7 @@ export interface CustomerModel {
   recentDate: string;
   remark: string;
   sex: number;
+  source:string;
   type: number;
   updateTime: string;
   userId: number;
