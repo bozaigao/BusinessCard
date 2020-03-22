@@ -178,7 +178,7 @@ class AddGoods extends Component<Props, State> {
    * @date 2019/12/29
    * @function: 添加任务
    */
-  addGoods = () => {
+  addGoods = (status) => {
     let {name, price, introduction} = this.state;
 
     if (name.length === 0) {
@@ -203,7 +203,8 @@ class AddGoods extends Component<Props, State> {
       price,
       carouselUrl: JSON.stringify(this.carouselUrls),
       detailUrl: JSON.stringify(this.detailUrls),
-      introduction
+      introduction,
+      status
     }).then((res) => {
       Taro.eventCenter.trigger('goodsListRefresh');
       console.log('添加商品信息', res);
@@ -437,12 +438,15 @@ class AddGoods extends Component<Props, State> {
                   <TouchableButton customStyle={styleAssign([w(162), h(44), bo(1), bdColor(commonStyles.colorTheme),
                     {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
                                    onClick={() => {
-                                     this.addGoods();
+                                     this.addGoods(0);
                                    }}>
                     <Text style={styleAssign([fSize(16), color('#343434')])}>保存商品</Text>
                   </TouchableButton>
                   <TouchableButton customStyle={styleAssign([ml(10), w(162), h(44), bgColor(commonStyles.colorTheme),
-                    radiusA(2), styles.uac, styles.ujc])}>
+                    radiusA(2), styles.uac, styles.ujc])}
+                                   onClick={() => {
+                                     this.addGoods(1);
+                                   }}>
                     <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即上架</Text>
                   </TouchableButton>
                 </View>
