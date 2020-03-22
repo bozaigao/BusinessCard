@@ -111,6 +111,8 @@ export interface User {
   phone: string;
   //我的照片(json数组)
   photoUrl: string;
+  //我的照片
+  photoUrlArray: string[];
   //职位
   position: string;
   //教育经历-专业

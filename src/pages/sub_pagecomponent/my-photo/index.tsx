@@ -8,11 +8,10 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, hRatio, ml, mt, radiusA, w, wRatio} from "../../../utils/style";
-import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
-  // navigation_bar: NavigationBar;
+  photos: string[];
 }
 
 interface State {
@@ -21,6 +20,7 @@ interface State {
 export default class MyPhoto extends PureComponent<Props, State> {
 
   render() {
+    let {photos} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -30,21 +30,15 @@ export default class MyPhoto extends PureComponent<Props, State> {
         </View>
         <View
           style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(720), bgColor(commonStyles.whiteColor)])}>
-          <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-            <Image
-              style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={`${cloudBaseUrl}ico_default.png`}/>
-          </View>
-          <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-            <Image
-              style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={`${cloudBaseUrl}ico_default.png`}/>
-          </View>
-          <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-            <Image
-              style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-              src={`${cloudBaseUrl}ico_default.png`}/>
-          </View>
+          {
+            photos.map((value, index) => {
+              return <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])} key={index}>
+                <Image
+                  style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
+                  src={value}/>
+              </View>;
+            })
+          }
         </View>
       </View>
     );

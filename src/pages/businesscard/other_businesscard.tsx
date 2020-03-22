@@ -49,6 +49,7 @@ import {User} from "../../const/global";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
 import OtherBusinessCardGuide from "../pagecomponent/other-business-card-guide";
+import MyPhoto from "../sub_pagecomponent/my-photo";
 
 interface Props {
   //获取用户信息
@@ -145,7 +146,7 @@ class OtherBusinesscard extends Component<Props, State> {
   //@ts-ignore
   onShareAppMessage(res) {
     console.log('名片分享');
-    debounce(500,()=>{
+    debounce(500, () => {
       return {
         title: '名片分享',
         path: '/pages/businesscard/other_businesscard'
@@ -337,6 +338,10 @@ class OtherBusinesscard extends Component<Props, State> {
           }
           {/*我的企业*/}
           <MyBusiness userInfo={userInfo}/>
+          {/*我的照片*/}
+          {
+            userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <MyPhoto photos={userInfo.photoUrlArray}/>
+          }
           {/*极致名片*/}
           <JiZhiCard/>
           {/*关注公众号*/}
@@ -367,7 +372,7 @@ class OtherBusinesscard extends Component<Props, State> {
             this.setState({showShare: false});
           }
           } haibao={() => {
-            this.setState({showShare: false},()=>{
+            this.setState({showShare: false}, () => {
               Taro.navigateTo({
                 url: `/pages/businesscard/mingpian_haibao`
               });
