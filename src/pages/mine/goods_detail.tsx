@@ -34,11 +34,11 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header/index";
-import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button/index";
-import {Goods} from "../../const/global";
+import {Button, Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
+import {Goods, User} from "../../const/global";
 
 interface Props {
+  userInfo: User;
 }
 
 interface State {
@@ -74,6 +74,15 @@ class GoodsDetail extends Component<Props, State> {
       carouselUrls: itemData ? parseData(itemData.carouselUrl) : [],
       detailUrls: itemData ? parseData(itemData.detailUrl) : [],
       currentIndex: 0
+    }
+  }
+
+  //@ts-ignore
+  onShareAppMessage(res) {
+    return {
+      title: `${this.props.userInfo.name}向你分享了商品`,
+      path: `/pages/goods_detail`,
+      imageUrl:this.state.carouselUrls[0]
     }
   }
 
@@ -142,10 +151,11 @@ class GoodsDetail extends Component<Props, State> {
           </ScrollView>
           {/*分享按钮*/}
           <View style={styleAssign([wRatio(100), h(64), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc])}>
-            <TouchableButton
-              customStyle={styleAssign([w(335), h(48), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), radiusA(2)])}>
+            <Button
+              openType={'share'}
+              style={styleAssign([w(335), h(48), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme), radiusA(2)])}>
               <Text style={styleAssign([fSize(20), color(commonStyles.whiteColor)])}>立即分享</Text>
-            </TouchableButton>
+            </Button>
           </View>
         </View>
       </CustomSafeAreaView>);
