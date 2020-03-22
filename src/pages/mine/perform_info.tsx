@@ -151,7 +151,7 @@ class PerformInfo extends Component<Props, State> {
             </View>
             <View style={styleAssign([wRatio(100), h(190), bgColor(commonStyles.whiteColor)])}/>
             {/*个人信息展示*/}
-            <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absT(125)])}>
+            <View style={styleAssign([wRatio(100), styles.uac, styles.upa, absT(120)])}>
               <View style={styleAssign([w(120), h(120)])}>
                 <Image
                   style={styleAssign([w(120), h(120), radiusA(60)])}
