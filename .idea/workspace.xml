@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/task_center.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/task_center.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,23 +16,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="task_center.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/task_center.tsx">
+      <file leaf-file-name="tequan.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="311" column="59" selection-start-line="311" selection-start-column="59" selection-end-line="311" selection-end-column="59" />
+            <state relative-caret-position="414">
+              <caret line="348" column="85" selection-start-line="348" selection-start-column="85" selection-end-line="348" selection-end-column="85" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#View#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#View#0;n#View#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#View#0;n#View#0;n#View#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Text#0;n#View#0;n#View#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#View#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#View#0;n#View#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Text#0;n#View#0;n#View#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Text#1;n#View#0;n#View#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Image#0;n#View#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#Text#0;n#View#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#View#0;n#View#3;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -49,8 +49,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onShare</find>
-      <find>avatar</find>
       <find>other</find>
       <find>getHalfYearStartDate</find>
       <find>近半年</find>
@@ -79,6 +77,8 @@
       <find>关联客户</find>
       <find>chooseCustomer</find>
       <find>taskUpdate</find>
+      <find>添加商品</find>
+      <find>特权开通</find>
     </findStrings>
     <replaceStrings>
       <replace>ico_default.png</replace>
@@ -123,7 +123,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/wenhou-modal/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/my_edu.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/index.scss" />
         <option value="$PROJECT_DIR$/src/api/request.ts" />
@@ -174,6 +173,7 @@
         <option value="$PROJECT_DIR$/src/pages/mine/add_task.tsx" />
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/task_center.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/tequan.tsx" />
       </list>
     </option>
   </component>
@@ -229,21 +229,6 @@
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="sub_pagecomponent" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="sub_pagecomponent" type="462c0819:PsiDirectoryNode" />
-              <item name="task-item" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
@@ -489,12 +474,12 @@
       <workItem from="1584748081673" duration="460000" />
       <workItem from="1584753328446" duration="22022000" />
       <workItem from="1584846783120" duration="2153000" />
-      <workItem from="1584869505150" duration="6338000" />
+      <workItem from="1584869505150" duration="8095000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1047893000" />
+    <option name="totallyTimeSpent" value="1049650000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -514,9 +499,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.23482586" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.23482586" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20063192" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20063192" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -600,26 +585,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2684">
-          <caret line="131" column="57" selection-start-line="131" selection-start-column="57" selection-end-line="131" selection-end-column="57" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="140" column="45" lean-forward="true" selection-start-line="140" selection-start-column="45" selection-end-line="140" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/add_customer.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -1015,19 +980,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/task_center.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+        <state relative-caret-position="144">
+          <caret line="333" column="34" selection-start-line="333" selection-start-column="34" selection-end-line="333" selection-end-column="34" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/task_center.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/task-item/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="311" column="59" selection-start-line="311" selection-start-column="59" selection-end-line="311" selection-end-column="59" />
+        <state relative-caret-position="309">
+          <caret line="58" column="46" lean-forward="true" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/add_goods.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="568">
+          <caret line="456" column="24" lean-forward="true" selection-start-line="456" selection-start-column="24" selection-end-line="456" selection-end-column="24" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="348" column="85" selection-start-line="348" selection-start-column="85" selection-end-line="348" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#View#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#View#0;n#View#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#View#0;n#View#0;n#View#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Text#0;n#View#0;n#View#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#View#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#View#0;n#View#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Text#0;n#View#0;n#View#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Text#1;n#View#0;n#View#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Image#0;n#View#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#Text#0;n#View#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#View#0;n#View#3;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

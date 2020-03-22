@@ -228,6 +228,13 @@ class TeQuan extends Component<Props, State> {
                       title2: '特权介绍',
                       subtitle2: '• 可查看更多人脉'
                     });
+                  } else if (this.state.currentIndex === 2) {
+                    this.setState({
+                      title1: '开通店铺，展示更多产品',
+                      subtitle1: '开通店铺之后您将拥有专属线上店铺，我们将为您免费装修店铺并上架您的产品',
+                      title2: '特权介绍',
+                      subtitle2: '• 可展示更多产品\n• 可进行线上产品购买交易'
+                    });
                   }
                 });
               }}>
@@ -247,7 +254,14 @@ class TeQuan extends Component<Props, State> {
                     logo: 'ico_tequan3_logo.png',
                     buttonTitle: '新用户1元试用',
                     right: '最低￥198起'
-                  }].map((value, index) => {
+                  }, {
+                  title: '开通店铺',
+                  subTitle: '提升你的产品线上推广效果',
+                  bg: 'ico_tequan2.png',
+                  logo: 'ico_tequan2_logo.png',
+                  buttonTitle: '联系客服联系客服',
+                  right: '免费装修店铺'
+                }].map((value, index) => {
                   return <SwiperItem key={index}>
                     <LevelItem key={index} item={value}/>
                   </SwiperItem>
@@ -285,11 +299,12 @@ class TeQuan extends Component<Props, State> {
           </View>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(18), styles.udr])}>
             <View style={styleAssign([w(39), h(1), bgColor('#E4C28C')])}/>
-            <Text style={styleAssign([ml(8), mr(8), color('#483311'), fSize(14)])}>开通套餐推荐</Text>
+            <Text
+              style={styleAssign([ml(8), mr(8), color('#483311'), fSize(14)])}>{`${ currentIndex !== 2 ? '开通套餐推荐' : '开通优势介绍'}`}</Text>
             <View style={styleAssign([w(39), h(1), bgColor('#E4C28C')])}/>
           </View>
           {
-            packageList.map((value, index) => {
+            currentIndex !== 2 && packageList.map((value, index) => {
               return <TaoCanItem key={index} item={value}
                                  onClick={() => {
                                    this.setState({packageId: value.packageId});
@@ -298,25 +313,46 @@ class TeQuan extends Component<Props, State> {
                                  checked={value.packageId === packageId}/>;
             })
           }
-          {/*开通*/}
-          <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
-            <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
-                  onClick={() => {
-                    this.purchasePackage(packageId);
-                  }}>
-              <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即开通</Text>
+          {
+            currentIndex !== 2 && <View style={styleAssign([styles.uf1])}>
+              {/*开通*/}
+              <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
+                <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
+                      onClick={() => {
+                        this.purchasePackage(packageId);
+                      }}>
+                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即开通</Text>
+                </View>
+              </View>
+              <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(17)])}>
+                <Text style={styleAssign([color('#979797'), fSize(13)])}>购买须知</Text>
+                <Text style={styleAssign([color('#979797'), fSize(13)])}>1.付款时向您的Apple ID账户收取费用
+                  \n2.订阅到期或免费试用结束前24小时内，将按页面价格自动续订所选套餐时长；同一Apple ID仅能享有一次免费试用资格 \n3.如需取消自动续订在当前订阅周期结束至少24小时之前在iTunes
+                  Store设置中关闭自动续订服务</Text>
+                <View style={styleAssign([styles.udr, styles.uac, mb(46)])}>
+                  <Text style={styleAssign([color('#979797'), fSize(13)])}>4.成为会员即表示同意</Text>
+                  <Text style={styleAssign([color('#3476E0'), fSize(13)])}>《极致名片隐私政策》</Text>
+                </View>
+              </View>
             </View>
-          </View>
-          <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(17)])}>
-            <Text style={styleAssign([color('#979797'), fSize(13)])}>购买须知</Text>
-            <Text style={styleAssign([color('#979797'), fSize(13)])}>1.付款时向您的Apple ID账户收取费用
-              \n2.订阅到期或免费试用结束前24小时内，将按页面价格自动续订所选套餐时长；同一Apple ID仅能享有一次免费试用资格 \n3.如需取消自动续订在当前订阅周期结束至少24小时之前在iTunes
-              Store设置中关闭自动续订服务</Text>
-            <View style={styleAssign([styles.udr, styles.uac, mb(46)])}>
-              <Text style={styleAssign([color('#979797'), fSize(13)])}>4.成为会员即表示同意</Text>
-              <Text style={styleAssign([color('#3476E0'), fSize(13)])}>《极致名片隐私政策》</Text>
+          }
+          {
+            currentIndex === 2 &&
+            <View style={styleAssign([styles.uf1, pl(20), pr(20), mt(14)])}>
+              <Text
+                style={styleAssign([color('#979797'), fSize(13)])}>1.用户只需通过填写基本信息提交申请，客服会主动联系用户为用户详细介绍开通店铺相关事项及收费标准；\n2.平台会根据不同用户的需求，定制专属店铺，便于商品上架和管理；\n3.用户同意开通店铺后，我们将为用户量身打造专属店铺，并根据商品相应风格免费为用户装修店铺；</Text>
+              <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
+                <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
+                      onClick={() => {
+                        this.purchasePackage(packageId);
+                      }}>
+                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>已申请</Text>
+                </View>
+              </View>
+              <Text
+                style={styleAssign([color('#979797'), fSize(13), mt(17)])}>• 申请提交成功之后，我们客服会在12小时内联系您</Text>
             </View>
-          </View>
+          }
         </ScrollView>
         <NavigationBar style={styleAssign([styles.upa, absT(0), op((300 - scrollTop) / 300)])}>
           <View
