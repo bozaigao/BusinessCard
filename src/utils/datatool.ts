@@ -252,3 +252,13 @@ export function isLegalEmail(email) {
   return true;
 }
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/22
+ * @function: 隐藏手机号
+ */
+export function hidePhone(phone) {
+  return phone.substr(0, 3) + '****' + phone.substr(7);
+}

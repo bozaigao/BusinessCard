@@ -82,7 +82,7 @@ class AddBusinesscard extends Component<Props, State> {
       signInPageDetail: {dateIntegrals: [], signInCount: 0},
       listData: [
         {title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true},
-        {title: '手机', value: ''},
+        {title: '手机', value: props.userInfo.phone},
         {
           title: '公司',
           subtitle: '请输入公司名',

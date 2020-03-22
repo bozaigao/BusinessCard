@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, get, save, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, hidePhone, save, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absL,
@@ -213,13 +213,11 @@ class OtherBusinesscard extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
                   {/*电话号码*/}
-                  {
-                    userInfo.showPhone === 1 && <View style={styleAssign([styles.uac, styles.udr])}>
-                      <Text
-                        style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
-                      <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
-                    </View>
-                  }
+                  <View style={styleAssign([styles.uac, styles.udr])}>
+                    <Text
+                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.showPhone ? userInfo.phone : hidePhone(userInfo.phone)}</Text>
+                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
+                  </View>
                   {/*微信号*/}
                   <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
                     <Text

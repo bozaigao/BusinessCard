@@ -6,7 +6,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {hidePhone, styleAssign} from "../../../utils/datatool";
 import styles, {
   absB,
   absL,
@@ -49,7 +49,7 @@ interface State {
 export default class Card extends PureComponent<Props, State> {
 
   render() {
-    let {holderCount,visitorCount} = this.props;
+    let {holderCount, visitorCount} = this.props;
 
     let {shareClick, collectCallback, visitorCallback, viewMyCardCallback, gotoCardCallback, userInfo} = this.props;
 
@@ -76,7 +76,7 @@ export default class Card extends PureComponent<Props, State> {
                 {/*电话号码*/}
                 <View style={styleAssign([styles.uac, styles.udr])}>
                   <Text
-                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.phone}</Text>
+                    style={styleAssign([fSize(12), color('#343434')])}>{userInfo.showPhone ? userInfo.phone : hidePhone(userInfo.phone)}</Text>
                   <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
                 </View>
                 {/*微信号*/}
