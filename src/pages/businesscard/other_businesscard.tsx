@@ -57,12 +57,16 @@ interface Props {
   getUserInfoById: any;
   //收藏名片
   updateMyCollect: any;
+  getCardHolderVisitorRecord: any;
 }
 
 interface State {
   showShare: boolean;
   userInfo: User;
   showGuide: boolean;
+  holderCount: number;
+  visitorCount: number;
+  visitorList: { avatar: string; userId: string; }[];
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActtions))
@@ -88,16 +92,40 @@ class OtherBusinesscard extends Component<Props, State> {
       showShare: false,
       //@ts-ignore
       userInfo: null,
-      showGuide: false
+      showGuide: false,
+      holderCount: 0,
+      visitorCount: 0
     }
   }
 
   componentDidShow() {
     console.log(this.viewRef);
     this.getUserInfoById();
+    this.getCardHolderVisitorRecord();
     let showGuide = get('other_business_guide');
 
     this.setState({showGuide: !showGuide});
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/21
+   * @function: 查询用户访客和收藏数
+   */
+  getCardHolderVisitorRecord = () => {
+    this.props.getCardHolderVisitorRecord({userId: this.$router.params.userId}).then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          holderCount: res.holderCount,
+          visitorCount: res.visitorCount,
+          visitorList: res.visitorList
+        });
+      }
+      console.log('查询用户访客和收藏数', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -158,7 +186,13 @@ class OtherBusinesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, userInfo, showGuide} = this.state;
+    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList} = this.state, visitorListSub;
+
+    if (visitorList.length > 5) {
+      visitorListSub = visitorList.slice(0, 6);
+    } else {
+      visitorListSub = visitorList;
+    }
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -291,7 +325,8 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(12),w(70)])} className={'.textStyle'}>{`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}</Text>
+                    style={styleAssign([color('#979797'), fSize(12), w(70)])}
+                    className={'.textStyle'}>{`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}</Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
@@ -305,22 +340,31 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(12),w(72)])}  className={'.textStyle'}>{userInfo.detailAddress ? userInfo.detailAddress : '点击立即定位'}</Text>
+                    style={styleAssign([color('#979797'), fSize(12), w(72)])}
+                    className={'.textStyle'}>{userInfo.detailAddress ? userInfo.detailAddress : '点击立即定位'}</Text>
                 </View>
               </View>
               <View style={styleAssign([wRatio(100), h(61), styles.udr, styles.uac, styles.ujb, pl(20), pr(20)])}>
                 <View style={styleAssign([styles.udr, styles.uac, w(180)])}>
                   {
-                    [1, 2, 3, 4, 5].map((value, index) => {
+                    visitorListSub.map((value, index) => {
                       console.log(value);
                       return <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absL(15 * index)])}
-                                    src={`${cloudBaseUrl}ico_viewer.png`}/>
+                                    src={value.avatar}/>
                     })
                   }
-                  <Text style={styleAssign([color('#343434'), fSize(12), styles.upa, absL(100)])}>150人浏览过</Text>
+                  {
+                    visitorListSub.length === 0 && [1, 2, 3, 4, 5].map((value, index) => {
+                      console.log(value);
+                      return <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absL(15 * index)])}
+                                    src={`${cloudBaseUrl}ico_default.png`}/>
+                    })
+                  }
+                  <Text
+                    style={styleAssign([color('#343434'), fSize(12), styles.upa, absL(100)])}>{`${visitorCount}人浏览过`}</Text>
                 </View>
                 <View style={styleAssign([styles.udr, styles.uac])}>
-                  <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>收藏 143</Text>
+                  <Text style={styleAssign([color('#343434'), fSize(12), ml(17)])}>{`收藏 ${holderCount}`}</Text>
                 </View>
               </View>
             </View>

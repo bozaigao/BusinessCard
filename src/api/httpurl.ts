@@ -41,6 +41,8 @@ const BASE_URL = StagingUrl,
     decryptPhone: BASE_URL + 'utils/decryptPhone',
     //查询用户访客和收藏数
     getCardHolderVisitorCount: BASE_URL + 'user/getCardHolderVisitorCount',
+    //查询用户访客和收藏数以及浏览用户信息
+    getCardHolderVisitorRecord: BASE_URL + 'user/getCardHolderVisitorRecord',
   },
   //数据字典
   DictController = {
