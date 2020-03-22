@@ -177,7 +177,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 });
               }}>
               <Image style={styleAssign([w(27), h(27), radiusA(13.5), ma(2)])}
-                     src={userInfo && userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                     src={userInfo.avatar}/>
               <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
             </View>
             <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
