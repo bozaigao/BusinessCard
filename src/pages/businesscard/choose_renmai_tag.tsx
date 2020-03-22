@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
-import {styleAssign} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -129,6 +129,8 @@ class ChooseRenmaiTag extends Component<Props, State> {
                   onClick={() => {
                     if (chooseValue.includes(value.itemText)) {
                       this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.itemText), 1);
+                    } else if (chooseValue.length === 3) {
+                      toast('最多选择3个标签')
                     } else {
                       this.state.chooseValue.push(value.itemText);
                     }
