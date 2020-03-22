@@ -109,7 +109,7 @@ class GoodsManage extends Component<Props, State> {
   }
 
 
-  componentDidShow(){
+  componentDidShow() {
     this.refresh();
     Taro.eventCenter.on('goodsListRefresh', () => {
       this.refresh();
@@ -156,17 +156,21 @@ class GoodsManage extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/1/4
-   * @function: 下架商品
+   * @function:更新商品状态
    */
-  xiajiaGoods = () => {
+  updateGoods = (status) => {
     this.props.updateGoods({
       id: this.itemData.id,
-      status: 0
+      status
     }).then((res) => {
-      console.log('下架商品', res);
+      console.log('更新商品状态', res);
       if (res !== NetworkState.FAIL) {
         this.refresh();
-        toast('下架成功');
+        if (status === 0) {
+          toast('下架成功');
+        } else {
+          toast('上架成功');
+        }
       }
     }).catch(e => {
       console.log('报错啦', e);
@@ -177,12 +181,12 @@ class GoodsManage extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/1/4
-   * @function: 取消置顶
+   * @function: 更新置顶状态
    */
-  notTopGoods = () => {
+  updateTopGoods = (showHomepage) => {
     this.props.updateGoods({
       id: this.itemData.id,
-      showHomepage: 0
+      showHomepage
     }).then((res) => {
       console.log(res);
       if (res !== NetworkState.FAIL) {
@@ -236,7 +240,7 @@ class GoodsManage extends Component<Props, State> {
       child = <View style={styleAssign([wRatio(100), hRatio(100)])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
-          pl(20), pr(20),bgColor(commonStyles.whiteColor)])}>
+          pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
             <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${totalGoods}件商品)`}</Text>
@@ -278,12 +282,12 @@ class GoodsManage extends Component<Props, State> {
                                            }
                                            xiajiaCallback={(itemData) => {
                                              this.itemData = itemData;
-                                             this.xiajiaGoods();
+                                             this.updateGoods(value.status === 0 ? 1 : 0);
                                            }
                                            }
                                            notTopGoodsCallback={(itemData) => {
                                              this.itemData = itemData;
-                                             this.notTopGoods();
+                                             this.updateTopGoods(itemData.showHomepage ? 0 : 1);
                                            }
                                            }/>);
                 })
@@ -321,7 +325,7 @@ class GoodsManage extends Component<Props, State> {
                 <View style={styleAssign([ml(16), wRatio(60)])}>
                   <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
                   <View style={styleAssign([styles.udr, mt(12)])}>
-                    <Image style={styleAssign([w(12), h(12),mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
+                    <Image style={styleAssign([w(12), h(12), mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
                     <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>四川省成都市武侯区盛和二路18号富森美家居</Text>
                   </View>
                   <Text style={styleAssign([fSize(12), color('#979797'), mt(14)])}>有效期至：2020-6-30</Text>

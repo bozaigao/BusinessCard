@@ -43,7 +43,7 @@ interface State {
 export default class GoodsManageItem extends PureComponent<Props, State> {
 
   render() {
-    let {itemData, moreCallback, xiajiaCallback,notTopGoodsCallback} = this.props;
+    let {itemData, moreCallback, xiajiaCallback, notTopGoodsCallback} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), h(189), bgColor(commonStyles.whiteColor), mt(10)])}>
@@ -93,7 +93,8 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
               }}
               customStyle={styleAssign([ml(32), w(72), h(28), radiusA(4), bo(1), bdColor(commonStyles.colorTheme),
                 {borderStyle: 'solid'}, styles.uac, styles.ujc])}>
-              <Text style={styleAssign([fSize(12), color('#343434')])}>下架商品</Text>
+              <Text
+                style={styleAssign([fSize(12), color('#343434')])}>{`${itemData.status === 0 ? '上架商品' : '下架商品'}`}</Text>
             </TouchableButton>
           </View>
           {/*是否展示操作*/}
@@ -102,7 +103,8 @@ export default class GoodsManageItem extends PureComponent<Props, State> {
               notTopGoodsCallback(itemData);
             }}
             customStyle={styleAssign([w(72), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
-            <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>取消展示</Text>
+            <Text
+              style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${itemData.showHomepage ? '取消展示' : '置顶'}`}</Text>
           </TouchableButton>
         </View>
       </View>
