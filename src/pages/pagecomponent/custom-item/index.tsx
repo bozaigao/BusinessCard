@@ -85,7 +85,7 @@ export default class CustomItem extends PureComponent<Props, State> {
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
             <Text
-              style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`${mode} ${time}`}</Text>
+              style={styleAssign([color('#979797'), fSize(12), ml(16)])}>{`${mode} ${time}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc, styles.utxdu])}

@@ -98,10 +98,10 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
                 levelIcon = require('../../assets/ico_gold.png');
                 break;
             case 'platinum':
-                levelIcon = require('../../assets/ico_platinum.png');
+                levelIcon = require('../../assets/ico_gold.png');
                 break;
             case 'diamond':
-                levelIcon = require('../../assets/ico_diamond.png');
+                levelIcon = require('../../assets/ico_gold.png');
                 break;
             case 'partner':
                 levelIcon = require('../../assets/ico_partner.png');

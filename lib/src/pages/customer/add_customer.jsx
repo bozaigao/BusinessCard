@@ -47,7 +47,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
          * @function: 手动录入客户
          */
         this.addPrivateCustomer = () => {
-            let { name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress } = this.state;
+            let { name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress, email } = this.state;
             if (name.length === 0) {
                 datatool_1.toast('备注名不能为空');
                 return;
@@ -58,6 +58,10 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
             }
             if (phone.length !== 11 || !phone.startsWith('1')) {
                 datatool_1.toast('手机号非法');
+                return;
+            }
+            if (!datatool_1.isLegalEmail(email)) {
+                datatool_1.toast('请输入有效的邮箱');
                 return;
             }
             let paramas = {
@@ -73,6 +77,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                 birthday,
                 wechat,
                 avatar: this.avatarArr[0],
+                email
             };
             this.viewRef && this.viewRef.showLoading();
             this.props.addPrivateCustomer(paramas).then((res) => {

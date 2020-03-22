@@ -116,7 +116,7 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
                 </components_1.Text>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
             taro_1.default.navigateTo({
-                url: `/pages/customer/customer_remark?id=${this.id}`
+                url: `/pages/customer/customer_remark?id=${this.id}&name=${customer.name}&phone=${customer.phone}&remark=${customer.remark}&aboutUrl=${customer.aboutUrl}`
             });
         }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>
@@ -150,7 +150,7 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           {[{ title: '地区', value: datatool_1.wrapSafe(customer.province + customer.city) },
             { title: '详细地址', value: datatool_1.wrapSafe(customer.detailAddress) },
-            { title: '生日', value: datatool_1.transformTime(customer.birthday) },
+            { title: '生日', value: customer.birthday ? datatool_1.transformTime(customer.birthday) : '' },
             { title: '微信号', value: datatool_1.wrapSafe(customer.wechat) },
             { title: '邮箱', value: datatool_1.wrapSafe(customer.email) }].map((value, inedx) => {
             return <components_1.View key={inedx} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -167,18 +167,34 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
               </components_1.View>;
         })}
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mt(16)])}>Ta的标签</components_1.Text>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8),
-            style_1.default.uWrap])}>
-              {['90后', '看电影', '电竞游戏', '运动', '健身', '看书', '旅行'].map((value, index) => {
-            return (<touchable_button_1.default key={index} customStyle={datatool_1.styleAssign([style_1.ml(24), style_1.mt(12), style_1.radiusA(14), style_1.padding([6, 16, 6, 16]),
-                style_1.bgColor('#EFEFEF')])}>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme)])}>{value}</components_1.Text>
-                  </touchable_button_1.default>);
-        })}
-            </components_1.View>
-          </components_1.View>
+          {customer.label && datatool_1.parseData(customer.label).length !== 0 &&
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mt(16)])}>Ta的标签</components_1.Text>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8),
+                style_1.default.uWrap])}>
+                {datatool_1.parseData(customer.label).map((value, index) => {
+                return (<touchable_button_1.default key={index} customStyle={datatool_1.styleAssign([style_1.ml(24), style_1.mt(12), style_1.radiusA(14), style_1.padding([6, 16, 6, 16]),
+                    style_1.bgColor('#EFEFEF')])}>
+                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme)])}>{value}</components_1.Text>
+                    </touchable_button_1.default>);
+            })}
+              </components_1.View>
+            </components_1.View>}
+          {customer.aboutUrl.length !== 0 &&
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mt(16)])}>描述</components_1.Text>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(8),])}>
+                <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), { marginLeft: '5%' }, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor),
+                style_1.padding([13, 16, 13, 16])])}>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>
+                    {customer.remark}
+                  </components_1.Text>
+                </components_1.View>
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(176), style_1.mt(20), style_1.mb(20)])} src={customer.aboutUrl} mode={'aspectFit'}/>
+                </components_1.View>
+              </components_1.View>
+            </components_1.View>}
         </components_1.ScrollView>
       </safe_area_view_1.default>);
     }

@@ -77,17 +77,22 @@ let GoodsManage = class GoodsManage extends taro_1.Component {
          * @author 何晏波
          * @QQ 1054539528
          * @date 2020/1/4
-         * @function: 下架商品
+         * @function:更新商品状态
          */
-        this.xiajiaGoods = () => {
+        this.updateGoods = (status) => {
             this.props.updateGoods({
                 id: this.itemData.id,
-                status: 0
+                status
             }).then((res) => {
-                console.log('下架商品', res);
+                console.log('更新商品状态', res);
                 if (res !== httpurl_1.NetworkState.FAIL) {
                     this.refresh();
-                    datatool_1.toast('下架成功');
+                    if (status === 0) {
+                        datatool_1.toast('下架成功');
+                    }
+                    else {
+                        datatool_1.toast('上架成功');
+                    }
                 }
             }).catch(e => {
                 console.log('报错啦', e);
@@ -97,12 +102,12 @@ let GoodsManage = class GoodsManage extends taro_1.Component {
          * @author 何晏波
          * @QQ 1054539528
          * @date 2020/1/4
-         * @function: 取消置顶
+         * @function: 更新置顶状态
          */
-        this.notTopGoods = () => {
+        this.updateTopGoods = (showHomepage) => {
             this.props.updateGoods({
                 id: this.itemData.id,
-                showHomepage: 0
+                showHomepage
             }).then((res) => {
                 console.log(res);
                 if (res !== httpurl_1.NetworkState.FAIL) {
@@ -210,10 +215,10 @@ let GoodsManage = class GoodsManage extends taro_1.Component {
                         this.setState({ showOperate: true });
                     }} xiajiaCallback={(itemData) => {
                         this.itemData = itemData;
-                        this.xiajiaGoods();
+                        this.updateGoods(value.status === 0 ? 1 : 0);
                     }} notTopGoodsCallback={(itemData) => {
                         this.itemData = itemData;
-                        this.notTopGoods();
+                        this.updateTopGoods(itemData.showHomepage ? 0 : 1);
                     }}/>);
                 })}
             </components_1.ScrollView>}

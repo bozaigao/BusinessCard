@@ -26,6 +26,8 @@ const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
 const httpurl_1 = require("../../api/httpurl");
 require("./index.scss");
+const delete_notice_1 = require("../sub_pagecomponent/delete-notice");
+const share_invite_1 = require("../pagecomponent/share-invite");
 let CustomerDetail = class CustomerDetail extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -47,8 +49,8 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
          */
         this.getCustomerDetail = () => {
             console.log('获取客户详情');
-            this.props.getCustomerDetail({ id: this.$router.params.userId }).then((res) => {
-                this.setState({ userInfo: res });
+            this.props.getCustomerDetail({ id: this.$router.params.id }).then((res) => {
+                this.setState({ customer: res });
                 console.log('获取客户详情', res);
             }).catch(e => {
                 console.log('报错啦', e);
@@ -94,11 +96,13 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
         };
         console.log('呵呵', datatool_1.parseData(this.$router.params.itemData));
         this.state = {
-            customer: datatool_1.parseData(this.$router.params.itemData),
+            //@ts-ignore
+            customer: null,
             showOperate: false,
             currentIndex: 0,
             flowUpList: [],
-            userInfo: null
+            showDeleteNotice: false,
+            showShareInvite: false
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -110,8 +114,15 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
         this.getCustomerDetail();
         this.followUpList();
     }
+    //@ts-ignore
+    onShareAppMessage(res) {
+        return {
+            title: `快来使用极致推小程序吧`,
+            path: `/pages/businesscard`
+        };
+    }
     render() {
-        let { showOperate, customer, currentIndex, flowUpList, userInfo } = this.state;
+        let { showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite } = this.state;
         let childView;
         if (currentIndex === 0) {
             childView = <components_1.View />;
@@ -145,7 +156,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             this.viewRef = ref;
         }}>
         <top_header_1.default title={''}/>
-        {userInfo && <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
+        {customer && <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb, style_1.pl(20), style_1.pr(20),
             style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -167,6 +178,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
                   </components_1.View>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.h(25), style_1.mt(15)])} onClick={() => {
+            console.log(customer);
             taro_1.default.navigateTo({
                 url: `/pages/customer/customer_ziliao?id=${customer.id}`
             });
@@ -181,20 +193,20 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.makePhoneCall({
-                phoneNumber: userInfo.phone
+                phoneNumber: customer.phone
             });
         }}>
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
                     <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>拨打电话</components_1.Text>
                   </components_1.View>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>{userInfo.phone}</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>{customer.phone}</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.setClipboardData({
-                data: userInfo.wechat
+                data: customer.wechat
             });
             // Taro.getClipboardData({
             //   success(res) {
@@ -206,14 +218,14 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_wechat_gray.png')}/>
                     <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>加微信</components_1.Text>
                   </components_1.View>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击添加微信</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>{`${customer.wechat ? customer.wechat : '点击添加微信'}`}</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
             { boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5' }])} onClick={() => {
             taro_1.default.openLocation({
-                latitude: userInfo.latitude,
-                longitude: userInfo.longitude,
+                latitude: customer.latitude,
+                longitude: customer.longitude,
                 scale: 18
             });
         }}>
@@ -221,7 +233,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(24), style_1.h(22)])} src={require('../../assets/ico_location_gray.png')}/>
                     <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>联系地址</components_1.Text>
                   </components_1.View>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击立即定位</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>{customer.detailAddress ? customer.detailAddress : '点击立即定位'}</components_1.Text>
                 </components_1.View>
               </components_1.View>
             </components_1.View>
@@ -272,12 +284,23 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.op(0.3), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.bgColor(style_1.commonStyles.colorTheme)])}/>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(185), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusTL(10), style_1.radiusTR(10),
             style_1.default.upa, style_1.absB(0)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])}>
+              <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])} onClick={() => {
+            this.setState({ showOperate: false }, () => {
+                if (customer.type === 1) {
+                    taro_1.default.navigateTo({
+                        url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}`
+                    });
+                }
+                else {
+                    this.setState({ showShareInvite: true });
+                }
+            });
+        }}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.color('#E2BB7B'), style_1.fSize(18)])}>查看名片</components_1.Text>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.uac, style_1.default.ujc])} onClick={() => {
-            this.deleteCustomer(customer.id);
+            this.setState({ showDeleteNotice: true });
         }}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.color('#29292E'), style_1.fSize(18)])}>移除客户</components_1.Text>
               </components_1.View>
@@ -292,6 +315,16 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
             taro_1.default.navigateTo({
                 url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
             });
+        }}/>}
+        {showDeleteNotice && <delete_notice_1.default cancelCallback={() => {
+            this.setState({ showDeleteNotice: false });
+        }} confirmCallback={() => {
+            this.deleteCustomer(customer.id);
+        }}/>}
+        {showShareInvite && <share_invite_1.default cancelCallback={() => {
+            this.setState({ showShareInvite: false });
+        }} confirmCallback={() => {
+            this.setState({ showShareInvite: false });
         }}/>}
       </safe_area_view_1.default>);
     }

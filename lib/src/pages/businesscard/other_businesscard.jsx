@@ -33,6 +33,8 @@ const index_7 = require("../pagecomponent/share-modal/index");
 const httpurl_1 = require("../../api/httpurl");
 const index_8 = require("../../compoments/navigation_bar/index");
 const other_business_card_guide_1 = require("../pagecomponent/other-business-card-guide");
+const my_photo_1 = require("../sub_pagecomponent/my-photo");
+require("./index.scss");
 let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -45,6 +47,26 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
          */
         this.config = {
             disableScroll: true
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/21
+         * @function: 查询用户访客和收藏数
+         */
+        this.getCardHolderVisitorRecord = () => {
+            this.props.getCardHolderVisitorRecord({ userId: this.$router.params.userId }).then((res) => {
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({
+                        holderCount: res.holderCount,
+                        visitorCount: res.visitorCount,
+                        visitorList: res.visitorList
+                    });
+                }
+                console.log('查询用户访客和收藏数', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
         };
         /**
          * @author 何晏波
@@ -84,12 +106,15 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             showShare: false,
             //@ts-ignore
             userInfo: null,
-            showGuide: false
+            showGuide: false,
+            holderCount: 0,
+            visitorCount: 0
         };
     }
     componentDidShow() {
         console.log(this.viewRef);
         this.getUserInfoById();
+        this.getCardHolderVisitorRecord();
         let showGuide = datatool_1.get('other_business_guide');
         this.setState({ showGuide: !showGuide });
     }
@@ -100,13 +125,21 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
     //@ts-ignore
     onShareAppMessage(res) {
         console.log('名片分享');
-        return {
-            title: '名片分享',
-            path: '/pages/businesscard/other_businesscard'
-        };
+        datatool_1.debounce(500, () => {
+            return {
+                title: '名片分享',
+                path: '/pages/businesscard/other_businesscard'
+            };
+        });
     }
     render() {
-        let { showShare, userInfo, showGuide } = this.state;
+        let { showShare, userInfo, showGuide, holderCount, visitorCount, visitorList } = this.state, visitorListSub;
+        if (visitorList.length > 5) {
+            visitorListSub = visitorList.slice(0, 6);
+        }
+        else {
+            visitorListSub = visitorList;
+        }
         return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
@@ -118,7 +151,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                 url: `/pages/businesscard`
             });
         }}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(27), style_1.h(27), style_1.radiusA(13.5), style_1.ma(2)])} src={userInfo && userInfo.avatar ? userInfo.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(27), style_1.h(27), style_1.radiusA(13.5), style_1.ma(2)])} src={userInfo.avatar}/>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434'), style_1.ml(5)])}>我的名片</components_1.Text>
             </components_1.View>
             <index_6.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
@@ -133,8 +166,8 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
         </index_8.default>
         {userInfo && <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(10)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(20)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.w(334), style_1.h(202), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.upa, style_1.absT(0)])} src={require('../../assets/ico_business_card_bg.png')}/>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.upa, style_1.absT(0)])}>
@@ -149,10 +182,10 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uae, style_1.default.upa, style_1.absB(26), style_1.absR(24)])}>
                   
-                  {userInfo.showPhone === 1 && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                      <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.phone}</components_1.Text>
-                      <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
-                    </components_1.View>}
+                  <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.showPhone ? userInfo.phone : datatool_1.hidePhone(userInfo.phone)}</components_1.Text>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
+                  </components_1.View>
                   
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(8)])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.wechat}</components_1.Text>
@@ -210,7 +243,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             });
         }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>加微信</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击添加微信</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12), style_1.w(70)])} className={'.textStyle'}>{`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4), style_1.ml(15),
@@ -222,19 +255,23 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             });
         }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(12)])}>联系地址</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12)])}>点击立即定位</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(12), style_1.w(72)])} className={'.textStyle'}>{userInfo.detailAddress ? userInfo.detailAddress : '点击立即定位'}</components_1.Text>
                 </components_1.View>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(61), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20)])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.bgColor('red'), style_1.w(180)])}>
-                  {[1, 2, 3, 4, 5].map((value, index) => {
+                <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.w(180)])}>
+                  {visitorListSub.map((value, index) => {
             console.log(value);
-            return <components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absL(15 * index)])} src={`${httpurl_1.cloudBaseUrl}ico_viewer.png`}/>;
+            return <components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absL(15 * index)])} src={value.avatar}/>;
         })}
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12), style_1.default.upa, style_1.absL(100)])}>150人浏览过</components_1.Text>
+                  {visitorListSub.length === 0 && [1, 2, 3, 4, 5].map((value, index) => {
+            console.log(value);
+            return <components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absL(15 * index)])} src={`${httpurl_1.cloudBaseUrl}ico_default.png`}/>;
+        })}
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12), style_1.default.upa, style_1.absL(100)])}>{`${visitorCount}人浏览过`}</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12), style_1.ml(17)])}>收藏 143</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(12), style_1.ml(17)])}>{`收藏 ${holderCount}`}</components_1.Text>
                 </components_1.View>
               </components_1.View>
             </components_1.View>
@@ -252,7 +289,10 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
             });
         }} goodsList={userInfo.goodsList}/>}
           
-          <index_5.default userInfo={userInfo}/>
+          {userInfo.enterpriseName.length !== 0 &&
+            <index_5.default userInfo={userInfo}/>}
+          
+          {userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <my_photo_1.default photos={userInfo.photoUrlArray}/>}
           
           <index_4.default />
           
@@ -276,9 +316,12 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
         {showShare && <index_7.default cancle={() => {
             this.setState({ showShare: false });
         }} wechatShare={() => {
+            this.setState({ showShare: false });
         }} haibao={() => {
-            taro_1.default.navigateTo({
-                url: `/pages/businesscard/mingpian_haibao`
+            this.setState({ showShare: false }, () => {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/mingpian_haibao`
+                });
             });
         }}/>}
         {showGuide && <other_business_card_guide_1.default cancle={() => {

@@ -14,10 +14,11 @@ const index_1 = require("../../../compoments/touchable-button/index");
 const httpurl_1 = require("../../../api/httpurl");
 class Card extends taro_1.PureComponent {
     render() {
+        let { holderCount, visitorCount } = this.props;
         let { shareClick, collectCallback, visitorCallback, viewMyCardCallback, gotoCardCallback, userInfo } = this.props;
-        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(10)])}>
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(249), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(10)])}>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
+        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(20)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.w(334), style_1.h(249), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(10)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(202), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
             <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.upa, style_1.absT(0)])} src={require('../../../assets/ico_business_card_bg.png')}/>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.upa, style_1.absT(0)])}>
@@ -32,10 +33,10 @@ class Card extends taro_1.PureComponent {
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uae, style_1.default.upa, style_1.absB(26), style_1.absR(24)])}>
                 
-                {userInfo.showPhone === 1 && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.phone}</components_1.Text>
-                    <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
-                  </components_1.View>}
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.showPhone ? userInfo.phone : datatool_1.hidePhone(userInfo.phone)}</components_1.Text>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
+                </components_1.View>
                 
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(8)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.wechat}</components_1.Text>
@@ -66,7 +67,7 @@ class Card extends taro_1.PureComponent {
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(144), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.mt(20)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(20)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac])} onClick={collectCallback}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434'), style_1.fWeight('bold')])}>118</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434'), style_1.fWeight('bold')])}>{holderCount}</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(11), style_1.h(11)])} src={`${httpurl_1.cloudBaseUrl}ico_star_gray.png`}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(5)])}>收藏</components_1.Text>
@@ -74,7 +75,7 @@ class Card extends taro_1.PureComponent {
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.w(1), style_1.h(25), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac])} onClick={visitorCallback}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434'), style_1.fWeight('bold')])}>230</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434'), style_1.fWeight('bold')])}>{visitorCount}</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(11), style_1.h(11)])} src={`${httpurl_1.cloudBaseUrl}ico_person_gray.png`}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(5)])}>访客</components_1.Text>

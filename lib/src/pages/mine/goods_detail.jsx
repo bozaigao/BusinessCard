@@ -23,7 +23,6 @@ const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
 const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const index_3 = require("../../compoments/touchable-button/index");
 let GoodsDetail = class GoodsDetail extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -44,6 +43,14 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
             carouselUrls: itemData ? datatool_1.parseData(itemData.carouselUrl) : [],
             detailUrls: itemData ? datatool_1.parseData(itemData.detailUrl) : [],
             currentIndex: 0
+        };
+    }
+    //@ts-ignore
+    onShareAppMessage(res) {
+        return {
+            title: `${this.props.userInfo.name}向你分享了商品`,
+            path: `/pages/goods_detail`,
+            imageUrl: this.state.carouselUrls[0]
         };
     }
     render() {
@@ -94,9 +101,9 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
           </components_1.ScrollView>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(64), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.default.ujc])}>
-            <index_3.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(2)])}>
+            <components_1.Button openType={'share'} style={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(2)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>立即分享</components_1.Text>
-            </index_3.default>
+            </components_1.Button>
           </components_1.View>
         </components_1.View>
       </index_1.default>);

@@ -19,7 +19,7 @@ class ShareModal extends taro_1.PureComponent {
                 position: 'fixed',
                 zIndex: Infinity
             }, style_1.absT(0), style_1.absR(0), style_1.wRatio(100), style_1.hRatio(100)])}>
-        <index_1.default onClick={cancle} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(0), style_1.absR(0)])}/>
+        <index_1.default onClick={cancle} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.bgColor(style_1.commonStyles.blackColor), style_1.op(0.5), style_1.absT(0), style_1.absR(0)])}/>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(194), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.upa, style_1.absB(0)])}>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(148), style_1.default.udr, style_1.default.uac])}>

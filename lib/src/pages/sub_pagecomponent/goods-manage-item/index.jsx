@@ -53,14 +53,14 @@ class GoodsManageItem extends taro_1.PureComponent {
             xiajiaCallback(itemData);
         }} customStyle={datatool_1.styleAssign([style_1.ml(32), style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme),
             { borderStyle: 'solid' }, style_1.default.uac, style_1.default.ujc])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>下架商品</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{`${itemData.status === 0 ? '上架商品' : '下架商品'}`}</components_1.Text>
             </touchable_button_1.default>
           </components_1.View>
           
           <touchable_button_1.default onClick={() => {
             notTopGoodsCallback(itemData);
         }} customStyle={datatool_1.styleAssign([style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.default.uac, style_1.default.ujc])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>取消展示</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>{`${itemData.showHomepage ? '取消展示' : '置顶'}`}</components_1.Text>
           </touchable_button_1.default>
         </components_1.View>
       </components_1.View>);

@@ -23,6 +23,7 @@ const style_1 = require("../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../actions/task_center");
 const loginActions = require("../actions/login");
+const businessCardActions = require("../actions/business_card");
 const index_2 = require("./pagecomponent/business-card/index");
 const index_3 = require("./pagecomponent/my-person/index");
 const index_4 = require("./pagecomponent/share-modal/index");
@@ -47,11 +48,30 @@ let Businesscard = class Businesscard extends taro_1.Component {
         /**
          * @author 何晏波
          * @QQ 1054539528
+         * @date 2020/3/21
+         * @function: 查询用户访客和收藏数
+         */
+        this.getCardHolderVisitorCount = () => {
+            this.props.getCardHolderVisitorCount().then((res) => {
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({
+                        holderCount: res.holderCount,
+                        visitorCount: res.visitorCount
+                    });
+                }
+                console.log('查询用户访客和收藏数', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
          * @date 2020/3/14
          * @function: 获取人脉推荐
          */
-        this.getRecommend = (recommendType) => {
-            this.props.getRecommend({ recommendType }).then((res) => {
+        this.getRecommend = () => {
+            this.props.getRecommend({ recommendType: this.recommendType }).then((res) => {
                 if (res !== httpurl_1.NetworkState.FAIL) {
                     this.setState({ recommendList: res });
                 }
@@ -118,6 +138,27 @@ let Businesscard = class Businesscard extends taro_1.Component {
                 console.log('报错啦', e);
             });
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/16
+         * @function: 更新我收藏的名片
+         */
+        this.updateMyCollect = (type, collectedUserId) => {
+            this.viewRef.showLoading();
+            this.props.updateMyCollect({ type, collectedUserId }).then((res) => {
+                this.viewRef.hideLoading();
+                console.log('更新我收藏的名片', res);
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.getCardHolderVisitorCount();
+                    datatool_1.toast('收藏成功');
+                }
+            }).catch(e => {
+                this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        this.recommendType = 'recommend';
         this.state = {
             showShare: false,
             recommendIsSet: false,
@@ -125,13 +166,17 @@ let Businesscard = class Businesscard extends taro_1.Component {
             showGuide1: false,
             showGuide2: false,
             showGuide3: false,
+            holderCount: 0,
+            visitorCount: 0,
+            currentIndex: 0
         };
     }
     componentDidShow() {
+        this.getCardHolderVisitorCount();
         this.getUserInfo();
         this.getRecommendSetting();
         this.recommendSettingStatus();
-        this.getRecommend('schoolfellow');
+        this.getRecommend();
         let showGuide1 = datatool_1.get('business_guide1');
         this.setState({ showGuide1: !showGuide1 });
         let showGuide2 = datatool_1.get('business_guide2');
@@ -144,15 +189,19 @@ let Businesscard = class Businesscard extends taro_1.Component {
     }
     //@ts-ignore
     onShareAppMessage(res) {
-        return {
-            title: `${this.props.userInfo.name}的名片分享`,
-            path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
-        };
+        datatool_1.debounce(500, () => {
+            return {
+                title: `${this.props.userInfo.name}的名片分享`,
+                path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+            };
+        });
     }
     render() {
-        let { showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3 } = this.state;
+        let { showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex } = this.state;
         let { userInfo } = this.props;
-        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
+        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true} ref={(ref) => {
+            this.viewRef = ref;
+        }}>
         
         <index_5.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.ujc])}>
@@ -161,7 +210,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
         </index_5.default>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
-          <index_2.default userInfo={this.props.userInfo} shareClick={() => {
+          <index_2.default holderCount={holderCount} visitorCount={visitorCount} userInfo={this.props.userInfo} shareClick={() => {
             this.setState({ showShare: true });
         }} collectCallback={() => {
             taro_1.default.navigateTo({
@@ -181,23 +230,41 @@ let Businesscard = class Businesscard extends taro_1.Component {
             });
         }}/>
           
-          <index_3.default chooseCallback={() => {
+          <index_3.default currentIndex={currentIndex} chooseCallback={() => {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/choose_renmai_tag`
             });
-        }} hasSelected={recommendIsSet} recommendList={recommendList} indexChangeCallback={(index) => {
+        }} hasSelected={recommendIsSet} recommendList={recommendList} collectCard={(userId) => {
+            this.updateMyCollect(1, userId);
+        }} indexChangeCallback={(index) => {
             if (index === 0) {
-                this.getRecommend('recommend');
+                this.recommendType = 'recommend';
+                this.setState({ currentIndex: index }, () => {
+                    this.getRecommend();
+                });
             }
             else if (index === 1) {
-                this.getRecommend('interest');
+                this.recommendType = 'interest';
+                this.setState({ currentIndex: index }, () => {
+                    this.getRecommend();
+                });
             }
             else if (index === 2) {
-                this.getRecommend('villager');
+                this.recommendType = 'villager';
+                this.setState({ currentIndex: index }, () => {
+                    this.getRecommend();
+                });
             }
             else if (index === 3) {
-                this.getRecommend('schoolfellow');
+                this.recommendType = 'schoolfellow';
+                this.setState({ currentIndex: index }, () => {
+                    this.getRecommend();
+                });
             }
+        }} performCard={() => {
+            taro_1.default.navigateTo({
+                url: `/pages/mine/perform_info`
+            });
         }}/>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(66), style_1.default.ujc, style_1.default.uac])}>
@@ -206,24 +273,33 @@ let Businesscard = class Businesscard extends taro_1.Component {
         </components_1.ScrollView>
         
         <components_1.Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
-            // console.log('更新用户信息', token);
-            if (!userInfo.avatar) {
-                this.updateUserInfo(data.detail);
+            if (userInfo.cardPercent) {
+                taro_1.default.navigateTo({
+                    url: `/pages/mine/perform_info`
+                });
             }
-            taro_1.default.navigateTo({
-                url: `/pages/businesscard/add_businesscard`
-            });
+            else {
+                if (!userInfo.avatar) {
+                    this.updateUserInfo(data.detail);
+                }
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/add_businesscard`
+                });
+            }
         }} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(41), style_1.default.uac, style_1.default.ujc, style_1.bgColor('#FAF1E5'), style_1.radiusA(30)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}，点击完善` : '创建您的专属名片'}</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}%，点击完善` : '创建您的专属名片'}</components_1.Text>
           </components_1.View>
         </components_1.Button>
         {showShare && <index_4.default cancle={() => {
             this.setState({ showShare: false });
         }} wechatShare={() => {
+            this.setState({ showShare: false });
         }} haibao={() => {
-            taro_1.default.navigateTo({
-                url: `/pages/businesscard/mingpian_haibao`
+            this.setState({ showShare: false }, () => {
+                taro_1.default.navigateTo({
+                    url: `/pages/businesscard/mingpian_haibao`
+                });
             });
         }}/>}
         {showGuide1 && <business_card_guide1_1.default cancle={() => {
@@ -259,7 +335,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
     }
 };
 Businesscard = __decorate([
-    redux_1.connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions))
+    redux_1.connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions))
 ], Businesscard);
 exports.default = Businesscard;
 //# sourceMappingURL=businesscard.jsx.map

@@ -15,21 +15,25 @@ const index_1 = require("../../../compoments/touchable-button/index");
 require("./index.scss");
 class TaskItem extends taro_1.PureComponent {
     render() {
-        let { itemData, finishCallback } = this.props;
-        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(143), style_1.default.uac, style_1.default.ujc, style_1.mt(10), style_1.mb(10)])}>
-        <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(153), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4)])}>
+        let { itemData, finishCallback, deleteCallback } = this.props;
+        return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.mt(10), style_1.mb(10)])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
             style_1.pl(16), style_1.pr(16), style_1.pt(20)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434'), style_1.w(200), style_1.h(40)])} className={'.textStyle'}>{itemData.theme}</components_1.Text>
-            {itemData.status !== 1 && <index_1.default onClick={() => {
-            finishCallback(itemData.id);
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434'), style_1.w(200)])} className={'.textStyle'}>{itemData.theme}</components_1.Text>
+            <index_1.default onClick={() => {
+            if (itemData.status !== 1) {
+                finishCallback(itemData.id);
+            }
+            else {
+                deleteCallback(itemData.id);
+            }
         }} customStyle={datatool_1.styleAssign([style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.default.uac, style_1.default.ujc])}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>移至完成</components_1.Text>
-              </index_1.default>}
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>{`${itemData.status !== 1 ? '移至完成' : '删除任务'}`}</components_1.Text>
+            </index_1.default>
           </components_1.View>
-          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434'), style_1.mt(10), style_1.ml(20)])}>{itemData.remark}</components_1.Text>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.mt(16), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(40), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color('#A6A6A6'), style_1.mt(4), style_1.ml(20)])}>{datatool_1.transformTime(itemData.date)}</components_1.Text>
             <index_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.mr(16), style_1.default.utxdu])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#313137'), style_1.fSize(12)])}>查看关联客户</components_1.Text>

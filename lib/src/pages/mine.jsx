@@ -84,9 +84,9 @@ let Mine = class Mine extends taro_1.Component {
                 <components_1.View style={datatool_1.styleAssign([style_1.ml(14)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</components_1.Text>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(140), style_1.h(6), style_1.radiusA(3), style_1.mt(13), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-                    <components_1.View style={datatool_1.styleAssign([style_1.w(113), style_1.h(6), style_1.radiusA(3), style_1.default.uac, style_1.bgColor('#E2BB7B')])}/>
+                    <components_1.View style={datatool_1.styleAssign([style_1.wRatio(userInfo.cardPercent), style_1.h(6), style_1.radiusA(3), style_1.default.uac, style_1.bgColor('#E2BB7B')])}/>
                   </components_1.View>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color(style_1.commonStyles.whiteColor), style_1.mt(8)])}>完善度88%</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color(style_1.commonStyles.whiteColor), style_1.mt(8)])}>{`完善度${userInfo.cardPercent}%`}</components_1.Text>
                 </components_1.View>
               </components_1.View>
               

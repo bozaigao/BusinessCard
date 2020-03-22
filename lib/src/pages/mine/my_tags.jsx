@@ -27,6 +27,7 @@ const components_1 = require("@tarojs/components");
 const index_3 = require("../../compoments/bottom-buton/index");
 const index_4 = require("../../compoments/touchable-button/index");
 const httpurl_1 = require("../../api/httpurl");
+const custom_tag_1 = require("../sub_pagecomponent/custom-tag");
 let MyTags = class MyTags extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -108,7 +109,8 @@ let MyTags = class MyTags extends taro_1.Component {
         };
         this.state = {
             chooseTags: props.userInfo.labelArray,
-            tags: []
+            tags: [],
+            showTagEdit: false
         };
         console.log(this.viewRef);
     }
@@ -116,7 +118,7 @@ let MyTags = class MyTags extends taro_1.Component {
         this.getDictItemList();
     }
     render() {
-        let { chooseTags, tags } = this.state;
+        let { chooseTags, tags, showTagEdit } = this.state;
         return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -144,7 +146,9 @@ let MyTags = class MyTags extends taro_1.Component {
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.mt(16), style_1.default.uae, style_1.mb(20)])}>
               <index_4.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.bgColor(style_1.commonStyles.colorTheme),
-            style_1.w(95), style_1.h(28), style_1.radiusA(14), style_1.default.uac, style_1.default.ujc])}>
+            style_1.w(95), style_1.h(28), style_1.radiusA(14), style_1.default.uac, style_1.default.ujc])} onClick={() => {
+            this.setState({ showTagEdit: true });
+        }}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(12)])} src={`${httpurl_1.cloudBaseUrl}ico_black_add.png`}/>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>自定义标签</components_1.Text>
@@ -182,6 +186,24 @@ let MyTags = class MyTags extends taro_1.Component {
         <index_3.default title={'保存'} onClick={() => {
             this.update();
         }}/>
+        {showTagEdit && <custom_tag_1.default cancelCallback={() => {
+            this.setState({ showTagEdit: false });
+        }} confirmCallback={(content) => {
+            this.setState({ showTagEdit: false }, () => {
+                if (!this.state.chooseTags.includes(content)) {
+                    if (chooseTags.length < 4) {
+                        this.state.chooseTags.push(content);
+                        this.setState({ chooseTags: this.state.chooseTags });
+                    }
+                    else {
+                        datatool_1.toast('最多添加4个标签');
+                    }
+                }
+                else {
+                    datatool_1.toast('已经有该标签');
+                }
+            });
+        }}/>}
       </index_1.default>);
     }
 };

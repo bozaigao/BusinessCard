@@ -22,6 +22,7 @@ const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/business_card");
 const visitorActions = require("../../actions/visitor");
+const customerActions = require("../../actions/customer");
 const global_1 = require("../../const/global");
 const components_1 = require("@tarojs/components");
 const collect_item_1 = require("../sub_pagecomponent/collect-item");
@@ -95,6 +96,25 @@ let MyCollect = class MyCollect extends taro_1.Component {
         /**
          * @author 何晏波
          * @QQ 1054539528
+         * @date 2020/3/21
+         * @function: 置为客户
+         */
+        this.addCustomer = (userId) => {
+            this.viewRef.showLoading();
+            this.props.addCustomer({ customerUserId: userId }).then((res) => {
+                this.viewRef.hideLoading();
+                console.log('置为客户', res);
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    datatool_1.toast('设置成功');
+                }
+            }).catch(e => {
+                this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
          * @date 2020/2/9
          * @function: 获取我收藏的名片列表
          */
@@ -133,7 +153,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
         this.pageNo = 1;
         this.pageSize = 10;
         this.state = {
-            currentIndex: parseInt(this.$router.params.currentIndex),
+            currentIndex: parseInt(this.$router.params.currentIndex, 10),
             collectSubCurrentIndex: 0,
             visitorSubCurrentIndex: 0,
             showOperate: false,
@@ -189,7 +209,9 @@ let MyCollect = class MyCollect extends taro_1.Component {
                 return (<collect_item_1.default key={index} operate={(item) => {
                     this.collectItemModel = item;
                     this.setState({ showOperate: true });
-                }} item={value}/>);
+                }} item={value} setCustomer={(userId) => {
+                    this.addCustomer(userId);
+                }}/>);
             })}
         </components_1.ScrollView>
       </components_1.View>;
@@ -285,7 +307,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
           {childView}
         </components_1.View>
         {showOperate && <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), { position: 'fixed' }, style_1.absT(0)])} onClick={() => {
-            this.setState({ showOperate: false, showDeleteNotice: true });
+            this.setState({ showOperate: false });
         }}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.op(0.3), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.bgColor(style_1.commonStyles.colorTheme)])}/>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(120), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusTL(10), style_1.radiusTR(10),
@@ -351,7 +373,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
     }
 };
 MyCollect = __decorate([
-    redux_1.connect(state => state.login, Object.assign({}, actions, visitorActions))
+    redux_1.connect(state => state.login, Object.assign({}, actions, visitorActions, customerActions))
 ], MyCollect);
 exports.default = MyCollect;
 //# sourceMappingURL=my_collect.jsx.map

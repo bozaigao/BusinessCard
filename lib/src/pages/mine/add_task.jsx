@@ -61,9 +61,11 @@ let AddTask = class AddTask extends taro_1.Component {
             let myweekday = new Date().getDate();
             let dateTime = new Date(date).getTime();
             if (mymonth < 10) {
+                //@ts-ignore
                 mymonth = '0' + mymonth;
             }
             if (myweekday < 10) {
+                //@ts-ignore
                 myweekday = '0' + myweekday;
             }
             let currentTime = new Date(`${myyear}-${mymonth}-${myweekday}`).getTime();
@@ -74,7 +76,6 @@ let AddTask = class AddTask extends taro_1.Component {
             let paramas = {
                 theme,
                 date,
-                userIds: JSON.stringify([1]),
                 remark
             };
             if (chooseCustomer.length !== 0) {
@@ -82,14 +83,13 @@ let AddTask = class AddTask extends taro_1.Component {
                 for (let i = 0; i < chooseCustomer.length; i++) {
                     userIds.push(chooseCustomer[i].id);
                 }
-                Object.assign(paramas, { userIds: JSON.stringify(userIds) });
+                Object.assign(paramas, { customerIds: JSON.stringify(userIds) });
             }
             this.viewRef && this.viewRef.showLoading();
             this.props.addTask(paramas).then((res) => {
                 console.log(res);
                 this.viewRef && this.viewRef.hideLoading();
                 if (res !== httpurl_1.NetworkState.FAIL) {
-                    taro_1.default.eventCenter.trigger('refreshTaskList');
                     datatool_1.toast('任务添加成功');
                     datatool_1.debounce(1000, () => {
                         taro_1.default.navigateBack();

@@ -93,7 +93,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
          * @date 2019/12/29
          * @function: 添加任务
          */
-        this.addGoods = () => {
+        this.addGoods = (status) => {
             let { name, price, introduction } = this.state;
             if (name.length === 0) {
                 datatool_1.toast('名字不能为空');
@@ -117,7 +117,8 @@ let AddGoods = class AddGoods extends taro_1.Component {
                 price,
                 carouselUrl: JSON.stringify(this.carouselUrls),
                 detailUrl: JSON.stringify(this.detailUrls),
-                introduction
+                introduction,
+                status
             }).then((res) => {
                 taro_1.default.eventCenter.trigger('goodsListRefresh');
                 console.log('添加商品信息', res);
@@ -326,12 +327,14 @@ let AddGoods = class AddGoods extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
                   <index_3.default customStyle={datatool_1.styleAssign([style_1.w(162), style_1.h(44), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme),
                 { borderStyle: 'solid' }, style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])} onClick={() => {
-                this.addGoods();
+                this.addGoods(0);
             }}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>保存商品</components_1.Text>
                   </index_3.default>
                   <index_3.default customStyle={datatool_1.styleAssign([style_1.ml(10), style_1.w(162), style_1.h(44), style_1.bgColor(style_1.commonStyles.colorTheme),
-                style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])}>
+                style_1.radiusA(2), style_1.default.uac, style_1.default.ujc])} onClick={() => {
+                this.addGoods(1);
+            }}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>立即上架</components_1.Text>
                   </index_3.default>
                 </components_1.View>}

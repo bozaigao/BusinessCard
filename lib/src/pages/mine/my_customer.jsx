@@ -109,7 +109,7 @@ let MyCustomer = class MyCustomer extends taro_1.Component {
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(70), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([{ width: '80%' }, style_1.h(29), style_1.op(0.7), style_1.bgColor(style_1.commonStyles.whiteColor),
                 style_1.radiusA(26), style_1.default.uac, style_1.default.udr, style_1.mt(10)])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(21), style_1.ml(16)])} src={require('../../../../assets/ico_search.png')}/>
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(21), style_1.ml(16)])} src={require('../../assets/ico_search.png')}/>
             <components_1.Input type='text' placeholder='搜索客户姓名/ID' style={datatool_1.styleAssign([style_1.ml(16), style_1.fSize(14)])} onInput={(e) => {
                 this.setState({ content: e.detail.value }, () => {
                     this.refresh();

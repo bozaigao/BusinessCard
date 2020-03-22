@@ -75,9 +75,9 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
          * @date 2019/12/28
          * @function: 将文件通过微信Api上传到服务端
          */
-        this.uploadFileTpWx = (path, callback) => {
+        this.uploadFileTpWx = (path, type, callback) => {
             let { enterpriseVideo } = this.state;
-            if (callback && enterpriseVideo.length !== 0) {
+            if (callback && enterpriseVideo.length !== 0 || path.length === 0) {
                 callback();
                 return;
             }
@@ -85,7 +85,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
             let token = datatool_1.get(global_1.Enum.TOKEN);
             this.viewRef && this.viewRef.showLoading();
             taro_1.default.uploadFile({
-                url: httpurl_1.FileController.uploadPicture,
+                url: type === 'image' ? httpurl_1.FileController.uploadPicture : httpurl_1.FileController.uploadVideo,
                 filePath: path,
                 name: 'file',
                 header: {
@@ -93,7 +93,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
                 },
                 success(res) {
                     that.viewRef && that.viewRef.hideLoading();
-                    if (!callback) {
+                    if (type === 'image') {
                         that.setState({ enterpriseLogo: datatool_1.parseData(res.data).data });
                     }
                     else {
@@ -107,12 +107,12 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
         };
         console.log(this.viewRef);
         this.state = {
-            enterpriseName: '',
-            enterpriseWebsite: '',
-            enterpriseLogo: '',
-            enterpriseLogoLocal: '',
-            enterpriseVideo: '',
-            enterpriseVideoLocal: '',
+            enterpriseName: props.userInfo.enterpriseName,
+            enterpriseWebsite: props.userInfo.enterpriseWebsite,
+            enterpriseLogo: props.userInfo.enterpriseLogo,
+            enterpriseLogoLocal: props.userInfo.enterpriseLogo,
+            enterpriseVideo: props.userInfo.enterpriseVideo,
+            enterpriseVideoLocal: props.userInfo.enterpriseVideo,
         };
     }
     render() {
@@ -163,7 +163,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
                 taro_1.default.chooseImage({ count: 1 }).then((res) => {
                     console.log(res);
                     this.setState({ enterpriseLogoLocal: res.tempFilePaths[0] });
-                    this.uploadFileTpWx(res.tempFilePaths[0]);
+                    this.uploadFileTpWx(res.tempFilePaths[0], 'image');
                 });
             }}/>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#B7B7B7'), style_1.mt(14)])}>建议尺寸：350px*350px</components_1.Text>
@@ -203,7 +203,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
                 datatool_1.toast('请选择logo');
                 return;
             }
-            this.uploadFileTpWx(enterpriseVideoLocal, () => {
+            this.uploadFileTpWx(enterpriseVideoLocal, 'video', () => {
                 this.update();
             });
         }}/>

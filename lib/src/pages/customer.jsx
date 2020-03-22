@@ -29,6 +29,7 @@ const index_5 = require("./pagecomponent/shai-xuan-modal/index");
 const index_6 = require("../compoments/navigation_bar/index");
 const index_7 = require("../compoments/sanjiao/index");
 const customer_guide_1 = require("./pagecomponent/customer-guide");
+const share_invite_1 = require("./pagecomponent/share-invite");
 let Customer = class Customer extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -64,8 +65,10 @@ let Customer = class Customer extends taro_1.Component {
                 startDate: startTime,
                 endDate: endTime,
                 status,
-                name
             };
+            if (name.length !== 0) {
+                Object.assign(params, { name });
+            }
             console.log('搜索参数', params);
             this.props.getCustomerList(params).then((res) => {
                 console.log('获取客户列表', res);
@@ -94,7 +97,8 @@ let Customer = class Customer extends taro_1.Component {
             startTime: '2020-01-01',
             endTime: datatool_1.getToday(),
             name: '',
-            showGuide: false
+            showGuide: false,
+            showShareInvite: false
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -114,8 +118,15 @@ let Customer = class Customer extends taro_1.Component {
     componentDidHide() {
         console.log('componentDidShow');
     }
+    //@ts-ignore
+    onShareAppMessage(res) {
+        return {
+            title: `快来使用极致推小程序吧`,
+            path: `/pages/businesscard`
+        };
+    }
     render() {
-        let { customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide } = this.state;
+        let { customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide, showShareInvite } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.ujb])}>
           <index_6.default>
@@ -165,8 +176,17 @@ let Customer = class Customer extends taro_1.Component {
                 console.log(value);
                 return (<index_2.default key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)} onClick={() => {
                     taro_1.default.navigateTo({
-                        url: `/pages/customer/customer_detail?userId=${value.id}`
+                        url: `/pages/customer/customer_detail?id=${value.id}&userId=${value.userId}`
                     });
+                }} viewCardCallback={() => {
+                    if (value.type === 2) {
+                        this.setState({ showShareInvite: true });
+                    }
+                    else {
+                        taro_1.default.navigateTo({
+                            url: `/pages/businesscard/other_businesscard?userId=${value.userId}`
+                        });
+                    }
                 }} genJinCallback={(customer) => {
                     taro_1.default.navigateTo({
                         url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
@@ -200,6 +220,11 @@ let Customer = class Customer extends taro_1.Component {
         {showGuide && <customer_guide_1.default cancle={() => {
             datatool_1.save('customer_guide', true);
             this.setState({ showGuide: false });
+        }}/>}
+        {showShareInvite && <share_invite_1.default cancelCallback={() => {
+            this.setState({ showShareInvite: false });
+        }} confirmCallback={() => {
+            this.setState({ showShareInvite: false });
         }}/>}
       </index_1.default>);
     }

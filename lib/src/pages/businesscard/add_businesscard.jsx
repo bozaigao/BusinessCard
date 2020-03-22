@@ -84,6 +84,10 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                 datatool_1.toast('请先填写行业');
                 return;
             }
+            if (!datatool_1.isLegalEmail(listData[7].value)) {
+                datatool_1.toast('请输入有效的邮箱');
+                return;
+            }
             this.viewRef && this.viewRef.showLoading();
             this.props.update({
                 avatar: this.avatar,
@@ -146,7 +150,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             signInPageDetail: { dateIntegrals: [], signInCount: 0 },
             listData: [
                 { title: '姓名', subtitle: '请输入姓名', value: name, hasEdit: true, must: true },
-                { title: '手机', value: '' },
+                { title: '手机', value: props.userInfo.phone },
                 {
                     title: '公司',
                     subtitle: '请输入公司名',
@@ -193,7 +197,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} notNeedBottomPadding={true}>
-        <top_header_1.default title={this.props.userInfo.cardPercent === 0 ? '创建名片' : '完善名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
+        <top_header_1.default title={'创建名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,

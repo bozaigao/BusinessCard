@@ -15,11 +15,19 @@ const renmai_item_1 = require("../renmai-item");
 class MyPerson extends taro_1.Component {
     constructor(props) {
         super(props);
-        this.setState({ currentIndex: 0 });
     }
     render() {
-        let { currentIndex } = this.state;
-        let { chooseCallback, hasSelected, recommendList, indexChangeCallback } = this.props;
+        let { chooseCallback, hasSelected, recommendList, indexChangeCallback, performCard, currentIndex, collectCard } = this.props;
+        let noticeText = '';
+        if (currentIndex === 1) {
+            noticeText = '完善你的名片信息，发现更多志趣相投的朋友';
+        }
+        else if (currentIndex === 2) {
+            noticeText = '完善你的名片信息，发现更多同乡，促进交流';
+        }
+        else if (currentIndex === 3) {
+            noticeText = '完善你的名片信息，发现更多校友，促进交流';
+        }
         return (<components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.ml(20), style_1.mr(20), style_1.mt(32)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
@@ -52,9 +60,7 @@ class MyPerson extends taro_1.Component {
             style_1.pl(20), style_1.pr(20), style_1.mt(16)])}>
             {['推荐', '兴趣', '同乡', '校友'].map((value, index) => {
             return <components_1.View key={index} style={datatool_1.styleAssign([style_1.default.uac, style_1.ml(index !== 0 ? 62 : 0)])} onClick={() => {
-                this.setState({ currentIndex: index }, () => {
-                    indexChangeCallback(index);
-                });
+                indexChangeCallback(index);
             }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color(currentIndex === index ? '#E2BB7B' : '#0C0C0C')])}>{value}</components_1.Text>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(30), style_1.h(1), style_1.bgColor(currentIndex === index ? '#E2BB7B' : style_1.commonStyles.transparent), style_1.mt(8)])}/>
@@ -63,9 +69,9 @@ class MyPerson extends taro_1.Component {
           </components_1.View>}
         {hasSelected && recommendList.map((value, index) => {
             console.log(value);
-            return <renmai_item_1.default key={index}/>;
+            return <renmai_item_1.default key={index} item={value} collectCard={collectCard}/>;
         })}
-        {hasSelected &&
+        {hasSelected && currentIndex === 0 &&
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(226), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.default.ujc])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.udr, style_1.w(160)])}>
@@ -81,6 +87,18 @@ class MyPerson extends taro_1.Component {
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>
                   1元立即试用
                 </components_1.Text>
+              </components_1.View>
+            </components_1.View>
+          </components_1.View>}
+        {hasSelected && recommendList.length === 0 &&
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])}>
+              <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(78), style_1.h(69), style_1.mt(47)])} src={require('../../../assets/ico_no_data.png')}/>
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434'), style_1.mt(31)])}>{noticeText}</components_1.Text>
+                <components_1.View style={datatool_1.styleAssign([style_1.w(303), style_1.h(44), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc, style_1.mt(24), style_1.mb(29)])} onClick={performCard}>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>立即完善名片</components_1.Text>
+                </components_1.View>
               </components_1.View>
             </components_1.View>
           </components_1.View>}

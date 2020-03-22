@@ -56,6 +56,9 @@ let AddGenJin = class AddGenJin extends taro_1.Component {
                 this.viewRef && this.viewRef.hideLoading();
                 if (res !== httpurl_1.NetworkState.FAIL) {
                     datatool_1.toast('添加成功');
+                    datatool_1.debounce(1000, () => {
+                        taro_1.default.navigateBack();
+                    });
                 }
             }).catch(e => {
                 this.viewRef && this.viewRef.hideLoading();

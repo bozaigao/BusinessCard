@@ -15,7 +15,7 @@ const touchable_button_1 = require("../../../compoments/touchable-button");
 const httpurl_1 = require("../../../api/httpurl");
 class CollectItem extends taro_1.PureComponent {
     render() {
-        let { operate, item } = this.props;
+        let { operate, item, setCustomer } = this.props;
         return (<touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.radiusA(4), { width: '95%' }, { marginLeft: '2.5%' }, style_1.h(156), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(14)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(20)])}>
@@ -30,7 +30,9 @@ class CollectItem extends taro_1.PureComponent {
             </components_1.View>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc,
-            style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.mr(16)])}>
+            style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.mr(16)])} onClick={() => {
+            setCustomer(item.userId);
+        }}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>置为客户</components_1.Text>
           </components_1.View>
         </components_1.View>

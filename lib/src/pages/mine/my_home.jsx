@@ -57,8 +57,8 @@ let MyHome = class MyHome extends taro_1.Component {
             }
             this.viewRef && this.viewRef.showLoading();
             let params = {
-                province: this.province,
-                city: this.city,
+                hometownProvince: this.province,
+                hometownCity: this.city,
                 villagerGreeting: wenHouYU
             };
             console.log('参数错误', params);

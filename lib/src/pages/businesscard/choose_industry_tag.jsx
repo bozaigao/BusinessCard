@@ -115,6 +115,9 @@ let ChooseIndustryTag = class ChooseIndustryTag extends taro_1.Component {
                 if (chooseValue.includes(value.name)) {
                     this.state.chooseValue.splice(this.state.chooseValue.indexOf(value.name), 1);
                 }
+                else if (chooseValue.length === 3) {
+                    datatool_1.toast('最多选择3个标签');
+                }
                 else {
                     this.state.chooseValue.push(value.name);
                 }

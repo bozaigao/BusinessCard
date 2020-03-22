@@ -128,11 +128,11 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
          * @date 2020/3/1
          * @function: 更新任务状态
          */
-        this.taskUpdate = (taskId) => {
+        this.taskUpdate = (taskId, status) => {
             this.viewRef && this.viewRef.showLoading('加载中');
             this.props.updateTask({
                 id: taskId,
-                status: 1,
+                status,
             }).then((res) => {
                 console.log('更新任务状态', res, taskId);
                 this.viewRef && this.viewRef.hideLoading();
@@ -248,8 +248,10 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
                       </index_3.default>
                       {showItem && <components_1.View>
                           {value.children.map((itemValue, itemIndex) => {
-                    return (<index_4.default key={itemIndex} itemData={itemValue} finishCallback={(taskId) => {
-                        this.taskUpdate(taskId);
+                    return (<index_4.default key={itemIndex} itemData={itemValue} finishCallback={(id) => {
+                        this.taskUpdate(id, 1);
+                    }} deleteCallback={(id) => {
+                        this.taskUpdate(id, -1);
                     }}/>);
                 })}
                         </components_1.View>}
@@ -263,8 +265,10 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
               </components_1.View> :
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
                 {todayTask.map((itemValue, itemIndex) => {
-                return (<index_4.default key={itemIndex} itemData={itemValue} finishCallback={(taskId) => {
-                    this.taskUpdate(taskId);
+                return (<index_4.default key={itemIndex} itemData={itemValue} finishCallback={(id) => {
+                    this.taskUpdate(id, 1);
+                }} deleteCallback={(id) => {
+                    this.taskUpdate(id, -1);
                 }}/>);
             })}
                 {todayTask.length === 0 &&

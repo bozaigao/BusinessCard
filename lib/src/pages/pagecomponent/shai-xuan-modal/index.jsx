@@ -65,7 +65,7 @@ class ShaiXuanModal extends taro_1.PureComponent {
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(214), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#0C0C0C'), style_1.fSize(14), style_1.ml(20), style_1.mt(10)])}>时间范围</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.pl(20), style_1.mt(12)])}>
-              {['全部', '今日', '本周', '本月', '近半年'].map((value, index) => {
+              {['全部', '今日', '本周', '本月'].map((value, index) => {
             return <components_1.View key={index} style={datatool_1.styleAssign([style_1.padding([3, 5, 3, 5]), style_1.radiusA(2),
                 style_1.default.uac, style_1.default.ujc, style_1.ml(index !== 0 ? 20 : 0), style_1.bgColor(visitTime === value ? '#E4E4E4' : style_1.commonStyles.transparent)])} onClick={() => {
                 switch (value) {

@@ -97,7 +97,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(190), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
             
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absT(125)])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absT(120)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(120), style_1.h(120)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60)])} src={userInfo.avatar ? userInfo.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(23), style_1.h(23), style_1.radiusA(11.5), style_1.default.upa, style_1.absB(2), style_1.absR(2)])} src={userInfo.sex === 1 ? `${httpurl_1.cloudBaseUrl}ico_nan.png` : `${httpurl_1.cloudBaseUrl}ico_nv.png`}/>
@@ -106,7 +106,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
               {userInfo.company && <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#727272'), style_1.mt(4)])}>{`${userInfo.company}-${userInfo.position}`}</components_1.Text>}
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{`${userInfo.school}•${userInfo.profession}`}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.selfDescription)}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.industry)}</components_1.Text>
             </components_1.View>
             
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.upa, style_1.absR(10), style_1.absB(150)])}>
@@ -218,8 +218,8 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                     </touchable_button_1.default>
                   </components_1.View>
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mb(10)])}>
-                    {userInfo.province || userInfo.city ?
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#0C0C0C'), style_1.ml(20), style_1.mr(20)])}>{`${userInfo.province} ${userInfo.city}`}</components_1.Text> :
+                    {userInfo.hometownProvince || userInfo.hometownCity ?
+                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#0C0C0C'), style_1.ml(20), style_1.mr(20)])}>{`${userInfo.hometownProvince} ${userInfo.hometownCity}`}</components_1.Text> :
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A9A9A9'), style_1.ml(20), style_1.mr(20)])}>完善家乡信息，增加更多人脉</components_1.Text>}
                   </components_1.View>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>

@@ -72,7 +72,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
          */
         this.update = () => {
             console.log('函数', this.props);
-            let { avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city } = this.state;
+            let { avatar, name, sex, phone, industry, position, yangshi, wechat, birthday, province, city, email } = this.state;
             if (avatar.length === 0) {
                 datatool_1.toast('头像不能为空');
                 return;
@@ -97,10 +97,15 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
                 datatool_1.toast('职位不能为空');
                 return;
             }
+            if (!datatool_1.isLegalEmail(email)) {
+                datatool_1.toast('请输入有效的邮箱');
+                return;
+            }
             let paramas = {
                 avatar,
                 name,
                 sex,
+                email,
                 phone,
                 industry,
                 position,
@@ -113,7 +118,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
                 longitude: this.longitude,
                 detailAddress: this.state.titleList2[4].value
             };
-            console.log('参数错误', paramas);
+            console.log('更新用户信息', paramas);
             this.viewRef && this.viewRef.showLoading();
             this.props.update(paramas).then((res) => {
                 console.log('更新用户信息', res);
@@ -254,6 +259,10 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
                 else if (value.title === '手机') {
                     this.setState({ phone: e.detail.value });
                 }
+                else if (value.title === '职位') {
+                    console.log('职位', e.detail.value);
+                    this.setState({ position: e.detail.value });
+                }
             }}/>);
         })}
           </components_1.View>
@@ -277,7 +286,7 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
             {titleList2.map((value, index) => {
             if (value.title === '生日') {
                 return (<components_1.Picker mode='date' onChange={(e) => {
-                    titleList2[3].value = e.detail.value;
+                    titleList2[2].value = e.detail.value;
                     this.setState({
                         titleList2,
                         birthday: e.detail.value
@@ -289,25 +298,23 @@ let PersonalInfo = class PersonalInfo extends taro_1.Component {
             else if (value.title === '地区') {
                 return (<components_1.Picker mode='region' onChange={(e) => {
                     console.log(e.detail);
-                    titleList2[4].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
+                    titleList2[3].value = e.detail.value[0] + e.detail.value[1] + e.detail.value[2];
                     this.setState({
                         titleList2,
                         province: e.detail.value[0],
                         city: e.detail.value[1] + e.detail.value[2]
                     });
                 }} value={[]}>
-                    <list_item_1.default textColor={'#727272'} title={value.title} subTitle={value.subtitle} value={value.value} key={index} hasEdit={value.hasEdit} onTextChange={(e) => {
-                    console.log(e);
-                    if (value.title === '邮箱') {
-                        this.setState({ email: e.detail.value });
-                    }
-                    else if (value.title === '地址') {
-                        this.setState({ detailAddress: e.detail.value });
-                    }
-                }}/>
+                    <list_item_1.default textColor={'#727272'} title={value.title} subTitle={value.subtitle} value={value.value} key={index} hasEdit={value.hasEdit}/>
                   </components_1.Picker>);
             }
-            return (<list_item_1.default textColor={'#727272'} value={value.value} title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onCLick={(title) => {
+            return (<list_item_1.default textColor={'#727272'} value={value.value} title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onTextChange={(e) => {
+                console.log(e);
+                if (value.title === '邮箱') {
+                    console.log('邮箱', e.detail.value);
+                    this.setState({ email: e.detail.value });
+                }
+            }} onCLick={(title) => {
                 if (title === '我的标签') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/my_tags`

@@ -15,7 +15,7 @@ const index_1 = require("../../../compoments/touchable-button/index");
 const httpurl_1 = require("../../../api/httpurl");
 class CustomItem extends taro_1.PureComponent {
     render() {
-        let { onClick, customer, genJinCallback, mode } = this.props;
+        let { onClick, customer, genJinCallback, mode, viewCardCallback } = this.props;
         let time;
         if (mode === '最后访问') {
             time = datatool_1.transformTime(customer.recentDate);
@@ -56,9 +56,7 @@ class CustomItem extends taro_1.PureComponent {
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
             <components_1.View style={datatool_1.styleAssign([style_1.w(80), style_1.hRatio(100), style_1.default.uac, style_1.default.ujc, style_1.default.utxdu])} onClick={(e) => {
             e.stopPropagation();
-            taro_1.default.navigateTo({
-                url: `/pages/businesscard/other_businesscard?userId=${customer.id}`
-            });
+            viewCardCallback();
         }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.colorTheme), style_1.fSize(14)])}>查看名片</components_1.Text>
             </components_1.View>
