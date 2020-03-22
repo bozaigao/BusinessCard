@@ -88,7 +88,7 @@ class TaskCenter extends Component<Props, State> {
     this.pageSize1 = 1000;
   }
 
-  componentDidShow(){
+  componentDidShow() {
     this.setState({taskItem: []}, () => {
       this.refresh();
       this.refresh1();
@@ -197,13 +197,13 @@ class TaskCenter extends Component<Props, State> {
    * @date 2020/3/1
    * @function: 更新任务状态
    */
-  taskUpdate = (taskId) => {
+  taskUpdate = (taskId, status) => {
     this.viewRef && this.viewRef.showLoading('加载中');
     this.props.updateTask({
       id: taskId,
-      status: 1,
+      status,
     }).then((res) => {
-      console.log('更新任务状态', res,taskId);
+      console.log('更新任务状态', res, taskId);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         this.setState({taskItem: []}, () => {
@@ -305,8 +305,12 @@ class TaskCenter extends Component<Props, State> {
                           {
                             value.children.map((itemValue, itemIndex) => {
                               return (<TaskItem key={itemIndex} itemData={itemValue}
-                                                finishCallback={(taskId) => {
-                                                  this.taskUpdate(taskId);
+                                                finishCallback={(id) => {
+                                                  this.taskUpdate(id, 1);
+                                                }
+                                                }
+                                                deleteCallback={(id)=>{
+                                                  this.taskUpdate(id, -1);
                                                 }
                                                 }/>);
                             })
@@ -327,8 +331,11 @@ class TaskCenter extends Component<Props, State> {
               <View style={styleAssign([styles.uf1])}>
                 {
                   todayTask.map((itemValue, itemIndex) => {
-                    return (<TaskItem key={itemIndex} itemData={itemValue} finishCallback={(taskId) => {
-                      this.taskUpdate(taskId);
+                    return (<TaskItem key={itemIndex} itemData={itemValue} finishCallback={(id) => {
+                      this.taskUpdate(id, 1);
+                    }
+                    } deleteCallback={(id)=>{
+                      this.taskUpdate(id, -1);
                     }
                     }/>);
                   })
