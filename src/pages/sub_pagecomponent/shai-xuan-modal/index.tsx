@@ -167,7 +167,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                 <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问时间</Text>
                 <View style={styleAssign([styles.uac, styles.udr, pl(20), mt(12)])}>
                   {
-                    ['全部', '今日', '本周', '本月', '近半年'].map((value, index) => {
+                    ['全部', '今日', '本周', '本月'].map((value, index) => {
                       return <View key={index} style={styleAssign([padding([3, 5, 3, 5]), radiusA(2),
                         styles.uac, styles.ujc, ml(index !== 0 ? 20 : 0), bgColor(visitTime === value ? '#E4E4E4' : commonStyles.transparent)])}
                                    onClick={() => {
