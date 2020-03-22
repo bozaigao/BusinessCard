@@ -337,7 +337,10 @@ class OtherBusinesscard extends Component<Props, State> {
             }} goodsList={userInfo.goodsList}/>
           }
           {/*我的企业*/}
-          <MyBusiness userInfo={userInfo}/>
+          {
+            userInfo.enterpriseName.length !== 0 &&
+            <MyBusiness userInfo={userInfo}/>
+          }
           {/*我的照片*/}
           {
             userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <MyPhoto photos={userInfo.photoUrlArray}/>
