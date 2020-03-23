@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 import {absB, absR, bgColor, color, commonStyles, default as styles, fSize, h, mt, w, wRatio} from "../../utils/style";
 import * as actions from '../../actions/login';
 import {connect} from "@tarojs/redux";
@@ -187,17 +187,7 @@ class ShareGoods extends Component<Props, State> {
     context.closePath();
   }
 
-  //@ts-ignore
-  onShareAppMessage(res) {
-    debounce(500, () => {
-      return {
-        title: `${this.props.userInfo.name}的商品分享`,
-        path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
-      }
-    })
-  }
-
-
+k
   render() {
     return (
       <CustomSafeAreaView
@@ -215,18 +205,6 @@ class ShareGoods extends Component<Props, State> {
             <View style={styleAssign([wRatio(100), h(194), bgColor(commonStyles.whiteColor), styles.upa, absB(0)])}>
               {/*微信分享、名片海报*/}
               <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac, styles.ujb])}>
-                <Button openType={'share'}
-                        style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}>
-                  <Image style={styleAssign([w(62), h(62)])} src={require('../../assets/ico_wechat.png')}/>
-                  <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
-                </Button>
-                <Button openType={'share'}
-                        style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
-                        onClick={() => {
-                        }}>
-                  <Image style={styleAssign([w(62), h(62)])} src={require('../../assets/ico_wechat_friend.png')}/>
-                  <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>朋友圈</Text>
-                </Button>
                 <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
                         onClick={() => {
                           this.saveImage();
