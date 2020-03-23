@@ -164,7 +164,7 @@ class Mine extends Component<Props, State> {
             </View>
             {/*分销*/}
             <View style={styleAssign([wRatio(100), h(100), styles.uac, mt(22)])}>
-              <Image style={styleAssign([w(335), h(100)])} src={`${cloudBaseUrl}ico_fenxiao.png`}
+              <Image style={styleAssign([w(335), h(100)])} src={require('../assets/ico_fenxiao.png')}
                      onClick={() => {
                        Taro.navigateTo({
                          url: `/pages/mine/fenxiao_center`

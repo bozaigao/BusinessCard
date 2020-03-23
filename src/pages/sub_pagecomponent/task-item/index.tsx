@@ -66,12 +66,9 @@ export default class TaskItem extends PureComponent<Props, State> {
           </View>
           <View
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-          <View style={styleAssign([wRatio(100), h(40), styles.uac, styles.udr, styles.ujb])}>
+          <View style={styleAssign([wRatio(100), h(40), styles.uac, styles.udr])}>
             <Text
               style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{transformTime(itemData.date)}</Text>
-            <TouchableButton customStyle={styleAssign([styles.uac, styles.ujc, mr(16), styles.utxdu])}>
-              <Text style={styleAssign([color('#313137'), fSize(12)])}>查看关联客户</Text>
-            </TouchableButton>
           </View>
         </View>
       </View>
