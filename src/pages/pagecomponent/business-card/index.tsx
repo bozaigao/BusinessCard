@@ -38,7 +38,6 @@ interface Props {
   visitorCallback: any;
   viewMyCardCallback: any;
   gotoCardCallback: any;
-  collectCallbackTaro: any;
   userInfo: User;
   holderCount: number;
   visitorCount: number;

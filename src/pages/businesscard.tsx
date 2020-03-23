@@ -275,7 +275,7 @@ class Businesscard extends Component<Props, State> {
             userInfo={this.props.userInfo}
             shareClick={() => {
               this.setState({showShare: true});
-            }} collectCallbackTaro={() => {
+            }} collectCallback={() => {
             Taro.navigateTo({
               url: `/pages/businesscard/my_collect?currentIndex=1`
             });
