@@ -57,99 +57,62 @@ class ShareGoods extends Component<Props, State> {
     //@ts-ignore
     const that = this;
 
+    this.roundRectColor(context, 0, 0, 272, 405, 4);
     Taro.getImageInfo({
-      src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
+      //"https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/3ccb9ece-ce65-4c0d-9c0e-90f9d8d481b9user_20_1584091341305.jpg"
+      src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
     }).then((res) => {
-      this.roundRectColor(context, 0, 0, 272, 405, 4);
+
+      let arcWidth = 36;
+      //x-轴坐标
+      let xCoor = 14;
+      //y-轴坐标
+      let yCoor = 14;
+
+      context.beginPath();
+      context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false)
+      context.clip();
+      console.log('路径', res.path)
       //@ts-ignore
-      context.drawImage(res.path, 10, 10, 313, 194);
-      //电话
+      context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
+      context.restore();
+      context.setFontSize(14);
+      context.fillText('王嘉怡 为您推荐', 70, 38);
       Taro.getImageInfo({
-        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile.png?sign=16ccd18da0a7c3bbcbb3bf1f8a582b0d&t=1584026985`,
+        //"https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/3ccb9ece-ce65-4c0d-9c0e-90f9d8d481b9user_20_1584091341305.jpg"
+        src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
       }).then((res) => {
+        let fengMianWidth = 244;
+        let fengMianHeight = 263;
+
         //@ts-ignore
-        context.drawImage(res.path, 295, 90, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle('#343434');
-        context.setTextAlign('right');
-        context.fillText(userInfo.phone, 290, 100);
-        //微信
+        context.drawImage(res.path, xCoor, yCoor + 48, fengMianWidth, fengMianHeight);
+        context.fillText('现代简约双人木床', xCoor, fengMianHeight + 48 + arcWidth);
+        context.fillText('参考价格：', xCoor, fengMianHeight + 68 + arcWidth);
+        context.setFontSize(19);
+        context.setFillStyle('#FA541C');
+        context.fillText('¥600', xCoor + 80, fengMianHeight + 68 + arcWidth);
+        context.setFillStyle('#979797');
+        context.setFontSize(9)
+        context.fillText('长按识别二维码', xCoor + 180, fengMianHeight + 72 + arcWidth);
         Taro.getImageInfo({
-          src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat.png?sign=d69e311e5b1e06c521c064611bd9d30a&t=1584028318`,
+          //"https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/3ccb9ece-ce65-4c0d-9c0e-90f9d8d481b9user_20_1584091341305.jpg"
+          src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
         }).then((res) => {
           //@ts-ignore
-          context.drawImage(res.path, 295, 110, 12, 10);
-          context.setTextAlign('right');
-          context.fillText(userInfo.wechat, 290, 120);
-          //邮箱
-          Taro.getImageInfo({
-            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email.png?sign=f35e0d13f139b041fdb849c2e143e5ce&t=1584030793`,
-          }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 295, 130, 12, 10);
-            context.setTextAlign('right');
-            context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 290, 140);
-            //地址
-            Taro.getImageInfo({
-              src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location.png?sign=c3abda7fa28594034f71a597086f5864&t=1584030919`,
-            }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 295, 150, 12, 10);
-              context.setTextAlign('right');
-              context.fillText(userInfo.detailAddress, 290, 160);
-              //小程序码
-              Taro.getImageInfo({
-                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
-              }).then((res) => {
-                //@ts-ignore
-                context.drawImage(res.path, 15, 360, 44, 44);
-                context.setTextAlign('right');
-                Taro.getImageInfo({
-                  src: userInfo.avatar,
-                }).then((res) => {
-
-                  let arcWidth = 60;
-                  //x-轴坐标
-                  let xCoor = 30;
-                  //y-轴坐标
-                  let yCoor = 20;
-
-                  context.beginPath();
-                  context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false)
-                  context.clip();
-                  //@ts-ignore
-                  context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
-                  context.restore();
-                  context.setFontSize(18);
-                  context.setFillStyle(commonStyles.colorTheme);
-                  context.fillText(userInfo.name, 34, 115);
-                  context.setFontSize(12);
-                  context.fillText(userInfo.position, 100, 115);
-                  context.fillText(userInfo.company, 34, 140);
-                  context.setFontSize(14);
-                  context.fillText('您好,', 15, 240);
-                  context.setFillStyle('#E2BB7B');
-                  context.fillText('长按识别二维码 收下名片', 70, 390);
-                  context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
-                  context.moveTo(0, 340);
-                  context.lineTo(335, 340);
-                  context.stroke();
-                  context.draw(false, () => {
-                    that.viewRef && that.viewRef.hideLoading();
-                    Taro.canvasToTempFilePath({
-                      canvasId: 'canvas',
-                      success: function (res) {
-                        console.log('获得图片临时路径', res);
-                        // 获得图片临时路径
-                        that.setState({
-                          imageTempPath: res.tempFilePath
-                        })
-                      }
-                    })
-                  });
-                });
-              });
-            });
+          context.drawImage(res.path, xCoor + 198, fengMianHeight + 30 + arcWidth, 32, 32);
+          context.draw(false, () => {
+            that.viewRef && that.viewRef.hideLoading();
+            Taro.canvasToTempFilePath({
+              canvasId: 'canvas',
+              success: function (res) {
+                console.log('获得图片临时路径', res);
+                // 获得图片临时路径
+                that.setState({
+                  imageTempPath: res.tempFilePath
+                })
+              }
+            })
           });
         });
       });
