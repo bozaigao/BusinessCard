@@ -12,8 +12,8 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
-  absT,
-  bgColor,
+  absT, bdColor,
+  bgColor, bo,
   color,
   commonStyles,
   default as styles,
@@ -62,10 +62,13 @@ interface State {
   showChoose: boolean;
   state: string;
   showOperate: boolean;
+  showAllOperate: boolean;
   currentIndex: number;
   hasShop: boolean;
   showShare: boolean;
   showDeleteNotice: boolean;
+  goodsChooseValue: string[];
+  chooseAll: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -101,7 +104,10 @@ class GoodsManage extends Component<Props, State> {
       currentIndex: 0,
       hasShop: true,
       showShare: false,
-      showDeleteNotice: false
+      showDeleteNotice: false,
+      showAllOperate: false,
+      goodsChooseValue: [],
+      chooseAll: false
     };
     this.pageNo = 1;
     this.pageSize = 10;
@@ -232,7 +238,7 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare, showDeleteNotice} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showShare, showDeleteNotice, showAllOperate, goodsChooseValue, chooseAll} = this.state;
 
     let child;
 
@@ -241,7 +247,11 @@ class GoodsManage extends Component<Props, State> {
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
-          <View style={styleAssign([styles.uac, styles.udr])}>
+          <View style={styleAssign([styles.uac, styles.udr])}
+                onClick={() => {
+                  this.setState({showAllOperate: !this.state.showAllOperate, goodsChooseValue: []});
+                }
+                }>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
             <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${totalGoods}件商品)`}</Text>
           </View>
@@ -274,25 +284,80 @@ class GoodsManage extends Component<Props, State> {
               {
                 goodsList.map((value, index) => {
                   console.log(value);
-                  return (<GoodsManageItem key={index} itemData={value}
-                                           moreCallback={(itemData) => {
-                                             this.itemData = itemData;
-                                             this.setState({showOperate: true});
-                                           }
-                                           }
-                                           xiajiaCallback={(itemData) => {
-                                             this.itemData = itemData;
-                                             this.updateGoods(value.status === 0 ? 1 : 0);
-                                           }
-                                           }
-                                           notTopGoodsCallback={(itemData) => {
-                                             this.itemData = itemData;
-                                             this.updateTopGoods(itemData.showHomepage ? 0 : 1);
-                                           }
-                                           }/>);
+                  return (<GoodsManageItem
+                    chooseAll={chooseAll}
+                    onChooseCallback={(id) => {
+                      if (!this.state.goodsChooseValue.includes(id)) {
+                        this.state.goodsChooseValue.push(id);
+                      } else {
+                        this.state.goodsChooseValue.splice(this.state.goodsChooseValue.indexOf(id), 1);
+                      }
+                      this.setState({
+                        goodsChooseValue: this.state.goodsChooseValue,
+                        chooseAll: this.state.goodsChooseValue.length === goodsList.length
+                      }, () => {
+                        console.log(this.state.goodsChooseValue);
+                      });
+                    }
+                    }
+                    showAllOperate={showAllOperate}
+                    key={index} itemData={value}
+                    moreCallback={(itemData) => {
+                      this.itemData = itemData;
+                      this.setState({showOperate: true});
+                    }
+                    }
+                    xiajiaCallback={(itemData) => {
+                      this.itemData = itemData;
+                      this.updateGoods(value.status === 0 ? 1 : 0);
+                    }
+                    }
+                    notTopGoodsCallback={(itemData) => {
+                      this.itemData = itemData;
+                      this.updateTopGoods(itemData.showHomepage ? 0 : 1);
+                    }
+                    }/>);
                 })
               }
             </ScrollView>
+        }
+        {
+          showAllOperate && <View
+            style={styleAssign([wRatio(100), h(53), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.pageDefaultBackgroundColor),
+              pl(20), pr(20)])}>
+            <View style={styleAssign([styles.uac, styles.udr])}
+                  onClick={() => {
+                    this.setState({chooseAll: !chooseAll}, () => {
+                      let array: any = [];
+
+                      if (this.state.chooseAll) {
+                        Taro.eventCenter.trigger('checkAll');
+                        for (let i = 0; i < goodsList.length; i++) {
+                          array.push(goodsList[i].id);
+                        }
+                      } else {
+                        Taro.eventCenter.trigger('unCheckAll');
+                      }
+                      this.setState({goodsChooseValue: array});
+                    })
+                  }
+                  }>
+              <Image style={styleAssign([w(17), h(17)])}
+                     src={chooseAll ? require('../../assets/ico_choosed.png') : require('../../assets/ico_choose_normal.png')}/>
+              <Text style={styleAssign([fSize(12), color('#0D0D0D'), ml(8)])}>全选</Text>
+            </View>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <Text style={styleAssign([fSize(12), color('#0D0D0D'), ml(8)])}>{`已选:${goodsChooseValue.length}个`}</Text>
+              <View
+                style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#C0C4CB'), ml(16)])}>
+                <Text style={styleAssign([fSize(12), color('#0D0D0D')])}>删除</Text>
+              </View>
+              <View
+                style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#FA541C'), ml(10)])}>
+                <Text style={styleAssign([fSize(12), color('#FA541C')])}>上架</Text>
+              </View>
+            </View>
+          </View>
         }
         {/*新增商品*/}
         <BottomButon title={'新增商品'} onClick={() => {
