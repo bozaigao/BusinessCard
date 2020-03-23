@@ -63,7 +63,6 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/share_goods",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -149,7 +148,8 @@ class App extends Component {
           "how_perform_card",
           "introduce",
           "renmai_taocan_detail",
-          "my_home"
+          "my_home",
+          "share_goods"
         ]
       }
     ],

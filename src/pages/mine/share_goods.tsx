@@ -6,21 +6,22 @@
  * @Description: 商品分享
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import CustomSafeAreaView from "../compoments/safe-area-view/index";
-import {styleAssign} from "../utils/datatool";
-import {absB, absR, bgColor, color, commonStyles, default as styles, fSize, h, mt, w, wRatio} from "../utils/style";
-import * as actions from '../actions/login';
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {absB, absR, bgColor, color, commonStyles, default as styles, fSize, h, mt, w, wRatio} from "../../utils/style";
+import * as actions from '../../actions/login';
 import {connect} from "@tarojs/redux";
-import TopHeader from "../compoments/top-header";
+import TopHeader from "../../compoments/top-header/index";
 import {Button, Image, Text, View} from "@tarojs/components";
-import TouchableButton from "../compoments/touchable-button";
-import {User} from "../const/global";
+import TouchableButton from "../../compoments/touchable-button/index";
+import {User} from "../../const/global";
 
 interface Props {
   userInfo: User;
 }
 
 interface State {
+  imageTempPath: string;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), {...actions})
@@ -40,7 +41,7 @@ class ShareGoods extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      showShare: true
+      imageTempPath: ''
     }
   }
 
@@ -59,8 +60,7 @@ class ShareGoods extends Component<Props, State> {
 
     this.roundRectColor(context, 0, 0, 272, 405, 4);
     Taro.getImageInfo({
-      //"https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/3ccb9ece-ce65-4c0d-9c0e-90f9d8d481b9user_20_1584091341305.jpg"
-      src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+      src: userInfo.avatar,
     }).then((res) => {
 
       let arcWidth = 36;
@@ -72,32 +72,29 @@ class ShareGoods extends Component<Props, State> {
       context.beginPath();
       context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false)
       context.clip();
-      console.log('路径', res.path)
       //@ts-ignore
       context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
       context.restore();
       context.setFontSize(14);
-      context.fillText('王嘉怡 为您推荐', 70, 38);
+      context.fillText(`${userInfo.name} 为您推荐`, 70, 38);
       Taro.getImageInfo({
-        //"https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/3ccb9ece-ce65-4c0d-9c0e-90f9d8d481b9user_20_1584091341305.jpg"
-        src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+        src: this.$router.params.photo,
       }).then((res) => {
         let fengMianWidth = 244;
         let fengMianHeight = 263;
 
         //@ts-ignore
         context.drawImage(res.path, xCoor, yCoor + 48, fengMianWidth, fengMianHeight);
-        context.fillText('现代简约双人木床', xCoor, fengMianHeight + 48 + arcWidth);
+        context.fillText(`${this.$router.params.name}`, xCoor, fengMianHeight + 48 + arcWidth);
         context.fillText('参考价格：', xCoor, fengMianHeight + 68 + arcWidth);
         context.setFontSize(19);
         context.setFillStyle('#FA541C');
-        context.fillText('¥600', xCoor + 80, fengMianHeight + 68 + arcWidth);
+        context.fillText(`¥${this.$router.params.price}`, xCoor + 80, fengMianHeight + 68 + arcWidth);
         context.setFillStyle('#979797');
         context.setFontSize(9)
         context.fillText('长按识别二维码', xCoor + 180, fengMianHeight + 72 + arcWidth);
         Taro.getImageInfo({
-          //"https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/3ccb9ece-ce65-4c0d-9c0e-90f9d8d481b9user_20_1584091341305.jpg"
-          src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+          src: userInfo.wxacode,
         }).then((res) => {
           //@ts-ignore
           context.drawImage(res.path, xCoor + 198, fengMianHeight + 30 + arcWidth, 32, 32);
@@ -124,6 +121,58 @@ class ShareGoods extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/3/12
+   * @function: 保存存图片
+   */
+  saveImage() {
+    let that = this;
+
+    that.viewRef && that.viewRef.showLoading();
+    // 查看是否授权
+    Taro.getSetting({
+      complete() {
+        console.log(444)
+      }
+    }).then(res => {
+      if (res.authSetting['scope.writePhotosAlbum']) {
+        console.log('保存图片', this.state.imageTempPath);
+        Taro.saveImageToPhotosAlbum({
+          filePath: this.state.imageTempPath
+        }).then(res => {
+          that.viewRef && that.viewRef.hideLoading();
+          toast('保存成功');
+          Taro.previewImage({
+            current: this.state.imageTempPath, // 当前显示图片的http链接
+            urls: [this.state.imageTempPath] // 需要预览的图片http链接列表
+          })
+          console.log(res)
+        })
+      } else {
+        Taro.authorize({
+          scope: 'scope.writePhotosAlbum',
+        }).then(() => {
+          Taro.saveImageToPhotosAlbum({
+            filePath: this.state.imageTempPath
+          }).then(res => {
+            that.viewRef && that.viewRef.hideLoading();
+            toast('保存成功');
+            Taro.previewImage({
+              current: this.state.imageTempPath, // 当前显示图片的http链接
+              urls: [this.state.imageTempPath] // 需要预览的图片http链接列表
+            })
+            console.log(res)
+          })
+        })
+      }
+    }).catch((e) => {
+      console.log(e)
+    })
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/12
    * @function: 绘制圆角填充色矩形
    */
   roundRectColor(context, x, y, w, h, r) { //绘制圆角矩形（纯色填充）
@@ -136,6 +185,16 @@ class ShareGoods extends Component<Props, State> {
     context.fillRect(x + r, y + r, w - r * 2, h - r * 2);
     context.stroke();
     context.closePath();
+  }
+
+  //@ts-ignore
+  onShareAppMessage(res) {
+    debounce(500, () => {
+      return {
+        title: `${this.props.userInfo.name}的商品分享`,
+        path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+      }
+    })
   }
 
 
@@ -158,21 +217,21 @@ class ShareGoods extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac, styles.ujb])}>
                 <Button openType={'share'}
                         style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}>
-                  <Image style={styleAssign([w(62), h(62)])} src={require('../assets/ico_wechat.png')}/>
+                  <Image style={styleAssign([w(62), h(62)])} src={require('../../assets/ico_wechat.png')}/>
                   <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
                 </Button>
-                <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
+                <Button openType={'share'}
+                        style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
                         onClick={() => {
-                          this.setState({showShare: false});
                         }}>
-                  <Image style={styleAssign([w(62), h(62)])} src={require('../assets/ico_wechat_friend.png')}/>
+                  <Image style={styleAssign([w(62), h(62)])} src={require('../../assets/ico_wechat_friend.png')}/>
                   <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>朋友圈</Text>
                 </Button>
                 <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
                         onClick={() => {
-                          this.setState({showShare: false});
+                          this.saveImage();
                         }}>
-                  <Image style={styleAssign([w(62), h(62)])} src={require('../assets/ico_download_pic.png')}/>
+                  <Image style={styleAssign([w(62), h(62)])} src={require('../../assets/ico_download_pic.png')}/>
                   <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>保存到手机</Text>
                 </Button>
               </View>
@@ -180,7 +239,6 @@ class ShareGoods extends Component<Props, State> {
               {/*取消*/}
               <TouchableButton
                 onClick={() => {
-                  this.setState({showShare: false});
                 }}
                 customStyle={styleAssign([wRatio(100), h(40), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
                 <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>取消</Text>

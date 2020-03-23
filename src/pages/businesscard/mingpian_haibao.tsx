@@ -166,7 +166,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/3/12
-   * @function: 保存s存图片
+   * @function: 保存存图片
    */
   saveImage() {
     let that = this;

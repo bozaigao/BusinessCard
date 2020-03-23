@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {styleAssign, toast} from "../../utils/datatool";
+import {parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   absB,
   absT,
@@ -509,7 +509,11 @@ class GoodsManage extends Component<Props, State> {
                 styles.upa, absB(0)])}>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.setState({showOperate: false, showShare: true});
+                      this.setState({showOperate: false},()=>{
+                        Taro.navigateTo({
+                          url: `/pages/mine/share_goods?name=${this.itemData.name}&price=${this.itemData.price}&photo=${parseData(this.itemData.carouselUrl)[0]}`
+                        });
+                      });
                     }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>立即分享</Text>
               </View>
