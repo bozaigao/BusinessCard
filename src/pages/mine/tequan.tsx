@@ -260,7 +260,7 @@ class TeQuan extends Component<Props, State> {
                   subTitle: '提升你的产品线上推广效果',
                   bg: 'ico_tequan2.png',
                   logo: 'ico_tequan2_logo.png',
-                  buttonTitle: '联系客服联系客服',
+                  buttonTitle: '联系客服',
                   right: '免费装修店铺'
                 }].map((value, index) => {
                   return <SwiperItem key={index}>

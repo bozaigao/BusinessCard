@@ -143,7 +143,7 @@ export default class GoodsManageItem extends Component<Props, State> {
             }}
             style={styleAssign([w(72), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
             <Text
-              style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${itemData.showHomepage ? '取消展示' : '置顶'}`}</Text>
+              style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${itemData.showHomepage ? '取消展示' : '首页展示'}`}</Text>
           </View>
         </View>
       </View>

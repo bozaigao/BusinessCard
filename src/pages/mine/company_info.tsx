@@ -184,7 +184,7 @@ class CompanyInfo extends Component<Props, State> {
                     <Image style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
                            src={`${cloudBaseUrl}ico_close.png`}
                            onClick={() => {
-                             this.setState({enterpriseLogoLocal: ''});
+                             this.setState({enterpriseLogoLocal: '', enterpriseLogo: ''});
                            }}/>
                   </View>
 
@@ -217,7 +217,7 @@ class CompanyInfo extends Component<Props, State> {
                   <Image style={styleAssign([w(20), h(20), styles.upa, absR(25), absT(-5)])}
                          src={`${cloudBaseUrl}ico_close.png`}
                          onClick={() => {
-                           this.setState({enterpriseVideoLocal: ''});
+                           this.setState({enterpriseVideoLocal: '', enterpriseVideo: ''});
                          }}/>
                 </View>
             }

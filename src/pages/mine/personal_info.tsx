@@ -414,6 +414,9 @@ class PersonalInfo extends Component<Props, State> {
                     if (value.title === '邮箱') {
                       console.log('邮箱', e.detail.value);
                       this.setState({email: e.detail.value});
+                    } else if (value.title === '微信') {
+                      console.log('微信', e.detail.value);
+                      this.setState({wechat: e.detail.value});
                     }
                   }
                   }

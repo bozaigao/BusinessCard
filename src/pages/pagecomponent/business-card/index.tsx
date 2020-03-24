@@ -56,10 +56,10 @@ export default class Card extends PureComponent<Props, State> {
     return (
       <View style={styleAssign([wRatio(100), styles.uac, mt(20)])}>
         <View style={styleAssign([w(334), h(249), bgColor(commonStyles.whiteColor), radiusA(10)])}>
-          <View style={styleAssign([wRatio(100), h(202), bgColor('rgb(211,199,195)'), radiusA(10),
+          <View style={styleAssign([wRatio(100), h(202), radiusA(10),
             styles.udr, styles.uje])}>
             <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
-                   src={require('../../../assets/ico_business_card_bg.png')}/>
+                   src={require('../../../assets/ico_business_card_bg1.png')}/>
             <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
               <View
                 style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>

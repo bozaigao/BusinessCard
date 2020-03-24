@@ -44,7 +44,7 @@ class MingpianHaibao extends Component<Props, State> {
     const that = this;
 
     Taro.getImageInfo({
-      src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
+      src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg1.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
     }).then((res) => {
       this.roundRectColor(context, 0, 0, 335, 434, 16);
       //@ts-ignore

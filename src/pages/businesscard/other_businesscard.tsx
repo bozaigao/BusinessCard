@@ -231,10 +231,10 @@ class OtherBusinesscard extends Component<Props, State> {
           scrollY>
           {/*个人名片*/}
           <View style={styleAssign([wRatio(100), styles.uac, mt(20)])}>
-            <View style={styleAssign([w(334), h(202), bgColor('rgb(211,199,195)'), radiusA(10),
+            <View style={styleAssign([w(334), h(202), radiusA(10),
               styles.udr, styles.uje])}>
               <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
-                     src={require('../../assets/ico_business_card_bg.png')}/>
+                     src={require('../../assets/ico_business_card_bg1.png')}/>
               <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
                 <View
                   style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
