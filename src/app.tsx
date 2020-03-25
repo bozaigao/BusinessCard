@@ -63,7 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      "pages/mingpian_style",
+      // "pages/mingpian_style",
       //主界面
       "pages/businesscard",
       "pages/radarscan",
@@ -109,7 +109,6 @@ class App extends Component {
       {
         root: 'pages/mine',
         pages: [
-          "personal_info",
           "add_task",
           "tool_box",
           "haibao",
@@ -152,7 +151,13 @@ class App extends Component {
           "my_home",
           "share_goods"
         ]
-      }
+      }, //个人信息子页面
+      {
+        root: 'pages/personal-info',
+        pages: [
+          "personal_info",
+        ]
+      },
     ],
     permission: {
       "scope.userLocation": {

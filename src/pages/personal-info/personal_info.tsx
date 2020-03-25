@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
-import CustomSafeAreaView from "../../compoments/safe-area-view";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {debounce, get, isLegalEmail, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
@@ -31,11 +31,11 @@ import {
 import {connect} from "@tarojs/redux";
 import * as fileActions from '../../actions/file';
 import * as loginActions from '../../actions/login';
-import TopHeader from "../../compoments/top-header";
+import TopHeader from "../../compoments/top-header/index";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
-import BottomButon from "../../compoments/bottom-buton";
-import ListItem from "../../compoments/list-item";
-import TouchableButton from "../../compoments/touchable-button";
+import BottomButon from "../../compoments/bottom-buton/index";
+import ListItem from "../../compoments/list-item/index";
+import TouchableButton from "../../compoments/touchable-button/index";
 import {Enum, User} from "../../const/global";
 import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 

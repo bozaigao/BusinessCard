@@ -6,8 +6,8 @@
  * @Description: 名片样式
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import CustomSafeAreaView from "../compoments/safe-area-view/index";
-import {styleAssign} from "../utils/datatool";
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
+import {styleAssign} from "../../utils/datatool";
 import {
   absT,
   bdColor,
@@ -27,18 +27,18 @@ import {
   radiusA,
   w,
   wRatio
-} from "../utils/style";
-import * as actions from '../actions/login';
+} from "../../utils/style";
+import * as actions from '../../actions/login';
 import {connect} from "@tarojs/redux";
-import TopHeader from "../compoments/top-header";
+import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {User} from "../const/global";
-import BottomButon from "../compoments/bottom-buton";
-import CardStyle1 from "./sub_pagecomponent/card-style1";
-import CardStyle2 from "./sub_pagecomponent/card-style2";
-import CardStyle4 from "./sub_pagecomponent/card-style4";
-import CardStyle5 from "./sub_pagecomponent/card-style5";
-import CardStyle3 from "./sub_pagecomponent/card-style3";
+import {User} from "../../const/global";
+import BottomButon from "../../compoments/bottom-buton/index";
+import CardStyle1 from "./page-component/card-style1/index";
+import CardStyle2 from "./page-component/card-style2/index";
+import CardStyle4 from "./page-component/card-style4/index";
+import CardStyle5 from "./page-component/card-style5/index";
+import CardStyle3 from "./page-component/card-style3/index";
 
 interface Props {
   userInfo: User;
@@ -157,7 +157,7 @@ class MingpianStyle extends Component<Props, State> {
                     key={index}
                     style={styleAssign([w(58), h(36), radiusA(2), styles.uac, styles.ujc, ml(index === 0 ? 20 : 10)])}>
                     <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(0)])}
-                           src={publicInfoArr.includes(value) ? require('../assets/ico_setting_choosed.png') : require('../assets/ico_setting_nochoos.png')}/>
+                           src={publicInfoArr.includes(value) ? require('../../assets/ico_setting_choosed.png') : require('../../assets/ico_setting_nochoos.png')}/>
                     <Text
                       style={styleAssign([fSize(14), color(publicInfoArr.includes(value) ? '#835E1B' : commonStyles.colorTheme)])}>{value}</Text>
                   </View>;
@@ -172,11 +172,11 @@ class MingpianStyle extends Component<Props, State> {
             </View>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(15), pl(20), pr(20)])}>
               {
-                [{icon: require('../assets/ico_mingpian_style_1.png'), title: '商务版'},
-                  {icon: require('../assets/ico_mingpian_style_2.png'), title: '黑金版'},
-                  {icon: require('../assets/ico_mingpian_style_3.png'), title: '简约版'},
-                  {icon: require('../assets/ico_mingpian_style_4.png'), title: '极简版'},
-                  {icon: require('../assets/ico_mingpian_style_5.png'), title: '实景版'}].map((value, index) => {
+                [{icon: require('../../assets/ico_mingpian_style_1.png'), title: '商务版'},
+                  {icon: require('../../assets/ico_mingpian_style_2.png'), title: '黑金版'},
+                  {icon: require('../../assets/ico_mingpian_style_3.png'), title: '简约版'},
+                  {icon: require('../../assets/ico_mingpian_style_4.png'), title: '极简版'},
+                  {icon: require('../../assets/ico_mingpian_style_5.png'), title: '实景版'}].map((value, index) => {
                   return <View style={styleAssign([styles.uac])}
                                key={index}
                                onClick={() => {
@@ -198,7 +198,7 @@ class MingpianStyle extends Component<Props, State> {
               <View
                 style={styleAssign([w(65), h(65), bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac, styles.ujc, mt(15), ml(20)])}>
                 <Image style={styleAssign([w(40), h(40)])}
-                       src={require('../assets/ico_mingpian_style_add.png')}/>
+                       src={require('../../assets/ico_mingpian_style_add.png')}/>
               </View>
             </View>
           </View>

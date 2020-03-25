@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../utils/datatool";
+import {styleAssign} from "../../../../utils/datatool";
 import styles, {
   absB,
   absL,
@@ -23,7 +23,7 @@ import styles, {
   radiusA,
   w,
   wRatio
-} from "../../../utils/style";
+} from "../../../../utils/style";
 
 
 interface Props {
@@ -45,7 +45,7 @@ export default class CardStyle1 extends PureComponent<Props, State> {
       <View style={styleAssign([w(347), h(216), radiusA(10),
         styles.udr, styles.uje, mt(50), mb(50)])}>
         <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
-               src={require('../../../assets/ico_business_card_bg1.png')}/>
+               src={require('../../../../assets/ico_business_card_bg1.png')}/>
         <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
           <View
             style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
@@ -65,7 +65,7 @@ export default class CardStyle1 extends PureComponent<Props, State> {
                 <Text
                   style={styleAssign([fSize(11), color('#343434')])}>15982468866</Text>
                 <Image style={styleAssign([w(11), h(9), ml(8)])}
-                       src={require('../../../assets/ico_card_mobile_gray.png')}/>
+                       src={require('../../../../assets/ico_card_mobile_gray.png')}/>
               </View>
             }
             {/*微信号*/}
@@ -74,7 +74,7 @@ export default class CardStyle1 extends PureComponent<Props, State> {
                 <Text
                   style={styleAssign([fSize(11), color('#343434')])}>98248866LSY</Text>
                 <Image style={styleAssign([w(12), h(10), ml(8)])}
-                       src={require('../../../assets/ico_card_wechat_gray.png')}/>
+                       src={require('../../../../assets/ico_card_wechat_gray.png')}/>
               </View>
             }
             {/*邮箱*/}
@@ -83,7 +83,7 @@ export default class CardStyle1 extends PureComponent<Props, State> {
                 <Text
                   style={styleAssign([fSize(11), color('#343434')])}>982468866@168.com</Text>
                 <Image style={styleAssign([w(12), h(10), ml(8)])}
-                       src={require('../../../assets/ico_card_email_gray.png')}/>
+                       src={require('../../../../assets/ico_card_email_gray.png')}/>
               </View>
             }
             {/*地址*/}
@@ -92,7 +92,7 @@ export default class CardStyle1 extends PureComponent<Props, State> {
                 <Text
                   style={styleAssign([fSize(11), color('#343434')])}>地址信息未对外公开</Text>
                 <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])}
-                       src={require('../../../assets/ico_card_location_gray.png')}/>
+                       src={require('../../../../assets/ico_card_location_gray.png')}/>
               </View>
             }
           </View>
