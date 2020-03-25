@@ -392,7 +392,7 @@ class MingpianHaibao extends Component<Props, State> {
                 //@ts-ignore
                 context.drawImage(res.path, 178, 164, 12, 10);
                 context.setTextAlign('left');
-                that.fillTextWrap2(context, userInfo.detailAddress, 192, 174, 100, 16, 12);
+                that.fillTextWrap2(context, userInfo.detailAddress, 192, 174, 100, 16, 12,'#343434');
               }
               //小程序码
               Taro.getImageInfo({
@@ -519,7 +519,7 @@ class MingpianHaibao extends Component<Props, State> {
                 //@ts-ignore
                 context.drawImage(res.path, 38, 164, 12, 10);
                 context.setTextAlign('left');
-                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12);
+                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12,'#343434');
               }
               //小程序码
               Taro.getImageInfo({
@@ -647,7 +647,7 @@ class MingpianHaibao extends Component<Props, State> {
                 context.drawImage(res.path, 38, 164, 12, 10);
                 context.setTextAlign('left');
                 context.setFillStyle(commonStyles.whiteColor);
-                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12);
+                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12,commonStyles.whiteColor);
               }
               //小程序码
               Taro.getImageInfo({
@@ -771,7 +771,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @date 2020/3/12
    * @function: 文字换行
    */
-  fillTextWrap2(ctx, text, x, y, maxWidth, lineHeight, fontSize) {
+  fillTextWrap2(ctx, text, x, y, maxWidth, lineHeight, fontSize, color) {
     // 设定默认最大宽度
     const systemInfo = Taro.getSystemInfoSync();
     const deciveWidth = systemInfo.screenWidth;
@@ -789,7 +789,7 @@ class MingpianHaibao extends Component<Props, State> {
     let currentWidth;
 
     ctx.setFontSize(fontSize);
-    ctx.setFillStyle(commonStyles.whiteColor);
+    ctx.setFillStyle(color);
     ctx.setTextAlign('justify');
     for (let letter of arrText) {
       currentText += letter;
