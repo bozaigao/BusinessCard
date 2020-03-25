@@ -11,7 +11,7 @@ import {styleAssign} from "../../../utils/datatool";
 import styles, {
   absB,
   absL,
-  absT, bgColor,
+  absT,
   color,
   fSize,
   fWeight,

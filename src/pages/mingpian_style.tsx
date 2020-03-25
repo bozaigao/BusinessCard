@@ -47,6 +47,10 @@ interface Props {
 interface State {
   publicInfoArr: string[];
   style: number;
+  hidePhone: boolean;
+  hideWechat: boolean;
+  hideEmail: boolean;
+  hideAddress: boolean;
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), {...actions})
@@ -68,20 +72,25 @@ class MingpianStyle extends Component<Props, State> {
     this.state = {
       //@ts-ignore
       userInfo: null,
-      publicInfoArr: [],
-      style: 0
+      publicInfoArr: ['手机', '微信', '邮箱', '地址'],
+      style: 0,
+      hidePhone: false,
+      hideWechat: false,
+      hideEmail: false,
+      hideAddress: false,
     }
   }
 
 
   render() {
     let {userInfo} = this.props;
-    let {publicInfoArr, style} = this.state;
+    let {publicInfoArr, style, hidePhone, hideWechat, hideEmail, hideAddress} = this.state;
     let cardChild = null;
 
     if (style === 0) {
       //@ts-ignore
-      cardChild = <CardStyle1/>;
+      cardChild =
+        <CardStyle1 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
     } else if (style === 1) {
       //@ts-ignore
       cardChild = <CardStyle2/>;
@@ -122,8 +131,26 @@ class MingpianStyle extends Component<Props, State> {
                     onClick={() => {
                       if (this.state.publicInfoArr.includes(value)) {
                         this.state.publicInfoArr.splice(publicInfoArr.indexOf(value), 1);
+                        if (value === '手机') {
+                          this.setState({hidePhone: true});
+                        } else if (value === '微信') {
+                          this.setState({hideWechat: true});
+                        } else if (value === '邮箱') {
+                          this.setState({hideEmail: true});
+                        } else if (value === '地址') {
+                          this.setState({hideAddress: true});
+                        }
                       } else {
                         this.state.publicInfoArr.push(value);
+                        if (value === '手机') {
+                          this.setState({hidePhone: false});
+                        } else if (value === '微信') {
+                          this.setState({hideWechat: false});
+                        } else if (value === '邮箱') {
+                          this.setState({hideEmail: false});
+                        } else if (value === '地址') {
+                          this.setState({hideAddress: false});
+                        }
                       }
                       this.setState({publicInfoArr: this.state.publicInfoArr});
                     }}
