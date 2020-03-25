@@ -18,7 +18,6 @@ import styles, {
   fSize,
   fWeight,
   h,
-  mb,
   ml,
   mt,
   radiusA,
@@ -34,6 +33,8 @@ interface Props {
   hideWechat?: boolean;
   hideEmail?: boolean;
   hideAddress?: boolean;
+  width?: number;
+  height?: number;
 }
 
 interface State {
@@ -42,11 +43,11 @@ interface State {
 export default class CardStyle2 extends PureComponent<Props, State> {
 
   render() {
-    let {userInfo, hidePhone, hideWechat, hideEmail, hideAddress} = this.props;
+    let {userInfo, hidePhone, hideWechat, hideEmail, hideAddress, width, height} = this.props;
 
     return (
-      <View style={styleAssign([w(347), h(216), radiusA(10),
-        styles.udr, styles.uje, mt(50), mb(50)])}>
+      <View style={styleAssign([w(width ? width : 334), h(height ? height : 216), radiusA(10),
+        styles.udr, styles.uje])}>
         <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
                src={require('../../assets/ico_business_card_bg2.png')}/>
         <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>

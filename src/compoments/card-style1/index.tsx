@@ -8,22 +8,7 @@
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../utils/datatool";
-import styles, {
-  absB,
-  absL,
-  absR,
-  absT,
-  color,
-  fSize,
-  fWeight,
-  h,
-  mb,
-  ml,
-  mt,
-  radiusA,
-  w,
-  wRatio
-} from "../../utils/style";
+import styles, {absB, absL, absR, absT, color, fSize, fWeight, h, ml, mt, radiusA, w, wRatio} from "../../utils/style";
 import {User} from "../../const/global";
 
 
@@ -33,6 +18,8 @@ interface Props {
   hideWechat?: boolean;
   hideEmail?: boolean;
   hideAddress?: boolean;
+  width?: number;
+  height?: number;
 }
 
 interface State {
@@ -41,11 +28,11 @@ interface State {
 export default class CardStyle1 extends PureComponent<Props, State> {
 
   render() {
-    let {userInfo, hidePhone, hideWechat, hideEmail, hideAddress} = this.props;
+    let {userInfo, hidePhone, hideWechat, hideEmail, hideAddress, width, height} = this.props;
 
     return (
-      <View style={styleAssign([w(347), h(216), radiusA(10),
-        styles.udr, styles.uje, mt(50), mb(50)])}>
+      <View style={styleAssign([w(width ? width : 334), h(height ? height : 216), radiusA(10),
+        styles.udr, styles.uje])}>
         <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
                src={require('../../assets/ico_business_card_bg1.png')}/>
         <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
