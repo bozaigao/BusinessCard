@@ -232,9 +232,7 @@ class OtherBusinesscard extends Component<Props, State> {
       visitorListSub = visitorList;
     }
     //@ts-ignore
-    let cardChild = <CardStyle1 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
-                                hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
-                                hideWechat={hideWechat === 0}/>;
+    let cardChild = null;
 
     if (cardStyle === '0') {
       //@ts-ignore
@@ -259,6 +257,11 @@ class OtherBusinesscard extends Component<Props, State> {
     } else if (cardStyle === '4') {
       //@ts-ignore
       cardChild = <CardStyle5 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                              hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                              hideWechat={hideWechat === 0}/>
+    }else {
+      //@ts-ignore
+      cardChild = <CardStyle1 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
                               hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
                               hideWechat={hideWechat === 0}/>
     }
