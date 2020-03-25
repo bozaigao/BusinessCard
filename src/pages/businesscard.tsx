@@ -87,7 +87,7 @@ class Businesscard extends Component<Props, State> {
       holderCount: 0,
       visitorCount: 0,
       currentIndex: 0,
-      cardStyle: '0',
+      cardStyle: '-1',
       hidePhone: 0,
       hideWechat: 0,
       hideEmail: 0,

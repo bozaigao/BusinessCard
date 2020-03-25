@@ -12,7 +12,7 @@ import styles, {
   absB,
   absL,
   absR,
-  absT,
+  absT, bgColor,
   color,
   commonStyles,
   fSize,
@@ -35,7 +35,6 @@ interface Props {
   hideAddress?: boolean;
   width?: number;
   height?: number;
-  shorter?: boolean;
 }
 
 interface State {
@@ -44,7 +43,7 @@ interface State {
 export default class CardStyle2 extends PureComponent<Props, State> {
 
   render() {
-    let {userInfo, hidePhone, hideWechat, hideEmail, hideAddress, width, height, shorter} = this.props;
+    let {userInfo, hidePhone, hideWechat, hideEmail, hideAddress, width, height} = this.props;
 
     return (
       <View style={styleAssign([w(width ? width : 334), h(height ? height : 216), radiusA(10),
@@ -95,7 +94,7 @@ export default class CardStyle2 extends PureComponent<Props, State> {
             }
           </View>
           <View
-            style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(shorter ? 77 : 82), h(15), styles.uac])}>
+            style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(77), h(15), styles.uac])}>
             {
               !hidePhone &&
               <View style={styleAssign([w(20.5), styles.uac, styles.ujc])}>

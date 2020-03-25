@@ -10,12 +10,9 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, get, hidePhone, save, styleAssign, toast} from "../../utils/datatool";
+import {debounce, get, save, styleAssign, toast} from "../../utils/datatool";
 import {
-  absB,
   absL,
-  absR,
-  absT,
   bdColor,
   bgColor,
   bo,
@@ -23,7 +20,6 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  fWeight,
   h,
   ma,
   ml,
@@ -51,12 +47,18 @@ import NavigationBar from "../../compoments/navigation_bar/index";
 import OtherBusinessCardGuide from "../pagecomponent/other-business-card-guide";
 import MyPhoto from "../sub_pagecomponent/my-photo";
 import './index.scss';
+import CardStyle1 from "../../compoments/card-style1";
+import CardStyle2 from "../../compoments/card-style2";
+import CardStyle3 from "../../compoments/card-style3";
+import CardStyle4 from "../../compoments/card-style4";
+import CardStyle5 from "../../compoments/card-style5";
 
 interface Props {
   //获取用户信息
   getUserInfoById: any;
   //收藏名片
   updateMyCollect: any;
+  userSettingGet: any;
   getCardHolderVisitorRecord: any;
 }
 
@@ -67,6 +69,12 @@ interface State {
   holderCount: number;
   visitorCount: number;
   visitorList: { avatar: string; userId: string; }[];
+  cardStyle: string;
+  hidePhone: number;
+  hideWechat: number;
+  hideEmail: number;
+  hideAddress: number;
+
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActtions))
@@ -94,17 +102,46 @@ class OtherBusinesscard extends Component<Props, State> {
       userInfo: null,
       showGuide: false,
       holderCount: 0,
-      visitorCount: 0
+      visitorCount: 0,
+      cardStyle: '-1',
+      hidePhone: 0,
+      hideWechat: 0,
+      hideEmail: 0,
+      hideAddress: 0,
     }
   }
 
   componentDidShow() {
     console.log(this.viewRef);
+    this.userSettingGet();
     this.getUserInfoById();
     this.getCardHolderVisitorRecord();
     let showGuide = get('other_business_guide');
 
     this.setState({showGuide: !showGuide});
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 获取用户的设置信息
+   */
+  userSettingGet = () => {
+    this.props.userSettingGet().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          hidePhone: res.phone,
+          hideWechat: res.wechat,
+          hideEmail: res.email,
+          hideAddress: res.address,
+          cardStyle: res.cardStyle
+        });
+      }
+      console.log('获取用户的设置信息', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
   /**
@@ -186,12 +223,41 @@ class OtherBusinesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList} = this.state, visitorListSub;
+    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList,cardStyle, hidePhone, hideWechat, hideEmail, hideAddress} = this.state, visitorListSub;
 
     if (visitorList.length > 5) {
       visitorListSub = visitorList.slice(0, 6);
     } else {
       visitorListSub = visitorList;
+    }
+    //@ts-ignore
+    let cardChild = null;
+
+    if (cardStyle === '0') {
+      //@ts-ignore
+      cardChild = <CardStyle1 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                              hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                              hideWechat={hideWechat === 0}/>
+    } else if (cardStyle === '1') {
+      //@ts-ignore
+      cardChild = <CardStyle2 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                              hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                              hideWechat={hideWechat === 0}/>
+    } else if (cardStyle === '2') {
+      //@ts-ignore
+      cardChild = <CardStyle3 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                              hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                              hideWechat={hideWechat === 0}/>
+    } else if (cardStyle === '3') {
+      //@ts-ignore
+      cardChild = <CardStyle4 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                              hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                              hideWechat={hideWechat === 0}/>
+    } else if (cardStyle === '4') {
+      //@ts-ignore
+      cardChild = <CardStyle5 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                              hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                              hideWechat={hideWechat === 0}/>
     }
 
     return (
@@ -231,51 +297,7 @@ class OtherBusinesscard extends Component<Props, State> {
           scrollY>
           {/*个人名片*/}
           <View style={styleAssign([wRatio(100), styles.uac, mt(20)])}>
-            <View style={styleAssign([w(334), h(202), radiusA(10),
-              styles.udr, styles.uje])}>
-              <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
-                     src={require('../../assets/ico_business_card_bg1.png')}/>
-              <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
-                <View
-                  style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
-                <View style={styleAssign([styles.upa, absL(20), absT(15)])}>
-                  <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                         src={userInfo.avatar}/>
-                  <View style={styleAssign([styles.uae, styles.udr, mt(6)])}>
-                    <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
-                    <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
-                  </View>
-                  <Text style={styleAssign([fSize(12), color('#343434')])}>{userInfo.company}</Text>
-                </View>
-                <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
-                  {/*电话号码*/}
-                  <View style={styleAssign([styles.uac, styles.udr])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.showPhone ? userInfo.phone : hidePhone(userInfo.phone)}</Text>
-                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
-                  </View>
-                  {/*微信号*/}
-                  <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
-                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
-                  </View>
-                  {/*邮箱*/}
-                  <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
-                    <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
-                  </View>
-                  {/*地址*/}
-                  <View style={styleAssign([styles.udr, mt(8)])}>
-                    <Text
-                      style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
-                    <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])}
-                           src={`${cloudBaseUrl}ico_card_location.png`}/>
-                  </View>
-                </View>
-              </View>
-            </View>
+            {cardChild}
             {/*拨打电话等操作*/}
             <View style={styleAssign([wRatio(100), h(184), bgColor(commonStyles.whiteColor), styles.uac, mt(20)])}>
               {/*完善分享名片*/}
