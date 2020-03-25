@@ -335,7 +335,7 @@ class OtherBusinesscard extends Component<Props, State> {
                         Taro.openLocation({
                           latitude: userInfo.latitude,
                           longitude: userInfo.longitude,
-                          scale: 18
+                          scale: 16
                         });
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>

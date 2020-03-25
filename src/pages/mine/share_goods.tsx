@@ -8,13 +8,13 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {styleAssign, toast} from "../../utils/datatool";
-import {absB, absR, bgColor, color, commonStyles, default as styles, fSize, h, mt, w, wRatio} from "../../utils/style";
+import {bgColor, commonStyles, default as styles} from "../../utils/style";
 import * as actions from '../../actions/login';
 import {connect} from "@tarojs/redux";
 import TopHeader from "../../compoments/top-header/index";
-import {Button, Image, Text, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button/index";
+import {View} from "@tarojs/components";
 import {User} from "../../const/global";
+import BottomButon from "../../compoments/bottom-buton/index";
 
 interface Props {
   userInfo: User;
@@ -58,16 +58,16 @@ class ShareGoods extends Component<Props, State> {
     //@ts-ignore
     const that = this;
 
-    this.roundRectColor(context, 0, 0, 272, 405, 4);
+    this.roundRectColor(context, 0, 0, 335, 497, 4);
     Taro.getImageInfo({
       src: userInfo.avatar,
     }).then((res) => {
 
-      let arcWidth = 36;
+      let arcWidth = 44;
       //x-轴坐标
-      let xCoor = 14;
+      let xCoor = 18;
       //y-轴坐标
-      let yCoor = 14;
+      let yCoor = 18;
 
       context.beginPath();
       context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false)
@@ -75,29 +75,29 @@ class ShareGoods extends Component<Props, State> {
       //@ts-ignore
       context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
       context.restore();
-      context.setFontSize(14);
-      context.fillText(`${userInfo.name} 为您推荐`, 70, 38);
+      context.setFontSize(18);
+      context.fillText(`${userInfo.name} 为您推荐`, 70, 48);
       Taro.getImageInfo({
         src: this.$router.params.photo,
       }).then((res) => {
-        let fengMianWidth = 244;
-        let fengMianHeight = 263;
+        let fengMianWidth = 300;
+        let fengMianHeight = 321;
 
         //@ts-ignore
-        context.drawImage(res.path, xCoor, yCoor + 48, fengMianWidth, fengMianHeight);
-        context.fillText(`${this.$router.params.name}`, xCoor, fengMianHeight + 48 + arcWidth);
-        context.fillText('参考价格：', xCoor, fengMianHeight + 68 + arcWidth);
-        context.setFontSize(19);
+        context.drawImage(res.path, xCoor, yCoor + 61, fengMianWidth, fengMianHeight);
+        context.fillText(`${this.$router.params.name}`, xCoor, fengMianHeight + 68 + arcWidth);
+        context.fillText('参考价格：', xCoor, fengMianHeight + 96 + arcWidth);
+        context.setFontSize(24);
         context.setFillStyle('#FA541C');
-        context.fillText(`¥${this.$router.params.price}`, xCoor + 80, fengMianHeight + 68 + arcWidth);
+        context.fillText(`¥${this.$router.params.price}`, xCoor + 90, fengMianHeight + 96 + arcWidth);
         context.setFillStyle('#979797');
-        context.setFontSize(9)
-        context.fillText('长按识别二维码', xCoor + 180, fengMianHeight + 72 + arcWidth);
+        context.setFontSize(12)
+        context.fillText('长按识别二维码', xCoor + 220, fengMianHeight + 100 + arcWidth);
         Taro.getImageInfo({
           src: userInfo.wxacode,
         }).then((res) => {
           //@ts-ignore
-          context.drawImage(res.path, xCoor + 198, fengMianHeight + 30 + arcWidth, 32, 32);
+          context.drawImage(res.path, xCoor + 248, fengMianHeight + 45 + arcWidth, 40, 40);
           context.draw(false, () => {
             that.viewRef && that.viewRef.hideLoading();
             Taro.canvasToTempFilePath({
@@ -187,7 +187,8 @@ class ShareGoods extends Component<Props, State> {
     context.closePath();
   }
 
-k
+  k
+
   render() {
     return (
       <CustomSafeAreaView
@@ -197,32 +198,13 @@ k
           this.viewRef = ref;
         }}>
         <TopHeader title={'分享商品'}/>
-        <View style={styleAssign([styles.uf1, styles.uac, bgColor('rgb(99,99,99)')])}>
-          <canvas style="width: 272px; height: 405px;background:#fff;margin-top:20px;border-radius:4px;"
+        <View style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+          <canvas style="width: 335px; height: 497px;background:#fff;margin-top:20px;border-radius:4px;"
                   canvas-id="canvas"/>
-          <View
-            style={styleAssign([styles.upa, absB(0), absR(0), wRatio(100)])}>
-            <View style={styleAssign([wRatio(100), h(194), bgColor(commonStyles.whiteColor), styles.upa, absB(0)])}>
-              {/*微信分享、名片海报*/}
-              <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac, styles.ujb])}>
-                <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}
-                        onClick={() => {
-                          this.saveImage();
-                        }}>
-                  <Image style={styleAssign([w(62), h(62)])} src={require('../../assets/ico_download_pic.png')}/>
-                  <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>保存到手机</Text>
-                </Button>
-              </View>
-              <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-              {/*取消*/}
-              <TouchableButton
-                onClick={() => {
-                }}
-                customStyle={styleAssign([wRatio(100), h(40), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-                <Text style={styleAssign([fSize(14), color('#0C0C0C')])}>取消</Text>
-              </TouchableButton>
-              <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-            </View>
+          <View style={styleAssign([styles.uf1, styles.uje])}>
+            <BottomButon title={'保存商品海报后分享'} onClick={() => {
+              this.saveImage();
+            }}/>
           </View>
         </View>
       </CustomSafeAreaView>
