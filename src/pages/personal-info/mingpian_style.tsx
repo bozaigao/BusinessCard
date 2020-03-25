@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 import {
   absT,
   bdColor,
@@ -39,11 +39,9 @@ import CardStyle2 from "./page-component/card-style2/index";
 import CardStyle4 from "./page-component/card-style4/index";
 import CardStyle5 from "./page-component/card-style5/index";
 import CardStyle3 from "./page-component/card-style3/index";
-import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   userInfo: User;
-  userSettingUpdate: any;
 }
 
 interface State {
@@ -68,52 +66,34 @@ class MingpianStyle extends Component<Props, State> {
   config: Config = {
     disableScroll: true
   }
-  private viewRef;
 
   constructor(props) {
     super(props);
+    console.log('参数', this.$router.params)
+    let publicInfoArr: any = [];
+
+    if (this.$router.params.hidePhone === '1') {
+      publicInfoArr.push('手机');
+    }
+    if (this.$router.params.hideWechat === '1') {
+      publicInfoArr.push('微信');
+    }
+    if (this.$router.params.hideEmail === '1') {
+      publicInfoArr.push('邮箱');
+    }
+    if (this.$router.params.hideAddress === '1') {
+      publicInfoArr.push('地址');
+    }
     this.state = {
       //@ts-ignore
       userInfo: null,
-      publicInfoArr: ['手机', '微信', '邮箱', '地址'],
-      style: 0,
-      hidePhone: false,
-      hideWechat: false,
-      hideEmail: false,
-      hideAddress: false,
+      publicInfoArr,
+      style: parseInt(this.$router.params.style, 10),
+      hidePhone: this.$router.params.hidePhone === '0',
+      hideWechat: this.$router.params.hideWechat === '0',
+      hideEmail: this.$router.params.hideEmail === '0',
+      hideAddress: this.$router.params.hideAddress === '0',
     }
-  }
-
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2020/3/25
-   * @function: 更新用户的名片设置信息
-   */
-  userSettingUpdate = () => {
-    this.viewRef && this.viewRef.showLoading();
-    let {hidePhone, hideEmail, hideWechat, hideAddress, style} = this.state;
-
-    this.props.userSettingUpdate({
-      phone: hidePhone ? 0 : 1,
-      wechat: hideWechat ? 0 : 1,
-      email: hideEmail ? 0 : 1,
-      address: hideAddress ? 0 : 1,
-      cardStyle: `${style}`,
-    }).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
-      if (res !== NetworkState.FAIL) {
-        toast('设置成功');
-        debounce(1000, () => {
-          Taro.navigateBack();
-        })
-      }
-      console.log('更新用户的名片设置信息', res)
-    }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
-      console.log('报错啦', e);
-    });
   }
 
 
@@ -124,10 +104,7 @@ class MingpianStyle extends Component<Props, State> {
     return (
       <CustomSafeAreaView
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
-        notNeedBottomPadding={true}
-        ref={(ref) => {
-          this.viewRef = ref;
-        }}>
+        notNeedBottomPadding={true}>
         <TopHeader title={'名片样式'}/>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -244,7 +221,14 @@ class MingpianStyle extends Component<Props, State> {
           </View>
         </ScrollView>
         <BottomButon title={'完成'} onClick={() => {
-          this.userSettingUpdate();
+          Taro.eventCenter.trigger('updateCardStyle', {
+            cardStyle: `${style}`,
+            hidePhone: hidePhone ? 0 : 1,
+            hideWechat: hideWechat ? 0 : 1,
+            hideEmail: hideEmail ? 0 : 1,
+            hideAddress: hideAddress ? 0 : 1,
+          });
+          Taro.navigateBack();
         }}/>
       </CustomSafeAreaView>
     )

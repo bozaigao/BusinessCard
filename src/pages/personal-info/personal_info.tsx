@@ -47,6 +47,8 @@ interface Props {
   update: any;
   getUserInfo: any;
   userInfo: User;
+  userSettingGet: any;
+  userSettingUpdate: any;
 }
 
 interface State {
@@ -65,6 +67,11 @@ interface State {
   detailAddress: string;
   titleList1: { title: string, subtitle?: string, value?: string, hasEdit?: boolean }[];
   titleList2: { title: string, subtitle?: string, value?: string, hasEdit?: boolean }[];
+  hidePhone: number;
+  hideWechat: number;
+  hideEmail: number;
+  hideAddress: number;
+  cardStyle: string;
 }
 
 @connect(state => state.login, {...fileActions, ...loginActions})
@@ -118,6 +125,11 @@ class PersonalInfo extends Component<Props, State> {
         {title: '生日', value: birthday ? transformTime(birthday) : '', subtitle: '请选择生日'},
         {title: '地区', value: province ? province + city : '', subtitle: '请选择详地区'},
         {title: '详细地址', value: detailAddress ? detailAddress : '', subtitle: '请选择详细地址'}],
+      hidePhone: 0,
+      hideWechat: 0,
+      hideEmail: 0,
+      hideAddress: 0,
+      cardStyle: '0',
     }
   }
 
@@ -130,6 +142,22 @@ class PersonalInfo extends Component<Props, State> {
 
       this.setState({industry, titleList1: this.state.titleList1});
     });
+    Taro.eventCenter.on('updateCardStyle', (data: {
+      cardStyle: string;
+      hidePhone: number;
+      hideWechat: number;
+      hideEmail: number;
+      hideAddress: number;
+    }) => {
+      this.setState({
+        hidePhone: data.hidePhone,
+        hideWechat: data.hideWechat,
+        hideAddress: data.hideAddress,
+        hideEmail: data.hideEmail,
+        cardStyle: data.cardStyle,
+      });
+    });
+    this.userSettingGet();
   }
 
 
@@ -224,11 +252,40 @@ class PersonalInfo extends Component<Props, State> {
       this.getUserInfo();
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
+        this.userSettingUpdate();
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 更新用户的名片设置信息
+   */
+  userSettingUpdate = () => {
+    this.viewRef && this.viewRef.showLoading();
+    let {hidePhone, hideEmail, hideWechat, hideAddress, cardStyle} = this.state;
+
+    this.props.userSettingUpdate({
+      phone: hidePhone,
+      wechat: hideWechat,
+      email: hideEmail,
+      address: hideAddress,
+      cardStyle: cardStyle,
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
         toast('信息更新成功');
         debounce(1000, () => {
           Taro.navigateBack();
         })
       }
+      console.log('更新用户的名片设置信息', res)
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
@@ -253,9 +310,52 @@ class PersonalInfo extends Component<Props, State> {
   }
 
 
-  render() {
-    let {avatar, titleList1, titleList2, sex} = this.state;
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 获取用户的设置信息
+   */
+  userSettingGet = () => {
+    this.props.userSettingGet().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          hidePhone: res.phone,
+          hideWechat: res.wechat,
+          hideEmail: res.email,
+          hideAddress: res.address,
+          cardStyle: res.cardStyle
+        });
+      }
+      console.log('获取用户的设置信息', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
 
+
+  render() {
+    let {avatar, titleList1, titleList2, sex, cardStyle, hideAddress, hideEmail, hideWechat, hidePhone} = this.state;
+
+    let styleString, styleIcon;
+
+    if (cardStyle === '0') {
+      styleString = '商务版';
+      styleIcon = require('../../assets/ico_mingpian_style_1.png');
+
+    } else if (cardStyle === '1') {
+      styleString = '黑金版';
+      styleIcon = require('../../assets/ico_mingpian_style_2.png');
+    } else if (cardStyle === '2') {
+      styleString = '简约版';
+      styleIcon = require('../../assets/ico_mingpian_style_3.png');
+    } else if (cardStyle === '3') {
+      styleString = '极简版';
+      styleIcon = require('../../assets/ico_mingpian_style_4.png');
+    } else if (cardStyle === '4') {
+      styleString = '实景版';
+      styleIcon = require('../../assets/ico_mingpian_style_5.png');
+    }
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
@@ -355,20 +455,19 @@ class PersonalInfo extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), mt(10)])}>
             <View style={styleAssign([wRatio(100), h(76), styles.udr, styles.ujb, styles.uac,
               pl(20), pr(20), bgColor(commonStyles.whiteColor)])}
-            onClick={()=>{
-              Taro.navigateTo({
-                url: `/pages/personal-info/mingpian_style`
-              });
-            }}>
+                  onClick={() => {
+                    Taro.navigateTo({
+                      url: `/pages/personal-info/mingpian_style?hidePhone=${hidePhone}&hideWechat=${hideWechat}&hideEmail=${hideEmail}&hideAddress=${hideAddress}&style=${cardStyle}`
+                    });
+                  }}>
               <View>
                 <Text style={styleAssign([fSize(14), color('#727272')])}>名片样式</Text>
                 <View style={styleAssign([styles.udr, styles.uac])}>
-                  <Text style={styleAssign([fSize(12), color('#727272')])}>名片样式</Text>
-                  <Text style={styleAssign([fSize(12), color('#343434'), ml(10)])}>商务版</Text>
+                  <Text style={styleAssign([fSize(12), color('#343434')])}>{styleString}</Text>
                 </View>
               </View>
               <View style={styleAssign([styles.udr, styles.uac])}>
-                <Image style={styleAssign([w(72), h(49)])} src={require('../../assets/ico_card_template.png')}/>
+                <Image style={styleAssign([w(72), h(49)])} src={styleIcon}/>
                 <Image style={styleAssign([w(8), h(14), ml(9)])} src={require('../../assets/ico_next.png')}/>
               </View>
             </View>

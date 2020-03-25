@@ -207,3 +207,16 @@ export const userSettingUpdate = payload => createAction({
   payload,
   method: 'POST'
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/25
+ * @function: 获取用户的设置信息
+ */
+export const userSettingGet = payload => createAction({
+  url: UserController.userSettingGet,
+  payload,
+  method: 'GET'
+});

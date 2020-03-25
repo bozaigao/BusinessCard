@@ -45,6 +45,8 @@ const BASE_URL = StagingUrl,
     getCardHolderVisitorRecord: BASE_URL + 'user/getCardHolderVisitorRecord',
     //更新用户的设置信息
     userSettingUpdate: BASE_URL + 'userSetting/update',
+    //获取用户的设置信息
+    userSettingGet: BASE_URL + 'userSetting/get',
   },
   //数据字典
   DictController = {
