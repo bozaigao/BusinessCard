@@ -101,11 +101,11 @@ class MingpianStyle extends Component<Props, State> {
     }
     else if (style === 3) {
       //@ts-ignore
-      cardChild = <CardStyle4/>;
+      cardChild = <CardStyle4 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
     }
     else if (style === 4) {
       //@ts-ignore
-      cardChild = <CardStyle5/>;
+      cardChild = <CardStyle5 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
     }
 
     return (
