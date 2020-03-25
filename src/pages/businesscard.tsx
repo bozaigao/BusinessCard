@@ -96,7 +96,6 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.userSettingGet();
     this.getCardHolderVisitorCount();
     this.getUserInfo();
     this.getRecommendSetting();
@@ -220,6 +219,7 @@ class Businesscard extends Component<Props, State> {
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
+      this.userSettingGet();
       console.log('重新更新用户信息', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -266,7 +266,7 @@ class Businesscard extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet().then((res) => {
+    this.props.userSettingGet({userId:this.props.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,

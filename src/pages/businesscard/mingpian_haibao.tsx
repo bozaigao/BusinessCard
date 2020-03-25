@@ -53,7 +53,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet().then((res) => {
+    this.props.userSettingGet({userId:this.props.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone === 0,

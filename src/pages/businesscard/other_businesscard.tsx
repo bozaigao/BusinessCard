@@ -113,7 +113,6 @@ class OtherBusinesscard extends Component<Props, State> {
 
   componentDidShow() {
     console.log(this.viewRef);
-    this.userSettingGet();
     this.getUserInfoById();
     this.getCardHolderVisitorRecord();
     let showGuide = get('other_business_guide');
@@ -128,7 +127,7 @@ class OtherBusinesscard extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet().then((res) => {
+    this.props.userSettingGet({userId:this.state.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,
@@ -196,7 +195,9 @@ class OtherBusinesscard extends Component<Props, State> {
   getUserInfoById = () => {
     console.log('获取用户信息');
     this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
-      this.setState({userInfo: res});
+      this.setState({userInfo: res},()=>{
+        this.userSettingGet();
+      });
       console.log('获取用户信息', res);
     }).catch(e => {
       console.log('报错啦', e);
