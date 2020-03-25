@@ -30,7 +30,7 @@ class MingpianHaibao extends Component<Props, State> {
 
   componentDidMount() {
     console.log('用户信息',this.props.userInfo);
-    this.drawBallStyle3()
+    this.drawBallStyle5()
   }
 
   /**
@@ -387,6 +387,226 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 样式4极简版
+   */
+  drawBallStyle4() {
+    this.viewRef && this.viewRef.showLoading();
+    let {userInfo} = this.props;
+
+    const context = Taro.createCanvasContext('canvas', this)
+    //@ts-ignore
+    const that = this;
+
+    Taro.getImageInfo({
+      src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg4.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
+    }).then((res) => {
+      this.roundRectColor(context, 0, 0, 335, 434, 16);
+      //@ts-ignore
+      context.drawImage(res.path, 10, 10, 313, 194);
+      //电话
+      Taro.getImageInfo({
+        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_gray.png?sign=a0b9ff52662e0b32a72ab4a78559cb02&t=1585125501`,
+      }).then((res) => {
+        //@ts-ignore
+        context.drawImage(res.path, 38, 106, 11, 9);
+        context.setFontSize(12);
+        context.setFillStyle('#343434');
+        context.setTextAlign('left');
+        context.fillText('17311239269', 53, 115);
+        //微信
+        Taro.getImageInfo({
+          src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_gray.png?sign=76fc4851c80b994c1982f9d598893b00&t=1585125546`,
+        }).then((res) => {
+          //@ts-ignore
+          context.drawImage(res.path, 38, 124, 12, 10);
+          context.setTextAlign('left');
+          context.fillText('bozaqgao98', 58, 134);
+          //邮箱
+          Taro.getImageInfo({
+            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_gray.png?sign=aeaa9c0c82237be640551b27cf3e3a5e&t=1585125409`,
+          }).then((res) => {
+            //@ts-ignore
+            context.drawImage(res.path, 38, 146, 12, 10);
+            context.setTextAlign('left');
+            context.fillText('邮箱信息未对外公开', 58, 155);
+            //地址
+            Taro.getImageInfo({
+              src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_gray.png?sign=0d2086dff61b5fc45c269bab7980a1f7&t=1585125458`,
+            }).then((res) => {
+              //@ts-ignore
+              context.drawImage(res.path, 38, 164, 12, 10);
+              context.setTextAlign('left');
+              that.fillTextWrap2(context, `四川省成都市武侯区锦悦西路77号`, 58, 174, 100, 16, 12);
+              //小程序码
+              Taro.getImageInfo({
+                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+              }).then((res) => {
+                //@ts-ignore
+                context.drawImage(res.path, 15, 360, 44, 44);
+                context.setTextAlign('right');
+                Taro.getImageInfo({
+                  src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+                }).then((res) => {
+
+                  let arcWidth = 60;
+                  //x-轴坐标
+                  let xCoor = 240;
+                  //y-轴坐标
+                  let yCoor = 24;
+
+                  context.beginPath();
+                  context.arc(xCoor + arcWidth / 2, yCoor + arcWidth / 2, arcWidth / 2, 0, Math.PI * 2, false)
+                  context.clip();
+                  //@ts-ignore
+                  context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
+                  context.restore();
+                  context.setFontSize(18);
+                  context.setFillStyle('#343434');
+                  context.setTextAlign('center');
+                  context.fillText('波仔糕', 68, 65);
+                  context.setFontSize(12);
+                  context.setFillStyle('#343434');
+                  context.fillText('客户端工程师', 140, 65);
+                  context.fillText('融创科技', 68, 85);
+                  context.setFontSize(14);
+                  context.setTextAlign('left');
+                  context.fillText('您好,', 15, 240);
+                  that.fillTextWrap(context, `我是融创科技的客户端工程师波仔糕`, 15, 260, 294, 20, 14);
+                  context.setFillStyle('#E2BB7B');
+                  context.fillText('长按识别二维码 收下名片', 70, 390);
+                  context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
+                  context.moveTo(0, 340);
+                  context.lineTo(335, 340);
+                  context.stroke();
+                  context.draw(false, () => {
+                    that.viewRef && that.viewRef.hideLoading();
+                    Taro.canvasToTempFilePath({
+                      canvasId: 'canvas',
+                      success: function (res) {
+                        console.log('获得图片临时路径', res);
+                        // 获得图片临时路径
+                        that.setState({
+                          imageTempPath: res.tempFilePath
+                        })
+                      }
+                    })
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 样式5实景版
+   */
+  drawBallStyle5() {
+    this.viewRef && this.viewRef.showLoading();
+    let {userInfo} = this.props;
+
+    const context = Taro.createCanvasContext('canvas', this)
+    //@ts-ignore
+    const that = this;
+
+    Taro.getImageInfo({
+      src: 'https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_business_card_bg5.png?sign=7953c9294cdf7a68d4dd508bb6d5f72b&t=1583943566',
+    }).then((res) => {
+      this.roundRectColor(context, 0, 0, 335, 434, 16);
+      //@ts-ignore
+      context.drawImage(res.path, 10, 10, 313, 194);
+      //电话
+      Taro.getImageInfo({
+        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_white.png?sign=f1c449e5641a4e599fe465fb92d61ffa&t=1585126741`,
+      }).then((res) => {
+        //@ts-ignore
+        context.drawImage(res.path, 38, 106, 11, 9);
+        context.setFontSize(12);
+        context.setFillStyle(commonStyles.whiteColor);
+        context.setTextAlign('left');
+        context.fillText('17311239269', 53, 115);
+        //微信
+        Taro.getImageInfo({
+          src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_white.png?sign=ade4af5a05ef6c2bc1f9bce5bf2c1102&t=1585126764`,
+        }).then((res) => {
+          //@ts-ignore
+          context.drawImage(res.path, 38, 124, 12, 10);
+          context.setTextAlign('left');
+          context.fillText('bozaqgao98', 58, 134);
+          //邮箱
+          Taro.getImageInfo({
+            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_white.png?sign=18c78e0a941c1a9b9c672764e82a87e7&t=1585126677`,
+          }).then((res) => {
+            //@ts-ignore
+            context.drawImage(res.path, 38, 146, 12, 10);
+            context.setTextAlign('left');
+            context.fillText('邮箱信息未对外公开', 58, 155);
+            //地址
+            Taro.getImageInfo({
+              src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_white.png?sign=2cc8541bf5e97610964db8f657c6565c&t=1585126701`,
+            }).then((res) => {
+              //@ts-ignore
+              context.drawImage(res.path, 38, 164, 12, 10);
+              context.setTextAlign('left');
+              context.setFillStyle(commonStyles.whiteColor);
+              that.fillTextWrap2(context, `四川省成都市武侯区锦悦西路77号`, 58, 174, 100, 16, 12);
+              //小程序码
+              Taro.getImageInfo({
+                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+              }).then((res) => {
+                //@ts-ignore
+                context.drawImage(res.path, 15, 360, 44, 44);
+                context.setTextAlign('right');
+                context.restore();
+                context.setFontSize(18);
+                context.setFillStyle(commonStyles.whiteColor);
+                context.setTextAlign('center');
+                context.fillText('波仔糕', 68, 65);
+                context.setFontSize(12);
+                context.fillText('客户端工程师', 140, 65);
+                context.fillText('融创科技', 68, 85);
+                context.setFontSize(14);
+                context.setTextAlign('left');
+                context.fillText('您好,', 15, 240);
+                that.fillTextWrap(context, `我是融创科技的客户端工程师波仔糕`, 15, 260, 294, 20, 14);
+                context.setFillStyle('#E2BB7B');
+                context.fillText('长按识别二维码 收下名片', 70, 390);
+                context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
+                context.moveTo(0, 340);
+                context.lineTo(335, 340);
+                context.stroke();
+                context.draw(false, () => {
+                  that.viewRef && that.viewRef.hideLoading();
+                  Taro.canvasToTempFilePath({
+                    canvasId: 'canvas',
+                    success: function (res) {
+                      console.log('获得图片临时路径', res);
+                      // 获得图片临时路径
+                      that.setState({
+                        imageTempPath: res.tempFilePath
+                      })
+                    }
+                  })
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
    * @date 2020/3/12
    * @function: 绘制圆角填充色矩形
    */
@@ -477,7 +697,7 @@ class MingpianHaibao extends Component<Props, State> {
     let currentWidth;
 
     ctx.setFontSize(fontSize);
-    ctx.setFillStyle('#3A3A3A');
+    ctx.setFillStyle(commonStyles.whiteColor);
     ctx.setTextAlign('justify');
     for (let letter of arrText) {
       currentText += letter;
