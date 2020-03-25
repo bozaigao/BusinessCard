@@ -39,6 +39,7 @@ import {User} from "../const/global";
 import BottomButon from "../compoments/bottom-buton";
 import CardStyle1 from "./sub_pagecomponent/card-style1";
 import CardStyle2 from "./sub_pagecomponent/card-style2";
+import CardStyle4 from "./sub_pagecomponent/card-style4";
 
 interface Props {
   userInfo: User;
@@ -81,7 +82,7 @@ class MingpianStyle extends Component<Props, State> {
 
     if (style === 0) {
       //@ts-ignore
-      cardChild = <CardStyle1/>;
+      cardChild = <CardStyle4/>;
     } else if (style === 1) {
       //@ts-ignore
       cardChild = <CardStyle2/>;
@@ -92,7 +93,7 @@ class MingpianStyle extends Component<Props, State> {
     }
     else if (style === 3) {
       //@ts-ignore
-      cardChild = <CardStyle1/>;
+      cardChild = <CardStyle4/>;
     }
     else if (style === 4) {
       //@ts-ignore
