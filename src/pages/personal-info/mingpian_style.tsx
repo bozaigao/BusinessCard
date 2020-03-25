@@ -90,22 +90,27 @@ class MingpianStyle extends Component<Props, State> {
     if (style === 0) {
       //@ts-ignore
       cardChild =
-        <CardStyle1 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
+        <CardStyle1 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
+                    userInfo={userInfo}/>;
     } else if (style === 1) {
       //@ts-ignore
-      cardChild = <CardStyle2 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
+      cardChild = <CardStyle2 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
+      userInfo={userInfo}/>;
     }
     else if (style === 2) {
       //@ts-ignore
-      cardChild = <CardStyle3 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
+      cardChild = <CardStyle3 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
+                              userInfo={userInfo}/>;
     }
     else if (style === 3) {
       //@ts-ignore
-      cardChild = <CardStyle4 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
+      cardChild = <CardStyle4 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
+                              userInfo={userInfo}/>;
     }
     else if (style === 4) {
       //@ts-ignore
-      cardChild = <CardStyle5 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
+      cardChild = <CardStyle5 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
+                              userInfo={userInfo}/>;
     }
 
     return (

@@ -354,7 +354,12 @@ class PersonalInfo extends Component<Props, State> {
           {/*名片样式*/}
           <View style={styleAssign([wRatio(100), mt(10)])}>
             <View style={styleAssign([wRatio(100), h(76), styles.udr, styles.ujb, styles.uac,
-              pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
+              pl(20), pr(20), bgColor(commonStyles.whiteColor)])}
+            onClick={()=>{
+              Taro.navigateTo({
+                url: `/pages/personal-info/mingpian_style`
+              });
+            }}>
               <View>
                 <Text style={styleAssign([fSize(14), color('#727272')])}>名片样式</Text>
                 <View style={styleAssign([styles.udr, styles.uac])}>
