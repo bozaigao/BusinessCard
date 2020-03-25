@@ -37,6 +37,8 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {cloudBaseUrl} from "../api/httpurl";
 import {User} from "../const/global";
 import BottomButon from "../compoments/bottom-buton";
+import CardStyle1 from "./sub_pagecomponent/card-style1";
+import CardStyle2 from "./sub_pagecomponent/card-style2";
 
 interface Props {
   userInfo: User;
@@ -75,6 +77,27 @@ class MingpianStyle extends Component<Props, State> {
   render() {
     let {userInfo} = this.props;
     let {publicInfoArr, style} = this.state;
+    let cardChild = null;
+
+    if (style === 0) {
+      //@ts-ignore
+      cardChild = <CardStyle1/>;
+    } else if (style === 1) {
+      //@ts-ignore
+      cardChild = <CardStyle2/>;
+    }
+    else if (style === 2) {
+      //@ts-ignore
+      cardChild = <CardStyle2/>;
+    }
+    else if (style === 3) {
+      //@ts-ignore
+      cardChild = <CardStyle1/>;
+    }
+    else if (style === 4) {
+      //@ts-ignore
+      cardChild = <CardStyle1/>;
+    }
 
     return (
       <CustomSafeAreaView
@@ -87,51 +110,7 @@ class MingpianStyle extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), styles.uac])}>
             <View
               style={styleAssign([wRatio(100), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-              <View style={styleAssign([w(347), h(216), radiusA(10),
-                styles.udr, styles.uje, mt(50), mb(50)])}>
-                <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
-                       src={require('../assets/ico_business_card_bg1.png')}/>
-                <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
-                  <View
-                    style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
-                  <View style={styleAssign([styles.upa, absL(20), absT(15)])}>
-                    <Image style={styleAssign([w(60), h(60), radiusA(30)])}
-                           src={userInfo.avatar}/>
-                    <View style={styleAssign([styles.uae, styles.udr, mt(6)])}>
-                      <Text style={styleAssign([fSize(18), fWeight('bold')])}>{userInfo.name}</Text>
-                      <Text style={styleAssign([fSize(12), ml(8)])}>{userInfo.position}</Text>
-                    </View>
-                    <Text style={styleAssign([fSize(12), color('#343434')])}>{userInfo.company}</Text>
-                  </View>
-                  <View style={styleAssign([styles.uae, styles.upa, absB(26), absR(24)])}>
-                    {/*电话号码*/}
-                    <View style={styleAssign([styles.uac, styles.udr])}>
-                      <Text
-                        style={styleAssign([fSize(12), color('#343434')])}>{userInfo.showPhone ? userInfo.phone : hidePhone(userInfo.phone)}</Text>
-                      <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_mobile.png`}/>
-                    </View>
-                    {/*微信号*/}
-                    <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
-                      <Text
-                        style={styleAssign([fSize(12), color('#343434')])}>{userInfo.wechat}</Text>
-                      <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_wechat.png`}/>
-                    </View>
-                    {/*邮箱*/}
-                    <View style={styleAssign([styles.uac, styles.udr, mt(8)])}>
-                      <Text
-                        style={styleAssign([fSize(12), color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</Text>
-                      <Image style={styleAssign([w(12), h(10), ml(8)])} src={`${cloudBaseUrl}ico_card_email.png`}/>
-                    </View>
-                    {/*地址*/}
-                    <View style={styleAssign([styles.udr, mt(8)])}>
-                      <Text
-                        style={styleAssign([fSize(12), color('#343434')])}>{userInfo.detailAddress}</Text>
-                      <Image style={styleAssign([w(9), h(11), ml(8), mt(4)])}
-                             src={`${cloudBaseUrl}ico_card_location.png`}/>
-                    </View>
-                  </View>
-                </View>
-              </View>
+              {cardChild}
             </View>
             <View style={styleAssign([styles.uac, styles.udr, wRatio(100)])}>
               <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(15)])}>对外公开信息</Text>
@@ -152,7 +131,8 @@ class MingpianStyle extends Component<Props, State> {
                     style={styleAssign([w(58), h(36), radiusA(2), styles.uac, styles.ujc, ml(index === 0 ? 20 : 10)])}>
                     <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(0)])}
                            src={publicInfoArr.includes(value) ? require('../assets/ico_setting_choosed.png') : require('../assets/ico_setting_nochoos.png')}/>
-                    <Text style={styleAssign([fSize(14), color('#835E1B')])}>{value}</Text>
+                    <Text
+                      style={styleAssign([fSize(14), color(publicInfoArr.includes(value) ? '#835E1B' : commonStyles.colorTheme)])}>{value}</Text>
                   </View>;
                 })
               }
@@ -176,7 +156,7 @@ class MingpianStyle extends Component<Props, State> {
                                  this.setState({style: index});
                                }}>
                     <View
-                      style={styleAssign([w(69), h(42), styles.uac, styles.ujc, bo(1), bdColor(style === index ? 'rgb(116,87,42)' : 'rgb(229,229,229)'), {borderStyle: style === index ?'solid':'dashed'}])}>
+                      style={styleAssign([w(69), h(42), styles.uac, styles.ujc, bo(1), bdColor(style === index ? 'rgb(116,87,42)' : 'rgb(229,229,229)'), {borderStyle: style === index ? 'solid' : 'dashed'}])}>
                       <Image style={styleAssign([w(67), h(41)])} src={value.icon}/>
                     </View>
                     <Text style={styleAssign([fSize(12), color('#ACACAC')])}>{value.title}</Text>
