@@ -7,18 +7,16 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
-import {hidePhone, styleAssign} from "../utils/datatool";
+import {styleAssign} from "../utils/datatool";
 import {
-  absB,
-  absL,
-  absR,
-  absT, bdColor,
-  bgColor, bo,
+  absT,
+  bdColor,
+  bgColor,
+  bo,
   color,
   commonStyles,
   default as styles,
   fSize,
-  fWeight,
   h,
   hRatio,
   mb,
@@ -34,12 +32,12 @@ import * as actions from '../actions/login';
 import {connect} from "@tarojs/redux";
 import TopHeader from "../compoments/top-header";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {cloudBaseUrl} from "../api/httpurl";
 import {User} from "../const/global";
 import BottomButon from "../compoments/bottom-buton";
 import CardStyle1 from "./sub_pagecomponent/card-style1";
 import CardStyle2 from "./sub_pagecomponent/card-style2";
 import CardStyle4 from "./sub_pagecomponent/card-style4";
+import CardStyle5 from "./sub_pagecomponent/card-style5";
 
 interface Props {
   userInfo: User;
@@ -82,7 +80,7 @@ class MingpianStyle extends Component<Props, State> {
 
     if (style === 0) {
       //@ts-ignore
-      cardChild = <CardStyle4/>;
+      cardChild = <CardStyle5/>;
     } else if (style === 1) {
       //@ts-ignore
       cardChild = <CardStyle2/>;
