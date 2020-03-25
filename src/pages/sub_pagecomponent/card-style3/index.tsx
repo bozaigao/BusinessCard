@@ -11,15 +11,16 @@ import {styleAssign} from "../../../utils/datatool";
 import styles, {
   absB,
   absL,
-  absR,
   absT,
   color,
-  commonStyles,
   fSize,
   fWeight,
   h,
   mb,
+  ml,
   mt,
+  pl,
+  pr,
   radiusA,
   w,
   wRatio
@@ -45,7 +46,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
           <View
             style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
-          <View style={styleAssign([wRatio(100), styles.uac,mt(10)])}>
+          <View style={styleAssign([wRatio(100), styles.uac, mt(10)])}>
             <View style={styleAssign([styles.uac])}>
               <Image style={styleAssign([w(60), h(60), radiusA(30)])}
                      src={'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1585103936&di=fbe020193d39f52abf5dcefeb43ae0dd&src=http://img8.zol.com.cn/bbs/upload/18816/18815745.jpg'}/>
@@ -56,40 +57,39 @@ export default class CardStyle3 extends PureComponent<Props, State> {
               </View>
             </View>
           </View>
-          <Text
-            style={styleAssign([fSize(11), color(commonStyles.whiteColor), styles.upa, absT(24), absR(26)])}>美克美家家居有限公司</Text>
-          <View style={styleAssign([styles.upa, absB(30), absL(42)])}>
-            {/*电话号码*/}
-            <View style={styleAssign([styles.uac, styles.udr])}>
-              <Text
-                style={styleAssign([fSize(11), color('#343434')])}>15982468866</Text>
+          <View style={styleAssign([styles.upa, styles.udr, wRatio(100), absB(20), pl(40), pr(40)])}>
+            <View style={styleAssign([styles.uf1])}>
+              {/*电话号码*/}
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <Image style={styleAssign([w(11), h(9)])}
+                       src={`${cloudBaseUrl}ico_card_mobile_gray.png`}/>
+                <Text
+                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>15982468866</Text>
+              </View>
+              {/*微信号*/}
+              <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
+                <Image style={styleAssign([w(12), h(10)])}
+                       src={`${cloudBaseUrl}ico_card_wechat_gray.png`}/>
+                <Text
+                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>98248866LSY</Text>
+              </View>
             </View>
-            {/*微信号*/}
-            <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
-              <Text
-                style={styleAssign([fSize(11), color('#343434')])}>98248866LSY</Text>
+            <View style={styleAssign([styles.uf1])}>
+              {/*邮箱*/}
+              <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
+                <Image style={styleAssign([w(12), h(10)])}
+                       src={`${cloudBaseUrl}ico_card_email_gray.png`}/>
+                <Text
+                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>982468866@168.com</Text>
+              </View>
+              {/*地址*/}
+              <View style={styleAssign([styles.udr, mt(4)])}>
+                <Image style={styleAssign([w(10), h(11),mt(4)])}
+                       src={`${cloudBaseUrl}ico_card_location_gray.png`}/>
+                <Text
+                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>地址信息未对外公开</Text>
+              </View>
             </View>
-            {/*邮箱*/}
-            <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
-              <Text
-                style={styleAssign([fSize(11), color('#343434')])}>982468866@168.com</Text>
-            </View>
-            {/*地址*/}
-            <View style={styleAssign([styles.udr, mt(4)])}>
-              <Text
-                style={styleAssign([fSize(11), color('#343434')])}>地址信息未对外公开</Text>
-            </View>
-          </View>
-          <View
-            style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(82), h(15), styles.uac, styles.uja])}>
-            <Image style={styleAssign([w(11), h(9)])}
-                   src={`${cloudBaseUrl}ico_card_mobile_white.png`}/>
-            <Image style={styleAssign([w(12), h(10)])}
-                   src={`${cloudBaseUrl}ico_card_wechat_white.png`}/>
-            <Image style={styleAssign([w(12), h(10)])}
-                   src={`${cloudBaseUrl}ico_card_email_white.png`}/>
-            <Image style={styleAssign([w(10), h(11)])}
-                   src={`${cloudBaseUrl}ico_card_location_white.png`}/>
           </View>
         </View>
       </View>

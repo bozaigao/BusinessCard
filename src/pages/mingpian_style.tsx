@@ -81,14 +81,14 @@ class MingpianStyle extends Component<Props, State> {
 
     if (style === 0) {
       //@ts-ignore
-      cardChild = <CardStyle3/>;
+      cardChild = <CardStyle1/>;
     } else if (style === 1) {
       //@ts-ignore
       cardChild = <CardStyle2/>;
     }
     else if (style === 2) {
       //@ts-ignore
-      cardChild = <CardStyle2/>;
+      cardChild = <CardStyle3/>;
     }
     else if (style === 3) {
       //@ts-ignore
@@ -96,7 +96,7 @@ class MingpianStyle extends Component<Props, State> {
     }
     else if (style === 4) {
       //@ts-ignore
-      cardChild = <CardStyle1/>;
+      cardChild = <CardStyle5/>;
     }
 
     return (
