@@ -64,7 +64,6 @@ class App extends Component {
   config: Config = {
     pages: [
       //主界面
-      "pages/mingpian_haibao",
       "pages/businesscard",
       "pages/radarscan",
       "pages/customer",
@@ -77,14 +76,14 @@ class App extends Component {
         pages: [
           "add_businesscard",
           "qiehuan_businesscard",
-          // "mingpian_haibao",
           "more_goods",
           "mingpianjia",
           "my_collect",
           "other_businesscard",
           "ming_pian_ma",
           "choose_renmai_tag",
-          "choose_industry_tag"
+          "choose_industry_tag",
+          "mingpian_haibao"
         ]
       },
       //雷达模块子界面

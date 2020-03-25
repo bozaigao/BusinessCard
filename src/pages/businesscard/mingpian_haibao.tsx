@@ -1,20 +1,27 @@
 import Taro, {Component} from '@tarojs/taro'
 import {View} from '@tarojs/components'
-import {styleAssign, toast} from "../utils/datatool";
-import {bgColor, commonStyles, default as styles} from "../utils/style";
-import TopHeader from "../compoments/top-header/index";
-import * as actions from '../actions/login';
-import CustomSafeAreaView from "../compoments/safe-area-view/index";
-import BottomButon from "../compoments/bottom-buton/index";
-import {User} from "../const/global";
+import {styleAssign, toast} from "../../utils/datatool";
+import {bgColor, commonStyles, default as styles} from "../../utils/style";
+import TopHeader from "../../compoments/top-header/index";
+import * as actions from '../../actions/login';
+import CustomSafeAreaView from "../../compoments/safe-area-view/index";
+import BottomButon from "../../compoments/bottom-buton/index";
+import {User} from "../../const/global";
 import {connect} from "@tarojs/redux";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   userInfo: User;
+  userSettingGet: any;
 }
 
 interface State {
-
+  imageTempPath: string;
+  cardStyle: string;
+  hidePhone: boolean;
+  hideWechat: boolean;
+  hideEmail: boolean;
+  hideAddress: boolean;
 }
 
 @connect(state => state.login, {...actions})
@@ -24,13 +31,54 @@ class MingpianHaibao extends Component<Props, State> {
   constructor(props) {
     super(props)
     this.state = {
-      imageTempPath: ''
+      imageTempPath: '',
+      cardStyle: '-1',
+      hidePhone: false,
+      hideWechat: false,
+      hideEmail: false,
+      hideAddress: false,
     }
   }
 
   componentDidMount() {
-    console.log('用户信息',this.props.userInfo);
-    this.drawBallStyle5()
+    console.log('用户信息', this.props.userInfo);
+    this.userSettingGet();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 获取用户的设置信息
+   */
+  userSettingGet = () => {
+    this.props.userSettingGet().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          hidePhone: res.phone === 0,
+          hideWechat: res.wechat === 0,
+          hideEmail: res.email === 0,
+          hideAddress: res.address === 0,
+          cardStyle: res.cardStyle
+        }, () => {
+          if (this.state.cardStyle === '0') {
+            this.drawBallStyle1();
+          } else if (this.state.cardStyle === '1') {
+            this.drawBallStyle2();
+          } else if (this.state.cardStyle === '2') {
+            this.drawBallStyle3();
+          } else if (this.state.cardStyle === '3') {
+            this.drawBallStyle4();
+          } else if (this.state.cardStyle === '4') {
+            this.drawBallStyle5();
+          }
+        });
+      }
+      console.log('获取用户的设置信息', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
   /**
@@ -38,10 +86,11 @@ class MingpianHaibao extends Component<Props, State> {
    * @QQ 1054539528
    * @date 2020/3/25
    * @function: 样式1商务版
-  */
+   */
   drawBallStyle1() {
     this.viewRef && this.viewRef.showLoading();
     let {userInfo} = this.props;
+    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -57,39 +106,47 @@ class MingpianHaibao extends Component<Props, State> {
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_gray.png?sign=a0b9ff52662e0b32a72ab4a78559cb02&t=1585125501`,
       }).then((res) => {
-        //@ts-ignore
-        context.drawImage(res.path, 295, 90, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle('#343434');
-        context.setTextAlign('right');
-        context.fillText(userInfo.phone, 290, 100);
+        if (!hidePhone) {
+          //@ts-ignore
+          context.drawImage(res.path, 295, 90, 11, 9);
+          context.setFontSize(12);
+          context.setFillStyle('#343434');
+          context.setTextAlign('right');
+          context.fillText(userInfo.phone, 290, 100);
+        }
         //微信
         Taro.getImageInfo({
           src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_gray.png?sign=76fc4851c80b994c1982f9d598893b00&t=1585125546`,
         }).then((res) => {
-          //@ts-ignore
-          context.drawImage(res.path, 295, 110, 12, 10);
-          context.setTextAlign('right');
-          context.fillText(userInfo.wechat, 290, 120);
+          if (!hideWechat) {
+            //@ts-ignore
+            context.drawImage(res.path, 295, 110, 12, 10);
+            context.setTextAlign('right');
+            context.fillText(userInfo.wechat, 290, 120);
+          }
           //邮箱
           Taro.getImageInfo({
             src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_gray.png?sign=aeaa9c0c82237be640551b27cf3e3a5e&t=1585125409`,
           }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 295, 130, 12, 10);
-            context.setTextAlign('right');
-            context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 290, 140);
+            if (!hideEmail) {
+              //@ts-ignore
+              context.drawImage(res.path, 295, 130, 12, 10);
+              context.setTextAlign('right');
+              context.fillText(userInfo.email, 290, 140);
+            }
             //地址
             Taro.getImageInfo({
               src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_gray.png?sign=0d2086dff61b5fc45c269bab7980a1f7&t=1585125458`,
             }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 295, 150, 12, 10);
-              context.setTextAlign('right');
-              context.fillText(userInfo.detailAddress, 290, 160);
+              if (!hideAddress) {
+                //@ts-ignore
+                context.drawImage(res.path, 295, 150, 12, 10);
+                context.setTextAlign('right');
+                context.fillText(userInfo.detailAddress, 290, 160);
+              }
               //小程序码
               Taro.getImageInfo({
-                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+                src: userInfo.wxacode,
               }).then((res) => {
                 //@ts-ignore
                 context.drawImage(res.path, 15, 360, 44, 44);
@@ -148,7 +205,6 @@ class MingpianHaibao extends Component<Props, State> {
   }
 
 
-
   /**
    * @author 何晏波
    * @QQ 1054539528
@@ -158,6 +214,7 @@ class MingpianHaibao extends Component<Props, State> {
   drawBallStyle2() {
     this.viewRef && this.viewRef.showLoading();
     let {userInfo} = this.props;
+    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -173,45 +230,53 @@ class MingpianHaibao extends Component<Props, State> {
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_white.png?sign=f1c449e5641a4e599fe465fb92d61ffa&t=1585126741`,
       }).then((res) => {
-        //@ts-ignore
-        context.drawImage(res.path, 230, 175, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle(commonStyles.whiteColor);
-        context.setTextAlign('left');
-        context.fillText('17311239269', 42, 110);
+        if (!hidePhone) {
+          //@ts-ignore
+          context.drawImage(res.path, 230, 175, 11, 9);
+          context.setFontSize(12);
+          context.setFillStyle(commonStyles.whiteColor);
+          context.setTextAlign('left');
+          context.fillText(userInfo.phone, 42, 110);
+        }
         //微信
         Taro.getImageInfo({
           src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_white.png?sign=ade4af5a05ef6c2bc1f9bce5bf2c1102&t=1585126764`,
         }).then((res) => {
-          //@ts-ignore
-          context.drawImage(res.path, 248, 175, 12, 10);
-          context.setTextAlign('left');
-          context.fillText('bozaqgao98', 42, 130);
+          if (!hideWechat) {
+            //@ts-ignore
+            context.drawImage(res.path, 248, 175, 12, 10);
+            context.setTextAlign('left');
+            context.fillText(userInfo.wechat, 42, 130);
+          }
           //邮箱
           Taro.getImageInfo({
             src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_white.png?sign=18c78e0a941c1a9b9c672764e82a87e7&t=1585126677`,
           }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 267, 175, 12, 10);
-            context.setTextAlign('left');
-            context.fillText('邮箱信息未对外公开', 42, 150);
+            if (!hideEmail) {
+              //@ts-ignore
+              context.drawImage(res.path, 267, 175, 12, 10);
+              context.setTextAlign('left');
+              context.fillText(userInfo.email, 42, 150);
+            }
             //地址
             Taro.getImageInfo({
               src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_white.png?sign=2cc8541bf5e97610964db8f657c6565c&t=1585126701`,
             }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 286, 175, 12, 10);
-              context.setTextAlign('left');
-              context.fillText('四川省成都市武侯区锦悦西路77号', 42, 170);
+              if (!hideAddress) {
+                //@ts-ignore
+                context.drawImage(res.path, 286, 175, 12, 10);
+                context.setTextAlign('left');
+                context.fillText(userInfo.detailAddress, 42, 170);
+              }
               //小程序码
               Taro.getImageInfo({
-                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+                src: userInfo.wxacode,
               }).then((res) => {
                 //@ts-ignore
                 context.drawImage(res.path, 15, 360, 44, 44);
                 context.setTextAlign('right');
                 Taro.getImageInfo({
-                  src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+                  src: userInfo.avatar,
                 }).then((res) => {
 
                   let arcWidth = 60;
@@ -228,15 +293,15 @@ class MingpianHaibao extends Component<Props, State> {
                   context.restore();
                   context.setFontSize(18);
                   context.setFillStyle('#E2BB7B');
-                  context.fillText('波仔糕', 120, 60);
+                  context.fillText(userInfo.name, 120, 60);
                   context.setFontSize(12);
                   context.setFillStyle(commonStyles.whiteColor);
-                  context.fillText('客户端工程师', 120, 80);
+                  context.fillText(userInfo.position, 120, 80);
                   context.setTextAlign('left');
-                  context.fillText('融创科技', 250, 50);
+                  context.fillText(userInfo.company, 250, 50);
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
-                  that.fillTextWrap(context, `我是融创科技的客户端工程师波仔糕`, 15, 260, 294, 20, 14);
+                  that.fillTextWrap(context, `我是${userInfo.company}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
@@ -275,6 +340,7 @@ class MingpianHaibao extends Component<Props, State> {
   drawBallStyle3() {
     this.viewRef && this.viewRef.showLoading();
     let {userInfo} = this.props;
+    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -290,45 +356,53 @@ class MingpianHaibao extends Component<Props, State> {
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_gray.png?sign=a0b9ff52662e0b32a72ab4a78559cb02&t=1585125501`,
       }).then((res) => {
-        //@ts-ignore
-        context.drawImage(res.path, 38, 146, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle('#343434');
-        context.setTextAlign('left');
-        context.fillText('17311239269', 53, 155);
+        if (!hidePhone) {
+          //@ts-ignore
+          context.drawImage(res.path, 38, 146, 11, 9);
+          context.setFontSize(12);
+          context.setFillStyle('#343434');
+          context.setTextAlign('left');
+          context.fillText(userInfo.phone, 53, 155);
+        }
         //微信
         Taro.getImageInfo({
           src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_gray.png?sign=76fc4851c80b994c1982f9d598893b00&t=1585125546`,
         }).then((res) => {
-          //@ts-ignore
-          context.drawImage(res.path, 38, 164, 12, 10);
-          context.setTextAlign('left');
-          context.fillText('bozaqgao98', 58, 174);
+          if (!hideWechat) {
+            //@ts-ignore
+            context.drawImage(res.path, 38, 164, 12, 10);
+            context.setTextAlign('left');
+            context.fillText(userInfo.wechat, 58, 174);
+          }
           //邮箱
           Taro.getImageInfo({
             src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_gray.png?sign=aeaa9c0c82237be640551b27cf3e3a5e&t=1585125409`,
           }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 178, 146, 12, 10);
-            context.setTextAlign('left');
-            context.fillText('邮箱信息未对外公开', 194, 155);
+            if (!hideEmail) {
+              //@ts-ignore
+              context.drawImage(res.path, 178, 146, 12, 10);
+              context.setTextAlign('left');
+              context.fillText(userInfo.email, 194, 155);
+            }
             //地址
             Taro.getImageInfo({
               src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_gray.png?sign=0d2086dff61b5fc45c269bab7980a1f7&t=1585125458`,
             }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 178, 164, 12, 10);
-              context.setTextAlign('left');
-              that.fillTextWrap2(context, `四川省成都市武侯区锦悦西路77号`, 192, 174, 100, 16, 12);
+              if (!hideAddress) {
+                //@ts-ignore
+                context.drawImage(res.path, 178, 164, 12, 10);
+                context.setTextAlign('left');
+                that.fillTextWrap2(context, userInfo.detailAddress, 192, 174, 100, 16, 12);
+              }
               //小程序码
               Taro.getImageInfo({
-                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+                src: userInfo.wxacode,
               }).then((res) => {
                 //@ts-ignore
                 context.drawImage(res.path, 15, 360, 44, 44);
                 context.setTextAlign('right');
                 Taro.getImageInfo({
-                  src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+                  src: userInfo.avatar,
                 }).then((res) => {
 
                   let arcWidth = 60;
@@ -346,15 +420,15 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(18);
                   context.setFillStyle('#343434');
                   context.setTextAlign('center');
-                  context.fillText('波仔糕', 170, 100);
+                  context.fillText(userInfo.name, 170, 100);
                   context.setFontSize(12);
                   context.setFillStyle('#343434');
-                  context.fillText('客户端工程师', 170, 117);
-                  context.fillText('融创科技', 170, 132);
+                  context.fillText(userInfo.position, 170, 117);
+                  context.fillText(userInfo.company, 170, 132);
                   context.setFontSize(14);
                   context.setTextAlign('left');
                   context.fillText('您好,', 15, 240);
-                  that.fillTextWrap(context, `我是融创科技的客户端工程师波仔糕`, 15, 260, 294, 20, 14);
+                  that.fillTextWrap(context, `我是${userInfo.company}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
@@ -393,6 +467,7 @@ class MingpianHaibao extends Component<Props, State> {
   drawBallStyle4() {
     this.viewRef && this.viewRef.showLoading();
     let {userInfo} = this.props;
+    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -408,45 +483,53 @@ class MingpianHaibao extends Component<Props, State> {
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_gray.png?sign=a0b9ff52662e0b32a72ab4a78559cb02&t=1585125501`,
       }).then((res) => {
-        //@ts-ignore
-        context.drawImage(res.path, 38, 106, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle('#343434');
-        context.setTextAlign('left');
-        context.fillText('17311239269', 53, 115);
+        if (!hidePhone) {
+          //@ts-ignore
+          context.drawImage(res.path, 38, 106, 11, 9);
+          context.setFontSize(12);
+          context.setFillStyle('#343434');
+          context.setTextAlign('left');
+          context.fillText(userInfo.phone, 53, 115);
+        }
         //微信
         Taro.getImageInfo({
           src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_gray.png?sign=76fc4851c80b994c1982f9d598893b00&t=1585125546`,
         }).then((res) => {
-          //@ts-ignore
-          context.drawImage(res.path, 38, 124, 12, 10);
-          context.setTextAlign('left');
-          context.fillText('bozaqgao98', 58, 134);
+          if (!hideWechat) {
+            //@ts-ignore
+            context.drawImage(res.path, 38, 124, 12, 10);
+            context.setTextAlign('left');
+            context.fillText(userInfo.wechat, 58, 134);
+          }
           //邮箱
           Taro.getImageInfo({
             src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_gray.png?sign=aeaa9c0c82237be640551b27cf3e3a5e&t=1585125409`,
           }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 38, 146, 12, 10);
-            context.setTextAlign('left');
-            context.fillText('邮箱信息未对外公开', 58, 155);
+            if (!hideEmail) {
+              //@ts-ignore
+              context.drawImage(res.path, 38, 146, 12, 10);
+              context.setTextAlign('left');
+              context.fillText(userInfo.email, 58, 155);
+            }
             //地址
             Taro.getImageInfo({
               src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_gray.png?sign=0d2086dff61b5fc45c269bab7980a1f7&t=1585125458`,
             }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 38, 164, 12, 10);
-              context.setTextAlign('left');
-              that.fillTextWrap2(context, `四川省成都市武侯区锦悦西路77号`, 58, 174, 100, 16, 12);
+              if (!hideAddress) {
+                //@ts-ignore
+                context.drawImage(res.path, 38, 164, 12, 10);
+                context.setTextAlign('left');
+                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12);
+              }
               //小程序码
               Taro.getImageInfo({
-                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+                src: userInfo.wxacode,
               }).then((res) => {
                 //@ts-ignore
                 context.drawImage(res.path, 15, 360, 44, 44);
                 context.setTextAlign('right');
                 Taro.getImageInfo({
-                  src: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/f5d2edf9-204a-4eb9-8c75-f643b9ee9d23wx7834b9fe3df7e260.o6zAJs4Isyce0yXyimX4btWbjcko.zUap8D6fA36n97685444eaa98aaf0dbba1eb1b6e29aa.jpeg",
+                  src: userInfo.avatar,
                 }).then((res) => {
 
                   let arcWidth = 60;
@@ -464,15 +547,15 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(18);
                   context.setFillStyle('#343434');
                   context.setTextAlign('center');
-                  context.fillText('波仔糕', 68, 65);
+                  context.fillText(userInfo.name, 68, 65);
                   context.setFontSize(12);
                   context.setFillStyle('#343434');
-                  context.fillText('客户端工程师', 140, 65);
-                  context.fillText('融创科技', 68, 85);
+                  context.fillText(userInfo.position, 140, 65);
+                  context.fillText(userInfo.company, 68, 85);
                   context.setFontSize(14);
                   context.setTextAlign('left');
                   context.fillText('您好,', 15, 240);
-                  that.fillTextWrap(context, `我是融创科技的客户端工程师波仔糕`, 15, 260, 294, 20, 14);
+                  that.fillTextWrap(context, `我是${userInfo.company}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
@@ -511,6 +594,7 @@ class MingpianHaibao extends Component<Props, State> {
   drawBallStyle5() {
     this.viewRef && this.viewRef.showLoading();
     let {userInfo} = this.props;
+    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -526,40 +610,48 @@ class MingpianHaibao extends Component<Props, State> {
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_white.png?sign=f1c449e5641a4e599fe465fb92d61ffa&t=1585126741`,
       }).then((res) => {
-        //@ts-ignore
-        context.drawImage(res.path, 38, 106, 11, 9);
-        context.setFontSize(12);
-        context.setFillStyle(commonStyles.whiteColor);
-        context.setTextAlign('left');
-        context.fillText('17311239269', 53, 115);
+        if (!hidePhone) {
+          //@ts-ignore
+          context.drawImage(res.path, 38, 106, 11, 9);
+          context.setFontSize(12);
+          context.setFillStyle(commonStyles.whiteColor);
+          context.setTextAlign('left');
+          context.fillText(userInfo.phone, 53, 115);
+        }
         //微信
         Taro.getImageInfo({
           src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_white.png?sign=ade4af5a05ef6c2bc1f9bce5bf2c1102&t=1585126764`,
         }).then((res) => {
-          //@ts-ignore
-          context.drawImage(res.path, 38, 124, 12, 10);
-          context.setTextAlign('left');
-          context.fillText('bozaqgao98', 58, 134);
+          if (!hideWechat) {
+            //@ts-ignore
+            context.drawImage(res.path, 38, 124, 12, 10);
+            context.setTextAlign('left');
+            context.fillText(userInfo.wechat, 58, 134);
+          }
           //邮箱
           Taro.getImageInfo({
             src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_white.png?sign=18c78e0a941c1a9b9c672764e82a87e7&t=1585126677`,
           }).then((res) => {
-            //@ts-ignore
-            context.drawImage(res.path, 38, 146, 12, 10);
-            context.setTextAlign('left');
-            context.fillText('邮箱信息未对外公开', 58, 155);
+            if (!hideEmail) {
+              //@ts-ignore
+              context.drawImage(res.path, 38, 146, 12, 10);
+              context.setTextAlign('left');
+              context.fillText(userInfo.email, 58, 155);
+            }
             //地址
             Taro.getImageInfo({
               src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_white.png?sign=2cc8541bf5e97610964db8f657c6565c&t=1585126701`,
             }).then((res) => {
-              //@ts-ignore
-              context.drawImage(res.path, 38, 164, 12, 10);
-              context.setTextAlign('left');
-              context.setFillStyle(commonStyles.whiteColor);
-              that.fillTextWrap2(context, `四川省成都市武侯区锦悦西路77号`, 58, 174, 100, 16, 12);
+              if (!hideAddress) {
+                //@ts-ignore
+                context.drawImage(res.path, 38, 164, 12, 10);
+                context.setTextAlign('left');
+                context.setFillStyle(commonStyles.whiteColor);
+                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12);
+              }
               //小程序码
               Taro.getImageInfo({
-                src: `https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/1a6fe6b5-a397-476c-8ddb-ab1c50d016fauser_20_1583967075205.jpg`,
+                src: userInfo.wxacode,
               }).then((res) => {
                 //@ts-ignore
                 context.drawImage(res.path, 15, 360, 44, 44);
@@ -568,14 +660,14 @@ class MingpianHaibao extends Component<Props, State> {
                 context.setFontSize(18);
                 context.setFillStyle(commonStyles.whiteColor);
                 context.setTextAlign('center');
-                context.fillText('波仔糕', 68, 65);
+                context.fillText(userInfo.name, 68, 65);
                 context.setFontSize(12);
-                context.fillText('客户端工程师', 140, 65);
-                context.fillText('融创科技', 68, 85);
+                context.fillText(userInfo.position, 140, 65);
+                context.fillText(userInfo.company, 68, 85);
                 context.setFontSize(14);
                 context.setTextAlign('left');
                 context.fillText('您好,', 15, 240);
-                that.fillTextWrap(context, `我是融创科技的客户端工程师波仔糕`, 15, 260, 294, 20, 14);
+                that.fillTextWrap(context, `我是${userInfo.company}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                 context.setFillStyle('#E2BB7B');
                 context.fillText('长按识别二维码 收下名片', 70, 390);
                 context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
