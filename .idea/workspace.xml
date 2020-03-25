@@ -19,9 +19,10 @@
       <file leaf-file-name="mingpian_haibao.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mingpian_haibao.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="553" column="30" lean-forward="true" selection-start-line="553" selection-start-column="30" selection-end-line="553" selection-end-column="30" />
+            <state relative-caret-position="352">
+              <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
               <folding>
+                <element signature="e#0#44#0" expanded="true" />
                 <element signature="e#4313#4399#0" expanded="true" />
               </folding>
             </state>
@@ -492,12 +493,12 @@
       <workItem from="1585055800227" duration="1541000" />
       <workItem from="1585091991874" duration="551000" />
       <workItem from="1585098169080" duration="21501000" />
-      <workItem from="1585126453826" duration="5537000" />
+      <workItem from="1585126453826" duration="5579000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1102960000" />
+    <option name="totallyTimeSpent" value="1103002000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1019,9 +1020,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mingpian_haibao.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="553" column="30" lean-forward="true" selection-start-line="553" selection-start-column="30" selection-end-line="553" selection-end-column="30" />
+        <state relative-caret-position="352">
+          <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding>
+            <element signature="e#0#44#0" expanded="true" />
             <element signature="e#4313#4399#0" expanded="true" />
           </folding>
         </state>

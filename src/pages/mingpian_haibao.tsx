@@ -1,4 +1,4 @@
-import Taro, {Component, Config} from '@tarojs/taro'
+import Taro, {Component} from '@tarojs/taro'
 import {View} from '@tarojs/components'
 import {styleAssign, toast} from "../utils/datatool";
 import {bgColor, commonStyles, default as styles} from "../utils/style";
