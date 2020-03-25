@@ -20,6 +20,7 @@ import styles, {
   h,
   ml,
   mt,
+  op,
   radiusA,
   w,
   wRatio
@@ -95,34 +96,22 @@ export default class CardStyle2 extends PureComponent<Props, State> {
           </View>
           <View
             style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(77), h(15), styles.uac])}>
-            {
-              !hidePhone &&
-              <View style={styleAssign([w(20.5), styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(11), h(9)])}
-                       src={require('../../assets/ico_card_mobile_white.png')}/>
-              </View>
-            }
-            {
-              !hideWechat &&
-              <View style={styleAssign([w(20.5), styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(12), h(10)])}
-                       src={require('../../assets/ico_card_wechat_white.png')}/>
-              </View>
-            }
-            {
-              !hideEmail &&
-              <View style={styleAssign([w(21), styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(12), h(10)])}
-                       src={require('../../assets/ico_card_email_white.png')}/>
-              </View>
-            }
-            {
-              !hideAddress &&
-              <View style={styleAssign([w(21), styles.uac, styles.ujc])}>
-                <Image style={styleAssign([w(10), h(11)])}
-                       src={require('../../assets/ico_card_location_white.png')}/>
-              </View>
-            }
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hidePhone ? 0 : 1)])}>
+              <Image style={styleAssign([w(11), h(9)])}
+                     src={require('../../assets/ico_card_mobile_white.png')}/>
+            </View>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideWechat ? 0 : 1)])}>
+              <Image style={styleAssign([w(12), h(10)])}
+                     src={require('../../assets/ico_card_wechat_white.png')}/>
+            </View>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideEmail ? 0 : 1)])}>
+              <Image style={styleAssign([w(12), h(10)])}
+                     src={require('../../assets/ico_card_email_white.png')}/>
+            </View>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideAddress ? 0 : 1)])}>
+              <Image style={styleAssign([w(10), h(11)])}
+                     src={require('../../assets/ico_card_location_white.png')}/>
+            </View>
           </View>
         </View>
       </View>
