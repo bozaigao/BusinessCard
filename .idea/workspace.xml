@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mingpian_style.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mingpian_style.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mingpian_style.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mingpian_style.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mingpian_style.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="96" column="27" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
+            <state relative-caret-position="434">
+              <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#114#166#0" expanded="true" />
@@ -45,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1364">
-              <caret line="62" column="66" lean-forward="true" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
+            <state relative-caret-position="505">
+              <caret line="85" column="57" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#106#155#0" expanded="true" />
@@ -280,8 +278,8 @@
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style1/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style5/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style4/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mingpian_style.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx" />
       </list>
     </option>
   </component>
@@ -635,12 +633,12 @@
       <workItem from="1585029648589" duration="5354000" />
       <workItem from="1585055800227" duration="1541000" />
       <workItem from="1585091991874" duration="551000" />
-      <workItem from="1585098169080" duration="9677000" />
+      <workItem from="1585098169080" duration="9860000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1085599000" />
+    <option name="totallyTimeSpent" value="1085782000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1136,24 +1134,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/mingpian_style.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="62" column="66" lean-forward="true" selection-start-line="62" selection-start-column="66" selection-end-line="62" selection-end-column="66" />
+        <state relative-caret-position="434">
+          <caret line="90" column="25" selection-start-line="90" selection-start-column="25" selection-end-line="90" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#106#155#0" expanded="true" />
+            <element signature="e#114#166#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mingpian_style.tsx">
+    <entry file="file://$PROJECT_DIR$/src/pages/sub_pagecomponent/card-style3/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="96" column="27" selection-start-line="96" selection-start-column="27" selection-end-line="96" selection-end-column="27" />
+        <state relative-caret-position="505">
+          <caret line="85" column="57" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#114#166#0" expanded="true" />
+            <element signature="e#106#155#0" expanded="true" />
           </folding>
         </state>
       </provider>

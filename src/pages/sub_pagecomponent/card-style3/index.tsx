@@ -11,7 +11,7 @@ import {styleAssign} from "../../../utils/datatool";
 import styles, {
   absB,
   absL,
-  absT,
+  absT, bgColor,
   color,
   fSize,
   fWeight,
@@ -76,7 +76,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
             </View>
             <View style={styleAssign([styles.uf1])}>
               {/*邮箱*/}
-              <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
+              <View style={styleAssign([styles.uac, styles.udr])}>
                 <Image style={styleAssign([w(12), h(10)])}
                        src={`${cloudBaseUrl}ico_card_email_gray.png`}/>
                 <Text
