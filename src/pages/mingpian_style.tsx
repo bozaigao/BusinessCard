@@ -9,18 +9,24 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 import {hidePhone, styleAssign} from "../utils/datatool";
 import {
-  absB, absL,
+  absB,
+  absL,
   absR,
   absT,
   bgColor,
   color,
   commonStyles,
   default as styles,
-  fSize, fWeight, h,
+  fSize,
+  fWeight,
+  h,
   ml,
-  mt, pl, pr,
+  mt,
+  pl,
+  pr,
   radiusA,
-  w, wRatio
+  w,
+  wRatio
 } from "../utils/style";
 import * as actions from '../actions/login';
 import {connect} from "@tarojs/redux";
@@ -28,6 +34,7 @@ import TopHeader from "../compoments/top-header";
 import {Image, Text, View} from "@tarojs/components";
 import {cloudBaseUrl} from "../api/httpurl";
 import {User} from "../const/global";
+import BottomButon from "../compoments/bottom-buton";
 
 interface Props {
   userInfo: User;
@@ -135,9 +142,9 @@ class MingpianStyle extends Component<Props, State> {
             </View>
           </View>
           <View style={styleAssign([styles.uac, styles.udr, wRatio(100)])}>
-            <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(20)])}>选择版式</Text>
+            <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(15)])}>选择版式</Text>
           </View>
-          <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(20), pl(10), pr(10)])}>
+          <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(15), pl(10), pr(10)])}>
             {
               [{icon: require('../assets/ico_mingpian_style_1.png'), title: '商务版'},
                 {icon: require('../assets/ico_mingpian_style_2.png'), title: '黑金版'},
@@ -153,15 +160,18 @@ class MingpianStyle extends Component<Props, State> {
             }
           </View>
           <View style={styleAssign([styles.uac, styles.udr, wRatio(100)])}>
-            <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(20)])}>名片图</Text>
+            <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(15)])}>名片图</Text>
           </View>
           <View style={styleAssign([wRatio(100), styles.uac, styles.udr])}>
             <View
-              style={styleAssign([w(65), h(65), bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac, styles.ujc, mt(20), ml(20)])}>
+              style={styleAssign([w(65), h(65), bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac, styles.ujc, mt(15), ml(20)])}>
               <Image style={styleAssign([w(40), h(40)])} src={require('../assets/ico_mingpian_style_add.png')}/>
             </View>
           </View>
         </View>
+        <BottomButon title={'完成'} onClick={() => {
+
+        }}/>
       </CustomSafeAreaView>
     )
   }

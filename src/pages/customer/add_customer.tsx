@@ -139,7 +139,7 @@ class AddCustomer extends Component<Props, State> {
    */
   addPrivateCustomer = () => {
 
-    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress,email} = this.state;
+    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress, email} = this.state;
 
     if (name.length === 0) {
       toast('备注名不能为空');
@@ -154,7 +154,7 @@ class AddCustomer extends Component<Props, State> {
       return;
     }
 
-    if (!isLegalEmail(email)) {
+    if (email.length !== 0 && !isLegalEmail(email)) {
       toast('请输入有效的邮箱');
       return;
     }
