@@ -12,7 +12,7 @@ import styles, {
   absB,
   absL,
   absR,
-  absT, bgColor,
+  absT,
   color,
   commonStyles,
   fSize,
