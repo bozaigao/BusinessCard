@@ -9,7 +9,6 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {styleAssign} from "../../utils/datatool";
 import {
-  absB,
   absT,
   bdColor,
   bgColor,
@@ -32,7 +31,7 @@ import {
 import * as actions from '../../actions/login';
 import {connect} from "@tarojs/redux";
 import TopHeader from "../../compoments/top-header/index";
-import {Image, ScrollView, Text, View, Swiper, SwiperItem} from "@tarojs/components";
+import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import {User} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
 import CardStyle1 from "./page-component/card-style1/index";
