@@ -9,6 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {styleAssign} from "../../utils/datatool";
 import {
+  absB,
   absT,
   bdColor,
   bgColor,
@@ -31,7 +32,7 @@ import {
 import * as actions from '../../actions/login';
 import {connect} from "@tarojs/redux";
 import TopHeader from "../../compoments/top-header/index";
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Text, View, Swiper, SwiperItem} from "@tarojs/components";
 import {User} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
 import CardStyle1 from "./page-component/card-style1/index";
@@ -85,33 +86,6 @@ class MingpianStyle extends Component<Props, State> {
   render() {
     let {userInfo} = this.props;
     let {publicInfoArr, style, hidePhone, hideWechat, hideEmail, hideAddress} = this.state;
-    let cardChild = null;
-
-    if (style === 0) {
-      //@ts-ignore
-      cardChild =
-        <CardStyle1 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
-                    userInfo={userInfo}/>;
-    } else if (style === 1) {
-      //@ts-ignore
-      cardChild = <CardStyle2 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
-      userInfo={userInfo}/>;
-    }
-    else if (style === 2) {
-      //@ts-ignore
-      cardChild = <CardStyle3 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
-                              userInfo={userInfo}/>;
-    }
-    else if (style === 3) {
-      //@ts-ignore
-      cardChild = <CardStyle4 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
-                              userInfo={userInfo}/>;
-    }
-    else if (style === 4) {
-      //@ts-ignore
-      cardChild = <CardStyle5 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}
-                              userInfo={userInfo}/>;
-    }
 
     return (
       <CustomSafeAreaView
@@ -123,8 +97,41 @@ class MingpianStyle extends Component<Props, State> {
           scrollY>
           <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor), styles.uac])}>
             <View
-              style={styleAssign([wRatio(100), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-              {cardChild}
+              style={styleAssign([wRatio(100), h(346), styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+              <Swiper
+                current={style}
+                style={styleAssign([wRatio(100), styles.uac, styles.ujc, h(246)])}
+                onChange={(e) => {
+                  this.setState({style: e.detail.current}, () => {
+
+                  });
+                }}>
+                <SwiperItem style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+                  <CardStyle1 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail}
+                              hideAddress={hideAddress}
+                              userInfo={userInfo}/>
+                </SwiperItem>
+                <SwiperItem style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+                  <CardStyle2 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail}
+                              hideAddress={hideAddress}
+                              userInfo={userInfo}/>
+                </SwiperItem>
+                <SwiperItem style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+                  <CardStyle3 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail}
+                              hideAddress={hideAddress}
+                              userInfo={userInfo}/>
+                </SwiperItem>
+                <SwiperItem style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+                  <CardStyle4 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail}
+                              hideAddress={hideAddress}
+                              userInfo={userInfo}/>
+                </SwiperItem>
+                <SwiperItem style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+                  <CardStyle5 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail}
+                              hideAddress={hideAddress}
+                              userInfo={userInfo}/>
+                </SwiperItem>
+              </Swiper>
             </View>
             <View style={styleAssign([styles.uac, styles.udr, wRatio(100)])}>
               <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(15)])}>对外公开信息</Text>
