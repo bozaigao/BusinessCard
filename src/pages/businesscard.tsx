@@ -35,6 +35,7 @@ interface Props {
   getRecommend: any;
   getCardHolderVisitorCount: any;
   updateMyCollect: any;
+  userSettingGet: any;
   userInfo: User;
 }
 
@@ -48,6 +49,12 @@ interface State {
   holderCount: number;
   visitorCount: number;
   currentIndex: number;
+  cardStyle: string;
+  hidePhone: number;
+  hideWechat: number;
+  hideEmail: number;
+  hideAddress: number;
+
 }
 
 @connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions))
@@ -79,11 +86,17 @@ class Businesscard extends Component<Props, State> {
       showGuide3: false,
       holderCount: 0,
       visitorCount: 0,
-      currentIndex: 0
+      currentIndex: 0,
+      cardStyle: '0',
+      hidePhone: 0,
+      hideWechat: 0,
+      hideEmail: 0,
+      hideAddress: 0,
     }
   }
 
   componentDidShow() {
+    this.userSettingGet();
     this.getCardHolderVisitorCount();
     this.getUserInfo();
     this.getRecommendSetting();
@@ -216,7 +229,7 @@ class Businesscard extends Component<Props, State> {
 
   //@ts-ignore
   onShareAppMessage(res) {
-    debounce(500,()=>{
+    debounce(500, () => {
       return {
         title: `${this.props.userInfo.name}的名片分享`,
         path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
@@ -246,9 +259,35 @@ class Businesscard extends Component<Props, State> {
   }
 
 
-  render() {
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 获取用户的设置信息
+   */
+  userSettingGet = () => {
+    this.props.userSettingGet().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          hidePhone: res.phone,
+          hideWechat: res.wechat,
+          hideEmail: res.email,
+          hideAddress: res.address,
+          cardStyle: res.cardStyle
+        });
+      }
+      console.log('获取用户的设置信息', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
 
-    let {showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex} = this.state;
+
+  render() {
+    let {
+      showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex,
+      hidePhone, hideWechat, hideEmail, hideAddress, cardStyle
+    } = this.state;
     let {userInfo} = this.props;
 
     return (
@@ -270,6 +309,11 @@ class Businesscard extends Component<Props, State> {
           scrollY>
           {/*个人名片*/}
           <Card
+            hidePhone={hidePhone}
+            hideWechat={hideWechat}
+            hideEmail={hideEmail}
+            hideAddress={hideAddress}
+            cardStyle={cardStyle}
             holderCount={holderCount}
             visitorCount={visitorCount}
             userInfo={this.props.userInfo}
@@ -368,7 +412,7 @@ class Businesscard extends Component<Props, State> {
             this.setState({showShare: false});
           }
           } haibao={() => {
-            this.setState({showShare: false},()=>{
+            this.setState({showShare: false}, () => {
               Taro.navigateTo({
                 url: `/pages/businesscard/mingpian_haibao`
               });
