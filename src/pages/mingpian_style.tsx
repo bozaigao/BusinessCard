@@ -93,7 +93,7 @@ class MingpianStyle extends Component<Props, State> {
         <CardStyle1 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
     } else if (style === 1) {
       //@ts-ignore
-      cardChild = <CardStyle2/>;
+      cardChild = <CardStyle2 hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress}/>;
     }
     else if (style === 2) {
       //@ts-ignore

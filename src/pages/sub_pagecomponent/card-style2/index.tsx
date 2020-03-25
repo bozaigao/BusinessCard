@@ -25,10 +25,13 @@ import styles, {
   w,
   wRatio
 } from "../../../utils/style";
-import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
+  hidePhone?: boolean;
+  hideWechat?: boolean;
+  hideEmail?: boolean;
+  hideAddress?: boolean;
 }
 
 interface State {
@@ -37,6 +40,7 @@ interface State {
 export default class CardStyle2 extends PureComponent<Props, State> {
 
   render() {
+    let {hidePhone, hideWechat, hideEmail, hideAddress} = this.props;
 
     return (
       <View style={styleAssign([w(347), h(216), radiusA(10),
@@ -58,36 +62,64 @@ export default class CardStyle2 extends PureComponent<Props, State> {
             style={styleAssign([fSize(11), color(commonStyles.whiteColor), styles.upa, absT(24), absR(26)])}>美克美家家居有限公司</Text>
           <View style={styleAssign([styles.upa, absB(30), absL(42)])}>
             {/*电话号码*/}
-            <View style={styleAssign([styles.uac, styles.udr])}>
-              <Text
-                style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>15982468866</Text>
-            </View>
+            {
+              !hidePhone && <View style={styleAssign([styles.uac, styles.udr])}>
+                <Text
+                  style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>15982468866</Text>
+              </View>
+            }
             {/*微信号*/}
-            <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
-              <Text
-                style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>98248866LSY</Text>
-            </View>
+            {
+              !hideWechat && <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
+                <Text
+                  style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>98248866LSY</Text>
+              </View>
+            }
             {/*邮箱*/}
-            <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
-              <Text
-                style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>982468866@168.com</Text>
-            </View>
+            {
+              !hideEmail && <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
+                <Text
+                  style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>982468866@168.com</Text>
+              </View>
+            }
             {/*地址*/}
-            <View style={styleAssign([styles.udr, mt(4)])}>
-              <Text
-                style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>地址信息未对外公开</Text>
-            </View>
+            {
+              !hideAddress && <View style={styleAssign([styles.udr, mt(4)])}>
+                <Text
+                  style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>地址信息未对外公开</Text>
+              </View>
+            }
           </View>
           <View
-            style={styleAssign([styles.upa,styles.udr, absR(25), absB(17), w(82), h(15), styles.uac, styles.uja])}>
-            <Image style={styleAssign([w(11), h(9)])}
-                   src={`${cloudBaseUrl}ico_card_mobile_white.png`}/>
-            <Image style={styleAssign([w(12), h(10)])}
-                   src={`${cloudBaseUrl}ico_card_wechat_white.png`}/>
-            <Image style={styleAssign([w(12), h(10)])}
-                   src={`${cloudBaseUrl}ico_card_email_white.png`}/>
-            <Image style={styleAssign([w(10), h(11)])}
-                   src={`${cloudBaseUrl}ico_card_location_white.png`}/>
+            style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(82), h(15), styles.uac])}>
+            {
+              !hidePhone &&
+              <View style={styleAssign([w(20.5), styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(11), h(9)])}
+                       src={require('../../../assets/ico_card_mobile_white.png')}/>
+              </View>
+            }
+            {
+              !hideWechat &&
+              <View style={styleAssign([w(20.5), styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(12), h(10)])}
+                       src={require('../../../assets/ico_card_wechat_white.png')}/>
+              </View>
+            }
+            {
+              !hideEmail &&
+              <View style={styleAssign([w(21), styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(12), h(10)])}
+                       src={require('../../../assets/ico_card_email_white.png')}/>
+              </View>
+            }s
+            {
+              !hideAddress &&
+              <View style={styleAssign([w(21), styles.uac, styles.ujc])}>
+                <Image style={styleAssign([w(10), h(11)])}
+                       src={require('../../../assets/ico_card_location_white.png')}/>
+              </View>
+            }
           </View>
         </View>
       </View>
