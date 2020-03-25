@@ -38,6 +38,7 @@ import CardStyle1 from "./sub_pagecomponent/card-style1";
 import CardStyle2 from "./sub_pagecomponent/card-style2";
 import CardStyle4 from "./sub_pagecomponent/card-style4";
 import CardStyle5 from "./sub_pagecomponent/card-style5";
+import CardStyle3 from "./sub_pagecomponent/card-style3";
 
 interface Props {
   userInfo: User;
@@ -80,7 +81,7 @@ class MingpianStyle extends Component<Props, State> {
 
     if (style === 0) {
       //@ts-ignore
-      cardChild = <CardStyle5/>;
+      cardChild = <CardStyle3/>;
     } else if (style === 1) {
       //@ts-ignore
       cardChild = <CardStyle2/>;
