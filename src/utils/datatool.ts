@@ -260,5 +260,8 @@ export function isLegalEmail(email) {
  * @function: 隐藏手机号
  */
 export function hidePhone(phone) {
-  return phone.substr(0, 3) + '****' + phone.substr(7);
+  if (phone) {
+    return phone.substr(0, 3) + '****' + phone.substr(7);
+  }
+  return '';
 }
