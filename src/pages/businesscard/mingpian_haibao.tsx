@@ -51,7 +51,7 @@ class MingpianHaibao extends Component<Props, State> {
       context.drawImage(res.path, 10, 10, 313, 194);
       //电话
       Taro.getImageInfo({
-        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile.png?sign=16ccd18da0a7c3bbcbb3bf1f8a582b0d&t=1584026985`,
+        src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_gray.png?sign=a0b9ff52662e0b32a72ab4a78559cb02&t=1585125501`,
       }).then((res) => {
         //@ts-ignore
         context.drawImage(res.path, 295, 90, 11, 9);
@@ -61,7 +61,7 @@ class MingpianHaibao extends Component<Props, State> {
         context.fillText(userInfo.phone, 290, 100);
         //微信
         Taro.getImageInfo({
-          src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat.png?sign=d69e311e5b1e06c521c064611bd9d30a&t=1584028318`,
+          src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_wechat_gray.png?sign=76fc4851c80b994c1982f9d598893b00&t=1585125546`,
         }).then((res) => {
           //@ts-ignore
           context.drawImage(res.path, 295, 110, 12, 10);
@@ -69,7 +69,7 @@ class MingpianHaibao extends Component<Props, State> {
           context.fillText(userInfo.wechat, 290, 120);
           //邮箱
           Taro.getImageInfo({
-            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email.png?sign=f35e0d13f139b041fdb849c2e143e5ce&t=1584030793`,
+            src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_email_gray.png?sign=aeaa9c0c82237be640551b27cf3e3a5e&t=1585125409`,
           }).then((res) => {
             //@ts-ignore
             context.drawImage(res.path, 295, 130, 12, 10);
@@ -77,7 +77,7 @@ class MingpianHaibao extends Component<Props, State> {
             context.fillText(userInfo.email ? userInfo.email : '邮箱信息未对外公开', 290, 140);
             //地址
             Taro.getImageInfo({
-              src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location.png?sign=c3abda7fa28594034f71a597086f5864&t=1584030919`,
+              src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_location_gray.png?sign=0d2086dff61b5fc45c269bab7980a1f7&t=1585125458`,
             }).then((res) => {
               //@ts-ignore
               context.drawImage(res.path, 295, 150, 12, 10);
@@ -179,7 +179,6 @@ class MingpianHaibao extends Component<Props, State> {
       }
     }).then(res => {
       if (res.authSetting['scope.writePhotosAlbum']) {
-        console.log('保存图片', this.state.imageTempPath);
         Taro.saveImageToPhotosAlbum({
           filePath: this.state.imageTempPath
         }).then(res => {
