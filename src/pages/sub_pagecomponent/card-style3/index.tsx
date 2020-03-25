@@ -29,6 +29,10 @@ import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
+  hidePhone?: boolean;
+  hideWechat?: boolean;
+  hideEmail?: boolean;
+  hideAddress?: boolean;
 }
 
 interface State {
@@ -37,6 +41,7 @@ interface State {
 export default class CardStyle3 extends PureComponent<Props, State> {
 
   render() {
+    let {hidePhone, hideWechat, hideEmail, hideAddress} = this.props;
 
     return (
       <View style={styleAssign([w(347), h(216), radiusA(10),
@@ -60,35 +65,43 @@ export default class CardStyle3 extends PureComponent<Props, State> {
           <View style={styleAssign([styles.upa, styles.udr, wRatio(100), absB(20), pl(40), pr(40)])}>
             <View style={styleAssign([styles.uf1])}>
               {/*电话号码*/}
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <Image style={styleAssign([w(11), h(9)])}
-                       src={`${cloudBaseUrl}ico_card_mobile_gray.png`}/>
-                <Text
-                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>15982468866</Text>
-              </View>
+              {
+                !hidePhone && <View style={styleAssign([styles.uac, styles.udr])}>
+                  <Image style={styleAssign([w(11), h(9)])}
+                         src={`${cloudBaseUrl}ico_card_mobile_gray.png`}/>
+                  <Text
+                    style={styleAssign([fSize(11), color('#343434'), ml(5)])}>15982468866</Text>
+                </View>
+              }
               {/*微信号*/}
-              <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
-                <Image style={styleAssign([w(12), h(10)])}
-                       src={`${cloudBaseUrl}ico_card_wechat_gray.png`}/>
-                <Text
-                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>98248866LSY</Text>
-              </View>
+              {
+                !hideWechat && <View style={styleAssign([styles.uac, styles.udr, mt(hidePhone ? 0 : 4)])}>
+                  <Image style={styleAssign([w(12), h(10)])}
+                         src={`${cloudBaseUrl}ico_card_wechat_gray.png`}/>
+                  <Text
+                    style={styleAssign([fSize(11), color('#343434'), ml(5)])}>98248866LSY</Text>
+                </View>
+              }
             </View>
             <View style={styleAssign([styles.uf1])}>
               {/*邮箱*/}
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <Image style={styleAssign([w(12), h(10)])}
-                       src={`${cloudBaseUrl}ico_card_email_gray.png`}/>
-                <Text
-                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>982468866@168.com</Text>
-              </View>
+              {
+                !hideEmail && <View style={styleAssign([styles.uac, styles.udr])}>
+                  <Image style={styleAssign([w(12), h(10)])}
+                         src={`${cloudBaseUrl}ico_card_email_gray.png`}/>
+                  <Text
+                    style={styleAssign([fSize(11), color('#343434'), ml(5)])}>982468866@168.com</Text>
+                </View>
+              }
               {/*地址*/}
-              <View style={styleAssign([styles.udr, mt(4)])}>
-                <Image style={styleAssign([w(10), h(11),mt(4)])}
-                       src={`${cloudBaseUrl}ico_card_location_gray.png`}/>
-                <Text
-                  style={styleAssign([fSize(11), color('#343434'),ml(5)])}>地址信息未对外公开</Text>
-              </View>
+              {
+                !hideAddress && <View style={styleAssign([styles.udr, mt(hideEmail ? 0 : 4)])}>
+                  <Image style={styleAssign([w(10), h(11), mt(4)])}
+                         src={`${cloudBaseUrl}ico_card_location_gray.png`}/>
+                  <Text
+                    style={styleAssign([fSize(11), color('#343434'), ml(5)])}>地址信息未对外公开</Text>
+                </View>
+              }
             </View>
           </View>
         </View>

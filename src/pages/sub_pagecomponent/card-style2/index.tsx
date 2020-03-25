@@ -112,7 +112,7 @@ export default class CardStyle2 extends PureComponent<Props, State> {
                 <Image style={styleAssign([w(12), h(10)])}
                        src={require('../../../assets/ico_card_email_white.png')}/>
               </View>
-            }s
+            }
             {
               !hideAddress &&
               <View style={styleAssign([w(21), styles.uac, styles.ujc])}>
