@@ -34,11 +34,11 @@ import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import {User} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
-import CardStyle1 from "./page-component/card-style1/index";
-import CardStyle2 from "./page-component/card-style2/index";
-import CardStyle4 from "./page-component/card-style4/index";
-import CardStyle5 from "./page-component/card-style5/index";
-import CardStyle3 from "./page-component/card-style3/index";
+import CardStyle1 from "../../compoments/card-style1/index";
+import CardStyle2 from "../../compoments/card-style2/index";
+import CardStyle4 from "../../compoments/card-style4/index";
+import CardStyle5 from "../../compoments/card-style5/index";
+import CardStyle3 from "../../compoments/card-style3/index";
 
 interface Props {
   userInfo: User;

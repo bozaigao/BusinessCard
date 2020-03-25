@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 import styles, {
   absB,
   absL,
@@ -24,8 +24,8 @@ import styles, {
   radiusA,
   w,
   wRatio
-} from "../../../../utils/style";
-import {User} from "../../../../const/global";
+} from "../../utils/style";
+import {User} from "../../const/global";
 
 
 interface Props {
@@ -48,7 +48,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
       <View style={styleAssign([w(347), h(216), radiusA(10),
         styles.udr, styles.uje, mt(50), mb(50)])}>
         <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
-               src={require('../../../../assets/ico_business_card_bg3.png')}/>
+               src={require('../../assets/ico_business_card_bg3.png')}/>
         <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
           <View
             style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
@@ -69,7 +69,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
               {
                 !hidePhone && <View style={styleAssign([styles.uac, styles.udr])}>
                   <Image style={styleAssign([w(11), h(9)])}
-                         src={require('../../../../assets/ico_card_mobile_gray.png')}/>
+                         src={require('../../assets/ico_card_mobile_gray.png')}/>
                   <Text
                     style={styleAssign([fSize(11), color('#343434'), ml(5)])}>{userInfo.phone}</Text>
                 </View>
@@ -78,7 +78,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
               {
                 !hideWechat && <View style={styleAssign([styles.uac, styles.udr, mt(hidePhone ? 0 : 4)])}>
                   <Image style={styleAssign([w(12), h(10)])}
-                         src={require('../../../../assets/ico_card_wechat_gray.png')}/>
+                         src={require('../../assets/ico_card_wechat_gray.png')}/>
                   <Text
                     style={styleAssign([fSize(11), color('#343434'), ml(5)])}>{userInfo.wechat}</Text>
                 </View>
@@ -89,7 +89,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
               {
                 !hideEmail && <View style={styleAssign([styles.uac, styles.udr])}>
                   <Image style={styleAssign([w(12), h(10)])}
-                         src={require('../../../../assets/ico_card_email_gray.png')}/>
+                         src={require('../../assets/ico_card_email_gray.png')}/>
                   <Text
                     style={styleAssign([fSize(11), color('#343434'), ml(5)])}>{userInfo.email}</Text>
                 </View>
@@ -98,7 +98,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
               {
                 !hideAddress && <View style={styleAssign([styles.udr, mt(hideEmail ? 0 : 4)])}>
                   <Image style={styleAssign([w(10), h(11), mt(4)])}
-                         src={require('../../../../assets/ico_card_location_gray.png')}/>
+                         src={require('../../assets/ico_card_location_gray.png')}/>
                   <Text
                     style={styleAssign([fSize(11), color('#343434'), ml(5)])}>{userInfo.detailAddress}</Text>
                 </View>
