@@ -232,7 +232,9 @@ class OtherBusinesscard extends Component<Props, State> {
       visitorListSub = visitorList;
     }
     //@ts-ignore
-    let cardChild = null;
+    let cardChild = <CardStyle1 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
+                                hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
+                                hideWechat={hideWechat === 0}/>;
 
     if (cardStyle === '0') {
       //@ts-ignore
