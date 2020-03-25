@@ -194,3 +194,16 @@ export const getCardHolderVisitorRecord = payload => createAction({
   payload,
   method: 'GET',
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/25
+ * @function: 更新用户的名片设置信息
+*/
+export const userSettingUpdate = payload => createAction({
+  url: UserController.userSettingUpdate,
+  payload,
+  method: 'POST'
+});

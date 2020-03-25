@@ -7,7 +7,7 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
-import {styleAssign} from "../../utils/datatool";
+import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
   absT,
   bdColor,
@@ -39,9 +39,11 @@ import CardStyle2 from "./page-component/card-style2/index";
 import CardStyle4 from "./page-component/card-style4/index";
 import CardStyle5 from "./page-component/card-style5/index";
 import CardStyle3 from "./page-component/card-style3/index";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   userInfo: User;
+  userSettingUpdate: any;
 }
 
 interface State {
@@ -66,6 +68,7 @@ class MingpianStyle extends Component<Props, State> {
   config: Config = {
     disableScroll: true
   }
+  private viewRef;
 
   constructor(props) {
     super(props);
@@ -82,6 +85,38 @@ class MingpianStyle extends Component<Props, State> {
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/25
+   * @function: 更新用户的名片设置信息
+   */
+  userSettingUpdate = () => {
+    this.viewRef && this.viewRef.showLoading();
+    let {hidePhone, hideEmail, hideWechat, hideAddress, style} = this.state;
+
+    this.props.userSettingUpdate({
+      phone: hidePhone ? 0 : 1,
+      wechat: hideWechat ? 0 : 1,
+      email: hideEmail ? 0 : 1,
+      address: hideAddress ? 0 : 1,
+      cardStyle: `${style}`,
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('设置成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
+      }
+      console.log('更新用户的名片设置信息', res)
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
     let {userInfo} = this.props;
     let {publicInfoArr, style, hidePhone, hideWechat, hideEmail, hideAddress} = this.state;
@@ -89,7 +124,10 @@ class MingpianStyle extends Component<Props, State> {
     return (
       <CustomSafeAreaView
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
-        notNeedBottomPadding={true}>
+        notNeedBottomPadding={true}
+        ref={(ref) => {
+          this.viewRef = ref;
+        }}>
         <TopHeader title={'名片样式'}/>
         <ScrollView
           style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -181,7 +219,8 @@ class MingpianStyle extends Component<Props, State> {
               < Text
                 style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(15)])}>选择版式</Text>
             </View>
-            <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(15), pl(20), pr(20)])}>
+            <View
+              style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(15), mb(20), pl(20), pr(20)])}>
               {
                 [{icon: require('../../assets/ico_mingpian_style_1.png'), title: '商务版'},
                   {icon: require('../../assets/ico_mingpian_style_2.png'), title: '黑金版'},
@@ -202,20 +241,10 @@ class MingpianStyle extends Component<Props, State> {
                 })
               }
             </View>
-            <View style={styleAssign([styles.uac, styles.udr, wRatio(100)])}>
-              <Text style={styleAssign([fSize(14), color('#0C0C0C'), ml(20), mt(15)])}>名片图</Text>
-            </View>
-            <View style={styleAssign([wRatio(100), styles.uac, styles.udr, mb(20)])}>
-              <View
-                style={styleAssign([w(65), h(65), bgColor(commonStyles.pageDefaultBackgroundColor), styles.uac, styles.ujc, mt(15), ml(20)])}>
-                <Image style={styleAssign([w(40), h(40)])}
-                       src={require('../../assets/ico_mingpian_style_add.png')}/>
-              </View>
-            </View>
           </View>
         </ScrollView>
         <BottomButon title={'完成'} onClick={() => {
-
+          this.userSettingUpdate();
         }}/>
       </CustomSafeAreaView>
     )
