@@ -63,6 +63,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+
       // "pages/mingpian_style",
       //主界面
       "pages/businesscard",
