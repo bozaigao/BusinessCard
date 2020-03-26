@@ -33,7 +33,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
 import TopHeader from "../../compoments/top-header/index";
 import BottomButon from "../../compoments/bottom-buton/index";
-import {Image, ScrollView, Text, Textarea, View} from "@tarojs/components";
+import {Image, Text, Textarea, View} from "@tarojs/components";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import {CustomerModel} from "../../const/global";
 import DateTimePicker from "../sub_pagecomponent/date-time-picker/index";
@@ -175,7 +175,7 @@ class AddTask extends Component<Props, State> {
             <Text style={styleAssign([fSize(14), color('#979797')])}>/50</Text>
           </View>
         </View>
-        <Textarea style={styleAssign([wRatio(90), h(40), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
+        <Textarea style={styleAssign([wRatio(90), h(80), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
                   value={theme} placeholder={'例如：电话回访客户'}
                   onInput={(e) => {
                     this.setState({theme: e.detail.value});
