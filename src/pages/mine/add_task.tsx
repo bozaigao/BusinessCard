@@ -11,6 +11,7 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
+  absR, absT,
   bgColor,
   color,
   commonStyles,
@@ -22,7 +23,7 @@ import {
   mt,
   pa,
   pl,
-  pr,
+  pr, radiusA,
   w,
   wRatio
 } from "../../utils/style";
@@ -175,7 +176,7 @@ class AddTask extends Component<Props, State> {
               <Text style={styleAssign([fSize(14), color('#979797')])}>/50</Text>
             </View>
           </View>
-          <Textarea style={styleAssign([wRatio(90), h(128), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
+          <Textarea style={styleAssign([wRatio(90), h(40), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
                     value={theme} placeholder={'例如：电话回访客户'}
                     onInput={(e) => {
                       this.setState({theme: e.detail.value});
@@ -200,20 +201,32 @@ class AddTask extends Component<Props, State> {
           </Picker>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
-            {
-              chooseCustomer.length === 0 &&
-              <Image style={styleAssign([w(68), h(68), ml(20), mt(14)])} src={`${cloudBaseUrl}ico_add_task.png`}
-                     onClick={() => {
-                       Taro.navigateTo({
-                         url: `/pages/mine/choose_customer`
-                       });
-                     }}/>
-            }
-            {
-              chooseCustomer.map((value, index) => {
-                return <GuanLianCustomer key={index} customer={value}/>;
-              })
-            }
+            <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, pl(10), pr(10)])}>
+              {
+                chooseCustomer.map((value, index) => {
+                  return <View style={styleAssign([w(78), h(78), styles.uac, styles.ujc, ml(10), mt(10)])}
+                               key={index}>
+                    <Image style={styleAssign([w(73), h(73), radiusA(4)])} src={value.avatar}/>
+                    <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
+                           src={`${cloudBaseUrl}ico_close.png`}
+                           onClick={() => {
+                             this.state.chooseCustomer.splice(index, 1);
+                             this.setState({chooseCustomer: this.state.chooseCustomer});
+                           }}/>
+                  </View>
+                })
+              }
+              {
+                chooseCustomer.length !== 100 &&
+                <Image style={styleAssign([w(68), h(68), ml(10), mt(10)])}
+                       src={`${cloudBaseUrl}ico_add_task.png`}
+                       onClick={() => {
+                         Taro.navigateTo({
+                           url: `/pages/mine/choose_customer`
+                         });
+                       }}/>
+              }
+            </View>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
           <View
