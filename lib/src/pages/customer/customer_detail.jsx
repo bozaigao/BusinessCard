@@ -25,7 +25,7 @@ const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
 const httpurl_1 = require("../../api/httpurl");
-require("./index.scss");
+require("./add_task.scss");
 const delete_notice_1 = require("../sub_pagecomponent/delete-notice");
 const share_invite_1 = require("../pagecomponent/share-invite");
 let CustomerDetail = class CustomerDetail extends taro_1.Component {
@@ -187,7 +187,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(12), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
                 </components_1.View>
               </components_1.View>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
@@ -310,7 +310,7 @@ let CustomerDetail = class CustomerDetail extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>}
-        
+
         {currentIndex === 1 && <bottom_buton_1.default title={'添加跟进'} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`

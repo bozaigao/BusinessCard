@@ -171,7 +171,7 @@ let AddTask = class AddTask extends taro_1.Component {
             </components_1.View>
           </components_1.View>
         </components_1.ScrollView>
-        
+
         <index_3.default title={'保存'} onClick={() => {
             this.addTask();
         }}/>

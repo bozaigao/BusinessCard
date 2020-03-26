@@ -114,7 +114,7 @@ let AddTask = class AddTask extends taro_1.Component {
             this.setState({ remark: e.detail.value });
         }}/>
         </components_1.View>
-        
+
         <bottom_buton_1.default title={'保存'} onClick={() => {
             this.addTask();
         }}/>

@@ -34,7 +34,7 @@ const httpurl_1 = require("../../api/httpurl");
 const index_8 = require("../../compoments/navigation_bar/index");
 const other_business_card_guide_1 = require("../pagecomponent/other-business-card-guide");
 const my_photo_1 = require("../sub_pagecomponent/my-photo");
-require("./index.scss");
+require("./add_task.scss");
 let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -143,7 +143,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
         return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
-        
+
         <index_8.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.ujb, style_1.default.uac, style_1.default.udr])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(23), style_1.w(95), style_1.h(32), style_1.radiusA(16), style_1.bdColor('#E5E5E5'), style_1.bo(1), { borderStyle: 'solid' }])} onClick={() => {
@@ -165,7 +165,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
           </components_1.View>
         </index_8.default>
         {userInfo && <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.mt(20)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.w(334), style_1.h(202), style_1.bgColor('rgb(211,199,195)'), style_1.radiusA(10),
             style_1.default.udr, style_1.default.uje])}>
@@ -181,22 +181,22 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.company}</components_1.Text>
                 </components_1.View>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uae, style_1.default.upa, style_1.absB(26), style_1.absR(24)])}>
-                  
+
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.showPhone ? userInfo.phone : datatool_1.hidePhone(userInfo.phone)}</components_1.Text>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_mobile.png`}/>
                   </components_1.View>
-                  
+
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(8)])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.wechat}</components_1.Text>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_wechat.png`}/>
                   </components_1.View>
-                  
+
                   <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(8)])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.email ? userInfo.email : '邮箱信息未对外公开'}</components_1.Text>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(12), style_1.h(10), style_1.ml(8)])} src={`${httpurl_1.cloudBaseUrl}ico_card_email.png`}/>
                   </components_1.View>
-                  
+
                   <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.mt(8)])}>
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{userInfo.detailAddress}</components_1.Text>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(9), style_1.h(11), style_1.ml(8), style_1.mt(4)])} src={`${httpurl_1.cloudBaseUrl}ico_card_location.png`}/>
@@ -204,9 +204,9 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                 </components_1.View>
               </components_1.View>
             </components_1.View>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(184), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.mt(20)])}>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.ujc, style_1.h(44), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(20)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
                   <index_6.default customStyle={datatool_1.styleAssign([style_1.w(160), style_1.radiusA(4), style_1.default.uac, style_1.default.ujc, style_1.bo(1), { borderStyle: 'solid' }, style_1.bdColor(style_1.commonStyles.colorTheme),
@@ -223,7 +223,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                   </index_6.default>
                 </components_1.View>
               </components_1.View>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.default.uac, style_1.default.udr, style_1.h(100), style_1.mt(20), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.default.uf1, style_1.h(54), style_1.default.uac,
             style_1.bo(1), style_1.bdColor('#e8e8e8'), { borderStyle: 'solid' }, style_1.radiusA(4),
@@ -276,9 +276,9 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <index_2.default userInfo={userInfo}/>
-          
+
           {userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <index_3.default goToMoreGoods={() => {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
@@ -288,14 +288,14 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
                 url: `/pages/mine/goods_detail?itemData=${JSON.stringify(itemData)}`
             });
         }} goodsList={userInfo.goodsList}/>}
-          
+
           {userInfo.enterpriseName.length !== 0 &&
             <index_5.default userInfo={userInfo}/>}
-          
+
           {userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <my_photo_1.default photos={userInfo.photoUrlArray}/>}
-          
+
           <index_4.default />
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(59), style_1.default.uac, style_1.default.ujb, style_1.default.udr, style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(32), style_1.h(32), style_1.radiusA(4), style_1.ml(21)])} src={`${httpurl_1.cloudBaseUrl}ico_logo.png`}/>
@@ -308,7 +308,7 @@ let OtherBusinesscard = class OtherBusinesscard extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#825D22'), style_1.fSize(14)])}>马上关注</components_1.Text>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.ujc, style_1.default.uac])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极易推 给您极致服务</components_1.Text>
           </components_1.View>

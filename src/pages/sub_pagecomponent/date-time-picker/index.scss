@@ -1,0 +1,83 @@
+.datetime-picker-wrap {
+  .selector-wrap {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    color: #9BA0AA;
+    padding: 0 20px;
+    .select-item {
+      flex: 1;
+      font-size: 30px;
+      padding: 12px 0;
+      text-align: center;
+    }
+  }
+  .wrapper {
+    .model-box-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10000;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0.3;
+    }
+    .model-box {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 999999;
+      width: 100%;
+      background: #fff;
+    }
+
+    .model-picker {
+      position: relative;
+      .button-model {
+        height: 80px;
+        width: 100%;
+        background: #fff;
+        position: relative;
+        border-bottom: 1px solid #d9d9d9;
+        .btn-txt1 {
+          color: rgb(136,136,136);
+          position: absolute;
+          background: transparent;
+          border: none;
+          line-height: 80px;
+          &:first-child {
+            left: 32px;
+          }
+          &:last-child {
+            right: 32px;
+          }
+        }
+        .btn-txt2 {
+           color: rgb(81,169,56);
+           position: absolute;
+           background: transparent;
+           border: none;
+           line-height: 80px;
+           &:first-child {
+             left: 32px;
+           }
+           &:last-child {
+             right: 32px;
+           }
+         }
+      }
+      .pick-view {
+        width: 100%;
+        height: 600px;
+        .picker-view-column {
+          text-align: center;
+          .pick-view-column-item {
+            line-height: 50PX;
+          }
+        }
+      }
+
+    }
+  }
+}

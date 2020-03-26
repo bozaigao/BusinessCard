@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename index.tsx
+ * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/9/23
@@ -93,7 +93,7 @@ class SignAlert extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.mt(10), style_1.mb(20)])}>
               {
         //@ts-ignore
-        <react_native_linear_gradient_1.default start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#ff9200', '#ff5f00']} 
+        <react_native_linear_gradient_1.default start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={['#ff9200', '#ff5f00']}
         //@ts-ignore
         style={datatool_1.styleAssign([style_1.w(201), style_1.h(45), style_1.radiusA(4)])}>
                   <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc])} onClick={() => {

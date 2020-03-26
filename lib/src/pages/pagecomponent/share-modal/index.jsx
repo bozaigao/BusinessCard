@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename index.tsx
+ * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/16
@@ -21,7 +21,7 @@ class ShareModal extends taro_1.PureComponent {
             }, style_1.absT(0), style_1.absR(0), style_1.wRatio(100), style_1.hRatio(100)])}>
         <index_1.default onClick={cancle} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.bgColor(style_1.commonStyles.blackColor), style_1.op(0.5), style_1.absT(0), style_1.absR(0)])}/>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(194), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.upa, style_1.absB(0)])}>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(148), style_1.default.udr, style_1.default.uac])}>
             <components_1.Button openType={'share'} style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(187.5), style_1.default.uac])} onClick={wechatShare}>
@@ -35,7 +35,7 @@ class ShareModal extends taro_1.PureComponent {
             </components_1.View>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          
+
           <index_1.default onClick={cancle} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(40), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C')])}>取消</components_1.Text>
           </index_1.default>

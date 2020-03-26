@@ -11,7 +11,8 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
 import {debounce, styleAssign, toast} from "../../utils/datatool";
 import {
-  absR, absT,
+  absR,
+  absT,
   bgColor,
   color,
   commonStyles,
@@ -23,7 +24,8 @@ import {
   mt,
   pa,
   pl,
-  pr, radiusA,
+  pr,
+  radiusA,
   w,
   wRatio
 } from "../../utils/style";
@@ -31,11 +33,11 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
 import TopHeader from "../../compoments/top-header/index";
 import BottomButon from "../../compoments/bottom-buton/index";
-import {Image, Picker, ScrollView, Text, Textarea, View} from "@tarojs/components";
-import TouchableButton from "../../compoments/touchable-button/index";
+import {Image, ScrollView, Text, Textarea, View} from "@tarojs/components";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import {CustomerModel} from "../../const/global";
-import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer";
+import DateTimePicker from "../sub_pagecomponent/date-time-picker/index";
+import './add_task.scss';
 
 interface Props {
   addTask: any;
@@ -164,88 +166,82 @@ class AddTask extends Component<Props, State> {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'新建任务'}/>
-        <ScrollView
-          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}
-          scrollY>
-          <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-          <View
-            style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), h(40), pl(20), pr(20)])}>
-            <Text style={styleAssign([fSize(14), color('#727272')])}>主题</Text>
-            <View style={styleAssign([styles.udr, styles.uac])}>
-              <Text style={styleAssign([fSize(14), color('#727272')])}>{theme.length}</Text>
-              <Text style={styleAssign([fSize(14), color('#979797')])}>/50</Text>
-            </View>
+        <View style={styleAssign([wRatio(100), h(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+        <View
+          style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), h(40), pl(20), pr(20)])}>
+          <Text style={styleAssign([fSize(14), color('#727272')])}>主题</Text>
+          <View style={styleAssign([styles.udr, styles.uac])}>
+            <Text style={styleAssign([fSize(14), color('#727272')])}>{theme.length}</Text>
+            <Text style={styleAssign([fSize(14), color('#979797')])}>/50</Text>
           </View>
-          <Textarea style={styleAssign([wRatio(90), h(40), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
-                    value={theme} placeholder={'例如：电话回访客户'}
-                    onInput={(e) => {
-                      this.setState({theme: e.detail.value});
-                    }} maxlength={50}/>
-          <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-          <Picker mode='date' onChange={(e) => {
-            console.log('时间选择', e)
-            this.setState({date: e.detail.value});
-          }} value={date} style={styleAssign([wRatio(100)])}>
-            <TouchableButton
-              customStyle={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, h(51), pl(20), pr(20), bgColor(commonStyles.whiteColor)])}
-              onClick={() => {
+        </View>
+        <Textarea style={styleAssign([wRatio(90), h(40), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
+                  value={theme} placeholder={'例如：电话回访客户'}
+                  onInput={(e) => {
+                    this.setState({theme: e.detail.value});
+                  }} maxlength={50}/>
+        <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
 
-              }
-              }>
-              <Text style={styleAssign([fSize(14), color('#787878')])}>日期及时间</Text>
-              <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([fSize(14), color('#787878')])}>{date ? date : '选择'}</Text>
-                <Image style={styleAssign([w(7), h(13), ml(5)])} src={`${cloudBaseUrl}ico_next.png`}/>
-              </View>
-            </TouchableButton>
-          </Picker>
-          <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([color('#787878'), fSize(14), ml(20), mt(15)])}>关联客户</Text>
-            <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, pl(10), pr(10)])}>
-              {
-                chooseCustomer.map((value, index) => {
-                  return <View style={styleAssign([w(78), h(78), styles.uac, styles.ujc, ml(10), mt(10)])}
-                               key={index}>
-                    <Image style={styleAssign([w(73), h(73), radiusA(4)])} src={value.avatar}/>
-                    <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
-                           src={`${cloudBaseUrl}ico_close.png`}
-                           onClick={() => {
-                             this.state.chooseCustomer.splice(index, 1);
-                             this.setState({chooseCustomer: this.state.chooseCustomer});
-                           }}/>
-                  </View>
-                })
-              }
-              {
-                chooseCustomer.length !== 100 &&
-                <Image style={styleAssign([w(68), h(68), ml(10), mt(10)])}
-                       src={`${cloudBaseUrl}ico_add_task.png`}
-                       onClick={() => {
-                         Taro.navigateTo({
-                           url: `/pages/mine/choose_customer`
-                         });
-                       }}/>
-              }
+        <DateTimePicker onOk={({current}) => {
+          console.log('选择时间', current);
+          this.setState({date: current});
+        }} wrap-class="my-class"/>
+        <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb, pl(20), pr(20), mt(15)])}>
+            <Text style={styleAssign([color('#787878'), fSize(14)])}>关联客户</Text>
+            <View style={styleAssign([styles.uac, styles.udr])}>
+              <Text style={styleAssign([color('#727272'), fSize(14)])}>{chooseCustomer.length}</Text>
+              <Text
+                style={styleAssign([color('#979797')])}>/100</Text>
             </View>
-            <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
           </View>
-          <View
-            style={styleAssign([wRatio(100), styles.uas, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, pl(10), pr(10)])}>
+            {
+              chooseCustomer.map((value, index) => {
+                return <View style={styleAssign([w(78), h(78), styles.uac, styles.ujc, ml(10), mt(10)])}
+                             key={index}>
+                  <Image style={styleAssign([w(73), h(73), radiusA(4)])}
+                         src={value.avatar ? value.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                  <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
+                         src={`${cloudBaseUrl}ico_close.png`}
+                         onClick={() => {
+                           this.state.chooseCustomer.splice(index, 1);
+                           this.setState({chooseCustomer: this.state.chooseCustomer});
+                         }}/>
+                </View>
+              })
+            }
+            {
+              chooseCustomer.length !== 100 &&
+              <Image style={styleAssign([w(68), h(68), ml(10), mt(10)])}
+                     src={`${cloudBaseUrl}ico_add_task.png`}
+                     onClick={() => {
+                       Taro.navigateTo({
+                         url: `/pages/mine/choose_customer`
+                       });
+                     }}/>
+            }
+          </View>
+          <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
+        </View>
+        <View
+          style={styleAssign([wRatio(100), styles.uas, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor)])}>
             <Textarea style={styleAssign([wRatio(70), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
                       value={remark} placeholder={'备注'}
                       onInput={(e) => {
                         this.setState({remark: e.detail.value});
                       }} maxlength={200}/>
-            <View style={styleAssign([styles.udr, styles.uac, mr(20), mt(18), bgColor(commonStyles.whiteColor)])}>
-              <Text style={styleAssign([fSize(14), color('#727272')])}>{remark.length}</Text>
-              <Text style={styleAssign([fSize(14), color('#979797')])}>/200</Text>
-            </View>
+          <View style={styleAssign([styles.udr, styles.uac, mr(20), mt(18), bgColor(commonStyles.whiteColor)])}>
+            <Text style={styleAssign([fSize(14), color('#727272')])}>{remark.length}</Text>
+            <Text style={styleAssign([fSize(14), color('#979797')])}>/200</Text>
           </View>
-        </ScrollView>
+        </View>
         {/*新建任务*/}
-        <BottomButon title={'保存'} onClick={() => {
-          this.addTask();
-        }}/>
+        <View style={styleAssign([styles.uf1, styles.uje])}>
+          <BottomButon title={'保存'} onClick={() => {
+            this.addTask();
+          }}/>
+        </View>
       </CustomSafeAreaView>
     );
   }

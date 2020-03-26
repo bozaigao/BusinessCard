@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename index.tsx
+ * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2020/2/9
@@ -45,7 +45,7 @@ class ShaiXuanModal extends taro_1.PureComponent {
           </components_1.View>
         </index_3.default>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(36), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.udr, style_1.default.uac, style_1.default.ujb,
             style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14)])}>{`共${totalPerson}位客户`}</components_1.Text>
@@ -61,7 +61,7 @@ class ShaiXuanModal extends taro_1.PureComponent {
             </components_1.View>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(214), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#0C0C0C'), style_1.fSize(14), style_1.ml(20), style_1.mt(10)])}>时间范围</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.pl(20), style_1.mt(12)])}>

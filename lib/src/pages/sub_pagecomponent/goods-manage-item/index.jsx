@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename index.tsx
+ * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/18
@@ -37,18 +37,18 @@ class GoodsManageItem extends taro_1.PureComponent {
             });
         }}/>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(95), style_1.h(1), { marginLeft: '2.5%' }, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.mt(20)])}/>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.udr, style_1.default.uac, style_1.default.ujb,
             style_1.pl(20), style_1.pr(20)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-            
+
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(52), style_1.h(28), style_1.radiusA(4), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme),
             { borderStyle: 'solid' }, style_1.default.uac, style_1.default.ujc])} onClick={() => {
             moreCallback(itemData);
         }}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>更多</components_1.Text>
             </touchable_button_1.default>
-            
+
             <touchable_button_1.default onClick={() => {
             xiajiaCallback(itemData);
         }} customStyle={datatool_1.styleAssign([style_1.ml(32), style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.bo(1), style_1.bdColor(style_1.commonStyles.colorTheme),
@@ -56,7 +56,7 @@ class GoodsManageItem extends taro_1.PureComponent {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#343434')])}>{`${itemData.status === 0 ? '上架商品' : '下架商品'}`}</components_1.Text>
             </touchable_button_1.default>
           </components_1.View>
-          
+
           <touchable_button_1.default onClick={() => {
             notTopGoodsCallback(itemData);
         }} customStyle={datatool_1.styleAssign([style_1.w(72), style_1.h(28), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.colorTheme), style_1.default.uac, style_1.default.ujc])}>

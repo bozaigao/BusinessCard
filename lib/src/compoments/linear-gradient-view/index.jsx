@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename index.tsx
+ * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2020/1/5
@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
-require("./index.scss");
+require("./add_task.scss");
 class LinearGradientView extends taro_1.Component {
     render() {
         let { style } = this.props;

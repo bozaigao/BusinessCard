@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename index.tsx
+ * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/17
@@ -12,7 +12,7 @@ const components_1 = require("@tarojs/components");
 const datatool_1 = require("../../../utils/datatool");
 const style_1 = require("../../../utils/style");
 const index_1 = require("../../../compoments/touchable-button/index");
-require("./index.scss");
+require("./add_task.scss");
 class TaskItem extends taro_1.PureComponent {
     render() {
         let { itemData, finishCallback, deleteCallback } = this.props;
