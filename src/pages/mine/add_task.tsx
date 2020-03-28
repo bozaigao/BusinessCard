@@ -106,9 +106,15 @@ class AddTask extends Component<Props, State> {
       toast('日期不能为空');
       return;
     }
+    if (chooseCustomer.length === 0) {
+      toast('请选择关联客户');
+      return;
+    }
     let myyear = new Date().getFullYear();
     let mymonth = new Date().getMonth() + 1;
     let myweekday = new Date().getDate();
+    let myhour = new Date().getHours();
+    let myminutes = new Date().getMinutes();
     let dateTime = new Date(date).getTime();
 
     if (mymonth < 10) {
@@ -120,7 +126,7 @@ class AddTask extends Component<Props, State> {
       myweekday = '0' + myweekday;
     }
 
-    let currentTime = new Date(`${myyear}-${mymonth}-${myweekday}`).getTime();
+    let currentTime = new Date(`${myyear}-${mymonth}-${myweekday} ${myhour}:${myminutes}`).getTime();
 
     if (dateTime < currentTime) {
       toast('不能选择之前的日期');

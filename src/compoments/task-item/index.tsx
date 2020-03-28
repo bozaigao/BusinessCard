@@ -43,6 +43,24 @@ export default class TaskItem extends PureComponent<Props, State> {
 
   render() {
     let {itemData, finishCallback, deleteCallback, isTodayTask} = this.props;
+    let myyear = new Date().getFullYear();
+    let mymonth = new Date().getMonth() + 1;
+    let myweekday = new Date().getDate();
+    let myhour = new Date().getHours();
+    let myminutes = new Date().getMinutes();
+    let dateTime = new Date(itemData.date).getTime();
+
+    if (mymonth < 10) {
+      //@ts-ignore
+      mymonth = '0' + mymonth;
+    }
+    if (myweekday < 10) {
+      //@ts-ignore
+      myweekday = '0' + myweekday;
+    }
+
+    let currentTime = new Date(`${myyear}-${mymonth}-${myweekday} ${myhour}:${myminutes}`).getTime();
+    console.log('时间比较',dateTime,currentTime);
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}
@@ -73,7 +91,7 @@ export default class TaskItem extends PureComponent<Props, State> {
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <View style={styleAssign([wRatio(100), h(40), styles.uac, styles.udr])}>
             <Text
-              style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{isTodayTask ? transformNowTime(itemData.date) : transformTime(itemData.date)}</Text>
+              style={styleAssign([fSize(10), color(dateTime < currentTime ? 'red' : '#A6A6A6'), mt(4), ml(20)])}>{isTodayTask ? transformNowTime(itemData.date) : transformTime(itemData.date)}</Text>
           </View>
         </View>
       </View>
