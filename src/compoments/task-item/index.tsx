@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Text, View} from "@tarojs/components";
-import {styleAssign, transformTime} from "../../utils/datatool";
+import {styleAssign, transformNowTime, transformTime} from "../../utils/datatool";
 import styles, {
   bgColor,
   color,
@@ -33,6 +33,7 @@ interface Props {
   itemData: TaskModel;
   finishCallback?: any;
   deleteCallback?: any;
+  isTodayTask?: boolean;
 }
 
 interface State {
@@ -41,7 +42,7 @@ interface State {
 export default class TaskItem extends PureComponent<Props, State> {
 
   render() {
-    let {itemData, finishCallback, deleteCallback} = this.props;
+    let {itemData, finishCallback, deleteCallback, isTodayTask} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}
@@ -72,7 +73,7 @@ export default class TaskItem extends PureComponent<Props, State> {
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <View style={styleAssign([wRatio(100), h(40), styles.uac, styles.udr])}>
             <Text
-              style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{transformTime(itemData.date)}</Text>
+              style={styleAssign([fSize(10), color('#A6A6A6'), mt(4), ml(20)])}>{isTodayTask ? transformNowTime(itemData.date) : transformTime(itemData.date)}</Text>
           </View>
         </View>
       </View>

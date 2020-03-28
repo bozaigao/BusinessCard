@@ -329,7 +329,9 @@ class TaskCenter extends Component<Props, State> {
               <View style={styleAssign([styles.uf1])}>
                 {
                   todayTask.map((itemValue, itemIndex) => {
-                    return (<TaskItem key={itemIndex} itemData={itemValue} finishCallback={(id) => {
+                    return (<TaskItem
+                      isTodayTask={true}
+                      key={itemIndex} itemData={itemValue} finishCallback={(id) => {
                       this.taskUpdate(id, 1);
                     }
                     } deleteCallback={(id)=>{
