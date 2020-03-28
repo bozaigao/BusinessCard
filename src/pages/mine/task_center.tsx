@@ -91,13 +91,11 @@ class TaskCenter extends Component<Props, State> {
   componentDidShow() {
     this.setState({taskItem: []}, () => {
       this.refresh();
-      this.refresh1();
     });
     Taro.eventCenter.on('refreshTaskList', () => {
       console.log('刷新任务列表');
       this.setState({taskItem: []}, () => {
         this.refresh();
-        this.refresh1();
       });
     });
   }
@@ -235,10 +233,9 @@ class TaskCenter extends Component<Props, State> {
                              onClick={() => {
                                this.setState({currentIndex: 0, taskItem: [], date: ''}, () => {
                                  this.refresh();
-                                 this.refresh1();
                                });
                              }}>
-              <Text style={styleAssign([fSize(16), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</Text>
+              <Text style={styleAssign([fSize(16), color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</Text>
               <View
                 style={styleAssign([w(60), h(2), bgColor(currentIndex === 0 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
             </TouchableButton>
@@ -247,9 +244,10 @@ class TaskCenter extends Component<Props, State> {
                                this.setState({currentIndex: 1, date: getToday(), taskItem: []}, () => {
                                  console.log(this.state.date)
                                  this.refresh();
+                                 this.refresh1();
                                });
                              }}>
-              <Text style={styleAssign([fSize(16), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</Text>
+              <Text style={styleAssign([fSize(16), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</Text>
               <View
                 style={styleAssign([w(60), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10), radiusA(1)])}/>
             </TouchableButton>
@@ -271,7 +269,7 @@ class TaskCenter extends Component<Props, State> {
                     onScrollToLower={() => {
                     }}>
           {
-            currentIndex === 0 ?
+            currentIndex ===  1 ?
               <View style={styleAssign([styles.uf1])}>
                 {/*正在进行*/}
                 {
