@@ -65,104 +65,94 @@ class App extends Component {
     pages: [
       //主界面
       "pages/businesscard",
-      "pages/radarscan",
+      "pages/radar",
       "pages/customer",
       "pages/mine",
     ],
     subPackages: [
       {
         //名片模块子页面
-        root: 'pages/businesscard',
+        root: 'businesscard',
         pages: [
-          "add_businesscard",
-          "qiehuan_businesscard",
-          "more_goods",
-          "mingpianjia",
-          "my_collect",
-          "other_businesscard",
-          "ming_pian_ma",
-          "choose_renmai_tag",
-          "choose_industry_tag",
-          "mingpian_haibao"
+          "pages/add_businesscard",
+          "pages/qiehuan_businesscard",
+          "pages/more_goods",
+          "pages/mingpianjia",
+          "pages/my_collect",
+          "pages/other_businesscard",
+          "pages/ming_pian_ma",
+          "pages/choose_renmai_tag",
+          "pages/choose_industry_tag",
+          "pages/mingpian_haibao"
         ]
       },
       //雷达模块子界面
       {
-        root: 'pages/radarscan',
+        root: 'radar',
         pages: [
-          "radar_detail"
+          "pages/radar_detail"
         ]
       },
       //客户模块子页面
       {
-        root: 'pages/customer',
+        root: 'customer',
         pages: [
-          "customer_detail",
-          "customer_ziliao",
-          "add_customer",
-          "customer_remark",
-          "add_genjin",
+          "pages/customer_detail",
+          "pages/customer_ziliao",
+          "pages/add_customer",
+          "pages/customer_remark",
+          "pages/add_genjin",
         ]
       },
-      //我的模块子页面
+      //我的模块子页面pages/
       {
-        root: 'pages/mine',
+        root: 'mine',
         pages: [
-          "tool_box",
-          "haibao",
-          "goods_detail",
-          "goods_manage",
-          "add_goods",
-          "contact_way",
-          "setting_page",
-          "feedback",
-          "my_tags",
-          "company_info",
-          "my_edu",
-          "self_intro",
-          "audio_recorder",
-          "industry_list",
-          "my_photo",
-          "my_video",
-          "fenxiao_center",
-          "data_center",
-          "my_customer",
-          "tixian",
-          "tixian_recorder",
-          "tixian_page",
-          "about_us",
-          "help",
-          "tequan",
-          "choose_customer",
-          "radar_gongneng",
-          "open_message_notice",
-          "update_card_style",
-          "get_renmai",
-          "open_shop",
-          "view_card",
-          "how_share_card",
-          "how_perform_card",
-          "introduce",
-          "renmai_taocan_detail",
-          "my_home",
-          "share_goods"
+          "pages/tool_box",
+          "pages/haibao",
+          "pages/goods_detail",
+          "pages/goods_manage",
+          "pages/add_goods",
+          "pages/contact_way",
+          "pages/setting_page",
+          "pages/feedback",
+          "pages/my_tags",
+          "pages/company_info",
+          "pages/my_edu",
+          "pages/self_intro",
+          "pages/audio_recorder",
+          "pages/industry_list",
+          "pages/my_photo",
+          "pages/my_video",
+          "pages/fenxiao_center",
+          "pages/data_center",
+          "pages/my_customer",
+          "pages/tixian",
+          "pages/tixian_recorder",
+          "pages/tixian_page",
+          "pages/about_us",
+          "pages/help",
+          "pages/tequan",
+          "pages/choose_customer",
+          "pages/radar_gongneng",
+          "pages/open_message_notice",
+          "pages/update_card_style",
+          "pages/get_renmai",
+          "pages/open_shop",
+          "pages/view_card",
+          "pages/how_share_card",
+          "pages/how_perform_card",
+          "pages/introduce",
+          "pages/renmai_taocan_detail",
+          "pages/my_home",
+          "pages/share_goods",
+          "pages/personal_info",
+          "pages/mingpian_style",
+          "pages/perform_info",
+          "pages/add_task",
+          "pages/task_center",
         ]
-      }, //个人信息子页面
-      {
-        root: 'pages/personal-info',
-        pages: [
-          "personal_info",
-          "mingpian_style",
-          "perform_info",
-        ]
-      },
-      {
-        root: 'pages/task',
-        pages: [
-          "add_task",
-          "task_center",
-        ]
-      },
+      }
     ],
     permission: {
       "scope.userLocation": {
@@ -190,7 +180,7 @@ class App extends Component {
         selectedIconPath: "./assets/ico_tabar_businesscard_pressed.png",
         text: "名片",
       }, {
-        pagePath: "pages/radarscan",
+        pagePath: "pages/radar",
         iconPath: "./assets/ico_tabar_radarscan_normal.png",
         selectedIconPath: "./assets/ico_tabar_radarscan_pressed.png",
         text: "雷达",

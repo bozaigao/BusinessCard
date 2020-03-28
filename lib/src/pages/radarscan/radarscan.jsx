@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename radarscan.tsx
+ * @filename radar.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/8
@@ -38,7 +38,7 @@ class Radarscan extends taro_1.Component {
     }
     render() {
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(85), style_1.default.uac, style_1.mt(15)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
@@ -50,7 +50,7 @@ class Radarscan extends taro_1.Component {
               <components_1.View style={datatool_1.styleAssign([style_1.mt(5), style_1.w(25), style_1.h(2), style_1.bgColor('#0F56C5')])}/>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujb, style_1.default.udr, style_1.mt(10)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878'), style_1.ml(20)])}>共3位访客</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>新增访客（2）</components_1.Text>
@@ -67,4 +67,4 @@ class Radarscan extends taro_1.Component {
     }
 }
 exports.default = Radarscan;
-//# sourceMappingURL=radarscan.jsx.map
+//# sourceMappingURL=radar.jsx.map

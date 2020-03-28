@@ -34,8 +34,8 @@ import ListItem from "../compoments/list-item/index";
 import {cloudBaseUrl} from "../api/httpurl";
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 import NavigationBar from "../compoments/navigation_bar/index";
-import MyGuide1 from "./pagecomponent/mine_guide1";
-import MyGuide2 from "./pagecomponent/mine_guide2";
+import MyGuide1 from "../mine/component/mine_guide1";
+import MyGuide2 from "../mine/component/mine_guide2";
 
 
 interface Props {

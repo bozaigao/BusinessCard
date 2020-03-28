@@ -26,7 +26,7 @@ class App extends taro_1.Component {
             pages: [
                 //主界面
                 "pages/businesscard",
-                "pages/radarscan",
+                "pages/radar",
                 "pages/customer",
                 "pages/mine",
             ],
@@ -49,7 +49,7 @@ class App extends taro_1.Component {
                 },
                 //雷达模块子界面
                 {
-                    root: 'pages/radarscan',
+                    root: 'pages/radar',
                     pages: [
                         "radar_detail"
                     ]
@@ -139,7 +139,7 @@ class App extends taro_1.Component {
                         selectedIconPath: "./assets/ico_tabar_businesscard_pressed.png",
                         text: "名片",
                     }, {
-                        pagePath: "pages/radarscan",
+                        pagePath: "pages/radar",
                         iconPath: "./assets/ico_tabar_radarscan_normal.png",
                         selectedIconPath: "./assets/ico_tabar_radarscan_pressed.png",
                         text: "雷达",

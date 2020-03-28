@@ -113,7 +113,7 @@ let App = (_temp = _class = class App extends Component {
 
       text: "名片"
     }, {
-      pagePath: "pages/radarscan/radarscan",
+      pagePath: "pages/radar/radar",
       iconPath: assetsIcoTabarRadarscanNormalPng,
       selectedIconPath: assetsIcoTabarRadarscanPressedPng,
 
@@ -133,7 +133,7 @@ let App = (_temp = _class = class App extends Component {
     }]
   }
 }, _temp);
-const RootStack = TaroRouter.initRouter([['pages/businesscard/businesscard', pagesBusinesscardBusinesscard], ['pages/radarscan/radarscan', pagesRadarscanRadarscan], ['pages/customer/customer', pagesCustomerCustomer], ['pages/mine/mine', pagesMineMine]], Taro, App.config);
+const RootStack = TaroRouter.initRouter([['pages/businesscard/businesscard', pagesBusinesscardBusinesscard], ['pages/radar/radar', pagesRadarscanRadarscan], ['pages/customer/customer', pagesCustomerCustomer], ['pages/mine/mine', pagesMineMine]], Taro, App.config);
 Taro.initNativeApi(Taro);
 Taro.initPxTransform({
   "designWidth": 750,

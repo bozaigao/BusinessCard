@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * @filename radarscan.tsx
+ * @filename radar.tsx
  * @author 何晏波
  * @QQ 1054539528
  * @date 2019/12/8
@@ -83,7 +83,7 @@ let Radarscan = class Radarscan extends taro_1.Component {
     render() {
         let { records, showGuide } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
-        
+
         <index_3.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18)])}>雷达</components_1.Text>
@@ -117,4 +117,4 @@ Radarscan = __decorate([
     redux_1.connect(state => Object.assign(state.taskCenter, state.login), Object.assign({}, actions))
 ], Radarscan);
 exports.default = Radarscan;
-//# sourceMappingURL=radarscan.jsx.map
+//# sourceMappingURL=radar.jsx.map
