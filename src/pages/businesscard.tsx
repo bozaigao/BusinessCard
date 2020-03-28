@@ -16,18 +16,18 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
 import * as loginActions from '../actions/login';
 import * as businessCardActions from '../actions/business_card';
-import Card from "../businesscard/component/business-card/index";
-import MyPerson from "../mine/component/my-person/index";
-import ShareModal from "../businesscard/component/share-modal/index";
+import Card from "./component/business-card/index";
+import MyPerson from "./mine/component/my-person/index";
+import ShareModal from "./businesscard/component/share-modal/index";
 import {User} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
 import {NetworkState} from "../api/httpurl";
-import BusinessCardGuide1 from "../businesscard/component/business-card-guide1";
-import BusinessCardGuide2 from "../businesscard/component/business-card-guide2";
-import BusinessCardGuide3 from "../businesscard/component/business-card-guide3";
+import BusinessCardGuide1 from "./component/business-card-guide1";
+import BusinessCardGuide2 from "./component/business-card-guide2";
+import BusinessCardGuide3 from "./component/business-card-guide3";
 
 interface Props {
-  //获取用户信息
+  //获取用户信息assets/ico_mic_bg.png
   getUserInfo: any;
   updateUserInfo: any;
   getRecommendSetting: any;

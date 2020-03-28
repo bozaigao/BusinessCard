@@ -57,7 +57,7 @@ export default class ShareModal extends PureComponent<Props, State> {
           <View style={styleAssign([wRatio(100), h(148), styles.udr, styles.uac, styles.ujb])}>
             <Button openType={'share'}
                     style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}>
-              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat.png')}/>
+              <Image style={styleAssign([w(62), h(62)])} src={require('../../../../assets/ico_wechat.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
             </Button>
             <Button style={styleAssign([styles.uac, styles.uf1, bgColor(commonStyles.whiteColor)])}

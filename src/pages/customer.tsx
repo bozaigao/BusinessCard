@@ -28,15 +28,15 @@ import {get, getToday, save, styleAssign, toast} from "../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../actions/customer";
-import CustomItem from "../customer/component/custom-item/index";
+import CustomItem from "./component/custom-item/index";
 import BottomButon from "../compoments/bottom-buton/index";
 import {CustomerModel, Orientation} from "../const/global";
-import ModeModal from "../customer/component/mode-modal/index";
-import ShaiXuanModal from "../customer/component/shai-xuan-modal/index";
+import ModeModal from "./component/mode-modal/index";
+import ShaiXuanModal from "./component/shai-xuan-modal/index";
 import NavigationBar from "../compoments/navigation_bar/index";
 import SanJiao from "../compoments/sanjiao/index";
-import CustomerGuide from "../customer/component/customer-guide";
-import ShareInvite from "../customer/component/share-invite";
+import CustomerGuide from "./component/customer-guide";
+import ShareInvite from "./component/share-invite";
 
 interface Props {
   getCustomerList?: any;

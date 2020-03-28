@@ -10,12 +10,12 @@ import {Image, ScrollView, Text, View} from '@tarojs/components'
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 import {get, save, styleAssign, toast} from "../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, mt, w, wRatio} from "../utils/style";
-import RadarItem from "../radar/component/radar-item/index";
+import RadarItem from "./component/radar-item/index";
 import * as actions from '../actions/radar';
 import {connect} from "@tarojs/redux";
 import {RadarModel} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
-import LeiDaGuide from "../radar/component/leida-guide";
+import LeiDaGuide from "./component/leida-guide";
 
 interface Props {
   //查询我的雷达数据列表
