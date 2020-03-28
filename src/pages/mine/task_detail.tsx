@@ -91,8 +91,8 @@ class TaskDetail extends Component<Props, State> {
   componentDidMount() {
     this.getTask();
     Taro.eventCenter.on('chooseCustomer', (chooseCustomer) => {
-      console.log('用户列表',chooseCustomer);
-      this.setState({chooseCustomer:this.state.chooseCustomer.concat(chooseCustomer)});
+      console.log('用户列表', chooseCustomer);
+      this.setState({chooseCustomer});
     });
   }
 
@@ -117,6 +117,8 @@ class TaskDetail extends Component<Props, State> {
     let myyear = new Date().getFullYear();
     let mymonth = new Date().getMonth() + 1;
     let myweekday = new Date().getDate();
+    let myhour = new Date().getHours();
+    let myminutes = new Date().getMinutes();
     let dateTime = new Date(date).getTime();
 
     if (mymonth < 10) {
@@ -128,7 +130,7 @@ class TaskDetail extends Component<Props, State> {
       myweekday = '0' + myweekday;
     }
 
-    let currentTime = new Date(`${myyear}-${mymonth}-${myweekday}`).getTime();
+    let currentTime = new Date(`${myyear}-${mymonth}-${myweekday} ${myhour}:${myminutes}`).getTime();
 
     if (dateTime < currentTime) {
       toast('不能选择之前的日期');
@@ -269,7 +271,9 @@ class TaskDetail extends Component<Props, State> {
                          src={`${cloudBaseUrl}ico_close.png`}
                          onClick={() => {
                            this.state.chooseCustomer.splice(index, 1);
-                           this.setState({chooseCustomer: this.state.chooseCustomer});
+                           this.setState({chooseCustomer: this.state.chooseCustomer},()=>{
+                             console.log('用于数据',this.state.chooseCustomer);
+                           });
                          }}/>
                 </View>
               })

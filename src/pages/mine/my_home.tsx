@@ -46,9 +46,9 @@ interface Props {
 interface State {
   list: { title: string, subtitle?: string, value?: string; hasEdit?: boolean; }[];
   wenHouYU: string;
-  wenHouYUTmp: string;
   placeHolder: string;
   showWenHouYu: boolean;
+  editStyle: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -67,19 +67,17 @@ class MyHome extends Component<Props, State> {
   private viewRef;
   private province;
   private city;
-  private placeHolder;
 
   constructor(props) {
     super(props);
     this.province = this.$router.params.province;
     this.city = this.$router.params.city;
-    this.placeHolder = '同乡您好，很高兴能遇到你！你可以收藏我的名片哦~';
     this.state = {
       list: [{title: '家乡', subtitle: '选择地址', value: this.province + this.city}],
       wenHouYU: this.$router.params.villagerGreeting,
-      wenHouYUTmp: this.$router.params.villagerGreeting,
-      placeHolder: this.placeHolder,
-      showWenHouYu: false
+      placeHolder: '同乡您好，很高兴能遇到你！你可以收藏我的名片哦~',
+      showWenHouYu: false,
+      editStyle: 'flex'
     }
   }
 
@@ -138,7 +136,7 @@ class MyHome extends Component<Props, State> {
 
   render() {
 
-    let {list, wenHouYU, showWenHouYu, placeHolder, wenHouYUTmp} = this.state;
+    let {list, wenHouYU, showWenHouYu, placeHolder, editStyle} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -174,7 +172,7 @@ class MyHome extends Component<Props, State> {
                         if (wenHouYU.length === 0) {
                           toast('问候语不能为空');
                         } else {
-                          this.setState({showWenHouYu: true, wenHouYU: '', placeHolder: ''});
+                          this.setState({showWenHouYu: true, editStyle: 'none'});
                         }
                       }}>
                   <Text style={styleAssign([fSize(14), color('#E2BB7B')])}>预览</Text>
@@ -185,9 +183,9 @@ class MyHome extends Component<Props, State> {
                         maxlength={25}
                         placeholder={placeHolder}
                         style={styleAssign([w(305), h(91), fSize(16), ml(20),
-                          bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20)])}
+                          bgColor(commonStyles.pageDefaultBackgroundColor), pa(16), mb(20), {display: editStyle}])}
                         onInput={(e) => {
-                          this.setState({wenHouYU: e.detail.value, wenHouYUTmp: e.detail.value});
+                          this.setState({wenHouYU: e.detail.value});
                         }}/>
                 <View style={styleAssign([styles.uac, styles.udr, styles.upa, absR(30), absB(30)])}>
                   <Text style={styleAssign([fSize(12), color('#979797')])}>{wenHouYU.length}</Text>
@@ -206,8 +204,8 @@ class MyHome extends Component<Props, State> {
         </View>
         {
           showWenHouYu && <WenHouModal type={WenHouType.HOME} cancle={() => {
-            this.setState({showWenHouYu: false, wenHouYU: wenHouYUTmp, placeHolder: this.placeHolder});
-          }} wenHouYu={wenHouYUTmp} userInfo={this.props.userInfo}/>
+            this.setState({showWenHouYu: false, editStyle: 'flex'});
+          }} wenHouYu={wenHouYU} userInfo={this.props.userInfo}/>
         }
       </CustomSafeAreaView>
     )

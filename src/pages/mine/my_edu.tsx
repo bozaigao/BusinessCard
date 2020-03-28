@@ -76,8 +76,8 @@ class MyEdu extends Component<Props, State> {
     this.placeHolder = '校友您好，很高兴能遇到你！你可以收藏我的名片哦~';
     this.state = {
       list: [{title: '学校', subtitle: '请输入学校名称', value: this.$router.params.school, hasEdit: true},
-        {title: '学历', subtitle: '选择', value: this.$router.params.educationBackground},
         {title: '专业', subtitle: '请输入专业名称', value: this.$router.params.profession, hasEdit: true},
+        {title: '学历', subtitle: '选择', value: this.$router.params.educationBackground},
         {title: '在校时间', subtitle: '选择', value: this.schoolTimeStart + '-' + this.schoolTimeEnd}],
       wenHouYU: this.$router.params.schoolfellowGreeting,
       wenHouYUTmp: this.$router.params.schoolfellowGreeting,
@@ -111,11 +111,11 @@ class MyEdu extends Component<Props, State> {
       return;
     }
     if (list[1].value && list[1].value.length === 0) {
-      toast('请选择学历');
+      toast('请输入你的专业');
       return;
     }
     if (list[2].value && list[2].value.length === 0) {
-      toast('请输入你的专业');
+      toast('请选择学历');
       return;
     }
     if (this.schoolTimeStart === 0 || this.schoolTimeEnd === 0) {
@@ -130,8 +130,8 @@ class MyEdu extends Component<Props, State> {
     this.viewRef && this.viewRef.showLoading();
     let params = {
       school: list[0].value && list[0].value,
-      educationBackground: list[1].value && list[1].value,
-      profession: list[2].value && list[2].value,
+      educationBackground: list[2].value && list[2].value,
+      profession: list[1].value && list[1].value,
       schoolTimeStart: `${this.schoolTimeStart}`,
       schoolTimeEnd: `${this.schoolTimeEnd}`,
       schoolfellowGreeting: wenHouYU
@@ -184,7 +184,7 @@ class MyEdu extends Component<Props, State> {
               list.map((value, index) => {
                 if (value.title === '学历') {
                   return (<Picker mode='selector' onChange={(e) => {
-                    this.state.list[1].value = selectorRange[e.detail.value];
+                    this.state.list[2].value = selectorRange[e.detail.value];
                     this.setState({list: this.state.list});
                   }} range={selectorRange} value={0}>
                     <ListItem textColor={'#727272'}
@@ -216,7 +216,7 @@ class MyEdu extends Component<Props, State> {
                                       this.state.list[0].value = e.detail.value;
                                       this.setState({list: this.state.list});
                                     } else if (value.title === '专业') {
-                                      this.state.list[2].value = e.detail.value;
+                                      this.state.list[1].value = e.detail.value;
                                       this.setState({list: this.state.list});
                                     }
                                     console.log(e);

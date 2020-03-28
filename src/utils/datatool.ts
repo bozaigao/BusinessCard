@@ -113,7 +113,7 @@ export function toast(msg) {
  * @function: 时间转换
  */
 export function transformTime(time: string) {
-  return moment(time).format('YYYY-MM-DD hh:mm');
+  return moment(time).format('YYYY-MM-DD HH:mm');
 }
 
 
