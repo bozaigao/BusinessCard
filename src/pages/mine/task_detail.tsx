@@ -145,7 +145,7 @@ class TaskDetail extends Component<Props, State> {
       let userIds: number[] = [];
 
       for (let i = 0; i < chooseCustomer.length; i++) {
-        userIds.push(chooseCustomer[i].userId);
+        userIds.push(chooseCustomer[i].id);
       }
       Object.assign(paramas, {customerIds: JSON.stringify(userIds)});
     }
