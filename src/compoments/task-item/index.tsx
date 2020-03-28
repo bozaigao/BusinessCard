@@ -60,7 +60,7 @@ export default class TaskItem extends PureComponent<Props, State> {
     }
 
     let currentTime = new Date(`${myyear}-${mymonth}-${myweekday} ${myhour}:${myminutes}`).getTime();
-    console.log('时间比较',dateTime,currentTime);
+    console.log('时间比较', dateTime, currentTime);
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}
@@ -74,18 +74,19 @@ export default class TaskItem extends PureComponent<Props, State> {
             pl(16), pr(16), pt(20)])}>
             <Text style={styleAssign([fSize(16), color('#343434'), w(200)])}
                   className={'.textStyle'}>{itemData.theme}</Text>
-            <TouchableButton
-              onClick={() => {
+            <View
+              onClick={(e) => {
+                e.stopPropagation();
                 if (itemData.status !== 1) {
                   finishCallback(itemData.id);
                 } else {
                   deleteCallback(itemData.id);
                 }
               }}
-              customStyle={styleAssign([w(72), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
+              style={styleAssign([w(72), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
               <Text
                 style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${itemData.status !== 1 ? '移至完成' : '删除任务'}`}</Text>
-            </TouchableButton>
+            </View>
           </View>
           <View
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>

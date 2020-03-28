@@ -8,7 +8,7 @@ import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   onOk: any;
-  placeholder: string;
+  placeholder?: string;
   disabled?: boolean;
 }
 

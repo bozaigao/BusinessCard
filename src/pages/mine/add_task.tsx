@@ -188,7 +188,7 @@ class AddTask extends Component<Props, State> {
                   }} maxlength={50}/>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
 
-        <DateTimePicker onOk={({current}) => {
+        <DateTimePicker  onOk={({current}) => {
           console.log('选择时间', current);
           this.setState({date: current});
         }} wrap-class="my-class"/>
