@@ -7,7 +7,7 @@
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../utils/datatool";
-import styles, {bgColor, color, commonStyles, fSize, h, hRatio, ml, mt, radiusA, w, wRatio} from "../../utils/style";
+import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, radiusA, w, wRatio} from "../../utils/style";
 
 
 interface Props {

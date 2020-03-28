@@ -109,7 +109,7 @@ class GoodsManage extends Component<Props, State> {
       chooseAll: false
     };
     this.pageNo = 1;
-    this.pageSize = 10;
+    this.pageSize = 1000;
     this.goodsListTmp = [];
   }
 
@@ -273,13 +273,7 @@ class GoodsManage extends Component<Props, State> {
             </View> :
             <ScrollView
               style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-              scrollY
-              onScrollToUpper={() => {
-                this.refresh();
-              }}
-              onScrollToLower={() => {
-                this.loadMore();
-              }}>
+              scrollY>
               {
                 goodsList.map((value, index) => {
                   console.log(value);
