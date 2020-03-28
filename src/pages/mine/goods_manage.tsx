@@ -252,7 +252,7 @@ class GoodsManage extends Component<Props, State> {
                 }
                 }>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>管理</Text>
-            <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${totalGoods}件商品)`}</Text>
+            <Text style={styleAssign([fSize(14), color('#787878')])}>{`(共${goodsList.length}件商品)`}</Text>
           </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                            onClick={() => {
