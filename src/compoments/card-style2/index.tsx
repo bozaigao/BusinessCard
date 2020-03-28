@@ -19,6 +19,7 @@ import styles, {
   fWeight,
   h,
   ml,
+  mr,
   mt,
   op,
   radiusA,
@@ -95,16 +96,16 @@ export default class CardStyle2 extends PureComponent<Props, State> {
             }
           </View>
           <View
-            style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(77), h(15), styles.uac])}>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hidePhone ? 0 : 1)])}>
+            style={styleAssign([styles.upa, styles.udr, absR(25), absB(17), w(75), h(15), styles.uac])}>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hidePhone ? 0 : 1),mr(5)])}>
               <Image style={styleAssign([w(11), h(9)])}
                      src={require('../../assets/ico_card_mobile_white.png')}/>
             </View>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideWechat ? 0 : 1)])}>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideWechat ? 0 : 1),mr(5)])}>
               <Image style={styleAssign([w(12), h(10)])}
                      src={require('../../assets/ico_card_wechat_white.png')}/>
             </View>
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideEmail ? 0 : 1)])}>
+            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, op(hideEmail ? 0 : 1),mr(5)])}>
               <Image style={styleAssign([w(12), h(10)])}
                      src={require('../../assets/ico_card_email_white.png')}/>
             </View>

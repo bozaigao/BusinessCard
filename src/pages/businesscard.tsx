@@ -436,7 +436,8 @@ class Businesscard extends Component<Props, State> {
           }/>
         }
         {
-          showGuide2 && <BusinessCardGuide2 cancle={() => {
+          showGuide2 && <BusinessCardGuide2
+            cancle={() => {
             save('business_guide2', true);
             this.setState({showGuide2: false, showGuide3: true});
           }
