@@ -47,7 +47,7 @@ export default class TaskItem extends PureComponent<Props, State> {
       <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}
             onClick={() => {
               Taro.navigateTo({
-                url: `/pages/mine/task_detail?taskId=${itemData.id}`
+                url: `/pages/mine/task_detail?taskId=${itemData.id}&status=${itemData.status}`
               });
             }}>
         <View style={styleAssign([w(335), bgColor(commonStyles.whiteColor), radiusA(4)])}>

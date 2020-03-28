@@ -54,6 +54,7 @@ interface State {
   remark: string;
   chooseCustomer: CustomerModel[];
   showDeleteNotice: boolean;
+  canEdit: any;
   editStyle: string;
 }
 
@@ -84,7 +85,8 @@ class TaskDetail extends Component<Props, State> {
       remark: '',
       chooseCustomer: [],
       showDeleteNotice: false,
-      editStyle: 'flex'
+      editStyle: 'flex',
+      canEdit: this.$router.params.status !== '1'
     }
   }
 
@@ -224,7 +226,7 @@ class TaskDetail extends Component<Props, State> {
 
 
   render() {
-    let {theme, date, remark, chooseCustomer, showDeleteNotice, editStyle} = this.state;
+    let {theme, date, remark, chooseCustomer, showDeleteNotice, editStyle, canEdit} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -240,17 +242,21 @@ class TaskDetail extends Component<Props, State> {
             <Text style={styleAssign([fSize(14), color('#979797')])}>/50</Text>
           </View>
         </View>
-        <Textarea style={styleAssign([wRatio(90), h(80), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
-                  value={theme} placeholder={'例如：电话回访客户'}
-                  onInput={(e) => {
-                    this.setState({theme: e.detail.value});
-                  }} maxlength={50}/>
+        <Textarea
+          disabled={!canEdit}
+          style={styleAssign([wRatio(90), h(80), pl(20), pr(20), bgColor(commonStyles.whiteColor),])}
+          value={theme} placeholder={'例如：电话回访客户'}
+          onInput={(e) => {
+            this.setState({theme: e.detail.value});
+          }} maxlength={50}/>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
 
-        <DateTimePicker onOk={({current}) => {
-          console.log('选择时间', current);
-          this.setState({date: current});
-        }} wrap-class="my-class" placeholder={date}/>
+        <DateTimePicker
+          disabled={!canEdit}
+          onOk={({current}) => {
+            console.log('选择时间', current);
+            this.setState({date: current});
+          }} wrap-class="my-class" placeholder={date}/>
         <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([wRatio(100), styles.uac, styles.udr, styles.ujb, pl(20), pr(20), mt(15)])}>
             <Text style={styleAssign([color('#787878'), fSize(14)])}>关联客户</Text>
@@ -267,19 +273,22 @@ class TaskDetail extends Component<Props, State> {
                              key={index}>
                   <Image style={styleAssign([w(73), h(73), radiusA(4)])}
                          src={value.avatar ? value.avatar : `${cloudBaseUrl}ico_default.png`}/>
-                  <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
-                         src={`${cloudBaseUrl}ico_close.png`}
-                         onClick={() => {
-                           this.state.chooseCustomer.splice(index, 1);
-                           this.setState({chooseCustomer: this.state.chooseCustomer},()=>{
-                             console.log('用于数据',this.state.chooseCustomer);
-                           });
-                         }}/>
+                  {
+                    canEdit &&
+                    <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
+                           src={`${cloudBaseUrl}ico_close.png`}
+                           onClick={() => {
+                             this.state.chooseCustomer.splice(index, 1);
+                             this.setState({chooseCustomer: this.state.chooseCustomer}, () => {
+                               console.log('用于数据', this.state.chooseCustomer);
+                             });
+                           }}/>
+                  }
                 </View>
               })
             }
             {
-              chooseCustomer.length !== 100 &&
+              chooseCustomer.length !== 100 && canEdit &&
               <Image style={styleAssign([w(68), h(68), ml(10), mt(10)])}
                      src={`${cloudBaseUrl}ico_add_task.png`}
                      onClick={() => {
@@ -294,6 +303,7 @@ class TaskDetail extends Component<Props, State> {
         <View
           style={styleAssign([wRatio(100), styles.uas, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor), {display: editStyle}])}>
             <Textarea
+              disabled={!canEdit}
               style={styleAssign([wRatio(70), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
               value={remark} placeholder={'备注'}
               onInput={(e) => {
@@ -309,20 +319,34 @@ class TaskDetail extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(68), bgColor(commonStyles.whiteColor),
             styles.uac, styles.ujc])}>
             <View style={styleAssign([styles.uac, styles.udr])}>
-              <TouchableButton customStyle={styleAssign([w(162), h(44), bo(1), bdColor(commonStyles.colorTheme),
-                {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
-                               onClick={() => {
-                                 this.setState({editStyle: 'none', showDeleteNotice: true});
-                               }}>
-                <Text style={styleAssign([fSize(16), color('#343434')])}>删除任务</Text>
-              </TouchableButton>
-              <TouchableButton customStyle={styleAssign([ml(10), w(162), h(44), bgColor(commonStyles.colorTheme),
-                radiusA(2), styles.uac, styles.ujc])}
-                               onClick={() => {
-                                 this.updateTask();
-                               }}>
-                <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>保存编辑</Text>
-              </TouchableButton>
+              {
+                !canEdit ?
+                  <TouchableButton customStyle={styleAssign([ml(10), w(335), h(44), bgColor(commonStyles.colorTheme),
+                    radiusA(2), styles.uac, styles.ujc])}
+                                   onClick={() => {
+                                     this.setState({editStyle: 'none', showDeleteNotice: true});
+                                   }}>
+                    <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>删除任务</Text>
+                  </TouchableButton> :
+                  <TouchableButton
+                    customStyle={styleAssign([w(162), h(44), bo(1), bdColor(commonStyles.colorTheme),
+                      {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
+                    onClick={() => {
+                      this.setState({editStyle: 'none', showDeleteNotice: true});
+                    }}>
+                    <Text style={styleAssign([fSize(16), color('#343434')])}>删除任务</Text>
+                  </TouchableButton>
+              }
+              {
+                canEdit &&
+                <TouchableButton customStyle={styleAssign([ml(10), w(162), h(44), bgColor(commonStyles.colorTheme),
+                  radiusA(2), styles.uac, styles.ujc])}
+                                 onClick={() => {
+                                   this.updateTask();
+                                 }}>
+                  <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>保存编辑</Text>
+                </TouchableButton>
+              }
             </View>
           </View>
         </View>

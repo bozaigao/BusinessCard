@@ -8,7 +8,8 @@ import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   onOk: any;
-  placeholder:string;
+  placeholder: string;
+  disabled?: boolean;
 }
 
 interface State {
@@ -141,7 +142,11 @@ export default class DateTimePicker extends Component<Props, State> {
           style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, h(51), pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
           <Text style={styleAssign([fSize(14), color('#787878')])}>日期及时间</Text>
           <View style={styleAssign([styles.uac, styles.udr])}>
-            <Text onClick={this.openModal} style={styleAssign([color('#787878')])}>
+            <Text onClick={() => {
+              if (!this.props.disabled) {
+                this.openModal();
+              }
+            }} style={styleAssign([color('#787878')])}>
               {current || placeholder}
             </Text>
             <Image style={styleAssign([w(7), h(13), ml(5)])} src={`${cloudBaseUrl}ico_next.png`}/>
