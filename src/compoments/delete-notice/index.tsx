@@ -28,6 +28,8 @@ import TouchableButton from "../touchable-button";
 
 
 interface Props {
+  title: string;
+  subTitle: string;
   cancelCallback: any;
   confirmCallback: any;
 }
@@ -39,7 +41,7 @@ export default class DeleteNoticeModal extends PureComponent<Props, State> {
 
   render() {
 
-    let {cancelCallback, confirmCallback} = this.props;
+    let {cancelCallback, confirmCallback, title, subTitle} = this.props;
 
     return (
       <View
@@ -52,8 +54,8 @@ export default class DeleteNoticeModal extends PureComponent<Props, State> {
         <View style={styleAssign([wRatio(100), hRatio(100), styles.uac, styles.ujc])}>
           <View style={styleAssign([w(335), h(167), bgColor(commonStyles.whiteColor), radiusA(10)])}>
             <View style={styleAssign([wRatio(100), styles.uac])}>
-              <Text style={styleAssign([fSize(20), color('#313137'), mt(20)])}>删除提醒</Text>
-              <Text style={styleAssign([fSize(18), color('#787878'), mt(20)])}>删除后，数据将无法恢复，确定删除？</Text>
+              <Text style={styleAssign([fSize(20), color('#313137'), mt(20)])}>{title}</Text>
+              <Text style={styleAssign([fSize(18), color('#787878'), mt(20)])}>{subTitle}</Text>
             </View>
             <View style={styleAssign([wRatio(100), h(1), mt(15), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([styles.uf1, styles.udr, styles.uac])}>

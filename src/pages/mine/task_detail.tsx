@@ -9,7 +9,7 @@ import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {debounce, styleAssign, toast, transformTime} from "../../utils/datatool";
 import {
   absR,
   absT,
@@ -40,9 +40,12 @@ import {CustomerModel} from "../../const/global";
 import DateTimePicker from "../../compoments/date-time-picker/index";
 import './add_task.scss';
 import TouchableButton from "../../compoments/touchable-button";
+import DeleteNoticeModal from "../../compoments/delete-notice";
 
 interface Props {
-  addTask: any;
+  updateTask: any;
+  updateTask: any;
+  getTask: any;
 }
 
 interface State {
@@ -50,12 +53,15 @@ interface State {
   date: string;
   remark: string;
   chooseCustomer: CustomerModel[];
+  showDeleteNotice: boolean;
+  editStyle: string;
 }
 
 @connect(state => state.login, {...actions})
 class TaskDetail extends Component<Props, State> {
 
   private viewRef;
+  private taskId;
 
 
   /**
@@ -71,22 +77,23 @@ class TaskDetail extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.taskId = this.$router.params.taskId;
     this.state = {
-      theme: this.$router.params.theme,
-      date: this.$router.params.date,
-      remark: this.$router.params.remark,
-      chooseCustomer: []
+      theme: '',
+      date: '',
+      remark: '',
+      chooseCustomer: [],
+      showDeleteNotice: false,
+      editStyle: 'flex'
     }
   }
 
-  componentDidShow() {
+  componentDidMount() {
+    this.getTask();
     Taro.eventCenter.on('chooseCustomer', (chooseCustomer) => {
-      this.setState({chooseCustomer});
+      console.log('用户列表',chooseCustomer);
+      this.setState({chooseCustomer:this.state.chooseCustomer.concat(chooseCustomer)});
     });
-  }
-
-  componentWillUnmount() {
-    Taro.eventCenter.off('chooseCustomer');
   }
 
 
@@ -94,9 +101,9 @@ class TaskDetail extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/1/4
-   * @function: 添加任务
+   * @function: 更新任务
    */
-  addTask = () => {
+  updateTask = () => {
     let {theme, date, remark, chooseCustomer} = this.state;
 
     if (theme.length === 0) {
@@ -128,6 +135,7 @@ class TaskDetail extends Component<Props, State> {
       return;
     }
     let paramas = {
+      id: this.taskId,
       theme,
       date,
       remark
@@ -137,13 +145,13 @@ class TaskDetail extends Component<Props, State> {
       let userIds: number[] = [];
 
       for (let i = 0; i < chooseCustomer.length; i++) {
-        userIds.push(chooseCustomer[i].id);
+        userIds.push(chooseCustomer[i].userId);
       }
       Object.assign(paramas, {customerIds: JSON.stringify(userIds)});
     }
 
     this.viewRef && this.viewRef.showLoading();
-    this.props.addTask(paramas).then((res) => {
+    this.props.updateTask(paramas).then((res) => {
       console.log(res);
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
@@ -159,8 +167,62 @@ class TaskDetail extends Component<Props, State> {
   }
 
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/28
+   * @function: 获取任务详情
+   */
+  getTask = () => {
+    this.viewRef && this.viewRef.showLoading('加载中');
+    this.props.getTask({
+      id: this.taskId,
+    }).then((res) => {
+      console.log('获取任务详情', res);
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.setState({
+          theme: res.theme,
+          date: transformTime(res.date),
+          remark: res.remark,
+          chooseCustomer: res.userList
+        });
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/28
+   * @function: 更新任务状态
+   */
+  deleteTask = () => {
+    this.viewRef && this.viewRef.showLoading('加载中');
+    this.props.updateTask({
+      id: this.taskId,
+      status: -1,
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        toast('任务删除成功');
+        debounce(1000, () => {
+          Taro.navigateBack();
+        })
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
-    let {theme, date, remark, chooseCustomer} = this.state;
+    let {theme, date, remark, chooseCustomer, showDeleteNotice, editStyle} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -226,12 +288,13 @@ class TaskDetail extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(10)])}/>
         </View>
         <View
-          style={styleAssign([wRatio(100), styles.uas, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor)])}>
-            <Textarea style={styleAssign([wRatio(70), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
-                      value={remark} placeholder={'备注'}
-                      onInput={(e) => {
-                        this.setState({remark: e.detail.value});
-                      }} maxlength={200}/>
+          style={styleAssign([wRatio(100), styles.uas, styles.udr, styles.ujb, bgColor(commonStyles.whiteColor), {display: editStyle}])}>
+            <Textarea
+              style={styleAssign([wRatio(70), h(128), pa(20), bgColor(commonStyles.whiteColor)])}
+              value={remark} placeholder={'备注'}
+              onInput={(e) => {
+                this.setState({remark: e.detail.value});
+              }} maxlength={200}/>
           <View style={styleAssign([styles.udr, styles.uac, mr(20), mt(18), bgColor(commonStyles.whiteColor)])}>
             <Text style={styleAssign([fSize(14), color('#727272')])}>{remark.length}</Text>
             <Text style={styleAssign([fSize(14), color('#979797')])}>/200</Text>
@@ -245,20 +308,35 @@ class TaskDetail extends Component<Props, State> {
               <TouchableButton customStyle={styleAssign([w(162), h(44), bo(1), bdColor(commonStyles.colorTheme),
                 {borderStyle: 'solid'}, radiusA(2), styles.uac, styles.ujc])}
                                onClick={() => {
-                                 this.addTask();
+                                 this.setState({editStyle: 'none', showDeleteNotice: true});
                                }}>
                 <Text style={styleAssign([fSize(16), color('#343434')])}>删除任务</Text>
               </TouchableButton>
               <TouchableButton customStyle={styleAssign([ml(10), w(162), h(44), bgColor(commonStyles.colorTheme),
                 radiusA(2), styles.uac, styles.ujc])}
                                onClick={() => {
-                                 this.addTask();
+                                 this.updateTask();
                                }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>保存编辑</Text>
               </TouchableButton>
             </View>
           </View>
         </View>
+        {
+          showDeleteNotice && <DeleteNoticeModal
+            title={'删除提醒'}
+            subTitle={'删除后，任务将无法恢复，确定删除？'}
+            cancelCallback={() => {
+              console.log('点击了')
+              this.setState({editStyle: 'flex', showDeleteNotice: false});
+            }
+            } confirmCallback={() => {
+            this.setState({editStyle: 'flex', showDeleteNotice: false}, () => {
+              this.deleteTask();
+            });
+          }
+          }/>
+        }
       </CustomSafeAreaView>
     );
   }

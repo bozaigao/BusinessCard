@@ -408,7 +408,10 @@ class CustomerDetail extends Component<Props, State> {
           }}/>
         }
         {
-          showDeleteNotice && <DeleteNoticeModal cancelCallback={() => {
+          showDeleteNotice && <DeleteNoticeModal
+            title={'删除提醒'}
+            subTitle={'删除后，客户数据将无法恢复，确定删除？'}
+            cancelCallback={() => {
             this.setState({showDeleteNotice: false});
           }
           } confirmCallback={() => {

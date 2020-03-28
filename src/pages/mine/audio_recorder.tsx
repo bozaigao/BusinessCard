@@ -442,7 +442,10 @@ class AudioRecorder extends Component<Props, State> {
           </TouchableButton>
         </View>
         {
-          showDeleteNotice && <DeleteNoticeModal cancelCallback={() => {
+          showDeleteNotice && <DeleteNoticeModal
+            title={'删除提醒'}
+            subTitle={'删除后，语音数据将无法恢复，确定删除？'}
+            cancelCallback={() => {
             this.setState({showDeleteNotice: false});
           }
           } confirmCallback={() => {

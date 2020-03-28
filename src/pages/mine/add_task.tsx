@@ -80,7 +80,7 @@ class AddTask extends Component<Props, State> {
 
   componentDidShow() {
     Taro.eventCenter.on('chooseCustomer', (chooseCustomer) => {
-      this.setState({chooseCustomer});
+      this.setState({chooseCustomer:this.state.chooseCustomer.concat(chooseCustomer)});
     });
   }
 
