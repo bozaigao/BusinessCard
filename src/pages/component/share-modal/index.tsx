@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Button, Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../../utils/datatool";
+import {styleAssign} from "../../../utils/datatool";
 import {
   absB,
   absR,
@@ -22,8 +22,8 @@ import {
   mt, op,
   w,
   wRatio
-} from "../../../../utils/style";
-import TouchableButton from "../../../../compoments/touchable-button/index";
+} from "../../../utils/style";
+import TouchableButton from "../../../compoments/touchable-button/index";
 
 
 interface Props {
@@ -56,13 +56,13 @@ export default class ShareModal extends PureComponent<Props, State> {
             <Button openType={'share'} style={styleAssign([bgColor(commonStyles.whiteColor)])}>
               <View style={styleAssign([w(187.5), styles.uac])}
                     onClick={wechatShare}>
-                <Image style={styleAssign([w(62), h(62)])} src={require('../../../../assets/ico_wechat.png')}/>
+                <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_wechat.png')}/>
                 <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>微信好友</Text>
               </View>
             </Button>
             <View style={styleAssign([w(187.5), styles.uac])}
                   onClick={haibao}>
-              <Image style={styleAssign([w(62), h(62)])} src={require('../../../../assets/ico_mingpian_haibao.png')}/>
+              <Image style={styleAssign([w(62), h(62)])} src={require('../../../assets/ico_mingpian_haibao.png')}/>
               <Text style={styleAssign([fSize(13), color('#0C0C0C'), mt(5)])}>名片海报</Text>
             </View>
           </View>

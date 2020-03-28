@@ -318,7 +318,7 @@ class PersonalInfo extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet().then((res) => {
+    this.props.userSettingGet({userId:this.props.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,
@@ -458,7 +458,7 @@ class PersonalInfo extends Component<Props, State> {
               pl(20), pr(20), bgColor(commonStyles.whiteColor)])}
                   onClick={() => {
                     Taro.navigateTo({
-                      url: `/pages/personal-info/mingpian_style?hidePhone=${hidePhone}&hideWechat=${hideWechat}&hideEmail=${hideEmail}&hideAddress=${hideAddress}&style=${cardStyle}`
+                      url: `/pages/mine/mingpian_style?hidePhone=${hidePhone}&hideWechat=${hideWechat}&hideEmail=${hideEmail}&hideAddress=${hideAddress}&style=${cardStyle}`
                     });
                   }}>
               <View>

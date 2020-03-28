@@ -6,7 +6,7 @@
  */
 import Taro, {Component} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign} from "../../../../utils/datatool";
+import {styleAssign} from "../../../utils/datatool";
 import styles, {
   absL,
   bgColor,
@@ -22,9 +22,9 @@ import styles, {
   radiusA,
   w,
   wRatio
-} from "../../../../utils/style";
-import {cloudBaseUrl} from "../../../../api/httpurl";
-import RenMaiItem from "../../../businesscard/component/renmai-item/index";
+} from "../../../utils/style";
+import {cloudBaseUrl} from "../../../api/httpurl";
+import RenMaiItem from "../renmai-item/index";
 
 
 interface Props {
@@ -73,7 +73,7 @@ export default class MyPerson extends Component<Props, State> {
                                  }
                                  }>
               <Text style={styleAssign([fSize(12), color('#979797')])}>重新选择</Text>
-              <Image style={styleAssign([w(7), h(12), ml(12)])} src={require('../../../../assets/ico_next.png')}/>
+              <Image style={styleAssign([w(7), h(12), ml(12)])} src={require('../../../assets/ico_next.png')}/>
             </View>
           }
         </View>
@@ -148,7 +148,7 @@ export default class MyPerson extends Component<Props, State> {
             <View
               style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
               <View style={styleAssign([styles.uac])}>
-                <Image style={styleAssign([w(78), h(69), mt(47)])} src={require('../../../../assets/ico_no_data.png')}/>
+                <Image style={styleAssign([w(78), h(69), mt(47)])} src={require('../../../assets/ico_no_data.png')}/>
                 <Text style={styleAssign([fSize(14), color('#343434'), mt(31)])}>{noticeText}</Text>
                 <View
                   style={styleAssign([w(303), h(44), bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc, mt(24), mb(29)])}

@@ -17,8 +17,8 @@ import * as actions from '../actions/task_center';
 import * as loginActions from '../actions/login';
 import * as businessCardActions from '../actions/business_card';
 import Card from "./component/business-card/index";
-import MyPerson from "./mine/component/my-person/index";
-import ShareModal from "./businesscard/component/share-modal/index";
+import MyPerson from "./component/my-person/index";
+import ShareModal from "./component/share-modal/index";
 import {User} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
 import {NetworkState} from "../api/httpurl";
@@ -376,7 +376,7 @@ class Businesscard extends Component<Props, State> {
             }}
             performCard={() => {
               Taro.navigateTo({
-                url: `/pages/personal-info/perform_info`
+                url: `/pages/mine/perform_info`
               });
             }}/>
           {/*slogan*/}
@@ -388,7 +388,7 @@ class Businesscard extends Component<Props, State> {
         <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
           if (userInfo.cardPercent) {
             Taro.navigateTo({
-              url: `/pages/personal-info/perform_info`
+              url: `/pages/mine/perform_info`
             });
           } else {
             if (!userInfo.avatar) {

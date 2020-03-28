@@ -178,7 +178,7 @@ class PerformInfo extends Component<Props, State> {
               <Image style={styleAssign([w(21), h(19), mt(70)])} src={`${cloudBaseUrl}ico_edit.png`}
                      onClick={() => {
                        Taro.navigateTo({
-                         url: `/pages/personal-info/personal_info`
+                         url: `/pages/mine/personal_info`
                        });
                      }}/>
             </View>
