@@ -29,13 +29,13 @@ export default class MyPhoto extends PureComponent<Props, State> {
           <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的照片</Text>
         </View>
         <View
-          style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(720), bgColor(commonStyles.whiteColor)])}>
+          style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), bgColor(commonStyles.whiteColor)])}>
           {
             photos.map((value, index) => {
               return <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])} key={index}>
                 <Image
-                  style={styleAssign([radiusA(4), wRatio(95), hRatio(90), bgColor(commonStyles.whiteColor)])}
-                  src={value}/>
+                  style={styleAssign([radiusA(4), wRatio(95), bgColor(commonStyles.whiteColor)])}
+                  src={value} mode={'widthFix'}/>
               </View>;
             })
           }

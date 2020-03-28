@@ -82,13 +82,13 @@ class GoodsDetail extends Component<Props, State> {
     return {
       title: `${this.props.userInfo.name}向你分享了商品`,
       path: `/pages/goods_detail`,
-      imageUrl:this.state.carouselUrls[0]
+      imageUrl: this.state.carouselUrls[0]
     }
   }
 
 
   render() {
-    let {itemData, currentIndex, carouselUrls,detailUrls} = this.state;
+    let {itemData, currentIndex, carouselUrls, detailUrls} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
@@ -143,8 +143,9 @@ class GoodsDetail extends Component<Props, State> {
                   console.log(value)
                   return (<Image
                     key={index}
-                    style={styleAssign([w(336), h(245), mt(8)])}
-                    src={value}/>);
+                    style={styleAssign([w(336), mt(8)])}
+                    src={value}
+                    mode={'widthFix'}/>);
                 })
               }
             </View>
