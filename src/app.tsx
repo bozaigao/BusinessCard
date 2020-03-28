@@ -151,6 +151,7 @@ class App extends Component {
           "perform_info",
           "add_task",
           "task_center",
+          "task_detail",
         ]
       }
     ],

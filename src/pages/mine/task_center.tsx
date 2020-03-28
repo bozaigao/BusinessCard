@@ -353,7 +353,7 @@ class TaskCenter extends Component<Props, State> {
         {/*新建任务*/}
         <BottomButon title={'新建任务'} onClick={() => {
           Taro.navigateTo({
-            url: `/pages/task/add_task`
+            url: `/pages/mine/add_task`
           });
         }}/>
       </CustomSafeAreaView>

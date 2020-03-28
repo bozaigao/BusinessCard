@@ -194,7 +194,7 @@ export interface TaskModel {
   theme: string;
   updateTime: string;
   userId: number;
-  userIds: string;
+  customerIds: string;
   userList: []
 }
 

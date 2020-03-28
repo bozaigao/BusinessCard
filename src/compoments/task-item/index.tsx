@@ -44,7 +44,12 @@ export default class TaskItem extends PureComponent<Props, State> {
     let {itemData, finishCallback, deleteCallback} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}>
+      <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}
+            onClick={() => {
+              Taro.navigateTo({
+                url: `/pages/mine/task_detail?theme=${itemData.theme}&date=${transformTime(itemData.date)}&customerIds=${itemData.customerIds}&remark=${itemData.remark}`
+              });
+            }}>
         <View style={styleAssign([w(335), bgColor(commonStyles.whiteColor), radiusA(4)])}>
           <View style={styleAssign([w(335), styles.uac, styles.udr, styles.ujb,
             pl(16), pr(16), pt(20)])}>
