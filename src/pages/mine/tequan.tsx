@@ -35,9 +35,9 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/tequan';
 import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
-import LinearGradientView from "../sub_pagecomponent/linear-gradient-view/index";
-import LevelItem from "../sub_pagecomponent/level-item/index";
-import TaoCanItem from "../sub_pagecomponent/taocan-item/index";
+import LinearGradientView from "../../compoments/linear-gradient-view2/index";
+import LevelItem from "../../compoments/level-item/index";
+import TaoCanItem from "../../compoments/taocan-item/index";
 import {NetworkState} from "../../api/httpurl";
 import {timeMap} from "../../const/global";
 import NavigationBar from "../../compoments/navigation_bar";

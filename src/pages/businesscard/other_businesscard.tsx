@@ -45,7 +45,7 @@ import {User} from "../../const/global";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
 import OtherBusinessCardGuide from "../pagecomponent/other-business-card-guide";
-import MyPhoto from "../sub_pagecomponent/my-photo";
+import MyPhoto from "../../compoments/my-photo";
 import './index.scss';
 import CardStyle1 from "../../compoments/card-style1";
 import CardStyle2 from "../../compoments/card-style2";

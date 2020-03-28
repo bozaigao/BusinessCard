@@ -35,7 +35,7 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/tequan';
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import LinearGradientView from "../sub_pagecomponent/linear-gradient-view/index";
+import LinearGradientView from "../../compoments/linear-gradient-view2/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
 

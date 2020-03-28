@@ -37,7 +37,7 @@ import {Image, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
-import CustomTag from "../sub_pagecomponent/custom-tag";
+import CustomTag from "../../compoments/custom-tag";
 
 interface Props {
   //更新用户信息

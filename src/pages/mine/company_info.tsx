@@ -30,7 +30,7 @@ import * as actions from '../../actions/login';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Input, ScrollView, Text, Video, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
-import ListItem from "../sub_pagecomponent/list-item/index";
+import ListItem from "../../compoments/list-item2/index";
 import {cloudBaseUrl, FileController, NetworkState} from "../../api/httpurl";
 import {Enum, User} from "../../const/global";
 

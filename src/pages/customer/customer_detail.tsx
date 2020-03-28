@@ -44,7 +44,7 @@ import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
-import DeleteNoticeModal from "../sub_pagecomponent/delete-notice";
+import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../pagecomponent/share-invite";
 
 interface Props {

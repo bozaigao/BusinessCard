@@ -33,7 +33,7 @@ import TopHeader from "../../compoments/top-header/index";
 import {Picker, Text, Textarea, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
 import ListItem from "../../compoments/list-item/index";
-import WenHouModal, {WenHouType} from "../sub_pagecomponent/wenhou-modal/index";
+import WenHouModal, {WenHouType} from "../../compoments/wenhou-modal/index";
 import {NetworkState} from "../../api/httpurl";
 import {User} from "../../const/global";
 

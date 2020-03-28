@@ -34,7 +34,7 @@ import TopHeader from "../../compoments/top-header";
 import {Image, Picker, ScrollView, Text, View} from "@tarojs/components";
 import {BehaviorTrace, BehaviorTraceUser} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
-import TraceItem from "../sub_pagecomponent/trace-item";
+import TraceItem from "../../compoments/trace-item";
 import BottomButon from "../../compoments/bottom-buton";
 
 interface Props {

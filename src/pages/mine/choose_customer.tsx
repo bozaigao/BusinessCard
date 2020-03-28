@@ -29,7 +29,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Input, ScrollView, Text, View} from "@tarojs/components";
-import GuanLianCustomer from "../sub_pagecomponent/guanlian-customer/index";
+import GuanLianCustomer from "../../compoments/guanlian-customer/index";
 import {CustomerModel} from "../../const/global";
 
 interface Props {

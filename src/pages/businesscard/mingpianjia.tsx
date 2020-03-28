@@ -15,7 +15,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/dict';
 import TopHeader from "../../compoments/top-header";
 import {View} from "@tarojs/components";
-import MingPianJiaItem from "../sub_pagecomponent/mingpianjia-item";
+import MingPianJiaItem from "../../compoments/mingpianjia-item";
 
 interface Props {
   wxacode:any;

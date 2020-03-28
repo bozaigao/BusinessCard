@@ -141,7 +141,7 @@ class Mine extends Component<Props, State> {
                   <TouchableButton customStyle={styleAssign([styles.udr, styles.uac])}
                                    onClick={() => {
                                      Taro.navigateTo({
-                                       url: `/pages/mine/perform_info`
+                                       url: `/pages/personal-info/perform_info`
                                      });
                                    }}>
                     <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>完善名片</Text>
@@ -204,7 +204,7 @@ class Mine extends Component<Props, State> {
                                          });
                                        } else if (value.title === '任务中心') {
                                          Taro.navigateTo({
-                                           url: `/pages/mine/task_center`
+                                           url: `/pages/task/task_center`
                                          });
                                        } else if (value.title === '名片夹') {
                                          Taro.navigateTo({

@@ -29,7 +29,7 @@ import {styleAssign, toast} from "../../utils/datatool";
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/distribution";
 import {CustomerRecord, User} from "../../const/global";
-import MyCustomerItem from "../sub_pagecomponent/my_customer_item";
+import MyCustomerItem from "../../compoments/my_customer_item";
 import TopHeader from "../../compoments/top-header";
 
 

@@ -376,7 +376,7 @@ class Businesscard extends Component<Props, State> {
             }}
             performCard={() => {
               Taro.navigateTo({
-                url: `/pages/mine/perform_info`
+                url: `/pages/personal-info/perform_info`
               });
             }}/>
           {/*slogan*/}
@@ -388,7 +388,7 @@ class Businesscard extends Component<Props, State> {
         <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
           if (userInfo.cardPercent) {
             Taro.navigateTo({
-              url: `/pages/mine/perform_info`
+              url: `/pages/personal-info/perform_info`
             });
           } else {
             if (!userInfo.avatar) {

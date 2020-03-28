@@ -108,13 +108,11 @@ class App extends Component {
       {
         root: 'pages/mine',
         pages: [
-          "add_task",
           "tool_box",
           "haibao",
           "goods_detail",
           "goods_manage",
           "add_goods",
-          "task_center",
           "contact_way",
           "setting_page",
           "feedback",
@@ -124,7 +122,6 @@ class App extends Component {
           "self_intro",
           "audio_recorder",
           "industry_list",
-          "perform_info",
           "my_photo",
           "my_video",
           "fenxiao_center",
@@ -156,6 +153,14 @@ class App extends Component {
         pages: [
           "personal_info",
           "mingpian_style",
+          "perform_info",
+        ]
+      },
+      {
+        root: 'pages/task',
+        pages: [
+          "add_task",
+          "task_center",
         ]
       },
     ],

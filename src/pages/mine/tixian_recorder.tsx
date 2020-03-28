@@ -15,7 +15,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/distribution';
 import TopHeader from "../../compoments/top-header";
 import {ScrollView} from "@tarojs/components";
-import TiXianRecorderItem from "../sub_pagecomponent/tixian-recorder-item";
+import TiXianRecorderItem from "../../compoments/tixian-recorder-item";
 import {TiXianRecord} from "../../const/global";
 
 interface Props {
