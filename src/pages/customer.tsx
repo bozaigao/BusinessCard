@@ -235,7 +235,7 @@ class Customer extends Component<Props, State> {
               onScrollToLower={() => {
                 this.loadMore();
               }}
-              style={styleAssign([styles.uf1, styles.uac])}
+              style={styleAssign([styles.uf1, styles.uac,bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY>
               {
                 customerList.map((value: CustomerModel, index) => {

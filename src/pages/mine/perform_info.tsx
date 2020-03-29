@@ -40,6 +40,7 @@ import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import LinearGradientView from "../../compoments/linear-gradient-view2/index";
 import NavigationBar from "../../compoments/navigation_bar/index";
+import './index.scss';
 
 
 interface Props {
@@ -163,7 +164,7 @@ class PerformInfo extends Component<Props, State> {
               <Text
                 style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
               {
-                userInfo.enterpriseName&&<Text
+                userInfo.enterpriseName && <Text
                   style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{`${userInfo.enterpriseName}-${userInfo.position}`}</Text>
               }
               <Text
@@ -279,15 +280,17 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>自我描述</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.selfDescription && userInfo.selfDescription.length !== 0 ? '编辑' : '添加'}</Text>
+                      <Text
+                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.selfDescription && userInfo.selfDescription.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
-                  <View style={styleAssign([wRatio(100), mb(10)])}>
+                  <View style={styleAssign([wRatio(100), mb(10),styles.uac,pl(20),pr(20)])}>
                     {
                       userInfo.selfDescription && userInfo.selfDescription.length !== 0 ?
                         <Text
-                          style={styleAssign([fSize(12), color('#0C0C0C'), ml(20), mr(20)])}>{userInfo.selfDescription}</Text> :
+                          style={styleAssign([fSize(12), color('#0C0C0C')])}
+                          className={'.textStyle'}>{userInfo.selfDescription}</Text> :
                         <Text
                           style={styleAssign([fSize(12), color('#A9A9A9'), ml(20), mr(20)])}>让客户进一步深入了解你</Text>
                     }
@@ -304,7 +307,8 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的家乡</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.province || userInfo.city ? '编辑' : '添加'}</Text>
+                      <Text
+                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.province || userInfo.city ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
@@ -329,7 +333,8 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>教育经历</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{ userInfo.school && userInfo.school.length !== 0 ? '编辑' : '添加'}</Text>
+                      <Text
+                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.school && userInfo.school.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
@@ -358,7 +363,8 @@ class PerformInfo extends Component<Props, State> {
                   <View style={styleAssign([wRatio(100), h(38), styles.udr, styles.uac, styles.ujb])}>
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的标签</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
-                      <Text style={styleAssign([fSize(12), color('#A9A9A9')])}>{ userInfo.labelArray && userInfo.labelArray.length !== 0 ? '编辑' : '添加'}</Text>
+                      <Text
+                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.labelArray && userInfo.labelArray.length !== 0 ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
