@@ -28,12 +28,13 @@ import styles, {
 } from "../../../../utils/style";
 import {cloudBaseUrl} from "../../../../api/httpurl";
 import {User} from "../../../../const/global";
+import '../index.scss';
 
 
 interface Props {
   userInfo: User;
-  homeClick:any;
-  schoolClick:any;
+  homeClick: any;
+  schoolClick: any;
 }
 
 interface State {
@@ -72,7 +73,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
   }
 
   render() {
-    let {userInfo,homeClick,schoolClick} = this.props;
+    let {userInfo, homeClick, schoolClick} = this.props;
     let {micIsPlaying} = this.state;
 
     return (
@@ -116,15 +117,16 @@ export default class PersonalInfo extends PureComponent<Props, State> {
           }
           {
             userInfo.selfDescription.length !== 0 && <Text
-              style={styleAssign([fSize(14), color('#343434'), mt(16)])}>{userInfo.selfDescription}</Text>
+              style={styleAssign([fSize(14), color('#343434'), mt(16)])}
+              className={'.textStyle '}>{userInfo.selfDescription}</Text>
           }
           {/*家乡*/}
           {
-            (userInfo.province.length !== 0 || userInfo.city.length !== 0) &&
+            (userInfo.hometownProvince.length !== 0 || userInfo.hometownCity.length !== 0) &&
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(24)])}>
               <View>
                 <Text style={styleAssign([fSize(14)])}>家乡</Text>
-                <Text style={styleAssign([fSize(12)])}>{`${userInfo.province} ${userInfo.city}`}</Text>
+                <Text style={styleAssign([fSize(12)])}>{`${userInfo.hometownProvince} ${userInfo.hometownCity}`}</Text>
               </View>
               <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
                 bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}

@@ -308,7 +308,7 @@ class PerformInfo extends Component<Props, State> {
                     <Text style={styleAssign([fSize(16), color('#0C0C0C'), ml(20)])}>我的家乡</Text>
                     <TouchableButton customStyle={styleAssign([styles.uac, styles.udr, mr(20)])}>
                       <Text
-                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.province || userInfo.city ? '编辑' : '添加'}</Text>
+                        style={styleAssign([fSize(12), color('#A9A9A9')])}>{userInfo.hometownProvince || userInfo.hometownCity ? '编辑' : '添加'}</Text>
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>

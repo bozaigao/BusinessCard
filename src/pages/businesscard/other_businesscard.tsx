@@ -58,7 +58,7 @@ interface Props {
   //获取用户信息
   getUserInfoById: any;
   //收藏名片
-  updateMyCollect: any;
+  updateMyCollect: any;v
   userSettingGet: any;
   getCardHolderVisitorRecord: any;
 }
