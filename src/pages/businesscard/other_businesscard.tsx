@@ -58,7 +58,8 @@ interface Props {
   //获取用户信息
   getUserInfoById: any;
   //收藏名片
-  updateMyCollect: any;v
+  updateMyCollect: any;
+  v
   userSettingGet: any;
   getCardHolderVisitorRecord: any;
 }
@@ -433,15 +434,15 @@ class OtherBusinesscard extends Component<Props, State> {
             userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <MyPhoto photos={userInfo.photoUrlArray}/>
           }
           {/*我的视频*/}
-          <View
-            style={styleAssign([wRatio(100), h(264), mt(10)])}>
-            <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
-              <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
-              <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的视频</Text>
-            </View>
-            <View style={styleAssign([styles.uac, styles.ujc, wRatio(100), mt(16)])}>
-              {
-                userInfo.videoUrl && userInfo.videoUrl.length !== 0 &&
+          {
+            userInfo.videoUrl && userInfo.videoUrl.length !== 0 &&
+            <View
+              style={styleAssign([wRatio(100), h(264), mt(10)])}>
+              <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
+                <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
+                <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的视频</Text>
+              </View>
+              <View style={styleAssign([styles.uac, styles.ujc, wRatio(100), mt(16)])}>
                 <Video
                   style={styleAssign([w(335), h(203), bgColor(commonStyles.whiteColor)])}
                   src={userInfo.videoUrl}
@@ -456,9 +457,9 @@ class OtherBusinesscard extends Component<Props, State> {
                     e.stopPropagation();
                   }
                   }/>
-              }
+              </View>
             </View>
-          </View>
+          }
           {/*极致名片*/}
           <JiZhiCard/>
           {/*关注公众号*/}

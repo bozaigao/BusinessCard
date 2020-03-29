@@ -344,7 +344,7 @@ class GoodsManage extends Component<Props, State> {
         }
         {
           showAllOperate && <View
-            style={styleAssign([wRatio(100), h(53), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.pageDefaultBackgroundColor),
+            style={styleAssign([wRatio(100), h(53), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
               pl(20), pr(20)])}>
             <View style={styleAssign([styles.uac, styles.udr])}
                   onClick={() => {
