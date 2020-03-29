@@ -176,7 +176,7 @@ class GoodsManage extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       console.log(res);
       if (res !== NetworkState.FAIL) {
-        this.setState({goodsChooseValue: []});
+        this.setState({goodsChooseValue: [], state: '全部', showAllOperate: false});
         this.refresh();
         toast('批量操作成功');
       }
