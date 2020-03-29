@@ -32,6 +32,8 @@ import {User} from "../../../../const/global";
 
 interface Props {
   userInfo: User;
+  homeClick:any;
+  schoolClick:any;
 }
 
 interface State {
@@ -70,7 +72,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
   }
 
   render() {
-    let {userInfo} = this.props;
+    let {userInfo,homeClick,schoolClick} = this.props;
     let {micIsPlaying} = this.state;
 
     return (
@@ -120,12 +122,13 @@ export default class PersonalInfo extends PureComponent<Props, State> {
           {
             (userInfo.province.length !== 0 || userInfo.city.length !== 0) &&
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(24)])}>
-              <View style={styleAssign([])}>
+              <View>
                 <Text style={styleAssign([fSize(14)])}>家乡</Text>
                 <Text style={styleAssign([fSize(12)])}>{`${userInfo.province} ${userInfo.city}`}</Text>
               </View>
               <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
-                bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
+                bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}
+                    onClick={homeClick}>
                 <Text style={styleAssign([fSize(12)])}>同乡</Text>
               </View>
             </View>
@@ -141,7 +144,8 @@ export default class PersonalInfo extends PureComponent<Props, State> {
                   style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
               </View>
               <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
-                bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}>
+                bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}
+                    onClick={schoolClick}>
                 <Text style={styleAssign([fSize(12)])}>校友</Text>
               </View>
             </View>

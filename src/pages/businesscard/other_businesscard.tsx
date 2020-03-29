@@ -52,6 +52,7 @@ import CardStyle2 from "../../compoments/card-style2";
 import CardStyle3 from "../../compoments/card-style3";
 import CardStyle4 from "../../compoments/card-style4";
 import CardStyle5 from "../../compoments/card-style5";
+import WenHouModal, {WenHouType} from "../../compoments/wenhou-modal";
 
 interface Props {
   //获取用户信息
@@ -74,6 +75,8 @@ interface State {
   hideWechat: number;
   hideEmail: number;
   hideAddress: number;
+  showHomeWenHouYu: boolean;
+  showSchoolWenHouYu: boolean;
 
 }
 
@@ -108,6 +111,8 @@ class OtherBusinesscard extends Component<Props, State> {
       hideWechat: 0,
       hideEmail: 0,
       hideAddress: 0,
+      showHomeWenHouYu: false,
+      showSchoolWenHouYu: false,
     }
   }
 
@@ -224,7 +229,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList, cardStyle, hidePhone, hideWechat, hideEmail, hideAddress} = this.state,
+    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList, cardStyle, hidePhone, hideWechat, hideEmail, hideAddress, showHomeWenHouYu, showSchoolWenHouYu} = this.state,
       visitorListSub;
 
     if (visitorList.length > 5) {
@@ -399,7 +404,13 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           </View>
           {/*我的个人简介*/}
-          <PersonalInfo userInfo={userInfo}/>
+          <PersonalInfo userInfo={userInfo}
+                        homeClick={() => {
+                          this.setState({showHomeWenHouYu: true});
+                        }}
+                        schoolClick={() => {
+                          this.setState({showSchoolWenHouYu: true});
+                        }}/>
           {/*我的商品*/}
           {
             userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
@@ -500,6 +511,16 @@ class OtherBusinesscard extends Component<Props, State> {
             });
           }
           }/>
+        }
+        {
+          showHomeWenHouYu && <WenHouModal type={WenHouType.HOME} cancle={() => {
+            this.setState({showHomeWenHouYu: false});
+          }} wenHouYu={userInfo.villagerGreeting} userInfo={userInfo}/>
+        }
+        {
+          showSchoolWenHouYu && <WenHouModal type={WenHouType.EDUCATION} cancle={() => {
+            this.setState({showSchoolWenHouYu: false});
+          }} wenHouYu={userInfo.schoolfellowGreeting} userInfo={userInfo}/>
         }
       </CustomSafeAreaView>
     )
