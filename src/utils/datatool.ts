@@ -209,7 +209,7 @@ export function toast(msg) {
  * @function: 时间转换
  */
 export function transformTime(time: string) {
-  console.log('时间转换',time)
+  console.log('时间转换', time)
   return moment(time).format('YYYY-MM-DD HH:mm');
 }
 
@@ -218,9 +218,9 @@ export function transformTime(time: string) {
  * @QQ 1054539528
  * @date 2020/3/28
  * @function: 从现在开始计算时间
-*/
+ */
 export function transformNowTime(time: string) {
-  console.log('从现在开始计算时间',time)
+  console.log('从现在开始计算时间', time)
   if (typeof time === 'number') {
     return moment(time).fromNow();
   }
@@ -254,9 +254,14 @@ export function wrapSafe(source) {
  */
 let now = new Date(); //当前日期
 let nowDayOfWeek = now.getDay(); //今天本周的第几天
+
+if (nowDayOfWeek === 0) {
+  nowDayOfWeek = 7;
+}
 let nowDay = now.getDate(); //当前日
 let nowMonth = now.getMonth(); //当前月
 let nowYear = now.getFullYear(); //当前年
+
 
 nowYear += (nowYear < 2000) ? 1900 : 0; //
 
@@ -292,6 +297,7 @@ function getMonthDays(myMonth) {
 
 //获得本周的开始日期
 export function getWeekStartDate() {
+  console.log('获取本周', nowYear, nowMonth, nowDay, nowDayOfWeek)
   let weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
 
   return formatDate(weekStartDate);

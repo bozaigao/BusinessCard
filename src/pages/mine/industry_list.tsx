@@ -108,7 +108,7 @@ class IndustryList extends Component<Props, State> {
                       return (<TouchableButton key={itemIndex}
                                                customStyle={styleAssign([wRatio(100), styles.uac, bgColor('#F7F7F7')])}
                                                onClick={() => {
-                                                 Taro.eventCenter.trigger('industry', `${value.name }/${item.name}`);
+                                                 Taro.eventCenter.trigger('industry', `${item.name}`);
                                                  Taro.navigateBack();
                                                }}>
                         <View style={styleAssign([wRatio(100), h(50), bgColor('#F7F7F7'), styles.ujc])}>

@@ -136,10 +136,15 @@ class Customer extends Component<Props, State> {
     let params = {
       pageNo: this.pageNo,
       pageSize: this.pageSize,
-      startDate: startTime,
-      endDate: endTime,
       status,
     };
+
+    if (startTime.length !== 0) {
+      Object.assign(params, {startDate: startTime});
+    }
+    if (endTime.length !== 0) {
+      Object.assign(params, {endDate: endTime});
+    }
 
     if (name.length !== 0) {
       Object.assign(params, {name});
@@ -280,7 +285,7 @@ class Customer extends Component<Props, State> {
               this.setState({showMode: false});
             }
             } confirmCallback={(data) => {
-            this.setState({showMode: false, shaiXuanMode: data}, () => {
+            this.setState({showMode: false, startTime: '', endTime: '', shaiXuanMode: data}, () => {
               this.refresh();
             });
           }
