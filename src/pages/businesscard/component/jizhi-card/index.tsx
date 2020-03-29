@@ -5,7 +5,7 @@
  * @function: 极致名片
  */
 import Taro, {PureComponent} from "@tarojs/taro";
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Button, Image, ScrollView, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../../utils/datatool";
 import styles, {
   absB,
@@ -63,29 +63,34 @@ export default class JiZhiCard extends PureComponent<Props, State> {
                   <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
                     <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_wechat_gray.png`}/>
                     <Text
-                      style={styleAssign([fSize(12), color('#979797'), ml(4)])}>18980668468</Text>
+                      style={styleAssign([fSize(12), color('#979797'), ml(4)])}>LY8866321</Text>
                   </View>
                   <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
                     <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_phone_gray.png`}/>
                     <Text
-                      style={styleAssign([fSize(12), color('#979797'), ml(4)])}>LY8866321</Text>
+                      style={styleAssign([fSize(12), color('#979797'), ml(4)])}>18980668468</Text>
                   </View>
                   <View style={styleAssign([wRatio(100), styles.upa, absB(0)])}>
                     <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                     <View
                       style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac])}>
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-                        <View style={styleAssign([styles.udr, styles.uac])}>
+                        <View style={styleAssign([styles.udr, styles.uac])}
+                              onClick={() => {
+                                Taro.makePhoneCall({
+                                  phoneNumber: '18980668468'
+                                })
+                              }}>
                           <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_call.png`}/>
                           <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>拨打电话</Text>
                         </View>
                       </View>
                       <View style={styleAssign([w(1), h(19), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-                        <View style={styleAssign([styles.udr, styles.uac])}>
+                        <Button openType={'share'} style={styleAssign([styles.udr, styles.uac,bgColor(commonStyles.whiteColor)])}>
                           <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_share.png`}/>
                           <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>分享名片</Text>
-                        </View>
+                        </Button>
                       </View>
                     </View>
                   </View>
