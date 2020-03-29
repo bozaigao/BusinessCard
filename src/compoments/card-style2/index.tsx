@@ -64,7 +64,7 @@ export default class CardStyle2 extends PureComponent<Props, State> {
             </View>
           </View>
           <Text
-            style={styleAssign([fSize(11), color(commonStyles.whiteColor), styles.upa, absT(24), absR(26)])}>{userInfo.company}</Text>
+            style={styleAssign([fSize(11), color(commonStyles.whiteColor), styles.upa, absT(24), absR(26)])}>{userInfo.enterpriseName}</Text>
           <View style={styleAssign([styles.upa, absB(30), absL(42)])}>
             {/*电话号码*/}
             {

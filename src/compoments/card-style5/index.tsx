@@ -58,7 +58,7 @@ export default class CardStyle5 extends PureComponent<Props, State> {
                 style={styleAssign([fSize(16), fWeight('bold'), color(commonStyles.whiteColor)])}>{userInfo.name}</Text>
               <Text style={styleAssign([fSize(11), ml(8), color(commonStyles.whiteColor)])}>{userInfo.position}</Text>
             </View>
-            <Text style={styleAssign([fSize(11), color(commonStyles.whiteColor), mt(2)])}>{userInfo.company}</Text>
+            <Text style={styleAssign([fSize(11), color(commonStyles.whiteColor), mt(2)])}>{userInfo.enterpriseName}</Text>
           </View>
           <View style={styleAssign([styles.upa, absB(26), absL(30)])}>
             {/*电话号码*/}

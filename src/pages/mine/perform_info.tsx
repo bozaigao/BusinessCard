@@ -163,8 +163,8 @@ class PerformInfo extends Component<Props, State> {
               <Text
                 style={styleAssign([fSize(20), color('#343434'), mt(15)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
               {
-                userInfo.company&&<Text
-                  style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{`${userInfo.company}-${userInfo.position}`}</Text>
+                userInfo.enterpriseName&&<Text
+                  style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{`${userInfo.enterpriseName}-${userInfo.position}`}</Text>
               }
               <Text
                 style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{`${userInfo.school}•${userInfo.profession}`}</Text>

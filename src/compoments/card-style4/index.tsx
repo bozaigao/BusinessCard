@@ -46,7 +46,7 @@ export default class CardStyle4 extends PureComponent<Props, State> {
               <Text style={styleAssign([fSize(16), fWeight('bold')])}>{userInfo.name}</Text>
               <Text style={styleAssign([fSize(11), ml(8)])}>{userInfo.position}</Text>
             </View>
-            <Text style={styleAssign([fSize(11), color('#343434'), mt(2)])}>{userInfo.company}</Text>
+            <Text style={styleAssign([fSize(11), color('#343434'), mt(2)])}>{userInfo.enterpriseName}</Text>
           </View>
           <View style={styleAssign([styles.upa, absB(26), absL(30)])}>
             {/*电话号码*/}

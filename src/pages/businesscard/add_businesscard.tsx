@@ -178,7 +178,7 @@ class AddBusinesscard extends Component<Props, State> {
     this.props.update({
       avatar: this.avatar,
       name: listData[0].value,
-      company: listData[2].value,
+      enterpriseName: listData[2].value,
       industry: listData[3].value,
       position: listData[4].value,
       province: this.province,
