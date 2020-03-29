@@ -34,6 +34,12 @@ export default class MyPhoto extends PureComponent<Props, State> {
             photos.map((value, index) => {
               return <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])} key={index}>
                 <Image
+                  onClick={() => {
+                    Taro.previewImage({
+                      current: value,
+                      urls: photos
+                    })
+                  }}
                   style={styleAssign([radiusA(4), wRatio(95), bgColor(commonStyles.whiteColor)])}
                   src={value} mode={'widthFix'}/>
               </View>;

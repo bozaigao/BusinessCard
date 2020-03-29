@@ -110,7 +110,13 @@ class GoodsDetail extends Component<Props, State> {
                     carouselUrls.map((value, index) => {
                       return (<SwiperItem key={index}>
                         <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(0)])}
-                               src={value}/>
+                               src={value}
+                               onClick={() => {
+                                 Taro.previewImage({
+                                   current: value,
+                                   urls: carouselUrls
+                                 })
+                               }}/>
                       </SwiperItem>);
                     })
                   }
@@ -142,6 +148,13 @@ class GoodsDetail extends Component<Props, State> {
                 detailUrls.map((value, index) => {
                   console.log(value)
                   return (<Image
+                    onClick={() => {
+                      Taro.previewImage({
+                        current: value,
+                        urls: detailUrls
+                      })
+                    }
+                    }
                     key={index}
                     style={styleAssign([w(336), mt(8)])}
                     src={value}
