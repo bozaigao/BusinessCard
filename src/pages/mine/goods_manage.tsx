@@ -345,10 +345,12 @@ class GoodsManage extends Component<Props, State> {
                 style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#C0C4CB'), ml(16)])}>
                 <Text style={styleAssign([fSize(12), color('#0D0D0D')])}>删除</Text>
               </View>
-              <View
-                style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#FA541C'), ml(10)])}>
-                <Text style={styleAssign([fSize(12), color('#FA541C')])}>上架</Text>
-              </View>
+              {
+                state !== '全部' && <View
+                  style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#FA541C'), ml(10)])}>
+                  <Text style={styleAssign([fSize(12), color('#FA541C')])}>{`${state === '已下架' ? '上架' : '下架'}`}</Text>
+                </View>
+              }
             </View>
           </View>
         }
@@ -503,7 +505,7 @@ class GoodsManage extends Component<Props, State> {
                 styles.upa, absB(0)])}>
               <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
                     onClick={() => {
-                      this.setState({showOperate: false},()=>{
+                      this.setState({showOperate: false}, () => {
                         Taro.navigateTo({
                           url: `/pages/mine/share_goods?name=${this.itemData.name}&price=${this.itemData.price}&photo=${parseData(this.itemData.carouselUrl)[0]}`
                         });

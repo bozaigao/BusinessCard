@@ -61,11 +61,6 @@ export default class GoodsManageItem extends Component<Props, State> {
     });
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off('checkAll');
-    Taro.eventCenter.off('unCheckAll');
-  }
-
   render() {
     let {itemData, moreCallback, xiajiaCallback, notTopGoodsCallback, showAllOperate, onChooseCallback} = this.props;
     let {checked} = this.state;
