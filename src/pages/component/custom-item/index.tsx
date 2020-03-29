@@ -50,7 +50,7 @@ export default class CustomItem extends PureComponent<Props, State> {
     } else if (mode === '最后跟进') {
       time = transformTime(customer.followUpDate);
     } else if (mode === '最后转入') {
-      time = transformTime(customer.createUpDate);
+      time = transformTime(customer.createTime);
     }
 
     return (
