@@ -69,7 +69,7 @@ class CustomerRemark extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.id = this.$router.params.id;
-    this.avatarArr = [];
+    this.avatarArr = [this.$router.params.aboutUrl];
     this.uploading = false;
     this.uploadCount = 0;
     this.uploadResultArr = [];

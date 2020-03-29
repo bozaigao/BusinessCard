@@ -244,7 +244,7 @@ class CustomerZiLiao extends Component<Props, State> {
                   </Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-                  <Image style={styleAssign([wRatio(100), h(176), mt(20), mb(20)])} src={customer.aboutUrl}
+                  <Image style={styleAssign([wRatio(90), mb(20)])} src={customer.aboutUrl}
                          mode={'aspectFit'}/>
                 </View>
               </View>

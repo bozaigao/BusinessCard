@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/industry_list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/industry_list.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/datatool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/datatool.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_remark.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_remark.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,11 +65,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datatool.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="datatool.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="256" lean-forward="true" selection-start-line="256" selection-end-line="256" />
+            <state relative-caret-position="327">
+              <caret line="261" column="36" lean-forward="true" selection-start-line="261" selection-start-column="36" selection-end-line="261" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer_ziliao.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="411">
+              <caret line="246" column="56" selection-start-line="246" selection-start-column="56" selection-end-line="246" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer_remark.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_remark.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2200">
+              <caret line="142" column="21" lean-forward="true" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,10 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.canEdit</find>
-      <find>onClick</find>
-      <find>新增商品</find>
-      <find>refresh</find>
       <find>transformNowTime</find>
       <find>render</find>
       <find>shorter</find>
@@ -115,7 +131,11 @@
       <find>onSha</find>
       <find>startTime</find>
       <find>选择行业</find>
+      <find>客户详细资料</find>
       <find>本周</find>
+      <find>备注</find>
+      <find>uploadResultArr</find>
+      <find>avatarArr</find>
     </findStrings>
     <replaceStrings>
       <replace>getUserinfo</replace>
@@ -160,8 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/mine/pages/radar_gongneng.tsx" />
-        <option value="$PROJECT_DIR$/src/mine/pages/open_message_notice.tsx" />
         <option value="$PROJECT_DIR$/src/mine/pages/update_card_style.tsx" />
         <option value="$PROJECT_DIR$/src/mine/pages/get_renmai.tsx" />
         <option value="$PROJECT_DIR$/src/mine/pages/open_shop.tsx" />
@@ -211,6 +229,8 @@
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/industry_list.tsx" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
+        <option value="$PROJECT_DIR$/src/pages/customer/customer_remark.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" />
       </list>
     </option>
   </component>
@@ -525,12 +545,12 @@
       <workItem from="1585231086211" duration="6162000" />
       <workItem from="1585357755216" duration="9971000" />
       <workItem from="1585374759731" duration="16290000" />
-      <workItem from="1585462343915" duration="5037000" />
+      <workItem from="1585462343915" duration="5441000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1145346000" />
+    <option name="totallyTimeSpent" value="1145750000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -550,9 +570,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.3432836" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.3432836" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20010532" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20010532" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -636,25 +656,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/about_us.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/company_info.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5">
@@ -779,6 +780,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1096,8 +1100,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="256" lean-forward="true" selection-start-line="256" selection-end-line="256" />
+        <state relative-caret-position="327">
+          <caret line="261" column="36" lean-forward="true" selection-start-line="261" selection-start-column="36" selection-end-line="261" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_remark.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2200">
+          <caret line="142" column="21" lean-forward="true" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="246" column="56" selection-start-line="246" selection-start-column="56" selection-end-line="246" selection-end-column="56" />
         </state>
       </provider>
     </entry>
