@@ -53,12 +53,12 @@ export default class CardStyle2 extends PureComponent<Props, State> {
         <Image style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}
                src={require('../../assets/ico_business_card_bg2.png')}/>
         <View style={styleAssign([wRatio(100), h(204), styles.upa, absT(0)])}>
-          <Viewj
+          <View
             style={styleAssign([wRatio(100), h(204), radiusA(10), styles.upa, absL(0), absT(0)])}/>
           <View style={styleAssign([styles.upa, styles.udr, styles.uac, absL(42), absT(28)])}>
             <Image style={styleAssign([w(60), h(60), radiusA(30)])}
                    src={userInfo.avatar}/>
-            <View style={styleAssign([styles.uae, ml(16)])}>
+            <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(16), fWeight('bold'), color('#E2BB7B')])}>{userInfo.name}</Text>
               <Text style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>{userInfo.position}</Text>
             </View>

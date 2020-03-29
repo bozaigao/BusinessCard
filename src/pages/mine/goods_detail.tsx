@@ -81,7 +81,7 @@ class GoodsDetail extends Component<Props, State> {
   onShareAppMessage(res) {
     return {
       title: `${this.props.userInfo.name}向你分享了商品`,
-      path: `/pages/goods_detail`,
+      path: `/pages/mine/goods_detail`,
       imageUrl: this.state.carouselUrls[0]
     }
   }
