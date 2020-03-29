@@ -428,8 +428,7 @@ class OtherBusinesscard extends Component<Props, State> {
               <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
               <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的视频</Text>
             </View>
-            <View style={styleAssign([styles.uac, wRatio(100), mt(16),bgColor(commonStyles.whiteColor)])}>
-              <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+            <View style={styleAssign([styles.uac, styles.ujc, wRatio(100), mt(16)])}>
               {
                 userInfo.videoUrl && userInfo.videoUrl.length !== 0 &&
                 <Video
