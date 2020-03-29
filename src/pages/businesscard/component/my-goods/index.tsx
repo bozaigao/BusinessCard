@@ -36,12 +36,21 @@ export default class MyGoods extends Component<Props, State> {
     }
 
     console.log('北部属性', this.props.goodsList);
-
     return (
       <View style={styleAssign([wRatio(100)])}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
           <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
-          <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的商品</Text>
+          <View style={styleAssign([styles.uf1, styles.udr, styles.uac, styles.ujb])}>
+            <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的商品</Text>
+            <View style={styleAssign([w(40), h(40), styles.uac, styles.ujc])}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToMoreGoods();
+                  }
+                  }>
+              <Image style={styleAssign([w(7), h(12)])} src={require('../../../../assets/ico_next.png')}/>
+            </View>
+          </View>
         </View>
         <View style={styleAssign([wRatio(100), mt(16)])}>
           {
@@ -64,12 +73,7 @@ export default class MyGoods extends Component<Props, State> {
                       style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8), mt(12), color('#373838')])}>{value.name}</Text>
                     <View>
                       <Text style={styleAssign([fSize(18), color('#FA6B57'), ml(8), mt(12)])}>{`￥${value.price}`}</Text>
-                      <Text style={styleAssign([fSize(16), color('#979797'), ml(8), mt(17)])}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              goToMoreGoods();
-                            }
-                            }>点击了解更多</Text>
+                      <Text style={styleAssign([fSize(16), color('#979797'), ml(8), mt(17)])}>点击了解更多</Text>
                     </View>
                   </View>
                 </TouchableButton>);
