@@ -83,7 +83,7 @@ class CustomerDetail extends Component<Props, State> {
 
     this.state = {
       //@ts-ignore
-      customer: null,
+      customer: parseData(this.$router.params.itemData),
       showOperate: false,
       currentIndex: 0,
       flowUpList: [],
@@ -100,7 +100,6 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.getCustomerDetail();
     this.followUpList();
   }
 
@@ -112,21 +111,6 @@ class CustomerDetail extends Component<Props, State> {
     }
   }
 
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/12/29
-   * @function: 获取客户详情
-   */
-  getCustomerDetail = () => {
-    console.log('获取客户详情');
-    this.props.getCustomerDetail({id: this.$router.params.id}).then((res) => {
-      this.setState({customer: res});
-      console.log('获取客户详情', res);
-    }).catch(e => {
-      console.log('报错啦', e);
-    });
-  }
 
   /**
    * @author 何晏波

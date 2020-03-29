@@ -17,7 +17,7 @@ import {
   hRatio,
   mb,
   ml,
-  mt,
+  mt, op,
   padding,
   pl,
   pr,
@@ -142,7 +142,7 @@ class CustomerZiLiao extends Component<Props, State> {
           scrollY>
           {/*头像*/}
           <View style={styleAssign([wRatio(100), h(86), styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
-            <Image style={styleAssign([w(66), h(66), ml(21), {display: 'none'}])}
+            <Image style={styleAssign([w(66), h(66), ml(21), op(0)])}
                    src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
             <View style={styleAssign([w(240), hRatio(100), styles.ujb,
               ml(15)])}>
