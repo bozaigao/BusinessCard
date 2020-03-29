@@ -6,7 +6,7 @@
  * @Description: 别人的名片
  */
 import Taro, {Component, Config} from '@tarojs/taro'
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Text, Video, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
@@ -127,7 +127,7 @@ class OtherBusinesscard extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet({userId:this.state.userInfo.id}).then((res) => {
+    this.props.userSettingGet({userId: this.state.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,
@@ -195,7 +195,7 @@ class OtherBusinesscard extends Component<Props, State> {
   getUserInfoById = () => {
     console.log('获取用户信息');
     this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
-      this.setState({userInfo: res},()=>{
+      this.setState({userInfo: res}, () => {
         this.userSettingGet();
       });
       console.log('获取用户信息', res);
@@ -224,7 +224,8 @@ class OtherBusinesscard extends Component<Props, State> {
 
   render() {
 
-    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList,cardStyle, hidePhone, hideWechat, hideEmail, hideAddress} = this.state, visitorListSub;
+    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList, cardStyle, hidePhone, hideWechat, hideEmail, hideAddress} = this.state,
+      visitorListSub;
 
     if (visitorList.length > 5) {
       visitorListSub = visitorList.slice(0, 6);
@@ -259,7 +260,7 @@ class OtherBusinesscard extends Component<Props, State> {
       cardChild = <CardStyle5 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
                               hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
                               hideWechat={hideWechat === 0}/>
-    }else {
+    } else {
       //@ts-ignore
       cardChild = <CardStyle1 userInfo={userInfo} width={334} height={202} hidePhone={hidePhone === 0}
                               hideAddress={hideAddress === 0} hideEmail={hideEmail === 0}
@@ -420,6 +421,34 @@ class OtherBusinesscard extends Component<Props, State> {
           {
             userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <MyPhoto photos={userInfo.photoUrlArray}/>
           }
+          {/*我的视频*/}
+          <View
+            style={styleAssign([wRatio(100), h(264), mt(10)])}>
+            <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
+              <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
+              <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的视频</Text>
+            </View>
+            <View style={styleAssign([styles.uac, wRatio(100), mt(16),bgColor(commonStyles.whiteColor)])}>
+              <View style={styleAssign([w(335), h(1), mt(12), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+              {
+                userInfo.videoUrl && userInfo.videoUrl.length !== 0 &&
+                <Video
+                  style={styleAssign([w(335), h(203), bgColor(commonStyles.whiteColor)])}
+                  src={userInfo.videoUrl}
+                  controls={true}
+                  autoplay={false}
+                  objectFit={'fill'}
+                  initialTime={1}
+                  id='video'
+                  loop={false}
+                  muted={false}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }
+                  }/>
+              }
+            </View>
+          </View>
           {/*极致名片*/}
           <JiZhiCard/>
           {/*关注公众号*/}
