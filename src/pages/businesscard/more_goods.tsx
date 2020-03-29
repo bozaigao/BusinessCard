@@ -85,7 +85,7 @@ class MoreGoods extends Component<Props, State> {
                   key={index}
                   onClick={() => {
                     Taro.navigateTo({
-                      url: `/pages/mine/goods_detail?itemData=${JSON.stringify(value)}`
+                      url: `/pages/mine/goods_detail?id=${value.id}`
                     });
                   }
                   }>

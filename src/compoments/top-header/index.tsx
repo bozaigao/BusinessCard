@@ -32,7 +32,7 @@ export default class TopHeader extends Component<Props, State> {
 
   render() {
 
-    let {title, textColor, backgroundColor, customCallback,style} = this.props;
+    let {title, textColor, backgroundColor, customCallback, style} = this.props;
 
     return (
       <NavigationBar style={style}>
@@ -43,6 +43,10 @@ export default class TopHeader extends Component<Props, State> {
                  onClick={() => {
                    if (customCallback) {
                      customCallback();
+                   } else if (Taro.getCurrentPages().length === 1) {
+                     Taro.reLaunch({
+                       url: `/pages/businesscard`
+                     });
                    } else {
                      Taro.navigateBack();
                    }

@@ -408,7 +408,7 @@ class OtherBusinesscard extends Component<Props, State> {
               });
             }} goToGoodsDetail={(itemData) => {
               Taro.navigateTo({
-                url: `/pages/mine/goods_detail?itemData=${JSON.stringify(itemData)}`
+                url: `/pages/mine/goods_detail?id=${itemData.id}`
               });
             }} goodsList={userInfo.goodsList}/>
           }

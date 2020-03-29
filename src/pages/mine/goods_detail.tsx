@@ -33,22 +33,23 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
+import * as goodsActions from '../../actions/goods';
 import TopHeader from "../../compoments/top-header/index";
 import {Button, Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import {Goods, User} from "../../const/global";
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
   userInfo: User;
+  getGoods: any;
 }
 
 interface State {
   itemData: Goods;
   currentIndex: number;
-  carouselUrls: string[];
-  detailUrls: string[];
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, Object.assign(actions, goodsActions))
 class GoodsDetail extends Component<Props, State> {
 
 
@@ -65,30 +66,50 @@ class GoodsDetail extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    let itemData = parseData(this.$router.params.itemData);
-
-    console.log('接受的参数', itemData);
-
     this.state = {
-      itemData: itemData,
-      carouselUrls: itemData ? parseData(itemData.carouselUrl) : [],
-      detailUrls: itemData ? parseData(itemData.detailUrl) : [],
+      //@ts-ignore
+      itemData: null,
       currentIndex: 0
     }
   }
 
   //@ts-ignore
   onShareAppMessage(res) {
+    let {itemData} = this.state;
+
     return {
       title: `${this.props.userInfo.name}向你分享了商品`,
-      path: `/pages/mine/goods_detail`,
-      imageUrl: this.state.carouselUrls[0]
+      path: `/pages/mine/goods_detail?id=${itemData.id}`,
+      imageUrl: parseData(itemData.carouselUrl)[0]
     }
   }
 
 
+  componentDidMount() {
+    this.getGoods();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/29
+   * @function: 获取商品详情
+   */
+  getGoods = () => {
+    this.props.getGoods({id: this.$router.params.id}).then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({itemData: res});
+      }
+      console.log('获取商品详情', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+
   render() {
-    let {itemData, currentIndex, carouselUrls, detailUrls} = this.state;
+    let {itemData, currentIndex} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
@@ -107,14 +128,14 @@ class GoodsDetail extends Component<Props, State> {
                     this.setState({currentIndex: e.detail.current});
                   }}>
                   {
-                    carouselUrls.map((value, index) => {
+                    itemData && parseData(itemData.carouselUrl).map((value, index) => {
                       return (<SwiperItem key={index}>
                         <Image style={styleAssign([wRatio(100), hRatio(100), styles.upa, absT(0)])}
                                src={value}
                                onClick={() => {
                                  Taro.previewImage({
                                    current: value,
-                                   urls: carouselUrls
+                                   urls: parseData(itemData.carouselUrl)
                                  })
                                }}/>
                       </SwiperItem>);
@@ -124,7 +145,7 @@ class GoodsDetail extends Component<Props, State> {
                 <View style={styleAssign([bgColor('rgba(84,84,84,0.6)'), w(48), h(22), radiusA(10),
                   styles.uac, styles.ujc, styles.upa, absR(19), absB(8)])}>
                   <Text
-                    style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${currentIndex + 1}/${carouselUrls.length}`}</Text>
+                    style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${currentIndex + 1}/${parseData(itemData.carouselUrl).length}`}</Text>
                 </View>
               </View>
               {/*价格描述*/}
@@ -145,13 +166,13 @@ class GoodsDetail extends Component<Props, State> {
               </View>
               {/*图片列表*/}
               {
-                detailUrls.map((value, index) => {
+                itemData && parseData(itemData.detailUrl).map((value, index) => {
                   console.log(value)
                   return (<Image
                     onClick={() => {
                       Taro.previewImage({
                         current: value,
-                        urls: detailUrls
+                        urls: parseData(itemData.detailUrl)
                       })
                     }
                     }

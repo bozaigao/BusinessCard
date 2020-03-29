@@ -71,7 +71,7 @@ export default class GoodsManageItem extends Component<Props, State> {
               e.stopPropagation();
               if (!showAllOperate) {
                 Taro.navigateTo({
-                  url: `/pages/mine/goods_detail?itemData=${JSON.stringify(itemData)}`
+                  url: `/pages/mine/goods_detail?id=${itemData.id}`
                 });
               } else {
                 this.setState({checked: !this.state.checked}, () => {
