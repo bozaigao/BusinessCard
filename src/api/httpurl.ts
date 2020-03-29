@@ -78,6 +78,8 @@ const BASE_URL = StagingUrl,
     getGoodsList: BASE_URL + 'goods/list',
     //更新商品
     updateGoods: BASE_URL + 'goods/update',
+    //批量修改商品
+    updateBatch: BASE_URL + 'goods/updateBatch',
   },
   //任务模块
   TaskController = {

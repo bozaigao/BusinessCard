@@ -71,3 +71,15 @@ export const updateGoods = payload => createAction({
   method: 'POST'
 });
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/3/29
+ * @function: 批量修改商品
+*/
+export const updateBatch = payload => createAction({
+  url: GoodsController.updateBatch,
+  payload,
+  method: 'POST'
+});

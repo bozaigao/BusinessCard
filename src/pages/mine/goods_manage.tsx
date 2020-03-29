@@ -54,6 +54,8 @@ interface Props {
   getGoodsList: any;
   //删除商品
   updateGoods: any;
+  //商品批量更新
+  updateBatch: any;
   userInfo: User;
 }
 
@@ -94,7 +96,6 @@ class GoodsManage extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    console.log(this.viewRef);
     this.state = {
       goodsList: [],
       totalGoods: 0,
@@ -152,6 +153,35 @@ class GoodsManage extends Component<Props, State> {
         toast('删除成功');
       }
     }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/29
+   * @function: 商品批量更新
+   */
+  updateBatch = (status) => {
+    this.viewRef && this.viewRef.showLoading();
+    let {goodsChooseValue} = this.state, chooseGoodsArray: any = [];
+
+    for (let i = 0; i < goodsChooseValue.length; i++) {
+      chooseGoodsArray.push({id: goodsChooseValue[i], status});
+    }
+    this.props.updateBatch({
+      goodsList: JSON.stringify(chooseGoodsArray),
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log(res);
+      if (res !== NetworkState.FAIL) {
+        this.setState({goodsChooseValue: []});
+        this.refresh();
+        toast('批量操作成功');
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
@@ -256,7 +286,6 @@ class GoodsManage extends Component<Props, State> {
           </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                            onClick={() => {
-                             console.log(showChoose)
                              this.setState({showChoose: !this.state.showChoose});
                            }}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>{state}</Text>
@@ -276,7 +305,6 @@ class GoodsManage extends Component<Props, State> {
               scrollY>
               {
                 goodsList.map((value, index) => {
-                  console.log(value);
                   return (<GoodsManageItem
                     chooseAll={chooseAll}
                     onChooseCallback={(id) => {
@@ -331,7 +359,9 @@ class GoodsManage extends Component<Props, State> {
                       } else {
                         Taro.eventCenter.trigger('unCheckAll');
                       }
-                      this.setState({goodsChooseValue: array});
+                      this.setState({goodsChooseValue: array}, () => {
+                        console.log(this.state.goodsChooseValue);
+                      });
                     })
                   }
                   }>
@@ -342,11 +372,19 @@ class GoodsManage extends Component<Props, State> {
             <View style={styleAssign([styles.uac, styles.udr])}>
               <Text style={styleAssign([fSize(12), color('#0D0D0D'), ml(8)])}>{`已选:${goodsChooseValue.length}个`}</Text>
               <View
+                onClick={() => {
+                  this.updateBatch(-1);
+                }
+                }
                 style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#C0C4CB'), ml(16)])}>
                 <Text style={styleAssign([fSize(12), color('#0D0D0D')])}>删除</Text>
               </View>
               {
                 state !== '全部' && <View
+                  onClick={() => {
+                    this.updateBatch(state === '已下架' ? 1 : 0);
+                  }
+                  }
                   style={styleAssign([styles.uac, styles.ujc, w(74), h(28), bo(1), radiusA(14), {borderStyle: 'solid'}, bdColor('#FA541C'), ml(10)])}>
                   <Text style={styleAssign([fSize(12), color('#FA541C')])}>{`${state === '已下架' ? '上架' : '下架'}`}</Text>
                 </View>

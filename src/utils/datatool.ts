@@ -209,7 +209,6 @@ export function toast(msg) {
  * @function: 时间转换
  */
 export function transformTime(time: string) {
-  console.log('时间转换', time)
   return moment(time).format('YYYY-MM-DD HH:mm');
 }
 
