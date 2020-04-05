@@ -92,7 +92,7 @@ export default class TaskItem extends PureComponent<Props, State> {
             style={styleAssign([wRatio(100), h(1), mt(16), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
           <View style={styleAssign([wRatio(100), h(40), styles.uac, styles.udr])}>
             <Text
-              style={styleAssign([fSize(10), color(dateTime < currentTime ? 'red' : '#A6A6A6'), mt(4), ml(20)])}>{isTodayTask ? transformNowTime(itemData.date) : transformTime(itemData.date)}</Text>
+              style={styleAssign([fSize(10), color(dateTime < currentTime ? 'red' : '#A6A6A6'), mt(4), ml(20)])}>{isTodayTask ? `今天 ${transformTime(itemData.date).split(' ')[1]}` : transformTime(itemData.date)}</Text>
           </View>
         </View>
       </View>
