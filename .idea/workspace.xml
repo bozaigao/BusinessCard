@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/company_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/company_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/datatool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/datatool.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,11 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="company_info.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/company_info.tsx">
+      <file leaf-file-name="perform_info.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="135" column="34" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
+            <state relative-caret-position="150">
+              <caret line="170" column="44" selection-start-line="170" selection-start-column="44" selection-end-line="170" selection-end-column="44" />
+              <folding>
+                <element signature="e#112#183#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,7 +39,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>userId</find>
       <find>客服详细资料</find>
       <find>客户详细资料</find>
       <find>客户详细</find>
@@ -68,6 +68,7 @@
       <find>添加跟进</find>
       <find>企业信息</find>
       <find>个人信息</find>
+      <find>province</find>
     </findStrings>
     <replaceStrings>
       <replace>getUserinfo</replace>
@@ -151,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/pages/mine/goods_manage.tsx" />
         <option value="$PROJECT_DIR$/src/app.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/index2.scss" />
-        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.scss" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/index.scss" />
@@ -163,6 +163,7 @@
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
         <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/company_info.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/perform_info.tsx" />
       </list>
     </option>
   </component>
@@ -487,12 +488,12 @@
       <workItem from="1585809462221" duration="9000" />
       <workItem from="1585809498688" duration="1673000" />
       <workItem from="1586048149367" duration="2556000" />
-      <workItem from="1586062710455" duration="430000" />
+      <workItem from="1586062710455" duration="747000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1161545000" />
+    <option name="totallyTimeSpent" value="1161862000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -850,16 +851,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="288" column="48" selection-start-line="288" selection-start-column="24" selection-end-line="288" selection-end-column="48" />
-          <folding>
-            <element signature="e#112#183#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/index2.scss" />
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
@@ -977,8 +968,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/company_info.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="135" column="34" selection-start-line="135" selection-start-column="34" selection-end-line="135" selection-end-column="34" />
+        <state relative-caret-position="333">
+          <caret line="131" column="46" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/perform_info.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="170" column="44" selection-start-line="170" selection-start-column="44" selection-end-line="170" selection-end-column="44" />
+          <folding>
+            <element signature="e#112#183#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

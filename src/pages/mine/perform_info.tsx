@@ -167,8 +167,10 @@ class PerformInfo extends Component<Props, State> {
                 userInfo.enterpriseName && <Text
                   style={styleAssign([fSize(16), color('#727272'), mt(4)])}>{`${userInfo.enterpriseName}-${userInfo.position}`}</Text>
               }
-              <Text
-                style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{`${userInfo.school}•${userInfo.profession}`}</Text>
+              {
+                userInfo.school.length !== 0 && <Text
+                  style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{`${userInfo.school}•${userInfo.profession}`}</Text>
+              }
               <Text
                 style={styleAssign([fSize(14), color('#727272'), mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</Text>
               <Text
@@ -285,7 +287,7 @@ class PerformInfo extends Component<Props, State> {
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
-                  <View style={styleAssign([wRatio(100), mb(10),styles.uac,pl(20),pr(20)])}
+                  <View style={styleAssign([wRatio(100), mb(10), styles.uac, pl(20), pr(20)])}
                         className={'.textStyle'}>
                     {
                       userInfo.selfDescription && userInfo.selfDescription.length !== 0 ?
