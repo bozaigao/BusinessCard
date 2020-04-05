@@ -345,6 +345,33 @@ class CustomerDetail extends Component<Props, State> {
             {childView}
           </ScrollView>
         }
+        {/*添加跟进*/}
+        {
+          currentIndex === 1 && <BottomButon title={'添加跟进'} onClick={() => {
+            Taro.navigateTo({
+              url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
+            });
+          }}/>
+        }
+        {
+          showDeleteNotice && <DeleteNoticeModal
+            title={'删除提醒'}
+            subTitle={'删除后，客户数据将无法恢复，确定删除？'}
+            cancelCallback={() => {
+              this.setState({showDeleteNotice: false});
+            }
+            } confirmCallback={() => {
+            this.deleteCustomer(customer.id);
+          }
+          }/>
+        }
+        {
+          showShareInvite && <ShareInvite cancelCallback={() => {
+            this.setState({showShareInvite: false});
+          }} confirmCallback={() => {
+            this.setState({showShareInvite: false});
+          }}/>
+        }
         {
           showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
                                onClick={() => {
@@ -382,33 +409,6 @@ class CustomerDetail extends Component<Props, State> {
               </View>
             </View>
           </View>
-        }
-        {/*添加跟进*/}
-        {
-          currentIndex === 1 && <BottomButon title={'添加跟进'} onClick={() => {
-            Taro.navigateTo({
-              url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-            });
-          }}/>
-        }
-        {
-          showDeleteNotice && <DeleteNoticeModal
-            title={'删除提醒'}
-            subTitle={'删除后，客户数据将无法恢复，确定删除？'}
-            cancelCallback={() => {
-              this.setState({showDeleteNotice: false});
-            }
-            } confirmCallback={() => {
-            this.deleteCustomer(customer.id);
-          }
-          }/>
-        }
-        {
-          showShareInvite && <ShareInvite cancelCallback={() => {
-            this.setState({showShareInvite: false});
-          }} confirmCallback={() => {
-            this.setState({showShareInvite: false});
-          }}/>
         }
       </CustomSafeAreaView>
     )
