@@ -287,7 +287,7 @@ class CustomerDetail extends Component<Props, State> {
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   </View>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(12)])}>{customer.detailAddress ? customer.detailAddress : '点击立即定位'}</Text>
+                    style={styleAssign([color('#979797'), fSize(10)])}>{customer.detailAddress  ? `${customer.detailAddress}` : '点击立即定位'}</Text>
                 </View>
               </View>
             </View>
@@ -396,9 +396,9 @@ class CustomerDetail extends Component<Props, State> {
             title={'删除提醒'}
             subTitle={'删除后，客户数据将无法恢复，确定删除？'}
             cancelCallback={() => {
-            this.setState({showDeleteNotice: false});
-          }
-          } confirmCallback={() => {
+              this.setState({showDeleteNotice: false});
+            }
+            } confirmCallback={() => {
             this.deleteCustomer(customer.id);
           }
           }/>

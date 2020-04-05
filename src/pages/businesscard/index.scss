@@ -1,5 +1,6 @@
 .textStyle {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow:ellipsis;
+  display: -webkit-box;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }

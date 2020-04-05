@@ -53,7 +53,6 @@ import CardStyle3 from "../../compoments/card-style3";
 import CardStyle4 from "../../compoments/card-style4";
 import CardStyle5 from "../../compoments/card-style5";
 import WenHouModal, {WenHouType} from "../../compoments/wenhou-modal";
-import './index2.scss';
 
 interface Props {
   //获取用户信息
@@ -376,8 +375,8 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(12)])}
-                    className={'.textStyle'}>{userInfo.detailAddress ? userInfo.detailAddress : '点击立即定位'}</Text>
+                    style={styleAssign([color('#979797'), fSize(10)])}
+                    className={'.textStyle'}>{userInfo.detailAddress ? `${userInfo.detailAddress}` : '点击立即定位'}</Text>
                 </View>
               </View>
               <View style={styleAssign([wRatio(100), h(61), styles.udr, styles.uac, styles.ujb, pl(20), pr(20)])}>
