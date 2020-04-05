@@ -84,7 +84,7 @@ export default class CardStyle2 extends PureComponent<Props, State> {
             {
               !hideEmail && <View style={styleAssign([styles.uac, styles.udr, mt(4)])}>
                 <Text
-                  style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>982468866@168.com</Text>
+                  style={styleAssign([fSize(11), color(commonStyles.whiteColor)])}>{userInfo.email}</Text>
               </View>
             }
             {/*地址*/}
