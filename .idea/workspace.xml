@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/index.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,45 +17,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customer_detail.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
+      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="289" column="66" selection-start-line="289" selection-start-column="66" selection-end-line="289" selection-end-column="66" />
+            <state relative-caret-position="246">
+              <caret line="232" column="48" lean-forward="true" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="other_businesscard.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="221" column="12" lean-forward="true" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#118#170#0" expanded="true" />
-                <element signature="e#589#627#0" expanded="true" />
+                <element signature="e#119#171#0" expanded="true" />
+                <element signature="e#343#420#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/customer/index.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ming_pian_ma.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/ming_pian_ma.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/index.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -73,7 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showHomeWenHouYu</find>
       <find>WenHouModal</find>
       <find>我的家乡</find>
       <find>render</find>
@@ -103,6 +80,7 @@
       <find>点击立即定位</find>
       <find>联系地址</find>
       <find>定位</find>
+      <find>onShareAppMessage</find>
     </findStrings>
     <replaceStrings>
       <replace>getUserinfo</replace>
@@ -163,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/pages/mine/add_task.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/date-time-picker/index.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/task-item/index.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/my-photo/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/my-goods/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/my-business/index.tsx" />
@@ -195,9 +172,10 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.scss" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/index.scss" />
-        <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/index.scss" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
       </list>
     </option>
   </component>
@@ -260,28 +238,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="businesscard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="businesscard" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="mine" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -543,12 +499,12 @@
       <workItem from="1585809423125" duration="9000" />
       <workItem from="1585809462221" duration="9000" />
       <workItem from="1585809498688" duration="1673000" />
-      <workItem from="1586048149367" duration="1505000" />
+      <workItem from="1586048149367" duration="1940000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1160064000" />
+    <option name="totallyTimeSpent" value="1160499000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -839,13 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="261" column="2" selection-start-line="261" selection-start-column="2" selection-end-line="282" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -993,30 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="378" column="68" selection-start-line="378" selection-start-column="55" selection-end-line="378" selection-end-column="68" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#119#171#0" expanded="true" />
-            <element signature="e#343#420#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="289" column="66" selection-start-line="289" selection-start-column="66" selection-end-line="289" selection-end-column="66" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#118#170#0" expanded="true" />
-            <element signature="e#589#627#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/ming_pian_ma.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1035,8 +960,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/index.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="22">
+          <caret line="1" column="23" lean-forward="true" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#589#627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="232" column="48" lean-forward="true" selection-start-line="232" selection-start-column="5" selection-end-line="232" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="221" column="12" lean-forward="true" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="12" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#119#171#0" expanded="true" />
+            <element signature="e#343#420#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

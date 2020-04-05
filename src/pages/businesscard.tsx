@@ -229,12 +229,10 @@ class Businesscard extends Component<Props, State> {
 
   //@ts-ignore
   onShareAppMessage(res) {
-    debounce(500, () => {
-      return {
-        title: `${this.props.userInfo.name}的名片分享`,
-        path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
-      }
-    })
+    return {
+      title: `${this.props.userInfo.name}的名片分享`,
+      path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+    }
   }
 
   /**

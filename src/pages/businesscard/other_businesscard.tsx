@@ -219,12 +219,10 @@ class OtherBusinesscard extends Component<Props, State> {
   //@ts-ignore
   onShareAppMessage(res) {
     console.log('名片分享');
-    debounce(500, () => {
-      return {
-        title: '名片分享',
-        path: '/pages/businesscard/other_businesscard'
-      }
-    });
+    return {
+      title: `${this.state.userInfo.name}的名片分享`,
+      path: `/pages/businesscard/other_businesscard?userId=${this.state.userInfo.id}`
+    }
   }
 
 
