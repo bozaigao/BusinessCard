@@ -376,7 +376,7 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(12), w(72)])}
+                    style={styleAssign([color('#979797'), fSize(12)])}
                     className={'.textStyle'}>{userInfo.detailAddress ? userInfo.detailAddress : '点击立即定位'}</Text>
                 </View>
               </View>
