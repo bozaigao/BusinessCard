@@ -28,7 +28,7 @@ import styles, {
 } from "../../../../utils/style";
 import {cloudBaseUrl} from "../../../../api/httpurl";
 import {User} from "../../../../const/global";
-import '../index.scss';
+import './index.scss';
 
 
 interface Props {

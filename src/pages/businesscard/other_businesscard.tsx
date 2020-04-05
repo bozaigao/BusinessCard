@@ -53,6 +53,7 @@ import CardStyle3 from "../../compoments/card-style3";
 import CardStyle4 from "../../compoments/card-style4";
 import CardStyle5 from "../../compoments/card-style5";
 import WenHouModal, {WenHouType} from "../../compoments/wenhou-modal";
+import './index2.scss';
 
 interface Props {
   //获取用户信息

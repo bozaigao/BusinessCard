@@ -285,7 +285,8 @@ class PerformInfo extends Component<Props, State> {
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
-                  <View style={styleAssign([wRatio(100), mb(10),styles.uac,pl(20),pr(20)])}>
+                  <View style={styleAssign([wRatio(100), mb(10),styles.uac,pl(20),pr(20)])}
+                        className={'.textStyle'}>
                     {
                       userInfo.selfDescription && userInfo.selfDescription.length !== 0 ?
                         <Text
