@@ -519,7 +519,7 @@ class MingpianHaibao extends Component<Props, State> {
                 //@ts-ignore
                 context.drawImage(res.path, 38, 164, 12, 10);
                 context.setTextAlign('left');
-                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12,'#343434');
+                context.fillText(userInfo.detailAddress, 58, 174);
               }
               //小程序码
               Taro.getImageInfo({
