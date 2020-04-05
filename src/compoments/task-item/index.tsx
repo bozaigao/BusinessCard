@@ -60,7 +60,6 @@ export default class TaskItem extends PureComponent<Props, State> {
     }
 
     let currentTime = new Date(`${myyear}-${mymonth}-${myweekday} ${myhour}:${myminutes}`).getTime();
-    console.log('时间比较', dateTime, currentTime);
 
     return (
       <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, mt(10), mb(10)])}
