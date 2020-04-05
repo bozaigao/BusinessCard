@@ -78,7 +78,7 @@ class TaskCenter extends Component<Props, State> {
       showAllTask: true,
       showOnlyToday: true,
       taskItem: [],
-      date: '',
+      date: getToday(),
       currentIndex: 0,
       todayTask: []
     }
@@ -231,7 +231,7 @@ class TaskCenter extends Component<Props, State> {
           <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
             <TouchableButton customStyle={styleAssign([styles.uac])}
                              onClick={() => {
-                               this.setState({currentIndex: 0, taskItem: [], date: ''}, () => {
+                               this.setState({currentIndex: 0, taskItem: [],todayTask: [], date: getToday()}, () => {
                                  this.refresh();
                                });
                              }}>
@@ -241,7 +241,7 @@ class TaskCenter extends Component<Props, State> {
             </TouchableButton>
             <TouchableButton customStyle={styleAssign([styles.uac, ml(23)])}
                              onClick={() => {
-                               this.setState({currentIndex: 1, date: getToday(), taskItem: []}, () => {
+                               this.setState({currentIndex: 1, date: '', taskItem: [], todayTask: []}, () => {
                                  console.log(this.state.date)
                                  this.refresh();
                                  this.refresh1();
@@ -269,7 +269,7 @@ class TaskCenter extends Component<Props, State> {
                     onScrollToLower={() => {
                     }}>
           {
-            currentIndex ===  1 ?
+            currentIndex === 1 ?
               <View style={styleAssign([styles.uf1])}>
                 {/*正在进行*/}
                 {
@@ -307,7 +307,7 @@ class TaskCenter extends Component<Props, State> {
                                                   this.taskUpdate(id, 1);
                                                 }
                                                 }
-                                                deleteCallback={(id)=>{
+                                                deleteCallback={(id) => {
                                                   this.taskUpdate(id, -1);
                                                 }
                                                 }/>);
@@ -334,7 +334,7 @@ class TaskCenter extends Component<Props, State> {
                       key={itemIndex} itemData={itemValue} finishCallback={(id) => {
                       this.taskUpdate(id, 1);
                     }
-                    } deleteCallback={(id)=>{
+                    } deleteCallback={(id) => {
                       this.taskUpdate(id, -1);
                     }
                     }/>);
