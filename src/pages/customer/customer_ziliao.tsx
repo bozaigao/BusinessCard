@@ -233,21 +233,26 @@ class CustomerZiLiao extends Component<Props, State> {
             </View>
           }
           {
-            customer.aboutUrl.length !== 0 &&
+            (customer.aboutUrl.length !== 0 || customer.remark.length !== 0) &&
             <View style={styleAssign([wRatio(100), h(154), mt(8), bgColor(commonStyles.whiteColor)])}>
               <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>描述</Text>
               <View style={styleAssign([wRatio(100), mt(8),])}>
-                <View
-                  style={styleAssign([wRatio(90), {marginLeft: '5%'}, bgColor(commonStyles.pageDefaultBackgroundColor),
-                    padding([13, 16, 13, 16])])}>
-                  <Text style={styleAssign([fSize(14), color('#343434')])}>
-                    {customer.remark}
-                  </Text>
-                </View>
-                <View style={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-                  <Image style={styleAssign([wRatio(90), mb(20)])} src={customer.aboutUrl}
-                         mode={'aspectFit'}/>
-                </View>
+                {
+                  customer.remark.length !== 0 && <View
+                    style={styleAssign([wRatio(90), {marginLeft: '5%'}, bgColor(commonStyles.pageDefaultBackgroundColor),
+                      padding([13, 16, 13, 16])])}>
+                    <Text style={styleAssign([fSize(14), color('#343434')])}>
+                      {customer.remark}
+                    </Text>
+                  </View>
+                }
+                {
+                  customer.aboutUrl.length !== 0 &&
+                  <View style={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
+                    <Image style={styleAssign([wRatio(90), mb(20)])} src={parseData(customer.aboutUrl)[0]}
+                           mode={'aspectFit'}/>
+                  </View>
+                }
               </View>
             </View>
           }

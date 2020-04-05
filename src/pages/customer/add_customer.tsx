@@ -172,7 +172,7 @@ class AddCustomer extends Component<Props, State> {
       detailAddress,
       birthday,
       wechat,
-      avatar: this.avatarArr[0],
+      aboutUrl:JSON.stringify(this.avatarArr),
       email
     };
 
