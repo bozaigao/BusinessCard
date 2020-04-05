@@ -133,6 +133,7 @@ class CompanyInfo extends Component<Props, State> {
               </View>
               <Input type='text' value={enterpriseName}
                      placeholder={'必填'}
+                     maxLength={16}
                      style={styleAssign([fSize(14), mr(20), {textAlign: 'right'}])}
                      onInput={(e) => {
                        this.setState({enterpriseName: e.detail.value});

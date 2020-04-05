@@ -1,15 +1,15 @@
 /**
- * @filename task_center.tsx
+ * @filename personal_info.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/17
- * @Description: 任务中心
+ * @date 2020/4/5
+ * @Description: 个人信息
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, get, isLegalEmail, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {debounce, get, isLegalEmail, parseData, styleAssign, toast, transformBirthTime} from "../../utils/datatool";
 import {
   absB,
   absR,
@@ -122,7 +122,7 @@ class PersonalInfo extends Component<Props, State> {
       titleList2: [
         {title: '微信', value: wechat ? wechat : '', subtitle: '请输入微信号', hasEdit: true},
         {title: '邮箱', value: email ? email : '', subtitle: '请输入邮箱', hasEdit: true},
-        {title: '生日', value: birthday ? transformTime(birthday) : '', subtitle: '请选择生日'},
+        {title: '生日', value: birthday ? transformBirthTime(birthday) : '', subtitle: '请选择生日'},
         {title: '地区', value: province ? province + city : '', subtitle: '请选择详地区'},
         {title: '详细地址', value: detailAddress ? detailAddress : '', subtitle: '请选择详细地址'}],
       hidePhone: 0,

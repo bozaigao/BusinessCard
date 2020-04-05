@@ -212,6 +212,17 @@ export function transformTime(time: string) {
   return moment(time).format('YYYY-MM-DD HH:mm');
 }
 
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/1/4
+ * @function: 时间转换
+ */
+export function transformBirthTime(time: string) {
+  return moment(time).format('YYYY-MM-DD');
+}
+
 /**
  * @author 何晏波
  * @QQ 1054539528
