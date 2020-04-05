@@ -17,7 +17,8 @@ import {
   hRatio,
   mb,
   ml,
-  mt, op,
+  mt,
+  op,
   padding,
   pl,
   pr,
@@ -25,7 +26,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, transformTime, wrapSafe} from "../../utils/datatool";
+import {parseData, styleAssign, transformBirthTime, wrapSafe} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -194,7 +195,7 @@ class CustomerZiLiao extends Component<Props, State> {
           {
             [{title: '地区', value: wrapSafe(customer.province + customer.city)},
               {title: '详细地址', value: wrapSafe(customer.detailAddress)},
-              {title: '生日', value: customer.birthday ? transformTime(customer.birthday) : ''},
+              {title: '生日', value: customer.birthday ? transformBirthTime(customer.birthday) : ''},
               {title: '微信号', value: wrapSafe(customer.wechat)},
               {title: '邮箱', value: wrapSafe(customer.email)}].map((value, inedx) => {
               return <View key={inedx} style={styleAssign([wRatio(100), styles.uac, bgColor(commonStyles.whiteColor)])}>
