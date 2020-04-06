@@ -1,15 +1,15 @@
 /**
- * @filename my_tags.tsx
+ * @filename add_tags.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/19
- * @Description: 我的标签
+ * @date 2020/4/6
+ * @Description: 添加标签
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, styleAssign, toast} from "../../utils/datatool";
+import {debounce, parseData, styleAssign, toast} from "../../utils/datatool";
 import {
   absR,
   absT,
@@ -24,7 +24,7 @@ import {
   mb,
   ml,
   mt,
-  padding,
+  padding, pb, pt,
   radiusA,
   w,
   wRatio
@@ -32,12 +32,14 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
 import * as dictActions from '../../actions/dict';
+import * as customerActions from '../../actions/customer';
 import TopHeader from "../../compoments/top-header/index";
 import {Image, Text, View} from "@tarojs/components";
 import BottomButon from "../../compoments/bottom-buton/index";
 import TouchableButton from "../../compoments/touchable-button/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import CustomTag from "../../compoments/custom-tag";
+import {CustomerModel} from "../../const/global";
 
 interface Props {
   //更新用户信息
@@ -45,15 +47,19 @@ interface Props {
   getUserInfo: any;
   updateUserInfo: any;
   getDictItemList: any;
+  //更新手动录入客户和系统客户的资料
+  updatePrivateCustomer: any;
 }
 
 interface State {
   chooseTags: any;
   tags: any[];
+  dengJiTag: string;
   showTagEdit: boolean;
+  customer: CustomerModel;
 }
 
-@connect(state => state.login, Object.assign(actions, dictActions))
+@connect(state => state.login, Object.assign(actions, dictActions, customerActions))
 class MyTags extends Component<Props, State> {
 
   private viewRef;
@@ -73,63 +79,46 @@ class MyTags extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      chooseTags: props.userInfo.labelArray,
+      customer: parseData(this.$router.params.itemData),
+      chooseTags: [],
       tags: [],
-      showTagEdit: false
+      showTagEdit: false,
+      dengJiTag: ''
     }
     console.log(this.viewRef);
   }
 
   componentDidShow() {
-    this.getDictItemList();
   }
 
 
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/8
-   * @function: 获取后台配置标签
+   * @date 2020/4/6
+   * @function: 更新手动录入客户和系统客户的资料
    */
-  getDictItemList = () => {
-    this.viewRef && this.viewRef.showLoading();
-    this.props.getDictItemList({dictCode: 'user_label '}).then((res) => {
-      console.log('获取后台配置标签', res);
-      this.viewRef && this.viewRef.hideLoading();
-      if (res !== NetworkState.FAIL) {
-        this.setState({tags: res});
-      }
-    }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
-      console.log('报错啦', e);
-    });
-  }
-
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2019/12/28
-   * @function: 更新用户信息
-   */
-  update = () => {
-    console.log('函数', this.props)
-    let {chooseTags} = this.state;
+  updatePrivateCustomer = () => {
+    let {chooseTags, dengJiTag, customer} = this.state;
 
     if (chooseTags.length === 0) {
-      toast('请选择标签');
+      toast('请输入标签');
       return;
     }
 
-    let paramas = {
+    let params = {
+      id: customer.id,
       label: JSON.stringify(chooseTags)
     };
 
-    console.log('参数错误', paramas);
+    if (dengJiTag.length !== 0) {
+      Object.assign(params, {intentionGrade: dengJiTag});
+    }
+
 
     this.viewRef && this.viewRef.showLoading();
-    this.props.update(paramas).then((res) => {
-      console.log('更新用户信息', res);
+    this.props.updatePrivateCustomer(params).then((res) => {
+      console.log('更新手动录入客户和系统客户的资料', res);
       this.getUserInfo();
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
@@ -162,19 +151,30 @@ class MyTags extends Component<Props, State> {
 
 
   render() {
-    let {chooseTags, tags, showTagEdit} = this.state;
+    let {chooseTags, tags, showTagEdit, dengJiTag,customer} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'我的标签'}/>
+        <TopHeader title={'添加标签'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+          <View
+            style={styleAssign([styles.uac, styles.udr, wRatio(100), bgColor(commonStyles.whiteColor), pt(20), pb(20)])}>
+            <Image style={styleAssign([w(66), h(66), radiusA(33), ml(20)])} src={customer.avatar}/>
+            <View style={styleAssign([ml(16)])}>
+              <View style={styleAssign([styles.uac, styles.udr])}>
+                <Text style={styleAssign([fSize(18), color('#343434')])}>{customer.name}</Text>
+                <Text style={styleAssign([fSize(12), color('#A9A9A9'), ml(8)])}>{customer.position}</Text>
+              </View>
+              <Text style={styleAssign([fSize(12), color('#A9A9A9'), mt(12)])}>{customer.company}</Text>
+            </View>
+          </View>
           {/*我的标签*/}
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), mt(10)])}>
             <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>我的标签</Text>
-              <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>(最多添加4个标签)</Text>
+              <Text style={styleAssign([fSize(16), color('#343434')])}>手动标签</Text>
+              <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>(最多添加10个标签)</Text>
             </View>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8), styles.uWrap])}>
               {
@@ -208,31 +208,23 @@ class MyTags extends Component<Props, State> {
                   <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>自定义标签</Text>
                 </View>
               </TouchableButton>
-              <Text style={styleAssign([fSize(12), color(commonStyles.colorTheme), ml(14)])}>（仅限于兴趣爱好）</Text>
             </View>
           </View>
-          {/*常用标签*/}
-          <View style={styleAssign([wRatio(100), h(154), mt(8), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(20), mt(16)])}>常用标签</Text>
+          {/*等级标签*/}
+          <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor)])}>
+            <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(20), mt(16)])}>等级标签</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
-              styles.uWrap])}>
+              styles.uWrap, mb(20)])}>
               {
-                tags.map((value, index) => {
+                ['潜在客户', '一般客户', '重要客户'].map((value, index) => {
                   return (<TouchableButton key={index}
-                                           customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]), bo(1), bdColor(chooseTags.includes(value.itemText) ? '#979797' : commonStyles.colorTheme), {
+                                           customStyle={styleAssign([ml(24), mt(12), radiusA(14), padding([6, 16, 6, 16]), bo(1), bdColor(dengJiTag === value ? '#979797' : commonStyles.colorTheme), {
                                              borderStyle: 'solid'
                                            }])} onClick={() => {
-                    if (!this.state.chooseTags.includes(value.itemText)) {
-                      if (chooseTags.length < 4) {
-                        this.state.chooseTags.push(value.itemText);
-                        this.setState({chooseTags: this.state.chooseTags});
-                      } else {
-                        toast('最多添加4个标签');
-                      }
-                    }
+                    this.setState({dengJiTag: value});
                   }}>
                     <Text
-                      style={styleAssign([fSize(12), color(chooseTags.includes(value.itemText) ? '#979797' : commonStyles.colorTheme)])}>{value.itemText}</Text>
+                      style={styleAssign([fSize(12), color(dengJiTag === value ? '#979797' : commonStyles.colorTheme)])}>{value}</Text>
                   </TouchableButton>);
                 })
               }
@@ -241,7 +233,7 @@ class MyTags extends Component<Props, State> {
         </View>
         {/*保存*/}
         <BottomButon title={'保存'} onClick={() => {
-          this.update();
+          this.updatePrivateCustomer();
         }}/>
         {
           showTagEdit && <CustomTag cancelCallback={() => {
@@ -250,11 +242,11 @@ class MyTags extends Component<Props, State> {
           } confirmCallback={(content) => {
             this.setState({showTagEdit: false}, () => {
               if (!this.state.chooseTags.includes(content)) {
-                if (chooseTags.length < 4) {
+                if (chooseTags.length < 10) {
                   this.state.chooseTags.push(content);
                   this.setState({chooseTags: this.state.chooseTags});
                 } else {
-                  toast('最多添加4个标签');
+                  toast('最多添加10个标签');
                 }
               } else {
                 toast('已经有该标签');

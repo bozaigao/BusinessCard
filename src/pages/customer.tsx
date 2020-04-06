@@ -245,7 +245,7 @@ class Customer extends Component<Props, State> {
                       key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)}
                       onClick={() => {
                         Taro.navigateTo({
-                          url: `/pages/customer/customer_detail?itemData=${JSON.stringify(value)}&userId=${value.userId}`
+                          url: `/pages/customer/customer_detail?userId=${value.id}`
                         });
                       }}
                       viewCardCallback={() => {

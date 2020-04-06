@@ -20,9 +20,11 @@ import {
   fSize,
   h,
   hRatio,
+  mb,
   ml,
   mt,
   op,
+  padding,
   pb,
   pl,
   pr,
@@ -79,11 +81,9 @@ class CustomerDetail extends Component<Props, State> {
 
   constructor(props) {
     super(props);
-    console.log('呵呵', parseData(this.$router.params.itemData));
-
     this.state = {
       //@ts-ignore
-      customer: parseData(this.$router.params.itemData),
+      customer: null,
       showOperate: false,
       currentIndex: 0,
       flowUpList: [],
@@ -100,7 +100,29 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.followUpList();
+    this.getCustomerDetail();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/14
+   * @function: 获取客户详细资料
+   */
+  getCustomerDetail = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.getCustomerDetail({id: this.$router.params.userId}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('获取客户详细资料', res);
+      if (res !== NetworkState.FAIL) {
+        this.setState({customer: res}, () => {
+          this.followUpList();
+        });
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
   //@ts-ignore
@@ -166,7 +188,7 @@ class CustomerDetail extends Component<Props, State> {
         {
           flowUpList.map((value: FlowUpListModel, index) => {
             return <View key={index}
-                         style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60), bgColor('red')])}>
+                         style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60)])}>
               <View
                 style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
                 <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
@@ -182,7 +204,57 @@ class CustomerDetail extends Component<Props, State> {
         }
       </View>;
     } else if (currentIndex === 2) {
-      childView = <View/>;
+      childView = <View style={styleAssign([styles.uf1, styles.uac])}>
+        {
+          (customer.label.length !== 0 || customer.intentionGrade.length !== 0) &&
+          <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
+            {
+              customer.label.length !== 0 && <View>
+                <View style={styleAssign([styles.uac, styles.udr])}>
+                  <Text style={styleAssign([fSize(16), color('#343434')])}>
+                    对Ta的标签
+                  </Text>
+                  <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>
+                    (最多添加10个标签)
+                  </Text>
+                </View>
+                <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap])}>
+                  {
+                    parseData(customer.label).map((value, index) => {
+                      return (<View
+                        key={index}
+                        style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
+                        <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
+                          padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
+                          <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
+                        </View>
+                      </View>);
+                    })
+                  }
+                </View>
+              </View>
+            }
+            {
+              customer.intentionGrade.length !== 0 && <View style={styleAssign([mt(30)])}>
+                <View style={styleAssign([styles.uac, styles.udr])}>
+                  <Text style={styleAssign([fSize(16), color('#343434')])}>
+                    等级标签
+                  </Text>
+                </View>
+                <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap, mb(20)])}>
+                  <View
+                    style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
+                    <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
+                      padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
+                      <Text style={styleAssign([fSize(12), color('#343434')])}>{customer.intentionGrade}</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            }
+          </View>
+        }
+      </View>;
     } else if (currentIndex === 3) {
       childView = <View/>;
     } else {
@@ -287,7 +359,7 @@ class CustomerDetail extends Component<Props, State> {
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   </View>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(10)])}>{customer.detailAddress  ? `${customer.detailAddress}` : '点击立即定位'}</Text>
+                    style={styleAssign([color('#979797'), fSize(10)])}>{customer.detailAddress ? `${customer.detailAddress}` : '点击立即定位'}</Text>
                 </View>
               </View>
             </View>
@@ -352,6 +424,16 @@ class CustomerDetail extends Component<Props, State> {
               url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
             });
           }}/>
+        }
+        {/*添加标签*/}
+        {
+          currentIndex === 2 &&
+          <BottomButon title={(customer.label.length !== 0 || customer.intentionGrade.length !== 0) ? '修改标签' : '添加标签'}
+                       onClick={() => {
+                         Taro.navigateTo({
+                           url: `/pages/customer/add_tags?itemData=${JSON.stringify(customer)}`
+                         });
+                       }}/>
         }
         {
           showDeleteNotice && <DeleteNoticeModal
