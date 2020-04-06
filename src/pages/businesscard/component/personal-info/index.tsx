@@ -35,6 +35,7 @@ interface Props {
   userInfo: User;
   homeClick: any;
   schoolClick: any;
+  addRadarTrace: any;
 }
 
 interface State {
@@ -73,7 +74,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
   }
 
   render() {
-    let {userInfo, homeClick, schoolClick} = this.props;
+    let {userInfo, homeClick, schoolClick, addRadarTrace} = this.props;
     let {micIsPlaying} = this.state;
 
     return (
@@ -97,6 +98,7 @@ export default class PersonalInfo extends PureComponent<Props, State> {
                        src={require('../../../../assets/ico_mic_bg.png')}
                        onClick={(e) => {
                          e.stopPropagation();
+                         addRadarTrace('play_your_voice');
                          this.playMic();
                        }
                        }/>
@@ -130,7 +132,10 @@ export default class PersonalInfo extends PureComponent<Props, State> {
               </View>
               <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
                 bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}
-                    onClick={homeClick}>
+                    onClick={() => {
+                      homeClick();
+                      addRadarTrace('villager');
+                    }}>
                 <Text style={styleAssign([fSize(12)])}>同乡</Text>
               </View>
             </View>
@@ -147,7 +152,10 @@ export default class PersonalInfo extends PureComponent<Props, State> {
               </View>
               <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
                 bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}
-                    onClick={schoolClick}>
+                    onClick={() => {
+                      schoolClick();
+                      addRadarTrace('schoolfellow');
+                    }}>
                 <Text style={styleAssign([fSize(12)])}>校友</Text>
               </View>
             </View>

@@ -29,6 +29,7 @@ import {User} from "../../../../const/global";
 
 interface Props {
   userInfo: User;
+  addRadarTrace: any;
 }
 
 interface State {
@@ -37,7 +38,7 @@ interface State {
 export default class MyBusiness extends PureComponent<Props, State> {
 
   render() {
-    let {userInfo} = this.props;
+    let {userInfo, addRadarTrace} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -67,6 +68,9 @@ export default class MyBusiness extends PureComponent<Props, State> {
               <Video
                 style={styleAssign([wRatio(90), hRatio(90), bgColor(commonStyles.whiteColor)])}
                 src={userInfo.enterpriseVideo}
+                onPlay={() => {
+                  addRadarTrace('play_company_video');
+                }}
                 autoplay={false}
                 objectFit={'fill'}
                 poster='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3466612495,3967902081&fm=26&gp=0.jpg'

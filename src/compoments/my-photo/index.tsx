@@ -12,6 +12,7 @@ import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, radiusA, w, wRat
 
 interface Props {
   photos: string[];
+  addRadarTrace: any;
 }
 
 interface State {
@@ -20,7 +21,7 @@ interface State {
 export default class MyPhoto extends PureComponent<Props, State> {
 
   render() {
-    let {photos} = this.props;
+    let {photos, addRadarTrace} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -35,6 +36,7 @@ export default class MyPhoto extends PureComponent<Props, State> {
               return <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])} key={index}>
                 <Image
                   onClick={() => {
+                    addRadarTrace('view_your_photos');
                     Taro.previewImage({
                       current: value,
                       urls: photos

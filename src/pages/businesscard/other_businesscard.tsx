@@ -10,7 +10,7 @@ import {Image, ScrollView, Text, Video, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, get, save, styleAssign, toast} from "../../utils/datatool";
+import {get, save, styleAssign, toast} from "../../utils/datatool";
 import {
   absL,
   bdColor,
@@ -34,7 +34,8 @@ import {
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
 import * as loginActions from '../../actions/login';
-import * as businessCardActtions from '../../actions/business_card';
+import * as businessCardActions from '../../actions/business_card';
+import * as radarActions from '../../actions/radar';
 import PersonalInfo from "./component/personal-info/index";
 import MyGoods from "./component/my-goods/index";
 import JiZhiCard from "./component/jizhi-card/index";
@@ -59,9 +60,10 @@ interface Props {
   getUserInfoById: any;
   //收藏名片
   updateMyCollect: any;
-  v
   userSettingGet: any;
   getCardHolderVisitorRecord: any;
+  //新增行为轨迹
+  addRadarTrace: any;
 }
 
 interface State {
@@ -81,7 +83,7 @@ interface State {
 
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActtions))
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions, radarActions))
 class OtherBusinesscard extends Component<Props, State> {
 
   private viewRef;
@@ -121,9 +123,32 @@ class OtherBusinesscard extends Component<Props, State> {
     console.log(this.viewRef);
     this.getUserInfoById();
     this.getCardHolderVisitorRecord();
+    this.addRadarTrace('view_card');
     let showGuide = get('other_business_guide');
 
     this.setState({showGuide: !showGuide});
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/4/6
+   * @function: 新增行为轨迹
+   */
+  addRadarTrace = (behaviorType: string, goodsId?: string) => {
+    this.props.addRadarTrace({
+      userId: this.state.userInfo.id,
+      behaviorType,
+      duration: '',
+      goodsId
+    }).then((res) => {
+      if (res !== NetworkState.FAIL) {
+      }
+      console.log('新增行为轨迹', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
   /**
@@ -219,6 +244,7 @@ class OtherBusinesscard extends Component<Props, State> {
   //@ts-ignore
   onShareAppMessage(res) {
     console.log('名片分享');
+    this.addRadarTrace('share_card');
     return {
       title: `${this.state.userInfo.name}的名片分享`,
       path: `/pages/businesscard/other_businesscard?userId=${this.state.userInfo.id}`
@@ -327,6 +353,7 @@ class OtherBusinesscard extends Component<Props, State> {
                     customStyle={styleAssign([w(160), radiusA(4), ml(15), styles.uac, styles.ujc, bo(1), h(44),
                       bdColor(commonStyles.colorTheme), bgColor(commonStyles.colorTheme)])}
                     onClick={() => {
+                      this.addRadarTrace('collect_card');
                       this.updateMyCollect(1, userInfo.id);
                     }}>
                     <Text style={styleAssign([fSize(14), color(commonStyles.whiteColor)])}>收藏名片</Text>
@@ -341,6 +368,7 @@ class OtherBusinesscard extends Component<Props, State> {
                     bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4),
                     {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                   onClick={() => {
+                    this.addRadarTrace('call_up');
                     Taro.makePhoneCall({
                       phoneNumber: userInfo.phone
                     })
@@ -352,6 +380,7 @@ class OtherBusinesscard extends Component<Props, State> {
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                       onClick={() => {
+                        this.addRadarTrace('copy_wechat');
                         Taro.setClipboardData({
                           data: userInfo.wechat
                         });
@@ -365,6 +394,7 @@ class OtherBusinesscard extends Component<Props, State> {
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
                   {boxShadow: '0px 6px 8px 0px rgba(230,230,230,0.5'}])}
                       onClick={() => {
+                        this.addRadarTrace('navigation_company');
                         Taro.openLocation({
                           latitude: userInfo.latitude,
                           longitude: userInfo.longitude,
@@ -403,13 +433,17 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           </View>
           {/*我的个人简介*/}
-          <PersonalInfo userInfo={userInfo}
-                        homeClick={() => {
-                          this.setState({showHomeWenHouYu: true});
-                        }}
-                        schoolClick={() => {
-                          this.setState({showSchoolWenHouYu: true});
-                        }}/>
+          <PersonalInfo
+            addRadarTrace={(behaviorType) => {
+              this.addRadarTrace(behaviorType);
+            }}
+            userInfo={userInfo}
+            homeClick={() => {
+              this.setState({showHomeWenHouYu: true});
+            }}
+            schoolClick={() => {
+              this.setState({showSchoolWenHouYu: true});
+            }}/>
           {/*我的商品*/}
           {
             userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
@@ -417,6 +451,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
               });
             }} goToGoodsDetail={(itemData) => {
+              this.addRadarTrace('view_goods', itemData.id);
               Taro.navigateTo({
                 url: `/pages/mine/goods_detail?id=${itemData.id}`
               });
@@ -425,11 +460,19 @@ class OtherBusinesscard extends Component<Props, State> {
           {/*我的企业*/}
           {
             userInfo.enterpriseName.length !== 0 &&
-            <MyBusiness userInfo={userInfo}/>
+            <MyBusiness
+              addRadarTrace={(behaviorType) => {
+                this.addRadarTrace(behaviorType);
+              }}
+              userInfo={userInfo}/>
           }
           {/*我的照片*/}
           {
-            userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <MyPhoto photos={userInfo.photoUrlArray}/>
+            userInfo.photoUrlArray && userInfo.photoUrlArray.length !== 0 && <MyPhoto
+              addRadarTrace={(behaviorType) => {
+                this.addRadarTrace(behaviorType);
+              }}
+              photos={userInfo.photoUrlArray}/>
           }
           {/*我的视频*/}
           {
@@ -443,6 +486,9 @@ class OtherBusinesscard extends Component<Props, State> {
               <View style={styleAssign([styles.uac, styles.ujc, wRatio(100), mt(16)])}>
                 <Video
                   style={styleAssign([w(335), h(203), bgColor(commonStyles.whiteColor)])}
+                  onPlay={() => {
+                    this.addRadarTrace('play_your_video');
+                  }}
                   src={userInfo.videoUrl}
                   controls={true}
                   autoplay={false}
@@ -450,11 +496,7 @@ class OtherBusinesscard extends Component<Props, State> {
                   initialTime={1}
                   id='video'
                   loop={false}
-                  muted={false}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }
-                  }/>
+                  muted={false}/>
               </View>
             </View>
           }
