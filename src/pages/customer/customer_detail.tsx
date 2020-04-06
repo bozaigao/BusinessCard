@@ -93,6 +93,7 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidMount(){
+
   }
 
 
