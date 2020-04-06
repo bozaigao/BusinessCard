@@ -76,10 +76,14 @@ export default class RadarItem extends PureComponent<Props, State> {
             style={styleAssign([fSize(14), mt(3), ml(16), color(commonStyles.colorTheme)])}>他</Text>
           <Text
             style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{operateMap[item.behaviorType]}</Text>
-          <Text
-            style={styleAssign([fSize(14), mt(3), color(commonStyles.colorTheme)])}>持续时间</Text>
-          <Text
-            style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{`${formartSecond(item.duration)}`}</Text>
+          {item.duration &&
+          <View style={styleAssign([styles.uac, styles.udr])}>
+            <Text
+              style={styleAssign([fSize(14), mt(3), color(commonStyles.colorTheme)])}>持续时间</Text>
+            <Text
+              style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{`${formartSecond(item.duration)}`}</Text>
+          </View>
+          }
         </View>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
