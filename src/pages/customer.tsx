@@ -24,7 +24,7 @@ import {
   w,
   wRatio
 } from "../utils/style";
-import {get, getToday, save, styleAssign, toast} from "../utils/datatool";
+import {get, save, styleAssign, toast} from "../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../actions/customer";
