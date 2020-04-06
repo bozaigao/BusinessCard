@@ -161,7 +161,7 @@ class MyTags extends Component<Props, State> {
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View
             style={styleAssign([styles.uac, styles.udr, wRatio(100), bgColor(commonStyles.whiteColor), pt(20), pb(20)])}>
-            <Image style={styleAssign([w(66), h(66), radiusA(33), ml(20)])} src={customer.avatar}/>
+            <Image style={styleAssign([w(66), h(66), radiusA(33), ml(20)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
             <View style={styleAssign([ml(16)])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <Text style={styleAssign([fSize(18), color('#343434')])}>{customer.name}</Text>
