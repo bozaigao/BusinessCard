@@ -49,6 +49,8 @@ import './index.scss';
 import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
 
+let wxCharts = require('../../utils/wxcharts');
+
 interface Props {
   deleteCustomer?: any;
   followUpList?: any;
@@ -68,6 +70,7 @@ interface State {
 @connect(state => state.login, Object.assign(actions, loginActions))
 class CustomerDetail extends Component<Props, State> {
   private viewRef;
+  private pieChart;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -92,8 +95,51 @@ class CustomerDetail extends Component<Props, State> {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
+    this.drawPie();
+  }
 
+  drawPie = () => {
+    this.pieChart = new wxCharts({
+      context: this,
+      animation: true,
+      canvasId: 'pieCanvas',
+      type: 'pie',
+      series: [{
+        name: '成交量1',
+        data: 15,
+      }, {
+        name: '成交量2',
+        data: 35,
+      }, {
+        name: '成交量3',
+        data: 78,
+      }, {
+        name: '成交量4',
+        data: 63,
+      }, {
+        name: '成交量2',
+        data: 35,
+      }, {
+        name: '成交量3',
+        data: 78,
+      }, {
+        name: '成交量4',
+        data: 63,
+      }, {
+        name: '成交量2',
+        data: 35,
+      }, {
+        name: '成交量3',
+        data: 78,
+      }, {
+        name: '成交量3',
+        data: 78,
+      }],
+      width: 104,
+      height: 300,
+      dataLabel: true,
+    });
   }
 
 
@@ -264,6 +310,9 @@ class CustomerDetail extends Component<Props, State> {
               <Text style={styleAssign([fSize(16), color('#343434')])}>
                 兴趣占比
               </Text>
+              <canvas style="width: 305px; height: 300px;background:white;margin-top:20px;border-radius:4px;"
+                      class="canvas"
+                      canvas-id="pieCanvas"/>
             </View>
           </View>
         </View>
@@ -400,7 +449,9 @@ class CustomerDetail extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
                       onClick={() => {
-                        this.setState({currentIndex: 3});
+                        this.setState({currentIndex: 3},()=>{
+                          this.drawPie();
+                        });
                       }}>
                   <Text
                     style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
