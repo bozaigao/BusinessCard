@@ -24,7 +24,9 @@ import {
   mb,
   ml,
   mt,
-  padding, pb, pt,
+  padding,
+  pb,
+  pt,
   radiusA,
   w,
   wRatio
@@ -53,7 +55,6 @@ interface Props {
 
 interface State {
   chooseTags: any;
-  tags: any[];
   dengJiTag: string;
   showTagEdit: boolean;
   customer: CustomerModel;
@@ -80,10 +81,9 @@ class MyTags extends Component<Props, State> {
     super(props);
     this.state = {
       customer: parseData(this.$router.params.itemData),
-      chooseTags: [],
-      tags: [],
+      chooseTags: this.$router.params.label ? parseData(this.$router.params.label) : [],
       showTagEdit: false,
-      dengJiTag: ''
+      dengJiTag: this.$router.params.intentionGrade
     }
     console.log(this.viewRef);
   }
@@ -151,7 +151,7 @@ class MyTags extends Component<Props, State> {
 
 
   render() {
-    let {chooseTags, tags, showTagEdit, dengJiTag,customer} = this.state;
+    let {chooseTags, showTagEdit, dengJiTag, customer} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {

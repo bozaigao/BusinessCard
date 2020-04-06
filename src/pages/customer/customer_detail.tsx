@@ -431,7 +431,7 @@ class CustomerDetail extends Component<Props, State> {
           <BottomButon title={(customer.label.length !== 0 || customer.intentionGrade.length !== 0) ? '修改标签' : '添加标签'}
                        onClick={() => {
                          Taro.navigateTo({
-                           url: `/pages/customer/add_tags?itemData=${JSON.stringify(customer)}`
+                           url: `/pages/customer/add_tags?itemData=${JSON.stringify(customer)}&label=${customer.label}&intentionGrade=${customer.intentionGrade}`
                          });
                        }}/>
         }
