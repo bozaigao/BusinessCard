@@ -19,12 +19,12 @@
       <file leaf-file-name="customer_ziliao.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="146" column="32" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
+            <state relative-caret-position="2409">
+              <caret line="145" column="48" lean-forward="true" selection-start-line="145" selection-start-column="48" selection-end-line="145" selection-end-column="48" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#118#170#0" expanded="true" />
-                <element signature="e#537#575#0" expanded="true" />
+                <element signature="e#531#569#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -542,12 +542,12 @@
       <workItem from="1586048149367" duration="2556000" />
       <workItem from="1586062710455" duration="902000" />
       <workItem from="1586070385976" duration="1918000" />
-      <workItem from="1586134765761" duration="9405000" />
+      <workItem from="1586134765761" duration="9452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1173340000" />
+    <option name="totallyTimeSpent" value="1173387000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1039,12 +1039,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="146" column="32" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
+        <state relative-caret-position="2409">
+          <caret line="145" column="48" lean-forward="true" selection-start-line="145" selection-start-column="48" selection-end-line="145" selection-end-column="48" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#118#170#0" expanded="true" />
-            <element signature="e#537#575#0" expanded="true" />
+            <element signature="e#531#569#0" expanded="true" />
           </folding>
         </state>
       </provider>
