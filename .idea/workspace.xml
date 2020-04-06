@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/customer/add_tags.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/add_tags.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,6 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="customer_ziliao.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="146" column="32" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#118#170#0" expanded="true" />
+                <element signature="e#537#575#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="customer_detail.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
@@ -30,15 +44,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add_tags.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add_tags.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/add_tags.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="163" column="184" selection-start-line="163" selection-start-column="184" selection-end-line="163" selection-end-column="184" />
+            <state relative-caret-position="242">
+              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#258#335#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="243" column="30" lean-forward="true" selection-start-line="243" selection-start-column="30" selection-end-line="243" selection-end-column="30" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#106#150#0" expanded="true" />
+                <element signature="e#530#568#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/component/custom-item/index.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -54,8 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>打电话</find>
-      <find>play</find>
       <find>vi</find>
       <find>持续时间</find>
       <find>did</find>
@@ -84,6 +118,8 @@
       <find>label</find>
       <find>tags</find>
       <find>avatar</find>
+      <find>ava</find>
+      <find>客户详细资料</find>
     </findStrings>
     <replaceStrings>
       <replace>getUserinfo</replace>
@@ -169,7 +205,6 @@
         <option value="$PROJECT_DIR$/src/pages/mine/task_center.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/task-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/my-business/index.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/my-photo/index.tsx" />
@@ -179,6 +214,7 @@
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_tags.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" />
       </list>
     </option>
   </component>
@@ -506,12 +542,12 @@
       <workItem from="1586048149367" duration="2556000" />
       <workItem from="1586062710455" duration="902000" />
       <workItem from="1586070385976" duration="1918000" />
-      <workItem from="1586134765761" duration="8877000" />
+      <workItem from="1586134765761" duration="9405000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1172812000" />
+    <option name="totallyTimeSpent" value="1173340000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -705,13 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/component/custom-item/index.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -967,30 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="110" column="2" lean-forward="true" selection-start-line="110" selection-start-column="2" selection-end-line="128" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#118#170#0" expanded="true" />
-            <element signature="e#537#575#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="247" column="70" selection-start-line="247" selection-start-column="64" selection-end-line="247" selection-end-column="70" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#106#150#0" expanded="true" />
-            <element signature="e#530#568#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1005,11 +1010,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/add_tags.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="163" column="184" selection-start-line="163" selection-start-column="184" selection-end-line="163" selection-end-column="184" />
+        <state relative-caret-position="242">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#258#335#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="243" column="30" lean-forward="true" selection-start-line="243" selection-start-column="30" selection-end-line="243" selection-end-column="30" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#106#150#0" expanded="true" />
+            <element signature="e#530#568#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/component/custom-item/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="67" column="41" selection-start-line="67" selection-start-column="41" selection-end-line="67" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="146" column="32" selection-start-line="146" selection-start-column="32" selection-end-line="146" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#118#170#0" expanded="true" />
+            <element signature="e#537#575#0" expanded="true" />
           </folding>
         </state>
       </provider>

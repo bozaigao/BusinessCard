@@ -143,8 +143,13 @@ class CustomerZiLiao extends Component<Props, State> {
           scrollY>
           {/*头像*/}
           <View style={styleAssign([wRatio(100), h(86), styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
-            <Image style={styleAssign([w(66), h(66), ml(21), op(0)])}
-                   src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${cloudBaseUrl}ico_default.png`}/>
+            {
+              customer.avatar && customer.avatar.length !== 0 ?
+                <Image style={styleAssign([w(66), h(66), radiusA(33), ml(21)])}
+                       src={customer.avatar}/> :
+                <Image style={styleAssign([w(66), h(66), radiusA(33), ml(21)])}
+                       src={`${cloudBaseUrl}ico_default.png`}/>
+            }
             <View style={styleAssign([w(240), hRatio(100), styles.ujb,
               ml(15)])}>
               <Text style={styleAssign([fSize(18), mt(17), color('#343434')])}>
