@@ -85,16 +85,16 @@ class CustomerDetail extends Component<Props, State> {
       //@ts-ignore
       customer: null,
       showOperate: false,
-      currentIndex: 0,
+      currentIndex: 3,
       flowUpList: [],
       showDeleteNotice: false,
       showShareInvite: false
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
+  componentDidMount(){
   }
+
 
   componentWillUnmount() {
   }
@@ -256,7 +256,17 @@ class CustomerDetail extends Component<Props, State> {
         }
       </View>;
     } else if (currentIndex === 3) {
-      childView = <View/>;
+      childView = <View style={styleAssign([styles.uf1, styles.uac])}>
+        <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
+          <View>
+            <View>
+              <Text style={styleAssign([fSize(16), color('#343434')])}>
+                兴趣占比
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>;
     } else {
       childView = <View/>
     }
