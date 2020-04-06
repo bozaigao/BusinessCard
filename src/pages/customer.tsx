@@ -74,8 +74,8 @@ class Customer extends Component<Props, State> {
       shaiXuanValue: '全部',
       showMode: false,
       showShaiXuan: false,
-      startTime: '2020-01-01',
-      endTime: getToday(),
+      startTime: '',
+      endTime: '',
       name: '',
       showGuide: false,
       showShareInvite: false
