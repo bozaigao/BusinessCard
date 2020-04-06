@@ -137,12 +137,19 @@ class OtherBusinesscard extends Component<Props, State> {
    * @function: 新增行为轨迹
    */
   addRadarTrace = (behaviorType: string, goodsId?: string) => {
-    this.props.addRadarTrace({
+    let params = {
       userId: this.state.userInfo.id,
       behaviorType,
-      duration: '',
-      goodsId
-    }).then((res) => {
+    }, duration = 0;
+
+    if (goodsId) {
+      Object.assign(params, {goodsId})
+    }
+
+    if (duration) {
+      Object.assign(params, {duration})
+    }
+    this.props.addRadarTrace(params).then((res) => {
       if (res !== NetworkState.FAIL) {
       }
       console.log('新增行为轨迹', res)
