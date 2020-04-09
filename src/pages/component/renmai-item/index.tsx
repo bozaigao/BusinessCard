@@ -48,15 +48,17 @@ export default class RenMaiItem extends PureComponent<Props, State> {
               </Text>
             </View>
           </View>
-          <View
-            style={styleAssign([w(64), h(28), radiusA(2), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mr(20)])}>
-            <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}
-                  onClick={() => {
-                    collectCard(item.userId);
-                  }}>
-              收藏名片
-            </Text>
-          </View>
+          {
+            item.type === 1&&<View
+              style={styleAssign([w(64), h(28), radiusA(2), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mr(20)])}>
+              <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}
+                    onClick={() => {
+                      collectCard(item.userId);
+                    }}>
+                收藏名片
+              </Text>
+            </View>
+          }
         </View>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
       </View>
