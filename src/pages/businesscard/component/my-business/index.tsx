@@ -47,7 +47,7 @@ export default class MyBusiness extends PureComponent<Props, State> {
           <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的企业</Text>
         </View>
         <View
-          style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(270), bgColor(commonStyles.whiteColor)])}>
+          style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(userInfo.enterpriseVideo.length !== 0 ? 270 : 70), bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([wRatio(100), h(76), styles.udr, styles.uac, styles.ujb, pl(16), pr(16)])}>
             <View style={styleAssign([styles.udr, styles.uac])}>
               <Image style={styleAssign([w(40), h(40), radiusA(4)])} src={userInfo.enterpriseLogo}/>
