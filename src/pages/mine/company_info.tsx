@@ -133,7 +133,7 @@ class CompanyInfo extends Component<Props, State> {
               </View>
               <Input type='text' value={enterpriseName}
                      placeholder={'必填'}
-                     maxLength={16}
+                     maxLength={12}
                      style={styleAssign([fSize(14), mr(20), {textAlign: 'right'}])}
                      onInput={(e) => {
                        this.setState({enterpriseName: e.detail.value});
@@ -228,6 +228,10 @@ class CompanyInfo extends Component<Props, State> {
         <BottomButon title={'提交'} onClick={() => {
           if (enterpriseName.length === 0) {
             toast('请选输入企业名称');
+            return;
+          }
+          if (enterpriseName.length > 12) {
+            toast('企业名称长度不能超过12');
             return;
           }
           if (enterpriseLogo.length === 0) {

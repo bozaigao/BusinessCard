@@ -205,6 +205,10 @@ class PersonalInfo extends Component<Props, State> {
       toast('姓名不能为空');
       return;
     }
+    if (name.length > 3) {
+      toast('姓名长度不能超过3');
+      return;
+    }
     if (phone.length === 0) {
       toast('手机号不能为空');
       return;
