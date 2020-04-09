@@ -93,7 +93,7 @@ class ChooseIndustryTag extends Component<Props, State> {
     }
     this.viewRef && this.viewRef.showLoading();
     this.props.recommendSetting({
-      interest: this.renmai,
+      interest: this.renmai ? this.renmai : JSON.stringify([]),
       industry: JSON.stringify(chooseValue)
     }).then((res) => {
       console.log('人脉推荐行业和兴趣设置', res);
