@@ -88,7 +88,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式1商务版
    */
   drawBallStyle1() {
-    this.viewRef && this.viewRef.showLoading();
+    this.viewRef && this.viewRef.showLoading('海报生成中');
     let {userInfo} = this.props;
     let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
@@ -212,7 +212,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式2黑金版
    */
   drawBallStyle2() {
-    this.viewRef && this.viewRef.showLoading();
+    this.viewRef && this.viewRef.showLoading('海报生成中');
     let {userInfo} = this.props;
     let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
@@ -339,7 +339,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式3简约版
    */
   drawBallStyle3() {
-    this.viewRef && this.viewRef.showLoading();
+    this.viewRef && this.viewRef.showLoading('海报生成中');
     let {userInfo} = this.props;
     let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
@@ -466,7 +466,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式4极简版
    */
   drawBallStyle4() {
-    this.viewRef && this.viewRef.showLoading();
+    this.viewRef && this.viewRef.showLoading('海报生成中');
     let {userInfo} = this.props;
     let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
@@ -593,7 +593,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式5实景版
    */
   drawBallStyle5() {
-    this.viewRef && this.viewRef.showLoading();
+    this.viewRef && this.viewRef.showLoading('海报生成中');
     let {userInfo} = this.props;
     let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
 
