@@ -10,7 +10,7 @@ import {Button, ScrollView, Text, View} from "@tarojs/components";
 //@ts-ignore
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
-import {debounce, get, save, styleAssign, toast} from "../utils/datatool";
+import {get, save, styleAssign, toast} from "../utils/datatool";
 import {bgColor, color, commonStyles, default as styles, fSize, h, radiusA, w, wRatio} from "../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
@@ -339,6 +339,7 @@ class Businesscard extends Component<Props, State> {
             }}/>
           {/*我的人脉*/}
           <MyPerson
+            userInfo={userInfo}
             currentIndex={currentIndex}
             chooseCallback={() => {
               Taro.navigateTo({

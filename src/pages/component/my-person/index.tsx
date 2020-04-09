@@ -25,6 +25,7 @@ import styles, {
 } from "../../../utils/style";
 import {cloudBaseUrl} from "../../../api/httpurl";
 import RenMaiItem from "../renmai-item/index";
+import {User} from "../../../const/global";
 
 
 interface Props {
@@ -35,6 +36,7 @@ interface Props {
   performCard: any;
   currentIndex: number;
   collectCard: any;
+  userInfo: User;
 }
 
 interface State {
@@ -46,7 +48,7 @@ export default class MyPerson extends Component<Props, State> {
   }
 
   render() {
-    let {chooseCallback, hasSelected, recommendList, indexChangeCallback, performCard, currentIndex, collectCard} = this.props;
+    let {chooseCallback, hasSelected, recommendList, indexChangeCallback, performCard, currentIndex, collectCard,userInfo} = this.props;
     let noticeText = '';
 
     if (currentIndex === 1) {
@@ -143,7 +145,7 @@ export default class MyPerson extends Component<Props, State> {
           </View>
         }
         {
-          hasSelected && recommendList.length === 0 &&
+          hasSelected && userInfo.cardPercent === 0 &&
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
             <View
               style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>

@@ -64,6 +64,7 @@ interface Props {
   getCardHolderVisitorRecord: any;
   //新增行为轨迹
   addRadarTrace: any;
+  userInfo: User;
 }
 
 interface State {
@@ -260,7 +261,6 @@ class OtherBusinesscard extends Component<Props, State> {
 
 
   render() {
-
     let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList, cardStyle, hidePhone, hideWechat, hideEmail, hideAddress, showHomeWenHouYu, showSchoolWenHouYu} = this.state,
       visitorListSub;
 
@@ -322,7 +322,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 });
               }}>
               <Image style={styleAssign([w(27), h(27), radiusA(13.5), ma(2)])}
-                     src={userInfo.avatar}/>
+                     src={this.props.userInfo.avatar}/>
               <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
             </View>
             <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
