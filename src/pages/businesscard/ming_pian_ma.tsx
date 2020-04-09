@@ -133,7 +133,7 @@ class MingPianMa extends Component<Props, State> {
                     <Text
                       style={styleAssign([fSize(18), fWeight('bold'), color(commonStyles.whiteColor)])}>{userInfo.name}</Text>
                     <Text
-                      style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${userInfo.company}·${userInfo.position}`}</Text>
+                      style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{`${userInfo.enterpriseName}·${userInfo.position}`}</Text>
                   </View>
                   <Image style={styleAssign([w(50), h(50), radiusA(25)])}
                          src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>

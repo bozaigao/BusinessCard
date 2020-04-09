@@ -106,35 +106,18 @@ class CustomerDetail extends Component<Props, State> {
       canvasId: 'pieCanvas',
       type: 'pie',
       series: [{
-        name: '成交量1',
-        data: 15,
+        name: '对我名片信息感兴趣',
+        data: 50,
+        color:'#E2BB7B',
+
       }, {
-        name: '成交量2',
-        data: 35,
+        name: '对我的产品感兴趣',
+        data: 20,
+        color:'#825D22'
       }, {
-        name: '成交量3',
-        data: 78,
-      }, {
-        name: '成交量4',
-        data: 63,
-      }, {
-        name: '成交量2',
-        data: 35,
-      }, {
-        name: '成交量3',
-        data: 78,
-      }, {
-        name: '成交量4',
-        data: 63,
-      }, {
-        name: '成交量2',
-        data: 35,
-      }, {
-        name: '成交量3',
-        data: 78,
-      }, {
-        name: '成交量3',
-        data: 78,
+        name: '对我的企业感兴趣',
+        data: 30,
+        color:'#FCF6EF'
       }],
       width: 104,
       height: 300,
@@ -310,7 +293,7 @@ class CustomerDetail extends Component<Props, State> {
               <Text style={styleAssign([fSize(16), color('#343434')])}>
                 兴趣占比
               </Text>
-              <canvas style="width: 305px; height: 300px;background:white;margin-top:20px;border-radius:4px;"
+              <canvas style="width: 335px; height: 300px;background:red;border-radius:4px;"
                       class="canvas"
                       canvas-id="pieCanvas"/>
             </View>

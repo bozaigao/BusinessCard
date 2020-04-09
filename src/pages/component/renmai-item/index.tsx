@@ -13,7 +13,7 @@ import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, radiusA, w, 
 
 interface Props {
   item: any;
-  collectCard:any;
+  collectCard: any;
 }
 
 interface State {
@@ -22,22 +22,28 @@ interface State {
 export default class RenMaiItem extends PureComponent<Props, State> {
 
   render() {
-    let {item,collectCard} = this.props;
+    let {item, collectCard} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
         <View
           style={styleAssign([wRatio(100), h(112), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([styles.uac, styles.udr, ml(20)])}>
-            <Image style={styleAssign([w(66), h(66), radiusA(33)])} src={item.avatar}/>
+            <Image style={styleAssign([w(66), h(66), radiusA(33)])} src={item.avatar}
+                   mode={'aspectFit'}/>
             <View style={styleAssign([ml(22)])}>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>
+              <Text style={styleAssign([fSize(16), color('#343434'), {
+                display: '-webkit-box',
+                overflow: 'hidden',
+                '-webkit-line-clamp': 1,
+                '-webkit-box-orient': 'vertical',
+              }])}>
                 {item.name}
               </Text>
               <Text style={styleAssign([fSize(14), color('#ACADAD')])}>
                 {item.copany}
               </Text>
-              <Text style={styleAssign([fSize(12),w(160), color('#ACADAD'), mt(6)])}>
+              <Text style={styleAssign([fSize(12), w(160), color('#ACADAD'), mt(6)])}>
                 {`${item.position}·${item.industry}`}
               </Text>
             </View>
@@ -45,9 +51,9 @@ export default class RenMaiItem extends PureComponent<Props, State> {
           <View
             style={styleAssign([w(64), h(28), radiusA(2), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mr(20)])}>
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}
-            onClick={()=>{
-              collectCard(item.userId);
-            }}>
+                  onClick={() => {
+                    collectCard(item.userId);
+                  }}>
               收藏名片
             </Text>
           </View>
