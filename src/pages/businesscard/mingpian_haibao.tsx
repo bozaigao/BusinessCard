@@ -552,7 +552,8 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(12);
                   context.setFillStyle('#343434');
                   context.fillText(userInfo.position, 140, 65);
-                  context.fillText(userInfo.enterpriseName, 68, 85);
+                  context.setTextAlign('left');
+                  context.fillText(userInfo.enterpriseName, 44, 85);
                   context.setFontSize(14);
                   context.setTextAlign('left');
                   context.fillText('您好,', 15, 240);
@@ -648,7 +649,7 @@ class MingpianHaibao extends Component<Props, State> {
                 context.drawImage(res.path, 38, 164, 12, 10);
                 context.setTextAlign('left');
                 context.setFillStyle(commonStyles.whiteColor);
-                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 100, 16, 12,commonStyles.whiteColor);
+                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 180, 16, 12,commonStyles.whiteColor);
               }
               //小程序码
               Taro.getImageInfo({
@@ -664,7 +665,8 @@ class MingpianHaibao extends Component<Props, State> {
                 context.fillText(userInfo.name, 68, 65);
                 context.setFontSize(12);
                 context.fillText(userInfo.position, 140, 65);
-                context.fillText(userInfo.enterpriseName, 68, 85);
+                context.setTextAlign('left');
+                context.fillText(userInfo.enterpriseName, 44, 85);
                 context.setFontSize(14);
                 context.setTextAlign('left');
                 context.fillText('您好,', 15, 240);
