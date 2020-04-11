@@ -105,7 +105,7 @@ class AiAnalysis extends Component<Props, State> {
                 this.pieChart = ref;
               }}/>
             </View>
-            <View style={styleAssign([w(220), mr(20)])}>
+            <View style={styleAssign([w(230), mr(20)])}>
               <Text style={styleAssign([fSize(15), color('#343434')])}>
                 访问浏览量：30
               </Text>
