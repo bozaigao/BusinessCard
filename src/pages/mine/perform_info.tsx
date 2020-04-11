@@ -40,7 +40,7 @@ import {User} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
 import LinearGradientView from "../../compoments/linear-gradient-view2/index";
 import NavigationBar from "../../compoments/navigation_bar/index";
-import './index.scss';
+import MultiLineText from "../../compoments/multi_line_text";
 
 
 interface Props {
@@ -69,9 +69,7 @@ class PerformInfo extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -287,13 +285,13 @@ class PerformInfo extends Component<Props, State> {
                       <Image style={styleAssign([w(7), h(12), ml(6)])} src={`${cloudBaseUrl}ico_next.png`}/>
                     </TouchableButton>
                   </View>
-                  <View style={styleAssign([wRatio(100), mb(10), styles.uac, pl(20), pr(20)])}
-                        className={'.textStyle'}>
+                  <View style={styleAssign([wRatio(100), mb(10), styles.uac, pl(20), pr(20)])}>
                     {
                       userInfo.selfDescription && userInfo.selfDescription.length !== 0 ?
-                        <Text
+                        <MultiLineText
                           style={styleAssign([fSize(12), color('#0C0C0C')])}
-                          className={'.textStyle'}>{userInfo.selfDescription}</Text> :
+                          text={userInfo.selfDescription}
+                        /> :
                         <Text
                           style={styleAssign([fSize(12), color('#A9A9A9'), ml(20), mr(20)])}>让客户进一步深入了解你</Text>
                     }

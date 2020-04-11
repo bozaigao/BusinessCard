@@ -47,13 +47,13 @@ import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
 import OtherBusinessCardGuide from "./component/other-business-card-guide/index";
 import MyPhoto from "../../compoments/my-photo/index";
-import './index.scss';
 import CardStyle1 from "../../compoments/card-style1";
 import CardStyle2 from "../../compoments/card-style2";
 import CardStyle3 from "../../compoments/card-style3";
 import CardStyle4 from "../../compoments/card-style4";
 import CardStyle5 from "../../compoments/card-style5";
 import WenHouModal, {WenHouType} from "../../compoments/wenhou-modal";
+import MultiLineText from "../../compoments/multi_line_text";
 
 interface Props {
   //获取用户信息
@@ -98,7 +98,7 @@ class OtherBusinesscard extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -393,9 +393,10 @@ class OtherBusinesscard extends Component<Props, State> {
                         });
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
-                  <Text
+                  <MultiLineText
                     style={styleAssign([color('#979797'), fSize(12), w(70)])}
-                    className={'.textStyle'}>{`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}</Text>
+                    text={`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}
+                    />
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),

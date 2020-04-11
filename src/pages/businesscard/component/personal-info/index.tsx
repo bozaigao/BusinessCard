@@ -28,7 +28,7 @@ import styles, {
 } from "../../../../utils/style";
 import {cloudBaseUrl} from "../../../../api/httpurl";
 import {User} from "../../../../const/global";
-import './index.scss';
+import MultiLineText from "../../../../compoments/multi_line_text";
 
 
 interface Props {
@@ -118,9 +118,9 @@ export default class PersonalInfo extends PureComponent<Props, State> {
             </View>
           }
           {
-            userInfo.selfDescription.length !== 0 && <Text
+            userInfo.selfDescription.length !== 0 && <MultiLineText
               style={styleAssign([fSize(14), color('#343434'), mt(16)])}
-              className={'.textStyle '}>{userInfo.selfDescription}</Text>
+              text={userInfo.selfDescription}/>
           }
           {/*家乡*/}
           {

@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Text, View} from "@tarojs/components";
-import {styleAssign, transformNowTime, transformTime} from "../../utils/datatool";
+import {styleAssign, transformTime} from "../../utils/datatool";
 import styles, {
   bgColor,
   color,
@@ -24,9 +24,8 @@ import styles, {
   w,
   wRatio
 } from "../../utils/style";
-import TouchableButton from "../touchable-button/index";
 import {TaskModel} from "../../const/global";
-import './index.scss';
+import MultiLineText from "../multi_line_text";
 
 
 interface Props {
@@ -71,8 +70,9 @@ export default class TaskItem extends PureComponent<Props, State> {
         <View style={styleAssign([w(335), bgColor(commonStyles.whiteColor), radiusA(4)])}>
           <View style={styleAssign([w(335), styles.uac, styles.udr, styles.ujb,
             pl(16), pr(16), pt(20)])}>
-            <Text style={styleAssign([fSize(16), color('#343434'), w(200)])}
-                  className={'.textStyle'}>{itemData.theme}</Text>
+            <MultiLineText style={styleAssign([fSize(16), color('#343434'), w(200)])}
+                           text={itemData.theme}
+            />
             <View
               onClick={(e) => {
                 e.stopPropagation();
