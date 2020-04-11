@@ -144,7 +144,7 @@ let Prefecturepage = (_temp = _class = class Prefecturepage extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+
 }, _temp);
 Prefecturepage = __decorate([connect(state => state.login, { ...actions })], Prefecturepage);
 // #region 导出注意

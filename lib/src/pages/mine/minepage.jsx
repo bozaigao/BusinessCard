@@ -18,7 +18,7 @@ class Minepage extends taro_1.Component {
          */
         this.config = {
             navigationBarTitleText: '首页',
-            disableScroll: true
+
         };
         this.state = {
             centerBarList: [
@@ -82,7 +82,7 @@ class Minepage extends taro_1.Component {
         let { centerBarList, dataList } = this.state;
         return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? 600 : 500), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(120), style_1.bgColor('rgb(127,212,203)'), style_1.default.ujc, style_1.default.uac])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.w(335), style_1.default.ujb])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
@@ -101,7 +101,7 @@ class Minepage extends taro_1.Component {
               <components_1.Image src={require('../../assets/ico_minepage_arrow_right_white.png')} style={datatool_1.styleAssign([style_1.w(8), style_1.h(16), style_1.ml(12)])}/>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80), style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             {centerBarList.map((value, index) => {
             return <touchable_button_1.default key={index} customStyle={datatool_1.styleAssign([process.env.TARO_ENV === 'weapp' ? style_1.w(style_1.screenWidth() / 3) : style_1.wRatio(33.33), style_1.hRatio(100),
@@ -113,7 +113,7 @@ class Minepage extends taro_1.Component {
                 </touchable_button_1.default>;
         })}
           </components_1.View>
-          
+
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(60), style_1.default.ujb, style_1.default.uac, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.mt(10), style_1.mb(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20)])}>
@@ -122,7 +122,7 @@ class Minepage extends taro_1.Component {
             </components_1.View>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(6), style_1.h(10), style_1.mr(20)])} src={require('../../assets/ico_minepage_item_arrow.png')}/>
           </touchable_button_1.default>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             {dataList.map((value, index) => {
             return (<touchable_button_1.default key={index} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>

@@ -32,7 +32,7 @@ let Homepage = class Homepage extends taro_1.Component {
          */
         this.config = {
             navigationBarTitleText: '首页',
-            disableScroll: true
+            
         };
         /**
          * @author 何晏波

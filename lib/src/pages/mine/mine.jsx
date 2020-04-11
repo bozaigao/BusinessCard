@@ -33,7 +33,7 @@ let Mine = class Mine extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         /**
          * @author 何晏波
@@ -81,7 +81,7 @@ let Mine = class Mine extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(242), style_1.bgColor(style_1.commonStyles.colorTheme)])}>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.mt(marginTop), style_1.wRatio(100), style_1.h(44), style_1.default.ujb, style_1.default.udr, style_1.default.uac])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(14), style_1.ml(20)])}/>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(19), style_1.color(style_1.commonStyles.whiteColor)])}>我的</components_1.Text>
@@ -89,7 +89,7 @@ let Mine = class Mine extends taro_1.Component {
               </components_1.View>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(150), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.default.upa, style_1.absT(100), style_1.wRatio(100)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
@@ -102,7 +102,7 @@ let Mine = class Mine extends taro_1.Component {
                     <components_1.Text style={datatool_1.styleAssign([style_1.fSize(10), style_1.color(style_1.commonStyles.whiteColor), style_1.mt(8)])}>完善度88%</components_1.Text>
                   </components_1.View>
                 </components_1.View>
-                
+
                 <components_1.View style={datatool_1.styleAssign([style_1.mr(20)])}>
                   <components_1.View>
                     <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])} onClick={() => {
@@ -119,11 +119,11 @@ let Mine = class Mine extends taro_1.Component {
                   </components_1.View>
                 </components_1.View>
               </components_1.View>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(100), style_1.default.uac, style_1.mt(24)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(335), style_1.h(100)])} src={require('../../assets/ico_fenxiao.png')}/>
               </components_1.View>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.uja, style_1.mt(27)])}>
                 {[{
                 title: '商城',

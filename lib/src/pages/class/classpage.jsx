@@ -21,7 +21,7 @@ class Classpage extends taro_1.Component {
          */
         this.config = {
             navigationBarTitleText: '首页',
-            disableScroll: true
+
         };
         this.state = {
             rewuList: [1, 2, 3, 4, 5, 6],

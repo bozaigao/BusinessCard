@@ -35,7 +35,7 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         let itemData = datatool_1.parseData(this.$router.params.itemData);
         console.log('接受的参数', itemData);
@@ -53,7 +53,7 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor),
             style_1.pt(5)])}>
           <components_1.ScrollView scrollY style={datatool_1.styleAssign([style_1.default.uf1])}>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(366)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(313)])}>
                 <components_1.Swiper style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} circular autoplay onChange={(e) => {
@@ -70,14 +70,14 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>{`${currentIndex + 1}/${carouselUrls.length}`}</components_1.Text>
                 </components_1.View>
               </components_1.View>
-              
+
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(54), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20),
             style_1.bgColor(style_1.commonStyles.whiteColor)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(21), style_1.color('#FA541C')])}>{`¥${itemData.price}`}</components_1.Text>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#242424')])}>{itemData.name}</components_1.Text>
               </components_1.View>
             </components_1.View>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac])}>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(20), style_1.mt(20)])}>商品详情</components_1.Text>
@@ -85,14 +85,14 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.pa(30)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>{itemData.introduction}</components_1.Text>
               </components_1.View>
-              
+
               {detailUrls.map((value, index) => {
             console.log(value);
             return (<components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(336), style_1.h(245), style_1.mt(8)])} src={value}/>);
         })}
             </components_1.View>
           </components_1.ScrollView>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(64), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.default.ujc])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.colorTheme), style_1.radiusA(2)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color(style_1.commonStyles.whiteColor)])}>立即分享</components_1.Text>

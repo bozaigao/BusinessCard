@@ -36,7 +36,7 @@ let Mine = (_temp = _class = class Mine extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+  
 }, _temp);
 // #region 导出注意
 //

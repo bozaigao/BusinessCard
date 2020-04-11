@@ -41,7 +41,7 @@ let Customer = (_temp = _class = class Customer extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+  
 }, _temp);
 Customer = __decorate([connect(state => state.login, { ...actions })], Customer);
 // #region 导出注意

@@ -34,7 +34,7 @@ let Radarscan = (_temp = _class = class Radarscan extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+
 }, _temp);
 // #region 导出注意
 //

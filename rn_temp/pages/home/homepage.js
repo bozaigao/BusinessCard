@@ -177,7 +177,7 @@ let Homepage = (_temp = _class = class Homepage extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+
 }, _temp);
 Homepage = __decorate([connect(state => state.login, { ...actions })], Homepage);
 // #region 导出注意

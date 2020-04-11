@@ -35,7 +35,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         /**
          * @author 何晏波
@@ -96,7 +96,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
               <linear_gradient_view_1.default style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(182)])}/>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(190), style_1.bgColor(style_1.commonStyles.whiteColor)])}/>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.upa, style_1.absT(120)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.w(120), style_1.h(120)])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(60)])} src={userInfo.avatar ? userInfo.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
@@ -108,7 +108,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{userInfo.province ? userInfo.province + userInfo.city : ''}</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(4)])}>{datatool_1.wrapSafe(userInfo.industry)}</components_1.Text>
             </components_1.View>
-            
+
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.upa, style_1.absR(10), style_1.absB(150)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(21), style_1.h(19), style_1.mt(70)])} src={`${httpurl_1.cloudBaseUrl}ico_edit.png`} onClick={() => {
             taro_1.default.navigateTo({
@@ -117,7 +117,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
         }}/>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(101), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10),])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.ujb, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.h(20), style_1.ml(20), style_1.mt(17)])}>
@@ -141,7 +141,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(40), style_1.mt(10), style_1.default.ujb, style_1.default.uac, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             this.setState({ showPersonalInfo: !this.state.showPersonalInfo });
@@ -151,7 +151,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
             </touchable_button_1.default>
             {showPersonalInfo &&
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
-                
+
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac])} onClick={() => {
                 taro_1.default.navigateTo({
                     url: `/pages/mine/audio_recorder`
@@ -184,7 +184,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                       </components_1.View>}
                   <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
                 </components_1.View>
-                
+
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac])} onClick={() => {
                 taro_1.default.navigateTo({
                     url: `/pages/mine/self_intro?content=${userInfo.selfDescription ? userInfo.selfDescription : ''}`
@@ -204,7 +204,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   </components_1.View>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
                 </components_1.View>
-                
+
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac])} onClick={() => {
                 taro_1.default.navigateTo({
                     url: `/pages/mine/my_home?villagerGreeting=${userInfo.villagerGreeting}&province=${userInfo.province}&city=${userInfo.city}`
@@ -224,7 +224,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   </components_1.View>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
                 </components_1.View>
-                
+
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac])} onClick={() => {
                 taro_1.default.navigateTo({
                     url: `/pages/mine/my_edu?school=${userInfo.school}&educationBackground=${userInfo.educationBackground}&profession=${userInfo.profession}&schoolfellowGreeting=${userInfo.schoolfellowGreeting}&schoolTimeStart=${userInfo.schoolTimeStart}&schoolTimeEnd=${userInfo.schoolTimeEnd}`
@@ -247,7 +247,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                       </components_1.View>}
                   <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
                 </components_1.View>
-                
+
                 <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac])} onClick={() => {
                 taro_1.default.navigateTo({
                     url: `/pages/mine/my_tags`
@@ -274,7 +274,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
               </components_1.View>}
           </components_1.View>
 
-          
+
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/mine/my_photo?myPhotoUrl=${JSON.stringify(photoUrl)}`
@@ -305,7 +305,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#ACADAD'), style_1.mt(4)])}>让客户更全面了解你</components_1.Text>
                 </components_1.View>}
           </touchable_button_1.default>
-          
+
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(264), style_1.mt(10), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/mine/my_video?videoUrl=${videoUrl}`
@@ -334,7 +334,7 @@ let PerformInfo = class PerformInfo extends taro_1.Component {
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#ACADAD'), style_1.mt(4)])}>让客户更全面了解你</components_1.Text>
                 </components_1.View>}
           </touchable_button_1.default>
-          
+
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(80), style_1.mt(10), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.uac, style_1.default.ujc,
             style_1.pl(20), style_1.pr(20)])} onClick={() => {
             taro_1.default.navigateTo({

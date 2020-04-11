@@ -35,7 +35,7 @@ let Help = class Help extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         console.log(this.viewRef);
     }
@@ -98,7 +98,7 @@ let Help = class Help extends taro_1.Component {
                 }
             }}/>;
         })}
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.ujc, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极易推 给您极致服务</components_1.Text>
           </components_1.View>

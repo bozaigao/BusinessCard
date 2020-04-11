@@ -37,7 +37,7 @@ let MyVideo = class MyVideo extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         /**
          * @author 何晏波
@@ -129,7 +129,7 @@ let MyVideo = class MyVideo extends taro_1.Component {
                 </components_1.View>
               </components_1.View>}
         </components_1.View>
-        
+
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(64), style_1.default.uac, style_1.default.ujc])}>
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.radiusA(2), style_1.bgColor(style_1.commonStyles.colorTheme),
             style_1.default.uac, style_1.default.ujc])} onClick={() => {

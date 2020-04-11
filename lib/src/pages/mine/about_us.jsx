@@ -34,7 +34,7 @@ let AboutUs = class AboutUs extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+            
         };
         console.log(this.viewRef);
     }

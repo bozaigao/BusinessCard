@@ -37,7 +37,7 @@ let QiehuanBusinesscard = class QiehuanBusinesscard extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         this.state = {
             signInPageDetail: { dateIntegrals: [], signInCount: 0 },
@@ -55,7 +55,7 @@ let QiehuanBusinesscard = class QiehuanBusinesscard extends taro_1.Component {
         <top_header_1.default title={'切换名片'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <qiehuan_item_1.default />
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.mt(16), style_1.default.uac, style_1.default.ujc, style_1.default.udr, style_1.w(335), style_1.h(128), style_1.radiusA(4), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.padding([20, 16, 20, 16])])}>
             <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>

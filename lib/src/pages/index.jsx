@@ -21,7 +21,7 @@ class Index extends taro_1.Component {
          */
         this.config = {
             navigationBarTitleText: '首页',
-            disableScroll: true
+            
         };
         this.state = {
             currentIndex: 0

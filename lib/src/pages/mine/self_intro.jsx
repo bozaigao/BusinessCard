@@ -36,7 +36,7 @@ let SelfIntro = class SelfIntro extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         /**
          * @author 何晏波
@@ -104,7 +104,7 @@ let SelfIntro = class SelfIntro extends taro_1.Component {
             </components_1.View>
           </components_1.View>
         </components_1.View>
-        
+
         <bottom_buton_1.default title={'保存'} onClick={() => {
             this.update();
         }}/>

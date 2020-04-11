@@ -34,7 +34,7 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         /**
          * @author 何晏波
@@ -162,7 +162,7 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
               <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mr(22)])}/>
             </components_1.View>
           </navigation_bar_1.default>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.default.upa, style_1.absT(style_1.iphoneX() ? 105 : 75), style_1.wRatio(100)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
@@ -177,7 +177,7 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(112), style_1.mt(10), style_1.default.uac, style_1.default.ujc])}>
             <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(112), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(4),
             style_1.pa(16)])}>
@@ -220,7 +220,7 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/mine/data_center`
@@ -238,7 +238,7 @@ let FenxiaoCenter = class FenxiaoCenter extends taro_1.Component {
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([{ width: '95%' }, style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           </components_1.View>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(51), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20),
             style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {

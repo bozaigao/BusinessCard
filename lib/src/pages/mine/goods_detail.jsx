@@ -34,7 +34,7 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+            
         };
         let itemData = datatool_1.parseData(this.$router.params.itemData);
         console.log('接受的参数', itemData);

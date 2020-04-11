@@ -83,7 +83,7 @@ let Businesscard = (_temp = _class = class Businesscard extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+
 }, _temp);
 Businesscard = __decorate([connect(state => state.login, { ...actions })], Businesscard);
 // #region 导出注意

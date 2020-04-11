@@ -79,7 +79,9 @@ class CustomerDetail extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    disableScroll: true
+    usingComponents:{
+      'ec-canvas': './ec-canvas/ec-canvas'
+    }
   }
 
   constructor(props) {
@@ -293,9 +295,7 @@ class CustomerDetail extends Component<Props, State> {
               <Text style={styleAssign([fSize(16), color('#343434')])}>
                 兴趣占比
               </Text>
-              <canvas style="width: 335px; height: 300px;background:red;border-radius:4px;"
-                      class="canvas"
-                      canvas-id="pieCanvas"/>
+              <ec-canvas id='mychart-dom-area' canvas-id='pieCanvas'/>
             </View>
           </View>
         </View>

@@ -39,7 +39,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
         this.config = {
-            disableScroll: true
+
         };
         /**
          * @author 何晏波
@@ -199,7 +199,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         }} notNeedBottomPadding={true}>
         <top_header_1.default title={'创建名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-          
+
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
             style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pl(20), style_1.pr(20)])} onClick={() => {
             taro_1.default.chooseImage({ count: 1 }).then((res) => {
@@ -212,7 +212,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             <components_1.Image style={datatool_1.styleAssign([style_1.w(60), style_1.h(60), style_1.radiusA(30)])} src={avatar && avatar.length !== 0 ? avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
           </touchable_button_1.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          
+
           {listData.map((value, index) => {
             if (value.title === '地区') {
                 return (<components_1.Picker mode='region' onChange={(e) => {
@@ -282,7 +282,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             }}/>);
         })}
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          
+
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.pl(20), style_1.pr(20), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>分享自己的名片给朋友时展示手机号</components_1.Text>
@@ -293,7 +293,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
           </components_1.View>
         </components_1.ScrollView>
-        
+
         <bottom_buton_1.default title={'保存'} onClick={this.update}/>
       </safe_area_view_1.default>);
     }

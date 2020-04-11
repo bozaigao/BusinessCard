@@ -125,7 +125,7 @@ let Minepage = (_temp = _class = class Minepage extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+  
 }, _temp);
 // #region 导出注意
 //

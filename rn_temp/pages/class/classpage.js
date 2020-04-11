@@ -52,7 +52,7 @@ let Classpage = (_temp = _class = class Classpage extends Component {
   }
 }, _class.config = {
   navigationBarTitleText: '首页',
-  disableScroll: true
+
 }, _temp);
 // #region 导出注意
 //
