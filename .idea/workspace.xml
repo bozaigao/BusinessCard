@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change afterPath="$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,12 +19,12 @@
       <file leaf-file-name="customer_detail.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="336" column="35" selection-start-line="336" selection-start-column="35" selection-end-line="336" selection-end-column="35" />
+            <state relative-caret-position="237">
+              <caret line="262" column="54" lean-forward="true" selection-start-line="262" selection-start-column="54" selection-end-line="262" selection-end-column="54" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#118#170#0" expanded="true" />
-                <element signature="e#551#589#0" expanded="true" />
+                <element signature="e#606#644#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,7 +73,6 @@
     <findStrings>
       <find>wxCharts</find>
       <find>refChart</find>
-      <find>drawPie</find>
       <find>开始渲染了</find>
       <find>echarts</find>
       <find>initChart</find>
@@ -94,7 +91,6 @@
       <find>Swiper</find>
       <find>childView</find>
       <find>&lt;Swiper</find>
-      <find>red</find>
       <find>人脉机遇</find>
       <find>我的个人简介</find>
       <find>self</find>
@@ -103,6 +99,8 @@
       <find>index.scss</find>
       <find>className</find>
       <find>didM</find>
+      <find>drawPie</find>
+      <find>red</find>
     </findStrings>
     <replaceStrings>
       <replace>updateTOKEN</replace>
@@ -521,12 +519,12 @@
       <workItem from="1586070385976" duration="1918000" />
       <workItem from="1586134765761" duration="21843000" />
       <workItem from="1586439717192" duration="4835000" />
-      <workItem from="1586567760544" duration="16539000" />
+      <workItem from="1586567760544" duration="16797000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1207152000" />
+    <option name="totallyTimeSpent" value="1207410000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -546,9 +544,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.33731344" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.33731344" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -991,12 +989,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="336" column="35" selection-start-line="336" selection-start-column="35" selection-end-line="336" selection-end-column="35" />
+        <state relative-caret-position="237">
+          <caret line="262" column="54" lean-forward="true" selection-start-line="262" selection-start-column="54" selection-end-line="262" selection-end-column="54" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#118#170#0" expanded="true" />
-            <element signature="e#551#589#0" expanded="true" />
+            <element signature="e#606#644#0" expanded="true" />
           </folding>
         </state>
       </provider>
