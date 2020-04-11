@@ -27,6 +27,7 @@ import styles, {
 import TouchableButton from "../../../compoments/touchable-button/index";
 import {operateMap, RadarModel} from "../../../const/global";
 import {cloudBaseUrl} from "../../../api/httpurl";
+import SingleLineText from "../../../compoments/singleline-text";
 
 
 interface Props {
@@ -59,7 +60,8 @@ export default class RadarItem extends PureComponent<Props, State> {
             </View>
             <View style={styleAssign([ml(16)])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
-                <Text style={styleAssign([fSize(12), color('#343434')])}>{item.behaviorTraceUser.name}</Text>
+                <SingleLineText style={styleAssign([fSize(12), color('#343434'), w(140)])}
+                                text={item.behaviorTraceUser.name}/>
                 <Text style={styleAssign([fSize(12), color('#979797')])}>.访客</Text>
               </View>
               <Text
