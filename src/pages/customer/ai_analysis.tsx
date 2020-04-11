@@ -8,17 +8,19 @@
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {
-  absR,
-  absT,
   bdColor,
-  bgColor, bl,
-  bo, br,
+  bgColor,
+  bl,
+  bo,
+  br,
   color,
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio,
-  ml, mr,
+  h,
+  hRatio,
+  ml,
+  mr,
   mt,
   radiusA,
   w,
@@ -103,7 +105,7 @@ class AiAnalysis extends Component<Props, State> {
                 this.pieChart = ref;
               }}/>
             </View>
-            <View style={styleAssign([w(200), mr(20)])}>
+            <View style={styleAssign([w(220), mr(20)])}>
               <Text style={styleAssign([fSize(15), color('#343434')])}>
                 访问浏览量：30
               </Text>
@@ -113,14 +115,14 @@ class AiAnalysis extends Component<Props, State> {
                   对我名片信息感兴趣：50%
                 </Text>
               </View>
-              <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
-                <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#825D22')])}/>
+              <View style={styleAssign([styles.udr, mt(17)])}>
+                <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#825D22')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
                   对我的产品感兴趣：20%
                 </Text>
               </View>
-              <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
-                <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#FFE0AE')])}/>
+              <View style={styleAssign([styles.udr, mt(17)])}>
+                <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#FFE0AE')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
                   对我的企业感兴趣：30%
                 </Text>
