@@ -3,10 +3,6 @@ import * as echarts from "./ec-canvas/echarts";
 
 function setChartData(chart) {
   let option = {
-    title: {
-      text: '测试下面legend的红色区域不应被裁剪',
-      left: 'center'
-    },
     color: ["#825D22"],
     grid: {
       containLabel: true

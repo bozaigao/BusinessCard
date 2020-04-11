@@ -7,13 +7,29 @@
  */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
-import {bgColor, commonStyles} from "../../utils/style";
+import {
+  absR,
+  absT,
+  bdColor,
+  bgColor, bl,
+  bo, br,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h, hRatio,
+  ml, mr,
+  mt,
+  radiusA,
+  w,
+  wRatio
+} from "../../utils/style";
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import TopHeader from "../../compoments/top-header/index";
-import {View} from "@tarojs/components";
+import {Text, View} from "@tarojs/components";
 import PieChart from "./PieChart";
 import LineChart from './LineChart'
 import './index.scss';
@@ -22,7 +38,7 @@ interface Props {
 }
 
 interface State {
-
+  current: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -42,6 +58,9 @@ class AiAnalysis extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.state = {
+      current: 0
+    }
   }
 
   componentDidMount() {
@@ -65,7 +84,7 @@ class AiAnalysis extends Component<Props, State> {
 
 
   render() {
-    let {desc, customer} = this.state;
+    let {current} = this.state;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -73,16 +92,96 @@ class AiAnalysis extends Component<Props, State> {
                             this.viewRef = ref;
                           }}>
         <TopHeader title={'AI分析'}/>
-        <View className="pie-chart">
-          <PieChart ref={(ref) => {
-            this.pieChart = ref;
-          }}/>
+        <View style={styleAssign([styles.uf1])}>
+          <View style={styleAssign([wRatio(100), h(2), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+          <Text style={styleAssign([fSize(16), color('#343434'), ml(20), mt(20)])}>
+            兴趣占比
+          </Text>
+          <View style={styleAssign([wRatio(100), hRatio(40), styles.udr, styles.uac, styles.ujb])}>
+            <View className="pie-chart">
+              <PieChart ref={(ref) => {
+                this.pieChart = ref;
+              }}/>
+            </View>
+            <View style={styleAssign([w(200), mr(20)])}>
+              <Text style={styleAssign([fSize(15), color('#343434')])}>
+                访问浏览量：30
+              </Text>
+              <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
+                <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#E2BB7B')])}/>
+                <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
+                  对我名片信息感兴趣：50%
+                </Text>
+              </View>
+              <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
+                <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#825D22')])}/>
+                <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
+                  对我的产品感兴趣：20%
+                </Text>
+              </View>
+              <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
+                <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#FFE0AE')])}/>
+                <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
+                  对我的企业感兴趣：30%
+                </Text>
+              </View>
+            </View>
+          </View>
+          <Text style={styleAssign([fSize(16), color('#343434'), ml(20), mt(20)])}>
+            客户活跃度
+          </Text>
+          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+            <View
+              style={styleAssign([styles.uac, styles.udr, w(205), h(30), radiusA(2), mt(30)])}>
+              <View
+                onClick={() => {
+                  this.setState({current: 0});
+                }}
+                style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(current === 0 ? '#825D22' : commonStyles.whiteColor),
+                  bo(1), br(0.5), bdColor('#825D22'), {borderStyle: 'solid'},])}>
+                <Text style={styleAssign([fSize(14), color(current === 0 ? commonStyles.whiteColor : '#825D22')])}>
+                  近7天
+                </Text>
+              </View>
+              <View
+                style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(current === 1 ? '#825D22' : commonStyles.whiteColor),
+                  bo(1), bl(0.5), br(0.5), bdColor('#825D22'), {borderStyle: 'solid'},])}
+                onClick={() => {
+                  this.setState({current: 1});
+                }}>
+                <Text style={styleAssign([fSize(14), color(current === 1 ? commonStyles.whiteColor : '#825D22')])}>
+                  近1月
+                </Text>
+              </View>
+              <View
+                style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(current === 2 ? '#825D22' : commonStyles.whiteColor),
+                  bo(1), bl(0.5), br(0.5), bdColor('#825D22'), {borderStyle: 'solid'},])}
+                onClick={() => {
+                  this.setState({current: 2});
+                }}>
+                <Text style={styleAssign([fSize(14), color(current === 2 ? commonStyles.whiteColor : '#825D22')])}>
+                  近3月
+                </Text>
+              </View>
+              <View
+                style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(current === 3 ? '#825D22' : commonStyles.whiteColor),
+                  bo(1), bl(0.5), bdColor('#825D22'), {borderStyle: 'solid'},])}
+                onClick={() => {
+                  this.setState({current: 3});
+                }}>
+                <Text style={styleAssign([fSize(14), color(current === 3 ? commonStyles.whiteColor : '#825D22')])}>
+                  近6月
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View className="line-chart">
+            <LineChart ref={(ref) => {
+              this.lineChart = ref;
+            }}/>
+          </View>
         </View>
-        <View className="line-chart">
-          <LineChart ref={(ref) => {
-            this.lineChart = ref;
-          }}/>
-        </View>
+
       </CustomSafeAreaView>
     )
   }

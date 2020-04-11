@@ -7,10 +7,16 @@ function setChartData(chart, data) {
       {
         name: '访问来源',
         type: 'pie',
-        center: ['50%', '50%'],
+        center: ['35%', '50%'],
         radius: [0, '60%'],
         color: ["#825D22", "#FFE0AE", "#E2BB7B"],
         data: data,
+        label: {
+          normal: {
+            position: 'inner',
+            show: false
+          }
+        },
         // 修改字体颜色的代码begin
         itemStyle: {
           normal: {
