@@ -19,33 +19,31 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio,
+  hRatio, mb,
   ml,
   mt,
-  op,
+  op, padding, pb,
   pl,
-  pr,
+  pr, pt,
   radiusA,
   radiusTL,
   radiusTR,
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign, toast} from "../../utils/datatool";
+import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import * as loginActions from "../../actions/login";
 import TopHeader from "../../compoments/top-header/index";
-import {Image, ScrollView, Text, View} from "@tarojs/components";
+import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
 import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
-import PieChart from "./PieChart";
-import LineChart from './LineChart'
 
 interface Props {
   deleteCustomer?: any;
@@ -67,8 +65,6 @@ interface State {
 @connect(state => state.login, Object.assign(actions, loginActions))
 class CustomerDetail extends Component<Props, State> {
   private viewRef;
-  private pieChart;
-  private lineChart;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -96,17 +92,7 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidMount() {
-    const chartData = [
-      {value: 335, name: '直接访问'},
-      {value: 310, name: '邮件营销'},
-      {value: 234, name: '联盟广告'},
-      {value: 135, name: '视频广告'},
-      {value: 1548, name: '搜索引擎'}
-    ];
 
-    this.pieChart.refresh(chartData);
-
-    this.lineChart.refresh();
   }
 
 
@@ -200,16 +186,6 @@ class CustomerDetail extends Component<Props, State> {
                             this.viewRef = ref;
                           }}>
         <TopHeader title={''}/>
-        <View className="pie-chart">
-          <PieChart ref={(ref) => {
-            this.pieChart = ref;
-          }}/>
-        </View>
-        <View className="line-chart">
-          <LineChart ref={(ref) => {
-            this.lineChart = ref;
-          }} />
-        </View>
         {
           customer && <ScrollView
             style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -357,6 +333,103 @@ class CustomerDetail extends Component<Props, State> {
                 </View>
               </View>
             </View>
+            <Swiper
+              current={currentIndex}
+              style={styleAssign([wRatio(100), h(100)])}
+              circular
+              onChange={(e) => {
+                this.setState({currentIndex: e.detail.current});
+              }}>
+              <SwiperItem>
+                <View/>
+              </SwiperItem>
+              <SwiperItem>
+                <View style={styleAssign([wRatio(100), mt(10)])}>
+                  {
+                    flowUpList.map((value: FlowUpListModel, index) => {
+                      return <View key={index}
+                                   style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60)])}>
+                        <View
+                          style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
+                          <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
+                            <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
+                            <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
+                          </View>
+                          <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}
+                                className={'.textStyle'}>{value.followUpContent}</Text>
+                        </View>
+                        <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
+                      </View>;
+                    })
+                  }
+                </View>
+              </SwiperItem>
+              <SwiperItem>
+                <View style={styleAssign([styles.uf1, styles.uac])}>
+                  {
+                    (customer.label.length !== 0 || customer.intentionGrade.length !== 0) &&
+                    <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
+                      {
+                        customer.label.length !== 0 && <View>
+                          <View style={styleAssign([styles.uac, styles.udr])}>
+                            <Text style={styleAssign([fSize(16), color('#343434')])}>
+                              对Ta的标签
+                            </Text>
+                            <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>
+                              (最多添加10个标签)
+                            </Text>
+                          </View>
+                          <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap])}>
+                            {
+                              parseData(customer.label).map((value, index) => {
+                                return (<View
+                                  key={index}
+                                  style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
+                                  <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
+                                    padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
+                                    <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
+                                  </View>
+                                </View>);
+                              })
+                            }
+                          </View>
+                        </View>
+                      }
+                      {
+                        customer.intentionGrade.length !== 0 && <View style={styleAssign([mt(30)])}>
+                          <View style={styleAssign([styles.uac, styles.udr])}>
+                            <Text style={styleAssign([fSize(16), color('#343434')])}>
+                              等级标签
+                            </Text>
+                          </View>
+                          <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap, mb(20)])}>
+                            <View
+                              style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
+                              <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
+                                padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
+                                <Text style={styleAssign([fSize(12), color('#343434')])}>{customer.intentionGrade}</Text>
+                              </View>
+                            </View>
+                          </View>
+                        </View>
+                      }
+                    </View>
+                  }
+                </View>
+              </SwiperItem>
+              <SwiperItem>
+                <View style={styleAssign([styles.uf1, styles.uac])}>
+                  <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
+                    <View style={styleAssign([wRatio(100), h(200), bgColor(commonStyles.whiteColor)])}>
+                      <Text style={styleAssign([fSize(16), color('#343434')])}>
+                        兴趣占比
+                      </Text>
+
+                    </View>
+                  </View>
+                </View>
+              </SwiperItem>
+            </Swiper>
 
           </ScrollView>
         }
