@@ -9,6 +9,7 @@ import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, radiusA, w, wRatio} from "../../../utils/style";
+import SingleLineText from "../../../compoments/singleline-text";
 
 
 interface Props {
@@ -32,14 +33,7 @@ export default class RenMaiItem extends PureComponent<Props, State> {
             <Image style={styleAssign([w(66), h(66), radiusA(33)])} src={item.avatar}
                    mode={'aspectFit'}/>
             <View style={styleAssign([ml(22)])}>
-              <Text style={styleAssign([fSize(16), color('#343434'), {
-                display: '-webkit-box',
-                overflow: 'hidden',
-                '-webkit-line-clamp': 1,
-                '-webkit-box-orient': 'vertical',
-              }])}>
-                {item.name}
-              </Text>
+              <SingleLineText style={styleAssign([fSize(16),w(140), color('#343434')])} text={item.name}/>
               <Text style={styleAssign([fSize(14), color('#ACADAD')])}>
                 {item.copany}
               </Text>
