@@ -48,8 +48,8 @@ import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import './index.scss';
 import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
-
-let wxCharts = require('../../utils/wxcharts');
+import PieChart from "./PieChart";
+import LineChart from './LineChart'
 
 interface Props {
   deleteCustomer?: any;
@@ -65,12 +65,14 @@ interface State {
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
+  ec: any;
 }
 
 @connect(state => state.login, Object.assign(actions, loginActions))
 class CustomerDetail extends Component<Props, State> {
   private viewRef;
   private pieChart;
+  private lineChart;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -79,7 +81,7 @@ class CustomerDetail extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    usingComponents:{
+    usingComponents: {
       'ec-canvas': './ec-canvas/ec-canvas'
     }
   }
@@ -93,38 +95,77 @@ class CustomerDetail extends Component<Props, State> {
       currentIndex: 3,
       flowUpList: [],
       showDeleteNotice: false,
-      showShareInvite: false
+      showShareInvite: false,
     }
   }
 
   componentDidMount() {
-    this.drawPie();
-  }
+    const chartData = [
+      {value: 335, name: '直接访问'},
+      {value: 310, name: '邮件营销'},
+      {value: 234, name: '联盟广告'},
+      {value: 135, name: '视频广告'},
+      {value: 1548, name: '搜索引擎'}
+    ];
 
-  drawPie = () => {
-    this.pieChart = new wxCharts({
-      context: this,
-      animation: true,
-      canvasId: 'pieCanvas',
-      type: 'pie',
+    this.pieChart.refresh(chartData);
+
+
+    const lineChartData = {
+      title: {
+        text: '测试下面legend的红色区域不应被裁剪',
+        left: 'center'
+      },
+      color: ["#37A2DA", "#67E0E3", "#9FE6B8"],
+      legend: {
+        data: ['A', 'B', 'C'],
+        top: 50,
+        left: 'center',
+        backgroundColor: 'red',
+        z: 100
+      },
+      grid: {
+        containLabel: true
+      },
+      tooltip: {
+        show: true,
+        trigger: 'axis'
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        // show: false
+      },
+      yAxis: {
+        x: 'center',
+        type: 'value',
+        splitLine: {
+          lineStyle: {
+            type: 'dashed'
+          }
+        }
+        // show: false
+      },
       series: [{
-        name: '对我名片信息感兴趣',
-        data: 50,
-        color:'#E2BB7B',
+        name: 'A',
+        type: 'line',
+        smooth: true,
+        data: [18, 36, 65, 30, 78, 40, 33]
+      }, {
+        name: 'B',
+        type: 'line',
+        smooth: true,
+        data: [12, 50, 51, 35, 70, 30, 20]
+      }, {
+        name: 'C',
+        type: 'line',
+        smooth: true,
+        data: [10, 30, 31, 50, 40, 20, 10]
+      }]
+    };
 
-      }, {
-        name: '对我的产品感兴趣',
-        data: 20,
-        color:'#825D22'
-      }, {
-        name: '对我的企业感兴趣',
-        data: 30,
-        color:'#FCF6EF'
-      }],
-      width: 104,
-      height: 300,
-      dataLabel: true,
-    });
+    this.lineChart.refresh(lineChartData);
   }
 
 
@@ -290,13 +331,11 @@ class CustomerDetail extends Component<Props, State> {
     } else if (currentIndex === 3) {
       childView = <View style={styleAssign([styles.uf1, styles.uac])}>
         <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
-          <View>
-            <View>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>
-                兴趣占比
-              </Text>
-              <ec-canvas id='mychart-dom-area' canvas-id='pieCanvas'/>
-            </View>
+          <View style={styleAssign([wRatio(100), h(200), bgColor(commonStyles.whiteColor)])}>
+            <Text style={styleAssign([fSize(16), color('#343434')])}>
+              兴趣占比
+            </Text>
+
           </View>
         </View>
       </View>;
@@ -310,6 +349,16 @@ class CustomerDetail extends Component<Props, State> {
                             this.viewRef = ref;
                           }}>
         <TopHeader title={''}/>
+        <View className="pie-chart">
+          <PieChart ref={(ref) => {
+            this.pieChart = ref;
+          }}/>
+        </View>
+        <View className="line-chart">
+          <LineChart ref={(ref) => {
+            this.lineChart = ref;
+          }} />
+        </View>
         {
           customer && <ScrollView
             style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
@@ -432,9 +481,7 @@ class CustomerDetail extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
                       onClick={() => {
-                        this.setState({currentIndex: 3},()=>{
-                          this.drawPie();
-                        });
+                        this.setState({currentIndex: 3});
                       }}>
                   <Text
                     style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
