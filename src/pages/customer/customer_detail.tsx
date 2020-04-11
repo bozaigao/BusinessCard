@@ -20,22 +20,18 @@ import {
   fSize,
   h,
   hRatio,
-  mb,
   ml,
   mt,
   op,
-  padding,
-  pb,
   pl,
   pr,
-  pt,
   radiusA,
   radiusTL,
   radiusTR,
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -197,96 +193,6 @@ class CustomerDetail extends Component<Props, State> {
 
   render() {
     let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite} = this.state;
-    let childView;
-
-    if (currentIndex === 0) {
-      childView = <View/>;
-    } else if (currentIndex === 1) {
-      childView = <View style={styleAssign([wRatio(100), mt(10)])}>
-        {
-          flowUpList.map((value: FlowUpListModel, index) => {
-            return <View key={index}
-                         style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60)])}>
-              <View
-                style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
-                <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
-                  <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
-                  <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
-                </View>
-                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}
-                      className={'.textStyle'}>{value.followUpContent}</Text>
-              </View>
-              <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
-            </View>;
-          })
-        }
-      </View>;
-    } else if (currentIndex === 2) {
-      childView = <View style={styleAssign([styles.uf1, styles.uac])}>
-        {
-          (customer.label.length !== 0 || customer.intentionGrade.length !== 0) &&
-          <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
-            {
-              customer.label.length !== 0 && <View>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([fSize(16), color('#343434')])}>
-                    对Ta的标签
-                  </Text>
-                  <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>
-                    (最多添加10个标签)
-                  </Text>
-                </View>
-                <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap])}>
-                  {
-                    parseData(customer.label).map((value, index) => {
-                      return (<View
-                        key={index}
-                        style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
-                        <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
-                          padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
-                          <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
-                        </View>
-                      </View>);
-                    })
-                  }
-                </View>
-              </View>
-            }
-            {
-              customer.intentionGrade.length !== 0 && <View style={styleAssign([mt(30)])}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([fSize(16), color('#343434')])}>
-                    等级标签
-                  </Text>
-                </View>
-                <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap, mb(20)])}>
-                  <View
-                    style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
-                    <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
-                      padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
-                      <Text style={styleAssign([fSize(12), color('#343434')])}>{customer.intentionGrade}</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            }
-          </View>
-        }
-      </View>;
-    } else if (currentIndex === 3) {
-      childView = <View style={styleAssign([styles.uf1, styles.uac])}>
-        <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
-          <View style={styleAssign([wRatio(100), h(200), bgColor(commonStyles.whiteColor)])}>
-            <Text style={styleAssign([fSize(16), color('#343434')])}>
-              兴趣占比
-            </Text>
-
-          </View>
-        </View>
-      </View>;
-    } else {
-      childView = <View/>
-    }
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -451,7 +357,7 @@ class CustomerDetail extends Component<Props, State> {
                 </View>
               </View>
             </View>
-            {childView}
+
           </ScrollView>
         }
         {/*添加跟进*/}
