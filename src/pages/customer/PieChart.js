@@ -1,22 +1,33 @@
-import Taro, { Component } from "@tarojs/taro";
+import Taro, {Component} from "@tarojs/taro";
 import * as echarts from "./ec-canvas/echarts";
 
 function setChartData(chart, data) {
   let option = {
-    series : [
+    series: [
       {
         name: '访问来源',
         type: 'pie',
         center: ['50%', '50%'],
         radius: [0, '60%'],
+        color: ["#825D22", "#FFE0AE", "#E2BB7B"],
         data: data,
+        // 修改字体颜色的代码begin
         itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
+          normal: {
+            label: {
+              textStyle: {
+                color: 'black',
+                fontSize: 10,
+                fontWeight: 'bolder'
+              }
+            },
+            labelLine: {
+              lineStyle: {
+                color: 'black'
+              }
+            }
           }
-        }
+        },
       }
     ]
   };

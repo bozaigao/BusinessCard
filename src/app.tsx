@@ -103,6 +103,7 @@ class App extends Component {
           "customer_remark",
           "add_genjin",
           "add_tags",
+          "ai_analysis",
         ]
       },
       //我的模块子页面pages/

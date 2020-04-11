@@ -21,7 +21,7 @@ import {
   h,
   hRatio,
   mb,
-  ml,
+  ml, mr,
   mt,
   op,
   padding,
@@ -45,7 +45,6 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
-import './index.scss';
 import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
 
@@ -257,14 +256,25 @@ class CustomerDetail extends Component<Props, State> {
       </View>;
     } else if (currentIndex === 3) {
       childView = <View style={styleAssign([styles.uf1, styles.uac])}>
-        <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
-          <View>
-            <View>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>
-                兴趣占比
+        <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), styles.uac])}>
+          <View
+            style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48),radiusA(4)])}
+          onClick={()=>{
+            Taro.navigateTo({
+              url: `/pages/customer/ai_analysis`
+            });
+          }}>
+            <Text style={styleAssign([fSize(16), color('#343434'),ml(16)])}>
+              图表展示
+            </Text>
+            <View style={styleAssign([styles.uac, styles.udr,mr(16)])}>
+              <Text style={styleAssign([fSize(14), color('#979797')])}>
+                前往查看
               </Text>
-
+              <Image style={styleAssign([w(7), h(12), ml(8)])}
+                     src={`${cloudBaseUrl}ico_next.png`}/>
             </View>
+
           </View>
         </View>
       </View>;

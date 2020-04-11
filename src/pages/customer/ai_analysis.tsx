@@ -16,6 +16,7 @@ import TopHeader from "../../compoments/top-header/index";
 import {View} from "@tarojs/components";
 import PieChart from "./PieChart";
 import LineChart from './LineChart'
+import './index.scss';
 
 interface Props {
 }
@@ -45,11 +46,9 @@ class AiAnalysis extends Component<Props, State> {
 
   componentDidMount() {
     const chartData = [
-      {value: 335, name: '直接访问'},
-      {value: 310, name: '邮件营销'},
-      {value: 234, name: '联盟广告'},
-      {value: 135, name: '视频广告'},
-      {value: 1548, name: '搜索引擎'}
+      {value: 20, name: '20%'},
+      {value: 30, name: '30%'},
+      {value: 50, name: '50%'},
     ];
 
     this.pieChart.refresh(chartData);
@@ -73,7 +72,7 @@ class AiAnalysis extends Component<Props, State> {
                           ref={(ref) => {
                             this.viewRef = ref;
                           }}>
-        <TopHeader title={'添加跟进'}/>
+        <TopHeader title={'AI分析'}/>
         <View className="pie-chart">
           <PieChart ref={(ref) => {
             this.pieChart = ref;

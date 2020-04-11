@@ -7,14 +7,7 @@ function setChartData(chart) {
       text: '测试下面legend的红色区域不应被裁剪',
       left: 'center'
     },
-    color: ["#37A2DA", "#67E0E3", "#9FE6B8"],
-    legend: {
-      data: ['A', 'B', 'C'],
-      top: 50,
-      left: 'center',
-      backgroundColor: 'red',
-      z: 100
-    },
+    color: ["#825D22"],
     grid: {
       containLabel: true
     },
@@ -39,7 +32,7 @@ function setChartData(chart) {
       // show: false
     },
     series: [{
-      name: 'A',
+      name: '日活量',
       type: 'line',
       smooth: true,
       data: [18, 36, 65, 30, 78, 40, 33]
