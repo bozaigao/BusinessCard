@@ -88,6 +88,8 @@ interface State {
 class OtherBusinesscard extends Component<Props, State> {
 
   private viewRef;
+  private duration;
+  private timer;
 
 
   /**
@@ -97,12 +99,11 @@ class OtherBusinesscard extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
+    this.duration = 0;
     this.state = {
       showShare: false,
       //@ts-ignore
@@ -120,14 +121,22 @@ class OtherBusinesscard extends Component<Props, State> {
     }
   }
 
-  componentDidShow() {
+  componentDidMount() {
     console.log(this.viewRef);
     this.getUserInfoById();
     this.getCardHolderVisitorRecord();
-    this.addRadarTrace('view_card');
     let showGuide = get('other_business_guide');
 
     this.setState({showGuide: !showGuide});
+    this.timer = setInterval(() => {
+      this.duration++;
+      console.log('读秒', this.duration);
+    }, 1000);
+  }
+
+
+  componentWillMount() {
+    this.timer && clearInterval(this.timer);
   }
 
 
@@ -141,7 +150,7 @@ class OtherBusinesscard extends Component<Props, State> {
     let params = {
       userId: this.state.userInfo.id,
       behaviorType,
-    }, duration = 0;
+    }, duration = this.duration;
 
     if (goodsId) {
       Object.assign(params, {goodsId})
@@ -317,6 +326,8 @@ class OtherBusinesscard extends Component<Props, State> {
             <View
               style={styleAssign([styles.uac, styles.udr, ml(23), w(95), h(32), radiusA(16), bdColor('#E5E5E5'), bo(1), {borderStyle: 'solid'}])}
               onClick={() => {
+                this.timer && clearInterval(this.timer);
+                this.addRadarTrace('view_card');
                 Taro.reLaunch({
                   url: `/pages/businesscard`
                 });
@@ -396,7 +407,7 @@ class OtherBusinesscard extends Component<Props, State> {
                   <MultiLineText
                     style={styleAssign([color('#979797'), fSize(12), w(70)])}
                     text={`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}
-                    />
+                  />
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
