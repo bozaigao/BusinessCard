@@ -19,8 +19,8 @@
       <file leaf-file-name="customer_detail.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="290" column="85" selection-start-line="290" selection-start-column="85" selection-end-line="290" selection-end-column="85" />
+            <state relative-caret-position="209">
+              <caret line="86" column="21" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
               <folding>
                 <element signature="e#610#648#0" expanded="true" />
               </folding>
@@ -39,7 +39,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pieChart</find>
       <find>refPieChart</find>
       <find>PieChart</find>
       <find>Pie</find>
@@ -69,6 +68,7 @@
       <find>borderS</find>
       <find>测试f</find>
       <find>图表展示</find>
+      <find>call</find>
     </findStrings>
     <replaceStrings>
       <replace>updateTOKEN</replace>
@@ -489,12 +489,12 @@
       <workItem from="1586439717192" duration="4835000" />
       <workItem from="1586567760544" duration="20244000" />
       <workItem from="1586610583713" duration="6381000" />
-      <workItem from="1586671681116" duration="1681000" />
+      <workItem from="1586671681116" duration="1860000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1218919000" />
+    <option name="totallyTimeSpent" value="1219098000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -653,6 +653,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6578">
           <caret line="320" column="12" selection-start-line="320" selection-start-column="12" selection-end-line="322" selection-end-column="15" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -870,7 +873,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/add_tags.tsx">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/add_genjin.tsx">
       <provider selected="true" editor-type-id="text-editor">
@@ -902,6 +911,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6578">
           <caret line="320" column="12" selection-start-line="320" selection-start-column="12" selection-end-line="322" selection-end-column="15" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -947,8 +959,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="290" column="85" selection-start-line="290" selection-start-column="85" selection-end-line="290" selection-end-column="85" />
+        <state relative-caret-position="209">
+          <caret line="86" column="21" selection-start-line="86" selection-start-column="21" selection-end-line="86" selection-end-column="21" />
           <folding>
             <element signature="e#610#648#0" expanded="true" />
           </folding>

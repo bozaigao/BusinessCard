@@ -84,7 +84,7 @@ class CustomerDetail extends Component<Props, State> {
       //@ts-ignore
       customer: null,
       showOperate: false,
-      currentIndex: 3,
+      currentIndex: 0,
       flowUpList: [],
       showDeleteNotice: false,
       showShareInvite: false
@@ -481,6 +481,16 @@ class CustomerDetail extends Component<Props, State> {
                          Taro.navigateTo({
                            url: `/pages/customer/add_tags?itemData=${JSON.stringify(customer)}&label=${customer.label}&intentionGrade=${customer.intentionGrade}`
                          });
+                       }}/>
+        }
+        {/*拨打电话*/}
+        {
+          currentIndex === 3 &&
+          <BottomButon title={'拨打电话'}
+                       onClick={() => {
+                         Taro.makePhoneCall({
+                           phoneNumber: customer.phone
+                         })
                        }}/>
         }
         {
