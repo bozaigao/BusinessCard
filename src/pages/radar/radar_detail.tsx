@@ -21,10 +21,10 @@ import {
   h,
   hRatio,
   mb,
-  ml, mr,
+  ml,
+  mr,
   mt,
   op,
-  padding,
   pb,
   pl,
   pr,
@@ -35,7 +35,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {styleAssign, toast, transformTime} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -51,8 +51,7 @@ import ShareInvite from "../../pages/component/share-invite";
 import SingleLineText from "../../compoments/singleline-text";
 
 interface Props {
-  deleteCustomer?: any;
-  followUpList?: any;
+  traceList?: any;
   //获取用户信息
   getBehaviorTrace: any;
 }
@@ -117,7 +116,7 @@ class RadarDetail extends Component<Props, State> {
       console.log('获取客户详细资料', res);
       if (res !== NetworkState.FAIL) {
         this.setState({customer: res}, () => {
-          this.followUpList();
+          this.traceList();
         });
       }
     }).catch(e => {
@@ -139,12 +138,12 @@ class RadarDetail extends Component<Props, State> {
    * @author 何晏波
    * @QQ 1054539528
    * @date 2020/1/28
-   * @function:
+   * @function:雷达详情访问轨迹
    */
-  followUpList = () => {
-    console.log('查询客户跟进信息记录');
-    this.props.followUpList({id: this.state.customer.userId}).then((res) => {
-      console.log('查询客户跟进信息记录', res);
+  traceList = () => {
+    console.log('雷达详情访问轨迹');
+    this.props.traceList({traceUserId: this.state.customer.userId}).then((res) => {
+      console.log('雷达详情访问轨迹', res);
       if (res && res !== NetworkState.FAIL) {
         this.setState({flowUpList: res});
       }
@@ -204,59 +203,7 @@ class RadarDetail extends Component<Props, State> {
           })
         }
       </View>;
-    } else if (currentIndex === 2) {
-      childView = <View style={styleAssign([styles.uf1, styles.uac])}>
-        {
-          (customer.label.length !== 0 || customer.intentionGrade.length !== 0) &&
-          <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), pl(16), pt(13)])}>
-            {
-              customer.label.length !== 0 && <View>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([fSize(16), color('#343434')])}>
-                    对Ta的标签
-                  </Text>
-                  <Text style={styleAssign([fSize(12), color('#979797'), ml(20)])}>
-                    (最多添加10个标签)
-                  </Text>
-                </View>
-                <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap])}>
-                  {
-                    parseData(customer.label).map((value, index) => {
-                      return (<View
-                        key={index}
-                        style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
-                        <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
-                          padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
-                          <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
-                        </View>
-                      </View>);
-                    })
-                  }
-                </View>
-              </View>
-            }
-            {
-              customer.intentionGrade.length !== 0 && <View style={styleAssign([mt(30)])}>
-                <View style={styleAssign([styles.uac, styles.udr])}>
-                  <Text style={styleAssign([fSize(16), color('#343434')])}>
-                    等级标签
-                  </Text>
-                </View>
-                <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap, mb(20)])}>
-                  <View
-                    style={styleAssign([styles.uac, styles.ujc, padding([6, 15, 6, 15]), radiusA(14)])}>
-                    <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
-                      padding([6, 15, 6, 15]), bgColor('#E7E7E7')])}>
-                      <Text style={styleAssign([fSize(12), color('#343434')])}>{customer.intentionGrade}</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            }
-          </View>
-        }
-      </View>;
-    } else if (currentIndex === 3) {
+    } else if (currentIndex === 1) {
       childView = <View style={styleAssign([styles.uf1, styles.uac])}>
         <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), styles.uac])}>
           <View
@@ -307,10 +254,7 @@ class RadarDetail extends Component<Props, State> {
           }
         </View>
       </View>;
-    } else {
-      childView = <View/>
     }
-
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           ref={(ref) => {
@@ -408,7 +352,7 @@ class RadarDetail extends Component<Props, State> {
                 </View>
                 <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
                       onClick={() => {
-                        this.setState({currentIndex: 3});
+                        this.setState({currentIndex: 1});
                       }}>
                   <Text
                     style={styleAssign([fSize(15), color(currentIndex !== 3 ? '#343434' : '#E2BB7B')])}>AI分析</Text>
@@ -427,24 +371,6 @@ class RadarDetail extends Component<Props, State> {
             </View>
             {childView}
           </ScrollView>
-        }
-        {/*添加跟进*/}
-        {
-          currentIndex === 1 && <BottomButon title={'添加跟进'} onClick={() => {
-            Taro.navigateTo({
-              url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-            });
-          }}/>
-        }
-        {/*添加标签*/}
-        {
-          currentIndex === 2 &&
-          <BottomButon title={(customer.label.length !== 0 || customer.intentionGrade.length !== 0) ? '修改标签' : '添加标签'}
-                       onClick={() => {
-                         Taro.navigateTo({
-                           url: `/pages/customer/add_tags?itemData=${JSON.stringify(customer)}&label=${customer.label}&intentionGrade=${customer.intentionGrade}`
-                         });
-                       }}/>
         }
         {/*拨打电话*/}
         {

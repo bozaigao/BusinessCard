@@ -19,12 +19,37 @@
       <file leaf-file-name="radar_detail.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/radar/radar_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="325" column="52" selection-start-line="325" selection-start-column="52" selection-end-line="325" selection-end-column="52" />
+            <state relative-caret-position="-5">
+              <caret line="354" column="54" selection-start-line="354" selection-start-column="54" selection-end-line="354" selection-end-column="54" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#111#163#0" expanded="true" />
-                <element signature="e#604#642#0" expanded="true" />
+                <element signature="e#112#164#0" expanded="true" />
+                <element signature="e#584#622#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actions/customer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="572">
+              <caret line="93" column="25" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="25" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#107#151#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radar.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="79" column="22" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="22" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,7 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Taro.na</find>
       <find>f</find>
       <find>borderS</find>
       <find>测试f</find>
@@ -68,9 +92,10 @@
       <find>render</find>
       <find>getBehaviorTrace</find>
       <find>behaviorTrace/get</find>
-      <find>followUpList</find>
       <find>customer</find>
       <find>dot</find>
+      <find>查询客户跟进信息记录</find>
+      <find>followUpList</find>
     </findStrings>
     <replaceStrings>
       <replace>updateTOKEN</replace>
@@ -96,13 +121,13 @@
       <replace>pages/mine/add_goods</replace>
       <replace>pages/mine/task_center</replace>
       <replace>;</replace>
-      <replace>traceList</replace>
       <replace>NavigationBar</replace>
       <replace>name</replace>
       <replace>canEdit</replace>
       <replace>userInfo.enterpriseName</replace>
       <replace>Taro.</replace>
       <replace />
+      <replace>traceList</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/pages/mine</dir>
@@ -509,12 +534,12 @@
       <workItem from="1586439717192" duration="4835000" />
       <workItem from="1586567760544" duration="20244000" />
       <workItem from="1586610583713" duration="6381000" />
-      <workItem from="1586671681116" duration="9730000" />
+      <workItem from="1586671681116" duration="10193000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1226968000" />
+    <option name="totallyTimeSpent" value="1227431000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -869,17 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/customer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#107#151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/my_collect.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
@@ -978,16 +992,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="93" column="28" lean-forward="true" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/httpurl.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1002,14 +1006,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/radar/radar_detail.tsx">
+    <entry file="file://$PROJECT_DIR$/src/actions/customer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="325" column="52" selection-start-line="325" selection-start-column="52" selection-end-line="325" selection-end-column="52" />
+        <state relative-caret-position="572">
+          <caret line="93" column="25" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="25" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#111#163#0" expanded="true" />
-            <element signature="e#604#642#0" expanded="true" />
+            <element signature="e#107#151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="79" column="22" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/radar/radar_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="354" column="54" selection-start-line="354" selection-start-column="54" selection-end-line="354" selection-end-column="54" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#112#164#0" expanded="true" />
+            <element signature="e#584#622#0" expanded="true" />
           </folding>
         </state>
       </provider>
