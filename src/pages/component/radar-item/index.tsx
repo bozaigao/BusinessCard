@@ -48,7 +48,7 @@ export default class RadarItem extends PureComponent<Props, State> {
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}
               onClick={() => {
                 Taro.navigateTo({
-                  url: `/pages/radarscan/radar_detail?itemData=${JSON.stringify(item.behaviorTraceUser)}`
+                  url: `/pages/radar/radar_detail?userId=${item.behaviorTraceUser.userId}`
                 });
               }}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
@@ -98,11 +98,11 @@ export default class RadarItem extends PureComponent<Props, State> {
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>
             </View>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
-            onClick={()=>{
-              Taro.setClipboardData({
-                data:item.behaviorTraceUser.wechat
-              });
-            }}>
+                  onClick={() => {
+                    Taro.setClipboardData({
+                      data: item.behaviorTraceUser.wechat
+                    });
+                  }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>添加微信</Text>
             </View>
           </View>

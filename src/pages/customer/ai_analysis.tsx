@@ -29,14 +29,16 @@ import {
 import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
-import * as actions from "../../actions/customer";
+import * as actions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header/index";
 import {Text, View} from "@tarojs/components";
 import PieChart from "./PieChart";
 import LineChart from './LineChart'
 import './index.scss';
+import {NetworkState} from "../../api/httpurl";
 
 interface Props {
+  interestBehaviorRate:any;
 }
 
 interface State {
@@ -75,6 +77,7 @@ class AiAnalysis extends Component<Props, State> {
     this.pieChart.refresh(chartData);
 
     this.lineChart.refresh();
+    this.interestBehaviorRate();
   }
 
   componentWillUnmount() {
@@ -82,6 +85,26 @@ class AiAnalysis extends Component<Props, State> {
 
 
   componentDidHide() {
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/4/12
+   * @function: 雷达AI分析 兴趣和行为占比
+  */
+  interestBehaviorRate = ()=>{
+    this.viewRef && this.viewRef.showLoading();
+    this.props.interestBehaviorRate({traceUserId: this.$router.params.userId}).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('雷达AI分析 兴趣和行为占比', res);
+      if (res !== NetworkState.FAIL) {
+
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 

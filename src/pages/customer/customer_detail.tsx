@@ -261,7 +261,7 @@ class CustomerDetail extends Component<Props, State> {
             style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48), radiusA(4)])}
             onClick={() => {
               Taro.navigateTo({
-                url: `/pages/customer/ai_analysis`
+                url: `/pages/customer/ai_analysis?userId=${customer.id}`
               });
             }}>
             <Text style={styleAssign([fSize(16), color('#343434'), ml(16)])}>
