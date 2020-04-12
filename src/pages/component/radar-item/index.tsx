@@ -107,7 +107,12 @@ export default class RadarItem extends PureComponent<Props, State> {
               style={styleAssign([color('#979797'), fSize(14), ml(16)])}>{`最后访问 ${transformTime(item.behaviorTraceUser.lastVisitTime)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
-            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
+            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
+            onClick={()=>{
+              Taro.navigateTo({
+                url: `/pages/businesscard/other_businesscard?userId=${item.behaviorTraceUser.userId}`
+              });
+            }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>
             </View>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
