@@ -258,16 +258,16 @@ class CustomerDetail extends Component<Props, State> {
       childView = <View style={styleAssign([styles.uf1, styles.uac])}>
         <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), styles.uac])}>
           <View
-            style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48),radiusA(4)])}
-          onClick={()=>{
-            Taro.navigateTo({
-              url: `/pages/customer/ai_analysis`
-            });
-          }}>
-            <Text style={styleAssign([fSize(16), color('#343434'),ml(16)])}>
+            style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48), radiusA(4)])}
+            onClick={() => {
+              Taro.navigateTo({
+                url: `/pages/customer/ai_analysis`
+              });
+            }}>
+            <Text style={styleAssign([fSize(16), color('#343434'), ml(16)])}>
               图表展示
             </Text>
-            <View style={styleAssign([styles.uac, styles.udr,mr(16)])}>
+            <View style={styleAssign([styles.uac, styles.udr, mr(16)])}>
               <Text style={styleAssign([fSize(14), color('#979797')])}>
                 前往查看
               </Text>
@@ -276,6 +276,33 @@ class CustomerDetail extends Component<Props, State> {
             </View>
 
           </View>
+        </View>
+        <View style={styleAssign([wRatio(90), bgColor(commonStyles.whiteColor), radiusA(4), mt(8), mb(20)])}>
+          <Text style={styleAssign([fSize(16), color('#343434'), ml(16), mt(16)])}>
+            客户行为轨迹
+          </Text>
+          {
+            [{title: '查看名片', progress: 80, count: 68},
+              {title: '分享名片', progress: 20, count: 11},
+              {title: '拨打电话', progress: 30, count: 26},
+              {title: '浏览商城', progress: 35, count: 35},
+              {title: '浏览企业', progress: 60, count: 33},
+              {title: '播放视频', progress: 10, count: 18}].map((value, index) => {
+              return <View key={index} style={styleAssign([mt(index === 0 ? 30 : 20), mb(index === 5 ? 20 : 0)])}>
+                <Text style={styleAssign([fSize(15), color('#343434'), ml(16)])}>
+                  {value.title}
+                </Text>
+                <View style={styleAssign([styles.uac, styles.udr, ml(16)])}>
+                  <View style={styleAssign([w(246), h(6), bgColor('#E5E5E5'), radiusA(8), styles.udr, styles.uac])}>
+                    <View style={styleAssign([wRatio(value.progress), hRatio(100), radiusA(8), bgColor('#E2BB7B')])}/>
+                  </View>
+                  <Text style={styleAssign([fSize(15), color('#343434'), ml(20)])}>
+                    {`${value.count}次`}
+                  </Text>
+                </View>
+              </View>;
+            })
+          }
         </View>
       </View>;
     } else {
