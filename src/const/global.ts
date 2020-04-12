@@ -311,6 +311,8 @@ export interface RadarModel {
   time: number;
   traceUserId: number;
   userId: number;
+  //是否为客户
+  relationStatus:number;
 }
 
 export interface BehaviorTraceUser {

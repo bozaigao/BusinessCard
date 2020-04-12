@@ -12,25 +12,31 @@ import {get, save, styleAssign, toast} from "../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, mt, w, wRatio} from "../utils/style";
 import RadarItem from "./component/radar-item/index";
 import * as actions from '../actions/radar';
+import * as customerActions from '../actions/customer';
+import * as businessCardActions from '../actions/business_card';
 import {connect} from "@tarojs/redux";
 import {RadarModel} from "../const/global";
 import NavigationBar from "../compoments/navigation_bar/index";
 import LeiDaGuide from "./component/leida-guide";
+import {NetworkState} from "../api/httpurl";
 
 interface Props {
   //查询我的雷达数据列表
   getTraceList: any;
+  addCustomer: any;
+  updateMyCollect: any;
 }
 
 interface State {
   records: RadarModel[];
-  showGuide:boolean;
+  showGuide: boolean;
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), {...actions})
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(customerActions, actions, businessCardActions))
 class Radar extends Component<Props, State> {
   private pageNo;
   private pageSize;
+  private viewRef;
   /**
    * 指定config的类型声明为: Taro.Config
    *
@@ -38,9 +44,7 @@ class Radar extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -48,7 +52,7 @@ class Radar extends Component<Props, State> {
     this.pageSize = 10;
     this.state = {
       records: [],
-      showGuide:false
+      showGuide: false
     }
   }
 
@@ -94,11 +98,55 @@ class Radar extends Component<Props, State> {
     });
   }
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/21
+   * @function: 置为客户
+   */
+  addCustomer = (userId) => {
+    this.viewRef.showLoading();
+    this.props.addCustomer({customerUserId: userId}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('置为客户', res);
+      if (res !== NetworkState.FAIL) {
+        toast('设置成功');
+      }
+    }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/3/16
+   * @function: 更新我收藏的名片
+   */
+  updateMyCollect = (type: number, collectedUserId: number) => {
+    this.viewRef.showLoading();
+    this.props.updateMyCollect({type, collectedUserId}).then((res) => {
+      this.viewRef.hideLoading();
+      console.log('更新我收藏的名片', res);
+      if (res !== NetworkState.FAIL) {
+        toast('收藏成功');
+      }
+    }).catch(e => {
+      this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
   render() {
-    let {records,showGuide} = this.state;
+    let {records, showGuide} = this.state;
 
     return (
       <CustomSafeAreaView
+        ref={(ref) => {
+          this.viewRef = ref;
+        }}
         customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
         notNeedBottomPadding={true}>
         {/*雷达、访客切换*/}
@@ -109,7 +157,8 @@ class Radar extends Component<Props, State> {
         </NavigationBar>
         {
           records.length === 0 ?
-            <View style={styleAssign([styles.uf1, styles.uac, styles.ujc,bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+            <View
+              style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
               <View style={styleAssign([styles.uac])}>
                 <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
                 <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无记录</Text>
@@ -127,7 +176,16 @@ class Radar extends Component<Props, State> {
               {
                 records.map((value, index) => {
                   console.log(value);
-                  return (<RadarItem key={index} item={value}/>);
+                  return (<RadarItem key={index} item={value}
+                                     collectCallback={(userId) => {
+                                       this.updateMyCollect(1, userId);
+                                     }
+                                     }
+                                     setCustomerCallback={(userId) => {
+                                       this.addCustomer(userId);
+                                     }
+                                     }
+                  />);
                 })
               }
             </ScrollView>

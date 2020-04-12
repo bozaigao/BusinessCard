@@ -32,6 +32,10 @@ import SingleLineText from "../../../compoments/singleline-text";
 
 interface Props {
   item: RadarModel;
+  //收藏
+  collectCallback: any;
+  //置为客户
+  setCustomerCallback: any;
 }
 
 interface State {
@@ -40,7 +44,7 @@ interface State {
 export default class RadarItem extends PureComponent<Props, State> {
 
   render() {
-    let {item} = this.props;
+    let {item, collectCallback, setCustomerCallback} = this.props;
 
     return (
       <TouchableButton
@@ -68,10 +72,21 @@ export default class RadarItem extends PureComponent<Props, State> {
                 style={styleAssign([fSize(12), color('#979797'), mt(5)])}>{`来自${item.behaviorTraceUser.source}`}</Text>
             </View>
           </View>
-          <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
-            w(72), h(28), radiusA(4), mr(16)])}>
-            <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>置为客户</Text>
-          </View>
+          {
+            item.relationStatus !== 2 &&
+            <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
+              w(72), h(28), radiusA(4), mr(16)])}
+                  onClick={() => {
+                    if (item.relationStatus === 0) {
+                      collectCallback(item.behaviorTraceUser.userId);
+                    } else if (item.relationStatus === 1) {
+                      setCustomerCallback(item.behaviorTraceUser.userId);
+                    }
+                  }}>
+              <Text
+                style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>{item.relationStatus === 0 ? '收藏' : `置为客户`}</Text>
+            </View>
+          }
         </View>
         <View style={styleAssign([styles.uac, styles.udr])}>
           <Text
