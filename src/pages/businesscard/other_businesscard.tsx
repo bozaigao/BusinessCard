@@ -90,6 +90,7 @@ class OtherBusinesscard extends Component<Props, State> {
   private viewRef;
   private duration;
   private timer;
+  private avatar;
 
 
   /**
@@ -103,6 +104,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
   constructor(props) {
     super(props);
+    this.avatar = props.userInfo.avatar
     this.duration = 0;
     this.state = {
       showShare: false,
@@ -122,6 +124,7 @@ class OtherBusinesscard extends Component<Props, State> {
   }
 
   componentDidMount() {
+    console.log('自己的数据', this.props.userInfo);
     console.log(this.viewRef);
     this.getUserInfoById();
     this.getCardHolderVisitorRecord();
@@ -334,7 +337,7 @@ class OtherBusinesscard extends Component<Props, State> {
                 });
               }}>
               <Image style={styleAssign([w(27), h(27), radiusA(13.5), ma(2)])}
-                     src={this.props.userInfo.avatar}/>
+                     src={this.avatar}/>
               <Text style={styleAssign([fSize(12), color('#343434'), ml(5)])}>我的名片</Text>
             </View>
             <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
