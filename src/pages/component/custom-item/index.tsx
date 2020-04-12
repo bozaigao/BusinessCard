@@ -26,6 +26,7 @@ import styles, {
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
 import {cloudBaseUrl} from "../../../api/httpurl";
+import SingleLineText from "../../../compoments/singleline-text";
 
 
 interface Props {
@@ -66,7 +67,7 @@ export default class CustomItem extends PureComponent<Props, State> {
                      src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
             </View>
             <View style={styleAssign([ml(16)])}>
-              <Text style={styleAssign([fSize(16), color('#343434')])}>{customer.name}</Text>
+              <SingleLineText text={customer.name} style={styleAssign([fSize(16), color('#343434')])}/>
               <Text style={styleAssign([fSize(12), color('#979797'), mt(4)])}>{customer.position}</Text>
               <Text style={styleAssign([fSize(12), color('#979797'), mt(3)])}>{`来自${customer.source}`}</Text>
             </View>

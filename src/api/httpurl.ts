@@ -139,6 +139,8 @@ const BASE_URL = StagingUrl,
     traceActive: BASE_URL + 'behaviorTrace/traceActive',
     //雷达详情访问轨迹
     traceList: BASE_URL + 'behaviorTrace/traceList',
+    //查询雷达客户详情资料
+    getBehaviorTrace: BASE_URL + 'behaviorTrace/get',
   },
   //分销中心
   DistributionManage = {

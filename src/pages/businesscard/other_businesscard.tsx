@@ -159,6 +159,7 @@ class OtherBusinesscard extends Component<Props, State> {
     if (duration) {
       Object.assign(params, {duration})
     }
+    console.log('新增行为轨迹参数', params);
     this.props.addRadarTrace(params).then((res) => {
       if (res !== NetworkState.FAIL) {
       }

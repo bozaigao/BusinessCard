@@ -82,3 +82,16 @@ export const traceList = payload => createAction({
   payload,
   method: 'GET'
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/4/12
+ * @function: 查询雷达客户详情资料
+*/
+export const getBehaviorTrace = payload => createAction({
+  url: RadarManage.getBehaviorTrace,
+  payload,
+  method: 'GET'
+});

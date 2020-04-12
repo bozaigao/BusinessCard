@@ -4,7 +4,7 @@
  * @QQ 1054539528
  * @date 2020/4/12
  * @Description: 雷达详情
-*/
+ */
 import Taro, {Component, Config} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {
@@ -39,6 +39,7 @@ import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
+import * as radarActions from "../../actions/radar";
 import * as loginActions from "../../actions/login";
 import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
@@ -47,12 +48,13 @@ import BottomButon from "../../compoments/bottom-buton/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
+import SingleLineText from "../../compoments/singleline-text";
 
 interface Props {
   deleteCustomer?: any;
   followUpList?: any;
   //获取用户信息
-  getCustomerDetail: any;
+  getBehaviorTrace: any;
 }
 
 interface State {
@@ -64,7 +66,7 @@ interface State {
   flowUpList: FlowUpListModel[];
 }
 
-@connect(state => state.login, Object.assign(actions, loginActions))
+@connect(state => state.login, Object.assign(actions, loginActions, radarActions))
 class RadarDetail extends Component<Props, State> {
   private viewRef;
   /**
@@ -99,7 +101,7 @@ class RadarDetail extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.getCustomerDetail();
+    this.getBehaviorTrace();
   }
 
   /**
@@ -108,9 +110,9 @@ class RadarDetail extends Component<Props, State> {
    * @date 2020/1/14
    * @function: 获取客户详细资料
    */
-  getCustomerDetail = () => {
+  getBehaviorTrace = () => {
     this.viewRef && this.viewRef.showLoading();
-    this.props.getCustomerDetail({id: this.$router.params.userId}).then((res) => {
+    this.props.getBehaviorTrace({userId: `${this.$router.params.userId}`}).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('获取客户详细资料', res);
       if (res !== NetworkState.FAIL) {
@@ -141,7 +143,7 @@ class RadarDetail extends Component<Props, State> {
    */
   followUpList = () => {
     console.log('查询客户跟进信息记录');
-    this.props.followUpList({id: this.state.customer.id}).then((res) => {
+    this.props.followUpList({id: this.state.customer.userId}).then((res) => {
       console.log('查询客户跟进信息记录', res);
       if (res && res !== NetworkState.FAIL) {
         this.setState({flowUpList: res});
@@ -335,24 +337,14 @@ class RadarDetail extends Component<Props, State> {
                     <Image style={styleAssign([w(20), h(20), styles.upa, absB(0), absR(0)])}
                            src={customer.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
                   </View>
-                  <Text style={styleAssign([fSize(22), color('#343434'), mt(11)])}>{customer.name}</Text>
+                  <SingleLineText text={customer.name} style={styleAssign([fSize(22), color('#343434'), mt(11)])}/>
                   <Text style={styleAssign([fSize(14), color('#727272')])}>{customer.company}</Text>
                   <View style={styleAssign([styles.uac, styles.udr])}>
                     <Text style={styleAssign([fSize(12), color('#979797')])}>来自</Text>
                     <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.source}</Text>
                   </View>
                 </View>
-                <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}
-                      onClick={() => {
-                        console.log(customer)
-                        Taro.navigateTo({
-                          url: `/pages/customer/customer_ziliao?id=${customer.id}`
-                        });
-                      }}>
-                  <Text style={styleAssign([fSize(15), color('#343434')])}>资料</Text>
-                  <Image style={styleAssign([w(7), h(12), ml(8)])}
-                         src={`${cloudBaseUrl}ico_next.png`}/>
-                </View>
+                <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}/>
               </View>
               {/*加微信、联系地址*/}
               <View
