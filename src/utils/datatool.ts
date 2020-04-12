@@ -356,7 +356,7 @@ export function formartSecond(seconds: number) {
   else if (seconds % 60 === 0) {
     return `${seconds / 60}分钟`;
   }
-  return `${seconds / 60}分${seconds % 60}秒`;
+  return `${parseInt(`${seconds / 60}`, 10)}分${seconds % 60}秒`;
 
 }
 
