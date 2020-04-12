@@ -322,14 +322,8 @@ class RadarDetail extends Component<Props, State> {
             style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
             scrollY>
             <View style={styleAssign([styles.uac, wRatio(100), bgColor(commonStyles.whiteColor)])}>
-              <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, pl(20), pr(20),
+              <View style={styleAssign([styles.udr, wRatio(100), styles.ujc, pl(20), pr(20),
                 bgColor(commonStyles.whiteColor)])}>
-                <View style={styleAssign([styles.uac, styles.ujc, w(40), h(40)])}
-                      onClick={() => {
-                        this.setState({showOperate: true});
-                      }}>
-                  <Image style={styleAssign([w(19), h(4)])} src={`${cloudBaseUrl}ico_dot.png`}/>
-                </View>
                 <View style={styleAssign([styles.uac])}>
                   <View style={styleAssign([w(98), h(98)])}>
                     <Image style={styleAssign([w(98), h(98), radiusA(49)])}
@@ -344,7 +338,6 @@ class RadarDetail extends Component<Props, State> {
                     <Text style={styleAssign([fSize(12), color('#E2BB7B')])}>{customer.source}</Text>
                   </View>
                 </View>
-                <View style={styleAssign([styles.udr, styles.uac, h(25), mt(15)])}/>
               </View>
               {/*加微信、联系地址*/}
               <View
