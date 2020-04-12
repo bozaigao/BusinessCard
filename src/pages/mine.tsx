@@ -36,6 +36,7 @@ import CustomSafeAreaView from "../compoments/safe-area-view/index";
 import NavigationBar from "../compoments/navigation_bar/index";
 import MyGuide1 from "./component/mine_guide1";
 import MyGuide2 from "./component/mine_guide2";
+import SingleLineText from "../compoments/singleline-text";
 
 
 interface Props {
@@ -61,7 +62,7 @@ class Mine extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -124,8 +125,7 @@ class Mine extends Component<Props, State> {
                 <Image style={styleAssign([w(66), h(66), ml(20), radiusA(33)])}
                        src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
                 <View style={styleAssign([ml(14)])}>
-                  <Text
-                    style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</Text>
+                  <SingleLineText text={userInfo.name ? userInfo.name : '无名氏'} style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}/>
                   <View
                     style={styleAssign([w(140), h(6), radiusA(3), mt(13), styles.udr, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
                     <View
