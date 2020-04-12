@@ -25,7 +25,7 @@ import styles, {
   wRatio
 } from "../../../utils/style";
 import TouchableButton from "../../../compoments/touchable-button/index";
-import {operateMap, RadarModel} from "../../../const/global";
+import {RadarModel} from "../../../const/global";
 import {cloudBaseUrl} from "../../../api/httpurl";
 import SingleLineText from "../../../compoments/singleline-text";
 
@@ -48,7 +48,7 @@ export default class RadarItem extends PureComponent<Props, State> {
 
     return (
       <TouchableButton
-        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(156), bgColor(commonStyles.whiteColor), mt(14)])}>
+        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(175), bgColor(commonStyles.whiteColor), mt(14)])}>
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}
               onClick={() => {
                 Taro.navigateTo({
@@ -88,20 +88,18 @@ export default class RadarItem extends PureComponent<Props, State> {
             </View>
           }
         </View>
-        <View style={styleAssign([styles.uac, styles.udr])}>
+        <View style={styleAssign([styles.uac, styles.udr, mt(3)])}>
           <Text
-            style={styleAssign([fSize(14), mt(3), ml(16), color(commonStyles.colorTheme)])}>他</Text>
+            style={styleAssign([fSize(14), ml(16), color(commonStyles.colorTheme)])}>在您的名片停留了</Text>
           <Text
-            style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{operateMap[item.behaviorType]}</Text>
-          {item.duration &&
-          <View style={styleAssign([styles.uac, styles.udr])}>
-            <Text
-              style={styleAssign([fSize(14), mt(3), color(commonStyles.colorTheme)])}>持续时间</Text>
-            <Text
-              style={styleAssign([fSize(14), mt(3), color('#E2BB7B')])}>{`${formartSecond(item.duration)}`}</Text>
-          </View>
-          }
+            style={styleAssign([fSize(14), color('#E2BB7B')])}>{`${formartSecond(item.duration)}`}</Text>
+          <Text
+            style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>{`,这是${item.behaviorTraceUser.sex === 2 ? '她' : '他'}`}</Text>
+          <Text
+            style={styleAssign([fSize(14), color('#E2BB7B')])}>{`第${item.time}次查看您的名片`}</Text>
         </View>
+        <Text
+          style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(15)])}>，建议重点关注持续跟进，成交在望</Text>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>

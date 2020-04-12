@@ -351,7 +351,7 @@ export function getHalfYearStartDate() {
 
 export function formartSecond(seconds: number) {
   if (seconds < 60) {
-    return `${seconds}`;
+    return `${seconds}秒`;
   }
   else if (seconds % 60 === 0) {
     return `${seconds / 60}分钟`;
