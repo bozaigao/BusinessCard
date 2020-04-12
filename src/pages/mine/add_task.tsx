@@ -63,9 +63,7 @@ class AddTask extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-    
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -188,7 +186,7 @@ class AddTask extends Component<Props, State> {
                   }} maxlength={50}/>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
 
-        <DateTimePicker  onOk={({current}) => {
+        <DateTimePicker onOk={({current}) => {
           console.log('选择时间', current);
           this.setState({date: current});
         }} wrap-class="my-class"/>
@@ -204,10 +202,11 @@ class AddTask extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, pl(10), pr(10)])}>
             {
               chooseCustomer.map((value, index) => {
-                return <View style={styleAssign([w(78), h(78), styles.uac, styles.ujc, ml(10), mt(10)])}
+                return <View style={styleAssign([w(78), h(98), styles.uac, ml(10), mt(10)])}
                              key={index}>
                   <Image style={styleAssign([w(73), h(73), radiusA(4)])}
                          src={value.avatar ? value.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                  <Text style={styleAssign([fSize(14), color('#343434'),mt(5)])}>{value.name}</Text>
                   <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
                          src={`${cloudBaseUrl}ico_close.png`}
                          onClick={() => {

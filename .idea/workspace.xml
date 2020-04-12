@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/add_task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/add_task.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,27 +16,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="other_businesscard.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
+      <file leaf-file-name="add_task.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/add_task.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="585" column="26" selection-start-line="585" selection-start-column="26" selection-end-line="585" selection-end-column="26" />
+            <state relative-caret-position="293">
+              <caret line="208" column="93" selection-start-line="208" selection-start-column="93" selection-end-line="208" selection-end-column="93" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#119#171#0" expanded="true" />
-                <element signature="e#343#410#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mine.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="127" column="145" selection-start-line="127" selection-start-column="145" selection-end-line="127" selection-end-column="145" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#260#326#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,7 +40,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>call</find>
       <find>添加标签</find>
       <find>clip</find>
       <find>添加wenti</find>
@@ -83,6 +69,7 @@
       <find>other</find>
       <find>查看</find>
       <find>userInfo</find>
+      <find>新建任务</find>
     </findStrings>
     <replaceStrings>
       <replace>updateTOKEN</replace>
@@ -127,7 +114,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.scss" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/index.scss" />
         <option value="$PROJECT_DIR$/src/compoments/card-style2/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/task_center.tsx" />
@@ -178,6 +164,7 @@
         <option value="$PROJECT_DIR$/src/pages/component/radar-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/add_task.tsx" />
       </list>
     </option>
   </component>
@@ -515,12 +502,12 @@
       <workItem from="1586439717192" duration="4835000" />
       <workItem from="1586567760544" duration="20244000" />
       <workItem from="1586610583713" duration="6381000" />
-      <workItem from="1586671681116" duration="11926000" />
+      <workItem from="1586671681116" duration="12314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1229164000" />
+    <option name="totallyTimeSpent" value="1229552000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -540,9 +527,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.33731344" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.33731344" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -626,18 +613,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#115#167#0" expanded="true" />
-            <element signature="e#493#531#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/ec-canvas/ec-canvas.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1013,10 +988,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="127" column="145" selection-start-line="127" selection-start-column="145" selection-end-line="127" selection-end-column="145" />
+        <state relative-caret-position="264">
+          <caret line="43" column="19" lean-forward="true" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/add_task.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="208" column="93" selection-start-line="208" selection-start-column="93" selection-end-line="208" selection-end-column="93" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#260#326#0" expanded="true" />
           </folding>
         </state>
       </provider>
