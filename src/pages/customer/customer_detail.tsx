@@ -305,8 +305,6 @@ class CustomerDetail extends Component<Props, State> {
           }
         </View>
       </View>;
-    } else {
-      childView = <View/>
     }
 
     return (
