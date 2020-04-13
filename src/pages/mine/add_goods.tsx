@@ -83,7 +83,7 @@ class AddGoods extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -128,7 +128,7 @@ class AddGoods extends Component<Props, State> {
     let {name, price, introduction} = this.state;
 
     if (name.length === 0) {
-      toast('名字不能为空');
+      toast('商品名称不能为空');
       return;
     }
     if (introduction.length === 0) {
