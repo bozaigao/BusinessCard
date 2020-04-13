@@ -151,7 +151,7 @@ class RadarDetail extends Component<Props, State> {
       childView = <View style={styleAssign([wRatio(100), mt(10)])}>
         {
           traceList.map((value: any, index) => {
-            return <TraceItem item={value} key={index} name={'name'}/>;
+            return <TraceItem item={value} key={index} name={customer.name}/>;
           })
         }
       </View>;
