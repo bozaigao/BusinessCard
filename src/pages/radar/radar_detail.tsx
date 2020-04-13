@@ -10,7 +10,6 @@ import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {
   absB,
   absR,
-  absT,
   bdColor,
   bgColor,
   bo,
@@ -24,18 +23,13 @@ import {
   ml,
   mr,
   mt,
-  op,
-  pb,
   pl,
   pr,
-  pt,
   radiusA,
-  radiusTL,
-  radiusTR,
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign, toast, transformTime} from "../../utils/datatool";
+import {styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -43,12 +37,11 @@ import * as radarActions from "../../actions/radar";
 import * as loginActions from "../../actions/login";
 import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel, FlowUpListModel} from "../../const/global";
-import BottomButon from "../../compoments/bottom-buton/index";
+import {BehaviorTrace, CustomerModel} from "../../const/global";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
-import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
 import SingleLineText from "../../compoments/singleline-text";
+import TraceItem from "../../compoments/trace-item";
 
 interface Props {
   traceList?: any;
@@ -57,12 +50,10 @@ interface Props {
 }
 
 interface State {
-  showOperate: boolean;
-  showDeleteNotice: boolean;
   showShareInvite: boolean;
   customer: CustomerModel
   currentIndex: number;
-  flowUpList: FlowUpListModel[];
+  traceList: BehaviorTrace[];
 }
 
 @connect(state => state.login, Object.assign(actions, loginActions, radarActions))
@@ -84,10 +75,8 @@ class RadarDetail extends Component<Props, State> {
     this.state = {
       //@ts-ignore
       customer: null,
-      showOperate: false,
       currentIndex: 0,
-      flowUpList: [],
-      showDeleteNotice: false,
+      traceList: [],
       showShareInvite: false
     }
   }
@@ -145,61 +134,24 @@ class RadarDetail extends Component<Props, State> {
     this.props.traceList({traceUserId: this.state.customer.userId}).then((res) => {
       console.log('雷达详情访问轨迹', res);
       if (res && res !== NetworkState.FAIL) {
-        this.setState({flowUpList: res});
+        this.setState({traceList: res.list});
       }
 
     }).catch(e => {
-      console.log('报错啦', e);
-    });
-  }
-
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2020/1/14
-   * @function: 删除客户
-   */
-  deleteCustomer = (id) => {
-    this.viewRef && this.viewRef.showLoading();
-    this.props.deleteCustomer({id}).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
-      if (res !== NetworkState.FAIL) {
-        toast('删除成功');
-      }
-      Taro.eventCenter.trigger('refreshCustomerList');
-      Taro.navigateBack();
-      console.log('删除信息', res);
-    }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
       console.log('报错啦', e);
     });
   }
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite} = this.state;
+    let {customer, currentIndex, traceList, showShareInvite} = this.state;
     let childView;
 
     if (currentIndex === 0) {
-      childView = <View/>;
-    } else if (currentIndex === 1) {
       childView = <View style={styleAssign([wRatio(100), mt(10)])}>
         {
-          flowUpList.map((value: FlowUpListModel, index) => {
-            return <View key={index}
-                         style={styleAssign([wRatio(95), {marginLeft: '2.5%'}, hRatio(60)])}>
-              <View
-                style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), pl(16), pr(16), pt(10), pb(10)])}>
-                <View style={styleAssign([styles.udr, styles.uac, styles.ujb])}>
-                  <Image style={styleAssign([w(27), h(27)])} src={`${cloudBaseUrl}ico_default.png`}/>
-                  <Text style={styleAssign([fSize(12), color('#979797')])}>{transformTime(value.createTime)}</Text>
-                </View>
-                <Text style={styleAssign([mt(10), fSize(12), color('#343434')])}
-                      className={'.textStyle'}>{value.followUpContent}</Text>
-              </View>
-              <View style={styleAssign([wRatio(100), h(1), bgColor('#F7F7F7')])}/>
-            </View>;
+          traceList.map((value: any, index) => {
+            return <TraceItem item={value} key={index} name={'name'}/>;
           })
         }
       </View>;
@@ -345,6 +297,7 @@ class RadarDetail extends Component<Props, State> {
                 wRatio(100), h(44), bgColor(commonStyles.whiteColor), mt(12)])}>
                 <View style={styleAssign([styles.uf1, styles.uac, styles.ujc, h(44)])}
                       onClick={() => {
+                        console.log('点击了');
                         this.setState({currentIndex: 0});
                       }}>
                   <Text
@@ -372,72 +325,12 @@ class RadarDetail extends Component<Props, State> {
             {childView}
           </ScrollView>
         }
-        {/*拨打电话*/}
-        {
-          currentIndex === 3 &&
-          <BottomButon title={'拨打电话'}
-                       onClick={() => {
-                         Taro.makePhoneCall({
-                           phoneNumber: customer.phone
-                         })
-                       }}/>
-        }
-        {
-          showDeleteNotice && <DeleteNoticeModal
-            title={'删除提醒'}
-            subTitle={'删除后，客户数据将无法恢复，确定删除？'}
-            cancelCallback={() => {
-              this.setState({showDeleteNotice: false});
-            }
-            } confirmCallback={() => {
-            this.deleteCustomer(customer.id);
-          }
-          }/>
-        }
         {
           showShareInvite && <ShareInvite cancelCallback={() => {
             this.setState({showShareInvite: false});
           }} confirmCallback={() => {
             this.setState({showShareInvite: false});
           }}/>
-        }
-        {
-          showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
-                               onClick={() => {
-                                 this.setState({showOperate: false});
-                               }}>
-            <View
-              style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
-            <View
-              style={styleAssign([wRatio(100), h(185), bgColor(commonStyles.whiteColor), radiusTL(10), radiusTR(10),
-                styles.upa, absB(0)])}>
-              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
-                    onClick={() => {
-                      this.setState({showOperate: false}, () => {
-                        if (customer.type === 1) {
-                          Taro.navigateTo({
-                            url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}`
-                          });
-                        } else {
-                          this.setState({showShareInvite: true});
-                        }
-                      });
-                    }}>
-                <Text style={styleAssign([color('#E2BB7B'), fSize(18)])}>查看名片</Text>
-              </View>
-              <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}
-                    onClick={() => {
-                      this.setState({showDeleteNotice: true});
-                    }}>
-                <Text style={styleAssign([color('#29292E'), fSize(18)])}>移除客户</Text>
-              </View>
-              <View style={styleAssign([wRatio(100), h(5), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
-              <View style={styleAssign([wRatio(100), h(61), styles.uac, styles.ujc])}>
-                <Text style={styleAssign([color('#29292E'), fSize(18)])}>取消</Text>
-              </View>
-            </View>
-          </View>
         }
       </CustomSafeAreaView>
     )
