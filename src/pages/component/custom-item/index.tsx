@@ -7,7 +7,7 @@
  */
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
-import {styleAssign, transformTime} from "../../../utils/datatool";
+import {parseData, styleAssign, transformTime} from "../../../utils/datatool";
 import styles, {
   absB,
   absR,
@@ -19,7 +19,7 @@ import styles, {
   hRatio,
   ml,
   mr,
-  mt,
+  mt, padding,
   radiusA,
   w,
   wRatio
@@ -43,7 +43,7 @@ interface State {
 export default class CustomItem extends PureComponent<Props, State> {
 
   render() {
-    let {onClick, customer, genJinCallback, mode,viewCardCallback} = this.props;
+    let {onClick, customer, genJinCallback, mode, viewCardCallback} = this.props;
     let time;
 
     if (mode === '最后访问') {
@@ -57,7 +57,7 @@ export default class CustomItem extends PureComponent<Props, State> {
     return (
       <TouchableButton
         onClick={onClick}
-        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(142), bgColor(commonStyles.whiteColor), mt(14)])}>
+        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, bgColor(commonStyles.whiteColor), mt(14)])}>
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
             <View style={styleAssign([w(60), h(60), ml(16)])}>
@@ -82,8 +82,22 @@ export default class CustomItem extends PureComponent<Props, State> {
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>添加跟进</Text>
           </View>
         </View>
+        <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap])}>
+          {
+            parseData(customer.label).map((value, index) => {
+              return (<View
+                key={index}
+                style={styleAssign([styles.uac, styles.ujc, padding([6, 6, 6, 6]), radiusA(14)])}>
+                <View style={styleAssign([styles.uac, styles.ujc, radiusA(14),
+                  padding([6, 6, 6, 6]), bgColor('#E7E7E7')])}>
+                  <Text style={styleAssign([fSize(12), color('#343434')])}>{value}</Text>
+                </View>
+              </View>);
+            })
+          }
+        </View>
         <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor), mt(15)])}/>
-        <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
+        <View style={styleAssign([styles.uf1, styles.ujb, styles.udr, h(40)])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
             <Text
               style={styleAssign([color('#979797'), fSize(12), ml(16)])}>{`${mode} ${time}`}</Text>
