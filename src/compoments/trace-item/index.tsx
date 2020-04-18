@@ -152,7 +152,7 @@ export default class TraceItem extends PureComponent<Props, State> {
                     </View>
                     <View style={styleAssign([ml(13)])}>
                       <Text style={styleAssign([fSize(14), color('#343434')])}>
-                        {transformTime(value.time)}
+                        {transformTime(value.createTime)}
                       </Text>
                       <Text style={styleAssign([fSize(14), color('#343434')])}>
                         {desc}
