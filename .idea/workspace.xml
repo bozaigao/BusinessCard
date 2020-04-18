@@ -19,11 +19,20 @@
       <file leaf-file-name="other_businesscard.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
+            <state relative-caret-position="352">
+              <caret line="494" column="17" lean-forward="true" selection-start-line="494" selection-start-column="17" selection-end-line="494" selection-end-column="17" />
               <folding>
                 <element signature="e#343#410#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/component/my-business/index.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -51,8 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>behaviorTrace/get</find>
-      <find>customer</find>
       <find>dot</find>
       <find>查询客户跟进信息记录</find>
       <find>followUpList</find>
@@ -81,6 +88,8 @@
       <find>你</find>
       <find>visitor/add</find>
       <find>addVisitor</find>
+      <find>我的商品</find>
+      <find>addRadarTrace</find>
     </findStrings>
     <replaceStrings>
       <replace>update</replace>
@@ -516,12 +525,12 @@
       <workItem from="1586671681116" duration="12374000" />
       <workItem from="1586785200979" duration="4199000" />
       <workItem from="1586831415897" duration="30000" />
-      <workItem from="1587169650562" duration="2413000" />
+      <workItem from="1587169650562" duration="3000000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1236254000" />
+    <option name="totallyTimeSpent" value="1236841000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -541,9 +550,9 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.33731344" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.33731344" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -627,16 +636,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/ec-canvas/ec-canvas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
@@ -978,10 +977,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/businesscard/component/my-business/index.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
+        <state relative-caret-position="352">
+          <caret line="494" column="17" lean-forward="true" selection-start-line="494" selection-start-column="17" selection-end-line="494" selection-end-column="17" />
           <folding>
             <element signature="e#343#410#0" expanded="true" />
           </folding>

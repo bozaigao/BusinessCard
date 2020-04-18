@@ -143,7 +143,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
   componentWillMount() {
     this.timer && clearInterval(this.timer);
-    this.addVisitor();
+    this.addVisitor('card');
   }
 
 
@@ -153,8 +153,8 @@ class OtherBusinesscard extends Component<Props, State> {
    * @date 2020/4/18
    * @function: 新增访客记录
   */
-  addVisitor = () => {
-    this.props.addVisitor({visitorUserId: this.$router.params.userId,visitContent:'card'}).then((res) => {
+  addVisitor = (type) => {
+    this.props.addVisitor({visitorUserId: this.$router.params.userId,visitContent:type}).then((res) => {
       console.log('新增访客记录', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -489,10 +489,12 @@ class OtherBusinesscard extends Component<Props, State> {
           {/*我的商品*/}
           {
             userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
+              this.addVisitor('goods');
               Taro.navigateTo({
                 url: `/pages/businesscard/more_goods?goodsList=${JSON.stringify(userInfo.goodsList)}`
               });
             }} goToGoodsDetail={(itemData) => {
+              this.addVisitor('goods');
               this.addRadarTrace('view_goods', itemData.id);
               Taro.navigateTo({
                 url: `/pages/mine/goods_detail?id=${itemData.id}`
@@ -504,6 +506,7 @@ class OtherBusinesscard extends Component<Props, State> {
             userInfo.enterpriseName.length !== 0 &&
             <MyBusiness
               addRadarTrace={(behaviorType) => {
+                this.addVisitor('company');
                 this.addRadarTrace(behaviorType);
               }}
               userInfo={userInfo}/>
