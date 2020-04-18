@@ -92,49 +92,49 @@ export default class TraceItem extends PureComponent<Props, State> {
 
               switch (value.behaviorType) {
                 case 'view_card':
-                  desc = `${name}在您的名片停留了${formartSecond(value.duration)},这是他第${value.time}次查看您的名片，看来TA对您挺感兴趣的，可以尝试练习沟通一下。`;
+                  desc = `${name}在您的名片停留了${formartSecond(value.duration)},这是他第${value.time}次查看您的名片，看来TA对您挺感兴趣的，可以尝试联系沟通一下。`;
                   break;
                 case 'share_card':
                   desc = `${name}分享您的名片${value.time}次，注意留意访客记录，建议主动联系。`;
                   break;
                 case 'collect_card':
-                  desc = `${name}收藏你的名⽚，你已经成为T;关注的⼈，建议主动联系，可以电话沟通⼀下。`;
+                  desc = `${name}收藏您的名⽚，您已经成为TA关注的⼈，建议主动联系，可以电话沟通⼀下。`;
                   break;
                 case 'put_in_address_book':
-                  desc = `${name}将你存⼊了⼿机通讯录，对你建⽴信任，保持联系持续跟进。`;
+                  desc = `${name}将您存⼊了⼿机通讯录，对您建⽴信任，保持联系持续跟进。`;
                   break;
                 case 'call_up':
-                  desc = `${name}想要打电话给你，建议主动联系，可以电话沟通⼀下。`;
+                  desc = `${name}想要打电话给您，建议主动联系，可以电话沟通⼀下。`;
                   break;
                 case 'copy_wechat':
-                  desc = `${name}复制你的微信号，记得留意微信好友添加请求。`;
+                  desc = `${name}复制您的微信号，记得留意微信好友添加请求。`;
                   break;
                 case 'copy_email':
-                  desc = `${name}复制你的邮箱号，记得留意邮件信息。`;
+                  desc = `${name}复制您的邮箱号，记得留意邮件信息。`;
                   break;
                 case 'navigation_company':
-                  desc = `${name}导航你的公司地址，建议主动联系，主动约⻅⾯聊聊。`;
+                  desc = `${name}导航您的公司地址，建议主动联系，主动约⻅⾯聊聊。`;
                   break;
                 case 'play_your_voice':
-                  desc = `${name}播放你的语⾳，看来对你挺感兴趣的。`;
+                  desc = `${name}播放您的语⾳，看来对您挺感兴趣的。`;
                   break;
                 case 'villager':
-                  desc = `${name}认出和你是同乡，建议主动联系。`;
+                  desc = `${name}认出和您是同乡，建议主动联系。`;
                   break;
                 case 'schoolfellow':
-                  desc = `${name}认出和你是校友，建议主动联系。`;
+                  desc = `${name}认出和您是校友，建议主动联系。`;
                   break;
                 case 'play_company_video':
-                  desc = `${name}认播放你的企业宣传视频，对你的企业感兴趣。`;
+                  desc = `${name}认播放您的企业宣传视频，对您的企业感兴趣。`;
                   break;
                 case 'view_your_photos':
-                  desc = `${name}查看你的照⽚，对你挺感兴趣，建议主动联系。`;
+                  desc = `${name}查看您的照⽚，对您挺感兴趣，建议主动联系。`;
                   break;
                 case 'play_your_video':
-                  desc = `${name}播放你的视频，对你挺感兴趣，建议主动联系。`;
+                  desc = `${name}播放您的视频，对您挺感兴趣，建议主动联系。`;
                   break;
                 case 'view_goods':
-                  desc = `${name}在你的商品停留了${formartSecond(value.duration)}，第${value.time}次查看这个商品，对你的商品感兴趣。`;
+                  desc = `${name}在您的商品停留了${formartSecond(value.duration)}，第${value.time}次查看这个商品，对您的商品感兴趣。`;
                   break;
                 case 'view_enterprise_website':
                   desc = '';

@@ -64,7 +64,7 @@ export default class RadarItem extends PureComponent<Props, State> {
             </View>
             <View style={styleAssign([ml(16)])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
-                <SingleLineText style={styleAssign([fSize(12), color('#343434'), w(140)])}
+                <SingleLineText style={styleAssign([fSize(12), color('#343434')])}
                                 text={item.behaviorTraceUser.name}/>
                 <Text style={styleAssign([fSize(12), color('#979797')])}>.访客</Text>
               </View>
