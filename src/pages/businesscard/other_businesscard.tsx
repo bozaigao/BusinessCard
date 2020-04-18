@@ -36,6 +36,7 @@ import * as actions from '../../actions/task_center';
 import * as loginActions from '../../actions/login';
 import * as businessCardActions from '../../actions/business_card';
 import * as radarActions from '../../actions/radar';
+import * as visitorActions from '../../actions/visitor';
 import PersonalInfo from "./component/personal-info/index";
 import MyGoods from "./component/my-goods/index";
 import JiZhiCard from "./component/jizhi-card/index";
@@ -64,6 +65,8 @@ interface Props {
   getCardHolderVisitorRecord: any;
   //新增行为轨迹
   addRadarTrace: any;
+  //新增访客记录
+  addVisitor: any;
   userInfo: User;
 }
 
@@ -84,7 +87,7 @@ interface State {
 
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions, radarActions))
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions, radarActions,visitorActions))
 class OtherBusinesscard extends Component<Props, State> {
 
   private viewRef;
@@ -140,6 +143,22 @@ class OtherBusinesscard extends Component<Props, State> {
 
   componentWillMount() {
     this.timer && clearInterval(this.timer);
+    this.addVisitor();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/4/18
+   * @function: 新增访客记录
+  */
+  addVisitor = () => {
+    this.props.addVisitor({visitorUserId: this.$router.params.userId,visitContent:'card'}).then((res) => {
+      console.log('新增访客记录', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
