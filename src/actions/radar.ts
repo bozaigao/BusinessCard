@@ -64,8 +64,8 @@ export const getTraceList = payload => createAction({
  * @date 2020/2/10
  * @function: 雷达AI分析-客户活跃度
  */
-export const traceActive = payload => createAction({
-  url: RadarManage.traceActive,
+export const interestBehaviorActive = payload => createAction({
+  url: RadarManage.interestBehaviorActive,
   payload,
   method: 'GET'
 });

@@ -136,7 +136,7 @@ const BASE_URL = StagingUrl,
     //查询我的雷达数据列表
     getTraceList: BASE_URL + 'behaviorTrace/list',
     //雷达AI分析-客户活跃度
-    traceActive: BASE_URL + 'behaviorTrace/traceActive',
+    interestBehaviorActive: BASE_URL + 'behaviorTrace/interestBehaviorActive',
     //雷达详情访问轨迹
     traceList: BASE_URL + 'behaviorTrace/traceList',
     //查询雷达客户详情资料

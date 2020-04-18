@@ -35,10 +35,8 @@ import {Text, View} from "@tarojs/components";
 import PieChart from "./PieChart";
 import LineChart from './LineChart'
 import './index.scss';
-import {NetworkState} from "../../api/httpurl";
 
 interface Props {
-  interestBehaviorRate:any;
 }
 
 interface State {
@@ -77,7 +75,6 @@ class AiAnalysis extends Component<Props, State> {
     this.pieChart.refresh(chartData);
 
     this.lineChart.refresh();
-    this.interestBehaviorRate();
   }
 
   componentWillUnmount() {
@@ -85,26 +82,6 @@ class AiAnalysis extends Component<Props, State> {
 
 
   componentDidHide() {
-  }
-
-  /**
-   * @author 何晏波
-   * @QQ 1054539528
-   * @date 2020/4/12
-   * @function: 雷达AI分析 兴趣和行为占比
-  */
-  interestBehaviorRate = ()=>{
-    this.viewRef && this.viewRef.showLoading();
-    this.props.interestBehaviorRate({traceUserId: this.$router.params.userId}).then((res) => {
-      this.viewRef && this.viewRef.hideLoading();
-      console.log('雷达AI分析 兴趣和行为占比', res);
-      if (res !== NetworkState.FAIL) {
-
-      }
-    }).catch(e => {
-      this.viewRef && this.viewRef.hideLoading();
-      console.log('报错啦', e);
-    });
   }
 
 
@@ -155,7 +132,7 @@ class AiAnalysis extends Component<Props, State> {
           <Text style={styleAssign([fSize(16), color('#343434'), ml(20), mt(20)])}>
             客户活跃度
           </Text>
-          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
+          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc,{display:'none'}])}>
             <View
               style={styleAssign([styles.uac, styles.udr, w(205), h(30), radiusA(2), mt(30)])}>
               <View

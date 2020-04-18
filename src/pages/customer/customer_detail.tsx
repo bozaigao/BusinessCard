@@ -35,11 +35,12 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
+import {getToday, parseData, styleAssign, toast, transformTime} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
 import * as loginActions from "../../actions/login";
+import * as radarActions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import {CustomerModel, FlowUpListModel} from "../../const/global";
@@ -53,6 +54,7 @@ interface Props {
   followUpList?: any;
   //获取用户信息
   getCustomerDetail: any;
+  interestBehaviorActive: any;
 }
 
 interface State {
@@ -64,7 +66,7 @@ interface State {
   flowUpList: FlowUpListModel[];
 }
 
-@connect(state => state.login, Object.assign(actions, loginActions))
+@connect(state => state.login, Object.assign(actions, loginActions,radarActions))
 class CustomerDetail extends Component<Props, State> {
   private viewRef;
   /**
@@ -92,14 +94,37 @@ class CustomerDetail extends Component<Props, State> {
   }
 
   componentDidMount() {
+    this.getCustomerDetail();
+    this.interestBehaviorActive();
   }
 
 
   componentWillUnmount() {
   }
 
-  componentDidShow() {
-    this.getCustomerDetail();
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/4/12
+   * @function: 雷达AI分析 兴趣和行为占比
+   */
+  interestBehaviorActive = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.interestBehaviorActive({
+      traceUserId: this.state.customer.id,
+      startDate: getToday(),
+      endDate: getToday()
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('雷达AI分析 兴趣和行为占比', res);
+      if (res !== NetworkState.FAIL) {
+
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
   /**
