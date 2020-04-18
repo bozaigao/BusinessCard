@@ -110,7 +110,7 @@ class CustomerDetail extends Component<Props, State> {
    */
   getCustomerDetail = () => {
     this.viewRef && this.viewRef.showLoading();
-    this.props.getCustomerDetail({id: this.$router.params.userId}).then((res) => {
+    this.props.getCustomerDetail({id: this.$router.params.id}).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
       console.log('获取客户详细资料', res);
       if (res !== NetworkState.FAIL) {
