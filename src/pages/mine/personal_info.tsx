@@ -90,7 +90,7 @@ class PersonalInfo extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -205,8 +205,8 @@ class PersonalInfo extends Component<Props, State> {
       toast('姓名不能为空');
       return;
     }
-    if (name.length > 3) {
-      toast('姓名长度不能超过3');
+    if (name.length > 6) {
+      toast('姓名长度不能超过6');
       return;
     }
     if (phone.length === 0) {

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tequan.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tequan.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="330" column="76" selection-start-line="330" selection-start-column="76" selection-end-line="330" selection-end-column="76" />
+            <state relative-caret-position="281">
+              <caret line="332" column="57" selection-start-line="332" selection-start-column="57" selection-end-line="332" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="personal_info.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="208" column="25" lean-forward="true" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -36,7 +45,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>interestBehaviorActive</find>
       <find>radarActions</find>
       <find>this.$router.params</find>
       <find>ana</find>
@@ -66,6 +74,7 @@
       <find>Taro.authorize</find>
       <find>特权开通</find>
       <find>购买须知</find>
+      <find>姓名长度</find>
     </findStrings>
     <replaceStrings>
       <replace>update</replace>
@@ -116,7 +125,6 @@
         <option value="$PROJECT_DIR$/src/pages/component/renmai-item/index.scss" />
         <option value="$PROJECT_DIR$/src/pages/component/my-person/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/company_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/my-business/index.tsx" />
@@ -161,6 +169,7 @@
         <option value="$PROJECT_DIR$/src/pages/mine/task_center.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/tequan.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/personal_info.tsx" />
       </list>
     </option>
   </component>
@@ -485,12 +494,12 @@
       <workItem from="1587169650562" duration="6987000" />
       <workItem from="1587267063502" duration="41000" />
       <workItem from="1587267146321" duration="4446000" />
-      <workItem from="1587298038025" duration="5260000" />
+      <workItem from="1587298038025" duration="5338000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1250575000" />
+    <option name="totallyTimeSpent" value="1250653000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -596,13 +605,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/ec-canvas/echarts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -953,8 +955,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="330" column="76" selection-start-line="330" selection-start-column="76" selection-end-line="330" selection-end-column="76" />
+        <state relative-caret-position="281">
+          <caret line="332" column="57" selection-start-line="332" selection-start-column="57" selection-end-line="332" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/personal_info.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="208" column="25" lean-forward="true" selection-start-line="208" selection-start-column="25" selection-end-line="208" selection-end-column="25" />
         </state>
       </provider>
     </entry>
