@@ -26,7 +26,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {parseData, styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/radar";
@@ -41,6 +41,8 @@ interface Props {
 
 interface State {
   current: number;
+  active: { title: string[], value: string[] };
+  interest: { card: number, company: number; goods: number; }
 }
 
 @connect(state => state.login, {...actions})
@@ -61,20 +63,33 @@ class AiAnalysis extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
+      active: parseData(this.$router.params.active),
+      interest: parseData(this.$router.params.interest),
       current: 0
     }
   }
 
   componentDidMount() {
+    let {interest, active} = this.state;
+    let totalViews = interest.card + interest.company + interest.goods;
     const chartData = [
-      {value: 20, name: '20%'},
-      {value: 30, name: '30%'},
-      {value: 50, name: '50%'},
+      {
+        value: totalViews === 0 ? 0 : interest.card / totalViews,
+        name: totalViews === 0 ? '0%' : (interest.card / totalViews) + '%'
+      },
+      {
+        value: totalViews === 0 ? 0 : interest.goods / totalViews,
+        name: totalViews === 0 ? '0%' : (interest.goods / totalViews) + '%'
+      },
+      {
+        value: totalViews === 0 ? 0 : interest.company / totalViews,
+        name: totalViews === 0 ? '0%' : (interest.company / totalViews) + '%'
+      },
     ];
 
     this.pieChart.refresh(chartData);
 
-    this.lineChart.refresh();
+    this.lineChart.refresh(active.title, active.value);
   }
 
   componentWillUnmount() {
@@ -86,7 +101,8 @@ class AiAnalysis extends Component<Props, State> {
 
 
   render() {
-    let {current} = this.state;
+    let {current, interest} = this.state;
+    let totalViews = interest.card + interest.company + interest.goods;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -107,24 +123,24 @@ class AiAnalysis extends Component<Props, State> {
             </View>
             <View style={styleAssign([w(230), mr(20)])}>
               <Text style={styleAssign([fSize(15), color('#343434')])}>
-                访问浏览量：30
+                {`访问浏览量：${totalViews}`}
               </Text>
               <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
                 <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#E2BB7B')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  对我名片信息感兴趣：50%
+                  {`对我名片信息感兴趣：${totalViews === 0 ? '0%' : (interest.card / totalViews) + '%'}`}
                 </Text>
               </View>
               <View style={styleAssign([styles.udr, mt(17)])}>
                 <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#825D22')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  对我的产品感兴趣：20%
+                  {`对我的产品感兴趣：${totalViews === 0 ? '0%' : (interest.goods / totalViews) + '%'}`}
                 </Text>
               </View>
               <View style={styleAssign([styles.udr, mt(17)])}>
                 <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#FFE0AE')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  对我的企业感兴趣：30%
+                  {`对我的企业感兴趣：${totalViews === 0 ? '0%' : (interest.company / totalViews) + '%'}`}
                 </Text>
               </View>
             </View>
@@ -132,7 +148,7 @@ class AiAnalysis extends Component<Props, State> {
           <Text style={styleAssign([fSize(16), color('#343434'), ml(20), mt(20)])}>
             客户活跃度
           </Text>
-          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc,{display:'none'}])}>
+          <View style={styleAssign([wRatio(100), styles.uac, styles.ujc, {display: 'none'}])}>
             <View
               style={styleAssign([styles.uac, styles.udr, w(205), h(30), radiusA(2), mt(30)])}>
               <View

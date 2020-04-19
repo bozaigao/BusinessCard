@@ -64,9 +64,12 @@ interface State {
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
+  active: any;
+  behaviorTrace: any;
+  interest: any;
 }
 
-@connect(state => state.login, Object.assign(actions, loginActions,radarActions))
+@connect(state => state.login, Object.assign(actions, loginActions, radarActions))
 class CustomerDetail extends Component<Props, State> {
   private viewRef;
   /**
@@ -89,13 +92,21 @@ class CustomerDetail extends Component<Props, State> {
       currentIndex: 0,
       flowUpList: [],
       showDeleteNotice: false,
-      showShareInvite: false
+      showShareInvite: false,
+      behaviorTrace: {
+        behaviorTraceMax: 100,
+        callUp: 0,
+        playVideo: 0,
+        shareCard: 0,
+        viewCard: 0,
+        viewEnterpriseWebsite: 0,
+        viewGoods: 0,
+      }
     }
   }
 
   componentDidMount() {
     this.getCustomerDetail();
-    this.interestBehaviorActive();
   }
 
 
@@ -119,7 +130,7 @@ class CustomerDetail extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       console.log('雷达AI分析 兴趣和行为占比', res);
       if (res !== NetworkState.FAIL) {
-
+        this.setState({active: res.active, behaviorTrace: res.behaviorTrace, interest: res.interest});
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
@@ -140,6 +151,7 @@ class CustomerDetail extends Component<Props, State> {
       console.log('获取客户详细资料', res);
       if (res !== NetworkState.FAIL) {
         this.setState({customer: res}, () => {
+          this.interestBehaviorActive();
           this.followUpList();
         });
       }
@@ -202,7 +214,7 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite, behaviorTrace} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -286,7 +298,7 @@ class CustomerDetail extends Component<Props, State> {
             style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48), radiusA(4)])}
             onClick={() => {
               Taro.navigateTo({
-                url: `/pages/customer/ai_analysis?userId=${customer.id}`
+                url: `/pages/customer/ai_analysis?userId=${customer.id}&active=${JSON.stringify(this.state.active)}&interest=${JSON.stringify(this.state.interest)}`
               });
             }}>
             <Text style={styleAssign([fSize(16), color('#343434'), ml(16)])}>
@@ -307,12 +319,36 @@ class CustomerDetail extends Component<Props, State> {
             客户行为轨迹
           </Text>
           {
-            [{title: '查看名片', progress: 80, count: 68},
-              {title: '分享名片', progress: 20, count: 11},
-              {title: '拨打电话', progress: 30, count: 26},
-              {title: '浏览商城', progress: 35, count: 35},
-              {title: '浏览企业', progress: 60, count: 33},
-              {title: '播放视频', progress: 10, count: 18}].map((value, index) => {
+            [{
+              title: '查看名片',
+              progress: behaviorTrace.viewCard / behaviorTrace.behaviorTraceMax,
+              count: behaviorTrace.viewCard
+            },
+              {
+                title: '分享名片',
+                progress: behaviorTrace.shareCard / behaviorTrace.behaviorTraceMax,
+                count: behaviorTrace.shareCard
+              },
+              {
+                title: '拨打电话',
+                progress: behaviorTrace.callUp / behaviorTrace.behaviorTraceMax,
+                count: behaviorTrace.callUp
+              },
+              {
+                title: '浏览商城',
+                progress: behaviorTrace.viewGoods / behaviorTrace.behaviorTraceMax,
+                count: behaviorTrace.viewGoods
+              },
+              {
+                title: '浏览企业',
+                progress: behaviorTrace.viewEnterpriseWebsite / behaviorTrace.behaviorTraceMax,
+                count: behaviorTrace.viewEnterpriseWebsite
+              },
+              {
+                title: '播放视频',
+                progress: behaviorTrace.playVideo / behaviorTrace.behaviorTraceMax,
+                count: behaviorTrace.playVideo
+              }].map((value, index) => {
               return <View key={index} style={styleAssign([mt(index === 0 ? 30 : 20), mb(index === 5 ? 20 : 0)])}>
                 <Text style={styleAssign([fSize(15), color('#343434'), ml(16)])}>
                   {value.title}

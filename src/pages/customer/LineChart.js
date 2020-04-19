@@ -1,7 +1,7 @@
-import Taro, { Component } from "@tarojs/taro";
+import Taro, {Component} from "@tarojs/taro";
 import * as echarts from "./ec-canvas/echarts";
 
-function setChartData(chart) {
+function setChartData(chart, titles, values) {
   let option = {
     color: ["#825D22"],
     grid: {
@@ -35,6 +35,14 @@ function setChartData(chart) {
     }]
   };
 
+  if (titles) {
+    option.xAxis.data = titles;
+  }
+
+  if (values) {
+    option.series.data = values;
+  }
+
   chart.setOption(option);
 }
 
@@ -55,14 +63,14 @@ export default class LineChart extends Component {
     }
   };
 
-  refresh() {
+  refresh(titles, values) {
     this.Chart.init((canvas, width, height) => {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
 
-      setChartData(chart);
+      setChartData(chart, titles, values);
       return chart;
     });
   }
