@@ -66,7 +66,8 @@ export default class RadarItem extends PureComponent<Props, State> {
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <SingleLineText style={styleAssign([fSize(12), color('#343434')])}
                                 text={item.behaviorTraceUser.name}/>
-                <Text style={styleAssign([fSize(12), color('#979797')])}>.访客</Text>
+                <Text
+                  style={styleAssign([fSize(12), color('#979797')])}>{item.relationStatus !== 2 ? '.访客' : '.客户'}</Text>
               </View>
               <Text
                 style={styleAssign([fSize(12), color('#979797'), mt(5)])}>{`来自${item.behaviorTraceUser.source}`}</Text>
@@ -108,11 +109,11 @@ export default class RadarItem extends PureComponent<Props, State> {
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
-            onClick={()=>{
-              Taro.navigateTo({
-                url: `/pages/businesscard/other_businesscard?userId=${item.behaviorTraceUser.userId}`
-              });
-            }}>
+                  onClick={() => {
+                    Taro.navigateTo({
+                      url: `/pages/businesscard/other_businesscard?userId=${item.behaviorTraceUser.userId}`
+                    });
+                  }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>
             </View>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
