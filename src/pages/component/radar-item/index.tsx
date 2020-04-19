@@ -77,7 +77,8 @@ export default class RadarItem extends PureComponent<Props, State> {
             item.relationStatus !== 2 &&
             <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
               w(72), h(28), radiusA(4), mr(16)])}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     if (item.relationStatus === 0) {
                       collectCallback(item.behaviorTraceUser.userId);
                     } else if (item.relationStatus === 1) {

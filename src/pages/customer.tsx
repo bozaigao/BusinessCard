@@ -66,11 +66,11 @@ class Customer extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.pageNo = 1;
-    this.pageSize = 10;
+    this.pageSize = 1000;
     this.state = {
       customerList: [],
       totalCustomers: 0,
-      shaiXuanMode: '最后访问时间',
+      shaiXuanMode: '最后转入时间',
       shaiXuanValue: '全部',
       showMode: false,
       showShaiXuan: false,
@@ -233,7 +233,7 @@ class Customer extends Component<Props, State> {
                 this.refresh();
               }}
               onScrollToLower={() => {
-                this.loadMore();
+                // this.loadMore();
               }}
               style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY>
