@@ -40,6 +40,7 @@ interface State {
   customerList: CustomerModel[];
   name: string;
   chooseCustomerIds: number[];
+  chooseIds: number[];
 }
 
 @connect(state => state.login, {...actions})
@@ -54,16 +55,15 @@ class ChooseCustomer extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
-    console.log('呵呵', parseData(this.$router.params.itemData));
+    console.log('呵呵', parseData(this.$router.params.chooseIds));
     this.pageNo = 1;
-    this.pageSize = 10;
+    this.pageSize = 1000;
     this.state = {
+      chooseIds: parseData(this.$router.params.chooseIds),
       customerList: [],
       name: '',
       chooseCustomerIds: []
@@ -103,7 +103,7 @@ class ChooseCustomer extends Component<Props, State> {
    */
   getCustomerList = (refresh?: boolean) => {
 
-    let {name} = this.state;
+    let {name, chooseIds} = this.state;
 
     this.viewRef && this.viewRef.showLoading();
     let params = {pageNo: this.pageNo, pageSize: this.pageSize};
@@ -112,10 +112,18 @@ class ChooseCustomer extends Component<Props, State> {
       Object.assign(params, {name});
     }
     this.props.getCustomerList(params).then((res) => {
-      console.log('获取客户列表', res);
+      console.log('获取客户列表', res, chooseIds);
       this.viewRef && this.viewRef.hideLoading();
       if (refresh) {
-        this.setState({customerList: res.records});
+        let customerArray: any = [];
+
+        for (let i = 0; i < res.records.length; i++) {
+          console.log('打印',chooseIds);
+          if (!chooseIds || chooseIds.indexOf(res.records[i].id)=== -1) {
+            customerArray.push(res.records[i]);
+          }
+        }
+        this.setState({customerList: customerArray});
       } else if (res.records && res.records.length !== 0) {
         this.setState({customerList: this.state.customerList.concat(res.records)});
       } else {
@@ -183,38 +191,39 @@ class ChooseCustomer extends Component<Props, State> {
                 this.refresh();
               }}
               onScrollToLower={() => {
-                this.loadMore();
+                // this.loadMore();
               }}>
               {
                 customerList.map((value, index) => {
-                  return <GuanLianCustomer customer={value} key={index}
-                                           backgroundColor={commonStyles.pageDefaultBackgroundColor}
-                                           marginTop={10}
-                                           hascheck={true}
-                                           isChecked={chooseCustomerIds.includes(value.id)}
-                                           onChoose={(id: number) => {
-                                             let hasData = false;
+                  return <GuanLianCustomer
+                    customer={value} key={index}
+                    backgroundColor={commonStyles.pageDefaultBackgroundColor}
+                    marginTop={10}
+                    hascheck={true}
+                    isChecked={chooseCustomerIds.includes(value.id)}
+                    onChoose={(id: number) => {
+                      let hasData = false;
 
-                                             for (let i = 0; i < chooseCustomerIds.length; i++) {
-                                               if (id === chooseCustomerIds[i]) {
-                                                 hasData = true;
-                                                 this.state.chooseCustomerIds.splice(i, 1);
-                                                 this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
-                                                   () => {
-                                                     console.log('点击', this.state.chooseCustomerIds);
-                                                   });
-                                                 break;
-                                               }
-                                             }
-                                             if (!hasData) {
-                                               this.state.chooseCustomerIds.push(id);
-                                               this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
-                                                 () => {
-                                                   console.log('点击', this.state.chooseCustomerIds);
-                                                 });
-                                             }
-                                           }
-                                           }/>;
+                      for (let i = 0; i < chooseCustomerIds.length; i++) {
+                        if (id === chooseCustomerIds[i]) {
+                          hasData = true;
+                          this.state.chooseCustomerIds.splice(i, 1);
+                          this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
+                            () => {
+                              console.log('点击', this.state.chooseCustomerIds);
+                            });
+                          break;
+                        }
+                      }
+                      if (!hasData) {
+                        this.state.chooseCustomerIds.push(id);
+                        this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
+                          () => {
+                            console.log('点击', this.state.chooseCustomerIds);
+                          });
+                      }
+                    }
+                    }/>;
                 })
               }
             </ScrollView>
