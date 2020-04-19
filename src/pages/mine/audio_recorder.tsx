@@ -73,9 +73,7 @@ class AudioRecorder extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
   private timer;
   private viewRef;
   private recorderManager: RecorderManager;
@@ -156,22 +154,23 @@ class AudioRecorder extends Component<Props, State> {
     };
     let that = this;
 
-    Taro.getSetting({
-      success(res) {
-        if (res.authSetting['scope.record']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          that.recorderManager.start(options);
-        } else {
-          Taro.openSetting({
-            success(res) {
-              if (res.authSetting['scope.record']) {
-                that.recorderManager.start(options);
-              }
-            }
-          });
-        }
+    Taro.authorize({
+      scope: 'scope.record',
+      success() {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        that.recorderManager.start(options);
       }
-    })
+    }).catch(errMsg=>{
+      console.log(errMsg);
+      console.log('授权失败');
+      Taro.openSetting({
+        success(res) {
+          if (res.authSetting['scope.record']) {
+            that.recorderManager.start(options);
+          }
+        }
+      });
+    });
     this.recorderManager.onStart(() => {
       if (!this.timer) {
         this.starTime();
@@ -446,9 +445,9 @@ class AudioRecorder extends Component<Props, State> {
             title={'删除提醒'}
             subTitle={'删除后，语音数据将无法恢复，确定删除？'}
             cancelCallback={() => {
-            this.setState({showDeleteNotice: false});
-          }
-          } confirmCallback={() => {
+              this.setState({showDeleteNotice: false});
+            }
+            } confirmCallback={() => {
             toast('删除成功');
             this.innerAudioContext.stop();
             this.setState({
