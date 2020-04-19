@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/tequan.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,44 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="audio_recorder.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
+      <file leaf-file-name="tequan.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="163" column="26" lean-forward="true" selection-start-line="163" selection-start-column="26" selection-end-line="163" selection-end-column="26" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/@tarojs/taro/types/index.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="8985" column="12" selection-start-line="8985" selection-start-column="6" selection-end-line="8985" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5294">
-              <caret line="200" column="2" selection-start-line="200" selection-start-column="2" selection-end-line="200" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="163" column="19" selection-start-line="163" selection-start-column="13" selection-end-line="163" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="237">
+              <caret line="330" column="76" selection-start-line="330" selection-start-column="76" selection-end-line="330" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -70,8 +36,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>近</find>
-      <find>userId</find>
       <find>interestBehaviorActive</find>
       <find>radarActions</find>
       <find>this.$router.params</find>
@@ -100,6 +64,8 @@
       <find>record</find>
       <find>Taro.auth</find>
       <find>Taro.authorize</find>
+      <find>特权开通</find>
+      <find>购买须知</find>
     </findStrings>
     <replaceStrings>
       <replace>update</replace>
@@ -144,7 +110,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/utils/wxcharts.js" />
         <option value="$PROJECT_DIR$/src/compoments/taro-echart/PieChart.js" />
         <option value="$PROJECT_DIR$/src/compoments/taro-echart/LineChart.js" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/ming_pian_ma.tsx" />
@@ -195,6 +160,7 @@
         <option value="$PROJECT_DIR$/src/pages/mine/choose_customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/task_center.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/mine/tequan.tsx" />
       </list>
     </option>
   </component>
@@ -519,12 +485,12 @@
       <workItem from="1587169650562" duration="6987000" />
       <workItem from="1587267063502" duration="41000" />
       <workItem from="1587267146321" duration="4446000" />
-      <workItem from="1587298038025" duration="4984000" />
+      <workItem from="1587298038025" duration="5260000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1250299000" />
+    <option name="totallyTimeSpent" value="1250575000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -544,9 +510,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.37711442" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.37711442" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -630,13 +596,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/ec-canvas/echarts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -984,11 +943,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/audio_recorder.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="163" column="26" lean-forward="true" selection-start-line="163" selection-start-column="26" selection-end-line="163" selection-end-column="26" />
+        <state relative-caret-position="233">
+          <caret line="161" column="7" lean-forward="true" selection-start-line="161" selection-start-column="7" selection-end-line="161" selection-end-column="7" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/mine/tequan.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="330" column="76" selection-start-line="330" selection-start-column="76" selection-end-line="330" selection-end-column="76" />
         </state>
       </provider>
     </entry>

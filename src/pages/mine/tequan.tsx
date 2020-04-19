@@ -327,9 +327,7 @@ class TeQuan extends Component<Props, State> {
               </View>
               <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(17)])}>
                 <Text style={styleAssign([color('#979797'), fSize(13)])}>购买须知</Text>
-                <Text style={styleAssign([color('#979797'), fSize(13)])}>1.付款时向您的Apple ID账户收取费用
-                  \n2.订阅到期或免费试用结束前24小时内，将按页面价格自动续订所选套餐时长；同一Apple ID仅能享有一次免费试用资格 \n3.如需取消自动续订在当前订阅周期结束至少24小时之前在iTunes
-                  Store设置中关闭自动续订服务</Text>
+                <Text style={styleAssign([color('#979797'), fSize(13)])}>支付完成之时起5分钟内生效</Text>
                 <View style={styleAssign([styles.udr, styles.uac, mb(46)])}>
                   <Text style={styleAssign([color('#979797'), fSize(13)])}>4.成为会员即表示同意</Text>
                   <Text style={styleAssign([color('#3476E0'), fSize(13)])}>《极致名片隐私政策》</Text>
