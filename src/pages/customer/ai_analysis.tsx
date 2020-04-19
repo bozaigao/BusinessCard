@@ -87,6 +87,7 @@ class AiAnalysis extends Component<Props, State> {
       },
     ];
 
+    console.log(active);
     this.pieChart.refresh(chartData);
 
     this.lineChart.refresh(active.title, active.value);

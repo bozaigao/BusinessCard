@@ -14,7 +14,7 @@ function setChartData(chart, titles, values) {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      data: [],
       // show: false
     },
     yAxis: {
@@ -31,7 +31,7 @@ function setChartData(chart, titles, values) {
       name: '日活量',
       type: 'line',
       smooth: true,
-      data: [18, 36, 65, 30, 78, 40, 33]
+      data: []
     }]
   };
 
@@ -42,6 +42,8 @@ function setChartData(chart, titles, values) {
   if (values) {
     option.series.data = values;
   }
+
+  console.log('配置信息',option);
 
   chart.setOption(option);
 }
