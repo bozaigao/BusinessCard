@@ -124,7 +124,7 @@ class MyCollect extends Component<Props, State> {
   }
 
 
-  componentDidShow() {
+  componentDidMount() {
     this.myCollectList();
     this.refresh();
   }
