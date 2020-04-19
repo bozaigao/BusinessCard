@@ -84,7 +84,7 @@ export default class CustomItem extends PureComponent<Props, State> {
         </View>
         <View style={styleAssign([wRatio(100), styles.udr, mt(8), styles.uWrap])}>
           {
-            customer.label&&parseData(customer.label).map((value, index) => {
+            customer.type !== 1 && customer.label && parseData(customer.label).map((value, index) => {
               return (<View
                 key={index}
                 style={styleAssign([styles.uac, styles.ujc, padding([6, 6, 6, 6]), radiusA(14)])}>
