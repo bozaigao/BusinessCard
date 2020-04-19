@@ -88,7 +88,7 @@ class TaskCenter extends Component<Props, State> {
     this.pageSize1 = 1000;
   }
 
-  componentDidShow() {
+  componentDidMount() {
     this.setState({taskItem: []}, () => {
       this.refresh();
     });
