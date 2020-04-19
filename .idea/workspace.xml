@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/component/custom-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/component/custom-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/component/radar-item/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/component/radar-item/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/customer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,29 +16,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="radar.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/radar.tsx">
+      <file leaf-file-name="customer_detail.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="178" column="34" selection-start-line="178" selection-start-column="34" selection-end-line="178" selection-end-column="34" />
+            <state relative-caret-position="197">
+              <caret line="487" column="39" selection-start-line="487" selection-start-column="39" selection-end-line="487" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/component/radar-item/index.tsx">
+      <file leaf-file-name="customer_ziliao.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="74" column="17" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mine.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/mine.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4881">
-              <caret line="43" column="19" lean-forward="true" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+            <state relative-caret-position="144">
+              <caret line="219" column="47" lean-forward="true" selection-start-line="219" selection-start-column="47" selection-end-line="219" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -57,8 +46,8 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/component/custom-item/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+            <state relative-caret-position="197">
+              <caret line="86" column="57" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -74,9 +63,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>来自</find>
-      <find>添加商品</find>
-      <find>最后</find>
       <find>名字</find>
       <find>练习</find>
       <find>认出</find>
@@ -104,6 +90,9 @@
       <find>totalCustomers</find>
       <find>this.pageNo</find>
       <find>loadMore</find>
+      <find>Ta的标签</find>
+      <find>客户详细资料</find>
+      <find>手动</find>
     </findStrings>
     <replaceStrings>
       <replace>update</replace>
@@ -152,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/pages/customer/add_customer.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/my-photo/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/add_tags.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" />
         <option value="$PROJECT_DIR$/src/utils/wxcharts.js" />
         <option value="$PROJECT_DIR$/src/compoments/taro-echart/PieChart.js" />
         <option value="$PROJECT_DIR$/src/compoments/taro-echart/LineChart.js" />
@@ -199,6 +187,7 @@
         <option value="$PROJECT_DIR$/src/pages/component/radar-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
         <option value="$PROJECT_DIR$/src/pages/component/custom-item/index.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" />
       </list>
     </option>
   </component>
@@ -522,12 +511,12 @@
       <workItem from="1586831415897" duration="30000" />
       <workItem from="1587169650562" duration="6987000" />
       <workItem from="1587267063502" duration="41000" />
-      <workItem from="1587267146321" duration="3232000" />
+      <workItem from="1587267146321" duration="4446000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1244101000" />
+    <option name="totallyTimeSpent" value="1245315000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -633,13 +622,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/ec-canvas/ec-canvas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/weapp/pages/customer/ec-canvas/ec-canvas.js" />
     <entry file="file://$PROJECT_DIR$/dist/weapp/pages/customer/customer_detail.js" />
     <entry file="file://$PROJECT_DIR$/dist/weapp/pages/customer/customer_detail.wxml" />
@@ -894,13 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="301" column="17" lean-forward="true" selection-start-line="301" selection-start-column="17" selection-end-line="301" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -948,6 +923,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="487" column="39" selection-start-line="487" selection-start-column="39" selection-end-line="487" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="219" column="47" lean-forward="true" selection-start-line="219" selection-start-column="47" selection-end-line="219" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -957,8 +946,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/component/custom-item/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+        <state relative-caret-position="197">
+          <caret line="86" column="57" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="57" />
         </state>
       </provider>
     </entry>

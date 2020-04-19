@@ -55,9 +55,7 @@ class CustomerZiLiao extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -219,7 +217,7 @@ class CustomerZiLiao extends Component<Props, State> {
           }
           {/*常用标签*/}
           {
-            customer.label && parseData(customer.label).length !== 0 &&
+            customer.type === 1 && customer.label && parseData(customer.label).length !== 0 &&
             <View style={styleAssign([wRatio(100), h(154), mt(8), bgColor(commonStyles.whiteColor)])}>
               <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>Ta的标签</Text>
               <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
