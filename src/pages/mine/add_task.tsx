@@ -38,6 +38,7 @@ import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import {CustomerModel} from "../../const/global";
 import DateTimePicker from "../../compoments/date-time-picker/index";
 import './add_task.scss';
+import SingleLineText from "../../compoments/singleline-text";
 
 interface Props {
   addTask: any;
@@ -206,7 +207,7 @@ class AddTask extends Component<Props, State> {
                              key={index}>
                   <Image style={styleAssign([w(73), h(73), radiusA(4)])}
                          src={value.avatar ? value.avatar : `${cloudBaseUrl}ico_default.png`}/>
-                  <Text style={styleAssign([fSize(14), color('#343434'), mt(5)])}>{value.name}</Text>
+                  <SingleLineText text={value.name} style={styleAssign([fSize(14), color('#343434'), mt(5)])}/>
                   <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
                          src={`${cloudBaseUrl}ico_close.png`}
                          onClick={() => {

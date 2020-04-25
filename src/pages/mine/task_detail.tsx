@@ -41,6 +41,7 @@ import DateTimePicker from "../../compoments/date-time-picker/index";
 import './add_task.scss';
 import TouchableButton from "../../compoments/touchable-button";
 import DeleteNoticeModal from "../../compoments/delete-notice";
+import SingleLineText from "../../compoments/singleline-text";
 
 interface Props {
   updateTask: any;
@@ -73,7 +74,7 @@ class TaskDetail extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -269,10 +270,11 @@ class TaskDetail extends Component<Props, State> {
           <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, pl(10), pr(10)])}>
             {
               chooseCustomer.map((value, index) => {
-                return <View style={styleAssign([w(78), h(78), styles.uac, styles.ujc, ml(10), mt(10)])}
+                return <View style={styleAssign([w(78), styles.uac, styles.ujc, ml(10), mt(10)])}
                              key={index}>
                   <Image style={styleAssign([w(73), h(73), radiusA(4)])}
                          src={value.avatar ? value.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                  <SingleLineText text={value.name} style={styleAssign([fSize(14), color('#343434'), mt(5)])}/>
                   {
                     canEdit &&
                     <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
@@ -292,8 +294,13 @@ class TaskDetail extends Component<Props, State> {
               <Image style={styleAssign([w(68), h(68), ml(10), mt(10)])}
                      src={`${cloudBaseUrl}ico_add_task.png`}
                      onClick={() => {
+                       let chooseIds: any = [];
+
+                       for (let i = 0; i < chooseCustomer.length; i++) {
+                         chooseIds.push(chooseCustomer[i].id);
+                       }
                        Taro.navigateTo({
-                         url: `/pages/mine/choose_customer`
+                         url: `/pages/mine/choose_customer?chooseIds=${JSON.stringify(chooseIds)}`
                        });
                      }}/>
             }
