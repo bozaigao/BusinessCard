@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_remark.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_remark.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +21,8 @@
       <file leaf-file-name="customer_remark.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_remark.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+            <state relative-caret-position="417">
+              <caret line="247" column="41" selection-start-line="247" selection-start-column="41" selection-end-line="247" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -29,8 +30,8 @@
       <file leaf-file-name="customer_ziliao.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="225" column="67" lean-forward="true" selection-start-line="225" selection-start-column="67" selection-end-line="225" selection-end-column="67" />
+            <state relative-caret-position="376">
+              <caret line="252" column="106" selection-start-line="252" selection-start-column="106" selection-end-line="252" selection-end-column="106" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -58,11 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>最后访问</find>
-      <find>谁访问了我</find>
-      <find>ShaiXuanModal</find>
-      <find>setCustomer</find>
-      <find>Clip</find>
       <find>谁访问</find>
       <find>other_businesscard</find>
       <find>人浏览过</find>
@@ -88,9 +84,13 @@
       <find>微信号</find>
       <find>客户详细资料</find>
       <find>手机</find>
+      <find>TA的</find>
+      <find>this.avatarArr</find>
+      <find>this.avatarArr</find>
+      <find>uploadResultArr</find>
+      <find>this.aboutUrl</find>
     </findStrings>
     <replaceStrings>
-      <replace>update</replace>
       <replace>USERINFO</replace>
       <replace>introduction</replace>
       <replace>state.login</replace>
@@ -120,6 +120,7 @@
       <replace />
       <replace>traceList</replace>
       <replace>您</replace>
+      <replace>aboutUrl</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/pages/mine</dir>
@@ -132,7 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/mine/company_info.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/component/my-business/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/choose_industry_tag.tsx" />
         <option value="$PROJECT_DIR$/src/utils/wxcharts.ts" />
@@ -182,6 +182,7 @@
         <option value="$PROJECT_DIR$/src/pages/radar/radar_detail.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/delete-notice/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/customer_remark.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx" />
       </list>
     </option>
@@ -522,12 +523,12 @@
       <workItem from="1587267146321" duration="4446000" />
       <workItem from="1587298038025" duration="6797000" />
       <workItem from="1587779298818" duration="8309000" />
-      <workItem from="1587804420342" duration="880000" />
+      <workItem from="1587804420342" duration="1884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1261301000" />
+    <option name="totallyTimeSpent" value="1262305000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1001,13 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_remark.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1015,10 +1009,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_remark.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="247" column="41" selection-start-line="247" selection-start-column="41" selection-end-line="247" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_ziliao.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="225" column="67" lean-forward="true" selection-start-line="225" selection-start-column="67" selection-end-line="225" selection-end-column="67" />
+        <state relative-caret-position="376">
+          <caret line="252" column="106" selection-start-line="252" selection-start-column="106" selection-end-line="252" selection-end-column="106" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

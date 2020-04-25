@@ -50,7 +50,7 @@ interface State {
 class CustomerRemark extends Component<Props, State> {
   private id: string;
   private viewRef;
-  private avatarArr;
+  private aboutUrl;
   private uploading: boolean;
   private uploadCount: number;
   private uploadResultArr;
@@ -69,7 +69,7 @@ class CustomerRemark extends Component<Props, State> {
   constructor(props) {
     super(props);
     this.id = this.$router.params.id;
-    this.avatarArr = [this.$router.params.aboutUrl];
+    this.aboutUrl = this.$router.params.aboutUrl;
     this.uploading = false;
     this.uploadCount = 0;
     this.uploadResultArr = [];
@@ -120,7 +120,7 @@ class CustomerRemark extends Component<Props, State> {
       name: this.state.name,
       phone: this.state.phone,
       remark: this.state.desc,
-      aboutUrl: this.avatarArr[0]
+      aboutUrl: this.aboutUrl
     }).then((res) => {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
@@ -236,8 +236,8 @@ class CustomerRemark extends Component<Props, State> {
                     console.log('路径', res);
                     this.setState({avatar: res.tempFiles[0]});
                     this.uploadFileList(res.tempFiles, () => {
-                      this.avatarArr.push(...this.uploadResultArr);
-                      console.log('上传成功后的图片列表', this.avatarArr);
+                      this.aboutUrl = this.uploadResultArr[0];
+                      console.log('上传成功后的图片列表', this.aboutUrl);
                     });
                   });
                 }}>
@@ -258,7 +258,7 @@ class CustomerRemark extends Component<Props, State> {
                   <Image style={styleAssign([w(20), h(20), styles.upa, absR(-5), absT(-5)])}
                          src={`${cloudBaseUrl}ico_close.png`}
                          onClick={() => {
-                           this.avatarArr = [];
+                           this.aboutUrl = '';
                            this.setState({avatar: {path: ''}});
                          }}/>
                 </View>
