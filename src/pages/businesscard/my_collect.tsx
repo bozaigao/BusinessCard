@@ -375,7 +375,11 @@ class MyCollect extends Component<Props, State> {
           {
             recordList.length !== 0 && recordList.map((value, index) => {
               console.log(value);
-              return (<VisitorItem key={index} item={value}/>);
+              return (<VisitorItem key={index} item={value}
+                                   setCustomer={(userId) => {
+                                     this.addCustomer(userId);
+                                   }
+                                   }/>);
             })
           }
         </ScrollView>

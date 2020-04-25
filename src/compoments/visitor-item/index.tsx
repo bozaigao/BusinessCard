@@ -31,6 +31,7 @@ import {cloudBaseUrl} from "../../api/httpurl";
 
 interface Props {
   item: VisitorRecordModel;
+  setCustomer: any;
 }
 
 interface State {
@@ -39,7 +40,7 @@ interface State {
 export default class VisitorItem extends PureComponent<Props, State> {
 
   render() {
-    let {item} = this.props;
+    let {item, setCustomer} = this.props;
 
     return (
       <TouchableButton
@@ -50,7 +51,7 @@ export default class VisitorItem extends PureComponent<Props, State> {
               <Image style={styleAssign([w(46), h(46), radiusA(23)])}
                      src={item.visitor.avatar}/>
               <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
-                     src={item.visitor.sex === 2 ?`${cloudBaseUrl}ico_nv.png` : `${cloudBaseUrl}ico_nan.png`}/>
+                     src={item.visitor.sex === 2 ? `${cloudBaseUrl}ico_nv.png` : `${cloudBaseUrl}ico_nan.png`}/>
             </View>
             <View style={styleAssign([ml(16)])}>
               <Text style={styleAssign([fSize(12), color('#343434')])}>{item.visitor.name}</Text>
@@ -58,7 +59,11 @@ export default class VisitorItem extends PureComponent<Props, State> {
             </View>
           </View>
           <View style={styleAssign([bgColor(commonStyles.colorTheme), radiusA(4), styles.uac, styles.ujc,
-            w(72), h(28), radiusA(4), mr(16)])}>
+            w(72), h(28), radiusA(4), mr(16)])}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCustomer(item.userId);
+                }}>
             <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>置为客户</Text>
           </View>
         </View>
@@ -76,10 +81,22 @@ export default class VisitorItem extends PureComponent<Props, State> {
               style={styleAssign([color('#E2BB7B'), fSize(12), ml(16)])}>{`最后访问 ${transformTime(item.lastVisitTime)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
-            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
+            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
+            onClick={(e)=>{
+              e.stopPropagation();
+              Taro.navigateTo({
+                url: `/pages/businesscard/other_businesscard?userId=${item.userId}`
+              });
+            }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>
             </View>
-            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}>
+            <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    Taro.setClipboardData({
+                      data: item.visitor.wechat
+                    });
+                  }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>添加微信</Text>
             </View>
           </View>

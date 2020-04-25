@@ -87,7 +87,7 @@ interface State {
 
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions, radarActions,visitorActions))
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions, radarActions, visitorActions))
 class OtherBusinesscard extends Component<Props, State> {
 
   private viewRef;
@@ -152,9 +152,9 @@ class OtherBusinesscard extends Component<Props, State> {
    * @QQ 1054539528
    * @date 2020/4/18
    * @function: 新增访客记录
-  */
+   */
   addVisitor = (type) => {
-    this.props.addVisitor({visitorUserId: this.$router.params.userId,visitContent:type}).then((res) => {
+    this.props.addVisitor({visitorUserId: this.$router.params.userId, visitContent: type}).then((res) => {
       console.log('新增访客记录', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -454,14 +454,15 @@ class OtherBusinesscard extends Component<Props, State> {
                   {
                     visitorListSub.map((value, index) => {
                       console.log(value);
-                      return <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absL(15 * index)])}
+                      return <Image key={index} style={styleAssign([w(20), h(20),radiusA(10), styles.upa, absL(15 * index)])}
                                     src={value.avatar}/>
                     })
                   }
                   {
                     visitorListSub.length === 0 && [1, 2, 3, 4, 5].map((value, index) => {
                       console.log(value);
-                      return <Image key={index} style={styleAssign([w(20), h(20), styles.upa, absL(15 * index)])}
+                      return <Image key={index}
+                                    style={styleAssign([w(20), h(20), radiusA(10), styles.upa, absL(15 * index)])}
                                     src={`${cloudBaseUrl}ico_default.png`}/>
                     })
                   }
