@@ -53,7 +53,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet({userId:this.props.userInfo.id}).then((res) => {
+    this.props.userSettingGet({userId: this.props.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone === 0,
@@ -170,8 +170,8 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(18);
                   context.setFillStyle(commonStyles.colorTheme);
                   context.fillText(userInfo.name, 34, 115);
+                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 18, 40), 115);
                   context.setFontSize(12);
-                  context.fillText(userInfo.position, 100, 115);
                   context.fillText(userInfo.enterpriseName, 34, 140);
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
@@ -298,7 +298,7 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFillStyle(commonStyles.whiteColor);
                   context.fillText(userInfo.position, 120, 80);
                   context.setTextAlign('right');
-                  that.fillTextWrap2(context, userInfo.enterpriseName, 300, 50, 100, 16, 12,commonStyles.whiteColor);
+                  that.fillTextWrap2(context, userInfo.enterpriseName, 300, 40, 100, 16, 12, commonStyles.whiteColor);
                   context.setTextAlign('left');
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
@@ -393,7 +393,7 @@ class MingpianHaibao extends Component<Props, State> {
                 //@ts-ignore
                 context.drawImage(res.path, 178, 164, 12, 10);
                 context.setTextAlign('left');
-                that.fillTextWrap2(context, userInfo.detailAddress, 192, 174, 100, 16, 12,'#343434');
+                that.fillTextWrap2(context, userInfo.detailAddress, 192, 174, 100, 16, 12, '#343434');
               }
               //小程序码
               Taro.getImageInfo({
@@ -547,11 +547,11 @@ class MingpianHaibao extends Component<Props, State> {
                   context.restore();
                   context.setFontSize(18);
                   context.setFillStyle('#343434');
-                  context.setTextAlign('center');
-                  context.fillText(userInfo.name, 68, 65);
-                  context.setFontSize(12);
+                  context.setTextAlign('left');
+                  context.fillText(userInfo.name, 44, 65);
                   context.setFillStyle('#343434');
-                  context.fillText(userInfo.position, 140, 65);
+                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 18, 60), 65)
+                  context.setFontSize(12);
                   context.setTextAlign('left');
                   context.fillText(userInfo.enterpriseName, 44, 85);
                   context.setFontSize(14);
@@ -649,7 +649,7 @@ class MingpianHaibao extends Component<Props, State> {
                 context.drawImage(res.path, 38, 164, 12, 10);
                 context.setTextAlign('left');
                 context.setFillStyle(commonStyles.whiteColor);
-                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 180, 16, 12,commonStyles.whiteColor);
+                that.fillTextWrap2(context, userInfo.detailAddress, 58, 174, 180, 16, 12, commonStyles.whiteColor);
               }
               //小程序码
               Taro.getImageInfo({
@@ -661,10 +661,10 @@ class MingpianHaibao extends Component<Props, State> {
                 context.restore();
                 context.setFontSize(18);
                 context.setFillStyle(commonStyles.whiteColor);
-                context.setTextAlign('center');
-                context.fillText(userInfo.name, 68, 65);
+                context.setTextAlign('left');
+                context.fillText(userInfo.name, 44, 65);
+                context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 18, 60), 65);
                 context.setFontSize(12);
-                context.fillText(userInfo.position, 140, 65);
                 context.setTextAlign('left');
                 context.fillText(userInfo.enterpriseName, 44, 85);
                 context.setFontSize(14);
@@ -848,6 +848,15 @@ class MingpianHaibao extends Component<Props, State> {
       ctx.fillText('这是我的名片，请惠存。', x, y + 20);
       ctx.fillText('谢谢!', x, y + 40);
     }
+  }
+
+
+  measureTextWidth(ctx, text, fontSize, startX) {
+    // 字符串分割为数组
+    ctx.setFontSize(fontSize);
+    let currentWidth = ctx.measureText(text).width;
+
+    return currentWidth + startX;
   }
 
   render() {
