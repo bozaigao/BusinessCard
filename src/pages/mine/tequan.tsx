@@ -73,9 +73,7 @@ class TeQuan extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -315,7 +313,7 @@ class TeQuan extends Component<Props, State> {
             })
           }
           {
-            currentIndex !== 2 && <View style={styleAssign([styles.uf1])}>
+            currentIndex !== 2 && <View style={styleAssign([styles.uf1, mb(20)])}>
               {/*开通*/}
               <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
                 <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
