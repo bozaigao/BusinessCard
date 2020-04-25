@@ -102,7 +102,7 @@ class CustomerDetail extends Component<Props, State> {
     }
   }
 
-  componentDidMount() {
+  componentDidShow() {
     this.getCustomerDetail();
   }
 
