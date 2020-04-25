@@ -94,10 +94,12 @@ export default class GoodsManageItem extends Component<Props, State> {
           </View>
           <View style={styleAssign([ml(12)])}>
             <Text style={styleAssign([fSize(18), color('#343434')])}>{itemData.name}</Text>
-            <View style={styleAssign([styles.uac, styles.udr, mt(16)])}>
-              <Text style={styleAssign([fSize(12), color('#A6A6A6')])}>参考价格：</Text>
-              <Text style={styleAssign([fSize(18), color('#FA541C')])}>{`¥${itemData.price}`}</Text>
-            </View>
+            {
+              itemData.price !== 0 && <View style={styleAssign([styles.uac, styles.udr, mt(16)])}>
+                <Text style={styleAssign([fSize(12), color('#A6A6A6')])}>参考价格：</Text>
+                <Text style={styleAssign([fSize(18), color('#FA541C')])}>{`¥${itemData.price}`}</Text>
+              </View>
+            }
             <Text
               style={styleAssign([fSize(12), color('#A6A6A6'), mt(4)])}>{`创建时间：${transformTime(itemData.createTime)}`}</Text>
           </View>
