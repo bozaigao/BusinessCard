@@ -149,7 +149,7 @@ class PersonalInfo extends Component<Props, State> {
       hideEmail: number;
       hideAddress: number;
     }) => {
-      console.log('参数回调', data);
+      console.log('名片样式参数回调', data);
       this.setState({
         hidePhone: data.hidePhone,
         hideWechat: data.hideWechat,

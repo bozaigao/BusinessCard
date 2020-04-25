@@ -172,7 +172,7 @@ class MingpianHaibao extends Component<Props, State> {
                   context.fillText(userInfo.name, 34, 115);
                   context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 18, 40), 115);
                   context.setFontSize(12);
-                  context.fillText(userInfo.enterpriseName, 34, 140);
+                  context.fillText(userInfo.enterpriseName.length > 10 ? userInfo.enterpriseName.substring(0, 11)+'...' : userInfo.enterpriseName, 34, 140);
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
                   that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
