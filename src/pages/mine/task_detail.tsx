@@ -45,7 +45,6 @@ import SingleLineText from "../../compoments/singleline-text";
 
 interface Props {
   updateTask: any;
-  updateTask: any;
   getTask: any;
 }
 

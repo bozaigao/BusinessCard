@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/mine/add_task.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/add_task.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/mine/task_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/mine/task_detail.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -62,8 +61,8 @@
       <file leaf-file-name="task_detail.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/task_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="298" column="51" selection-start-line="298" selection-start-column="51" selection-end-line="298" selection-end-column="51" />
+            <state relative-caret-position="308">
+              <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -546,12 +545,12 @@
       <workItem from="1587267146321" duration="4446000" />
       <workItem from="1587298038025" duration="6797000" />
       <workItem from="1587779298818" duration="8309000" />
-      <workItem from="1587804420342" duration="3584000" />
+      <workItem from="1587804420342" duration="3707000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1264005000" />
+    <option name="totallyTimeSpent" value="1264128000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -571,9 +570,9 @@
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.27363184" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.27363184" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32636815" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1056,8 +1055,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/task_detail.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="298" column="51" selection-start-line="298" selection-start-column="51" selection-end-line="298" selection-end-column="51" />
+        <state relative-caret-position="308">
+          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
