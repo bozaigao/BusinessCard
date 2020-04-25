@@ -79,9 +79,6 @@ class CustomerDetail extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-    disableScroll: true
-  }
 
   constructor(props) {
     super(props);
