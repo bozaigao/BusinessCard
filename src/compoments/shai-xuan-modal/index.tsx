@@ -253,7 +253,7 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                 </View>
               </View> :
               <View style={styleAssign([wRatio(100), h(156), bgColor(commonStyles.whiteColor)])}>
-                <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问时间</Text>
+                <Text style={styleAssign([color('#0C0C0C'), fSize(14), ml(20), mt(16)])}>访问次数</Text>
                 <View style={styleAssign([styles.uac, styles.udr, pl(20), mt(12)])}>
                   {
                     ['全部', '10次内', '30次内', '大于30次'].map((value, index) => {
