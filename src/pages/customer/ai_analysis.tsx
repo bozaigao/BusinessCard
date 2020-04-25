@@ -72,18 +72,27 @@ class AiAnalysis extends Component<Props, State> {
   componentDidMount() {
     let {interest, active} = this.state;
     let totalViews = interest.card + interest.company + interest.goods;
+    let shouldSub = false, cardPercent = 0, goodsPercent = 0, interestPercent = 0;
+
+    cardPercent = parseInt(`${(interest.card / totalViews) * 100}`, 10);
+    goodsPercent = parseInt(`${(interest.goods / totalViews) * 100}`, 10);
+    interestPercent = parseInt(`${(interest.company / totalViews) * 100}`, 10);
+
+    if (cardPercent !== 0 || goodsPercent !== 0 || interestPercent !== 0) {
+      shouldSub = true;
+    }
     const chartData = [
       {
         value: totalViews === 0 ? 0 : interest.card / totalViews,
-        name: totalViews === 0 ? '0%' : parseInt(`${(interest.card / totalViews) * 100}`, 10) + '%'
+        name: totalViews === 0 ? '0%' : cardPercent + '%'
       },
       {
         value: totalViews === 0 ? 0 : interest.goods / totalViews,
-        name: totalViews === 0 ? '0%' : parseInt(`${(interest.goods / totalViews) * 100}`, 10) + '%'
+        name: totalViews === 0 ? '0%' : goodsPercent + '%'
       },
       {
         value: totalViews === 0 ? 0 : interest.company / totalViews,
-        name: totalViews === 0 ? '0%' : parseInt(`${(interest.company / totalViews) * 100}`, 10) + '%'
+        name: totalViews === 0 ? '0%' : (shouldSub ? (100 - cardPercent - goodsPercent) + '%' : interestPercent + '%')
       },
     ];
 
@@ -104,6 +113,15 @@ class AiAnalysis extends Component<Props, State> {
   render() {
     let {current, interest} = this.state;
     let totalViews = interest.card + interest.company + interest.goods;
+    let shouldSub = false, cardPercent = 0, goodsPercent = 0, interestPercent = 0;
+
+    cardPercent = parseInt(`${(interest.card / totalViews) * 100}`, 10);
+    goodsPercent = parseInt(`${(interest.goods / totalViews) * 100}`, 10);
+    interestPercent = parseInt(`${(interest.company / totalViews) * 100}`, 10);
+
+    if (cardPercent !== 0 || goodsPercent !== 0 || interestPercent !== 0) {
+      shouldSub = true;
+    }
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -129,19 +147,19 @@ class AiAnalysis extends Component<Props, State> {
               <View style={styleAssign([styles.udr, styles.uac, mt(17)])}>
                 <View style={styleAssign([w(13), h(13), radiusA(2), bgColor('#E2BB7B')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  {`对我名片信息感兴趣：${totalViews === 0 ? '0%' : (interest.card / totalViews) + '%'}`}
+                  {`对我名片信息感兴趣：${totalViews === 0 ? '0%' : cardPercent + '%'}`}
                 </Text>
               </View>
               <View style={styleAssign([styles.udr, mt(17)])}>
                 <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#825D22')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  {`对我的产品感兴趣：${totalViews === 0 ? '0%' : (interest.goods / totalViews) + '%'}`}
+                  {`对我的产品感兴趣：${totalViews === 0 ? '0%' : goodsPercent + '%'}`}
                 </Text>
               </View>
               <View style={styleAssign([styles.udr, mt(17)])}>
                 <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#FFE0AE')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  {`对我的企业感兴趣：${totalViews === 0 ? '0%' : (interest.company / totalViews) + '%'}`}
+                  {`对我的企业感兴趣：${totalViews === 0 ? '0%' :  (shouldSub ? (100 - cardPercent - goodsPercent) + '%' : interestPercent + '%')}`}
                 </Text>
               </View>
             </View>
