@@ -64,7 +64,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -315,7 +315,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
               (this.type === 'shop' ?
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20), mt(13)])}>
                   开通店铺的用户，可在选择开通时间期限内使用个人商铺程序，包括程序中的所有功能，一旦开通此项特权，我们将免费为用户装修个人店铺，并上架用户专属商品。店铺可展示商品更全面的信息，并进行线上交易。\n
-                  由于开通店铺特权需要专门为用户开通店铺程序，操作比较复杂，所以暂不提供试用，并且开通店铺后可以进行线上交易，因此需要用户填写申请表以提供必要信息，后续则需要用户提供商品的相关资料信息，望用户能积极配合我们的工作人员，若给您带来不便，望谅解。\ns
+                  由于开通店铺特权需要专门为用户开通店铺程序，操作比较复杂，所以暂不提供试用，并且开通店铺后可以进行线上交易，因此需要用户填写申请表以提供必要信息，后续则需要用户提供商品的相关资料信息，望用户能积极配合我们的工作人员，若给您带来不便，望谅解。\n
                   若您已开通此特权，可在特权到期前提前联系客服申请继续开通，以免到期后服务中断给您带来不便，若服务中断后需要再次开通的用户也可联系客服帮助恢复。
                 </Text> :
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(20), mr(20), mt(13)])}>

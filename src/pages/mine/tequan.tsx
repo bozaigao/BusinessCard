@@ -328,10 +328,6 @@ class TeQuan extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(17)])}>
                 <Text style={styleAssign([color('#979797'), fSize(13)])}>购买须知</Text>
                 <Text style={styleAssign([color('#979797'), fSize(13)])}>支付完成之时起5分钟内生效</Text>
-                <View style={styleAssign([styles.udr, styles.uac, mb(46)])}>
-                  <Text style={styleAssign([color('#979797'), fSize(13)])}>4.成为会员即表示同意</Text>
-                  <Text style={styleAssign([color('#3476E0'), fSize(13)])}>《极致名片隐私政策》</Text>
-                </View>
               </View>
             </View>
           }
@@ -345,7 +341,7 @@ class TeQuan extends Component<Props, State> {
                       onClick={() => {
                         this.purchasePackage(packageId);
                       }}>
-                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>已申请</Text>
+                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即申请</Text>
                 </View>
               </View>
               <Text
