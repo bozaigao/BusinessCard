@@ -147,8 +147,13 @@ export default class PersonalInfo extends PureComponent<Props, State> {
               <View style={styleAssign([])}>
                 <Text style={styleAssign([fSize(14)])}>教育</Text>
                 <Text style={styleAssign([fSize(12)])}>{userInfo.school}</Text>
-                <Text
-                  style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text>
+                {
+                  userInfo.schoolTimeStart.length !== 0 && userInfo.schoolTimeEnd.length !== 0 ?
+                    <Text
+                      style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession} ${userInfo.schoolTimeStart}-${userInfo.schoolTimeEnd} ${userInfo.educationBackground}`}</Text> :
+                    <Text
+                      style={styleAssign([fSize(10), color('#979797')])}>{`${userInfo.profession}`}</Text>
+                }
               </View>
               <View style={styleAssign([w(52), h(28), radiusA(4), styles.uac, styles.ujc,
                 bo(1), radiusA(4), {borderStyle: 'solid'}, bdColor(commonStyles.colorTheme), mr(16)])}
