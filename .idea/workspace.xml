@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/radar/radar_detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/radar/radar_detail.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,44 +18,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/component/personal-info/index.tsx">
+      <file leaf-file-name="customer_detail.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="154" column="33" lean-forward="true" selection-start-line="154" selection-start-column="33" selection-end-line="154" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1824">
-              <caret line="317" column="31" lean-forward="true" selection-start-line="317" selection-start-column="31" selection-end-line="317" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mingpian_haibao.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="192" column="106" selection-start-line="192" selection-start-column="106" selection-end-line="192" selection-end-column="106" />
+            <state relative-caret-position="286">
+              <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
               <folding>
-                <element signature="e#0#44#0" expanded="true" />
+                <element signature="e#620#658#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="other_businesscard.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
+      <file leaf-file-name="ai_analysis.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="580" column="35" lean-forward="true" selection-start-line="580" selection-start-column="35" selection-end-line="580" selection-end-column="35" />
+            <state relative-caret-position="425">
+              <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
               <folding>
-                <element signature="e#119#171#0" expanded="true" />
-                <element signature="e#343#410#0" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#115#167#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radar.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="236">
+              <caret line="70" column="3" lean-forward="true" selection-start-line="70" selection-start-column="3" selection-end-line="70" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/actions/customer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="79" column="3" lean-forward="true" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radar_detail.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pages/radar/radar_detail.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="246" column="14" selection-start-line="217" selection-start-column="11" selection-end-line="246" selection-end-column="14" />
+              <folding>
+                <element signature="e#112#164#0" expanded="true" />
+                <element signature="e#512#550#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,20 +77,11 @@
       <file leaf-file-name="login.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/actions/login.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="63" column="28" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="28" />
+            <state relative-caret-position="246">
+              <caret line="67" column="3" lean-forward="true" selection-start-line="67" selection-start-column="3" selection-end-line="67" selection-end-column="3" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="business_card.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/actions/business_card.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="31" column="10" lean-forward="true" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -93,12 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>收藏</find>
-      <find>备注</find>
-      <find>this.avatarArr</find>
-      <find>setting</find>
-      <find>userSettingGet</find>
-      <find>save</find>
       <find>dido</find>
       <find>measureTextWidth</find>
       <find>context.setTextAlign(</find>
@@ -119,10 +117,16 @@
       <find>我的个人简介</find>
       <find>getUserInfoById</find>
       <find>didMO</find>
-      <find>didMo</find>
       <find>ming</find>
       <find>other</find>
       <find>showShare</find>
+      <find>didMo</find>
+      <find>active</find>
+      <find>getCustomerDetail</find>
+      <find>behaviorTrace</find>
+      <find>ana</find>
+      <find>interestBehaviorActive</find>
+      <find>ai_analysis</find>
     </findStrings>
     <replaceStrings>
       <replace>update</replace>
@@ -189,14 +193,11 @@
         <option value="$PROJECT_DIR$/src/const/global.ts" />
         <option value="$PROJECT_DIR$/src/pages/radar.tsx" />
         <option value="$PROJECT_DIR$/src/utils/datatool.ts" />
-        <option value="$PROJECT_DIR$/src/pages/radar/radar_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" />
         <option value="$PROJECT_DIR$/src/app.tsx" />
         <option value="$PROJECT_DIR$/src/compoments/trace-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/api/httpurl.ts" />
         <option value="$PROJECT_DIR$/src/actions/radar.ts" />
-        <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
-        <option value="$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/LineChart.js" />
         <option value="$PROJECT_DIR$/src/pages/component/radar-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
@@ -218,6 +219,9 @@
         <option value="$PROJECT_DIR$/src/pages/businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx" />
         <option value="$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/radar/radar_detail.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/customer_detail.tsx" />
+        <option value="$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx" />
       </list>
     </option>
   </component>
@@ -280,7 +284,7 @@
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="businesscard" type="462c0819:PsiDirectoryNode" />
+              <item name="customer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -556,12 +560,12 @@
       <workItem from="1587267063502" duration="41000" />
       <workItem from="1587267146321" duration="4446000" />
       <workItem from="1587298038025" duration="6797000" />
-      <workItem from="1587779298818" duration="5737000" />
+      <workItem from="1587779298818" duration="6724000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1257849000" />
+    <option name="totallyTimeSpent" value="1258836000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -581,7 +585,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" weight="0.37711442" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.27363184" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16113745" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
@@ -725,13 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/customer.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="93" column="25" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/const/global.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -767,13 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="67" column="33" lean-forward="true" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/datatool.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -781,29 +771,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="87" column="6" lean-forward="true" selection-start-line="87" selection-start-column="6" selection-end-line="87" selection-end-column="6" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#115#167#0" expanded="true" />
-            <element signature="e#493#531#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/customer/LineChart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="29" column="14" lean-forward="true" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/radar/radar_detail.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="153" column="74" selection-start-line="153" selection-start-column="74" selection-end-line="153" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -818,13 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="74" column="17" lean-forward="true" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10714">
-          <caret line="487" column="39" selection-start-line="487" selection-start-column="39" selection-end-line="487" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1010,16 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/actions/login.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="63" column="28" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="28" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/other_businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1040,10 +994,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard/mingpian_haibao.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="192" column="106" selection-start-line="192" selection-start-column="106" selection-end-line="192" selection-end-column="106" />
+        <state relative-caret-position="286">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/login.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="67" column="3" lean-forward="true" selection-start-line="67" selection-start-column="3" selection-end-line="67" selection-end-column="3" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/customer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="79" column="3" lean-forward="true" selection-start-line="79" selection-start-column="3" selection-end-line="79" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/actions/radar.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="70" column="3" lean-forward="true" selection-start-line="70" selection-start-column="3" selection-end-line="70" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/radar/radar_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="246" column="14" selection-start-line="217" selection-start-column="11" selection-end-line="246" selection-end-column="14" />
+          <folding>
+            <element signature="e#112#164#0" expanded="true" />
+            <element signature="e#512#550#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/customer_detail.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="19" column="8" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
+          <folding>
+            <element signature="e#620#658#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#115#167#0" expanded="true" />
           </folding>
         </state>
       </provider>

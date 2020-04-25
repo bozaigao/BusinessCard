@@ -75,15 +75,15 @@ class AiAnalysis extends Component<Props, State> {
     const chartData = [
       {
         value: totalViews === 0 ? 0 : interest.card / totalViews,
-        name: totalViews === 0 ? '0%' : (interest.card / totalViews) + '%'
+        name: totalViews === 0 ? '0%' : parseInt(`${(interest.card / totalViews) * 100}`, 10) + '%'
       },
       {
         value: totalViews === 0 ? 0 : interest.goods / totalViews,
-        name: totalViews === 0 ? '0%' : (interest.goods / totalViews) + '%'
+        name: totalViews === 0 ? '0%' : parseInt(`${(interest.goods / totalViews) * 100}`, 10) + '%'
       },
       {
         value: totalViews === 0 ? 0 : interest.company / totalViews,
-        name: totalViews === 0 ? '0%' : (interest.company / totalViews) + '%'
+        name: totalViews === 0 ? '0%' : parseInt(`${(interest.company / totalViews) * 100}`, 10) + '%'
       },
     ];
 

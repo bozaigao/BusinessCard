@@ -29,7 +29,7 @@ import {
   w,
   wRatio
 } from "../../utils/style";
-import {styleAssign} from "../../utils/datatool";
+import {getToday, styleAssign} from "../../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../../actions/customer";
@@ -47,6 +47,7 @@ interface Props {
   traceList?: any;
   //获取用户信息
   getBehaviorTrace: any;
+  interestBehaviorActive: any;
 }
 
 interface State {
@@ -54,6 +55,9 @@ interface State {
   customer: CustomerModel
   currentIndex: number;
   traceList: BehaviorTrace[];
+  active: any;
+  behaviorTrace: any;
+  interest: any;
 }
 
 @connect(state => state.login, Object.assign(actions, loginActions, radarActions))
@@ -77,20 +81,23 @@ class RadarDetail extends Component<Props, State> {
       customer: null,
       currentIndex: 0,
       traceList: [],
-      showShareInvite: false
+      showShareInvite: false,
+      behaviorTrace: {
+        behaviorTraceMax: 100,
+        callUp: 0,
+        playVideo: 0,
+        shareCard: 0,
+        viewCard: 0,
+        viewEnterpriseWebsite: 0,
+        viewGoods: 0,
+      }
     }
   }
 
   componentDidMount() {
-  }
-
-
-  componentWillUnmount() {
-  }
-
-  componentDidShow() {
     this.getBehaviorTrace();
   }
+
 
   /**
    * @author 何晏波
@@ -105,8 +112,34 @@ class RadarDetail extends Component<Props, State> {
       console.log('获取客户详细资料', res);
       if (res !== NetworkState.FAIL) {
         this.setState({customer: res}, () => {
+          this.interestBehaviorActive();
           this.traceList();
         });
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/4/12
+   * @function: 雷达AI分析 兴趣和行为占比
+   */
+  interestBehaviorActive = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.interestBehaviorActive({
+      traceUserId: this.state.customer.userId,
+      startDate: getToday(),
+      endDate: getToday()
+    }).then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('雷达AI分析 兴趣和行为占比', res);
+      if (res !== NetworkState.FAIL) {
+        this.setState({active: res.active, behaviorTrace: res.behaviorTrace, interest: res.interest});
       }
     }).catch(e => {
       this.viewRef && this.viewRef.hideLoading();
@@ -144,7 +177,7 @@ class RadarDetail extends Component<Props, State> {
 
 
   render() {
-    let {customer, currentIndex, traceList, showShareInvite} = this.state;
+    let {customer, currentIndex, traceList, showShareInvite, behaviorTrace} = this.state;
     let childView;
 
     if (currentIndex === 0) {
@@ -162,7 +195,7 @@ class RadarDetail extends Component<Props, State> {
             style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48), radiusA(4)])}
             onClick={() => {
               Taro.navigateTo({
-                url: `/pages/customer/ai_analysis?userId=${customer.id}`
+                url: `/pages/customer/ai_analysis?userId=${customer.id}&active=${JSON.stringify(this.state.active)}&interest=${JSON.stringify(this.state.interest)}`
               });
             }}>
             <Text style={styleAssign([fSize(16), color('#343434'), ml(16)])}>
@@ -182,27 +215,50 @@ class RadarDetail extends Component<Props, State> {
           <Text style={styleAssign([fSize(16), color('#343434'), ml(16), mt(16)])}>
             客户行为轨迹
           </Text>
-          {
-            [{title: '查看名片', progress: 80, count: 68},
-              {title: '分享名片', progress: 20, count: 11},
-              {title: '拨打电话', progress: 30, count: 26},
-              {title: '浏览商城', progress: 35, count: 35},
-              {title: '浏览企业', progress: 60, count: 33},
-              {title: '播放视频', progress: 10, count: 18}].map((value, index) => {
-              return <View key={index} style={styleAssign([mt(index === 0 ? 30 : 20), mb(index === 5 ? 20 : 0)])}>
-                <Text style={styleAssign([fSize(15), color('#343434'), ml(16)])}>
-                  {value.title}
-                </Text>
-                <View style={styleAssign([styles.uac, styles.udr, ml(16)])}>
-                  <View style={styleAssign([w(246), h(6), bgColor('#E5E5E5'), radiusA(8), styles.udr, styles.uac])}>
-                    <View style={styleAssign([wRatio(value.progress), hRatio(100), radiusA(8), bgColor('#E2BB7B')])}/>
-                  </View>
-                  <Text style={styleAssign([fSize(15), color('#343434'), ml(20)])}>
-                    {`${value.count}次`}
-                  </Text>
+          {[{
+            title: '查看名片',
+            progress: parseInt(`${(behaviorTrace.viewCard / behaviorTrace.behaviorTraceMax) * 100}`, 10),
+            count: behaviorTrace.viewCard
+          },
+            {
+              title: '分享名片',
+              progress: parseInt(`${(behaviorTrace.shareCard / behaviorTrace.behaviorTraceMax) * 100}`, 10),
+              count: behaviorTrace.shareCard
+            },
+            {
+              title: '拨打电话',
+              progress: parseInt(`${(behaviorTrace.callUp / behaviorTrace.behaviorTraceMax) * 100}`, 10),
+              count: behaviorTrace.callUp
+            },
+            {
+              title: '浏览商城',
+              progress: parseInt(`${(behaviorTrace.viewGoods / behaviorTrace.behaviorTraceMax) * 100}`, 10),
+              count: behaviorTrace.viewGoods
+            },
+            {
+              title: '浏览企业',
+              progress: parseInt(`${(behaviorTrace.viewEnterpriseWebsite / behaviorTrace.behaviorTraceMax) * 100}`, 10),
+              count: behaviorTrace.viewEnterpriseWebsite
+            },
+            {
+              title: '播放视频',
+              progress: parseInt(`${(behaviorTrace.playVideo / behaviorTrace.behaviorTraceMax) * 100}`, 10),
+              count: behaviorTrace.playVideo
+            }].map((value, index) => {
+            return <View key={index} style={styleAssign([mt(index === 0 ? 30 : 20), mb(index === 5 ? 20 : 0)])}>
+              <Text style={styleAssign([fSize(15), color('#343434'), ml(16)])}>
+                {value.title}
+              </Text>
+              <View style={styleAssign([styles.uac, styles.udr, ml(16)])}>
+                <View style={styleAssign([w(246), h(6), bgColor('#E5E5E5'), radiusA(8), styles.udr, styles.uac])}>
+                  <View style={styleAssign([wRatio(value.progress), hRatio(100), radiusA(8), bgColor('#E2BB7B')])}/>
                 </View>
-              </View>;
-            })
+                <Text style={styleAssign([fSize(15), color('#343434'), ml(20)])}>
+                  {`${value.count}次`}
+                </Text>
+              </View>
+            </View>;
+          })
           }
         </View>
       </View>;

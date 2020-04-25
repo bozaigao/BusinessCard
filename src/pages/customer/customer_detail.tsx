@@ -321,32 +321,32 @@ class CustomerDetail extends Component<Props, State> {
           {
             [{
               title: '查看名片',
-              progress: behaviorTrace.viewCard / behaviorTrace.behaviorTraceMax,
+              progress: parseInt(`${(behaviorTrace.viewCard / behaviorTrace.behaviorTraceMax) * 100}`, 10),
               count: behaviorTrace.viewCard
             },
               {
                 title: '分享名片',
-                progress: behaviorTrace.shareCard / behaviorTrace.behaviorTraceMax,
+                progress: parseInt(`${(behaviorTrace.shareCard / behaviorTrace.behaviorTraceMax) * 100}`, 10),
                 count: behaviorTrace.shareCard
               },
               {
                 title: '拨打电话',
-                progress: behaviorTrace.callUp / behaviorTrace.behaviorTraceMax,
+                progress: parseInt(`${(behaviorTrace.callUp / behaviorTrace.behaviorTraceMax) * 100}`, 10),
                 count: behaviorTrace.callUp
               },
               {
                 title: '浏览商城',
-                progress: behaviorTrace.viewGoods / behaviorTrace.behaviorTraceMax,
+                progress: parseInt(`${(behaviorTrace.viewGoods / behaviorTrace.behaviorTraceMax) * 100}`, 10),
                 count: behaviorTrace.viewGoods
               },
               {
                 title: '浏览企业',
-                progress: behaviorTrace.viewEnterpriseWebsite / behaviorTrace.behaviorTraceMax,
+                progress: parseInt(`${(behaviorTrace.viewEnterpriseWebsite / behaviorTrace.behaviorTraceMax) * 100}`, 10),
                 count: behaviorTrace.viewEnterpriseWebsite
               },
               {
                 title: '播放视频',
-                progress: behaviorTrace.playVideo / behaviorTrace.behaviorTraceMax,
+                progress: parseInt(`${(behaviorTrace.playVideo / behaviorTrace.behaviorTraceMax) * 100}`, 10),
                 count: behaviorTrace.playVideo
               }].map((value, index) => {
               return <View key={index} style={styleAssign([mt(index === 0 ? 30 : 20), mb(index === 5 ? 20 : 0)])}>
