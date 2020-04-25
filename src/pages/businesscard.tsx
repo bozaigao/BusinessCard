@@ -68,9 +68,7 @@ class Businesscard extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
   private recommendType;
   private viewRef;
 
@@ -96,11 +94,7 @@ class Businesscard extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.getCardHolderVisitorCount();
     this.getUserInfo();
-    this.getRecommendSetting();
-    this.recommendSettingStatus();
-    this.getRecommend();
 
     let showGuide1 = get('business_guide1');
 
@@ -219,7 +213,11 @@ class Businesscard extends Component<Props, State> {
   getUserInfo = () => {
     this.props.getUserInfo().then((res) => {
       this.props.updateUserInfo(res);
-      this.userSettingGet();
+      this.userSettingGet(res);
+      this.getCardHolderVisitorCount();
+      this.getRecommendSetting();
+      this.recommendSettingStatus();
+      this.getRecommend();
       console.log('重新更新用户信息', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -263,8 +261,10 @@ class Businesscard extends Component<Props, State> {
    * @date 2020/3/25
    * @function: 获取用户的设置信息
    */
-  userSettingGet = () => {
-    this.props.userSettingGet({userId:this.props.userInfo.id}).then((res) => {
+  userSettingGet = (userInfo: User) => {
+    this.props.userSettingGet({userId:userInfo.id
+  }).
+    then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,
@@ -437,10 +437,10 @@ class Businesscard extends Component<Props, State> {
         {
           showGuide2 && <BusinessCardGuide2
             cancle={() => {
-            save('business_guide2', true);
-            this.setState({showGuide2: false, showGuide3: true});
-          }
-          } viewCard={() => {
+              save('business_guide2', true);
+              this.setState({showGuide2: false, showGuide3: true});
+            }
+            } viewCard={() => {
             save('business_guide2', true);
             this.setState({showGuide2: false, showGuide3: true}, () => {
               Taro.navigateTo({

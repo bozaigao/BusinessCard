@@ -31,8 +31,6 @@ export default async function fetch(options) {
   header['Content-type'] = 'application/x-www-form-urlencoded';
   header['Accept'] = 'application/json';
   // header['Connection'] = 'close';
-
-  console.log(`😁😁😁😁😁😁请求接口:${url} 方式:${method} 参数:`, payload)
   let token = get(Enum.TOKEN);
 
   console.log('token', token);
@@ -48,8 +46,7 @@ export default async function fetch(options) {
     header
   }).then(async (res) => {
     const {code, data, msg} = res.data;
-
-    console.log('接口请求返回的数据', res, code);
+    console.log(`😁😁😁😁😁😁请求接口:${url} 方式:${method} 参数:`, payload, '接口请求返回的数据', res);
 
     if (code === NetworkState.SUCCESS) {
       return data;
@@ -57,7 +54,7 @@ export default async function fetch(options) {
       return res.data.access_token;
     }
     //token过期
-    else if (code === NetworkState.NEED_LOGIN) {
+    else if (url.includes('getUserInfo') && (code === NetworkState.NEED_LOGIN || code === NetworkState.USER_NO_EXIT)) {
       if (isRefreshing) {
         wxLogin();
       }
@@ -73,7 +70,7 @@ export default async function fetch(options) {
       return retryOriginalRequest;
     }
     //服务接口报错
-    else if (showToast) {
+    if (showToast) {
       toast(msg);
       return NetworkState.FAIL;
     }

@@ -123,7 +123,7 @@ class Mine extends Component<Props, State> {
             <View style={styleAssign([styles.udr, wRatio(100), styles.ujb, mt(25)])}>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Image style={styleAssign([w(66), h(66), ml(20), radiusA(33)])}
-                       src={userInfo.avatar ? userInfo.avatar : `${cloudBaseUrl}ico_default.png`}/>
+                       src={userInfo.avatar}/>
                 <View style={styleAssign([ml(14)])}>
                   <SingleLineText text={userInfo.name ? userInfo.name : '无名氏'} style={styleAssign([fSize(18), color(commonStyles.whiteColor)])}/>
                   <View
