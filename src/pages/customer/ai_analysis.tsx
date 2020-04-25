@@ -72,27 +72,27 @@ class AiAnalysis extends Component<Props, State> {
   componentDidMount() {
     let {interest, active} = this.state;
     let totalViews = interest.card + interest.company + interest.goods;
-    let shouldSub = false, cardPercent = 0, goodsPercent = 0, interestPercent = 0;
+    let shouldSub = false, cardPercent = 0, goodsPercent = 0, companyPercent = 0;
 
     cardPercent = parseInt(`${(interest.card / totalViews) * 100}`, 10);
     goodsPercent = parseInt(`${(interest.goods / totalViews) * 100}`, 10);
-    interestPercent = parseInt(`${(interest.company / totalViews) * 100}`, 10);
+    companyPercent = parseInt(`${(interest.company / totalViews) * 100}`, 10);
 
-    if (cardPercent !== 0 || goodsPercent !== 0 || interestPercent !== 0) {
+    if (cardPercent !== 0 || goodsPercent !== 0 || companyPercent !== 0) {
       shouldSub = true;
     }
     const chartData = [
       {
-        value: totalViews === 0 ? 0 : interest.card / totalViews,
-        name: totalViews === 0 ? '0%' : cardPercent + '%'
-      },
-      {
-        value: totalViews === 0 ? 0 : interest.goods / totalViews,
+        value: totalViews === 0 ? 0 : goodsPercent,
         name: totalViews === 0 ? '0%' : goodsPercent + '%'
       },
       {
-        value: totalViews === 0 ? 0 : interest.company / totalViews,
-        name: totalViews === 0 ? '0%' : (shouldSub ? (100 - cardPercent - goodsPercent) + '%' : interestPercent + '%')
+        value: totalViews === 0 ? 0 : companyPercent,
+        name: totalViews === 0 ? '0%' : companyPercent + '%'
+      },
+      {
+        value: totalViews === 0 ? 0 : shouldSub ? (100 - companyPercent - goodsPercent) : cardPercent,
+        name: totalViews === 0 ? '0%' : (shouldSub ? (100 - companyPercent - goodsPercent) + '%' : cardPercent + '%')
       },
     ];
 
@@ -113,13 +113,13 @@ class AiAnalysis extends Component<Props, State> {
   render() {
     let {current, interest} = this.state;
     let totalViews = interest.card + interest.company + interest.goods;
-    let shouldSub = false, cardPercent = 0, goodsPercent = 0, interestPercent = 0;
+    let shouldSub = false, cardPercent = 0, goodsPercent = 0, companyPercent = 0;
 
     cardPercent = parseInt(`${(interest.card / totalViews) * 100}`, 10);
     goodsPercent = parseInt(`${(interest.goods / totalViews) * 100}`, 10);
-    interestPercent = parseInt(`${(interest.company / totalViews) * 100}`, 10);
+    companyPercent = parseInt(`${(interest.company / totalViews) * 100}`, 10);
 
-    if (cardPercent !== 0 || goodsPercent !== 0 || interestPercent !== 0) {
+    if (cardPercent !== 0 || goodsPercent !== 0 || companyPercent !== 0) {
       shouldSub = true;
     }
 
@@ -159,7 +159,7 @@ class AiAnalysis extends Component<Props, State> {
               <View style={styleAssign([styles.udr, mt(17)])}>
                 <View style={styleAssign([w(13), styles.uac, h(13), radiusA(2), bgColor('#FFE0AE')])}/>
                 <Text style={styleAssign([fSize(12), color('#979797'), ml(5)])}>
-                  {`对我的企业感兴趣：${totalViews === 0 ? '0%' :  (shouldSub ? (100 - cardPercent - goodsPercent) + '%' : interestPercent + '%')}`}
+                  {`对我的企业感兴趣：${totalViews === 0 ? '0%' : (shouldSub ? (100 - cardPercent - goodsPercent) + '%' : companyPercent + '%')}`}
                 </Text>
               </View>
             </View>
