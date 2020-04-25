@@ -578,7 +578,7 @@ class OtherBusinesscard extends Component<Props, State> {
           } haibao={() => {
             this.setState({showShare: false}, () => {
               Taro.navigateTo({
-                url: `/pages/businesscard/mingpian_haibao`
+                url: `/pages/businesscard/mingpian_haibao?userId=${userInfo.id}`
               });
             });
           }

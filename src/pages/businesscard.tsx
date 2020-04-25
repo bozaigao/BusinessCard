@@ -262,9 +262,9 @@ class Businesscard extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = (userInfo: User) => {
-    this.props.userSettingGet({userId:userInfo.id
-  }).
-    then((res) => {
+    this.props.userSettingGet({
+      userId: userInfo.id
+    }).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,
@@ -413,7 +413,7 @@ class Businesscard extends Component<Props, State> {
           } haibao={() => {
             this.setState({showShare: false}, () => {
               Taro.navigateTo({
-                url: `/pages/businesscard/mingpian_haibao`
+                url: `/pages/businesscard/mingpian_haibao?userId=${userInfo.id}`
               });
             });
           }

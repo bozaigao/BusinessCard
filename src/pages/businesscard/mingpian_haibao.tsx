@@ -11,8 +11,8 @@ import {connect} from "@tarojs/redux";
 import {NetworkState} from "../../api/httpurl";
 
 interface Props {
-  userInfo: User;
   userSettingGet: any;
+  getUserInfoById: any;
 }
 
 interface State {
@@ -22,6 +22,7 @@ interface State {
   hideWechat: boolean;
   hideEmail: boolean;
   hideAddress: boolean;
+  userInfo: User;
 }
 
 @connect(state => state.login, {...actions})
@@ -31,6 +32,8 @@ class MingpianHaibao extends Component<Props, State> {
   constructor(props) {
     super(props)
     this.state = {
+      //@ts-ignore
+      userInfo: null,
       imageTempPath: '',
       cardStyle: '-1',
       hidePhone: false,
@@ -41,8 +44,25 @@ class MingpianHaibao extends Component<Props, State> {
   }
 
   componentDidMount() {
-    console.log('用户信息', this.props.userInfo);
-    this.userSettingGet();
+    this.getUserInfoById();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2019/12/29
+   * @function: 获取用户信息
+   */
+  getUserInfoById = () => {
+    console.log('获取用户信息');
+    this.props.getUserInfoById({userId: this.$router.params.userId}).then((res) => {
+      this.setState({userInfo: res}, () => {
+        this.userSettingGet(res);
+      });
+      console.log('获取用户信息', res);
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -52,8 +72,8 @@ class MingpianHaibao extends Component<Props, State> {
    * @date 2020/3/25
    * @function: 获取用户的设置信息
    */
-  userSettingGet = () => {
-    this.props.userSettingGet({userId: this.props.userInfo.id}).then((res) => {
+  userSettingGet = (userInfo: User) => {
+    this.props.userSettingGet({userId: userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone === 0,
@@ -89,8 +109,7 @@ class MingpianHaibao extends Component<Props, State> {
    */
   drawBallStyle1() {
     this.viewRef && this.viewRef.showLoading('海报生成中');
-    let {userInfo} = this.props;
-    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
+    let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -170,9 +189,10 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(18);
                   context.setFillStyle(commonStyles.colorTheme);
                   context.fillText(userInfo.name, 34, 115);
-                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 18, 40), 115);
                   context.setFontSize(12);
-                  context.fillText(userInfo.enterpriseName.length > 10 ? userInfo.enterpriseName.substring(0, 11)+'...' : userInfo.enterpriseName, 34, 140);
+                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 12, 75), 115);
+                  context.setFontSize(12);
+                  context.fillText(userInfo.enterpriseName.length > 10 ? userInfo.enterpriseName.substring(0, 11) + '...' : userInfo.enterpriseName, 34, 140);
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
                   that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
@@ -213,8 +233,7 @@ class MingpianHaibao extends Component<Props, State> {
    */
   drawBallStyle2() {
     this.viewRef && this.viewRef.showLoading('海报生成中');
-    let {userInfo} = this.props;
-    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
+    let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -340,8 +359,7 @@ class MingpianHaibao extends Component<Props, State> {
    */
   drawBallStyle3() {
     this.viewRef && this.viewRef.showLoading('海报生成中');
-    let {userInfo} = this.props;
-    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
+    let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -467,8 +485,7 @@ class MingpianHaibao extends Component<Props, State> {
    */
   drawBallStyle4() {
     this.viewRef && this.viewRef.showLoading('海报生成中');
-    let {userInfo} = this.props;
-    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
+    let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
@@ -595,8 +612,7 @@ class MingpianHaibao extends Component<Props, State> {
    */
   drawBallStyle5() {
     this.viewRef && this.viewRef.showLoading('海报生成中');
-    let {userInfo} = this.props;
-    let {hideEmail, hideAddress, hidePhone, hideWechat} = this.state;
+    let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
