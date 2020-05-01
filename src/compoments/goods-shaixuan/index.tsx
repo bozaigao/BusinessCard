@@ -89,7 +89,7 @@ export default class GoodsShaiXuan extends PureComponent<Props, State> {
               <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
                     onClick={onClickShop}>
                 <View style={styleAssign([styles.uac])}>
-                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的商铺</Text>
+                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的店铺</Text>
                   <View
                     style={styleAssign([w(72), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
                 </View>

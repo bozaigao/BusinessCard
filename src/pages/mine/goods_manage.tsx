@@ -69,7 +69,7 @@ interface State {
   currentIndex: number;
   hasShop: boolean;
   showDeleteNotice: boolean;
-  goodsChooseValue: string[];
+  goodsChooseValue: number[];
   chooseAll: boolean;
 }
 
@@ -90,9 +90,7 @@ class GoodsManage extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -286,7 +284,11 @@ class GoodsManage extends Component<Props, State> {
           </View>
           <TouchableButton customStyle={styleAssign([styles.uac, styles.udr])}
                            onClick={() => {
-                             this.setState({showChoose: !this.state.showChoose});
+                             this.setState({
+                               showChoose: !this.state.showChoose,
+                               goodsChooseValue: [],
+                               chooseAll: false,
+                             });
                            }}>
             <Text style={styleAssign([fSize(14), color('#0D0D0D')])}>{state}</Text>
             <SanJiao orientation={showChoose ? Orientation.up : Orientation.down} style={styleAssign([ml(8)])}/>
@@ -306,7 +308,7 @@ class GoodsManage extends Component<Props, State> {
               {
                 goodsList.map((value, index) => {
                   return (<GoodsManageItem
-                    chooseAll={chooseAll}
+                    checked={this.state.goodsChooseValue.includes(value.id)}
                     onChooseCallback={(id) => {
                       if (!this.state.goodsChooseValue.includes(id)) {
                         this.state.goodsChooseValue.push(id);
@@ -343,7 +345,7 @@ class GoodsManage extends Component<Props, State> {
             </ScrollView>
         }
         {
-          showAllOperate && <View
+          showAllOperate && goodsList.length !== 0 && <View
             style={styleAssign([wRatio(100), h(53), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor),
               pl(20), pr(20)])}>
             <View style={styleAssign([styles.uac, styles.udr])}
@@ -352,12 +354,10 @@ class GoodsManage extends Component<Props, State> {
                       let array: any = [];
 
                       if (this.state.chooseAll) {
-                        Taro.eventCenter.trigger('checkAll');
                         for (let i = 0; i < goodsList.length; i++) {
                           array.push(goodsList[i].id);
                         }
                       } else {
-                        Taro.eventCenter.trigger('unCheckAll');
                       }
                       this.setState({goodsChooseValue: array}, () => {
                         console.log(this.state.goodsChooseValue);
@@ -486,7 +486,7 @@ class GoodsManage extends Component<Props, State> {
                       this.setState({currentIndex: 1});
                     }}>
                 <View style={styleAssign([styles.uac])}>
-                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的商铺</Text>
+                  <Text style={styleAssign([fSize(18), color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>我的店铺</Text>
                   <View
                     style={styleAssign([w(72), h(2), bgColor(currentIndex === 1 ? '#E2BB7B' : commonStyles.whiteColor), mt(10)])}/>
                 </View>
@@ -532,10 +532,11 @@ class GoodsManage extends Component<Props, State> {
                          mode={state}/>
         }
         {
-          showOperate && <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
-                               onClick={() => {
-                                 this.setState({showOperate: false});
-                               }}>
+          showOperate &&
+          <View style={styleAssign([wRatio(100), hRatio(100), {position: 'fixed'}, absT(0)])}
+                onClick={() => {
+                  this.setState({showOperate: false});
+                }}>
             <View
               style={styleAssign([wRatio(100), hRatio(100), op(0.3), bgColor(commonStyles.whiteColor), bgColor(commonStyles.colorTheme)])}/>
             <View

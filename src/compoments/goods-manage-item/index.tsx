@@ -37,33 +37,19 @@ interface Props {
   onChooseCallback: any;
   notTopGoodsCallback: any;
   showAllOperate: boolean;
-  chooseAll: boolean;
+  checked: boolean;
 }
 
 interface State {
-  checked: boolean;
 }
 
 export default class GoodsManageItem extends Component<Props, State> {
   constructor(props) {
     super(props);
-    this.state = {
-      checked: false
-    }
-  }
-
-  componentDidMount() {
-    Taro.eventCenter.on('checkAll', () => {
-      this.setState({checked: true});
-    });
-    Taro.eventCenter.on('unCheckAll', () => {
-      this.setState({checked: false});
-    });
   }
 
   render() {
-    let {itemData, moreCallback, xiajiaCallback, notTopGoodsCallback, showAllOperate, onChooseCallback} = this.props;
-    let {checked} = this.state;
+    let {itemData, moreCallback, xiajiaCallback, notTopGoodsCallback, showAllOperate, onChooseCallback,checked} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100), h(189), bgColor(commonStyles.whiteColor), mt(10)])}
@@ -74,9 +60,7 @@ export default class GoodsManageItem extends Component<Props, State> {
                   url: `/pages/mine/goods_detail?id=${itemData.id}`
                 });
               } else {
-                this.setState({checked: !this.state.checked}, () => {
-                  onChooseCallback(itemData.id);
-                });
+                onChooseCallback(itemData.id);
               }
             }}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(16)])}>
