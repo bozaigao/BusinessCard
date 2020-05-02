@@ -56,7 +56,7 @@ export interface User {
   //名片竞争力
   cardCompetitiveness: string;
   //名片资料完成度
-  cardPercent:number;
+  cardPercent: number;
   // 城市
   city: string;
   //公司
@@ -64,7 +64,7 @@ export interface User {
   //创建时间
   createTime: string;
   //录音时长
-  voiceDuration:number;
+  voiceDuration: number;
   //详细地址
   detailAddress: string;
   //教育经历-学历
@@ -215,7 +215,8 @@ export interface CustomerModel {
   intentionGrade: string;
   label: string;
   latitude: number;
-  longitude: number;v
+  longitude: number;
+  v
   name: string;
   phone: string;
   position: string;
@@ -223,7 +224,7 @@ export interface CustomerModel {
   recentDate: string;
   remark: string;
   sex: number;
-  source:string;
+  source: string;
   type: number;
   updateTime: string;
   userId: number;
@@ -312,7 +313,7 @@ export interface RadarModel {
   traceUserId: number;
   userId: number;
   //是否为客户
-  relationStatus:number;
+  relationStatus: number;
 }
 
 export interface BehaviorTraceUser {
@@ -372,6 +373,40 @@ export interface BehaviorTrace {
   time: string;
   traceUserId: number;
   userId: number;
+}
+
+//我的店铺
+export interface ShopModel {
+  business: string;
+  city: string;
+  company: string;
+  createTime: string;
+  id: number;
+  name: string;
+  phone: string;
+  province: string;
+  shopAddress: string;
+  shopCoverUrl: string;
+  shopDesc: string;
+  shopEnd: string;
+  shopName: string;
+  shopStart: string;
+  shopUrl: string;
+  status: number;
+  userId: number;
+}
+
+export enum ShopStatus {
+  //未提交申请
+  NO_APPLY = -1,
+  //申请已经提交，等待开通店铺
+  UPLOAD_AND_WAIT,
+  //店铺已经开通
+  HAS_OPEN,
+  //店铺已经到期被关闭
+  SHOP_OUT_OF_TIME,
+  //店铺被注销
+  SHOP_CANCELLATION
 }
 
 export let BaseCoin = 100;

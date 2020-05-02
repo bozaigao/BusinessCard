@@ -10,6 +10,7 @@ import Visitor from "../actions/visitor";
 import Radar from "../actions/radar";
 import Distribution from "../actions/distribution";
 import teQuan from "../actions/tequan";
+import Shop from "../actions/shop";
 
 export default combineReducers({
   login,
@@ -22,5 +23,6 @@ export default combineReducers({
   Visitor,
   Radar,
   Distribution,
-  teQuan
+  teQuan,
+  Shop
 })

@@ -163,6 +163,13 @@ const BASE_URL = StagingUrl,
     packageList: BASE_URL + 'privilege/packageList',
     //购买套餐
     purchasePackage: BASE_URL + 'privilege/purchasePackage',
+  },
+//用户商城
+  ShopManage = {
+    //开通店铺申请
+    apply: BASE_URL + 'shop/apply',
+    //查询我的店铺信息
+    getShop: BASE_URL + 'shop/get',
   };
 
 
@@ -179,5 +186,6 @@ export {
   VisitorManage,
   RadarManage,
   DistributionManage,
-  TeQuanManage
+  TeQuanManage,
+  ShopManage
 };

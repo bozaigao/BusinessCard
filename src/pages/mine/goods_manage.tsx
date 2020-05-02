@@ -38,11 +38,12 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/goods';
+import * as shopActions from '../../actions/shop';
 import {Image, ScrollView, Text, View} from "@tarojs/components";
 import TouchableButton from "../../compoments/touchable-button/index";
 import GoodsManageItem from "../../compoments/goods-manage-item/index";
 import BottomButon from "../../compoments/bottom-buton/index";
-import {Goods, Orientation, User} from "../../const/global";
+import {Goods, Orientation, ShopModel, ShopStatus, User} from "../../const/global";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
@@ -56,6 +57,7 @@ interface Props {
   updateGoods: any;
   //商品批量更新
   updateBatch: any;
+  getShop: any;
   userInfo: User;
 }
 
@@ -67,13 +69,14 @@ interface State {
   showOperate: boolean;
   showAllOperate: boolean;
   currentIndex: number;
-  hasShop: boolean;
+  shopStatus: ShopStatus;
   showDeleteNotice: boolean;
   goodsChooseValue: number[];
   chooseAll: boolean;
+  shop: ShopModel;
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, {...actions, ...shopActions})
 class GoodsManage extends Component<Props, State> {
 
   private viewRef;
@@ -101,11 +104,13 @@ class GoodsManage extends Component<Props, State> {
       state: '全部',
       showOperate: false,
       currentIndex: 0,
-      hasShop: true,
+      shopStatus: ShopStatus.NO_APPLY,
       showDeleteNotice: false,
       showAllOperate: false,
       goodsChooseValue: [],
-      chooseAll: false
+      chooseAll: false,
+      //@ts-ignore
+      shop: null
     };
     this.pageNo = 1;
     this.pageSize = 1000;
@@ -115,6 +120,7 @@ class GoodsManage extends Component<Props, State> {
 
   componentDidShow() {
     this.refresh();
+    this.getShop();
     Taro.eventCenter.on('goodsListRefresh', () => {
       this.refresh();
     });
@@ -122,6 +128,23 @@ class GoodsManage extends Component<Props, State> {
 
   componentWillUnmount() {
     Taro.eventCenter.off('goodsListRefresh');
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/5/2
+   * @function: 获取店铺信息
+   */
+  getShop = () => {
+    this.props.getShop().then((res) => {
+      console.log('获取店铺信息', res);
+      if (res !== NetworkState.FAIL) {
+        this.setState({shop: res, shopStatus: res.status});
+      }
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
   refresh = () => {
@@ -265,7 +288,7 @@ class GoodsManage extends Component<Props, State> {
 
 
   render() {
-    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, hasShop, showDeleteNotice, showAllOperate, goodsChooseValue, chooseAll} = this.state;
+    let {goodsList, totalGoods, showChoose, state, showOperate, currentIndex, shopStatus, showDeleteNotice, showAllOperate, goodsChooseValue, chooseAll, shop} = this.state;
 
     let child;
 
@@ -402,7 +425,7 @@ class GoodsManage extends Component<Props, State> {
     } else {
       child = <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
         {
-          !hasShop ?
+          shopStatus === ShopStatus.NO_APPLY ?
             <View style={styleAssign([styles.uac, mt(114)])}>
               <Image style={styleAssign([w(80), h(72)])} src={require('../../assets/ico_my_shop.png')}/>
               <Text style={styleAssign([fSize(15), color('#343434'), mt(33)])}>您还未开通自己的商铺</Text>
@@ -446,7 +469,7 @@ class GoodsManage extends Component<Props, State> {
             </View>
         }
         {
-          hasShop &&
+          shopStatus === ShopStatus.SHOP_OUT_OF_TIME &&
           <View style={styleAssign([styles.uf1, styles.uje])}>
             {/*续费套餐*/}
             <BottomButon title={'续费套餐'} onClick={() => {
