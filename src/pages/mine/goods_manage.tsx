@@ -49,6 +49,7 @@ import NavigationBar from "../../compoments/navigation_bar";
 import SanJiao from "../../compoments/sanjiao";
 import GoodsShaiXuan from "../../compoments/goods-shaixuan";
 import GoodsRemoveNoticeModal from "../../compoments/goods-remove-notice";
+import CompanyCard from "../../compoments/company_card";
 
 interface Props {
   //获取商品列表
@@ -110,7 +111,7 @@ class GoodsManage extends Component<Props, State> {
       goodsChooseValue: [],
       chooseAll: false,
       //@ts-ignore
-      shop: null
+      shop: null,
     };
     this.pageNo = 1;
     this.pageSize = 1000;
@@ -447,7 +448,8 @@ class GoodsManage extends Component<Props, State> {
                 <View style={styleAssign([wRatio(100), mt(18), pl(20)])}>
                   <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>• 若您提交的信息有误，请及时联系客服进行修改</Text>
                 </View>
-                <View style={styleAssign([wRatio(100), h(10),mt(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                <View
+                  style={styleAssign([wRatio(100), h(10), mt(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
                 <View
                   style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
                   <Text style={styleAssign([color('#727272'), fSize(16), ml(20)])}>申请信息</Text>
@@ -456,17 +458,20 @@ class GoodsManage extends Component<Props, State> {
                 <View
                   style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
                   <Text style={styleAssign([color('#727272'), fSize(16)])}>申请人</Text>
-                  <Text style={styleAssign([color('#727272'), fSize(16)])}>曾一龙</Text>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>{shop.name}</Text>
                 </View>
                 <View
                   style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
                   <Text style={styleAssign([color('#727272'), fSize(16)])}>联系方式</Text>
-                  <Text style={styleAssign([color('#727272'), fSize(16)])}>曾一龙</Text>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>{shop.phone}</Text>
                 </View>
                 <View
                   style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
                   <Text style={styleAssign([color('#727272'), fSize(16)])}>公司名称</Text>
-                  <Text style={styleAssign([color('#727272'), fSize(16)])}>曾一龙</Text>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>{shop.company}</Text>
+                </View>
+                <View style={styleAssign([wRatio(100), {paddingLeft: '5%'}])}>
+                  <CompanyCard/>
                 </View>
               </View> :
               <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
