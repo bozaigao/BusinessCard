@@ -27,7 +27,7 @@ export default function Shop(state = INITIAL_STATE, action) {
  * @date 2020/5/2
  * @function: 开通店铺申请
  */
-export const addRadarTrace = payload => createAction({
+export const shopApply = payload => createAction({
   url: ShopManage.apply,
   payload,
   method: 'POST'

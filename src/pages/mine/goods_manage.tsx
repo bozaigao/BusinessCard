@@ -433,40 +433,70 @@ class GoodsManage extends Component<Props, State> {
                 style={styleAssign([w(202), h(44), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc, mt(20)])}
                 onClick={() => {
                   Taro.navigateTo({
-                    url: `/pages/businesscard/share_goods`
+                    url: `/pages/mine/shop_apply`
                   });
                 }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>立即开通</Text>
               </View>
             </View> :
-            <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
-              <View
-                style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
-                <Image style={styleAssign([w(134), h(134), radiusA(4)])}
-                       src={`${cloudBaseUrl}ico_shop_pic.png`}
-                       mode={'scaleToFill'}/>
-                <View style={styleAssign([ml(16), wRatio(60)])}>
-                  <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
-                  <View style={styleAssign([styles.udr, mt(12)])}>
-                    <Image style={styleAssign([w(12), h(12), mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
-                    <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>四川省成都市武侯区盛和二路18号富森美家居</Text>
-                  </View>
-                  <Text style={styleAssign([fSize(12), color('#979797'), mt(14)])}>有效期至：2020-6-30</Text>
-                  <View style={styleAssign([wRatio(100), styles.udr, styles.uje, mt(10)])}>
-                    <View
-                      style={styleAssign([w(64), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
-                      <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>进店逛逛</Text>
+            (shopStatus === ShopStatus.UPLOAD_AND_WAIT ?
+              <View style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.whiteColor)])}>
+                <Image style={styleAssign([w(119), h(86)])} src={require('../../assets/upload_and_wait.png')}/>
+                <Text style={styleAssign([w(186), styles.utxc, color(commonStyles.colorTheme), fSize(17), mt(15)])}>您的店铺申请正在审核中
+                  请耐心等待……</Text>
+                <View style={styleAssign([wRatio(100), mt(18), pl(20)])}>
+                  <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>• 若您提交的信息有误，请及时联系客服进行修改</Text>
+                </View>
+                <View style={styleAssign([wRatio(100), h(10),mt(10), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                <View
+                  style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
+                  <Text style={styleAssign([color('#727272'), fSize(16), ml(20)])}>申请信息</Text>
+                </View>
+                <View style={styleAssign([{width: '90%'}, h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
+                <View
+                  style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>申请人</Text>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>曾一龙</Text>
+                </View>
+                <View
+                  style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>联系方式</Text>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>曾一龙</Text>
+                </View>
+                <View
+                  style={styleAssign([wRatio(100), h(49), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>公司名称</Text>
+                  <Text style={styleAssign([color('#727272'), fSize(16)])}>曾一龙</Text>
+                </View>
+              </View> :
+              <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
+                <View
+                  style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
+                  <Image style={styleAssign([w(134), h(134), radiusA(4)])}
+                         src={`${cloudBaseUrl}ico_shop_pic.png`}
+                         mode={'scaleToFill'}/>
+                  <View style={styleAssign([ml(16), wRatio(60)])}>
+                    <Text style={styleAssign([fSize(16), color('#373838')])}>美克美家家居直营店</Text>
+                    <View style={styleAssign([styles.udr, mt(12)])}>
+                      <Image style={styleAssign([w(12), h(12), mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
+                      <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>四川省成都市武侯区盛和二路18号富森美家居</Text>
+                    </View>
+                    <Text style={styleAssign([fSize(12), color('#979797'), mt(14)])}>有效期至：2020-6-30</Text>
+                    <View style={styleAssign([wRatio(100), styles.udr, styles.uje, mt(10)])}>
+                      <View
+                        style={styleAssign([w(64), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}>
+                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>进店逛逛</Text>
+                      </View>
                     </View>
                   </View>
                 </View>
-              </View>
-              <View style={styleAssign([styles.uac, styles.udr, mt(26)])}>
-                <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B'), ml(20)])}/>
-                <Text style={styleAssign([fSize(16), color('#373838'), ml(5)])}>商铺简介</Text>
-              </View>
-              <Text style={styleAssign([fSize(14), color('#373838'), ma(20)])}>美克集团创建于1990年，旗下包括上市公司美克国际家居用品股份有限公司、新疆美克化工有限责任公司、美克置地等多家企业，产业涉及家具制造及出口、家居零售和精细化工等领域。
-                多年来，美克集团坚持走世界优质企业道路，持续优化产业结构，提升企业核心竞争能力。美克家具制造业具备生产实木客厅、餐厅、卧房、家庭办公等全套民用家具产品的能力，是国内乃至亚洲知名的家具制造企业之一；零售业“美克美家”逐渐成为中国家居消费行业的典范，高品质生活的代名词，成为广受赞誉与令人尊敬的知名家居品牌；美克化工生产的1,4-丁二醇是纺织、汽车零配件、医药化妆品和家电等产品的一种重要精细化工中间体原料，目前是中国的1,4-丁二醇供应商之一。</Text>
-            </View>
+                <View style={styleAssign([styles.uac, styles.udr, mt(26)])}>
+                  <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B'), ml(20)])}/>
+                  <Text style={styleAssign([fSize(16), color('#373838'), ml(5)])}>商铺简介</Text>
+                </View>
+                <Text style={styleAssign([fSize(14), color('#373838'), ma(20)])}>美克集团创建于1990年，旗下包括上市公司美克国际家居用品股份有限公司、新疆美克化工有限责任公司、美克置地等多家企业，产业涉及家具制造及出口、家居零售和精细化工等领域。
+                  多年来，美克集团坚持走世界优质企业道路，持续优化产业结构，提升企业核心竞争能力。美克家具制造业具备生产实木客厅、餐厅、卧房、家庭办公等全套民用家具产品的能力，是国内乃至亚洲知名的家具制造企业之一；零售业“美克美家”逐渐成为中国家居消费行业的典范，高品质生活的代名词，成为广受赞誉与令人尊敬的知名家居品牌；美克化工生产的1,4-丁二醇是纺织、汽车零配件、医药化妆品和家电等产品的一种重要精细化工中间体原料，目前是中国的1,4-丁二醇供应商之一。</Text>
+              </View>)
         }
         {
           shopStatus === ShopStatus.SHOP_OUT_OF_TIME &&

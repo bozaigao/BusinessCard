@@ -154,6 +154,8 @@ class App extends Component {
           "add_task",
           "task_center",
           "task_detail",
+          "shop_apply",
+          "apply_success"
         ]
       }
     ],
