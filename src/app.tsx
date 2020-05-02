@@ -155,7 +155,8 @@ class App extends Component {
           "task_center",
           "task_detail",
           "shop_apply",
-          "apply_success"
+          "apply_success",
+          "jixu_open",
         ]
       }
     ],

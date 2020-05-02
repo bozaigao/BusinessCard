@@ -474,44 +474,58 @@ class GoodsManage extends Component<Props, State> {
                   <CompanyCard/>
                 </View>
               </View> :
-              <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
-                <View
-                  style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
-                  <Image style={styleAssign([w(134), h(134), radiusA(4)])}
-                         src={shop.shopCoverUrl}
-                         mode={'scaleToFill'}/>
-                  <View style={styleAssign([ml(16), wRatio(60)])}>
-                    <Text style={styleAssign([fSize(16), color('#373838')])}>{shop.company}</Text>
-                    <View style={styleAssign([styles.udr, mt(12)])}>
-                      <Image style={styleAssign([w(12), h(12), mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
-                      <Text style={styleAssign([fSize(12), color('#373838'), ml(5)])}>{shop.province + shop.city}</Text>
-                    </View>
-                    <Text
-                      style={styleAssign([fSize(12), color('#979797'), mt(14)])}>{`有效期至：${transformTime(shop.shopEnd)}`}</Text>
-                    <View style={styleAssign([wRatio(100), styles.udr, styles.uje, mt(10)])}>
-                      <View
-                        style={styleAssign([w(64), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          Taro.navigateToMiniProgram({appId: shop.shopAddress,path:shop.shopUrl});
-                        }}>
-                        <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>进店逛逛</Text>
+              (shopStatus === ShopStatus.HAS_OPEN ?
+                <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor)])}>
+                  <View
+                    style={styleAssign([wRatio(100), pa(16), bgColor(commonStyles.whiteColor), styles.udr, styles.ujb])}>
+                    <Image style={styleAssign([w(134), h(134), radiusA(4)])}
+                           src={shop.shopCoverUrl}
+                           mode={'scaleToFill'}/>
+                    <View style={styleAssign([ml(16), wRatio(60)])}>
+                      <Text style={styleAssign([fSize(16), color('#373838')])}>{shop.company}</Text>
+                      <View style={styleAssign([styles.udr, mt(12)])}>
+                        <Image style={styleAssign([w(12), h(12), mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
+                        <Text
+                          style={styleAssign([fSize(12), color('#373838'), ml(5)])}>{shop.province + shop.city}</Text>
+                      </View>
+                      <Text
+                        style={styleAssign([fSize(12), color('#979797'), mt(14)])}>{`有效期至：${transformTime(shop.shopEnd)}`}</Text>
+                      <View style={styleAssign([wRatio(100), styles.udr, styles.uje, mt(10)])}>
+                        <View
+                          style={styleAssign([w(64), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            Taro.navigateToMiniProgram({appId: shop.shopAddress, path: shop.shopUrl});
+                          }}>
+                          <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>进店逛逛</Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View style={styleAssign([styles.uac, styles.udr, mt(26)])}>
-                  <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B'), ml(20)])}/>
-                  <Text style={styleAssign([fSize(16), color('#373838'), ml(5)])}>商铺简介</Text>
-                </View>
-                <Text style={styleAssign([fSize(14), color('#373838'), ma(20)])}>{shop.shopDesc}</Text>
-              </View>)
+                  <View style={styleAssign([styles.uac, styles.udr, mt(26)])}>
+                    <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B'), ml(20)])}/>
+                    <Text style={styleAssign([fSize(16), color('#373838'), ml(5)])}>商铺简介</Text>
+                  </View>
+                  <Text style={styleAssign([fSize(14), color('#373838'), ma(20)])}>{shop.shopDesc}</Text>
+                </View> : (shopStatus === ShopStatus.SHOP_OUT_OF_TIME ?
+                  <View style={styleAssign([styles.uac, wRatio(100), mt(84)])}>
+                    <Image style={styleAssign([w(80), h(72)])} src={require('../../assets/ico_my_shop.png')}/>
+                    <Text style={styleAssign([fSize(15), color('#343434'), mt(33)])}>
+                      您的店铺已到期，再次开通需联系客服
+                    </Text>
+                    <View style={styleAssign([wRatio(100), {paddingLeft: '5%'}, mt(20)])}>
+                      <CompanyCard/>
+                    </View>
+                  </View> : null)))
         }
         {
-          shopStatus === ShopStatus.SHOP_OUT_OF_TIME &&
+          shopStatus !== ShopStatus.SHOP_OUT_OF_TIME &&
           <View style={styleAssign([styles.uf1, styles.uje])}>
-            {/*续费套餐*/}
-            <BottomButon title={'续费套餐'} onClick={() => {
+            {/*继续开通*/}
+            <BottomButon title={'继续开通'} onClick={() => {
+              Taro.navigateTo({
+                url: `/pages/mine/jixu_open`
+              });
             }}/>
           </View>
         }
