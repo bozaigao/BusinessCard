@@ -493,7 +493,7 @@ class GoodsManage extends Component<Props, State> {
                         style={styleAssign([w(64), h(28), radiusA(4), bgColor(commonStyles.colorTheme), styles.uac, styles.ujc])}
                         onClick={(e) => {
                           e.stopPropagation();
-                          Taro.navigateToMiniProgram({appId: shop.shopAddress});
+                          Taro.navigateToMiniProgram({appId: shop.shopAddress,path:shop.shopUrl});
                         }}>
                         <Text style={styleAssign([fSize(12), color(commonStyles.whiteColor)])}>进店逛逛</Text>
                       </View>

@@ -19,8 +19,8 @@
       <file leaf-file-name="goods_manage.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_manage.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="495" column="52" selection-start-line="495" selection-start-column="52" selection-end-line="495" selection-end-column="52" />
+            <state relative-caret-position="284">
+              <caret line="495" column="95" selection-start-line="495" selection-start-column="95" selection-end-line="495" selection-end-column="95" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#264#331#0" expanded="true" />
@@ -552,12 +552,12 @@
       <workItem from="1587779298818" duration="8309000" />
       <workItem from="1587804420342" duration="5903000" />
       <workItem from="1588292849949" duration="8078000" />
-      <workItem from="1588385704415" duration="3276000" />
+      <workItem from="1588385704415" duration="3560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1277678000" />
+    <option name="totallyTimeSpent" value="1277962000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -883,8 +883,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/mine/goods_manage.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="495" column="52" selection-start-line="495" selection-start-column="52" selection-end-line="495" selection-end-column="52" />
+        <state relative-caret-position="284">
+          <caret line="495" column="95" selection-start-line="495" selection-start-column="95" selection-end-line="495" selection-end-column="95" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#264#331#0" expanded="true" />
