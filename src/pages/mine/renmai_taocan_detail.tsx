@@ -38,6 +38,7 @@ import {Image, ScrollView, Text, View} from "@tarojs/components";
 import LinearGradientView from "../../compoments/linear-gradient-view2/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
+import {ShopStatus} from "../../const/global";
 
 interface Props {
   //购买套餐
@@ -46,6 +47,7 @@ interface Props {
 
 interface State {
   scrollTop: number;
+  shopStatus: string;
 }
 
 @connect(state => state.login, {...actions})
@@ -73,7 +75,8 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
     this.packageId = this.$router.params.packageId;
     this.openState = this.$router.params.openState;
     this.state = {
-      scrollTop: 0
+      scrollTop: 0,
+      shopStatus: this.$router.params.shopStatus
     }
   }
 
@@ -112,7 +115,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
   }
 
   render() {
-    let {scrollTop} = this.state;
+    let {scrollTop, shopStatus} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -337,10 +340,18 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
         <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(21), mb(16)])}>
           <View style={styleAssign([w(335), h(44), styles.uac, styles.ujc, radiusA(2), bgColor('#E2BB7B')])}
                 onClick={() => {
-                  this.purchasePackage(this.packageId);
+                  if (this.type === 'shop') {
+                    if (shopStatus === `${ShopStatus.NO_APPLY}`) {
+                      Taro.navigateTo({
+                        url: `/pages/mine/shop_apply`
+                      });
+                    }
+                  } else {
+                    this.purchasePackage(this.packageId);
+                  }
                 }}>
             <Text
-              style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{`${this.type === 'shop' ? '已申请' : (this.openState === '0' ? '立即开通' : '继续开通')}`}</Text>
+              style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{`${this.type === 'shop' ? (shopStatus === `${ShopStatus.NO_APPLY}` ? '立即申请' : '已申请') : (this.openState === '0' ? '立即开通' : '继续开通')}`}</Text>
           </View>
         </View>
       </CustomSafeAreaView>

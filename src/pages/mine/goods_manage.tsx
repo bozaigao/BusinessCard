@@ -127,10 +127,6 @@ class GoodsManage extends Component<Props, State> {
     });
   }
 
-  componentWillUnmount() {
-    Taro.eventCenter.off('goodsListRefresh');
-  }
-
   /**
    * @author 何晏波
    * @QQ 1054539528
@@ -138,15 +134,21 @@ class GoodsManage extends Component<Props, State> {
    * @function: 获取店铺信息
    */
   getShop = () => {
+    console.log('开始获取店铺信息')
     this.props.getShop().then((res) => {
-      console.log('获取店铺信息', res);
+      console.log('获取店铺', res);
       if (res !== NetworkState.FAIL) {
-        this.setState({shop: res, shopStatus: res.status});
+        this.setState({shopStatus: res.status});
       }
     }).catch(e => {
       console.log('报错啦', e);
     });
   }
+
+  componentWillUnmount() {
+    Taro.eventCenter.off('goodsListRefresh');
+  }
+
 
   refresh = () => {
     this.pageNo = 1;

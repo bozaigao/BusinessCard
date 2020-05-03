@@ -34,12 +34,13 @@ import {
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/tequan';
+import * as shopActions from '../../actions/shop';
 import {Image, ScrollView, Swiper, SwiperItem, Text, View} from "@tarojs/components";
 import LinearGradientView from "../../compoments/linear-gradient-view2/index";
 import LevelItem from "../../compoments/level-item/index";
 import TaoCanItem from "../../compoments/taocan-item/index";
 import {NetworkState} from "../../api/httpurl";
-import {timeMap} from "../../const/global";
+import {ShopStatus, timeMap} from "../../const/global";
 import NavigationBar from "../../compoments/navigation_bar";
 
 interface Props {
@@ -48,6 +49,7 @@ interface Props {
   //购买套餐
   purchasePackage: any;
   packageStatus: any;
+  getShop: any;
 }
 
 interface State {
@@ -63,9 +65,10 @@ interface State {
   visitor: number;
   //人脉特权
   connection: number;
+  shopStatus: ShopStatus;
 }
 
-@connect(state => state.login, {...actions})
+@connect(state => state.login, {...actions, ...shopActions})
 class TeQuan extends Component<Props, State> {
 
   private viewRef;
@@ -84,6 +87,7 @@ class TeQuan extends Component<Props, State> {
     super(props);
     console.log(this.viewRef);
     this.state = {
+      shopStatus: ShopStatus.NO_APPLY,
       packageId: 0,
       currentIndex: 0,
       title1: '获取人脉资源，增加客户来源',
@@ -99,7 +103,27 @@ class TeQuan extends Component<Props, State> {
 
   componentDidShow() {
     this.packageList();
+    this.getShop();
     this.packageStatus();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/5/2
+   * @function: 获取店铺信息
+   */
+  getShop = () => {
+    console.log('开始获取店铺信息')
+    this.props.getShop().then((res) => {
+      console.log('获取店铺', res);
+      if (res !== NetworkState.FAIL) {
+        this.setState({shopStatus: res.status});
+      }
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -221,7 +245,7 @@ class TeQuan extends Component<Props, State> {
   }
 
   render() {
-    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex, visitor, connection} = this.state;
+    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex, visitor, connection, shopStatus} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -314,7 +338,7 @@ class TeQuan extends Component<Props, State> {
               <View style={styleAssign([styles.udr, styles.uac])}
                     onClick={() => {
                       Taro.navigateTo({
-                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop') }&packageId=${packageList[0].packageId}&openState=${currentIndex === 0 ? connection : visitor}`
+                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop') }&packageId=${packageList[0].packageId}&openState=${currentIndex === 0 ? connection : visitor}&shopStatus=${shopStatus}`
                       });
                     }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>详情</Text>
@@ -367,9 +391,14 @@ class TeQuan extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), h(44), styles.uac, styles.ujc, mt(20)])}>
                 <View style={styleAssign([w(335), h(44), radiusA(2), styles.uac, styles.ujc, bgColor('#E2BB7B')])}
                       onClick={() => {
-                        this.purchasePackage(packageId);
+                        if(shopStatus === ShopStatus.NO_APPLY){
+                          Taro.navigateTo({
+                            url: `/pages/mine/shop_apply`
+                          });
+                        }
                       }}>
-                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即申请</Text>
+                  <Text
+                    style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>{shopStatus === ShopStatus.NO_APPLY ? '立即申请' : '已申请'}</Text>
                 </View>
               </View>
               <Text
