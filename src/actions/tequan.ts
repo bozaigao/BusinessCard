@@ -54,3 +54,15 @@ export const purchasePackage = payload => createAction({
   payload,
   method: 'POST'
 });
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/5/3
+ * @function: 查询特权购买状态
+*/
+export const packageStatus = payload => createAction({
+  url: TeQuanManage.packageStatus,
+  payload,
+  method: 'GET',
+});

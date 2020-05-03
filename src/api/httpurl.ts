@@ -157,12 +157,14 @@ const BASE_URL = StagingUrl,
     //我的新增客户数量
     myCustomerCount: BASE_URL + 'distribution/myCustomerCount',
   },
-  //特区中心
+  //特权中心
   TeQuanManage = {
     //查询套餐信息
     packageList: BASE_URL + 'privilege/packageList',
     //购买套餐
     purchasePackage: BASE_URL + 'privilege/purchasePackage',
+    //特权是否有效查询 返回内容说明-> visitor访客特权 connection人脉特权 status 1有效 0过期
+    packageStatus: BASE_URL + 'privilege/packageStatus',
   },
 //用户商城
   ShopManage = {

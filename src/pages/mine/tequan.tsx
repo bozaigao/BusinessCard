@@ -47,6 +47,7 @@ interface Props {
   packageList: any;
   //购买套餐
   purchasePackage: any;
+  packageStatus: any;
 }
 
 interface State {
@@ -58,6 +59,10 @@ interface State {
   subtitle2: string;
   packageList: any[];
   scrollTop: number;
+  //访客特权
+  visitor: number;
+  //人脉特权
+  connection: number;
 }
 
 @connect(state => state.login, {...actions})
@@ -86,12 +91,36 @@ class TeQuan extends Component<Props, State> {
       title2: '特权介绍',
       subtitle2: '• 可查看更多人脉',
       packageList: [],
-      scrollTop: 0
+      scrollTop: 0,
+      visitor: 0,
+      connection: 0
     }
   }
 
   componentDidShow() {
     this.packageList();
+    this.packageStatus();
+  }
+
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/5/3
+   * @function: 查看套餐状态
+   */
+  packageStatus = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.packageStatus().then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.setState({visitor: res.visitor, connection: res.connection});
+        console.log('查看套餐状态', res);
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -192,7 +221,7 @@ class TeQuan extends Component<Props, State> {
   }
 
   render() {
-    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex} = this.state;
+    let {packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex, visitor, connection} = this.state;
 
     return (
       <CustomSafeAreaView ref={(ref) => {
@@ -285,7 +314,7 @@ class TeQuan extends Component<Props, State> {
               <View style={styleAssign([styles.udr, styles.uac])}
                     onClick={() => {
                       Taro.navigateTo({
-                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop') }&packageId=${packageList[0].packageId}`
+                        url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop') }&packageId=${packageList[0].packageId}&openState=${currentIndex === 0 ? connection : visitor}`
                       });
                     }}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>详情</Text>
@@ -320,7 +349,8 @@ class TeQuan extends Component<Props, State> {
                       onClick={() => {
                         this.purchasePackage(packageId);
                       }}>
-                  <Text style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>立即开通</Text>
+                  <Text
+                    style={styleAssign([color(commonStyles.whiteColor), fSize(16)])}>{currentIndex === 0 && connection === 1 || currentIndex === 1 && visitor === 1 ? '继续开通' : '立即开通'}</Text>
                 </View>
               </View>
               <View style={styleAssign([wRatio(100), pl(20), pr(20), mt(17)])}>

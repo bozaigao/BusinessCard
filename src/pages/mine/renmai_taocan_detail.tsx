@@ -54,6 +54,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
   private viewRef;
   private type;
   private packageId;
+  private openState;
 
 
   /**
@@ -63,15 +64,14 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
     console.log(this.viewRef);
     this.type = this.$router.params.type;
     this.packageId = this.$router.params.packageId;
+    this.openState = this.$router.params.openState;
     this.state = {
       scrollTop: 0
     }
@@ -340,7 +340,7 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
                   this.purchasePackage(this.packageId);
                 }}>
             <Text
-              style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{`${this.type === 'shop' ? '已申请' : '立即开通'}`}</Text>
+              style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>{`${this.type === 'shop' ? '已申请' : (this.openState === '0' ? '立即开通' : '继续开通')}`}</Text>
           </View>
         </View>
       </CustomSafeAreaView>
