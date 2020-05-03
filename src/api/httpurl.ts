@@ -166,12 +166,17 @@ const BASE_URL = StagingUrl,
     //特权是否有效查询 返回内容说明-> visitor访客特权 connection人脉特权 status 1有效 0过期
     packageStatus: BASE_URL + 'privilege/packageStatus',
   },
-//用户商城
+  //用户商城
   ShopManage = {
     //开通店铺申请
     apply: BASE_URL + 'shop/apply',
     //查询我的店铺信息
     getShop: BASE_URL + 'shop/get',
+  },
+  //名片海报
+  PosterManage = {
+    //海报数据列表
+    postList: BASE_URL + 'poster/list',
   };
 
 
@@ -189,5 +194,6 @@ export {
   RadarManage,
   DistributionManage,
   TeQuanManage,
-  ShopManage
+  ShopManage,
+  PosterManage
 };

@@ -444,3 +444,17 @@ timeMap['seven_days'] = '7天试用';
 timeMap['quarter'] = '1季度';
 timeMap['half_a_year'] = '半年';
 timeMap['one_year'] = '1年';
+
+//名片海报
+export interface PosterModel {
+  category: string;
+  posterList: PosterItem[];
+}
+
+export interface PosterItem {
+  id: number;
+  category: string;
+  createTime: string;
+  imageUrl: string;
+  sort: number;
+}
