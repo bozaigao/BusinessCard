@@ -151,7 +151,12 @@ class Haibao extends Component<Props, State> {
                       <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                         <TouchableButton
                           customStyle={styleAssign([w(72), h(28), bo(1), bdColor(commonStyles.colorTheme), {borderStyle: 'solid'},
-                            styles.uac, styles.ujc, radiusA(4)])}>
+                            styles.uac, styles.ujc, radiusA(4)])}
+                          onClick={() => {
+                            Taro.navigateTo({
+                              url: `/pages/mine/poster_share?posterUrl=${value.imageUrl}`
+                            });
+                          }}>
                           <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme)])}>立即使用</Text>
                         </TouchableButton>
                       </View>

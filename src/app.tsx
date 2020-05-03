@@ -157,6 +157,7 @@ class App extends Component {
           "shop_apply",
           "apply_success",
           "jixu_open",
+          "poster_share",
         ]
       }
     ],
