@@ -64,7 +64,7 @@ class MingpianHaibao extends Component<Props, State> {
         src: userInfo.wxacode,
       }).then((res) => {
         //@ts-ignore
-        context.drawImage(res.path, 200, 370, 40, 40);
+        context.drawImage(res.path, 205, 370, 40, 40);
         context.draw(false, () => {
           that.viewRef && that.viewRef.hideLoading();
           Taro.canvasToTempFilePath({
