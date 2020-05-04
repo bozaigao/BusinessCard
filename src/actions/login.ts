@@ -220,3 +220,17 @@ export const userSettingGet = payload => createAction({
   payload,
   method: 'GET'
 });
+
+
+/**
+ * @author 何晏波
+ * @QQ 1054539528
+ * @date 2020/5/4
+ * @function:  获取公司推荐名片
+*/
+export const getCompanyCard = payload => createAction({
+  url: UserController.getCompanyCard,
+  payload,
+  method: 'GET'
+});
+

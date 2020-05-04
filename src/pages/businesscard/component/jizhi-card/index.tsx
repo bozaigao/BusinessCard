@@ -9,10 +9,11 @@ import {ScrollView, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, w, wRatio} from "../../../../utils/style";
 import CompanyCard from "../../../../compoments/company_card";
+import {CompanyCardModel} from "../../../../const/global";
 
 
 interface Props {
-  // navigation_bar: NavigationBar;
+  companyCardList: CompanyCardModel[];
 }
 
 interface State {
@@ -21,6 +22,7 @@ interface State {
 export default class JiZhiCard extends PureComponent<Props, State> {
 
   render() {
+    let {companyCardList} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -32,9 +34,9 @@ export default class JiZhiCard extends PureComponent<Props, State> {
           style={styleAssign([wRatio(100), styles.uac, {whiteSpace: 'nowrap'}])}
           scrollX>
           {
-            [1, 2].map((value, index) => {
+            companyCardList.map((value, index) => {
               console.log(value);
-              return (<CompanyCard key={index}/>);
+              return (<CompanyCard key={index} companyCard={value}/>);
             })
           }
         </ScrollView>

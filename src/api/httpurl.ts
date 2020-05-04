@@ -47,6 +47,8 @@ const BASE_URL = StagingUrl,
     userSettingUpdate: BASE_URL + 'userSetting/update',
     //获取用户的设置信息
     userSettingGet: BASE_URL + 'userSetting/get',
+    //获取用户的设置信息
+    getCompanyCard: BASE_URL + 'user/recommendV2',
   },
   //数据字典
   DictController = {

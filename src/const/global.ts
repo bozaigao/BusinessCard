@@ -458,3 +458,16 @@ export interface PosterItem {
   imageUrl: string;
   sort: number;
 }
+
+
+export interface CompanyCardModel {
+  avatar: string;
+  company: string;
+  industry: string;
+  name: string;
+  phone: string;
+  position: string;
+  type: number;
+  userId: number;
+  wechat: string;
+}

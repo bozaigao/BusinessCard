@@ -43,7 +43,7 @@ import JiZhiCard from "./component/jizhi-card/index";
 import MyBusiness from "./component/my-business/index";
 import TouchableButton from "../../compoments/touchable-button/index";
 import ShareModal from "../component/share-modal/index";
-import {User} from "../../const/global";
+import {CompanyCardModel, User} from "../../const/global";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import NavigationBar from "../../compoments/navigation_bar/index";
 import OtherBusinessCardGuide from "./component/other-business-card-guide/index";
@@ -67,6 +67,7 @@ interface Props {
   addRadarTrace: any;
   //新增访客记录
   addVisitor: any;
+  getCompanyCard: any;
   userInfo: User;
 }
 
@@ -84,6 +85,7 @@ interface State {
   hideAddress: number;
   showHomeWenHouYu: boolean;
   showSchoolWenHouYu: boolean;
+  companyCardList: CompanyCardModel[];
 
 }
 
@@ -144,6 +146,24 @@ class OtherBusinesscard extends Component<Props, State> {
   componentWillMount() {
     this.timer && clearInterval(this.timer);
     this.addVisitor('card');
+    this.getCompanyCard();
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/5/4
+   * @function: 获取公司推荐名片
+   */
+  getCompanyCard = () => {
+    this.props.getCompanyCard().then((res) => {
+      if (res !== NetworkState.FAIL) {
+        this.setState({companyCardList: res});
+      }
+      console.log('获取公司推荐名片', res)
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
   }
 
 
@@ -293,7 +313,7 @@ class OtherBusinesscard extends Component<Props, State> {
 
 
   render() {
-    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList, cardStyle, hidePhone, hideWechat, hideEmail, hideAddress, showHomeWenHouYu, showSchoolWenHouYu} = this.state,
+    let {showShare, userInfo, showGuide, holderCount, visitorCount, visitorList, cardStyle, hidePhone, hideWechat, hideEmail, hideAddress, showHomeWenHouYu, showSchoolWenHouYu,companyCardList} = this.state,
       visitorListSub;
 
     if (visitorList.length > 5) {
@@ -454,7 +474,8 @@ class OtherBusinesscard extends Component<Props, State> {
                   {
                     visitorListSub.map((value, index) => {
                       console.log(value);
-                      return <Image key={index} style={styleAssign([w(20), h(20),radiusA(10), styles.upa, absL(15 * index)])}
+                      return <Image key={index}
+                                    style={styleAssign([w(20), h(20), radiusA(10), styles.upa, absL(15 * index)])}
                                     src={value.avatar}/>
                     })
                   }
@@ -547,7 +568,7 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           }
           {/*极致名片*/}
-          <JiZhiCard/>
+          <JiZhiCard companyCardList={companyCardList}/>
           {/*关注公众号*/}
           <View
             style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>

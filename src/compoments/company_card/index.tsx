@@ -24,10 +24,13 @@ import styles, {
   wRatio
 } from "../../utils/style";
 import {cloudBaseUrl} from "../../api/httpurl";
+import {CompanyCardModel} from "../../const/global";
+import SingleLineText from "../singleline-text";
 
 
 interface Props {
   display?: any;
+  companyCard: CompanyCardModel;
 }
 
 interface State {
@@ -36,29 +39,35 @@ interface State {
 export default class CompanyCard extends PureComponent<Props, State> {
 
   render() {
-    let {display} = this.props;
+    let {display, companyCard} = this.props;
 
     return (
       <View style={styleAssign([wRatio(90), {display: display ? display : 'inline-block'}])}>
         <View
           style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(177), bgColor(commonStyles.whiteColor)])}>
-          <View style={styleAssign([styles.udr, styles.ujb, pl(16), pt(16), pr(16)])}>
-            <View style={styleAssign([])}>
-              <Text style={styleAssign([fSize(18), color(commonStyles.colorTheme)])}>尹龙海</Text>
-              <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), mt(4)])}>极致信息·项目经理</Text>
+
+          <View style={styleAssign([styles.uac])}>
+            <View style={styleAssign([styles.udr, styles.ujb, pl(16), pt(16), pr(16)])}>
+              <View style={styleAssign([])}>
+                <Text style={styleAssign([fSize(18), color(commonStyles.colorTheme)])}>{companyCard.name}</Text>
+                <SingleLineText
+                  style={styleAssign([fSize(14), color(commonStyles.colorTheme), mt(4)])} text={`${companyCard.company}·${companyCard.position}`}/>
+              </View>
+              <Image style={styleAssign([w(66), h(66), radiusA(33)])}
+                     src={companyCard.avatar}/>
             </View>
-            <Image style={styleAssign([w(66), h(66), radiusA(33)])}
-                   src={`${cloudBaseUrl}ico_default.png`}/>
-          </View>
-          <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
-            <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_wechat_gray.png`}/>
-            <Text
-              style={styleAssign([fSize(12), color('#979797'), ml(4)])}>LY8866321</Text>
-          </View>
-          <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
-            <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_phone_gray.png`}/>
-            <Text
-              style={styleAssign([fSize(12), color('#979797'), ml(4)])}>18980668468</Text>
+            <View style={styleAssign([wRatio(100)])}>
+              <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
+                <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_wechat_gray.png`}/>
+                <Text
+                  style={styleAssign([fSize(12), color('#979797'), ml(4)])}>{companyCard.wechat}</Text>
+              </View>
+              <View style={styleAssign([ml(16), styles.udr, styles.uac])}>
+                <Image style={styleAssign([w(12), h(10)])} src={`${cloudBaseUrl}ico_phone_gray.png`}/>
+                <Text
+                  style={styleAssign([fSize(12), color('#979797'), ml(4)])}>{companyCard.phone}</Text>
+              </View>
+            </View>
           </View>
           <View style={styleAssign([wRatio(100), styles.upa, absB(0)])}>
             <View style={styleAssign([wRatio(100), h(1), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
@@ -68,7 +77,7 @@ export default class CompanyCard extends PureComponent<Props, State> {
                 <View style={styleAssign([styles.udr, styles.uac])}
                       onClick={() => {
                         Taro.makePhoneCall({
-                          phoneNumber: '18980668468'
+                          phoneNumber: companyCard.phone
                         })
                       }}>
                   <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_call.png`}/>
