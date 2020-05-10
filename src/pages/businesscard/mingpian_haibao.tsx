@@ -108,6 +108,8 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式1商务版
    */
   drawBallStyle1() {
+
+    console.log('样式1商务版');
     this.viewRef && this.viewRef.showLoading('海报生成中');
     let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
@@ -232,9 +234,9 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式2黑金版
    */
   drawBallStyle2() {
+    console.log('样式2黑金版');
     this.viewRef && this.viewRef.showLoading('海报生成中');
     let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
-
     const context = Taro.createCanvasContext('canvas', this)
     //@ts-ignore
     const that = this;
@@ -245,6 +247,8 @@ class MingpianHaibao extends Component<Props, State> {
       this.roundRectColor(context, 0, 0, 335, 434, 16);
       //@ts-ignore
       context.drawImage(res.path, 10, 10, 313, 194);
+      context.save();
+      context.restore();
       //电话
       Taro.getImageInfo({
         src: `https://6275-business-card-8687h-1301418170.tcb.qcloud.la/assets/ico_card_mobile_white.png?sign=f1c449e5641a4e599fe465fb92d61ffa&t=1585126741`,
@@ -256,6 +260,8 @@ class MingpianHaibao extends Component<Props, State> {
           context.setFillStyle(commonStyles.whiteColor);
           context.setTextAlign('left');
           context.fillText(userInfo.phone, 42, 110);
+          context.save();
+          context.restore();
         }
         //微信
         Taro.getImageInfo({
@@ -266,6 +272,8 @@ class MingpianHaibao extends Component<Props, State> {
             context.drawImage(res.path, 248, 175, 12, 10);
             context.setTextAlign('left');
             context.fillText(userInfo.wechat, 42, 130);
+            context.save();
+            context.restore();
           }
           //邮箱
           Taro.getImageInfo({
@@ -276,6 +284,8 @@ class MingpianHaibao extends Component<Props, State> {
               context.drawImage(res.path, 267, 175, 12, 10);
               context.setTextAlign('left');
               context.fillText(userInfo.email, 42, 150);
+              context.save();
+              context.restore();
             }
             //地址
             Taro.getImageInfo({
@@ -286,6 +296,8 @@ class MingpianHaibao extends Component<Props, State> {
                 context.drawImage(res.path, 286, 175, 12, 10);
                 context.setTextAlign('left');
                 context.fillText(userInfo.detailAddress, 42, 170);
+                context.save();
+                context.restore();
               }
               //小程序码
               Taro.getImageInfo({
@@ -294,6 +306,8 @@ class MingpianHaibao extends Component<Props, State> {
                 //@ts-ignore
                 context.drawImage(res.path, 15, 360, 44, 44);
                 context.setTextAlign('right');
+                context.save();
+                context.restore();
                 Taro.getImageInfo({
                   src: userInfo.avatar,
                 }).then((res) => {
@@ -309,25 +323,35 @@ class MingpianHaibao extends Component<Props, State> {
                   context.clip();
                   //@ts-ignore
                   context.drawImage(res.path, xCoor, yCoor, arcWidth, arcWidth);
-                  context.restore();
                   context.setFontSize(18);
                   context.setFillStyle('#E2BB7B');
                   context.fillText(userInfo.name, 120, 60);
+                  context.save();
+                  context.restore();
+                  context.setTextAlign('right');
                   context.setFontSize(12);
                   context.setFillStyle(commonStyles.whiteColor);
                   context.fillText(userInfo.position, 120, 80);
+                  context.save();
+                  context.restore();
                   context.setTextAlign('right');
                   that.fillTextWrap2(context, userInfo.enterpriseName, 300, 40, 100, 16, 12, commonStyles.whiteColor);
                   context.setTextAlign('left');
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
                   that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
+                  context.save();
+                  context.restore();
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
+                  context.save();
+                  context.restore();
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
                   context.moveTo(0, 340);
                   context.lineTo(335, 340);
                   context.stroke();
+                  context.save();
+                  context.restore();
                   context.draw(false, () => {
                     that.viewRef && that.viewRef.hideLoading();
                     Taro.canvasToTempFilePath({
@@ -358,6 +382,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式3简约版
    */
   drawBallStyle3() {
+    console.log('样式3简约版');
     this.viewRef && this.viewRef.showLoading('海报生成中');
     let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
@@ -484,6 +509,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式4极简版
    */
   drawBallStyle4() {
+    console.log('样式4极简版');
     this.viewRef && this.viewRef.showLoading('海报生成中');
     let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
@@ -611,6 +637,7 @@ class MingpianHaibao extends Component<Props, State> {
    * @function: 样式5实景版
    */
   drawBallStyle5() {
+    console.log('样式5实景版');
     this.viewRef && this.viewRef.showLoading('海报生成中');
     let {hideEmail, hideAddress, hidePhone, hideWechat, userInfo} = this.state;
 
