@@ -28,6 +28,7 @@ import styles, {
 } from "../../utils/style";
 import {Goods} from "../../const/global";
 import {cloudBaseUrl} from "../../api/httpurl";
+import SingleLineText from "../singleline-text";
 
 
 interface Props {
@@ -77,7 +78,7 @@ export default class GoodsManageItem extends Component<Props, State> {
             }
           </View>
           <View style={styleAssign([ml(12)])}>
-            <Text style={styleAssign([fSize(18), color('#343434')])}>{itemData.name}</Text>
+            <Text style={styleAssign([fSize(18), color('#343434')])}>{itemData.name.length > 10 ? itemData.name.substring(0, 11) + '...' : itemData.name}</Text>
             {
               itemData.price !== 0 && <View style={styleAssign([styles.uac, styles.udr, mt(16)])}>
                 <Text style={styleAssign([fSize(12), color('#A6A6A6')])}>参考价格：</Text>
