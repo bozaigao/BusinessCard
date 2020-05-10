@@ -127,11 +127,11 @@ class MingpianHaibao extends Component<Props, State> {
       }).then((res) => {
         if (!hidePhone) {
           //@ts-ignore
-          context.drawImage(res.path, 295, 90, 11, 9);
+          context.drawImage(res.path, 295, 95, 11, 9);
           context.setFontSize(12);
           context.setFillStyle('#343434');
           context.setTextAlign('right');
-          context.fillText(userInfo.phone, 290, 100);
+          context.fillText(userInfo.phone, 290, 105);
         }
         //微信
         Taro.getImageInfo({
@@ -139,9 +139,9 @@ class MingpianHaibao extends Component<Props, State> {
         }).then((res) => {
           if (!hideWechat) {
             //@ts-ignore
-            context.drawImage(res.path, 295, 110, 12, 10);
+            context.drawImage(res.path, 295, 115, 12, 10);
             context.setTextAlign('right');
-            context.fillText(userInfo.wechat, 290, 120);
+            context.fillText(userInfo.wechat, 290, 125);
           }
           //邮箱
           Taro.getImageInfo({
@@ -149,9 +149,9 @@ class MingpianHaibao extends Component<Props, State> {
           }).then((res) => {
             if (!hideEmail) {
               //@ts-ignore
-              context.drawImage(res.path, 295, 130, 12, 10);
+              context.drawImage(res.path, 295, 135, 12, 10);
               context.setTextAlign('right');
-              context.fillText(userInfo.email, 290, 140);
+              context.fillText(userInfo.email, 290, 145);
             }
             //地址
             Taro.getImageInfo({
@@ -159,9 +159,9 @@ class MingpianHaibao extends Component<Props, State> {
             }).then((res) => {
               if (!hideAddress) {
                 //@ts-ignore
-                context.drawImage(res.path, 295, 150, 12, 10);
+                context.drawImage(res.path, 295, 155, 12, 10);
                 context.setTextAlign('right');
-                context.fillText(userInfo.detailAddress, 290, 160);
+                context.fillText(userInfo.detailAddress, 290, 165);
               }
               //小程序码
               Taro.getImageInfo({
@@ -188,11 +188,11 @@ class MingpianHaibao extends Component<Props, State> {
                   context.restore();
                   context.setFontSize(18);
                   context.setFillStyle(commonStyles.colorTheme);
-                  context.fillText(userInfo.name, 34, 115);
+                  context.fillText(userInfo.name, 28, 105);
                   context.setFontSize(12);
-                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 12, 75), 115);
+                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 12, 70), 105);
                   context.setFontSize(12);
-                  context.fillText(userInfo.enterpriseName.length > 10 ? userInfo.enterpriseName.substring(0, 11) + '...' : userInfo.enterpriseName, 34, 140);
+                  context.fillText(userInfo.enterpriseName.length > 12 ? userInfo.enterpriseName.substring(0, 13) + '...' : userInfo.enterpriseName, 28, 125);
                   context.setFontSize(14);
                   context.fillText('您好,', 15, 240);
                   that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);

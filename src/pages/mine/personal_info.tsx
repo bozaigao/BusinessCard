@@ -223,8 +223,8 @@ class PersonalInfo extends Component<Props, State> {
       toast('职位不能为空');
       return;
     }
-    if (position.length > 8) {
-      toast('职位长度不能超过8个字符');
+    if (position.length > 6) {
+      toast('职位长度不能超过6个字符');
       return;
     }
 
