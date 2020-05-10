@@ -544,6 +544,7 @@ class GoodsManage extends Component<Props, State> {
         }
         {
           shopStatus !== ShopStatus.SHOP_OUT_OF_TIME &&
+          shopStatus !== ShopStatus.NO_APPLY &&
           <View style={styleAssign([styles.uf1, styles.uje])}>
             {/*继续开通*/}
             <BottomButon title={'继续开通'} onClick={() => {
