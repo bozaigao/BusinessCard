@@ -62,9 +62,7 @@ class CustomerRemark extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -73,6 +71,7 @@ class CustomerRemark extends Component<Props, State> {
     this.uploading = false;
     this.uploadCount = 0;
     this.uploadResultArr = [];
+    console.log('透析那个', this.$router.params.aboutUrl)
     this.state = {
       name: this.$router.params.name,
       phone: this.$router.params.phone,
@@ -186,6 +185,7 @@ class CustomerRemark extends Component<Props, State> {
 
   render() {
     let {desc, avatar, phone, name} = this.state;
+    console.log('渲染文件',avatar);
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}

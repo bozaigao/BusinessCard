@@ -218,7 +218,7 @@ class CustomerZiLiao extends Component<Props, State> {
           {/*常用标签*/}
           {
             customer.type === 1 && customer.label && parseData(customer.label).length !== 0 &&
-            <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor),pb(20)])}>
+            <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor), pb(20)])}>
               <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>Ta的标签</Text>
               <View style={styleAssign([wRatio(100), styles.udr, styles.uac, mt(8),
                 styles.uWrap])}>
@@ -241,7 +241,7 @@ class CustomerZiLiao extends Component<Props, State> {
               <View style={styleAssign([wRatio(100), mt(8),])}>
                 {
                   customer.remark.length !== 0 && <View
-                    style={styleAssign([wRatio(90), {marginLeft: '5%'},mb(20), bgColor(commonStyles.pageDefaultBackgroundColor),
+                    style={styleAssign([wRatio(90), {marginLeft: '5%'}, mb(20), bgColor(commonStyles.pageDefaultBackgroundColor),
                       padding([13, 16, 13, 16])])}>
                     <Text style={styleAssign([fSize(14), color('#343434')])}>
                       {customer.remark}
@@ -250,7 +250,7 @@ class CustomerZiLiao extends Component<Props, State> {
                 }
                 {
                   customer.aboutUrl.length !== 0 &&
-                  <View style={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.whiteColor),mt(10)])}>
+                  <View style={styleAssign([styles.uac, styles.ujc, bgColor(commonStyles.whiteColor), mt(10)])}>
                     <Image style={styleAssign([wRatio(90), mb(20)])} src={customer.aboutUrl}
                            mode={'aspectFit'}/>
                   </View>

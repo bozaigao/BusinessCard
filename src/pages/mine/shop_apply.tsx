@@ -112,7 +112,7 @@ class ShopApply extends Component<Props, State> {
       toast('手机号非法');
       return;
     }
-    if (companyName.length > 6) {
+    if (companyName.length === 0) {
       toast('公司名字不能为空');
       return;
     }
