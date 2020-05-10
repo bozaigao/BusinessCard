@@ -435,7 +435,7 @@ class OtherBusinesscard extends Component<Props, State> {
                     })
                   }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
-                  <Text style={styleAssign([color('#979797'), fSize(12)])}>{userInfo.phone}</Text>
+                  <Text style={styleAssign([color('#979797'), fSize(12),styles.utxc])}>{userInfo.phone}</Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
@@ -448,6 +448,7 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
                   <MultiLineText
+                    center={true}
                     style={styleAssign([color('#979797'), fSize(12), w(80)])}
                     text={`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}
                   />
@@ -465,8 +466,7 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(10)])}
-                    className={'.textStyle'}>{userInfo.detailAddress ? `${userInfo.detailAddress}` : '点击立即定位'}</Text>
+                    style={styleAssign([color('#979797'), fSize(10),styles.utxc])}>{userInfo.detailAddress ? `${userInfo.detailAddress}` : '点击立即定位'}</Text>
                 </View>
               </View>
               <View style={styleAssign([wRatio(100), h(61), styles.udr, styles.uac, styles.ujb, pl(20), pr(20)])}>

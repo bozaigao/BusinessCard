@@ -522,6 +522,24 @@ const styles = {
   uSelfEnd: {alignSelf: 'flex-end'},
   uSelfCenter: {alignSelf: 'center'},
   uSelfStretch: {alignSelf: 'stretch'},
+  utxc: {
+    textAlign: 'center',
+  },
+  //水平居左
+  utxl: {
+    textAlign: 'left',
+  },
+  //水平居右
+  utxr: {
+    textAlign: 'right',
+  },
+  //文字垂直居中 textAlignVertical enum('auto', 'top', 'bottom', 'center') 只支持安卓
+  utxvc: {
+    textAlignVertical: 'center',
+  },
+  utxvt: {
+    textAlignVertical: 'top',
+  },
   upa: {
     //绝对定位
     position: 'absolute'
