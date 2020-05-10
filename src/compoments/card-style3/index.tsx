@@ -98,7 +98,7 @@ export default class CardStyle3 extends PureComponent<Props, State> {
               {/*地址*/}
               {
                 !hideAddress && <View style={styleAssign([styles.udr, mt(hideEmail ? 0 : 4)])}>
-                  <Image style={styleAssign([w(10), h(11), mt(4)])}
+                  <Image style={styleAssign([w(16), h(11), mt(4)])}
                          src={require('../../assets/ico_card_location_gray.png')}/>
                   <Text
                     style={styleAssign([fSize(11), color('#343434'), ml(5)])}>{userInfo.detailAddress}</Text>

@@ -189,31 +189,38 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(18);
                   context.setFillStyle(commonStyles.colorTheme);
                   context.fillText(userInfo.name, 28, 105);
+                  context.restore();
                   context.setFontSize(12);
                   context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 12, 70), 105);
+                  context.restore();
                   context.setFontSize(12);
                   context.fillText(userInfo.enterpriseName.length > 12 ? userInfo.enterpriseName.substring(0, 13) + '...' : userInfo.enterpriseName, 28, 125);
                   context.setFontSize(14);
+                  context.setFillStyle(commonStyles.colorTheme);
                   context.fillText('您好,', 15, 240);
-                  that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
+                  that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14)
+                  context.restore();
                   context.setFillStyle('#E2BB7B');
                   context.fillText('长按识别二维码 收下名片', 70, 390);
+                  context.restore();
                   context.setStrokeStyle(commonStyles.pageDefaultBackgroundColor);
                   context.moveTo(0, 340);
                   context.lineTo(335, 340);
                   context.stroke();
                   context.draw(false, () => {
                     that.viewRef && that.viewRef.hideLoading();
-                    Taro.canvasToTempFilePath({
-                      canvasId: 'canvas',
-                      success: function (res) {
-                        console.log('获得图片临时路径', res);
-                        // 获得图片临时路径
-                        that.setState({
-                          imageTempPath: res.tempFilePath
-                        })
-                      }
-                    })
+                    setTimeout(()=>{
+                      Taro.canvasToTempFilePath({
+                        canvasId: 'canvas',
+                        success: function (res) {
+                          console.log('获得图片临时路径', res);
+                          // 获得图片临时路径
+                          that.setState({
+                            imageTempPath: res.tempFilePath
+                          })
+                        }
+                      })
+                    },100);
                   });
                 });
               });
@@ -316,10 +323,11 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setFontSize(12);
                   context.setFillStyle(commonStyles.whiteColor);
                   context.fillText(userInfo.position, 120, 80);
-                  context.setTextAlign('right');
+                  context.setTextAlign('left');
                   that.fillTextWrap2(context, userInfo.enterpriseName, 150, 40, 140, 16, 12, commonStyles.whiteColor);
                   context.setTextAlign('left');
                   context.setFontSize(14);
+                  context.setFillStyle(commonStyles.colorTheme);
                   context.fillText('您好,', 15, 240);
                   that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                   context.setFillStyle('#E2BB7B');
@@ -330,16 +338,18 @@ class MingpianHaibao extends Component<Props, State> {
                   context.stroke();
                   context.draw(false, () => {
                     that.viewRef && that.viewRef.hideLoading();
-                    Taro.canvasToTempFilePath({
-                      canvasId: 'canvas',
-                      success: function (res) {
-                        console.log('获得图片临时路径', res);
-                        // 获得图片临时路径
-                        that.setState({
-                          imageTempPath: res.tempFilePath
-                        })
-                      }
-                    })
+                    setTimeout(()=>{
+                      Taro.canvasToTempFilePath({
+                        canvasId: 'canvas',
+                        success: function (res) {
+                          console.log('获得图片临时路径', res);
+                          // 获得图片临时路径
+                          that.setState({
+                            imageTempPath: res.tempFilePath
+                          })
+                        }
+                      })
+                    },100);
                   });
                 });
               });
@@ -411,7 +421,7 @@ class MingpianHaibao extends Component<Props, State> {
                 //@ts-ignore
                 context.drawImage(res.path, 178, 164, 12, 10);
                 context.setTextAlign('left');
-                that.fillTextWrap2(context, userInfo.detailAddress, 192, 174, 100, 16, 12, '#343434');
+                that.fillTextWrap2(context, userInfo.detailAddress.length > 16 ? userInfo.detailAddress.substring(0, 17) + '...' : userInfo.detailAddress, 192, 174, 100, 16, 12, '#343434');
               }
               //小程序码
               Taro.getImageInfo({
@@ -456,16 +466,18 @@ class MingpianHaibao extends Component<Props, State> {
                   context.stroke();
                   context.draw(false, () => {
                     that.viewRef && that.viewRef.hideLoading();
-                    Taro.canvasToTempFilePath({
-                      canvasId: 'canvas',
-                      success: function (res) {
-                        console.log('获得图片临时路径', res);
-                        // 获得图片临时路径
-                        that.setState({
-                          imageTempPath: res.tempFilePath
-                        })
-                      }
-                    })
+                    setTimeout(()=>{
+                      Taro.canvasToTempFilePath({
+                        canvasId: 'canvas',
+                        success: function (res) {
+                          console.log('获得图片临时路径', res);
+                          // 获得图片临时路径
+                          that.setState({
+                            imageTempPath: res.tempFilePath
+                          })
+                        }
+                      })
+                    },100);
                   });
                 });
               });
@@ -567,7 +579,7 @@ class MingpianHaibao extends Component<Props, State> {
                   context.setTextAlign('left');
                   context.fillText(userInfo.name, 44, 65);
                   context.setFillStyle('#343434');
-                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 18, 60), 65)
+                  context.fillText(userInfo.position, that.measureTextWidth(context, userInfo.name, 12, 90), 65)
                   context.setFontSize(12);
                   context.setTextAlign('left');
                   context.fillText(userInfo.enterpriseName, 44, 85);
@@ -583,16 +595,18 @@ class MingpianHaibao extends Component<Props, State> {
                   context.stroke();
                   context.draw(false, () => {
                     that.viewRef && that.viewRef.hideLoading();
-                    Taro.canvasToTempFilePath({
-                      canvasId: 'canvas',
-                      success: function (res) {
-                        console.log('获得图片临时路径', res);
-                        // 获得图片临时路径
-                        that.setState({
-                          imageTempPath: res.tempFilePath
-                        })
-                      }
-                    })
+                    setTimeout(()=>{
+                      Taro.canvasToTempFilePath({
+                        canvasId: 'canvas',
+                        success: function (res) {
+                          console.log('获得图片临时路径', res);
+                          // 获得图片临时路径
+                          that.setState({
+                            imageTempPath: res.tempFilePath
+                          })
+                        }
+                      })
+                    },100);
                   });
                 });
               });
@@ -685,6 +699,7 @@ class MingpianHaibao extends Component<Props, State> {
                 context.fillText(userInfo.enterpriseName, 44, 85);
                 context.setFontSize(14);
                 context.setTextAlign('left');
+                context.setFillStyle(commonStyles.colorTheme);
                 context.fillText('您好,', 15, 240);
                 that.fillTextWrap(context, `我是${userInfo.enterpriseName}的${userInfo.position}${userInfo.name}`, 15, 260, 294, 20, 14);
                 context.setFillStyle('#E2BB7B');
@@ -695,16 +710,18 @@ class MingpianHaibao extends Component<Props, State> {
                 context.stroke();
                 context.draw(false, () => {
                   that.viewRef && that.viewRef.hideLoading();
-                  Taro.canvasToTempFilePath({
-                    canvasId: 'canvas',
-                    success: function (res) {
-                      console.log('获得图片临时路径', res);
-                      // 获得图片临时路径
-                      that.setState({
-                        imageTempPath: res.tempFilePath
-                      })
-                    }
-                  })
+                  setTimeout(()=>{
+                    Taro.canvasToTempFilePath({
+                      canvasId: 'canvas',
+                      success: function (res) {
+                        console.log('获得图片临时路径', res);
+                        // 获得图片临时路径
+                        that.setState({
+                          imageTempPath: res.tempFilePath
+                        })
+                      }
+                    })
+                  },100);
                 });
               });
             });
@@ -848,7 +865,6 @@ class MingpianHaibao extends Component<Props, State> {
     let currentWidth;
 
     ctx.setFontSize(fontSize);
-    ctx.setFillStyle('#3A3A3A');
     ctx.setTextAlign('justify');
     for (let letter of arrText) {
       currentText += letter;
@@ -860,6 +876,7 @@ class MingpianHaibao extends Component<Props, State> {
       }
     }
     if (currentText) {
+      ctx.setFillStyle(commonStyles.colorTheme);
       ctx.fillText(currentText, x, y);
       ctx.fillText('这是我的名片，请惠存。', x, y + 20);
       ctx.fillText('谢谢!', x, y + 40);
