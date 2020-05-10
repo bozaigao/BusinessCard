@@ -87,9 +87,15 @@ class TaskCenter extends Component<Props, State> {
   }
 
   componentDidShow() {
-    this.setState({taskItem: []}, () => {
-      this.refresh();
-    });
+    if (this.state.currentIndex === 0) {
+      this.setState({taskItem: []}, () => {
+        this.refresh();
+      });
+    } else {
+      this.setState({taskItem: []}, () => {
+        this.refresh1();
+      });
+    }
     Taro.eventCenter.on('refreshTaskList', () => {
       console.log('刷新任务列表');
       this.setState({taskItem: []}, () => {
@@ -110,7 +116,7 @@ class TaskCenter extends Component<Props, State> {
 
   refresh1 = () => {
     this.pageNo1 = 1;
-    this.getIngTaskList(true,()=>{
+    this.getIngTaskList(true, () => {
       this.getFinishedTaskList(true);
     });
   }
