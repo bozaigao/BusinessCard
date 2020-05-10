@@ -21,7 +21,7 @@ import {
   default as styles,
   fSize,
   h,
-  hRatio,
+  hRatio, iphoneX,
   ma,
   ml,
   mr,
@@ -138,7 +138,7 @@ class GoodsManage extends Component<Props, State> {
     this.props.getShop().then((res) => {
       console.log('获取店铺', res);
       if (res !== NetworkState.FAIL) {
-        this.setState({shopStatus: res.status,shop:res});
+        this.setState({shopStatus: res.status, shop: res});
       }
     }).catch(e => {
       console.log('报错啦', e);
@@ -296,7 +296,7 @@ class GoodsManage extends Component<Props, State> {
     let child;
 
     if (currentIndex === 0) {
-      child = <View style={styleAssign([wRatio(100), h(screenHeight())])}>
+      child = <View style={styleAssign([wRatio(100), hRatio(100)])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
@@ -329,7 +329,7 @@ class GoodsManage extends Component<Props, State> {
               </View>
             </View> :
             <ScrollView
-              style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+              style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 200 : screenHeight() - 150), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY>
               {
                 goodsList.map((value, index) => {
