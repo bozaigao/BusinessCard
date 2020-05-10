@@ -75,9 +75,7 @@ class AddCustomer extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-    
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -139,7 +137,7 @@ class AddCustomer extends Component<Props, State> {
    */
   addPrivateCustomer = () => {
 
-    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress, email} = this.state;
+    let {name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress, email, desc} = this.state;
 
     if (name.length === 0) {
       toast('备注名不能为空');
@@ -172,7 +170,8 @@ class AddCustomer extends Component<Props, State> {
       detailAddress,
       birthday,
       wechat,
-      aboutUrl:JSON.stringify(this.avatarArr),
+      remark: desc,
+      aboutUrl: JSON.stringify(this.avatarArr),
       email
     };
 

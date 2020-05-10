@@ -236,12 +236,12 @@ class CustomerZiLiao extends Component<Props, State> {
           }
           {
             (customer.aboutUrl.length !== 0 || customer.remark.length !== 0) &&
-            <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor),mb(20)])}>
+            <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor)])}>
               <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>描述</Text>
               <View style={styleAssign([wRatio(100), mt(8),])}>
                 {
                   customer.remark.length !== 0 && <View
-                    style={styleAssign([wRatio(90), {marginLeft: '5%'}, bgColor(commonStyles.pageDefaultBackgroundColor),
+                    style={styleAssign([wRatio(90), {marginLeft: '5%'},mb(20), bgColor(commonStyles.pageDefaultBackgroundColor),
                       padding([13, 16, 13, 16])])}>
                     <Text style={styleAssign([fSize(14), color('#343434')])}>
                       {customer.remark}
