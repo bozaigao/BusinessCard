@@ -18,8 +18,8 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h,
-  mb,
+  h, hRatio,
+  mb, ml,
   mt,
   pa,
   pl,
@@ -161,13 +161,13 @@ class ShopApply extends Component<Props, State> {
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
         <TopHeader title={'开通店铺'}/>
         {/*任务列表*/}
-        <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+        <View style={styleAssign([wRatio(100),hRatio(100), bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), pl(20), pr(20)])}>
             <Text style={styleAssign([color('#0C0C0C'), fSize(18)])}>填写申请</Text>
             <Text
               style={styleAssign([color('#979797'), fSize(14), mt(18), mb(18)])}>请留下真实有效的使用者消息，我们将在12小时内尽快与您联系，若您仍有疑问也可直接咨询客服。</Text>
           </View>
-          <View style={styleAssign([wRatio(100), mt(10)])}>
+          <View style={styleAssign([styles.uf1, mt(10)])}>
             {
               titleList.map((value, index) => {
                 if (value.title === '公司地址') {
@@ -208,11 +208,14 @@ class ShopApply extends Component<Props, State> {
                 }/>);
               })
             }
-            <View style={styleAssign([wRatio(100), h(140), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc])}>
+            <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc])}>
+              <View style={styleAssign([wRatio(100),styles.udr,styles.uac])}>
+                <Text style={styleAssign([fSize(14),color('#727272'),mt(10),ml(20)])}>公司主营业务</Text>
+              </View>
                <Textarea
                  style={styleAssign([wRatio(80), h(160), pa(20), bgColor(commonStyles.pageDefaultBackgroundColor),
-                   mt(20), fSize(14)])}
-                 value={desc} placeholder={'请输入公司的主营业务'}
+                   mt(10),mb(10), fSize(14)])}
+                 value={desc} placeholder={'请描述公司的主营业务'}
                  maxlength={200}
                  onInput={(e) => {
                    this.setState({desc: e.detail.value});
