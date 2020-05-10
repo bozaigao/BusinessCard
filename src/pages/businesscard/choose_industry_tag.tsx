@@ -22,7 +22,7 @@ import {
   iphoneX, mb,
   ml,
   mt, padding, pl, pr,
-  radiusA,
+  radiusA, screenHeight,
   w,
   wRatio
 } from "../../utils/style";
@@ -58,9 +58,7 @@ class ChooseIndustryTag extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -149,7 +147,7 @@ class ChooseIndustryTag extends Component<Props, State> {
           </View>
         </View>
         <ScrollView
-          style={styleAssign([styles.uf1, mt(30), styles.uac, bgColor(commonStyles.whiteColor)])}
+          style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 189 : screenHeight() - 169), mt(30), styles.uac, bgColor(commonStyles.whiteColor)])}
           scrollY>
           <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, styles.uja, pl(20), pr(20)])}>
             {

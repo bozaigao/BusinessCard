@@ -11,7 +11,18 @@ import {Button, ScrollView, Text, View} from "@tarojs/components";
 import CustomSafeAreaView from "../compoments/safe-area-view/index";
 //@ts-ignore
 import {get, save, styleAssign, toast} from "../utils/datatool";
-import {bgColor, color, commonStyles, default as styles, fSize, h, radiusA, w, wRatio} from "../utils/style";
+import {
+  bgColor,
+  color,
+  commonStyles,
+  default as styles,
+  fSize,
+  h,
+  radiusA,
+  screenHeight,
+  w,
+  wRatio
+} from "../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
 import * as loginActions from '../actions/login';
@@ -68,7 +79,6 @@ class Businesscard extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {}
   private recommendType;
   private viewRef;
 
@@ -303,7 +313,7 @@ class Businesscard extends Component<Props, State> {
           </View>
         </NavigationBar>
         <ScrollView
-          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100),h(screenHeight()-100), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <Card
@@ -384,25 +394,27 @@ class Businesscard extends Component<Props, State> {
           </View>
         </ScrollView>
         {/*创建名片*/}
-        <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
-          if (userInfo.cardPercent) {
-            Taro.navigateTo({
-              url: `/pages/mine/perform_info`
-            });
-          } else {
-            if (!userInfo.avatar) {
-              this.updateUserInfo(data.detail);
+        <View style={styleAssign([wRatio(100),h(55), styles.uac])}>
+          <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
+            if (userInfo.cardPercent) {
+              Taro.navigateTo({
+                url: `/pages/mine/perform_info`
+              });
+            } else {
+              if (!userInfo.avatar) {
+                this.updateUserInfo(data.detail);
+              }
+              Taro.navigateTo({
+                url: `/pages/businesscard/add_businesscard`
+              });
             }
-            Taro.navigateTo({
-              url: `/pages/businesscard/add_businesscard`
-            });
-          }
-        }} style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
-          <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
-            <Text
-              style={styleAssign([fSize(14), color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}%，点击完善` : '创建您的专属名片'}</Text>
-          </View>
-        </Button>
+          }} style={styleAssign([wRatio(100), h(55), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
+            <View style={styleAssign([w(335), h(41), styles.uac, styles.ujc, bgColor('#FAF1E5'), radiusA(30)])}>
+              <Text
+                style={styleAssign([fSize(14), color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}%，点击完善` : '创建您的专属名片'}</Text>
+            </View>
+          </Button>
+        </View>
         {
           showShare && <ShareModal cancle={() => {
             this.setState({showShare: false});
