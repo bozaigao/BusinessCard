@@ -53,9 +53,9 @@ export default class DeleteNoticeModal extends PureComponent<Props, State> {
           customStyle={styleAssign([wRatio(100), hRatio(100), bgColor(commonStyles.blackColor), op(0.5), styles.upa, absT(0), absR(0),])}/>
         <View style={styleAssign([wRatio(100), hRatio(100), styles.uac, styles.ujc])}>
           <View style={styleAssign([w(335), h(167), bgColor(commonStyles.whiteColor), radiusA(10)])}>
-            <View style={styleAssign([wRatio(100), styles.uac])}>
+            <View style={styleAssign([wRatio(100), styles.uac,styles.ujc])}>
               <Text style={styleAssign([fSize(20), color('#313137'), mt(20)])}>{title}</Text>
-              <Text style={styleAssign([fSize(18), color('#787878'), mt(20),w(280)])}>{subTitle}</Text>
+              <Text style={styleAssign([fSize(18), color('#787878'), mt(20)])}>{subTitle}</Text>
             </View>
             <View style={styleAssign([wRatio(100), h(1), mt(15), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
             <View style={styleAssign([styles.uf1, styles.udr, styles.uac])}>
