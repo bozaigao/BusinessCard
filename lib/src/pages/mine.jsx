@@ -24,8 +24,9 @@ const index_2 = require("../compoments/list-item/index");
 const httpurl_1 = require("../api/httpurl");
 const index_3 = require("../compoments/safe-area-view/index");
 const index_4 = require("../compoments/navigation_bar/index");
-const mine_guide1_1 = require("./pagecomponent/mine_guide1");
-const mine_guide2_1 = require("./pagecomponent/mine_guide2");
+const mine_guide1_1 = require("./component/mine_guide1");
+const mine_guide2_1 = require("./component/mine_guide2");
+const singleline_text_1 = require("../compoments/singleline-text");
 let Mine = class Mine extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -36,9 +37,7 @@ let Mine = class Mine extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -80,9 +79,9 @@ let Mine = class Mine extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.wRatio(100), style_1.default.ujb, style_1.mt(25)])}>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.ml(20), style_1.radiusA(33)])} src={userInfo.avatar ? userInfo.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
+                <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.ml(20), style_1.radiusA(33)])} src={userInfo.avatar}/>
                 <components_1.View style={datatool_1.styleAssign([style_1.ml(14)])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.whiteColor)])}>{userInfo.name ? userInfo.name : '无名氏'}</components_1.Text>
+                  <singleline_text_1.default text={userInfo.name ? userInfo.name : '无名氏'} style={datatool_1.styleAssign([style_1.fSize(18), style_1.color(style_1.commonStyles.whiteColor)])}/>
                   <components_1.View style={datatool_1.styleAssign([style_1.w(140), style_1.h(6), style_1.radiusA(3), style_1.mt(13), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
                     <components_1.View style={datatool_1.styleAssign([style_1.wRatio(userInfo.cardPercent), style_1.h(6), style_1.radiusA(3), style_1.default.uac, style_1.bgColor('#E2BB7B')])}/>
                   </components_1.View>
@@ -113,7 +112,7 @@ let Mine = class Mine extends taro_1.Component {
             </components_1.View>
             
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(100), style_1.default.uac, style_1.mt(22)])}>
-              <components_1.Image style={datatool_1.styleAssign([style_1.w(335), style_1.h(100)])} src={`${httpurl_1.cloudBaseUrl}ico_fenxiao.png`} onClick={() => {
+              <components_1.Image style={datatool_1.styleAssign([style_1.w(335), style_1.h(100)])} src={require('../assets/ico_fenxiao.png')} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/mine/fenxiao_center`
             });

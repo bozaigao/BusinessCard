@@ -21,15 +21,15 @@ const datatool_1 = require("../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
 const actions = require("../actions/customer");
-const index_2 = require("./pagecomponent/custom-item/index");
+const index_2 = require("./component/custom-item/index");
 const index_3 = require("../compoments/bottom-buton/index");
 const global_1 = require("../const/global");
-const index_4 = require("./pagecomponent/mode-modal/index");
-const index_5 = require("./pagecomponent/shai-xuan-modal/index");
+const index_4 = require("./component/mode-modal/index");
+const index_5 = require("./component/shai-xuan-modal/index");
 const index_6 = require("../compoments/navigation_bar/index");
 const index_7 = require("../compoments/sanjiao/index");
-const customer_guide_1 = require("./pagecomponent/customer-guide");
-const share_invite_1 = require("./pagecomponent/share-invite");
+const customer_guide_1 = require("./component/customer-guide");
+const share_invite_1 = require("./component/share-invite");
 let Customer = class Customer extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -62,10 +62,14 @@ let Customer = class Customer extends taro_1.Component {
             let params = {
                 pageNo: this.pageNo,
                 pageSize: this.pageSize,
-                startDate: startTime,
-                endDate: endTime,
                 status,
             };
+            if (startTime.length !== 0) {
+                Object.assign(params, { startDate: startTime });
+            }
+            if (endTime.length !== 0) {
+                Object.assign(params, { endDate: endTime });
+            }
             if (name.length !== 0) {
                 Object.assign(params, { name });
             }
@@ -86,16 +90,16 @@ let Customer = class Customer extends taro_1.Component {
             });
         };
         this.pageNo = 1;
-        this.pageSize = 10;
+        this.pageSize = 1000;
         this.state = {
             customerList: [],
             totalCustomers: 0,
-            shaiXuanMode: '最后访问时间',
+            shaiXuanMode: '最后转入时间',
             shaiXuanValue: '全部',
             showMode: false,
             showShaiXuan: false,
-            startTime: '2020-01-01',
-            endTime: datatool_1.getToday(),
+            startTime: '',
+            endTime: '',
             name: '',
             showGuide: false,
             showShareInvite: false
@@ -170,8 +174,8 @@ let Customer = class Customer extends taro_1.Component {
             <components_1.ScrollView onScrollToUpper={() => {
                 this.refresh();
             }} onScrollToLower={() => {
-                this.loadMore();
-            }} style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac])} scrollY>
+                // this.loadMore();
+            }} style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
               {customerList.map((value, index) => {
                 console.log(value);
                 return (<index_2.default key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)} onClick={() => {
@@ -204,7 +208,7 @@ let Customer = class Customer extends taro_1.Component {
         }} cancelCallback={() => {
             this.setState({ showMode: false });
         }} confirmCallback={(data) => {
-            this.setState({ showMode: false, shaiXuanMode: data }, () => {
+            this.setState({ showMode: false, startTime: '', endTime: '', shaiXuanMode: data }, () => {
                 this.refresh();
             });
         }}/>}

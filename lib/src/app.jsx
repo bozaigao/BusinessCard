@@ -37,14 +37,14 @@ class App extends taro_1.Component {
                     pages: [
                         "add_businesscard",
                         "qiehuan_businesscard",
-                        "mingpian_haibao",
                         "more_goods",
                         "mingpianjia",
                         "my_collect",
                         "other_businesscard",
                         "ming_pian_ma",
                         "choose_renmai_tag",
-                        "choose_industry_tag"
+                        "choose_industry_tag",
+                        "mingpian_haibao"
                     ]
                 },
                 //雷达模块子界面
@@ -63,20 +63,19 @@ class App extends taro_1.Component {
                         "add_customer",
                         "customer_remark",
                         "add_genjin",
+                        "add_tags",
+                        "ai_analysis",
                     ]
                 },
-                //我的模块子页面
+                //我的模块子页面pages/
                 {
                     root: 'pages/mine',
                     pages: [
-                        "personal_info",
-                        "add_task",
                         "tool_box",
                         "haibao",
                         "goods_detail",
                         "goods_manage",
                         "add_goods",
-                        "task_center",
                         "contact_way",
                         "setting_page",
                         "feedback",
@@ -86,7 +85,6 @@ class App extends taro_1.Component {
                         "self_intro",
                         "audio_recorder",
                         "industry_list",
-                        "perform_info",
                         "my_photo",
                         "my_video",
                         "fenxiao_center",
@@ -109,7 +107,18 @@ class App extends taro_1.Component {
                         "how_perform_card",
                         "introduce",
                         "renmai_taocan_detail",
-                        "my_home"
+                        "my_home",
+                        "share_goods",
+                        "personal_info",
+                        "mingpian_style",
+                        "perform_info",
+                        "add_task",
+                        "task_center",
+                        "task_detail",
+                        "shop_apply",
+                        "apply_success",
+                        "jixu_open",
+                        "poster_share",
                     ]
                 }
             ],
@@ -158,10 +167,10 @@ class App extends taro_1.Component {
         };
         //获取胶囊按钮位置信息为后面自定义导航条做准备
         global.menuButton = taro_1.default.getMenuButtonBoundingClientRect();
-        global.debug = true;
+        global.debug = false;
         taro_1.default.getSystemInfo({
             success: res => {
-                global = Object.assign(global, res, { debug: true });
+                global = Object.assign(global, res, { debug: false });
                 if (res.model && res.model.includes('iPhone X')) {
                     global.iphoneX = true;
                 }

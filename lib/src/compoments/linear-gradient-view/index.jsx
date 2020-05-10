@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
-require("./add_task.scss");
+require("./index.scss");
 class LinearGradientView extends taro_1.Component {
     render() {
         let { style } = this.props;

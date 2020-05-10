@@ -24,6 +24,11 @@ class TopHeader extends taro_1.Component {
             if (customCallback) {
                 customCallback();
             }
+            else if (taro_1.default.getCurrentPages().length === 1) {
+                taro_1.default.reLaunch({
+                    url: `/pages/businesscard`
+                });
+            }
             else {
                 taro_1.default.navigateBack();
             }

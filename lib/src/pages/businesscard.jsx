@@ -24,14 +24,14 @@ const redux_1 = require("@tarojs/redux");
 const actions = require("../actions/task_center");
 const loginActions = require("../actions/login");
 const businessCardActions = require("../actions/business_card");
-const index_2 = require("./pagecomponent/business-card/index");
-const index_3 = require("./pagecomponent/my-person/index");
-const index_4 = require("./pagecomponent/share-modal/index");
+const index_2 = require("./component/business-card/index");
+const index_3 = require("./component/my-person/index");
+const index_4 = require("./component/share-modal/index");
 const index_5 = require("../compoments/navigation_bar/index");
 const httpurl_1 = require("../api/httpurl");
-const business_card_guide1_1 = require("./pagecomponent/business-card-guide1");
-const business_card_guide2_1 = require("./pagecomponent/business-card-guide2");
-const business_card_guide3_1 = require("./pagecomponent/business-card-guide3");
+const business_card_guide1_1 = require("./component/business-card-guide1");
+const business_card_guide2_1 = require("./component/business-card-guide2");
+const business_card_guide3_1 = require("./component/business-card-guide3");
 let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -42,9 +42,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -133,6 +131,11 @@ let Businesscard = class Businesscard extends taro_1.Component {
         this.getUserInfo = () => {
             this.props.getUserInfo().then((res) => {
                 this.props.updateUserInfo(res);
+                this.userSettingGet(res);
+                this.getCardHolderVisitorCount();
+                this.getRecommendSetting();
+                this.recommendSettingStatus();
+                this.getRecommend();
                 console.log('重新更新用户信息', res);
             }).catch(e => {
                 console.log('报错啦', e);
@@ -158,6 +161,30 @@ let Businesscard = class Businesscard extends taro_1.Component {
                 console.log('报错啦', e);
             });
         };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/25
+         * @function: 获取用户的设置信息
+         */
+        this.userSettingGet = (userInfo) => {
+            this.props.userSettingGet({
+                userId: userInfo.id
+            }).then((res) => {
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({
+                        hidePhone: res.phone,
+                        hideWechat: res.wechat,
+                        hideEmail: res.email,
+                        hideAddress: res.address,
+                        cardStyle: res.cardStyle
+                    });
+                }
+                console.log('获取用户的设置信息', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
         this.recommendType = 'recommend';
         this.state = {
             showShare: false,
@@ -168,15 +195,16 @@ let Businesscard = class Businesscard extends taro_1.Component {
             showGuide3: false,
             holderCount: 0,
             visitorCount: 0,
-            currentIndex: 0
+            currentIndex: 0,
+            cardStyle: '-1',
+            hidePhone: 0,
+            hideWechat: 0,
+            hideEmail: 0,
+            hideAddress: 0,
         };
     }
     componentDidShow() {
-        this.getCardHolderVisitorCount();
         this.getUserInfo();
-        this.getRecommendSetting();
-        this.recommendSettingStatus();
-        this.getRecommend();
         let showGuide1 = datatool_1.get('business_guide1');
         this.setState({ showGuide1: !showGuide1 });
         let showGuide2 = datatool_1.get('business_guide2');
@@ -189,15 +217,13 @@ let Businesscard = class Businesscard extends taro_1.Component {
     }
     //@ts-ignore
     onShareAppMessage(res) {
-        datatool_1.debounce(500, () => {
-            return {
-                title: `${this.props.userInfo.name}的名片分享`,
-                path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
-            };
-        });
+        return {
+            title: `${this.props.userInfo.name}的名片分享`,
+            path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+        };
     }
     render() {
-        let { showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex } = this.state;
+        let { showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex, hidePhone, hideWechat, hideEmail, hideAddress, cardStyle } = this.state;
         let { userInfo } = this.props;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true} ref={(ref) => {
             this.viewRef = ref;
@@ -210,7 +236,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
         </index_5.default>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
-          <index_2.default holderCount={holderCount} visitorCount={visitorCount} userInfo={this.props.userInfo} shareClick={() => {
+          <index_2.default hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress} cardStyle={cardStyle} holderCount={holderCount} visitorCount={visitorCount} userInfo={this.props.userInfo} shareClick={() => {
             this.setState({ showShare: true });
         }} collectCallback={() => {
             taro_1.default.navigateTo({
@@ -230,7 +256,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
             });
         }}/>
           
-          <index_3.default currentIndex={currentIndex} chooseCallback={() => {
+          <index_3.default userInfo={userInfo} currentIndex={currentIndex} chooseCallback={() => {
             taro_1.default.navigateTo({
                 url: `/pages/businesscard/choose_renmai_tag`
             });
@@ -298,7 +324,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
         }} haibao={() => {
             this.setState({ showShare: false }, () => {
                 taro_1.default.navigateTo({
-                    url: `/pages/businesscard/mingpian_haibao`
+                    url: `/pages/businesscard/mingpian_haibao?userId=${userInfo.id}`
                 });
             });
         }}/>}
