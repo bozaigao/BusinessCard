@@ -5,7 +5,7 @@
  * @date 2020/4/12
  * @Description: 雷达详情
  */
-import Taro, {Component, Config} from '@tarojs/taro'
+import Taro, {Component} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {
   absB,
@@ -304,7 +304,7 @@ class RadarDetail extends Component<Props, State> {
                     <Image style={styleAssign([w(24), h(22)])} src={require('../../assets/ico_mibile_gray.png')}/>
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>拨打电话</Text>
                   </View>
-                  <Text style={styleAssign([color('#979797'), fSize(12)])}>{customer.phone}</Text>
+                  <Text style={styleAssign([color('#979797'), fSize(12),styles.utxc])}>{customer.phone}</Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
@@ -324,7 +324,7 @@ class RadarDetail extends Component<Props, State> {
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
                   </View>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(12)])}>{`${customer.wechat ? customer.wechat : '点击添加微信'}`}</Text>
+                    style={styleAssign([color('#979797'), fSize(12),styles.utxc])}>{`${customer.wechat ? customer.wechat : '点击添加微信'}`}</Text>
                 </View>
                 <View style={styleAssign([styles.uac, styles.ujc, styles.uf1, h(54), styles.uac,
                   bo(1), bdColor('#e8e8e8'), {borderStyle: 'solid'}, radiusA(4), ml(15),
@@ -341,7 +341,7 @@ class RadarDetail extends Component<Props, State> {
                     <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>联系地址</Text>
                   </View>
                   <Text
-                    style={styleAssign([color('#979797'), fSize(10)])}>{customer.detailAddress ? `${customer.detailAddress}` : '点击立即定位'}</Text>
+                    style={styleAssign([color('#979797'), fSize(10),styles.utxc])}>{customer.detailAddress ? `${customer.detailAddress}` : '点击立即定位'}</Text>
                 </View>
               </View>
             </View>
