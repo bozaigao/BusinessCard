@@ -14,7 +14,7 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h,
+  h, hRatio, iphoneX,
   ml,
   mt,
   op,
@@ -183,7 +183,7 @@ class Customer extends Component<Props, State> {
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
                           notNeedBottomPadding={true}>
-        <View style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), styles.ujb])}>
+        <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor)])}>
           <NavigationBar>
             <View style={styleAssign([{width: '65%'}, {marginLeft: '2.5%'}, h(31), op(0.7), bgColor('#F5F5F5'),
               radiusA(26), styles.uac, styles.udr])}>
@@ -218,61 +218,61 @@ class Customer extends Component<Props, State> {
               </View>
             </View>
           </View>
-        </View>
-        {
-          customerList.length === 0 ?
-            <View
-              style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor), bgColor(commonStyles.pageDefaultBackgroundColor)])}>
-              <View style={styleAssign([styles.uac])}>
-                <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
-                <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
-              </View>
-            </View> :
-            <ScrollView
-              onScrollToUpper={() => {
-                this.refresh();
-              }}
-              onScrollToLower={() => {
-                // this.loadMore();
-              }}
-              style={styleAssign([wRatio(100),h(screenHeight()), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
-              scrollY>
-              {
-                customerList.map((value: CustomerModel, index) => {
-                  console.log(value);
-                  return (
-                    <CustomItem
-                      key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)}
-                      onClick={() => {
-                        Taro.navigateTo({
-                          url: `/pages/customer/customer_detail?id=${value.id}&userId=${value.userId}`
-                        });
-                      }}
-                      viewCardCallback={() => {
-                        if (value.type === 2) {
-                          this.setState({showShareInvite: true});
-                        } else {
+          {
+            customerList.length === 0 ?
+              <View
+                style={styleAssign([styles.uf1, styles.uac, styles.ujc, bgColor(commonStyles.pageDefaultBackgroundColor), bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+                <View style={styleAssign([styles.uac])}>
+                  <Image style={styleAssign([w(78), h(69)])} src={require('../assets/ico_no_data.png')}/>
+                  <Text style={styleAssign([fSize(15), color('#343434'), mt(31)])}>当前暂无客户</Text>
+                </View>
+              </View> :
+              <ScrollView
+                onScrollToUpper={() => {
+                  this.refresh();
+                }}
+                onScrollToLower={() => {
+                  // this.loadMore();
+                }}
+                style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 270 : screenHeight() - 200), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+                scrollY>
+                {
+                  customerList.map((value: CustomerModel, index) => {
+                    console.log(value);
+                    return (
+                      <CustomItem
+                        key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)}
+                        onClick={() => {
                           Taro.navigateTo({
-                            url: `/pages/businesscard/other_businesscard?userId=${value.userId}`
+                            url: `/pages/customer/customer_detail?id=${value.id}&userId=${value.userId}`
+                          });
+                        }}
+                        viewCardCallback={() => {
+                          if (value.type === 2) {
+                            this.setState({showShareInvite: true});
+                          } else {
+                            Taro.navigateTo({
+                              url: `/pages/businesscard/other_businesscard?userId=${value.userId}`
+                            });
+                          }
+                        }
+                        }
+                        genJinCallback={(customer) => {
+                          Taro.navigateTo({
+                            url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
                           });
                         }
-                      }
-                      }
-                      genJinCallback={(customer) => {
-                        Taro.navigateTo({
-                          url: `/pages/customer/add_genjin?itemData=${JSON.stringify(customer)}`
-                        });
-                      }
-                      }/>);
-                })
-              }
-            </ScrollView>
-        }
-        <BottomButon title={'新增客户'} onClick={() => {
-          Taro.navigateTo({
-            url: `/pages/customer/add_customer`
-          });
-        }}/>
+                        }/>);
+                  })
+                }
+              </ScrollView>
+          }
+          <BottomButon title={'新增客户'} onClick={() => {
+            Taro.navigateTo({
+              url: `/pages/customer/add_customer`
+            });
+          }}/>
+        </View>
         {
           showMode && <ModeModal
             totalPerson={totalCustomers}
