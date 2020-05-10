@@ -313,7 +313,7 @@ class Businesscard extends Component<Props, State> {
           </View>
         </NavigationBar>
         <ScrollView
-          style={styleAssign([wRatio(100),h(screenHeight()-100), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100),h(screenHeight()), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <Card

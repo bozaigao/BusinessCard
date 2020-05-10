@@ -20,7 +20,7 @@ import {
   op,
   pl,
   pr,
-  radiusA,
+  radiusA, screenHeight,
   w,
   wRatio
 } from "../utils/style";
@@ -235,7 +235,7 @@ class Customer extends Component<Props, State> {
               onScrollToLower={() => {
                 // this.loadMore();
               }}
-              style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+              style={styleAssign([wRatio(100),h(screenHeight()), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY>
               {
                 customerList.map((value: CustomerModel, index) => {

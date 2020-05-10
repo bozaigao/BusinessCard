@@ -32,7 +32,7 @@ import {
   pr,
   radiusA,
   radiusTL,
-  radiusTR,
+  radiusTR, screenHeight,
   w,
   wRatio
 } from "../../utils/style";
@@ -138,7 +138,7 @@ class GoodsManage extends Component<Props, State> {
     this.props.getShop().then((res) => {
       console.log('获取店铺', res);
       if (res !== NetworkState.FAIL) {
-        this.setState({shopStatus: res.status});
+        this.setState({shopStatus: res.status,shop:res});
       }
     }).catch(e => {
       console.log('报错啦', e);
@@ -296,7 +296,7 @@ class GoodsManage extends Component<Props, State> {
     let child;
 
     if (currentIndex === 0) {
-      child = <View style={styleAssign([wRatio(100), hRatio(100)])}>
+      child = <View style={styleAssign([wRatio(100), h(screenHeight())])}>
         {/*筛选*/}
         <View style={styleAssign([wRatio(100), h(36), styles.uac, styles.udr, styles.ujb,
           pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
@@ -473,7 +473,18 @@ class GoodsManage extends Component<Props, State> {
                   <Text style={styleAssign([color('#727272'), fSize(16)])}>{shop.company}</Text>
                 </View>
                 <View style={styleAssign([wRatio(100), {paddingLeft: '5%'}])}>
-                  <CompanyCard/>
+                  <CompanyCard companyCard={
+                    {
+                      avatar: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/94b9252c-b388-415e-8102-e0bcd16d2a99tmp_39b3c7c0c76c134363eeaf4cba225411.jpg",
+                      company: "四川极致信息技术有限公司",
+                      industry: "IT服务/互联网和相关服务",
+                      name: "尹龙海",
+                      phone: "18428088044",
+                      position: "总经理",
+                      type: 1,
+                      userId: 22,
+                      wechat: "18428088011"
+                    }}/>
                 </View>
               </View> :
               (shopStatus === ShopStatus.HAS_OPEN ?
@@ -516,7 +527,18 @@ class GoodsManage extends Component<Props, State> {
                       您的店铺已到期，再次开通需联系客服
                     </Text>
                     <View style={styleAssign([wRatio(100), {paddingLeft: '5%'}, mt(20)])}>
-                      <CompanyCard/>
+                      <CompanyCard companyCard={
+                        {
+                          avatar: "https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/94b9252c-b388-415e-8102-e0bcd16d2a99tmp_39b3c7c0c76c134363eeaf4cba225411.jpg",
+                          company: "四川极致信息技术有限公司",
+                          industry: "IT服务/互联网和相关服务",
+                          name: "尹龙海",
+                          phone: "18428088044",
+                          position: "总经理",
+                          type: 1,
+                          userId: 22,
+                          wechat: "18428088011"
+                        }}/>
                     </View>
                   </View> : null)))
         }
