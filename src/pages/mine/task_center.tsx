@@ -67,9 +67,7 @@ class TaskCenter extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -112,7 +110,9 @@ class TaskCenter extends Component<Props, State> {
 
   refresh1 = () => {
     this.pageNo1 = 1;
-    this.getFinishedTaskList(true);
+    this.getIngTaskList(true,()=>{
+      this.getFinishedTaskList(true);
+    });
   }
 
   loadMore = () => {
@@ -131,7 +131,7 @@ class TaskCenter extends Component<Props, State> {
    * @date 2020/1/4
    * @function: 获取正在进行的任务列表
    */
-  getIngTaskList = (refresh?: boolean) => {
+  getIngTaskList = (refresh?: boolean, callback?: any) => {
     this.viewRef && this.viewRef.showLoading('加载中');
     this.props.getTaskList({
       pageNo: this.pageNo,
@@ -145,7 +145,9 @@ class TaskCenter extends Component<Props, State> {
         if (res.records.length !== 0) {
           this.state.taskItem.push({title: '正在进行中', children: res.records});
         }
-        this.setState({taskItem: this.state.taskItem, todayTask: res.records});
+        this.setState({taskItem: this.state.taskItem, todayTask: res.records}, () => {
+          callback();
+        });
       } else if (res.records && res.records.length !== 0) {
       } else {
         toast('没有任务了');
@@ -205,7 +207,6 @@ class TaskCenter extends Component<Props, State> {
       this.viewRef && this.viewRef.hideLoading();
       if (res !== NetworkState.FAIL) {
         this.setState({taskItem: []}, () => {
-          this.refresh();
           this.refresh1();
           toast('状态更新成功');
         });
@@ -231,7 +232,7 @@ class TaskCenter extends Component<Props, State> {
           <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}>
             <TouchableButton customStyle={styleAssign([styles.uac])}
                              onClick={() => {
-                               this.setState({currentIndex: 0, taskItem: [],todayTask: [], date: getToday()}, () => {
+                               this.setState({currentIndex: 0, taskItem: [], todayTask: [], date: getToday()}, () => {
                                  this.refresh();
                                });
                              }}>
@@ -243,7 +244,6 @@ class TaskCenter extends Component<Props, State> {
                              onClick={() => {
                                this.setState({currentIndex: 1, date: '', taskItem: [], todayTask: []}, () => {
                                  console.log(this.state.date)
-                                 this.refresh();
                                  this.refresh1();
                                });
                              }}>
@@ -254,7 +254,6 @@ class TaskCenter extends Component<Props, State> {
           </View>
           <Picker mode='date' onChange={(e) => {
             this.setState({date: e.detail.value, taskItem: []}, () => {
-              this.refresh();
               this.refresh1();
             });
           }} value={date}>
