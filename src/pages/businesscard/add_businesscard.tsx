@@ -63,9 +63,7 @@ class AddBusinesscard extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-    
-  }
+  config: Config = {}
   private province;
   private city;
   private avatar;
@@ -159,6 +157,10 @@ class AddBusinesscard extends Component<Props, State> {
 
     if (!listData[0].value || listData[0].value.length === 0) {
       toast('请先填写姓名');
+      return;
+    }
+    if (listData[0].value.length > 6) {
+      toast('姓名长度不能超过6个字符');
       return;
     }
     if (!listData[2].value || listData[2].value.length === 0) {

@@ -448,7 +448,7 @@ class OtherBusinesscard extends Component<Props, State> {
                       }}>
                   <Text style={styleAssign([color(commonStyles.colorTheme), fSize(12)])}>加微信</Text>
                   <MultiLineText
-                    style={styleAssign([color('#979797'), fSize(12), w(70)])}
+                    style={styleAssign([color('#979797'), fSize(12), w(80)])}
                     text={`${userInfo.wechat ? userInfo.wechat : '点击添加微信'}`}
                   />
                 </View>

@@ -89,9 +89,7 @@ class PersonalInfo extends Component<Props, State> {
    * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
-  config: Config = {
-
-  }
+  config: Config = {}
 
   constructor(props) {
     super(props);
@@ -225,6 +223,10 @@ class PersonalInfo extends Component<Props, State> {
       toast('职位不能为空');
       return;
     }
+    if (position.length > 8) {
+      toast('职位长度不能超过8个字符');
+      return;
+    }
 
     if (!isLegalEmail(email)) {
       toast('请输入有效的邮箱');
@@ -322,7 +324,7 @@ class PersonalInfo extends Component<Props, State> {
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
-    this.props.userSettingGet({userId:this.props.userInfo.id}).then((res) => {
+    this.props.userSettingGet({userId: this.props.userInfo.id}).then((res) => {
       if (res !== NetworkState.FAIL) {
         this.setState({
           hidePhone: res.phone,

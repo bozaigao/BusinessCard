@@ -35,7 +35,6 @@ export default class MyGoods extends Component<Props, State> {
       listData = [goodsList[0], goodsList[1], goodsList[2]];
     }
 
-    console.log('北部属性', this.props.goodsList);
     return (
       <View style={styleAssign([wRatio(100)])}>
         <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
@@ -43,8 +42,7 @@ export default class MyGoods extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, styles.udr, styles.uac, styles.ujb])}>
             <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的商品</Text>
             <View style={styleAssign([w(40), h(40), styles.uac, styles.ujc])}
-                  onClick={(e) => {
-                    e.stopPropagation();
+                  onClick={() => {
                     goToMoreGoods();
                   }
                   }>
@@ -65,7 +63,8 @@ export default class MyGoods extends Component<Props, State> {
                   key={index}>
                   <Image style={styleAssign([w(120), h(120), radiusA(4)])}
                          src={value.carouselUrl ? parseData(value.carouselUrl)[0] : ''}
-                         onClick={() => {
+                         onClick={(e) => {
+                           e.stopPropagation();
                            goToGoodsDetail(value);
                          }}/>
                   <View style={styleAssign([styles.uf1, styles.ujb])}>
