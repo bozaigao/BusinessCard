@@ -109,7 +109,7 @@ class PerformInfo extends Component<Props, State> {
       if (res) {
         this.props.updateUserInfo(res);
         console.log('获取用户信息1', res);
-        this.setState({photoUrl: parseData(res.photoUrl), videoUrl: res.videoUrl}, () => {
+        this.setState({photoUrl: res.photoUrl?parseData(res.photoUrl):[], videoUrl: res.videoUrl}, () => {
           console.log('获取用户信息', this.state.photoUrl);
         });
       }
