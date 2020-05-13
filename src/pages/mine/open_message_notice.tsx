@@ -58,7 +58,7 @@ class OpenMessageNotice extends Component<Props, State> {
           scrollY>
           <View style={styleAssign([styles.uf1, pl(20), pr(20)])}>
             <Text
-              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极致推，进入“我的”页面，点击“工具箱”，进入“工具箱”页面，点击“开启/关闭”雷达提醒即可。</Text>
+              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极易推，进入“我的”页面，点击“工具箱”，进入“工具箱”页面，点击“开启/关闭”雷达提醒即可。</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}ico_open_message_notice_1.png`}/>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}ico_open_message_notice_2.png`}/>

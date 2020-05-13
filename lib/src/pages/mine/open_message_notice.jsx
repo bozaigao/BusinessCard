@@ -46,7 +46,7 @@ let OpenMessageNotice = class OpenMessageNotice extends taro_1.Component {
         <index_2.default />
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入“我的”页面，点击“工具箱”，进入“工具箱”页面，点击“开启/关闭”雷达提醒即可。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入“我的”页面，点击“工具箱”，进入“工具箱”页面，点击“开启/关闭”雷达提醒即可。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_open_message_notice_1.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_open_message_notice_2.png`}/>

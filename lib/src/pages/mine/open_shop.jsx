@@ -47,7 +47,7 @@ let OpenShop = class OpenShop extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法一：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片“我的”页面，选择“我的商铺”，点击“立即开通”，进入“开通申请”页面，提交申请之后，工作人员会在12小时内联系用户，相关事宜会由工作人员与用户沟通，开通成功之后，即可使用商铺程序。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片“我的”页面，选择“我的商铺”，点击“立即开通”，进入“开通申请”页面，提交申请之后，工作人员会在12小时内联系用户，相关事宜会由工作人员与用户沟通，开通成功之后，即可使用商铺程序。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_open_shop_1.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_open_shop_2.png`}/>
@@ -55,7 +55,7 @@ let OpenShop = class OpenShop extends taro_1.Component {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法二：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片“我的”页面，点击“开通特权”，进入“特权开通”页面，了解特权详情及开通套餐之后，点击“立即开通”，进入“开通申请”页面，提交申请之后，工作人员会在12小时内联系用户，相关事宜会由工作人员与用户沟通，开通成功之后，即可使用商铺程序。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片“我的”页面，点击“开通特权”，进入“特权开通”页面，了解特权详情及开通套餐之后，点击“立即开通”，进入“开通申请”页面，提交申请之后，工作人员会在12小时内联系用户，相关事宜会由工作人员与用户沟通，开通成功之后，即可使用商铺程序。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_open_shop_3.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_open_shop_4.png`}/>

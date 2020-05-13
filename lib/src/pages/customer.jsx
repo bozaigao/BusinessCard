@@ -125,7 +125,7 @@ let Customer = class Customer extends taro_1.Component {
     //@ts-ignore
     onShareAppMessage(res) {
         return {
-            title: `快来使用极致推小程序吧`,
+            title: `快来使用极易推小程序吧`,
             path: `/pages/businesscard`
         };
     }

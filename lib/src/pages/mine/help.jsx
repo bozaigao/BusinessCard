@@ -45,13 +45,13 @@ let Help = class Help extends taro_1.Component {
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <top_header_1.default title={'使用帮助'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-          {['极致推有什么用？', '如何完善名片信息？如何完善名片信息？',
+          {['极易推有什么用？', '如何完善名片信息？如何完善名片信息？',
             '如何分享自己的名片？', '客户可以通过哪些途径查看名片？',
             '如何获取自己的人脉？', '如何开通自己的商铺？',
             '雷达功能有什么作用？', '如何开启消息提醒？',
             '如何修改名片样式？'].map((value, index) => {
             return <help_list_item_1.default key={index} title={value} onClick={() => {
-                if (value === '极致推有什么用？') {
+                if (value === '极易推有什么用？') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/introduce`
                     });

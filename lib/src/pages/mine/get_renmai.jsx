@@ -47,7 +47,7 @@ let GetRenmai = class GetRenmai extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法一：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片首页，在人脉机遇版块点击“立即选择”，进入“选择人脉”页面，选择好了之后，后台会通过用户的人脉选择内容为用户推送相关人脉。使人脉推送更精准有效。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片首页，在人脉机遇版块点击“立即选择”，进入“选择人脉”页面，选择好了之后，后台会通过用户的人脉选择内容为用户推送相关人脉。使人脉推送更精准有效。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_get_renmai_1.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_get_renmai_2.png`}/>
@@ -55,7 +55,7 @@ let GetRenmai = class GetRenmai extends taro_1.Component {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法二：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片首页，在人脉机遇版块除了推荐一栏需要用户选择期望人脉以外，其他栏内容则是通过用户完善名片信息之后，后台通过用户名片信息进行人脉匹配推送。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片首页，在人脉机遇版块除了推荐一栏需要用户选择期望人脉以外，其他栏内容则是通过用户完善名片信息之后，后台通过用户名片信息进行人脉匹配推送。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_get_renmai_3.png`}/>
             </components_1.View>

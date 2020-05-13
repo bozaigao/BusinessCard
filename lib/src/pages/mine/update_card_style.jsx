@@ -46,7 +46,7 @@ let UpdateCardStyle = class UpdateCardStyle extends taro_1.Component {
         <index_2.default />
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入“我的”页面，点击“立即选择”，进入“完善名片”，进入“名片完善”页面，点击“编辑”图标，进入“个人信息编辑”页面，再点击“名片样式”一栏，进入“名片样式”页面，选择好样式之后，点击“完成”，即可成功修改名片样式。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入“我的”页面，点击“立即选择”，进入“完善名片”，进入“名片完善”页面，点击“编辑”图标，进入“个人信息编辑”页面，再点击“名片样式”一栏，进入“名片样式”页面，选择好样式之后，点击“完成”，即可成功修改名片样式。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_update_card_style_1.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}ico_update_card_style_2.png`}/>

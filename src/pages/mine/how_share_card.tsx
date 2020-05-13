@@ -59,7 +59,7 @@ class HowShareCard extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, pl(20), pr(20)])}>
             <Text style={styleAssign([color('#343434'), fSize(16), mt(20)])}>方法一：</Text>
             <Text
-              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极致推，进入名片首页，点击“分享名片”，选择“微信好友”，即可将自己的名片分享到微信聊天界面中。</Text>
+              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极易推，进入名片首页，点击“分享名片”，选择“微信好友”，即可将自己的名片分享到微信聊天界面中。</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_share_card_1.png`}/>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_share_card_2.png`}/>
@@ -68,7 +68,7 @@ class HowShareCard extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, pl(20), pr(20)])}>
             <Text style={styleAssign([color('#343434'), fSize(16), mt(20)])}>方法二：</Text>
             <Text
-              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极致推，进入名片首页，点击“分享名片”，选择“名片海报”，即可生成一张自己的名片海报，点击“保存名片海报后分享”，即可将名片海报分享到微信或朋友圈。</Text>
+              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极易推，进入名片首页，点击“分享名片”，选择“名片海报”，即可生成一张自己的名片海报，点击“保存名片海报后分享”，即可将名片海报分享到微信或朋友圈。</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_share_card_3.png`}/>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_share_card_4.png`}/>
@@ -77,7 +77,7 @@ class HowShareCard extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, pl(20), pr(20)])}>
             <Text style={styleAssign([color('#343434'), fSize(16), mt(20)])}>方法三：</Text>
             <Text
-              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极致推，进入名片首页，点击名片右下方“名片码”，即可让客户直接通过微信扫一扫进入你的名片。</Text>
+              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极易推，进入名片首页，点击名片右下方“名片码”，即可让客户直接通过微信扫一扫进入你的名片。</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_share_card_5.png`}/>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_share_card_6.png`}/>

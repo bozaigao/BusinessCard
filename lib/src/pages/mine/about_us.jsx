@@ -42,12 +42,12 @@ let AboutUs = class AboutUs extends taro_1.Component {
         return (<safe_area_view_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={'关于极致名片'}/>
+        <top_header_1.default title={'关于极易推'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(186), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(61), style_1.h(61)])} src={require('../../assets/ico_logo.png')}/>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#0C0C0C'), style_1.mt(3)])}>极致推</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#0C0C0C'), style_1.mt(3)])}>极易推</components_1.Text>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797'), style_1.mt(6)])}>V1.0.0</components_1.Text>
             </components_1.View>
           </components_1.View>
@@ -55,7 +55,7 @@ let AboutUs = class AboutUs extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(80), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(120), style_1.default.uac, style_1.default.ujc, style_1.mt(46), style_1.pl(20), style_1.pr(20)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(3)])}>极致推，一款基于社交做成交，针对个体使用的智能名片小程序，致力于提升每一位用户的商业价值。 \n\n极致推是集创建、收发、管理名片为一体的高效率工具，极致推的存在让你的名片不仅为你代言，更为你的产品和服务代言，真正做到一键分享，轻松获客。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.mt(3)])}>极易推，一款基于社交做成交，针对个体使用的智能名片小程序，致力于提升每一位用户的商业价值。 \n\n极易推是集创建、收发、管理名片为一体的高效率工具，极易推的存在让你的名片不仅为你代言，更为你的产品和服务代言，真正做到一键分享，轻松获客。</components_1.Text>
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#D2D2D2'), style_1.mt(147)])}>©2020四川极致信息技术有限公司</components_1.Text>

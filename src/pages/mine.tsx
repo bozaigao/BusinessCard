@@ -226,14 +226,14 @@ class Mine extends Component<Props, State> {
             {
               [{title: '使用小技巧'},
                 {title: '投诉与建议'},
-                {title: '关于极致名片'}].map((value, index) => {
+                {title: '关于极易推'}].map((value, index) => {
                 return (<ListItem title={value.title} key={index}
                                   onCLick={(title) => {
                                     if (title === '投诉与建议') {
                                       Taro.navigateTo({
                                         url: `/pages/mine/feedback`
                                       });
-                                    } else if (title === '关于极致名片') {
+                                    } else if (title === '关于极易推') {
                                       Taro.navigateTo({
                                         url: `/pages/mine/about_us`
                                       });
