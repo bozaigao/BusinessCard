@@ -48,7 +48,7 @@ export default class RadarItem extends PureComponent<Props, State> {
 
     return (
       <TouchableButton
-        customStyle={styleAssign([radiusA(4), {width: '95%'}, {marginLeft: '2.5%'}, h(175), bgColor(commonStyles.whiteColor), mt(14)])}>
+        customStyle={styleAssign([radiusA(4), {width: '96%'}, {marginLeft: '2%'}, h(175), bgColor(commonStyles.whiteColor), mt(14)])}>
         <View style={styleAssign([styles.uac, styles.udr, styles.ujb])}
               onClick={() => {
                 Taro.navigateTo({
@@ -56,13 +56,13 @@ export default class RadarItem extends PureComponent<Props, State> {
                 });
               }}>
           <View style={styleAssign([styles.uac, styles.udr, mt(20)])}>
-            <View style={styleAssign([w(46), h(46), ml(16)])}>
+            <View style={styleAssign([w(46), h(46), ml(15)])}>
               <Image style={styleAssign([w(46), h(46), radiusA(23)])}
                      src={item.behaviorTraceUser.avatar}/>
               <Image style={styleAssign([w(13), h(13), styles.upa, absB(0), absR(0)])}
                      src={item.behaviorTraceUser.sex === 1 ? `${cloudBaseUrl}ico_nan.png` : `${cloudBaseUrl}ico_nv.png`}/>
             </View>
-            <View style={styleAssign([ml(16)])}>
+            <View style={styleAssign([ml(15)])}>
               <View style={styleAssign([styles.uac, styles.udr])}>
                 <SingleLineText style={styleAssign([fSize(12), color('#343434')])}
                                 text={item.behaviorTraceUser.name}/>
@@ -92,7 +92,7 @@ export default class RadarItem extends PureComponent<Props, State> {
         </View>
         <View style={styleAssign([styles.uac, styles.udr, mt(3)])}>
           <Text
-            style={styleAssign([fSize(14), ml(16), color(commonStyles.colorTheme)])}>在您的名片停留了</Text>
+            style={styleAssign([fSize(14), ml(15), color(commonStyles.colorTheme)])}>在您的名片停留了</Text>
           <Text
             style={styleAssign([fSize(14), color('#E2BB7B')])}>{`${formartSecond(item.duration)}`}</Text>
           <Text
@@ -106,7 +106,7 @@ export default class RadarItem extends PureComponent<Props, State> {
         <View style={styleAssign([styles.uf1, styles.ujb, styles.udr])}>
           <View style={styleAssign([hRatio(100), styles.uac, styles.ujc])}>
             <Text
-              style={styleAssign([color('#979797'), fSize(13), ml(16)])}>{`最后访问 ${transformTime(item.lastVisitTime)}`}</Text>
+              style={styleAssign([color('#979797'), fSize(13), ml(15)])}>{`最后访问 ${transformTime(item.lastVisitTime)}`}</Text>
           </View>
           <View style={styleAssign([styles.uac, styles.udr])}>
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}

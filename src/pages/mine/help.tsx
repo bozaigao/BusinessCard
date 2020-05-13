@@ -55,13 +55,13 @@ class Help extends Component<Props, State> {
         <TopHeader title={'使用帮助'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
           {
-            ['极致推有什么用？', '如何完善名片信息？如何完善名片信息？',
+            ['极易推有什么用？', '如何完善名片信息？如何完善名片信息？',
               '如何分享自己的名片？', '客户可以通过哪些途径查看名片？',
               '如何获取自己的人脉？', '如何开通自己的商铺？',
               '雷达功能有什么作用？', '如何开启消息提醒？',
               '如何修改名片样式？'].map((value, index) => {
               return <HelpListItem key={index} title={value} onClick={() => {
-                if (value === '极致推有什么用？') {
+                if (value === '极易推有什么用？') {
                   Taro.navigateTo({
                     url: `/pages/mine/introduce`
                   });

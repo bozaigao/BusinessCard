@@ -175,14 +175,14 @@ let Mine = class Mine extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100)])}>
               {[{ title: '使用小技巧' },
             { title: '投诉与建议' },
-            { title: '关于极致名片' }].map((value, index) => {
+            { title: '关于极易推' }].map((value, index) => {
             return (<list_item_1.default title={value.title} key={index} onCLick={(title) => {
                 if (title === '投诉与建议') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/feedback`
                     });
                 }
-                else if (title === '关于极致名片') {
+                else if (title === '关于极易推') {
                 }
             }}/>);
         })}

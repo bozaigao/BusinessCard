@@ -59,7 +59,7 @@ class HowPerformCard extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, pl(20), pr(20)])}>
             <Text style={styleAssign([color('#343434'), fSize(16), mt(20)])}>方法一：</Text>
             <Text
-              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极致推，进入名片首页，点击“完善名片”，即可完善名片基本信息、个人简介和企业信息等。</Text>
+              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极易推，进入名片首页，点击“完善名片”，即可完善名片基本信息、个人简介和企业信息等。</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_perform_card_1.png`}/>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_perform_card_2.png`}/>
@@ -68,7 +68,7 @@ class HowPerformCard extends Component<Props, State> {
           <View style={styleAssign([styles.uf1, pl(20), pr(20)])}>
             <Text style={styleAssign([color('#343434'), fSize(16), mt(20)])}>方法二：</Text>
             <Text
-              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极致推，进入“我的”页面，点击“完善名片”入口，即可完善名片基本信息、个人简介和企业信息等。</Text>
+              style={styleAssign([color('#727272'), fSize(14), mt(13)])}>打开极易推，进入“我的”页面，点击“完善名片”入口，即可完善名片基本信息、个人简介和企业信息等。</Text>
             <View style={styleAssign([wRatio(100), styles.udr, styles.uac, styles.ujb, mt(17)])}>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_perform_card_3.png`}/>
               <Image style={styleAssign([w(155), h(276)])} src={`${cloudBaseUrl}how_perform_card_4.png`}/>

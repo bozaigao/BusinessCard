@@ -43,15 +43,17 @@ import * as loginActions from "../../actions/login";
 import * as radarActions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel, FlowUpListModel} from "../../const/global";
+import {CustomerModel, FlowUpListModel, BehaviorTrace} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import DeleteNoticeModal from "../../compoments/delete-notice";
 import ShareInvite from "../../pages/component/share-invite";
+import TraceItem from "../../compoments/trace-item/index";
 
 interface Props {
   deleteCustomer?: any;
   followUpList?: any;
+  traceList?: any;
   //获取用户信息
   getCustomerDetail: any;
   interestBehaviorActive: any;
@@ -64,6 +66,7 @@ interface State {
   customer: CustomerModel
   currentIndex: number;
   flowUpList: FlowUpListModel[];
+  traceList: BehaviorTrace[];
   active: any;
   behaviorTrace: any;
   interest: any;
@@ -88,6 +91,7 @@ class CustomerDetail extends Component<Props, State> {
       showOperate: false,
       currentIndex: 0,
       flowUpList: [],
+      traceList: [],
       showDeleteNotice: false,
       showShareInvite: false,
       behaviorTrace: {
@@ -120,7 +124,7 @@ class CustomerDetail extends Component<Props, State> {
   interestBehaviorActive = () => {
     this.viewRef && this.viewRef.showLoading();
     this.props.interestBehaviorActive({
-      traceUserId: this.state.customer.id,
+      traceUserId: this.state.customer.customerUserId,
       startDate: getToday(),
       endDate: getToday()
     }).then((res) => {
@@ -148,8 +152,11 @@ class CustomerDetail extends Component<Props, State> {
       console.log('获取客户详细资料', res);
       if (res !== NetworkState.FAIL) {
         this.setState({customer: res}, () => {
-          this.interestBehaviorActive();
           this.followUpList();
+          if(res.customerUserId){
+            this.interestBehaviorActive();
+            this.traceList();
+          }
         });
       }
     }).catch(e => {
@@ -161,7 +168,7 @@ class CustomerDetail extends Component<Props, State> {
   //@ts-ignore
   onShareAppMessage(res) {
     return {
-      title: `快来使用极致推小程序吧`,
+      title: `快来使用极易推小程序吧`,
       path: `/pages/businesscard`
     }
   }
@@ -179,6 +186,25 @@ class CustomerDetail extends Component<Props, State> {
       console.log('查询客户跟进信息记录', res);
       if (res && res !== NetworkState.FAIL) {
         this.setState({flowUpList: res});
+      }
+
+    }).catch(e => {
+      console.log('报错啦', e);
+    });
+  }
+
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/1/28
+   * @function:雷达详情访问轨迹
+   */
+  traceList = () => {
+    console.log('雷达详情访问轨迹');
+    this.props.traceList({traceUserId: this.state.customer.customerUserId}).then((res) => {
+      console.log('雷达详情访问轨迹', res);
+      if (res && res !== NetworkState.FAIL) {
+        this.setState({traceList: res.list});
       }
 
     }).catch(e => {
@@ -211,11 +237,17 @@ class CustomerDetail extends Component<Props, State> {
 
 
   render() {
-    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite, behaviorTrace} = this.state;
+    let {showOperate, customer, currentIndex, flowUpList, showDeleteNotice, showShareInvite, behaviorTrace, traceList} = this.state;
     let childView;
 
     if (currentIndex === 0) {
-      childView = <View/>;
+      childView = <View style={styleAssign([wRatio(100), mt(10)])}>
+        {
+          traceList.map((value: any, index) => {
+            return <TraceItem item={value} key={index} name={customer.name}/>;
+          })
+        }
+      </View>;
     } else if (currentIndex === 1) {
       childView = <View style={styleAssign([wRatio(100), mt(10)])}>
         {
@@ -294,6 +326,10 @@ class CustomerDetail extends Component<Props, State> {
           <View
             style={styleAssign([styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor), wRatio(100), h(48), radiusA(4)])}
             onClick={() => {
+              if(!this.state.active||!this.state.interest){
+                toast('暂无该用户AI分析')
+                return
+              }
               Taro.navigateTo({
                 url: `/pages/customer/ai_analysis?userId=${customer.id}&active=${JSON.stringify(this.state.active)}&interest=${JSON.stringify(this.state.interest)}`
               });

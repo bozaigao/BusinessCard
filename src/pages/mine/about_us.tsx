@@ -51,12 +51,12 @@ class AboutUs extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <TopHeader title={'关于极致名片'}/>
+        <TopHeader title={'关于极易推'}/>
         <View style={styleAssign([styles.uf1, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([wRatio(100), h(186), styles.uac, styles.ujc, bgColor(commonStyles.whiteColor)])}>
             <View style={styleAssign([styles.uac])}>
               <Image style={styleAssign([w(61), h(61)])} src={require('../../assets/ico_logo.png')}/>
-              <Text style={styleAssign([fSize(18), color('#0C0C0C'), mt(3)])}>极致推</Text>
+              <Text style={styleAssign([fSize(18), color('#0C0C0C'), mt(3)])}>极易推</Text>
               <Text style={styleAssign([fSize(14), color('#979797'), mt(6)])}>V1.0.0</Text>
             </View>
           </View>
@@ -65,7 +65,7 @@ class AboutUs extends Component<Props, State> {
           </View>
           <View
             style={styleAssign([wRatio(100), h(120), styles.uac, styles.ujc, mt(46), pl(20), pr(20)])}>
-            <Text style={styleAssign([fSize(14), color('#727272'), mt(3)])}>极致推，一款基于社交做成交，针对个体使用的智能名片小程序，致力于提升每一位用户的商业价值。 \n\n极致推是集创建、收发、管理名片为一体的高效率工具，极致推的存在让你的名片不仅为你代言，更为你的产品和服务代言，真正做到一键分享，轻松获客。</Text>
+            <Text style={styleAssign([fSize(14), color('#727272'), mt(3)])}>极易推，一款基于社交做成交，针对个体使用的智能名片小程序，致力于提升每一位用户的商业价值。 \n\n极易推是集创建、收发、管理名片为一体的高效率工具，极易推的存在让你的名片不仅为你代言，更为你的产品和服务代言，真正做到一键分享，轻松获客。</Text>
           </View>
           <View style={styleAssign([wRatio(100), styles.uac, styles.ujc])}>
             <Text style={styleAssign([fSize(12), color('#D2D2D2'), mt(147)])}>©2020四川极致信息技术有限公司</Text>

@@ -47,7 +47,7 @@ let HowShareCard = class HowShareCard extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法一：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片首页，点击“分享名片”，选择“微信好友”，即可将自己的名片分享到微信聊天界面中。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片首页，点击“分享名片”，选择“微信好友”，即可将自己的名片分享到微信聊天界面中。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}how_share_card_1.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}how_share_card_2.png`}/>
@@ -55,7 +55,7 @@ let HowShareCard = class HowShareCard extends taro_1.Component {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法二：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片首页，点击“分享名片”，选择“名片海报”，即可生成一张自己的名片海报，点击“保存名片海报后分享”，即可将名片海报分享到微信或朋友圈。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片首页，点击“分享名片”，选择“名片海报”，即可生成一张自己的名片海报，点击“保存名片海报后分享”，即可将名片海报分享到微信或朋友圈。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}how_share_card_3.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}how_share_card_4.png`}/>
@@ -63,7 +63,7 @@ let HowShareCard = class HowShareCard extends taro_1.Component {
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.pl(20), style_1.pr(20)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(16), style_1.mt(20)])}>方法三：</components_1.Text>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极致推，进入名片首页，点击名片右下方“名片码”，即可让客户直接通过微信扫一扫进入你的名片。</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14), style_1.mt(13)])}>打开极易推，进入名片首页，点击名片右下方“名片码”，即可让客户直接通过微信扫一扫进入你的名片。</components_1.Text>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.mt(17)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}how_share_card_5.png`}/>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(155), style_1.h(276)])} src={`${httpurl_1.cloudBaseUrl}how_share_card_6.png`}/>
