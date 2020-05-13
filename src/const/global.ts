@@ -216,7 +216,6 @@ export interface CustomerModel {
   label: string;
   latitude: number;
   longitude: number;
-  v
   name: string;
   phone: string;
   position: string;
