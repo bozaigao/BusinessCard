@@ -24,7 +24,9 @@ import styles, {
   pa,
   radiusA,
   w,
-  wRatio
+  wRatio,
+  pr,
+  pl
 } from "../../../../utils/style";
 import {cloudBaseUrl} from "../../../../api/httpurl";
 import {User} from "../../../../const/global";
@@ -78,16 +80,16 @@ export default class PersonalInfo extends PureComponent<Props, State> {
     let {micIsPlaying} = this.state;
 
     return (
-      <View style={styleAssign([wRatio(100), styles.uac])}>
+      <View style={styleAssign([wRatio(100), styles.uac, pl(20), pr(20)])}>
         <View style={styleAssign([wRatio(100)])}>
-          <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
+          <View style={styleAssign([styles.uac, styles.udr, mt(32)])}>
             <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
             <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的个人简介</Text>
           </View>
         </View>
         <View
-          style={styleAssign([wRatio(95), bgColor(commonStyles.whiteColor), radiusA(4),
-            {marginLeft: '2.5%'}, mt(16), pa(16)])}>
+          style={styleAssign([wRatio(100), bgColor(commonStyles.whiteColor), radiusA(4),
+            mt(16), pa(16)])}>
           {
             userInfo.voiceUrl && userInfo.voiceUrl.length !== 0 &&
             <View style={styleAssign([styles.udr, styles.uac])}>

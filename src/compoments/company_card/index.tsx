@@ -31,6 +31,7 @@ import SingleLineText from "../singleline-text";
 interface Props {
   display?: any;
   companyCard: CompanyCardModel;
+  addRadarTrace: any;
 }
 
 interface State {
@@ -39,12 +40,12 @@ interface State {
 export default class CompanyCard extends PureComponent<Props, State> {
 
   render() {
-    let {display, companyCard} = this.props;
+    let {display, companyCard, addRadarTrace} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(90), {display: display ? display : 'inline-block'}])}>
+      <View style={styleAssign([wRatio(90), pl(20), {display: display ? display : 'inline-block'}])}>
         <View
-          style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), h(177), bgColor(commonStyles.whiteColor)])}>
+          style={styleAssign([{width: '100%'}, mt(16), h(177), bgColor(commonStyles.whiteColor)])}>
 
           <View style={styleAssign([styles.uac])}>
             <View style={styleAssign([styles.udr, styles.ujb, pl(16), pt(16), pr(16)])}>
@@ -86,11 +87,21 @@ export default class CompanyCard extends PureComponent<Props, State> {
               </View>
               <View style={styleAssign([w(1), h(19), bgColor(commonStyles.pageDefaultBackgroundColor)])}/>
               <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
-                <Button openType={'share'}
+                {/* <Button openType={'share'}
                         style={styleAssign([styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
                   <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_share.png`}/>
                   <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>分享名片</Text>
-                </Button>
+                </Button> */}
+                <View style={styleAssign([styles.udr, styles.uac])}
+                      onClick={() => {
+                        addRadarTrace();
+                        Taro.navigateTo({
+                          url: `/pages/businesscard/other_businesscard?userId=${companyCard.userId}`
+                        });
+                      }}>
+                  <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_look.png`}/>
+                  <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>查看名片</Text>
+                </View>
               </View>
             </View>
           </View>

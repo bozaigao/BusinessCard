@@ -14,6 +14,7 @@ import {CompanyCardModel} from "../../../../const/global";
 
 interface Props {
   companyCardList: CompanyCardModel[];
+  addRadarTrace: any;
 }
 
 interface State {
@@ -22,7 +23,7 @@ interface State {
 export default class JiZhiCard extends PureComponent<Props, State> {
 
   render() {
-    let {companyCardList} = this.props;
+    let {companyCardList, addRadarTrace} = this.props;
 
     return (
       <View style={styleAssign([wRatio(100)])}>
@@ -36,7 +37,7 @@ export default class JiZhiCard extends PureComponent<Props, State> {
           {
             companyCardList.map((value, index) => {
               console.log(value);
-              return (<CompanyCard key={index} companyCard={value}/>);
+              return (<CompanyCard key={index} companyCard={value} addRadarTrace={addRadarTrace}/>);
             })
           }
         </ScrollView>

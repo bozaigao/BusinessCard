@@ -497,7 +497,8 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           </View>
           {/*我的个人简介*/}
-          <PersonalInfo
+          {
+            userInfo && ((userInfo.voiceUrl && userInfo.voiceUrl.length !== 0) || (userInfo.selfDescription.length !== 0) || ((userInfo.hometownProvince.length !== 0 || userInfo.hometownCity.length !== 0)) || (userInfo.school.length !== 0) || (userInfo.labelArray.length !== 0) ) && <PersonalInfo
             addRadarTrace={(behaviorType) => {
               this.addRadarTrace(behaviorType);
             }}
@@ -508,6 +509,7 @@ class OtherBusinesscard extends Component<Props, State> {
             schoolClick={() => {
               this.setState({showSchoolWenHouYu: true});
             }}/>
+          }
           {/*我的商品*/}
           {
             userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
@@ -545,8 +547,8 @@ class OtherBusinesscard extends Component<Props, State> {
           {
             userInfo.videoUrl && userInfo.videoUrl.length !== 0 &&
             <View
-              style={styleAssign([wRatio(100), h(264), mt(10)])}>
-              <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
+              style={styleAssign([wRatio(100), h(264), pl(20), pr(20), mt(10)])}>
+              <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mt(32)])}>
                 <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
                 <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的视频</Text>
               </View>
@@ -568,7 +570,10 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           }
           {/*极致名片*/}
-          <JiZhiCard companyCardList={companyCardList}/>
+          <JiZhiCard companyCardList={companyCardList} addRadarTrace={()=>{
+            this.timer && clearInterval(this.timer);
+            this.addRadarTrace('view_card');
+          }}/>
           {/*关注公众号*/}
           <View
             style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>

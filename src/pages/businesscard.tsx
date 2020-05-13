@@ -27,6 +27,7 @@ import {connect} from "@tarojs/redux";
 import * as actions from '../actions/task_center';
 import * as loginActions from '../actions/login';
 import * as businessCardActions from '../actions/business_card';
+import * as tequanActions from '../actions/tequan';
 import Card from "./component/business-card/index";
 import MyPerson from "./component/my-person/index";
 import ShareModal from "./component/share-modal/index";
@@ -48,6 +49,7 @@ interface Props {
   updateMyCollect: any;
   userSettingGet: any;
   userInfo: User;
+  packageStatus: any;
 }
 
 interface State {
@@ -65,10 +67,11 @@ interface State {
   hideWechat: number;
   hideEmail: number;
   hideAddress: number;
-
+  //人脉特权
+  connection: number;
 }
 
-@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions))
+@connect(state => Object.assign(state.taskCenter, state.login), Object.assign(actions, loginActions, businessCardActions, tequanActions))
 class Businesscard extends Component<Props, State> {
 
 
@@ -100,6 +103,7 @@ class Businesscard extends Component<Props, State> {
       hideWechat: 0,
       hideEmail: 0,
       hideAddress: 0,
+      connection:0,
     }
   }
 
@@ -228,6 +232,7 @@ class Businesscard extends Component<Props, State> {
       this.getRecommendSetting();
       this.recommendSettingStatus();
       this.getRecommend();
+      this.packageStatus();
       console.log('重新更新用户信息', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -290,13 +295,33 @@ class Businesscard extends Component<Props, State> {
     });
   }
 
+  /**
+   * @author 何晏波
+   * @QQ 1054539528
+   * @date 2020/5/3
+   * @function: 查看人脉套餐状态
+   */
+  packageStatus = () => {
+    this.viewRef && this.viewRef.showLoading();
+    this.props.packageStatus().then((res) => {
+      this.viewRef && this.viewRef.hideLoading();
+      if (res !== NetworkState.FAIL) {
+        this.setState({connection: res.connection});
+        console.log('查看套餐状态', res);
+      }
+    }).catch(e => {
+      this.viewRef && this.viewRef.hideLoading();
+      console.log('报错啦', e);
+    });
+  }
+
 
   render() {
     let {
       showShare, recommendIsSet, recommendList, showGuide1, showGuide2, showGuide3, holderCount, visitorCount, currentIndex,
-      hidePhone, hideWechat, hideEmail, hideAddress, cardStyle
+      hidePhone, hideWechat, hideEmail, hideAddress, cardStyle, connection
     } = this.state;
-    let {userInfo} = this.props;
+    let { userInfo } = this.props;
 
     return (
       <CustomSafeAreaView customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}
@@ -324,7 +349,7 @@ class Businesscard extends Component<Props, State> {
             cardStyle={cardStyle}
             holderCount={holderCount}
             visitorCount={visitorCount}
-            userInfo={this.props.userInfo}
+            userInfo={userInfo}
             shareClick={() => {
               this.setState({showShare: true});
             }} collectCallback={() => {
@@ -339,7 +364,7 @@ class Businesscard extends Component<Props, State> {
             }}
             viewMyCardCallback={() => {
               Taro.navigateTo({
-                url: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+                url: `/pages/businesscard/other_businesscard?userId=${userInfo.id}`
               });
             }}
             gotoCardCallback={() => {
@@ -351,6 +376,7 @@ class Businesscard extends Component<Props, State> {
           <MyPerson
             userInfo={userInfo}
             currentIndex={currentIndex}
+            connection={connection}
             chooseCallback={() => {
               Taro.navigateTo({
                 url: `/pages/businesscard/choose_renmai_tag`

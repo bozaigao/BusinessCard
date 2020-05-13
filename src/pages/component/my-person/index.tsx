@@ -37,6 +37,7 @@ interface Props {
   currentIndex: number;
   collectCard: any;
   userInfo: User;
+  connection: number;
 }
 
 interface State {
@@ -48,7 +49,7 @@ export default class MyPerson extends Component<Props, State> {
   }
 
   render() {
-    let {chooseCallback, hasSelected, recommendList, indexChangeCallback, performCard, currentIndex, collectCard,userInfo} = this.props;
+    let {chooseCallback, hasSelected, recommendList, indexChangeCallback, performCard, currentIndex, collectCard, userInfo, connection} = this.props;
     let noticeText = '';
 
     if (currentIndex === 1) {
@@ -122,7 +123,7 @@ export default class MyPerson extends Component<Props, State> {
           })
         }
         {
-          hasSelected && currentIndex === 0 &&
+          hasSelected && currentIndex === 0 && connection === 0 &&
           <View style={styleAssign([wRatio(100), h(226), bgColor(commonStyles.whiteColor), styles.uac, styles.ujc])}>
             <View style={styleAssign([styles.uac])}>
               <View style={styleAssign([styles.uac, styles.ujc, styles.udr, w(160)])}>
@@ -136,7 +137,11 @@ export default class MyPerson extends Component<Props, State> {
               </Text>
               <View
                 style={styleAssign([w(202), h(44), radiusA(4), styles.uac, styles.ujc, bgColor(commonStyles.colorTheme),
-                  mt(19)])}>
+                  mt(19)])} onClick={()=>{
+                    Taro.navigateTo({
+                      url: `/pages/mine/tequan`
+                    });
+                  }}>
                 <Text style={styleAssign([fSize(16), color(commonStyles.whiteColor)])}>
                   1元立即试用
                 </Text>
