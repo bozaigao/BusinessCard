@@ -151,7 +151,7 @@ class GoodsDetail extends Component<Props, State> {
               {/*价格描述*/}
               <View style={styleAssign([wRatio(100), h(54), styles.udr, styles.uac, styles.ujb, pl(20), pr(20),
                 bgColor(commonStyles.whiteColor)])}>
-                <Text style={styleAssign([fSize(21), color('#FA541C')])}>{`¥${itemData.price}`}</Text>
+                <Text style={styleAssign([fSize(21), color('#FA541C')])}>{itemData.price&&itemData.price>0?`¥${itemData.price}`:''}</Text>
                 <Text style={styleAssign([fSize(14), color('#242424')])}>{itemData.name}</Text>
               </View>
             </View>

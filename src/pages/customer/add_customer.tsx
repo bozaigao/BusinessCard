@@ -67,6 +67,7 @@ class AddCustomer extends Component<Props, State> {
   private uploadCount: number;
   private uploadResultArr;
   private avatarArr;
+  private aboutUrl;
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -83,6 +84,7 @@ class AddCustomer extends Component<Props, State> {
     this.uploadCount = 0;
     this.uploadResultArr = [];
     this.avatarArr = [];
+    this.aboutUrl = '';
     this.state = {
       top1List: [{title: '备注名', subtitle: '请输入备注名', hasEdit: true, must: true},
         {title: '手机', subtitle: '请输入手机号', hasEdit: true, must: true},
@@ -171,7 +173,8 @@ class AddCustomer extends Component<Props, State> {
       birthday,
       wechat,
       remark: desc,
-      aboutUrl: JSON.stringify(this.avatarArr),
+      // aboutUrl: JSON.stringify(this.avatarArr),
+      aboutUrl:this.aboutUrl,
       email
     };
 
@@ -358,7 +361,8 @@ class AddCustomer extends Component<Props, State> {
                     this.setState({avatar: res.tempFiles[0]});
                     this.uploadFileList(res.tempFiles, () => {
                       this.avatarArr.push(...this.uploadResultArr);
-                      console.log('上传成功后的图片列表', this.avatarArr);
+                      this.aboutUrl = this.uploadResultArr[0];
+                      console.log('上传成功后的图片列表',this.aboutUrl, this.avatarArr);
                     });
                   });
                 }}>

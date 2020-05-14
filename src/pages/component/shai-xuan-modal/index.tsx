@@ -109,7 +109,8 @@ export default class ShaiXuanModal extends PureComponent<Props, State> {
                 <Text style={styleAssign([color('#727272'), fSize(14)])}>{shaiXuanMode}</Text>
                 <SanJiao orientation={Orientation.down} style={styleAssign([ml(3)])}/>
               </View>
-              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}>
+              <View style={styleAssign([styles.uac, styles.udr, ml(24)])}
+                onClick={cancelCallback}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>筛选</Text>
                 <Image style={styleAssign([w(14), h(14), ml(3)])}
                        src={require('../../../assets/ico_shaixuan_orange.png')}/>

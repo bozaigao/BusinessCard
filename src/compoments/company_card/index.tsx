@@ -32,6 +32,7 @@ interface Props {
   display?: any;
   companyCard: CompanyCardModel;
   addRadarTrace: any;
+  isCopy: boolean;
 }
 
 interface State {
@@ -40,7 +41,7 @@ interface State {
 export default class CompanyCard extends PureComponent<Props, State> {
 
   render() {
-    let {display, companyCard, addRadarTrace} = this.props;
+    let {display, companyCard, addRadarTrace, isCopy} = this.props;
 
     return (
       <View style={styleAssign([wRatio(90), pl(20), {display: display ? display : 'inline-block'}])}>
@@ -76,11 +77,11 @@ export default class CompanyCard extends PureComponent<Props, State> {
               style={styleAssign([wRatio(100), h(44), styles.udr, styles.uac])}>
               <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])}>
                 <View style={styleAssign([styles.udr, styles.uac])}
-                      onClick={() => {
-                        Taro.makePhoneCall({
-                          phoneNumber: companyCard.phone
-                        })
-                      }}>
+                  onClick={() => {
+                    Taro.makePhoneCall({
+                      phoneNumber: companyCard.phone
+                    })
+                  }}>
                   <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_call.png`}/>
                   <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>拨打电话</Text>
                 </View>
@@ -93,14 +94,20 @@ export default class CompanyCard extends PureComponent<Props, State> {
                   <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>分享名片</Text>
                 </Button> */}
                 <View style={styleAssign([styles.udr, styles.uac])}
-                      onClick={() => {
-                        addRadarTrace();
-                        Taro.navigateTo({
-                          url: `/pages/businesscard/other_businesscard?userId=${companyCard.userId}`
-                        });
-                      }}>
-                  <Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_look.png`}/>
-                  <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>查看名片</Text>
+                  onClick={() => {
+                    if(isCopy){
+                      Taro.setClipboardData({
+                        data: companyCard.wechat
+                      });
+                    }else{
+                      addRadarTrace && addRadarTrace();
+                      Taro.navigateTo({
+                        url: `/pages/businesscard/other_businesscard?userId=${companyCard.userId}`
+                      });
+                    }
+                  }}>
+                  {isCopy?<Image style={styleAssign([w(21), h(17)])} src={`${cloudBaseUrl}ico_wechat_black.png`}/>:<Image style={styleAssign([w(18), h(18)])} src={`${cloudBaseUrl}ico_look.png`}/>}
+                  <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>{isCopy?`复制微信`:`查看名片`}</Text>
                 </View>
               </View>
             </View>

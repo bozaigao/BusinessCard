@@ -295,6 +295,11 @@ class GoodsManage extends Component<Props, State> {
 
     let child;
 
+    let nowTime = new Date().getTime();
+    let timeT = Number(shop.shopEnd) - nowTime;
+    //是否将在一天内到期
+    let isDue = timeT<86400000?true:false;
+
     if (currentIndex === 0) {
       child = <View style={styleAssign([wRatio(100), hRatio(100)])}>
         {/*筛选*/}
@@ -484,7 +489,7 @@ class GoodsManage extends Component<Props, State> {
                       type: 1,
                       userId: 22,
                       wechat: "18428088011"
-                    }}/>
+                    }} isCopy={true} addRadarTrace={()=>{}}/>
                 </View>
               </View> :
               (shopStatus === ShopStatus.HAS_OPEN ?
@@ -495,7 +500,7 @@ class GoodsManage extends Component<Props, State> {
                            src={shop.shopCoverUrl}
                            mode={'scaleToFill'}/>
                     <View style={styleAssign([ml(16), wRatio(60)])}>
-                      <Text style={styleAssign([fSize(16), color('#373838')])}>{shop.company}</Text>
+                      <Text style={styleAssign([fSize(16), color('#373838')])}>{shop.shopName}</Text>
                       <View style={styleAssign([styles.udr, mt(12)])}>
                         <Image style={styleAssign([w(12), h(12), mt(3)])} src={`${cloudBaseUrl}ico_shop_location.png`}/>
                         <Text
@@ -538,13 +543,13 @@ class GoodsManage extends Component<Props, State> {
                           type: 1,
                           userId: 22,
                           wechat: "18428088011"
-                        }}/>
+                        }} isCopy={true} addRadarTrace={()=>{}}/>
                     </View>
                   </View> : null)))
         }
         {
-          shopStatus !== ShopStatus.SHOP_OUT_OF_TIME &&
-          shopStatus !== ShopStatus.NO_APPLY &&
+          shopStatus === ShopStatus.HAS_OPEN &&
+          isDue &&
           <View style={styleAssign([styles.uf1, styles.uje])}>
             {/*继续开通*/}
             <BottomButon title={'继续开通'} onClick={() => {

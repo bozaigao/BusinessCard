@@ -21,7 +21,9 @@ import {
   pr,
   radiusA,
   w,
-  wRatio
+  wRatio,
+  screenHeight,
+  pb
 } from "../../utils/style";
 import {parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
@@ -148,7 +150,7 @@ class ChooseCustomer extends Component<Props, State> {
         <TopHeader title={'选择客户'}/>
         <View
           style={styleAssign([wRatio(100), h(63), bgColor(commonStyles.whiteColor), styles.udr, styles.uac, styles.ujb,
-            pl(20), pr(20)])}>
+            pl(20), pr(20), pb(10)])}>
           <View style={styleAssign([{width: '85%'}, h(31), op(0.7), bgColor('#F5F5F5'),
             radiusA(26), styles.uac, styles.udr])}>
             <Image style={styleAssign([w(21), h(21), ml(16)])} src={require('../../assets/ico_search.png')}/>
@@ -185,7 +187,7 @@ class ChooseCustomer extends Component<Props, State> {
               </View>
             </View> :
             <ScrollView
-              style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+              style={styleAssign([h(screenHeight()), bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY
               onScrollToUpper={() => {
                 this.refresh();
@@ -193,39 +195,41 @@ class ChooseCustomer extends Component<Props, State> {
               onScrollToLower={() => {
                 // this.loadMore();
               }}>
-              {
-                customerList.map((value, index) => {
-                  return <GuanLianCustomer
-                    customer={value} key={index}
-                    backgroundColor={commonStyles.pageDefaultBackgroundColor}
-                    marginTop={10}
-                    hascheck={true}
-                    isChecked={chooseCustomerIds.includes(value.id)}
-                    onChoose={(id: number) => {
-                      let hasData = false;
+              <View style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}>
+                {
+                  customerList.map((value, index) => {
+                    return <GuanLianCustomer
+                      customer={value} key={index}
+                      backgroundColor={commonStyles.pageDefaultBackgroundColor}
+                      marginTop={10}
+                      hascheck={true}
+                      isChecked={chooseCustomerIds.includes(value.id)}
+                      onChoose={(id: number) => {
+                        let hasData = false;
 
-                      for (let i = 0; i < chooseCustomerIds.length; i++) {
-                        if (id === chooseCustomerIds[i]) {
-                          hasData = true;
-                          this.state.chooseCustomerIds.splice(i, 1);
+                        for (let i = 0; i < chooseCustomerIds.length; i++) {
+                          if (id === chooseCustomerIds[i]) {
+                            hasData = true;
+                            this.state.chooseCustomerIds.splice(i, 1);
+                            this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
+                              () => {
+                                console.log('点击', this.state.chooseCustomerIds);
+                              });
+                            break;
+                          }
+                        }
+                        if (!hasData) {
+                          this.state.chooseCustomerIds.push(id);
                           this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
                             () => {
                               console.log('点击', this.state.chooseCustomerIds);
                             });
-                          break;
                         }
                       }
-                      if (!hasData) {
-                        this.state.chooseCustomerIds.push(id);
-                        this.setState({chooseCustomerIds: this.state.chooseCustomerIds},
-                          () => {
-                            console.log('点击', this.state.chooseCustomerIds);
-                          });
-                      }
-                    }
-                    }/>;
-                })
-              }
+                      }/>;
+                  })
+                }
+              </View>
             </ScrollView>
         }
       </CustomSafeAreaView>

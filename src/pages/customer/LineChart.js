@@ -40,7 +40,7 @@ function setChartData(chart, titles, values) {
   }
 
   if (values) {
-    option.series.data = values;
+    option.series[0].data = values;
   }
 
   console.log('配置信息',option);
