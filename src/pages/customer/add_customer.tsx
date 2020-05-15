@@ -22,7 +22,8 @@ import {
   pa,
   radiusA,
   w,
-  wRatio
+  wRatio,
+  screenHeight
 } from "../../utils/style";
 import {debounce, get, isLegalEmail, parseData, styleAssign, toast} from "../../utils/datatool";
 //@ts-ignore
@@ -207,7 +208,7 @@ class AddCustomer extends Component<Props, State> {
                           }}>
         <TopHeader title={'手动添加'}/>
         <ScrollView
-          style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100), h(screenHeight()), bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           <View style={styleAssign([wRatio(100), mt(10)])}>
             {

@@ -252,7 +252,7 @@ class Customer extends Component<Props, State> {
                             this.setState({showShareInvite: true});
                           } else {
                             Taro.navigateTo({
-                              url: `/pages/businesscard/other_businesscard?userId=${value.userId}`
+                              url: `/pages/businesscard/other_businesscard?userId=${value.userId}&source=系统客户`
                             });
                           }
                         }

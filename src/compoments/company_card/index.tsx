@@ -94,7 +94,8 @@ export default class CompanyCard extends PureComponent<Props, State> {
                   <Text style={styleAssign([fSize(14), color(commonStyles.colorTheme), ml(11)])}>分享名片</Text>
                 </Button> */}
                 <View style={styleAssign([styles.udr, styles.uac])}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     if(isCopy){
                       Taro.setClipboardData({
                         data: companyCard.wechat
@@ -102,7 +103,7 @@ export default class CompanyCard extends PureComponent<Props, State> {
                     }else{
                       addRadarTrace && addRadarTrace();
                       Taro.navigateTo({
-                        url: `/pages/businesscard/other_businesscard?userId=${companyCard.userId}`
+                        url: `/pages/businesscard/other_businesscard?userId=${companyCard.userId}&source=极致名片`
                       });
                     }
                   }}>

@@ -10,6 +10,7 @@ import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../../utils/datatool";
 import styles, {bgColor, color, commonStyles, fSize, h, ml, mr, mt, radiusA, w, wRatio} from "../../../utils/style";
 import SingleLineText from "../../../compoments/singleline-text";
+import {cloudBaseUrl} from "../../../api/httpurl";
 
 
 interface Props {
@@ -30,7 +31,7 @@ export default class RenMaiItem extends PureComponent<Props, State> {
         <View
           style={styleAssign([wRatio(100), h(112), styles.udr, styles.uac, styles.ujb, bgColor(commonStyles.whiteColor)])}>
           <View style={styleAssign([styles.uac, styles.udr, ml(20)])}>
-            <Image style={styleAssign([w(66), h(66), radiusA(33)])} src={item.avatar}
+            <Image style={styleAssign([w(66), h(66), radiusA(33)])} src={item.avatar ? item.avatar : `${cloudBaseUrl}ico_default.png`}
                    mode={'aspectFit'}/>
             <View style={styleAssign([ml(22)])}>
               <SingleLineText style={styleAssign([fSize(16),w(140), color('#343434')])} text={item.name}/>

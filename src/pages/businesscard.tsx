@@ -244,7 +244,7 @@ class Businesscard extends Component<Props, State> {
   onShareAppMessage(res) {
     return {
       title: `${this.props.userInfo.name}的名片分享`,
-      path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}`
+      path: `/pages/businesscard/other_businesscard?userId=${this.props.userInfo.id}&source=名片分享`
     }
   }
 
@@ -422,7 +422,6 @@ class Businesscard extends Component<Props, State> {
         {/*创建名片*/}
         <View style={styleAssign([wRatio(100),h(55), styles.uac])}>
           <Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
-            userInfo.cardPercent = 0
             if (userInfo.cardPercent) {
               Taro.navigateTo({
                 url: `/pages/mine/perform_info`

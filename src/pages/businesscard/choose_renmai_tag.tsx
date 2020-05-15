@@ -27,8 +27,10 @@ import {
   pl,
   pr,
   radiusA,
+  screenHeight,
   w,
-  wRatio
+  wRatio,
+  screenWidth
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
@@ -107,10 +109,10 @@ class ChooseRenmaiTag extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <View style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169)])}>
+        <View style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169), styles.upr])}>
           <Image style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169), styles.upa, absT(-5)])}
                  src={require('../../assets/ico_xingqu_renmai.png')}/>
-          <View style={styleAssign([wRatio(100), styles.upa, absB(30), styles.uac, styles.ujc])}>
+          <View style={styleAssign([wRatio(100), styles.upa, absB(0), styles.uac, styles.ujc])}>
             <Text style={styleAssign([fSize(22), color(commonStyles.whiteColor)])}>
               选择你感兴趣的人脉
             </Text>
@@ -120,7 +122,7 @@ class ChooseRenmaiTag extends Component<Props, State> {
           </View>
         </View>
         <ScrollView
-          style={styleAssign([styles.uf1, mt(30), styles.uac, bgColor(commonStyles.whiteColor)])}
+          style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 189 : screenHeight() - 169), mt(30), styles.uac, bgColor(commonStyles.whiteColor)])}
           scrollY>
           <View style={styleAssign([wRatio(100), styles.uWrap, styles.udr, styles.uac, styles.uja, pl(20), pr(20)])}>
             {

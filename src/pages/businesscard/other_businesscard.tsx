@@ -29,7 +29,8 @@ import {
   pr,
   radiusA,
   w,
-  wRatio
+  wRatio,
+  screenHeight
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
@@ -174,7 +175,7 @@ class OtherBusinesscard extends Component<Props, State> {
    * @function: 新增访客记录
    */
   addVisitor = (type) => {
-    this.props.addVisitor({visitorUserId: this.$router.params.userId, visitContent: type}).then((res) => {
+    this.props.addVisitor({visitorUserId: this.$router.params.userId, visitContent: type, source:this.$router.params.source?this.$router.params.source:'未知'}).then((res) => {
       console.log('新增访客记录', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -192,6 +193,7 @@ class OtherBusinesscard extends Component<Props, State> {
     let params = {
       userId: this.state.userInfo.id,
       behaviorType,
+      source:this.$router.params.source?this.$router.params.source:'未知'
     }, duration = this.duration;
 
     if (goodsId) {
@@ -307,7 +309,7 @@ class OtherBusinesscard extends Component<Props, State> {
     this.addRadarTrace('share_card');
     return {
       title: `${this.state.userInfo.name}的名片分享`,
-      path: `/pages/businesscard/other_businesscard?userId=${this.state.userInfo.id}`
+      path: `/pages/businesscard/other_businesscard?userId=${this.state.userInfo.id}&source=名片分享`
     }
   }
 
@@ -391,7 +393,7 @@ class OtherBusinesscard extends Component<Props, State> {
           </View>
         </NavigationBar>
         {userInfo && <ScrollView
-          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100), h(screenHeight()), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <View style={styleAssign([wRatio(100), styles.uac, mt(20)])}>
