@@ -234,7 +234,7 @@ class Customer extends Component<Props, State> {
                 onScrollToLower={() => {
                   // this.loadMore();
                 }}
-                style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 270 : screenHeight() - 200), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+                style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 270 : screenHeight() - 220), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
                 scrollY>
                 {
                   customerList.map((value: CustomerModel, index) => {
