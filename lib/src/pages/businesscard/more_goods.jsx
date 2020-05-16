@@ -15,15 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 //@ts-ignore
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 //@ts-ignore
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
-const top_header_1 = require("../../compoments/top-header");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const touchable_button_1 = require("../../compoments/touchable-button");
+const index_3 = require("../../compoments/touchable-button/index");
 let MoreGoods = class MoreGoods extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -34,23 +34,21 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         this.goodsList = datatool_1.parseData(this.$router.params.goodsList);
         console.log(this.viewRef);
     }
     render() {
-        return (<safe_area_view_1.default ref={(ref) => {
+        return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={'更多商品'}/>
+        <index_2.default title={'更多商品'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.wRatio(100), style_1.hRatio(100), style_1.mt(16)])} scrollY>
           {this.goodsList.map((value, index) => {
             console.log(value);
-            return (<touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(90), style_1.default.udr, style_1.default.uac, { marginLeft: '5%' }, style_1.mt(10), style_1.h(152), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor)])} key={index} onClick={() => {
+            return (<index_3.default customStyle={datatool_1.styleAssign([style_1.wRatio(90), style_1.default.udr, style_1.default.uac, { marginLeft: '5%' }, style_1.mt(10), style_1.h(152), style_1.pa(8), style_1.bgColor(style_1.commonStyles.whiteColor)])} key={index} onClick={() => {
                 taro_1.default.navigateTo({
-                    url: `/pages/mine/goods_detail?itemData=${JSON.stringify(value)}`
+                    url: `/pages/mine/goods_detail?id=${value.id}`
                 });
             }}>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(120), style_1.h(120), style_1.radiusA(4)])} src={value.carouselUrl ? datatool_1.parseData(value.carouselUrl)[0] : ''}/>
@@ -63,10 +61,10 @@ let MoreGoods = class MoreGoods extends taro_1.Component {
                 style_1.default.upa, style_1.absT(0)])} onClick={() => {
             }}/>
                   </components_1.View>
-                </touchable_button_1.default>);
+                </index_3.default>);
         })}
         </components_1.ScrollView>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 MoreGoods = __decorate([

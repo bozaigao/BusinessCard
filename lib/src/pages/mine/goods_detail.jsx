@@ -21,8 +21,10 @@ const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
+const goodsActions = require("../../actions/goods");
 const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
+const httpurl_1 = require("../../api/httpurl");
 let GoodsDetail = class GoodsDetail extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -33,28 +35,43 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
+        this.config = {};
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/3/29
+         * @function: 获取商品详情
+         */
+        this.getGoods = () => {
+            this.props.getGoods({ id: this.$router.params.id }).then((res) => {
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ itemData: res });
+                }
+                console.log('获取商品详情', res);
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
         };
-        let itemData = datatool_1.parseData(this.$router.params.itemData);
-        console.log('接受的参数', itemData);
         this.state = {
-            itemData: itemData,
-            carouselUrls: itemData ? datatool_1.parseData(itemData.carouselUrl) : [],
-            detailUrls: itemData ? datatool_1.parseData(itemData.detailUrl) : [],
+            //@ts-ignore
+            itemData: null,
             currentIndex: 0
         };
     }
     //@ts-ignore
     onShareAppMessage(res) {
+        let { itemData } = this.state;
         return {
             title: `${this.props.userInfo.name}向你分享了商品`,
-            path: `/pages/goods_detail`,
-            imageUrl: this.state.carouselUrls[0]
+            path: `/pages/mine/goods_detail?id=${itemData.id}`,
+            imageUrl: datatool_1.parseData(itemData.carouselUrl)[0]
         };
     }
+    componentDidMount() {
+        this.getGoods();
+    }
     render() {
-        let { itemData, currentIndex, carouselUrls, detailUrls } = this.state;
+        let { itemData, currentIndex } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <index_2.default title={'商品详情'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor),
@@ -66,15 +83,20 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
                 <components_1.Swiper style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100)])} circular autoplay onChange={(e) => {
             this.setState({ currentIndex: e.detail.current });
         }}>
-                  {carouselUrls.map((value, index) => {
+                  {itemData && datatool_1.parseData(itemData.carouselUrl).map((value, index) => {
             return (<components_1.SwiperItem key={index}>
-                        <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(0)])} src={value}/>
+                        <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.upa, style_1.absT(0)])} src={value} onClick={() => {
+                taro_1.default.previewImage({
+                    current: value,
+                    urls: datatool_1.parseData(itemData.carouselUrl)
+                });
+            }}/>
                       </components_1.SwiperItem>);
         })}
                 </components_1.Swiper>
                 <components_1.View style={datatool_1.styleAssign([style_1.bgColor('rgba(84,84,84,0.6)'), style_1.w(48), style_1.h(22), style_1.radiusA(10),
             style_1.default.uac, style_1.default.ujc, style_1.default.upa, style_1.absR(19), style_1.absB(8)])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>{`${currentIndex + 1}/${carouselUrls.length}`}</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.whiteColor)])}>{`${currentIndex + 1}/${datatool_1.parseData(itemData.carouselUrl).length}`}</components_1.Text>
                 </components_1.View>
               </components_1.View>
               
@@ -93,9 +115,14 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>{itemData.introduction}</components_1.Text>
               </components_1.View>
               
-              {detailUrls.map((value, index) => {
+              {itemData && datatool_1.parseData(itemData.detailUrl).map((value, index) => {
             console.log(value);
-            return (<components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(336), style_1.h(245), style_1.mt(8)])} src={value}/>);
+            return (<components_1.Image onClick={() => {
+                taro_1.default.previewImage({
+                    current: value,
+                    urls: datatool_1.parseData(itemData.detailUrl)
+                });
+            }} key={index} style={datatool_1.styleAssign([style_1.w(336), style_1.mt(8)])} src={value} mode={'widthFix'}/>);
         })}
             </components_1.View>
           </components_1.ScrollView>
@@ -110,7 +137,7 @@ let GoodsDetail = class GoodsDetail extends taro_1.Component {
     }
 };
 GoodsDetail = __decorate([
-    redux_1.connect(state => state.login, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign(actions, goodsActions))
 ], GoodsDetail);
 exports.default = GoodsDetail;
 //# sourceMappingURL=goods_detail.jsx.map

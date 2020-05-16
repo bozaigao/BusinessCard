@@ -23,7 +23,7 @@ const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
-const help_list_item_1 = require("../sub_pagecomponent/help-list-item");
+const help_list_item_1 = require("../../compoments/help-list-item");
 let Help = class Help extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -34,9 +34,7 @@ let Help = class Help extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         console.log(this.viewRef);
     }
     render() {
@@ -98,7 +96,7 @@ let Help = class Help extends taro_1.Component {
                 }
             }}/>;
         })}
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.ujc, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#D2D2D2')])}>极易推 给您极致服务</components_1.Text>
           </components_1.View>

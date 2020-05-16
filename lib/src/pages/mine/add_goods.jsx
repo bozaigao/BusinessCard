@@ -37,9 +37,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -49,7 +47,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
         this.updateGoods = () => {
             let { name, price, introduction } = this.state;
             if (name.length === 0) {
-                datatool_1.toast('名字不能为空');
+                datatool_1.toast('商品名称不能为空');
                 return;
             }
             if (introduction.length === 0) {
@@ -96,7 +94,7 @@ let AddGoods = class AddGoods extends taro_1.Component {
         this.addGoods = (status) => {
             let { name, price, introduction } = this.state;
             if (name.length === 0) {
-                datatool_1.toast('名字不能为空');
+                datatool_1.toast('商品名称不能为空');
                 return;
             }
             if (introduction.length === 0) {

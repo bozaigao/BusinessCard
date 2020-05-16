@@ -10,10 +10,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const taro_1 = require("@tarojs/taro");
 const components_1 = require("@tarojs/components");
 require("./index.scss");
+require("./index1.scss");
 class MultiLineText extends taro_1.Component {
     render() {
-        let { text, style } = this.props;
-        return (<components_1.Text style={style} className={'.textStyle '}>{text}</components_1.Text>);
+        let { text, style, center } = this.props;
+        return (<components_1.Text style={style} className={center ? '.textStyle' : '.textStyle1'}>{text}</components_1.Text>);
     }
 }
 exports.default = MultiLineText;

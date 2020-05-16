@@ -33,9 +33,7 @@ let IndustryList = class IndustryList extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         this.getIndustryList = () => {
             this.viewRef && this.viewRef.showLoading();
             this.props.getIndustryList().then((res) => {
@@ -82,7 +80,7 @@ let IndustryList = class IndustryList extends taro_1.Component {
                   </touchable_button_1.default>
                   {currentIndex === index && value.children.map((item, itemIndex) => {
                 return (<touchable_button_1.default key={itemIndex} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.bgColor('#F7F7F7')])} onClick={() => {
-                    taro_1.default.eventCenter.trigger('industry', `${value.name}/${item.name}`);
+                    taro_1.default.eventCenter.trigger('industry', `${item.name}`);
                     taro_1.default.navigateBack();
                 }}>
                         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.bgColor('#F7F7F7'), style_1.default.ujc])}>

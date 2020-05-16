@@ -33,9 +33,7 @@ let ChooseIndustryTag = class ChooseIndustryTag extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -50,7 +48,7 @@ let ChooseIndustryTag = class ChooseIndustryTag extends taro_1.Component {
             }
             this.viewRef && this.viewRef.showLoading();
             this.props.recommendSetting({
-                interest: this.renmai,
+                interest: this.renmai ? this.renmai : JSON.stringify([]),
                 industry: JSON.stringify(chooseValue)
             }).then((res) => {
                 console.log('人脉推荐行业和兴趣设置', res);
@@ -108,7 +106,7 @@ let ChooseIndustryTag = class ChooseIndustryTag extends taro_1.Component {
             </components_1.Text>
           </components_1.View>
         </components_1.View>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.mt(30), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? style_1.screenHeight() - 189 : style_1.screenHeight() - 169), style_1.mt(30), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uWrap, style_1.default.udr, style_1.default.uac, style_1.default.uja, style_1.pl(20), style_1.pr(20)])}>
             {interest.map((value, index) => {
             return <components_1.View onClick={() => {

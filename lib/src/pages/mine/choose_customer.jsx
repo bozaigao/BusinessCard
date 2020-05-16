@@ -22,7 +22,7 @@ const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/customer");
 const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const index_3 = require("../sub_pagecomponent/guanlian-customer/index");
+const index_3 = require("../../compoments/guanlian-customer/index");
 let ChooseCustomer = class ChooseCustomer extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -33,9 +33,7 @@ let ChooseCustomer = class ChooseCustomer extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         this.refresh = () => {
             this.pageNo = 1;
             this.getCustomerList(true);
@@ -51,17 +49,24 @@ let ChooseCustomer = class ChooseCustomer extends taro_1.Component {
          * @function: 获取客户列表
          */
         this.getCustomerList = (refresh) => {
-            let { name } = this.state;
+            let { name, chooseIds } = this.state;
             this.viewRef && this.viewRef.showLoading();
             let params = { pageNo: this.pageNo, pageSize: this.pageSize };
             if (name) {
                 Object.assign(params, { name });
             }
             this.props.getCustomerList(params).then((res) => {
-                console.log('获取客户列表', res);
+                console.log('获取客户列表', res, chooseIds);
                 this.viewRef && this.viewRef.hideLoading();
                 if (refresh) {
-                    this.setState({ customerList: res.records });
+                    let customerArray = [];
+                    for (let i = 0; i < res.records.length; i++) {
+                        console.log('打印', chooseIds);
+                        if (!chooseIds || chooseIds.indexOf(res.records[i].id) === -1) {
+                            customerArray.push(res.records[i]);
+                        }
+                    }
+                    this.setState({ customerList: customerArray });
                 }
                 else if (res.records && res.records.length !== 0) {
                     this.setState({ customerList: this.state.customerList.concat(res.records) });
@@ -74,10 +79,11 @@ let ChooseCustomer = class ChooseCustomer extends taro_1.Component {
                 console.log('报错啦', e);
             });
         };
-        console.log('呵呵', datatool_1.parseData(this.$router.params.itemData));
+        console.log('呵呵', datatool_1.parseData(this.$router.params.chooseIds));
         this.pageNo = 1;
-        this.pageSize = 10;
+        this.pageSize = 1000;
         this.state = {
+            chooseIds: datatool_1.parseData(this.$router.params.chooseIds),
             customerList: [],
             name: '',
             chooseCustomerIds: []
@@ -134,7 +140,7 @@ let ChooseCustomer = class ChooseCustomer extends taro_1.Component {
             <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY onScrollToUpper={() => {
                 this.refresh();
             }} onScrollToLower={() => {
-                this.loadMore();
+                // this.loadMore();
             }}>
               {customerList.map((value, index) => {
                 return <index_3.default customer={value} key={index} backgroundColor={style_1.commonStyles.pageDefaultBackgroundColor} marginTop={10} hascheck={true} isChecked={chooseCustomerIds.includes(value.id)} onChoose={(id) => {

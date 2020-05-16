@@ -22,9 +22,10 @@ const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/tequan");
 const components_1 = require("@tarojs/components");
-const index_2 = require("../sub_pagecomponent/linear-gradient-view/index");
+const index_2 = require("../../compoments/linear-gradient-view2/index");
 const httpurl_1 = require("../../api/httpurl");
 const index_3 = require("../../compoments/navigation_bar/index");
+const global_1 = require("../../const/global");
 let RenmaiTaoCanDetail = class RenmaiTaoCanDetail extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -35,9 +36,7 @@ let RenmaiTaoCanDetail = class RenmaiTaoCanDetail extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -73,12 +72,14 @@ let RenmaiTaoCanDetail = class RenmaiTaoCanDetail extends taro_1.Component {
         console.log(this.viewRef);
         this.type = this.$router.params.type;
         this.packageId = this.$router.params.packageId;
+        this.openState = this.$router.params.openState;
         this.state = {
-            scrollTop: 0
+            scrollTop: 0,
+            shopStatus: this.$router.params.shopStatus
         };
     }
     render() {
-        let { scrollTop } = this.state;
+        let { scrollTop, shopStatus } = this.state;
         return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -256,7 +257,7 @@ let RenmaiTaoCanDetail = class RenmaiTaoCanDetail extends taro_1.Component {
             (this.type === 'shop' ?
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(20), style_1.mr(20), style_1.mt(13)])}>
                   开通店铺的用户，可在选择开通时间期限内使用个人商铺程序，包括程序中的所有功能，一旦开通此项特权，我们将免费为用户装修个人店铺，并上架用户专属商品。店铺可展示商品更全面的信息，并进行线上交易。\n
-                  由于开通店铺特权需要专门为用户开通店铺程序，操作比较复杂，所以暂不提供试用，并且开通店铺后可以进行线上交易，因此需要用户填写申请表以提供必要信息，后续则需要用户提供商品的相关资料信息，望用户能积极配合我们的工作人员，若给您带来不便，望谅解。\ns
+                  由于开通店铺特权需要专门为用户开通店铺程序，操作比较复杂，所以暂不提供试用，并且开通店铺后可以进行线上交易，因此需要用户填写申请表以提供必要信息，后续则需要用户提供商品的相关资料信息，望用户能积极配合我们的工作人员，若给您带来不便，望谅解。\n
                   若您已开通此特权，可在特权到期前提前联系客服申请继续开通，以免到期后服务中断给您带来不便，若服务中断后需要再次开通的用户也可联系客服帮助恢复。
                 </components_1.Text> :
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(20), style_1.mr(20), style_1.mt(13)])}>
@@ -273,9 +274,18 @@ let RenmaiTaoCanDetail = class RenmaiTaoCanDetail extends taro_1.Component {
         </index_3.default>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.uac, style_1.default.ujc, style_1.mt(21), style_1.mb(16)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(44), style_1.default.uac, style_1.default.ujc, style_1.radiusA(2), style_1.bgColor('#E2BB7B')])} onClick={() => {
-            this.purchasePackage(this.packageId);
+            if (this.type === 'shop') {
+                if (shopStatus === `${global_1.ShopStatus.NO_APPLY}`) {
+                    taro_1.default.navigateTo({
+                        url: `/pages/mine/shop_apply`
+                    });
+                }
+            }
+            else {
+                this.purchasePackage(this.packageId);
+            }
         }}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>{`${this.type === 'shop' ? '已申请' : '立即开通'}`}</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(style_1.commonStyles.whiteColor)])}>{`${this.type === 'shop' ? (shopStatus === `${global_1.ShopStatus.NO_APPLY}` ? '立即申请' : '已申请') : (this.openState === '0' ? '立即开通' : '继续开通')}`}</components_1.Text>
           </components_1.View>
         </components_1.View>
       </index_1.default>);

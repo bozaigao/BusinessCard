@@ -15,17 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 //@ts-ignore
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 //@ts-ignore
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
-const top_header_1 = require("../../compoments/top-header");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const bottom_buton_1 = require("../../compoments/bottom-buton");
-const touchable_button_1 = require("../../compoments/touchable-button");
-const list_item_1 = require("../../compoments/list-item");
+const index_3 = require("../../compoments/bottom-buton/index");
+const index_4 = require("../../compoments/touchable-button/index");
+const index_5 = require("../../compoments/list-item/index");
 const httpurl_1 = require("../../api/httpurl");
 const global_1 = require("../../const/global");
 let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
@@ -38,9 +38,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -76,6 +74,10 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                 datatool_1.toast('请先填写姓名');
                 return;
             }
+            if (listData[0].value.length > 6) {
+                datatool_1.toast('姓名长度不能超过6个字符');
+                return;
+            }
             if (!listData[2].value || listData[2].value.length === 0) {
                 datatool_1.toast('请先填写公司');
                 return;
@@ -92,7 +94,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             this.props.update({
                 avatar: this.avatar,
                 name: listData[0].value,
-                company: listData[2].value,
+                enterpriseName: listData[2].value,
                 industry: listData[3].value,
                 position: listData[4].value,
                 province: this.province,
@@ -194,13 +196,13 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             signInPageDetail.signInCount = 0;
         }
         let { listData, avatar, showPhone } = this.state;
-        return (<safe_area_view_1.default ref={(ref) => {
+        return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} notNeedBottomPadding={true}>
-        <top_header_1.default title={'创建名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
+        <index_2.default title={'创建名片'} backgroundColor={style_1.commonStyles.whiteColor}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-
-          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
+          
+          <index_4.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.uac, style_1.default.udr, style_1.default.ujb,
             style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pl(20), style_1.pr(20)])} onClick={() => {
             taro_1.default.chooseImage({ count: 1 }).then((res) => {
                 console.log('图片路径', res.tempFiles[0].path);
@@ -210,9 +212,9 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
         }}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>头像</components_1.Text>
             <components_1.Image style={datatool_1.styleAssign([style_1.w(60), style_1.h(60), style_1.radiusA(30)])} src={avatar && avatar.length !== 0 ? avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
-          </touchable_button_1.default>
+          </index_4.default>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-
+          
           {listData.map((value, index) => {
             if (value.title === '地区') {
                 return (<components_1.Picker mode='region' onChange={(e) => {
@@ -224,7 +226,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                         listData: this.state.listData
                     });
                 }} value={[]}>
-                  <list_item_1.default title={value.title} must={value.must} subTitle={value.subtitle} value={value.value} key={index} hasEdit={value.hasEdit}/>
+                  <index_5.default title={value.title} must={value.must} subTitle={value.subtitle} value={value.value} key={index} hasEdit={value.hasEdit}/>
                 </components_1.Picker>);
             }
             else if (value.title === '手机') {
@@ -247,7 +249,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
                   <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), { marginLeft: '5%' }])}/>
                 </components_1.View>;
             }
-            return (<list_item_1.default title={value.title} must={value.must} subTitle={value.subtitle} key={index} value={value.value} hasEdit={value.hasEdit} onCLick={(title) => {
+            return (<index_5.default title={value.title} must={value.must} subTitle={value.subtitle} key={index} value={value.value} hasEdit={value.hasEdit} onCLick={(title) => {
                 if (title === '行业') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/industry_list`
@@ -282,7 +284,7 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             }}/>);
         })}
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(50), style_1.pl(20), style_1.pr(20), style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>分享自己的名片给朋友时展示手机号</components_1.Text>
@@ -293,9 +295,9 @@ let AddBusinesscard = class AddBusinesscard extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.w(336), style_1.h(0.5), style_1.bgColor('#E5E5E5'), style_1.ml(20), style_1.op(0.3)])}/>
           </components_1.View>
         </components_1.ScrollView>
-
-        <bottom_buton_1.default title={'保存'} onClick={this.update}/>
-      </safe_area_view_1.default>);
+        
+        <index_3.default title={'保存'} onClick={this.update}/>
+      </index_1.default>);
     }
 };
 AddBusinesscard = __decorate([

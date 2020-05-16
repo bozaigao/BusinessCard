@@ -31,9 +31,7 @@ let TiXian = class TiXian extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -119,7 +117,7 @@ let TiXian = class TiXian extends taro_1.Component {
               <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mr(20)])}/>
             </components_1.View>
           </navigation_bar_1.default>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])} onClick={() => {
         }}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(51), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20),

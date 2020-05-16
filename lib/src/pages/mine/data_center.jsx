@@ -21,7 +21,7 @@ const datatool_1 = require("../../utils/datatool");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/distribution");
 const global_1 = require("../../const/global");
-const data_center_item_1 = require("../sub_pagecomponent/data-center-item");
+const data_center_item_1 = require("../../compoments/data-center-item");
 const navigation_bar_1 = require("../../compoments/navigation_bar");
 let DataCenter = class DataCenter extends taro_1.Component {
     constructor(props) {
@@ -33,9 +33,7 @@ let DataCenter = class DataCenter extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528

@@ -24,11 +24,11 @@ const actions = require("../../actions/task_center");
 const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
 const index_3 = require("../../compoments/touchable-button/index");
-const index_4 = require("../sub_pagecomponent/task-item/index");
+const index_4 = require("../../compoments/task-item/index");
 const index_5 = require("../../compoments/bottom-buton/index");
 const global_1 = require("../../const/global");
 const httpurl_1 = require("../../api/httpurl");
-const sanjiao_1 = require("../../compoments/sanjiao");
+const index_6 = require("../../compoments/sanjiao/index");
 let TaskCenter = class TaskCenter extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -39,16 +39,16 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         this.refresh = () => {
             this.pageNo = 1;
             this.getIngTaskList(true);
         };
         this.refresh1 = () => {
             this.pageNo1 = 1;
-            this.getFinishedTaskList(true);
+            this.getIngTaskList(true, () => {
+                this.getFinishedTaskList(true);
+            });
         };
         this.loadMore = () => {
             this.pageNo++;
@@ -64,7 +64,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
          * @date 2020/1/4
          * @function: 获取正在进行的任务列表
          */
-        this.getIngTaskList = (refresh) => {
+        this.getIngTaskList = (refresh, callback) => {
             this.viewRef && this.viewRef.showLoading('加载中');
             this.props.getTaskList({
                 pageNo: this.pageNo,
@@ -78,7 +78,9 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
                     if (res.records.length !== 0) {
                         this.state.taskItem.push({ title: '正在进行中', children: res.records });
                     }
-                    this.setState({ taskItem: this.state.taskItem, todayTask: res.records });
+                    this.setState({ taskItem: this.state.taskItem, todayTask: res.records }, () => {
+                        callback();
+                    });
                 }
                 else if (res.records && res.records.length !== 0) {
                 }
@@ -138,7 +140,6 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
                 this.viewRef && this.viewRef.hideLoading();
                 if (res !== httpurl_1.NetworkState.FAIL) {
                     this.setState({ taskItem: [] }, () => {
-                        this.refresh();
                         this.refresh1();
                         datatool_1.toast('状态更新成功');
                     });
@@ -153,7 +154,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
             showAllTask: true,
             showOnlyToday: true,
             taskItem: [],
-            date: '',
+            date: datatool_1.getToday(),
             currentIndex: 0,
             todayTask: []
         };
@@ -163,15 +164,20 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
         this.pageSize1 = 1000;
     }
     componentDidShow() {
-        this.setState({ taskItem: [] }, () => {
-            this.refresh();
-            this.refresh1();
-        });
+        if (this.state.currentIndex === 0) {
+            this.setState({ taskItem: [] }, () => {
+                this.refresh();
+            });
+        }
+        else {
+            this.setState({ taskItem: [] }, () => {
+                this.refresh1();
+            });
+        }
         taro_1.default.eventCenter.on('refreshTaskList', () => {
             console.log('刷新任务列表');
             this.setState({ taskItem: [] }, () => {
                 this.refresh();
-                this.refresh1();
             });
         });
     }
@@ -189,27 +195,25 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.ml(20)])}/>
           <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.ujb])}>
             <index_3.default customStyle={datatool_1.styleAssign([style_1.default.uac])} onClick={() => {
-            this.setState({ currentIndex: 0, taskItem: [], date: '' }, () => {
+            this.setState({ currentIndex: 0, taskItem: [], todayTask: [], date: datatool_1.getToday() }, () => {
                 this.refresh();
-                this.refresh1();
             });
         }}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(currentIndex === 0 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.w(60), style_1.h(2), style_1.bgColor(currentIndex === 0 ? '#E2BB7B' : style_1.commonStyles.whiteColor), style_1.mt(10), style_1.radiusA(1)])}/>
             </index_3.default>
             <index_3.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.ml(23)])} onClick={() => {
-            this.setState({ currentIndex: 1, date: datatool_1.getToday(), taskItem: [] }, () => {
+            this.setState({ currentIndex: 1, date: '', taskItem: [], todayTask: [] }, () => {
                 console.log(this.state.date);
-                this.refresh();
+                this.refresh1();
             });
         }}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>今日任务</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(currentIndex === 1 ? '#E2BB7B' : '#0C0C0C')])}>全部任务</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.w(60), style_1.h(2), style_1.bgColor(currentIndex === 1 ? '#E2BB7B' : style_1.commonStyles.whiteColor), style_1.mt(10), style_1.radiusA(1)])}/>
             </index_3.default>
           </components_1.View>
           <components_1.Picker mode='date' onChange={(e) => {
             this.setState({ date: e.detail.value, taskItem: [] }, () => {
-                this.refresh();
                 this.refresh1();
             });
         }} value={date}>
@@ -220,7 +224,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY onScrollToUpper={() => {
         }} onScrollToLower={() => {
         }}>
-          {currentIndex === 0 ?
+          {currentIndex === 1 ?
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
                 
                 {taskItem.map((value, index) => {
@@ -241,7 +245,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
                     }
                 }} customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(40), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
                         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-                          <sanjiao_1.default orientation={showItem ? global_1.Orientation.down : global_1.Orientation.right}/>
+                          <index_6.default orientation={showItem ? global_1.Orientation.down : global_1.Orientation.right}/>
                           <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(10)])}>{value.title}</components_1.Text>
                         </components_1.View>
                         <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>{`(${value.children.length})`}</components_1.Text>
@@ -265,7 +269,7 @@ let TaskCenter = class TaskCenter extends taro_1.Component {
               </components_1.View> :
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
                 {todayTask.map((itemValue, itemIndex) => {
-                return (<index_4.default key={itemIndex} itemData={itemValue} finishCallback={(id) => {
+                return (<index_4.default isTodayTask={true} key={itemIndex} itemData={itemValue} finishCallback={(id) => {
                     this.taskUpdate(id, 1);
                 }} deleteCallback={(id) => {
                     this.taskUpdate(id, -1);

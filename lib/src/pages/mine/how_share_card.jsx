@@ -22,7 +22,7 @@ const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/login");
 const components_1 = require("@tarojs/components");
-const index_2 = require("../pagecomponent/help-navigation-item/index");
+const index_2 = require("./component/help-navigation-item/index");
 const httpurl_1 = require("../../api/httpurl");
 let HowShareCard = class HowShareCard extends taro_1.Component {
     constructor(props) {
@@ -34,9 +34,7 @@ let HowShareCard = class HowShareCard extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         console.log(this.viewRef);
     }
     render() {

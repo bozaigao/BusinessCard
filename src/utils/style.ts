@@ -563,13 +563,6 @@ const styles = {
   utxr: {
     textAlign: 'right'
   },
-  //文字垂直居中 textAlignVertical enum('auto', 'top', 'bottom', 'center') 只支持安卓
-  utxvc: {
-    textAlignVertical: 'center'
-  },
-  utxvt: {
-    textAlignVertical: 'top'
-  },
   //文本横线-底部
   utxdu: {
     textDecorationLine: 'underline'

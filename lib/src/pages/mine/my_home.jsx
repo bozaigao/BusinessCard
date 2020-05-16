@@ -24,7 +24,7 @@ const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
 const index_3 = require("../../compoments/bottom-buton/index");
 const index_4 = require("../../compoments/list-item/index");
-const index_5 = require("../sub_pagecomponent/wenhou-modal/index");
+const index_5 = require("../../compoments/wenhou-modal/index");
 const httpurl_1 = require("../../api/httpurl");
 let MyHome = class MyHome extends taro_1.Component {
     constructor(props) {
@@ -36,9 +36,7 @@ let MyHome = class MyHome extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -78,13 +76,12 @@ let MyHome = class MyHome extends taro_1.Component {
         };
         this.province = this.$router.params.province;
         this.city = this.$router.params.city;
-        this.placeHolder = '同乡您好，很高兴能遇到你！你可以收藏我的名片哦~';
         this.state = {
             list: [{ title: '家乡', subtitle: '选择地址', value: this.province + this.city }],
             wenHouYU: this.$router.params.villagerGreeting,
-            wenHouYUTmp: this.$router.params.villagerGreeting,
-            placeHolder: this.placeHolder,
-            showWenHouYu: false
+            placeHolder: '同乡您好，很高兴能遇到你！你可以收藏我的名片哦~',
+            showWenHouYu: false,
+            editStyle: 'flex'
         };
     }
     componentWillReceiveProps(nextProps) {
@@ -95,7 +92,7 @@ let MyHome = class MyHome extends taro_1.Component {
     componentDidHide() {
     }
     render() {
-        let { list, wenHouYU, showWenHouYu, placeHolder, wenHouYUTmp } = this.state;
+        let { list, wenHouYU, showWenHouYu, placeHolder, editStyle } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
             this.viewRef = ref;
         }}>
@@ -119,7 +116,7 @@ let MyHome = class MyHome extends taro_1.Component {
                 datatool_1.toast('问候语不能为空');
             }
             else {
-                this.setState({ showWenHouYu: true, wenHouYU: '', placeHolder: '' });
+                this.setState({ showWenHouYu: true, editStyle: 'none' });
             }
         }}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#E2BB7B')])}>预览</components_1.Text>
@@ -127,8 +124,8 @@ let MyHome = class MyHome extends taro_1.Component {
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(131), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.Textarea value={wenHouYU} maxlength={25} placeholder={placeHolder} style={datatool_1.styleAssign([style_1.w(305), style_1.h(91), style_1.fSize(16), style_1.ml(20),
-            style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.pa(16), style_1.mb(20)])} onInput={(e) => {
-            this.setState({ wenHouYU: e.detail.value, wenHouYUTmp: e.detail.value });
+            style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.pa(16), style_1.mb(20), { display: editStyle }])} onInput={(e) => {
+            this.setState({ wenHouYU: e.detail.value });
         }}/>
                 <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.default.upa, style_1.absR(30), style_1.absB(30)])}>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797')])}>{wenHouYU.length}</components_1.Text>
@@ -139,14 +136,14 @@ let MyHome = class MyHome extends taro_1.Component {
             </components_1.View>
           </components_1.View>
 
-
+          
           <index_3.default title={'保存'} onClick={() => {
             this.update();
         }}/>
         </components_1.View>
         {showWenHouYu && <index_5.default type={index_5.WenHouType.HOME} cancle={() => {
-            this.setState({ showWenHouYu: false, wenHouYU: wenHouYUTmp, placeHolder: this.placeHolder });
-        }} wenHouYu={wenHouYUTmp} userInfo={this.props.userInfo}/>}
+            this.setState({ showWenHouYu: false, editStyle: 'flex' });
+        }} wenHouYu={wenHouYU} userInfo={this.props.userInfo}/>}
       </index_1.default>);
     }
 };

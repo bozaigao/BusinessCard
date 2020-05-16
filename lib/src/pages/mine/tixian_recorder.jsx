@@ -23,7 +23,7 @@ const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/distribution");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
-const tixian_recorder_item_1 = require("../sub_pagecomponent/tixian-recorder-item");
+const tixian_recorder_item_1 = require("../../compoments/tixian-recorder-item");
 let TixianRecorder = class TixianRecorder extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -34,9 +34,7 @@ let TixianRecorder = class TixianRecorder extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         this.refresh = () => {
             this.pageNo = 1;
             this.withdrawList(true);

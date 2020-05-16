@@ -132,7 +132,7 @@ let Customer = class Customer extends taro_1.Component {
     render() {
         let { customerList, totalCustomers, shaiXuanMode, showMode, showShaiXuan, showGuide, showShareInvite } = this.state;
         return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} notNeedBottomPadding={true}>
-        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.default.ujb])}>
+        <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
           <index_6.default>
             <components_1.View style={datatool_1.styleAssign([{ width: '65%' }, { marginLeft: '2.5%' }, style_1.h(31), style_1.op(0.7), style_1.bgColor('#F5F5F5'),
             style_1.radiusA(26), style_1.default.uac, style_1.default.udr])}>
@@ -163,20 +163,19 @@ let Customer = class Customer extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-        </components_1.View>
-        {customerList.length === 0 ?
+          {customerList.length === 0 ?
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(78), style_1.h(69)])} src={require('../assets/ico_no_data.png')}/>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434'), style_1.mt(31)])}>当前暂无客户</components_1.Text>
-              </components_1.View>
-            </components_1.View> :
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac])}>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(78), style_1.h(69)])} src={require('../assets/ico_no_data.png')}/>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(15), style_1.color('#343434'), style_1.mt(31)])}>当前暂无客户</components_1.Text>
+                </components_1.View>
+              </components_1.View> :
             <components_1.ScrollView onScrollToUpper={() => {
                 this.refresh();
             }} onScrollToLower={() => {
                 // this.loadMore();
-            }} style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
-              {customerList.map((value, index) => {
+            }} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.iphoneX() ? style_1.screenHeight() - 270 : style_1.screenHeight() - 200), style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
+                {customerList.map((value, index) => {
                 console.log(value);
                 return (<index_2.default key={index} customer={value} mode={shaiXuanMode.substr(0, shaiXuanMode.length - 2)} onClick={() => {
                     taro_1.default.navigateTo({
@@ -197,12 +196,13 @@ let Customer = class Customer extends taro_1.Component {
                     });
                 }}/>);
             })}
-            </components_1.ScrollView>}
-        <index_3.default title={'新增客户'} onClick={() => {
+              </components_1.ScrollView>}
+          <index_3.default title={'新增客户'} onClick={() => {
             taro_1.default.navigateTo({
                 url: `/pages/customer/add_customer`
             });
         }}/>
+        </components_1.View>
         {showMode && <index_4.default totalPerson={totalCustomers} shaiXuanMode={shaiXuanMode} shaiXuanCallback={() => {
             this.setState({ showMode: false, showShaiXuan: true });
         }} cancelCallback={() => {

@@ -27,7 +27,7 @@ const components_1 = require("@tarojs/components");
 const index_3 = require("../../compoments/bottom-buton/index");
 const index_4 = require("../../compoments/touchable-button/index");
 const httpurl_1 = require("../../api/httpurl");
-const custom_tag_1 = require("../sub_pagecomponent/custom-tag");
+const custom_tag_1 = require("../../compoments/custom-tag");
 let MyTags = class MyTags extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -38,9 +38,7 @@ let MyTags = class MyTags extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -128,7 +126,7 @@ let MyTags = class MyTags extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mt(16)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434')])}>我的标签</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(20)])}>长按拖动可以排序(最多添加4个标签)</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#979797'), style_1.ml(20)])}>(最多添加4个标签)</components_1.Text>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8), style_1.default.uWrap])}>
               {chooseTags.map((value, index) => {

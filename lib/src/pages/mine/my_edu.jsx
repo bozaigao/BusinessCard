@@ -24,7 +24,7 @@ const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const bottom_buton_1 = require("../../compoments/bottom-buton");
 const list_item_1 = require("../../compoments/list-item");
-const wenhou_modal_1 = require("../sub_pagecomponent/wenhou-modal");
+const wenhou_modal_1 = require("../../compoments/wenhou-modal");
 const httpurl_1 = require("../../api/httpurl");
 let MyEdu = class MyEdu extends taro_1.Component {
     constructor(props) {
@@ -36,9 +36,7 @@ let MyEdu = class MyEdu extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -52,11 +50,11 @@ let MyEdu = class MyEdu extends taro_1.Component {
                 return;
             }
             if (list[1].value && list[1].value.length === 0) {
-                datatool_1.toast('请选择学历');
+                datatool_1.toast('请输入你的专业');
                 return;
             }
             if (list[2].value && list[2].value.length === 0) {
-                datatool_1.toast('请输入你的专业');
+                datatool_1.toast('请选择学历');
                 return;
             }
             if (this.schoolTimeStart === 0 || this.schoolTimeEnd === 0) {
@@ -70,8 +68,8 @@ let MyEdu = class MyEdu extends taro_1.Component {
             this.viewRef && this.viewRef.showLoading();
             let params = {
                 school: list[0].value && list[0].value,
-                educationBackground: list[1].value && list[1].value,
-                profession: list[2].value && list[2].value,
+                educationBackground: list[2].value && list[2].value,
+                profession: list[1].value && list[1].value,
                 schoolTimeStart: `${this.schoolTimeStart}`,
                 schoolTimeEnd: `${this.schoolTimeEnd}`,
                 schoolfellowGreeting: wenHouYU
@@ -96,8 +94,8 @@ let MyEdu = class MyEdu extends taro_1.Component {
         this.placeHolder = '校友您好，很高兴能遇到你！你可以收藏我的名片哦~';
         this.state = {
             list: [{ title: '学校', subtitle: '请输入学校名称', value: this.$router.params.school, hasEdit: true },
-                { title: '学历', subtitle: '选择', value: this.$router.params.educationBackground },
                 { title: '专业', subtitle: '请输入专业名称', value: this.$router.params.profession, hasEdit: true },
+                { title: '学历', subtitle: '选择', value: this.$router.params.educationBackground },
                 { title: '在校时间', subtitle: '选择', value: this.schoolTimeStart + '-' + this.schoolTimeEnd }],
             wenHouYU: this.$router.params.schoolfellowGreeting,
             wenHouYUTmp: this.$router.params.schoolfellowGreeting,
@@ -135,7 +133,7 @@ let MyEdu = class MyEdu extends taro_1.Component {
             {list.map((value, index) => {
             if (value.title === '学历') {
                 return (<components_1.Picker mode='selector' onChange={(e) => {
-                    this.state.list[1].value = selectorRange[e.detail.value];
+                    this.state.list[2].value = selectorRange[e.detail.value];
                     this.setState({ list: this.state.list });
                 }} range={selectorRange} value={0}>
                     <list_item_1.default textColor={'#727272'} title={value.title} value={value.value} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit}/></components_1.Picker>);
@@ -155,7 +153,7 @@ let MyEdu = class MyEdu extends taro_1.Component {
                     this.setState({ list: this.state.list });
                 }
                 else if (value.title === '专业') {
-                    this.state.list[2].value = e.detail.value;
+                    this.state.list[1].value = e.detail.value;
                     this.setState({ list: this.state.list });
                 }
                 console.log(e);

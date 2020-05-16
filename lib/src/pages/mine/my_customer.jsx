@@ -20,7 +20,7 @@ const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/distribution");
-const my_customer_item_1 = require("../sub_pagecomponent/my_customer_item");
+const my_customer_item_1 = require("../../compoments/my_customer_item");
 const top_header_1 = require("../../compoments/top-header");
 let MyCustomer = class MyCustomer extends taro_1.Component {
     constructor(props) {
@@ -32,9 +32,7 @@ let MyCustomer = class MyCustomer extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         this.refresh = () => {
             this.pageNo = 1;
             this.myCustomerList(true);

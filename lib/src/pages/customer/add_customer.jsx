@@ -14,17 +14,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @Description: 手动录入客户
  */
 const taro_1 = require("@tarojs/taro");
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/customer");
-const top_header_1 = require("../../compoments/top-header");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const touchable_button_1 = require("../../compoments/touchable-button");
-const list_item_1 = require("../../compoments/list-item");
-const bottom_buton_1 = require("../../compoments/bottom-buton");
+const index_3 = require("../../compoments/touchable-button/index");
+const index_4 = require("../../compoments/list-item/index");
+const index_5 = require("../../compoments/bottom-buton/index");
 const global_1 = require("../../const/global");
 const httpurl_1 = require("../../api/httpurl");
 let AddCustomer = class AddCustomer extends taro_1.Component {
@@ -37,9 +37,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -47,7 +45,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
          * @function: 手动录入客户
          */
         this.addPrivateCustomer = () => {
-            let { name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress, email } = this.state;
+            let { name, sex, company, phone, position, wechat, birthday, province, city, industry, detailAddress, email, desc } = this.state;
             if (name.length === 0) {
                 datatool_1.toast('备注名不能为空');
                 return;
@@ -60,7 +58,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                 datatool_1.toast('手机号非法');
                 return;
             }
-            if (!datatool_1.isLegalEmail(email)) {
+            if (email.length !== 0 && !datatool_1.isLegalEmail(email)) {
                 datatool_1.toast('请输入有效的邮箱');
                 return;
             }
@@ -76,7 +74,8 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                 detailAddress,
                 birthday,
                 wechat,
-                avatar: this.avatarArr[0],
+                remark: desc,
+                aboutUrl: JSON.stringify(this.avatarArr),
                 email
             };
             this.viewRef && this.viewRef.showLoading();
@@ -183,10 +182,10 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
     }
     render() {
         let { top1List, top2List, sex, desc, birthday, avatar } = this.state;
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
+        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
             this.viewRef = ref;
         }}>
-        <top_header_1.default title={'手动添加'}/>
+        <index_2.default title={'手动添加'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10)])}>
             {top1List.map((value, index) => {
@@ -195,26 +194,26 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                       <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(51), style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
                         <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797'), style_1.ml(20)])}>性别</components_1.Text>
                         <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
+                          <index_3.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])} onClick={() => {
                     console.log('男');
                     this.setState({ sex: 1 });
                 }}>
                             <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.radiusA(9)])} src={sex === 1 ? `${httpurl_1.cloudBaseUrl}ico_checked.png` : `${httpurl_1.cloudBaseUrl}ico_nochecked.png`}/>
                             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797'), style_1.ml(10)])}>男</components_1.Text>
-                          </touchable_button_1.default>
-                          <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mr(20)])} onClick={() => {
+                          </index_3.default>
+                          <index_3.default customStyle={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(20), style_1.mr(20)])} onClick={() => {
                     console.log('女');
                     this.setState({ sex: 2 });
                 }}>
                             <components_1.Image style={datatool_1.styleAssign([style_1.w(18), style_1.h(18), style_1.radiusA(9)])} src={sex === 2 ? `${httpurl_1.cloudBaseUrl}ico_checked.png` : `${httpurl_1.cloudBaseUrl}ico_nochecked.png`}/>
                             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797'), style_1.ml(10)])}>女</components_1.Text>
-                          </touchable_button_1.default>
+                          </index_3.default>
                         </components_1.View>
                       </components_1.View>
                       <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), { marginLeft: '5%' }])}/>
                     </components_1.View>);
             }
-            return (<list_item_1.default title={value.title} subTitle={value.subtitle} key={index} must={value.must} hasEdit={value.hasEdit} onCLick={(title) => {
+            return (<index_4.default title={value.title} subTitle={value.subtitle} key={index} must={value.must} hasEdit={value.hasEdit} onCLick={(title) => {
                 if (title === '行业') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/industry_list`,
@@ -246,7 +245,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                     this.state.top2List[2].subtitle = e.detail.value;
                     this.setState({ birthday: e.detail.value, top2List: this.state.top2List });
                 }} value={birthday}>
-                    <list_item_1.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={false} textColor={'#727272'}/>
+                    <index_4.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={false} textColor={'#727272'}/>
                   </components_1.Picker>);
             }
             else if (value.title === '地区') {
@@ -259,7 +258,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                         city: e.detail.value[1] + e.detail.value[2]
                     });
                 }} value={[]}>
-                    <list_item_1.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onTextChange={(e) => {
+                    <index_4.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onTextChange={(e) => {
                     console.log(e);
                     if (value.subtitle === '邮箱') {
                         this.setState({ email: e.detail.value });
@@ -270,7 +269,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                 }} textColor={'#727272'}/>
                   </components_1.Picker>);
             }
-            return (<list_item_1.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onCLick={(title) => {
+            return (<index_4.default title={value.title} subTitle={value.subtitle} key={index} hasEdit={value.hasEdit} onCLick={(title) => {
                 if (title === '行业') {
                     taro_1.default.navigateTo({
                         url: `/pages/mine/industry_list`,
@@ -306,7 +305,7 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          {avatar.path.length === 0 ? <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
+          {avatar.path.length === 0 ? <index_3.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             taro_1.default.chooseImage({ count: 1 }).then((res) => {
                 console.log('路径', res);
                 this.setState({ avatar: res.tempFiles[0] });
@@ -323,16 +322,16 @@ let AddCustomer = class AddCustomer extends taro_1.Component {
                   </components_1.View>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#ACADAD'), style_1.mt(10)])}>添加与客户相关的图片</components_1.Text>
                 </components_1.View>
-              </touchable_button_1.default> :
+              </index_3.default> :
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc])}>
                 <components_1.Image style={datatool_1.styleAssign([style_1.w(335), style_1.h(176)])} src={avatar.path} mode={'aspectFit'}/>
               </components_1.View>}
         </components_1.ScrollView>
         
-        <bottom_buton_1.default title={'保存'} onClick={() => {
+        <index_5.default title={'保存'} onClick={() => {
             this.addPrivateCustomer();
         }}/>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 AddCustomer = __decorate([

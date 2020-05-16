@@ -36,14 +36,6 @@ let Businesscard = class Businesscard extends taro_1.Component {
     constructor(props) {
         super(props);
         /**
-         * 指定config的类型声明为: Taro.Config
-         *
-         * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-         * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-         * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-         */
-        this.config = {};
-        /**
          * @author 何晏波
          * @QQ 1054539528
          * @date 2020/3/21
@@ -234,7 +226,7 @@ let Businesscard = class Businesscard extends taro_1.Component {
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434')])}>名片</components_1.Text>
           </components_1.View>
         </index_5.default>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
+        <components_1.ScrollView style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(style_1.screenHeight()), style_1.default.uac, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <index_2.default hidePhone={hidePhone} hideWechat={hideWechat} hideEmail={hideEmail} hideAddress={hideAddress} cardStyle={cardStyle} holderCount={holderCount} visitorCount={visitorCount} userInfo={this.props.userInfo} shareClick={() => {
             this.setState({ showShare: true });
@@ -298,7 +290,9 @@ let Businesscard = class Businesscard extends taro_1.Component {
           </components_1.View>
         </components_1.ScrollView>
         
-        <components_1.Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.default.uac])}>
+          <components_1.Button lang={'zh_CN'} openType={'getUserInfo'} onGetUserInfo={(data) => {
+            userInfo.cardPercent = 0;
             if (userInfo.cardPercent) {
                 taro_1.default.navigateTo({
                     url: `/pages/mine/perform_info`
@@ -313,10 +307,11 @@ let Businesscard = class Businesscard extends taro_1.Component {
                 });
             }
         }} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(55), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-          <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(41), style_1.default.uac, style_1.default.ujc, style_1.bgColor('#FAF1E5'), style_1.radiusA(30)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}%，点击完善` : '创建您的专属名片'}</components_1.Text>
-          </components_1.View>
-        </components_1.Button>
+            <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(41), style_1.default.uac, style_1.default.ujc, style_1.bgColor('#FAF1E5'), style_1.radiusA(30)])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#825D22')])}>{userInfo.cardPercent ? `名片完善度${userInfo.cardPercent}%，点击完善` : '创建您的专属名片'}</components_1.Text>
+            </components_1.View>
+          </components_1.Button>
+        </components_1.View>
         {showShare && <index_4.default cancle={() => {
             this.setState({ showShare: false });
         }} wechatShare={() => {

@@ -21,10 +21,11 @@ const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/tequan");
+const shopActions = require("../../actions/shop");
 const components_1 = require("@tarojs/components");
-const index_2 = require("../sub_pagecomponent/linear-gradient-view/index");
-const index_3 = require("../sub_pagecomponent/level-item/index");
-const index_4 = require("../sub_pagecomponent/taocan-item/index");
+const index_2 = require("../../compoments/linear-gradient-view2/index");
+const index_3 = require("../../compoments/level-item/index");
+const index_4 = require("../../compoments/taocan-item/index");
 const httpurl_1 = require("../../api/httpurl");
 const global_1 = require("../../const/global");
 const navigation_bar_1 = require("../../compoments/navigation_bar");
@@ -38,8 +39,42 @@ let TeQuan = class TeQuan extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
+        this.config = {};
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/5/2
+         * @function: 获取店铺信息
+         */
+        this.getShop = () => {
+            console.log('开始获取店铺信息');
+            this.props.getShop().then((res) => {
+                console.log('获取店铺', res);
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ shopStatus: res.status });
+                }
+            }).catch(e => {
+                console.log('报错啦', e);
+            });
+        };
+        /**
+         * @author 何晏波
+         * @QQ 1054539528
+         * @date 2020/5/3
+         * @function: 查看套餐状态
+         */
+        this.packageStatus = () => {
+            this.viewRef && this.viewRef.showLoading();
+            this.props.packageStatus().then((res) => {
+                this.viewRef && this.viewRef.hideLoading();
+                if (res !== httpurl_1.NetworkState.FAIL) {
+                    this.setState({ visitor: res.visitor, connection: res.connection });
+                    console.log('查看套餐状态', res);
+                }
+            }).catch(e => {
+                this.viewRef && this.viewRef.hideLoading();
+                console.log('报错啦', e);
+            });
         };
         /**
          * @author 何晏波
@@ -138,6 +173,7 @@ let TeQuan = class TeQuan extends taro_1.Component {
         };
         console.log(this.viewRef);
         this.state = {
+            shopStatus: global_1.ShopStatus.NO_APPLY,
             packageId: 0,
             currentIndex: 0,
             title1: '获取人脉资源，增加客户来源',
@@ -145,14 +181,18 @@ let TeQuan = class TeQuan extends taro_1.Component {
             title2: '特权介绍',
             subtitle2: '• 可查看更多人脉',
             packageList: [],
-            scrollTop: 0
+            scrollTop: 0,
+            visitor: 0,
+            connection: 0
         };
     }
     componentDidShow() {
         this.packageList();
+        this.getShop();
+        this.packageStatus();
     }
     render() {
-        let { packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex } = this.state;
+        let { packageId, scrollTop, title1, subtitle1, title2, subtitle2, packageList, currentIndex, visitor, connection, shopStatus } = this.state;
         return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -212,7 +252,7 @@ let TeQuan = class TeQuan extends taro_1.Component {
                 subTitle: '提升你的产品线上推广效果',
                 bg: 'ico_tequan2.png',
                 logo: 'ico_tequan2_logo.png',
-                buttonTitle: '联系客服联系客服',
+                buttonTitle: '联系客服',
                 right: '免费装修店铺'
             }
         ].map((value, index) => {
@@ -237,7 +277,7 @@ let TeQuan = class TeQuan extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#343434'), style_1.fSize(14)])}>{title2}</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])} onClick={() => {
             taro_1.default.navigateTo({
-                url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop')}&packageId=${packageList[0].packageId}`
+                url: `/pages/mine/renmai_taocan_detail?type=${currentIndex === 0 ? 'renmai' : (currentIndex === 1 ? 'fangke' : 'shop')}&packageId=${packageList[0].packageId}&openState=${currentIndex === 0 ? connection : visitor}&shopStatus=${shopStatus}`
             });
         }}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.color('#E2BB7B'), style_1.fSize(14)])}>详情</components_1.Text>
@@ -258,24 +298,18 @@ let TeQuan = class TeQuan extends taro_1.Component {
                 this.setState({ packageId: value.packageId });
             }} checked={value.packageId === packageId}/>;
         })}
-          {currentIndex !== 2 && <components_1.View style={datatool_1.styleAssign([style_1.default.uf1])}>
+          {currentIndex !== 2 && <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.mb(20)])}>
               
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.uac, style_1.default.ujc, style_1.mt(20)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(44), style_1.radiusA(2), style_1.default.uac, style_1.default.ujc, style_1.bgColor('#E2BB7B')])} onClick={() => {
             this.purchasePackage(packageId);
         }}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.whiteColor), style_1.fSize(16)])}>立即开通</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.whiteColor), style_1.fSize(16)])}>{currentIndex === 0 && connection === 1 || currentIndex === 1 && visitor === 1 ? '继续开通' : '立即开通'}</components_1.Text>
                 </components_1.View>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.pl(20), style_1.pr(20), style_1.mt(17)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(13)])}>购买须知</components_1.Text>
-                <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(13)])}>1.付款时向您的Apple ID账户收取费用
-                  \n2.订阅到期或免费试用结束前24小时内，将按页面价格自动续订所选套餐时长；同一Apple ID仅能享有一次免费试用资格 \n3.如需取消自动续订在当前订阅周期结束至少24小时之前在iTunes
-                  Store设置中关闭自动续订服务</components_1.Text>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.mb(46)])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(13)])}>4.成为会员即表示同意</components_1.Text>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color('#3476E0'), style_1.fSize(13)])}>《极致名片隐私政策》</components_1.Text>
-                </components_1.View>
+                <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(13)])}>支付完成之时起5分钟内生效</components_1.Text>
               </components_1.View>
             </components_1.View>}
           {currentIndex === 2 &&
@@ -283,9 +317,13 @@ let TeQuan = class TeQuan extends taro_1.Component {
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(13)])}>1.用户只需通过填写基本信息提交申请，客服会主动联系用户为用户详细介绍开通店铺相关事项及收费标准；\n2.平台会根据不同用户的需求，定制专属店铺，便于商品上架和管理；\n3.用户同意开通店铺后，我们将为用户量身打造专属店铺，并根据商品相应风格免费为用户装修店铺；</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(44), style_1.default.uac, style_1.default.ujc, style_1.mt(20)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(44), style_1.radiusA(2), style_1.default.uac, style_1.default.ujc, style_1.bgColor('#E2BB7B')])} onClick={() => {
-                this.purchasePackage(packageId);
+                if (shopStatus === global_1.ShopStatus.NO_APPLY) {
+                    taro_1.default.navigateTo({
+                        url: `/pages/mine/shop_apply`
+                    });
+                }
             }}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.whiteColor), style_1.fSize(16)])}>已申请</components_1.Text>
+                  <components_1.Text style={datatool_1.styleAssign([style_1.color(style_1.commonStyles.whiteColor), style_1.fSize(16)])}>{shopStatus === global_1.ShopStatus.NO_APPLY ? '立即申请' : '已申请'}</components_1.Text>
                 </components_1.View>
               </components_1.View>
               <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797'), style_1.fSize(13), style_1.mt(17)])}>• 申请提交成功之后，我们客服会在12小时内联系您</components_1.Text>
@@ -304,7 +342,7 @@ let TeQuan = class TeQuan extends taro_1.Component {
     }
 };
 TeQuan = __decorate([
-    redux_1.connect(state => state.login, Object.assign({}, actions))
+    redux_1.connect(state => state.login, Object.assign({}, actions, shopActions))
 ], TeQuan);
 exports.default = TeQuan;
 //# sourceMappingURL=tequan.jsx.map

@@ -14,19 +14,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @Description: 客户添加备注
  */
 const taro_1 = require("@tarojs/taro");
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/customer");
-const top_header_1 = require("../../compoments/top-header");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const list_item_1 = require("../../compoments/list-item");
-const touchable_button_1 = require("../../compoments/touchable-button");
+const index_3 = require("../../compoments/list-item/index");
+const index_4 = require("../../compoments/touchable-button/index");
 const global_1 = require("../../const/global");
 const httpurl_1 = require("../../api/httpurl");
-const bottom_buton_1 = require("../../compoments/bottom-buton");
+const index_5 = require("../../compoments/bottom-buton/index");
 let CustomerRemark = class CustomerRemark extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -37,9 +37,7 @@ let CustomerRemark = class CustomerRemark extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -66,7 +64,7 @@ let CustomerRemark = class CustomerRemark extends taro_1.Component {
                 name: this.state.name,
                 phone: this.state.phone,
                 remark: this.state.desc,
-                aboutUrl: this.avatarArr[0]
+                aboutUrl: this.aboutUrl
             }).then((res) => {
                 this.viewRef && this.viewRef.hideLoading();
                 if (res !== httpurl_1.NetworkState.FAIL) {
@@ -125,10 +123,11 @@ let CustomerRemark = class CustomerRemark extends taro_1.Component {
             });
         };
         this.id = this.$router.params.id;
-        this.avatarArr = [];
+        this.aboutUrl = this.$router.params.aboutUrl;
         this.uploading = false;
         this.uploadCount = 0;
         this.uploadResultArr = [];
+        console.log('透析那个', this.$router.params.aboutUrl);
         this.state = {
             name: this.$router.params.name,
             phone: this.$router.params.phone,
@@ -145,15 +144,16 @@ let CustomerRemark = class CustomerRemark extends taro_1.Component {
     }
     render() {
         let { desc, avatar, phone, name } = this.state;
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
+        console.log('渲染文件', avatar);
+        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
             this.viewRef = ref;
         }}>
-        <top_header_1.default title={'备注'}/>
+        <index_2.default title={'备注'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
-          <list_item_1.default title={'备注名'} subTitle={'请输入备注名'} value={name} hasEdit={true} onTextChange={(data) => {
+          <index_3.default title={'备注名'} subTitle={'请输入备注名'} value={name} hasEdit={true} onTextChange={(data) => {
             this.setState({ name: data.detail.value });
         }} textColor={'#727272'}/>
-          <list_item_1.default title={'手机'} subTitle={'请输入手机号'} value={phone} hasEdit={true} onTextChange={(data) => {
+          <index_3.default title={'手机'} subTitle={'请输入手机号'} value={phone} hasEdit={true} onTextChange={(data) => {
             this.setState({ phone: data.detail.value });
         }} textColor={'#727272'}/>
           
@@ -171,13 +171,13 @@ let CustomerRemark = class CustomerRemark extends taro_1.Component {
               </components_1.View>
             </components_1.View>
           </components_1.View>
-          {avatar.path.length === 0 ? <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.mt(10), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
+          {avatar.path.length === 0 ? <index_4.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(204), style_1.mt(10), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
             taro_1.default.chooseImage({ count: 1 }).then((res) => {
                 console.log('路径', res);
                 this.setState({ avatar: res.tempFiles[0] });
                 this.uploadFileList(res.tempFiles, () => {
-                    this.avatarArr.push(...this.uploadResultArr);
-                    console.log('上传成功后的图片列表', this.avatarArr);
+                    this.aboutUrl = this.uploadResultArr[0];
+                    console.log('上传成功后的图片列表', this.aboutUrl);
                 });
             });
         }}>
@@ -188,22 +188,22 @@ let CustomerRemark = class CustomerRemark extends taro_1.Component {
                   </components_1.View>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#ACADAD'), style_1.mt(10)])}>添加与客户相关的图片</components_1.Text>
                 </components_1.View>
-              </touchable_button_1.default> :
+              </index_4.default> :
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc, style_1.mt(30)])}>
                 <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(176)])}>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(335), style_1.h(176)])} src={avatar.path} mode={'aspectFit'}/>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absR(-5), style_1.absT(-5)])} src={`${httpurl_1.cloudBaseUrl}ico_close.png`} onClick={() => {
-                this.avatarArr = [];
+                this.aboutUrl = '';
                 this.setState({ avatar: { path: '' } });
             }}/>
                 </components_1.View>
               </components_1.View>}
         </components_1.ScrollView>
         
-        <bottom_buton_1.default title={'保存'} onClick={() => {
+        <index_5.default title={'保存'} onClick={() => {
             this.updatePrivateCustomer();
         }}/>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 CustomerRemark = __decorate([

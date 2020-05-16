@@ -50,7 +50,7 @@ class CardStyle3 extends taro_1.PureComponent {
                 </components_1.View>}
               
               {!hideAddress && <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.mt(hideEmail ? 0 : 4)])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.w(10), style_1.h(11), style_1.mt(4)])} src={require('../../assets/ico_card_location_gray.png')}/>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(16), style_1.h(11), style_1.mt(4)])} src={require('../../assets/ico_card_location_gray.png')}/>
                   <components_1.Text style={datatool_1.styleAssign([style_1.fSize(11), style_1.color('#343434'), style_1.ml(5)])}>{userInfo.detailAddress}</components_1.Text>
                 </components_1.View>}
             </components_1.View>

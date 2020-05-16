@@ -14,14 +14,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @Description: 添加跟进
  */
 const taro_1 = require("@tarojs/taro");
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/customer");
-const top_header_1 = require("../../compoments/top-header");
-const bottom_buton_1 = require("../../compoments/bottom-buton");
+const index_2 = require("../../compoments/top-header/index");
+const index_3 = require("../../compoments/bottom-buton/index");
 const components_1 = require("@tarojs/components");
 const httpurl_1 = require("../../api/httpurl");
 let AddGenJin = class AddGenJin extends taro_1.Component {
@@ -34,9 +34,7 @@ let AddGenJin = class AddGenJin extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -79,10 +77,10 @@ let AddGenJin = class AddGenJin extends taro_1.Component {
     }
     render() {
         let { desc, customer } = this.state;
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
+        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
             this.viewRef = ref;
         }}>
-        <top_header_1.default title={'添加跟进'}/>
+        <index_2.default title={'添加跟进'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(140), style_1.bgColor(style_1.commonStyles.whiteColor),
             style_1.pl(20), style_1.pr(20), style_1.pt(16), style_1.pb(16)])}>
@@ -121,11 +119,11 @@ let AddGenJin = class AddGenJin extends taro_1.Component {
             </components_1.View>
           </components_1.View>
         </components_1.View>
-
-        <bottom_buton_1.default title={'保存'} onClick={() => {
+        
+        <index_3.default title={'保存'} onClick={() => {
             this.addFollowUp();
         }}/>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 AddGenJin = __decorate([

@@ -23,7 +23,7 @@ const actions = require("../../actions/login");
 const top_header_1 = require("../../compoments/top-header");
 const components_1 = require("@tarojs/components");
 const touchable_button_1 = require("../../compoments/touchable-button");
-const delete_notice_1 = require("../sub_pagecomponent/delete-notice");
+const delete_notice_1 = require("../../compoments/delete-notice");
 const global_1 = require("../../const/global");
 const httpurl_1 = require("../../api/httpurl");
 //录制总时间限制
@@ -48,9 +48,7 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-
-        };
+        this.config = {};
         this.starTime = () => {
             this.timer = setInterval(() => {
                 if (this.state.startTimer) {
@@ -91,22 +89,22 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
                 format: 'mp3',
             };
             let that = this;
-            taro_1.default.getSetting({
-                success(res) {
-                    if (res.authSetting['scope.record']) {
-                        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-                        that.recorderManager.start(options);
-                    }
-                    else {
-                        taro_1.default.openSetting({
-                            success(res) {
-                                if (res.authSetting['scope.record']) {
-                                    that.recorderManager.start(options);
-                                }
-                            }
-                        });
-                    }
+            taro_1.default.authorize({
+                scope: 'scope.record',
+                success() {
+                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                    that.recorderManager.start(options);
                 }
+            }).catch(errMsg => {
+                console.log(errMsg);
+                console.log('授权失败');
+                taro_1.default.openSetting({
+                    success(res) {
+                        if (res.authSetting['scope.record']) {
+                            that.recorderManager.start(options);
+                        }
+                    }
+                });
             });
             this.recorderManager.onStart(() => {
                 if (!this.timer) {
@@ -252,7 +250,7 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
         }}>
         <top_header_1.default title={'语音录制'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(10), style_1.h(140), style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(48), style_1.color('#979797')])}>00:</components_1.Text>
@@ -260,14 +258,14 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
             </components_1.View>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797')])}>{recordText}</components_1.Text>
           </components_1.View>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color('#343434'), style_1.ml(20), style_1.mt(20)])}>录制小贴士：</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#0C0C0C'), style_1.ml(20), style_1.mr(20), style_1.mt(20)])}> 按住录音按钮，贴近手机话筒录制介绍语请在1分钟内，简明扼要地介绍您的公司、职位及个人信息。</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mr(20), style_1.mt(20)])}>例如：Hi！欢迎来到我的极致名片，我叫…,在…公司担任…一职，希望能与您进一步建立友好的合作关系，请收下我的名片~</components_1.Text>
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mr(20), style_1.mt(20)])}>温馨提示：请在安静的环境下录制，效果会更好哦~</components_1.Text>
           </components_1.View>
-
+          
           <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.udr, style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pt(53)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(56), style_1.h(56)])} src={recordDone ? require('../../assets/ico_record_delete_pressed.png') :
@@ -368,7 +366,7 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
 
           </components_1.View>
         </components_1.View>
-
+        
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(64), style_1.default.uac, style_1.default.ujc])}>
           <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.w(335), style_1.h(48), style_1.radiusA(2), style_1.bgColor(recordDone ? style_1.commonStyles.colorTheme : '#E6E6E6'),
             style_1.default.uac, style_1.default.ujc])} onClick={() => {
@@ -379,7 +377,7 @@ let AudioRecorder = class AudioRecorder extends taro_1.Component {
             <components_1.Text style={datatool_1.styleAssign([style_1.fSize(16), style_1.color(recordDone ? style_1.commonStyles.whiteColor : '#343434')])}>保存</components_1.Text>
           </touchable_button_1.default>
         </components_1.View>
-        {showDeleteNotice && <delete_notice_1.default cancelCallback={() => {
+        {showDeleteNotice && <delete_notice_1.default title={'删除提醒'} subTitle={'删除后，语音数据将无法恢复，确定删除？'} cancelCallback={() => {
             this.setState({ showDeleteNotice: false });
         }} confirmCallback={() => {
             datatool_1.toast('删除成功');

@@ -15,15 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 //@ts-ignore
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 //@ts-ignore
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/dict");
-const top_header_1 = require("../../compoments/top-header");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const mingpianjia_item_1 = require("../sub_pagecomponent/mingpianjia-item");
+const index_3 = require("../../compoments/mingpianjia-item/index");
 let Mingpianjia = class Mingpianjia extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -34,26 +34,24 @@ let Mingpianjia = class Mingpianjia extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         console.log(this.viewRef);
         this.state = {};
     }
     componentDidShow() {
     }
     render() {
-        return (<safe_area_view_1.default ref={(ref) => {
+        return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-        <top_header_1.default title={'名片夹'}/>
+        <index_2.default title={'名片夹'}/>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
           {[1, 2, 3, 4].map((value, index) => {
             console.log(value);
-            return (<mingpianjia_item_1.default key={index}/>);
+            return (<index_3.default key={index}/>);
         })}
         </components_1.View>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 Mingpianjia = __decorate([

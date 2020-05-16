@@ -37,7 +37,7 @@ class GoodsManageItem extends taro_1.Component {
             {itemData.showHomepage === 1 && <components_1.Image style={datatool_1.styleAssign([style_1.w(36), style_1.h(36), style_1.default.upa, style_1.absL(0), style_1.absT(0)])} src={`${httpurl_1.cloudBaseUrl}ico_top.png`}/>}
           </components_1.View>
           <components_1.View style={datatool_1.styleAssign([style_1.ml(12)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434')])}>{itemData.name}</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#343434')])}>{itemData.name.length > 10 ? itemData.name.substring(0, 11) + '...' : itemData.name}</components_1.Text>
             {itemData.price !== 0 && <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.mt(16)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color('#A6A6A6')])}>参考价格：</components_1.Text>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#FA541C')])}>{`¥${itemData.price}`}</components_1.Text>

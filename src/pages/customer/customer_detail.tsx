@@ -5,7 +5,7 @@
  * @date 2019/12/11
  * @Description: 客户详情界面
  */
-import Taro, {Component, Config} from '@tarojs/taro'
+import Taro, {Component} from '@tarojs/taro'
 import CustomSafeAreaView from "../../compoments/safe-area-view/index";
 import {
   absB,
@@ -21,7 +21,8 @@ import {
   h,
   hRatio,
   mb,
-  ml, mr,
+  ml,
+  mr,
   mt,
   op,
   padding,
@@ -43,7 +44,7 @@ import * as loginActions from "../../actions/login";
 import * as radarActions from "../../actions/radar";
 import TopHeader from "../../compoments/top-header/index";
 import {Image, ScrollView, Text, View} from "@tarojs/components";
-import {CustomerModel, FlowUpListModel, BehaviorTrace} from "../../const/global";
+import {BehaviorTrace, CustomerModel, FlowUpListModel} from "../../const/global";
 import BottomButon from "../../compoments/bottom-buton/index";
 import {cloudBaseUrl, NetworkState} from "../../api/httpurl";
 import DeleteNoticeModal from "../../compoments/delete-notice";

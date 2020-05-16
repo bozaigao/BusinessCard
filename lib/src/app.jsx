@@ -167,10 +167,10 @@ class App extends taro_1.Component {
         };
         //获取胶囊按钮位置信息为后面自定义导航条做准备
         global.menuButton = taro_1.default.getMenuButtonBoundingClientRect();
-        global.debug = false;
+        global.debug = true;
         taro_1.default.getSystemInfo({
             success: res => {
-                global = Object.assign(global, res, { debug: false });
+                global = Object.assign(global, res, { debug: true });
                 if (res.model && res.model.includes('iPhone X')) {
                     global.iphoneX = true;
                 }

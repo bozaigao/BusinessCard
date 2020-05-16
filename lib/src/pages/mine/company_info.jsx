@@ -24,7 +24,7 @@ const actions = require("../../actions/login");
 const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
 const index_3 = require("../../compoments/bottom-buton/index");
-const index_4 = require("../sub_pagecomponent/list-item/index");
+const index_4 = require("../../compoments/list-item2/index");
 const httpurl_1 = require("../../api/httpurl");
 const global_1 = require("../../const/global");
 let CompanyInfo = class CompanyInfo extends taro_1.Component {
@@ -37,9 +37,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -128,7 +126,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
               <components_1.View style={datatool_1.styleAssign([style_1.ml(20)])}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#242424')])}>企业名称</components_1.Text>
               </components_1.View>
-              <components_1.Input type='text' value={enterpriseName} placeholder={'必填'} style={datatool_1.styleAssign([style_1.fSize(14), style_1.mr(20), { textAlign: 'right' }])} onInput={(e) => {
+              <components_1.Input type='text' value={enterpriseName} placeholder={'必填'} maxLength={12} style={datatool_1.styleAssign([style_1.fSize(14), style_1.mr(20), { textAlign: 'right' }])} onInput={(e) => {
             this.setState({ enterpriseName: e.detail.value });
         }}/>
             </components_1.View>
@@ -171,7 +169,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.w(160), style_1.h(160)])}>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(160), style_1.h(160)])} src={enterpriseLogoLocal}/>
                     <components_1.Image style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absR(-5), style_1.absT(-5)])} src={`${httpurl_1.cloudBaseUrl}ico_close.png`} onClick={() => {
-                this.setState({ enterpriseLogoLocal: '' });
+                this.setState({ enterpriseLogoLocal: '', enterpriseLogo: '' });
             }}/>
                   </components_1.View>}
             </components_1.View>
@@ -188,7 +186,7 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.ujc])}>
                   <components_1.Video style={datatool_1.styleAssign([style_1.w(305), style_1.h(160), style_1.bgColor(style_1.commonStyles.whiteColor)])} src={enterpriseVideoLocal} controls={true} autoplay={false} objectFit={'fill'} initialTime={1} id='video' loop={false} muted={false}/>
                   <components_1.Image style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absR(25), style_1.absT(-5)])} src={`${httpurl_1.cloudBaseUrl}ico_close.png`} onClick={() => {
-                this.setState({ enterpriseVideoLocal: '' });
+                this.setState({ enterpriseVideoLocal: '', enterpriseVideo: '' });
             }}/>
                 </components_1.View>}
           </components_1.View>
@@ -197,6 +195,10 @@ let CompanyInfo = class CompanyInfo extends taro_1.Component {
         <index_3.default title={'提交'} onClick={() => {
             if (enterpriseName.length === 0) {
                 datatool_1.toast('请选输入企业名称');
+                return;
+            }
+            if (enterpriseName.length > 12) {
+                datatool_1.toast('企业名称长度不能超过12');
                 return;
             }
             if (enterpriseLogo.length === 0) {

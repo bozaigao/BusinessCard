@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const taro_1 = require("@tarojs/taro");
 //@ts-ignore
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 //@ts-ignore
 const datatool_1 = require("../../utils/datatool");
 const style_1 = require("../../utils/style");
@@ -25,13 +25,13 @@ const visitorActions = require("../../actions/visitor");
 const customerActions = require("../../actions/customer");
 const global_1 = require("../../const/global");
 const components_1 = require("@tarojs/components");
-const collect_item_1 = require("../sub_pagecomponent/collect-item");
-const businesscard_remove_notice_1 = require("../sub_pagecomponent/businesscard-remove-notice");
-const visitor_item_1 = require("../sub_pagecomponent/visitor-item");
-const shai_xuan_modal_1 = require("../sub_pagecomponent/shai-xuan-modal");
-const mode_modal_1 = require("../sub_pagecomponent/mode-modal");
-const navigation_bar_1 = require("../../compoments/navigation_bar");
-const sanjiao_1 = require("../../compoments/sanjiao");
+const index_2 = require("../../compoments/collect-item/index");
+const index_3 = require("../../compoments/businesscard-remove-notice/index");
+const index_4 = require("../../compoments/visitor-item/index");
+const index_5 = require("../../compoments/shai-xuan-modal/index");
+const index_6 = require("../../compoments/mode-modal/index");
+const index_7 = require("../../compoments/navigation_bar/index");
+const index_8 = require("../../compoments/sanjiao/index");
 const httpurl_1 = require("../../api/httpurl");
 let MyCollect = class MyCollect extends taro_1.Component {
     constructor(props) {
@@ -43,9 +43,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         this.refresh = () => {
             this.pageNo = 1;
             this.getVisitorList(true);
@@ -170,7 +168,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
             shaiXuanTimes: 0
         };
     }
-    componentDidShow() {
+    componentDidMount() {
         this.myCollectList();
         this.refresh();
     }
@@ -206,7 +204,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
             </components_1.View>}
           {collectUserList.map((value, index) => {
                 console.log(value);
-                return (<collect_item_1.default key={index} operate={(item) => {
+                return (<index_2.default key={index} operate={(item) => {
                     this.collectItemModel = item;
                     this.setState({ showOperate: true });
                 }} item={value} setCustomer={(userId) => {
@@ -245,7 +243,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
                 this.setState({ showMode: true });
             }}>
                 <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14)])}>{shaiXuanMode}</components_1.Text>
-                <sanjiao_1.default orientation={global_1.Orientation.down} style={datatool_1.styleAssign([style_1.ml(3)])}/>
+                <index_8.default orientation={global_1.Orientation.down} style={datatool_1.styleAssign([style_1.ml(3)])}/>
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr, style_1.ml(24)])} onClick={() => {
                 this.setState({ showShaiXuan: true });
@@ -267,16 +265,18 @@ let MyCollect = class MyCollect extends taro_1.Component {
             </components_1.View>}
           {recordList.length !== 0 && recordList.map((value, index) => {
                 console.log(value);
-                return (<visitor_item_1.default key={index} item={value}/>);
+                return (<index_4.default key={index} item={value} setCustomer={(userId) => {
+                    this.addCustomer(userId);
+                }}/>);
             })}
         </components_1.ScrollView>
       </components_1.View>;
         }
-        return (<safe_area_view_1.default ref={(ref) => {
+        return (<index_1.default ref={(ref) => {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}>
-          <navigation_bar_1.default style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          <index_7.default style={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.Image style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.ml(20)])} src={require('../../assets/ico_back.png')} onClick={() => {
             taro_1.default.navigateBack();
@@ -303,7 +303,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
               </components_1.View>
               <components_1.View style={datatool_1.styleAssign([style_1.w(22), style_1.h(22), style_1.mr(20)])}/>
             </components_1.View>
-          </navigation_bar_1.default>
+          </index_7.default>
           {childView}
         </components_1.View>
         {showOperate && <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), { position: 'fixed' }, style_1.absT(0)])} onClick={() => {
@@ -324,14 +324,14 @@ let MyCollect = class MyCollect extends taro_1.Component {
             </components_1.View>
           </components_1.View>}
 
-        {showDeleteNotice && <businesscard_remove_notice_1.default cancelCallback={() => {
+        {showDeleteNotice && <index_3.default cancelCallback={() => {
             this.setState({ showDeleteNotice: false });
         }} confirmCallback={() => {
             this.setState({ showDeleteNotice: false }, () => {
                 this.updateMyCollect(0, this.collectItemModel.userId);
             });
         }}/>}
-        {showMode && <mode_modal_1.default totalPerson={total} shaiXuanMode={shaiXuanMode} shaiXuanCallback={() => {
+        {showMode && <index_6.default totalPerson={total} shaiXuanMode={shaiXuanMode} shaiXuanCallback={() => {
             this.setState({ showMode: false, showShaiXuan: true });
         }} cancelCallback={() => {
             this.setState({ showMode: false });
@@ -346,7 +346,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
                 this.getVisitorList();
             });
         }}/>}
-        {showShaiXuan && <shai_xuan_modal_1.default totalPerson={total} shaiXuanMode={shaiXuanMode} shaiXuanTimesCallback={(times) => {
+        {showShaiXuan && <index_5.default totalPerson={total} shaiXuanMode={shaiXuanMode} shaiXuanTimesCallback={(times) => {
             console.log('筛选次数', times);
             this.setState({ shaiXuanTimes: times, startTime: '', endTime: '', showShaiXuan: false }, () => {
                 this.refresh();
@@ -369,7 +369,7 @@ let MyCollect = class MyCollect extends taro_1.Component {
             });
         }}/>}
 
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 MyCollect = __decorate([

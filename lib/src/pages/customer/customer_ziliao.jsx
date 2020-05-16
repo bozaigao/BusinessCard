@@ -14,15 +14,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * @Description: 客户资料界面
  */
 const taro_1 = require("@tarojs/taro");
-const safe_area_view_1 = require("../../compoments/safe-area-view");
+const index_1 = require("../../compoments/safe-area-view/index");
 const style_1 = require("../../utils/style");
 const datatool_1 = require("../../utils/datatool");
 //@ts-ignore
 const redux_1 = require("@tarojs/redux");
 const actions = require("../../actions/customer");
-const top_header_1 = require("../../compoments/top-header");
+const index_2 = require("../../compoments/top-header/index");
 const components_1 = require("@tarojs/components");
-const touchable_button_1 = require("../../compoments/touchable-button");
+const index_3 = require("../../compoments/touchable-button/index");
 const httpurl_1 = require("../../api/httpurl");
 let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
     constructor(props) {
@@ -34,9 +34,7 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -97,14 +95,16 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
     }
     render() {
         let { customer } = this.state;
-        return (<safe_area_view_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
+        return (<index_1.default customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])} ref={(ref) => {
             this.viewRef = ref;
         }}>
-        <top_header_1.default title={'客户详细资料'}/>
+        <index_2.default title={'客户详细资料'}/>
         <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])} scrollY>
           
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(86), style_1.default.udr, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.ml(21)])} src={customer.avatar && customer.avatar !== "undefined" ? customer.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
+            {customer.avatar && customer.avatar.length !== 0 ?
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.radiusA(33), style_1.ml(21)])} src={customer.avatar}/> :
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(66), style_1.h(66), style_1.radiusA(33), style_1.ml(21)])} src={`${httpurl_1.cloudBaseUrl}ico_default.png`}/>}
             <components_1.View style={datatool_1.styleAssign([style_1.w(240), style_1.hRatio(100), style_1.default.ujb,
             style_1.ml(15)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.mt(17), style_1.color('#343434')])}>
@@ -150,7 +150,7 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
           <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
           {[{ title: '地区', value: datatool_1.wrapSafe(customer.province + customer.city) },
             { title: '详细地址', value: datatool_1.wrapSafe(customer.detailAddress) },
-            { title: '生日', value: customer.birthday ? datatool_1.transformTime(customer.birthday) : '' },
+            { title: '生日', value: customer.birthday ? datatool_1.transformBirthTime(customer.birthday) : '' },
             { title: '微信号', value: datatool_1.wrapSafe(customer.wechat) },
             { title: '邮箱', value: datatool_1.wrapSafe(customer.email) }].map((value, inedx) => {
             return <components_1.View key={inedx} style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
@@ -167,36 +167,37 @@ let CustomerZiLiao = class CustomerZiLiao extends taro_1.Component {
               </components_1.View>;
         })}
           
-          {customer.label && datatool_1.parseData(customer.label).length !== 0 &&
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          {customer.type === 1 && customer.label && datatool_1.parseData(customer.label).length !== 0 &&
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.pb(20)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mt(16)])}>Ta的标签</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.mt(8),
                 style_1.default.uWrap])}>
                 {datatool_1.parseData(customer.label).map((value, index) => {
-                return (<touchable_button_1.default key={index} customStyle={datatool_1.styleAssign([style_1.ml(24), style_1.mt(12), style_1.radiusA(14), style_1.padding([6, 16, 6, 16]),
+                return (<index_3.default key={index} customStyle={datatool_1.styleAssign([style_1.ml(24), style_1.mt(12), style_1.radiusA(14), style_1.padding([6, 16, 6, 16]),
                     style_1.bgColor('#EFEFEF')])}>
                       <components_1.Text style={datatool_1.styleAssign([style_1.fSize(12), style_1.color(style_1.commonStyles.colorTheme)])}>{value}</components_1.Text>
-                    </touchable_button_1.default>);
+                    </index_3.default>);
             })}
               </components_1.View>
             </components_1.View>}
-          {customer.aboutUrl.length !== 0 &&
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(154), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          {(customer.aboutUrl.length !== 0 || customer.remark.length !== 0) &&
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(8), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272'), style_1.ml(20), style_1.mt(16)])}>描述</components_1.Text>
               <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.mt(8),])}>
-                <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), { marginLeft: '5%' }, style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor),
+                {customer.remark.length !== 0 && <components_1.View style={datatool_1.styleAssign([style_1.wRatio(90), { marginLeft: '5%' }, style_1.mb(20), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor),
                 style_1.padding([13, 16, 13, 16])])}>
-                  <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>
-                    {customer.remark}
-                  </components_1.Text>
-                </components_1.View>
-                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-                  <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(176), style_1.mt(20), style_1.mb(20)])} src={customer.aboutUrl} mode={'aspectFit'}/>
-                </components_1.View>
+                    <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434')])}>
+                      {customer.remark}
+                    </components_1.Text>
+                  </components_1.View>}
+                {customer.aboutUrl.length !== 0 &&
+                <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.ujc, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.mt(10)])}>
+                    <components_1.Image style={datatool_1.styleAssign([style_1.wRatio(90), style_1.mb(20)])} src={customer.aboutUrl} mode={'aspectFit'}/>
+                  </components_1.View>}
               </components_1.View>
             </components_1.View>}
         </components_1.ScrollView>
-      </safe_area_view_1.default>);
+      </index_1.default>);
     }
 };
 CustomerZiLiao = __decorate([

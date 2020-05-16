@@ -24,9 +24,10 @@ const actions = require("../../actions/task_center");
 const index_2 = require("../../compoments/top-header/index");
 const index_3 = require("../../compoments/bottom-buton/index");
 const components_1 = require("@tarojs/components");
-const index_4 = require("../../compoments/touchable-button/index");
 const httpurl_1 = require("../../api/httpurl");
-const guanlian_customer_1 = require("../sub_pagecomponent/guanlian-customer");
+const index_4 = require("../../compoments/date-time-picker/index");
+require("./add_task.scss");
+const singleline_text_1 = require("../../compoments/singleline-text");
 let AddTask = class AddTask extends taro_1.Component {
     constructor(props) {
         super(props);
@@ -37,9 +38,7 @@ let AddTask = class AddTask extends taro_1.Component {
          * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
          * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
          */
-        this.config = {
-            
-        };
+        this.config = {};
         /**
          * @author 何晏波
          * @QQ 1054539528
@@ -56,9 +55,15 @@ let AddTask = class AddTask extends taro_1.Component {
                 datatool_1.toast('日期不能为空');
                 return;
             }
+            if (chooseCustomer.length === 0) {
+                datatool_1.toast('请选择关联客户');
+                return;
+            }
             let myyear = new Date().getFullYear();
             let mymonth = new Date().getMonth() + 1;
             let myweekday = new Date().getDate();
+            let myhour = new Date().getHours();
+            let myminutes = new Date().getMinutes();
             let dateTime = new Date(date).getTime();
             if (mymonth < 10) {
                 //@ts-ignore
@@ -68,7 +73,7 @@ let AddTask = class AddTask extends taro_1.Component {
                 //@ts-ignore
                 myweekday = '0' + myweekday;
             }
-            let currentTime = new Date(`${myyear}-${mymonth}-${myweekday}`).getTime();
+            let currentTime = new Date(`${myyear}-${mymonth}-${myweekday} ${myhour}:${myminutes}`).getTime();
             if (dateTime < currentTime) {
                 datatool_1.toast('不能选择之前的日期');
                 return;
@@ -110,7 +115,7 @@ let AddTask = class AddTask extends taro_1.Component {
     }
     componentDidShow() {
         taro_1.default.eventCenter.on('chooseCustomer', (chooseCustomer) => {
-            this.setState({ chooseCustomer });
+            this.setState({ chooseCustomer: this.state.chooseCustomer.concat(chooseCustomer) });
         });
     }
     componentWillUnmount() {
@@ -122,59 +127,70 @@ let AddTask = class AddTask extends taro_1.Component {
             this.viewRef = ref;
         }} customStyle={datatool_1.styleAssign([style_1.bgColor(style_1.commonStyles.whiteColor)])}>
         <index_2.default title={'新建任务'}/>
-        <components_1.ScrollView style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uac, style_1.bgColor(style_1.commonStyles.whiteColor)])} scrollY>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.h(40), style_1.pl(20), style_1.pr(20)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>主题</components_1.Text>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>{theme.length}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797')])}>/50</components_1.Text>
-            </components_1.View>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(10), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor), style_1.h(40), style_1.pl(20), style_1.pr(20)])}>
+          <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>主题</components_1.Text>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac])}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>{theme.length}</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797')])}>/50</components_1.Text>
           </components_1.View>
-          <components_1.Textarea style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(128), style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor),])} value={theme} placeholder={'例如：电话回访客户'} onInput={(e) => {
+        </components_1.View>
+        <components_1.Textarea style={datatool_1.styleAssign([style_1.wRatio(90), style_1.h(80), style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor),])} value={theme} placeholder={'例如：电话回访客户'} onInput={(e) => {
             this.setState({ theme: e.detail.value });
         }} maxlength={50}/>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
-          <components_1.Picker mode='date' onChange={(e) => {
-            console.log('时间选择', e);
-            this.setState({ date: e.detail.value });
-        }} value={date} style={datatool_1.styleAssign([style_1.wRatio(100)])}>
-            <index_4.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.udr, style_1.default.uac, style_1.default.ujb, style_1.h(51), style_1.pl(20), style_1.pr(20), style_1.bgColor(style_1.commonStyles.whiteColor)])} onClick={() => {
-        }}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>日期及时间</components_1.Text>
-              <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
-                <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#787878')])}>{date ? date : '选择'}</components_1.Text>
-                <components_1.Image style={datatool_1.styleAssign([style_1.w(7), style_1.h(13), style_1.ml(5)])} src={`${httpurl_1.cloudBaseUrl}ico_next.png`}/>
-              </components_1.View>
-            </index_4.default>
-          </components_1.Picker>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-            <components_1.Text style={datatool_1.styleAssign([style_1.color('#787878'), style_1.fSize(14), style_1.ml(20), style_1.mt(15)])}>关联客户</components_1.Text>
-            {chooseCustomer.length === 0 &&
-            <components_1.Image style={datatool_1.styleAssign([style_1.w(68), style_1.h(68), style_1.ml(20), style_1.mt(14)])} src={`${httpurl_1.cloudBaseUrl}ico_add_task.png`} onClick={() => {
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
+
+        <index_4.default onOk={({ current }) => {
+            console.log('选择时间', current);
+            this.setState({ date: current });
+        }} wrap-class="my-class"/>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.udr, style_1.default.ujb, style_1.pl(20), style_1.pr(20), style_1.mt(15)])}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.color('#787878'), style_1.fSize(14)])}>关联客户</components_1.Text>
+            <components_1.View style={datatool_1.styleAssign([style_1.default.uac, style_1.default.udr])}>
+              <components_1.Text style={datatool_1.styleAssign([style_1.color('#727272'), style_1.fSize(14)])}>{chooseCustomer.length}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.color('#979797')])}>/100</components_1.Text>
+            </components_1.View>
+          </components_1.View>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uWrap, style_1.default.udr, style_1.default.uac, style_1.pl(10), style_1.pr(10)])}>
+            {chooseCustomer.map((value, index) => {
+            return <components_1.View style={datatool_1.styleAssign([style_1.w(78), style_1.h(98), style_1.default.uac, style_1.ml(10), style_1.mt(10)])} key={index}>
+                  <components_1.Image style={datatool_1.styleAssign([style_1.w(73), style_1.h(73), style_1.radiusA(4)])} src={value.avatar ? value.avatar : `${httpurl_1.cloudBaseUrl}ico_default.png`}/>
+                  <singleline_text_1.default text={value.name} style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#343434'), style_1.mt(5)])}/>
+                  <components_1.Image key={index} style={datatool_1.styleAssign([style_1.w(20), style_1.h(20), style_1.default.upa, style_1.absR(-5), style_1.absT(-5)])} src={`${httpurl_1.cloudBaseUrl}ico_close.png`} onClick={() => {
+                this.state.chooseCustomer.splice(index, 1);
+                this.setState({ chooseCustomer: this.state.chooseCustomer });
+            }}/>
+                </components_1.View>;
+        })}
+            {chooseCustomer.length !== 100 &&
+            <components_1.Image style={datatool_1.styleAssign([style_1.w(68), style_1.h(68), style_1.ml(10), style_1.mt(10)])} src={`${httpurl_1.cloudBaseUrl}ico_add_task.png`} onClick={() => {
+                let chooseIds = [];
+                for (let i = 0; i < chooseCustomer.length; i++) {
+                    chooseIds.push(chooseCustomer[i].id);
+                }
                 taro_1.default.navigateTo({
-                    url: `/pages/mine/choose_customer`
+                    url: `/pages/mine/choose_customer?chooseIds=${JSON.stringify(chooseIds)}`
                 });
             }}/>}
-            {chooseCustomer.map((value, index) => {
-            return <guanlian_customer_1.default key={index} customer={value}/>;
-        })}
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.mt(10)])}/>
           </components_1.View>
-          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uas, style_1.default.udr, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+          <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor), style_1.mt(10)])}/>
+        </components_1.View>
+        <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uas, style_1.default.udr, style_1.default.ujb, style_1.bgColor(style_1.commonStyles.whiteColor)])}>
             <components_1.Textarea style={datatool_1.styleAssign([style_1.wRatio(70), style_1.h(128), style_1.pa(20), style_1.bgColor(style_1.commonStyles.whiteColor)])} value={remark} placeholder={'备注'} onInput={(e) => {
             this.setState({ remark: e.detail.value });
         }} maxlength={200}/>
-            <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.mr(20), style_1.mt(18), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>{remark.length}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797')])}>/200</components_1.Text>
-            </components_1.View>
+          <components_1.View style={datatool_1.styleAssign([style_1.default.udr, style_1.default.uac, style_1.mr(20), style_1.mt(18), style_1.bgColor(style_1.commonStyles.whiteColor)])}>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#727272')])}>{remark.length}</components_1.Text>
+            <components_1.Text style={datatool_1.styleAssign([style_1.fSize(14), style_1.color('#979797')])}>/200</components_1.Text>
           </components_1.View>
-        </components_1.ScrollView>
-
-        <index_3.default title={'保存'} onClick={() => {
+        </components_1.View>
+        
+        <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.uje])}>
+          <index_3.default title={'保存'} onClick={() => {
             this.addTask();
         }}/>
+        </components_1.View>
       </index_1.default>);
     }
 };

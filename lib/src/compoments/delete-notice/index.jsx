@@ -22,9 +22,9 @@ class DeleteNoticeModal extends taro_1.PureComponent {
         <touchable_button_1.default customStyle={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.bgColor(style_1.commonStyles.blackColor), style_1.op(0.5), style_1.default.upa, style_1.absT(0), style_1.absR(0),])}/>
         <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.hRatio(100), style_1.default.uac, style_1.default.ujc])}>
           <components_1.View style={datatool_1.styleAssign([style_1.w(335), style_1.h(167), style_1.bgColor(style_1.commonStyles.whiteColor), style_1.radiusA(10)])}>
-            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac])}>
+            <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.default.uac, style_1.default.ujc])}>
               <components_1.Text style={datatool_1.styleAssign([style_1.fSize(20), style_1.color('#313137'), style_1.mt(20)])}>{title}</components_1.Text>
-              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#787878'), style_1.mt(20), style_1.w(280)])}>{subTitle}</components_1.Text>
+              <components_1.Text style={datatool_1.styleAssign([style_1.fSize(18), style_1.color('#787878'), style_1.mt(20)])}>{subTitle}</components_1.Text>
             </components_1.View>
             <components_1.View style={datatool_1.styleAssign([style_1.wRatio(100), style_1.h(1), style_1.mt(15), style_1.bgColor(style_1.commonStyles.pageDefaultBackgroundColor)])}/>
             <components_1.View style={datatool_1.styleAssign([style_1.default.uf1, style_1.default.udr, style_1.default.uac])}>
