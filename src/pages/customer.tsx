@@ -24,7 +24,7 @@ import {
   w,
   wRatio
 } from "../utils/style";
-import {get, save, styleAssign, toast} from "../utils/datatool";
+import {get, parseData, save, styleAssign, toast} from "../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../actions/customer";
@@ -171,7 +171,8 @@ class Customer extends Component<Props, State> {
   onShareAppMessage(res) {
     return {
       title: `快来使用极易推小程序吧`,
-      path: `/pages/businesscard`
+      path: `/pages/businesscard`,
+      imageUrl:''
     }
   }
 

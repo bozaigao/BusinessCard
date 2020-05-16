@@ -334,7 +334,7 @@ class GoodsManage extends Component<Props, State> {
               </View>
             </View> :
             <ScrollView
-              style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 200 : screenHeight() - 150), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+              style={styleAssign([wRatio(100), h(iphoneX() ? screenHeight() - 200 : screenHeight() - 180), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
               scrollY>
               {
                 goodsList.map((value, index) => {
