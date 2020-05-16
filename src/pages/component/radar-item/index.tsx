@@ -112,7 +112,7 @@ export default class RadarItem extends PureComponent<Props, State> {
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
                   onClick={() => {
                     Taro.navigateTo({
-                      url: `/pages/businesscard/other_businesscard?userId=${item.behaviorTraceUser.userId}`
+                      url: `/pages/businesscard/other_businesscard?userId=${item.behaviorTraceUser.userId}&source=系统名片`
                     });
                   }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>

@@ -56,7 +56,7 @@ export default class GuanLianCustomer extends Component<Props> {
             <View style={styleAssign([ml(18)])}>
               <View style={styleAssign([styles.udr, styles.uac])}>
                 <Text style={styleAssign([color('#343434'), fSize(18)])}>{customer.name}</Text>
-                <Text style={styleAssign([color('#A9A9A9'), fSize(14), ml(8)])}>{customer.position}</Text>
+                {/* <Text style={styleAssign([color('#A9A9A9'), fSize(14), ml(8)])}>{customer.position}</Text> */}
               </View>
               <Text style={styleAssign([color('#A9A9A9'), fSize(12), mt(8)])}>{customer.company}</Text>
             </View>

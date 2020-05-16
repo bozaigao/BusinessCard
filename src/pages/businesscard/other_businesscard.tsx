@@ -29,7 +29,8 @@ import {
   pr,
   radiusA,
   w,
-  wRatio
+  wRatio,
+  screenHeight
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/task_center';
@@ -174,7 +175,7 @@ class OtherBusinesscard extends Component<Props, State> {
    * @function: 新增访客记录
    */
   addVisitor = (type) => {
-    this.props.addVisitor({visitorUserId: this.$router.params.userId, visitContent: type}).then((res) => {
+    this.props.addVisitor({visitorUserId: this.$router.params.userId, visitContent: type, source:this.$router.params.source?this.$router.params.source:'未知'}).then((res) => {
       console.log('新增访客记录', res)
     }).catch(e => {
       console.log('报错啦', e);
@@ -192,6 +193,7 @@ class OtherBusinesscard extends Component<Props, State> {
     let params = {
       userId: this.state.userInfo.id,
       behaviorType,
+      source:this.$router.params.source?this.$router.params.source:'未知'
     }, duration = this.duration;
 
     if (goodsId) {
@@ -307,7 +309,7 @@ class OtherBusinesscard extends Component<Props, State> {
     this.addRadarTrace('share_card');
     return {
       title: `${this.state.userInfo.name}的名片分享`,
-      path: `/pages/businesscard/other_businesscard?userId=${this.state.userInfo.id}`
+      path: `/pages/businesscard/other_businesscard?userId=${this.state.userInfo.id}&source=名片分享`
     }
   }
 
@@ -391,7 +393,7 @@ class OtherBusinesscard extends Component<Props, State> {
           </View>
         </NavigationBar>
         {userInfo && <ScrollView
-          style={styleAssign([styles.uf1, styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
+          style={styleAssign([wRatio(100), h(screenHeight()), styles.uac, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*个人名片*/}
           <View style={styleAssign([wRatio(100), styles.uac, mt(20)])}>
@@ -497,7 +499,8 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           </View>
           {/*我的个人简介*/}
-          <PersonalInfo
+          {
+            userInfo && ((userInfo.voiceUrl && userInfo.voiceUrl.length !== 0) || (userInfo.selfDescription.length !== 0) || ((userInfo.hometownProvince.length !== 0 || userInfo.hometownCity.length !== 0)) || (userInfo.school.length !== 0) || (userInfo.labelArray.length !== 0) ) && <PersonalInfo
             addRadarTrace={(behaviorType) => {
               this.addRadarTrace(behaviorType);
             }}
@@ -508,6 +511,7 @@ class OtherBusinesscard extends Component<Props, State> {
             schoolClick={() => {
               this.setState({showSchoolWenHouYu: true});
             }}/>
+          }
           {/*我的商品*/}
           {
             userInfo && userInfo.goodsList && userInfo.goodsList.length !== 0 && <MyGoods goToMoreGoods={() => {
@@ -545,8 +549,8 @@ class OtherBusinesscard extends Component<Props, State> {
           {
             userInfo.videoUrl && userInfo.videoUrl.length !== 0 &&
             <View
-              style={styleAssign([wRatio(100), h(264), mt(10)])}>
-              <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
+              style={styleAssign([wRatio(100), h(264), pl(20), pr(20), mt(10)])}>
+              <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mt(32)])}>
                 <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
                 <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的视频</Text>
               </View>
@@ -568,7 +572,10 @@ class OtherBusinesscard extends Component<Props, State> {
             </View>
           }
           {/*极致名片*/}
-          <JiZhiCard companyCardList={companyCardList}/>
+          <JiZhiCard companyCardList={companyCardList} addRadarTrace={()=>{
+            this.timer && clearInterval(this.timer);
+            this.addRadarTrace('view_card');
+          }}/>
           {/*关注公众号*/}
           <View
             style={styleAssign([wRatio(100), h(59), styles.uac, styles.ujb, styles.udr, mt(10), bgColor(commonStyles.whiteColor)])}>

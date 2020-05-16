@@ -24,7 +24,8 @@ import {
   mt, padding, pl, pr,
   radiusA, screenHeight,
   w,
-  wRatio
+  wRatio,
+  screenWidth
 } from "../../utils/style";
 import {connect} from "@tarojs/redux";
 import * as actions from '../../actions/login';
@@ -134,10 +135,10 @@ class ChooseIndustryTag extends Component<Props, State> {
       <CustomSafeAreaView ref={(ref) => {
         this.viewRef = ref;
       }} customStyle={styleAssign([bgColor(commonStyles.whiteColor)])}>
-        <View style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169)])}>
+        <View style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169), styles.upr])}>
           <Image style={styleAssign([wRatio(100), h(iphoneX() ? 189 : 169), styles.upa, absT(-5)])}
                  src={require('../../assets/ico_xingqu_renmai.png')}/>
-          <View style={styleAssign([wRatio(100), styles.upa, absB(30), styles.uac, styles.ujc])}>
+          <View style={styleAssign([wRatio(100), styles.upa, absB(0), styles.uac, styles.ujc])}>
             <Text style={styleAssign([fSize(22), color(commonStyles.whiteColor)])}>
               选择你期待的行业人脉
             </Text>

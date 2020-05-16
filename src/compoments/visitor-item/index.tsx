@@ -84,8 +84,12 @@ export default class VisitorItem extends PureComponent<Props, State> {
             <View style={styleAssign([w(80), hRatio(100), styles.uac, styles.ujc])}
             onClick={(e)=>{
               e.stopPropagation();
+              let source = '系统名片';
+              if(item.visitor.source){
+                source = item.visitor.source;
+              }
               Taro.navigateTo({
-                url: `/pages/businesscard/other_businesscard?userId=${item.userId}`
+                url: `/pages/businesscard/other_businesscard?userId=${item.visitor.userId}&source=${source}`
               });
             }}>
               <Text style={styleAssign([color('#343434'), fSize(14), styles.utxdu])}>查看名片</Text>

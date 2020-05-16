@@ -155,14 +155,14 @@ class TeQuan extends Component<Props, State> {
    * @function: 获取特权套餐
    */
   packageList = () => {
-    let type = 'visitor';
+    let type = 'connection';
 
     let {currentIndex} = this.state, packageList: any = [];
 
     if (currentIndex === 0) {
-      type = 'visitor';
-    } else if (currentIndex === 1) {
       type = 'connection';
+    } else if (currentIndex === 1) {
+      type = 'visitor';
     }
     this.props.packageList({packageType: type}).then((res) => {
       if (res !== NetworkState.FAIL) {
@@ -172,7 +172,7 @@ class TeQuan extends Component<Props, State> {
               packageId: res[i].id,
               title: timeMap['seven_days'],
               subTitle: '',
-              left: '到期￥198/季度续费，可取消',
+              left: `￥${(res[i].price / 7).toFixed(2)}/天`,
               price: res[i].price,
               timeLimit: true
             });

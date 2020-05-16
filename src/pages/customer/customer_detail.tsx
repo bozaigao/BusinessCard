@@ -620,7 +620,7 @@ class CustomerDetail extends Component<Props, State> {
                       this.setState({showOperate: false}, () => {
                         if (customer.type === 1) {
                           Taro.navigateTo({
-                            url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}`
+                            url: `/pages/businesscard/other_businesscard?userId=${this.$router.params.userId}&source=系统客户`
                           });
                         } else {
                           this.setState({showShareInvite: true});

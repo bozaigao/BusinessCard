@@ -139,20 +139,20 @@ class CustomerZiLiao extends Component<Props, State> {
           style={styleAssign([styles.uf1, bgColor(commonStyles.pageDefaultBackgroundColor)])}
           scrollY>
           {/*头像*/}
-          <View style={styleAssign([wRatio(100), h(86), styles.udr, styles.uac, bgColor(commonStyles.whiteColor)])}>
+          <View style={styleAssign([wRatio(100), h(86), styles.udr, styles.uac, pl(20), pr(20), bgColor(commonStyles.whiteColor)])}>
             {
               customer.avatar && customer.avatar.length !== 0 ?
-                <Image style={styleAssign([w(66), h(66), radiusA(33), ml(21)])}
+                <Image style={styleAssign([w(66), h(66), radiusA(33)])}
                        src={customer.avatar}/> :
-                <Image style={styleAssign([w(66), h(66), radiusA(33), ml(21)])}
+                <Image style={styleAssign([w(66), h(66), radiusA(33)])}
                        src={`${cloudBaseUrl}ico_default.png`}/>
             }
-            <View style={styleAssign([w(240), hRatio(100), styles.ujb,
+            <View style={styleAssign([hRatio(100), styles.ujb, styles.uf1,
               ml(15)])}>
               <Text style={styleAssign([fSize(18), mt(17), color('#343434')])}>
                 {customer.name}
               </Text>
-              <View style={styleAssign([w(240), mb(23), styles.udr, styles.uac, styles.ujb])}>
+              <View style={styleAssign([mb(23), styles.udr, styles.uac, styles.uf1, styles.ujb])}>
                 <Text style={styleAssign([fSize(14), color('#353535')])}>
                   {customer.position}
                 </Text>
@@ -216,7 +216,7 @@ class CustomerZiLiao extends Component<Props, State> {
             })
           }
           {/*常用标签*/}
-          {
+          {/* {
             customer.type === 1 && customer.label && parseData(customer.label).length !== 0 &&
             <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor), pb(20)])}>
               <Text style={styleAssign([fSize(14), color('#727272'), ml(20), mt(16)])}>Ta的标签</Text>
@@ -233,7 +233,7 @@ class CustomerZiLiao extends Component<Props, State> {
                 }
               </View>
             </View>
-          }
+          } */}
           {
             (customer.aboutUrl.length !== 0 || customer.remark.length !== 0) &&
             <View style={styleAssign([wRatio(100), mt(8), bgColor(commonStyles.whiteColor)])}>

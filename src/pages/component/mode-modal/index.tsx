@@ -85,7 +85,8 @@ export default class ModeModal extends PureComponent<Props, State> {
               pl(20), pr(20)])}>
             <Text style={styleAssign([color('#727272'), fSize(14)])}>{`共${totalPerson}位客户`}</Text>
             <View style={styleAssign([styles.uac, styles.udr])}>
-              <View style={styleAssign([styles.uac, styles.udr])}>
+              <View style={styleAssign([styles.uac, styles.udr])}
+                onClick={cancelCallback}>
                 <Text style={styleAssign([color('#E2BB7B'), fSize(14)])}>{shaiXuanMode}</Text>
                 <SanJiao orientation={Orientation.up} style={styleAssign([ml(3)])}/>
               </View>

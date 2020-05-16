@@ -7,7 +7,7 @@
 import Taro, {PureComponent} from "@tarojs/taro";
 import {Image, Text, View} from "@tarojs/components";
 import {styleAssign} from "../../utils/datatool";
-import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, radiusA, w, wRatio} from "../../utils/style";
+import styles, {bgColor, color, commonStyles, fSize, h, ml, mt, radiusA, w, wRatio, pl, pr} from "../../utils/style";
 
 
 interface Props {
@@ -24,13 +24,13 @@ export default class MyPhoto extends PureComponent<Props, State> {
     let {photos, addRadarTrace} = this.props;
 
     return (
-      <View style={styleAssign([wRatio(100)])}>
-        <View style={styleAssign([styles.uac, styles.udr, ml(20), mt(32)])}>
+      <View style={styleAssign([wRatio(100), pl(20), pr(20) ])}>
+        <View style={styleAssign([styles.uac, styles.udr, wRatio(100), mt(32)])}>
           <View style={styleAssign([w(3), h(22), bgColor('#E2BB7B')])}/>
           <Text style={styleAssign([fSize(16), color(commonStyles.colorTheme), ml(8)])}>我的照片</Text>
         </View>
         <View
-          style={styleAssign([{width: '95%'}, {marginLeft: '2.5%'}, mt(16), bgColor(commonStyles.whiteColor)])}>
+          style={styleAssign([{width: '100%'}, mt(16), bgColor(commonStyles.whiteColor)])}>
           {
             photos.map((value, index) => {
               return <View style={styleAssign([styles.uf1, styles.uac, styles.ujc])} key={index}>
