@@ -2,7 +2,6 @@
  * @filename task_detail.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/28
  * @Description: 任务详情
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -102,7 +101,6 @@ class TaskDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 更新任务
    */
   updateTask = () => {
@@ -174,7 +172,6 @@ class TaskDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/28
    * @function: 获取任务详情
    */
   getTask = () => {
@@ -202,7 +199,6 @@ class TaskDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/28
    * @function: 更新任务状态
    */
   deleteTask = () => {

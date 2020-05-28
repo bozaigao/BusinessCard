@@ -2,7 +2,6 @@
  * @filename task_center.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/17
  * @Description: 任务中心
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -134,7 +133,6 @@ class TaskCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 获取正在进行的任务列表
    */
   getIngTaskList = (refresh?: boolean, callback?: any) => {
@@ -168,7 +166,6 @@ class TaskCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 获取已完成的任务列表
    */
   getFinishedTaskList = (refresh?: boolean) => {
@@ -200,7 +197,6 @@ class TaskCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/1
    * @function: 更新任务状态
    */
   taskUpdate = (taskId, status) => {

@@ -2,7 +2,6 @@
  * @filename update_card_style.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @Description: 修改名片样式
 */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -37,7 +36,7 @@ class UpdateCardStyle extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {

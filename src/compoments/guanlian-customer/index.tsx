@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/25
  * @Description: 关联客户
  */
 import Taro, {Component} from '@tarojs/taro'

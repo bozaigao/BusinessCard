@@ -2,7 +2,6 @@
  * @filename customer_ziliao.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/11
  * @Description: 客户资料界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -108,7 +107,6 @@ class CustomerZiLiao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/14
    * @function: 获取客户详细资料
    */
   getCustomerDetail = () => {

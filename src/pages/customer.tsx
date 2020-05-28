@@ -2,7 +2,6 @@
  * @filename customer.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/8
  * @Description: 客户
  */
 import Taro, {Component} from '@tarojs/taro'
@@ -14,17 +13,19 @@ import {
   commonStyles,
   default as styles,
   fSize,
-  h, hRatio, iphoneX,
+  h,
+  iphoneX,
   ml,
   mt,
   op,
   pl,
   pr,
-  radiusA, screenHeight,
+  radiusA,
+  screenHeight,
   w,
   wRatio
 } from "../utils/style";
-import {get, parseData, save, styleAssign, toast} from "../utils/datatool";
+import {get, save, styleAssign, toast} from "../utils/datatool";
 //@ts-ignore
 import {connect} from "@tarojs/redux";
 import * as actions from "../actions/customer";
@@ -118,7 +119,6 @@ class Customer extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/10
    * @function: 获取客户列表
    */
   getCustomerList = (refresh?: boolean) => {
@@ -172,7 +172,7 @@ class Customer extends Component<Props, State> {
     return {
       title: `快来使用极易推小程序吧`,
       path: `/pages/businesscard`,
-      imageUrl:''
+      imageUrl:'https://cardapplication.oss-cn-chengdu.aliyuncs.com/picture/share/invite_friends.png'
     }
   }
 

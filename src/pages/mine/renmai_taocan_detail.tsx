@@ -2,7 +2,6 @@
  * @filename tequan.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/22
  * @Description: 特权详情
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -84,7 +83,6 @@ class RenmaiTaoCanDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/1
    * @function: 购买套餐
    */
   purchasePackage = (packageId) => {

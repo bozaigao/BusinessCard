@@ -1,7 +1,6 @@
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/7
  * @function: 我的商品
  */
 import Taro, {Component} from "@tarojs/taro";

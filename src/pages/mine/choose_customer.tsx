@@ -2,7 +2,6 @@
  * @filename choose_customer.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/26
  * @Description: 选择客户界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -100,7 +99,6 @@ class ChooseCustomer extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/10
    * @function: 获取客户列表
    */
   getCustomerList = (refresh?: boolean) => {

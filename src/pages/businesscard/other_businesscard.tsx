@@ -2,7 +2,6 @@
  * @filename other_businesscard.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/23
  * @Description: 别人的名片
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -153,7 +152,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/4
    * @function: 获取公司推荐名片
    */
   getCompanyCard = () => {
@@ -171,7 +169,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/4/18
    * @function: 新增访客记录
    */
   addVisitor = (type) => {
@@ -186,7 +183,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/4/6
    * @function: 新增行为轨迹
    */
   addRadarTrace = (behaviorType: string, goodsId?: string) => {
@@ -216,7 +212,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 获取用户的设置信息
    */
   userSettingGet = () => {
@@ -239,7 +234,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/21
    * @function: 查询用户访客和收藏数
    */
   getCardHolderVisitorRecord = () => {
@@ -261,7 +255,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/16
    * @function: 更新我收藏的名片
    */
   updateMyCollect = (type: number, collectedUserId: number) => {
@@ -282,7 +275,6 @@ class OtherBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 获取用户信息
    */
   getUserInfoById = () => {

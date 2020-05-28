@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/19
  * @Description: 各个方向的三角标
  */
 import Taro, {Component} from '@tarojs/taro'

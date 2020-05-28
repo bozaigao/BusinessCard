@@ -2,7 +2,6 @@
  * @filename radar.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/10
  * @Description: 雷达
  */
 import {createAction} from "../utils/redux";
@@ -24,7 +23,6 @@ export default function Radar(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/10
  * @function: 新增行为轨迹
 */
 export const addRadarTrace = payload => createAction({
@@ -36,7 +34,6 @@ export const addRadarTrace = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/10
  * @function: 雷达AI分析 兴趣和行为占比
 */
 export const interestBehaviorRate = payload => createAction({
@@ -49,7 +46,6 @@ export const interestBehaviorRate = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/10
  * @function: 查询我的雷达数据列表
  */
 export const getTraceList = payload => createAction({
@@ -61,7 +57,6 @@ export const getTraceList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/10
  * @function: 雷达AI分析-客户活跃度
  */
 export const interestBehaviorActive = payload => createAction({
@@ -74,7 +69,6 @@ export const interestBehaviorActive = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/10
  * @function: 雷达详情访问轨迹
  */
 export const traceList = payload => createAction({
@@ -87,7 +81,6 @@ export const traceList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/4/12
  * @function: 查询雷达客户详情资料
 */
 export const getBehaviorTrace = payload => createAction({

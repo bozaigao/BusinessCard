@@ -2,7 +2,6 @@
  * @filename share_goods.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/23
  * @Description: 商品分享
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -35,7 +34,7 @@ class ShareGoods extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -120,7 +119,6 @@ class ShareGoods extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/12
    * @function: 保存存图片
    */
   saveImage() {
@@ -172,7 +170,6 @@ class ShareGoods extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/12
    * @function: 绘制圆角填充色矩形
    */
   roundRectColor(context, x, y, w, h, r) { //绘制圆角矩形（纯色填充）

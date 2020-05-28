@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/21
  * @Description: 小程序分享
  */
 import Taro, {PureComponent} from "@tarojs/taro";

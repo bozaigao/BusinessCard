@@ -2,7 +2,6 @@
  * @filename tequan.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/22
  * @Description: 特权
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -111,7 +110,6 @@ class TeQuan extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/2
    * @function: 获取店铺信息
    */
   getShop = () => {
@@ -130,7 +128,6 @@ class TeQuan extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/3
    * @function: 查看套餐状态
    */
   packageStatus = () => {
@@ -151,7 +148,6 @@ class TeQuan extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/1
    * @function: 获取特权套餐
    */
   packageList = () => {
@@ -214,7 +210,6 @@ class TeQuan extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/1
    * @function: 购买套餐
    */
   purchasePackage = (packageId) => {

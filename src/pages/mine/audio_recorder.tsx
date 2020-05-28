@@ -2,7 +2,6 @@
  * @filename audio_recorder.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/22
  * @Description: 语音录制界面
  */
 import Taro, {Component, Config, InnerAudioContext, RecorderManager} from '@tarojs/taro'
@@ -142,7 +141,6 @@ class AudioRecorder extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/8
    * @function: 开始录制
    */
   startRecord = () => {
@@ -202,7 +200,6 @@ class AudioRecorder extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/8
    * @function: 结束录制
    */
   stopRecord = () => {
@@ -224,7 +221,6 @@ class AudioRecorder extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path) => {
@@ -250,7 +246,6 @@ class AudioRecorder extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 更新用户信息
    */
   update = (path) => {

@@ -2,7 +2,6 @@
  * @filename style.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/9/21
  * @Description: 样式工具类
  */
 

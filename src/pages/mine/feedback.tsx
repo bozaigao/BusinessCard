@@ -2,7 +2,6 @@
  * @filename feedback.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/19
  * @Description: 用户反馈界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -54,7 +53,6 @@ class Feedback extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/1
    * @function: 投诉与建议
    */
   suggestionAdd = () => {

@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/5
  * @Description: 渐进色变换组件
  */
 import Taro, {Component} from "@tarojs/taro";

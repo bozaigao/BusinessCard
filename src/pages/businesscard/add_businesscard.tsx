@@ -2,7 +2,6 @@
  * @filename add_businesscard.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/15
  * @Description: 添加名片
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -124,7 +123,6 @@ class AddBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/15
    * @function: 解密微信小程序手机号
    */
   decryptPhone = (data) => {
@@ -149,7 +147,6 @@ class AddBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 更新用户信息
    */
   update = () => {
@@ -212,7 +209,6 @@ class AddBusinesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path) => {

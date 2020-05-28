@@ -2,7 +2,6 @@
  * @filename company_info.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/22
  * @Description: 企业信息
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -63,7 +62,7 @@ class CompanyInfo extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -83,7 +82,6 @@ class CompanyInfo extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/14
    * @function: 更新企业信息
    */
   update = () => {
@@ -250,7 +248,6 @@ class CompanyInfo extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, type, callback?: any) => {

@@ -2,7 +2,6 @@
  * @filename apply_success.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/2
  * @Description: 申请成功后的中间页
  */
 import Taro, {Component, Config} from '@tarojs/taro'

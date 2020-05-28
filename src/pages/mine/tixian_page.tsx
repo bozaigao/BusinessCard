@@ -2,7 +2,6 @@
  * @filename tixian_page.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @Description: 微信提现界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -56,7 +55,7 @@ class TixianPage extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -72,7 +71,6 @@ class TixianPage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/16
    * @function: 申请提现
    */
   withdraw = () => {

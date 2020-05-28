@@ -2,7 +2,6 @@
  * @filename qiehuan_businesscard.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/16
  * @Description: 切换名片
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -53,7 +52,7 @@ class QiehuanBusinesscard extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {

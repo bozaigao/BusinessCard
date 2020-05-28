@@ -2,7 +2,6 @@
  * @filename data_center.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @Description: 数据中心
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -88,7 +87,6 @@ class DataCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/16
    * @function: 数据中心
    */
   settlementRecord = () => {

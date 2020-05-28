@@ -2,7 +2,6 @@
  * @filename ai_analysis.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/4/11
  * @Description: ai数据表格分析
  */
 import Taro, {Component, Config} from '@tarojs/taro'

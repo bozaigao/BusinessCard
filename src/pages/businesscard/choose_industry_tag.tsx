@@ -2,7 +2,6 @@
  * @filename choose_industry_tag.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/14
  * @Description: 选择行业人脉
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -80,7 +79,6 @@ class ChooseIndustryTag extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/14
    * @function: 人脉推荐行业和兴趣设置
    */
   recommendSetting = () => {
@@ -110,7 +108,6 @@ class ChooseIndustryTag extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/8
    * @function: 人脉推荐查询二级行业信息
    */
   getIndustryTags = () => {

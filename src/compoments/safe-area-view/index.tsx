@@ -40,7 +40,6 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/9/25
    * @function: 显示进度条
    */
   showLoading = (title?: string) => {
@@ -53,7 +52,6 @@ export default class CustomSafeAreaView extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/9/25
    * @function: 隐藏进度条
    */
   hideLoading = () => {

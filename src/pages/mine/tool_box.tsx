@@ -2,7 +2,6 @@
  * @filename tool_box.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/18
  * @Description: 工具箱
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -79,7 +78,6 @@ class ToolBox extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 更新用户信息
    */
   update = () => {

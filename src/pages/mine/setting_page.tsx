@@ -2,7 +2,6 @@
  * @filename setting_page.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/19
  * @Description: 设置界面
  */
 import Taro, {Component, Config} from '@tarojs/taro'

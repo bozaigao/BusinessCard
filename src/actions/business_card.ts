@@ -2,7 +2,6 @@
  * @filename business_card.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @Description: 名片管理
  */
 import {createAction} from "../utils/redux";
@@ -24,7 +23,6 @@ export default function BusinessCard(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @function: 获取我收藏的名片列表
 */
 export const myCollectList = payload => createAction({
@@ -37,7 +35,6 @@ export const myCollectList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @function: 更新我收藏的名片
 */
 export const updateMyCollect = payload => createAction({

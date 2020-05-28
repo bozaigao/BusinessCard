@@ -2,7 +2,6 @@
  * @filename add_tags.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/4/6
  * @Description: 添加标签
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -95,7 +94,6 @@ class MyTags extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/4/6
    * @function: 更新手动录入客户和系统客户的资料
    */
   updatePrivateCustomer = () => {
@@ -137,7 +135,6 @@ class MyTags extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 获取用户信息
    */
   getUserInfo = () => {

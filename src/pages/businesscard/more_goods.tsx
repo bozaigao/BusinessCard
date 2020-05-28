@@ -2,7 +2,6 @@
  * @filename more_goods.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/17
  * @Description: 更多商品
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -55,7 +54,7 @@ class MoreGoods extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {

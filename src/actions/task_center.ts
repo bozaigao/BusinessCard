@@ -2,7 +2,6 @@
  * @filename task_center.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @Description: 任务中心
  */
 import {createAction} from "../utils/redux";
@@ -23,7 +22,6 @@ export default function taskCenter(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 添加任务
  */
 export const addTask = payload => createAction({
@@ -36,7 +34,6 @@ export const addTask = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 查询单个任务信息
  */
 export const getTask = payload => createAction({
@@ -49,7 +46,6 @@ export const getTask = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 分页查询任务列表
  */
 export const getTaskList = payload => createAction({
@@ -62,7 +58,6 @@ export const getTaskList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 更新任务
  */
 export const updateTask = payload => createAction({

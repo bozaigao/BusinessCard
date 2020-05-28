@@ -1,7 +1,6 @@
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/8
  * @function: 我的照片
  */
 import Taro, {PureComponent} from "@tarojs/taro";

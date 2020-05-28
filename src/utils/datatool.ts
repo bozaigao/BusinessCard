@@ -103,7 +103,6 @@ export let defaultPixel = 2;//iphone6的像素密度
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/9/18
  * @function: 尺寸适配
  */
 export function scaleSize(size: number) {
@@ -115,7 +114,6 @@ export function scaleSize(size: number) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/9/21
  * @function: 字体大小适配
  */
 export function setSpText(size: number) {
@@ -126,7 +124,6 @@ export function setSpText(size: number) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/9/21
  * @function: 将样式数组进行合并
  */
 export function styleAssign(styles: any[]) {
@@ -140,7 +137,6 @@ export function styleAssign(styles: any[]) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2018/10/22
  * @function: 定时器任务
  */
 export function debounce(idle, action) {
@@ -158,7 +154,6 @@ export function debounce(idle, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/28
  * @function: 缓存保存
  */
 export function save(key, value) {
@@ -169,7 +164,6 @@ export function save(key, value) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/28
  * @function: 缓存保存
  */
 export function get(key) {
@@ -180,7 +174,6 @@ export function get(key) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/28
  * @function: json数据转化
  */
 export function parseData(jsonData) {
@@ -190,7 +183,6 @@ export function parseData(jsonData) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/29
  * @function: 显示toast
  */
 export function toast(msg) {
@@ -205,7 +197,6 @@ export function toast(msg) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/4
  * @function: 时间转换
  */
 export function transformTime(time: string) {
@@ -216,7 +207,6 @@ export function transformTime(time: string) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/4
  * @function: 时间转换
  */
 export function transformBirthTime(time: string) {
@@ -226,7 +216,6 @@ export function transformBirthTime(time: string) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/28
  * @function: 从现在开始计算时间
  */
 export function transformNowTime(time: string) {
@@ -241,7 +230,6 @@ export function transformNowTime(time: string) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/4
  * @function: 获取当前年月日
  */
 export function getToday() {
@@ -251,7 +239,6 @@ export function getToday() {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/5
  * @function: 字符串做安全包裹处理
  */
 export function wrapSafe(source) {
@@ -364,7 +351,6 @@ export function formartSecond(seconds: number) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/21
  * @function: 判断是否为有效的邮箱
  */
 export function isLegalEmail(email) {
@@ -383,7 +369,6 @@ export function isLegalEmail(email) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/22
  * @function: 隐藏手机号
  */
 export function hidePhone(phone) {

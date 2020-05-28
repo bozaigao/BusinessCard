@@ -2,7 +2,6 @@
  * @filename customer_remark.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/14
  * @Description: 客户添加备注
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -95,7 +94,6 @@ class CustomerRemark extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/14
    * @function: 修改客户备注等信息
    */
   updatePrivateCustomer = () => {
@@ -139,7 +137,6 @@ class CustomerRemark extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 文件列表上传
    */
   uploadFileList = (paths, callback) => {
@@ -156,7 +153,6 @@ class CustomerRemark extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, callback, length) => {

@@ -2,7 +2,6 @@
  * @filename ming_pian_ma.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/7
  * @Description: 名片码
  */
 import {Component, Config} from '@tarojs/taro'
@@ -76,7 +75,6 @@ class MingPianMa extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/11
    * @function: 创建小程序码
    */
   wxacode = () => {
@@ -101,7 +99,6 @@ class MingPianMa extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 获取用户信息
    */
   getUserInfo = () => {

@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/18
  * @Description: 新建任务
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -94,7 +93,6 @@ class AddTask extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 添加任务
    */
   addTask = () => {

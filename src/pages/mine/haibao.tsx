@@ -2,7 +2,6 @@
  * @filename haibao.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/18
  * @Description: 海报
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -84,7 +83,6 @@ class Haibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/3
    * @function: 获取名片海报列表数据
    */
   postList = () => {

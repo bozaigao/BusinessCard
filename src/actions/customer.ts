@@ -2,7 +2,6 @@
  * @filename customer.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @Description: 客户管理模块
 */
 import {createAction} from "../utils/redux";
@@ -23,7 +22,6 @@ export default function Customer(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 添加客户
  */
 export const addCustomer = payload => createAction({
@@ -36,7 +34,6 @@ export const addCustomer = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 添加客户跟进信息
  */
 export const addFollowUp = payload => createAction({
@@ -49,7 +46,6 @@ export const addFollowUp = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 手动录入客户
  */
 export const addPrivateCustomer = payload => createAction({
@@ -62,7 +58,6 @@ export const addPrivateCustomer = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 为系统客户添加详情备注
  */
 export const addRemark = payload => createAction({
@@ -75,7 +70,6 @@ export const addRemark = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 删除客户
  */
 export const deleteCustomer = payload => createAction({
@@ -88,7 +82,6 @@ export const deleteCustomer = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 查询客户跟进信息记录
  */
 export const followUpList = payload => createAction({
@@ -101,7 +94,6 @@ export const followUpList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 查询客户列表
  */
 export const getCustomerList = payload => createAction({
@@ -114,7 +106,6 @@ export const getCustomerList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/8
  * @function: 更新手动录入客户的资料
  */
 export const updatePrivateCustomer = payload => createAction({
@@ -127,7 +118,6 @@ export const updatePrivateCustomer = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/14
  * @function: 获取客户详细资料
 */
 export const getCustomerDetail = payload => createAction({

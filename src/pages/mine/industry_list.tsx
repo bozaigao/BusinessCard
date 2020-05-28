@@ -2,7 +2,6 @@
  * @filename industry_list.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/29
  * @Description: 行业列表
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -38,7 +37,7 @@ class IndustryList extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {

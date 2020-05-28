@@ -2,7 +2,6 @@
  * @filename visitor.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @Description: 访客管理
  */
 import {createAction} from "../utils/redux";
@@ -24,7 +23,6 @@ export default function Visitor(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @function: 查询我的访客列表
  */
 export const getVisitorList = payload => createAction({
@@ -37,7 +35,6 @@ export const getVisitorList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @function: 添加访客记录
  */
 export const addVisitor = payload => createAction({

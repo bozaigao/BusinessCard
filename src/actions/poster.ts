@@ -2,7 +2,6 @@
  * @filename poster.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/3
  * @Description: 名片海报
  */
 import {createAction} from "../utils/redux";
@@ -23,7 +22,6 @@ export default function Poster(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/3
  * @function: 获取名片海报
 */
 export const postList = payload => createAction({

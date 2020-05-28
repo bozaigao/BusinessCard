@@ -2,7 +2,6 @@
  * @filename goods_manage.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/18
  * @Description: 商品管理
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -130,7 +129,6 @@ class GoodsManage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/2
    * @function: 获取店铺信息
    */
   getShop = () => {
@@ -163,7 +161,6 @@ class GoodsManage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 删除商品
    */
   deleteGoods = () => {
@@ -184,7 +181,6 @@ class GoodsManage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/29
    * @function: 商品批量更新
    */
   updateBatch = (status) => {
@@ -214,7 +210,6 @@ class GoodsManage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function:更新商品状态
    */
   updateGoods = (status) => {
@@ -239,7 +234,6 @@ class GoodsManage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 更新置顶状态
    */
   updateTopGoods = (showHomepage) => {
@@ -260,7 +254,6 @@ class GoodsManage extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/31
    * @function: 获取商品列表
    */
   getGoodsList = (refresh?: boolean) => {

@@ -89,7 +89,6 @@ export default async function fetch(options) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/29
  * @function: 自动登录接口
  */
 async function wxLogin() {

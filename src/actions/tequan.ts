@@ -2,7 +2,6 @@
  * @filename tequan.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @Description: 特权
  */
 import {createAction} from "../utils/redux";
@@ -33,7 +32,6 @@ export default function teQuan(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @function: 获取特权套餐
  */
 export const packageList = payload => createAction({
@@ -46,7 +44,6 @@ export const packageList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @function: 购买套餐
 */
 export const purchasePackage = payload => createAction({
@@ -58,7 +55,6 @@ export const purchasePackage = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/3
  * @function: 查询特权购买状态
 */
 export const packageStatus = payload => createAction({

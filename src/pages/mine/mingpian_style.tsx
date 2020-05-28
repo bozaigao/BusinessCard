@@ -2,7 +2,6 @@
  * @filename mingpian_style.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/24
  * @Description: 名片样式
  */
 import Taro, {Component, Config} from '@tarojs/taro'

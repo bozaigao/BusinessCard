@@ -2,7 +2,6 @@
  * @filename my_customer.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @Description: 我的客户
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -100,7 +99,6 @@ class MyCustomer extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/16
    * @function: 获取我的客户列表
    */
   myCustomerList = (refresh?: boolean) => {

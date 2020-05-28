@@ -2,7 +2,6 @@
  * @filename index.rn.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/9/18
  * @Description: 对Modal进行二次封装, 避免重复代码
  */
 import Taro, {Component} from "@tarojs/taro";

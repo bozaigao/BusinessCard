@@ -2,7 +2,6 @@
  * @filename my_photo.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/4
  * @Description: 我的照片
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -67,7 +66,7 @@ class MyPhoto extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -94,7 +93,6 @@ class MyPhoto extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 文件列表上传
    */
   uploadFileList = (paths, callback) => {
@@ -111,7 +109,6 @@ class MyPhoto extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, callback, length) => {
@@ -214,7 +211,6 @@ class MyPhoto extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 更新用户信息
    */
   update = () => {

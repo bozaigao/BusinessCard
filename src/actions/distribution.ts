@@ -2,7 +2,6 @@
  * @filename distribution.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @Description: 分销中心
  */
 import {createAction} from "../utils/redux";
@@ -23,7 +22,6 @@ export default function Distribution(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @function: 我的客户列表
 */
 export const myCustomerList = payload => createAction({
@@ -36,7 +34,6 @@ export const myCustomerList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @function: 数据中心
 */
 export const settlementRecord = payload => createAction({
@@ -49,7 +46,6 @@ export const settlementRecord = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @function: 分销中心主页-我的收益
 */
 export const userIncome = payload => createAction({
@@ -62,7 +58,6 @@ export const userIncome = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @function: 申请提现
 */
 export const withdraw = payload => createAction({
@@ -75,7 +70,6 @@ export const withdraw = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @function: 提现记录
 */
 export const withdrawList = payload => createAction({
@@ -88,7 +82,6 @@ export const withdrawList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/15
  * @function: 我的新增客户数量
 */
 export const myCustomerCount = payload => createAction({

@@ -2,7 +2,6 @@
  * @filename my_collect.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @Description: 我的收藏
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -143,7 +142,6 @@ class MyCollect extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/9
    * @function: 查询我的访客列表
    */
   getVisitorList = (refresh?: boolean) => {
@@ -185,7 +183,6 @@ class MyCollect extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/21
    * @function: 置为客户
    */
   addCustomer = (userId) => {
@@ -206,7 +203,6 @@ class MyCollect extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/9
    * @function: 获取我收藏的名片列表
    */
   myCollectList = () => {
@@ -225,7 +221,6 @@ class MyCollect extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/9
    * @function: 更新我收藏的名片
    */
   updateMyCollect = (type: number, collectedUserId: number) => {

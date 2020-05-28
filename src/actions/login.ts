@@ -2,7 +2,6 @@
  * @filename login.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/24
  * @Description: 登录模块
  */
 import {createAction} from "../utils/redux";
@@ -32,7 +31,6 @@ export default function login(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 接口请求登录
  */
 export const userLogin = payload => createAction({
@@ -45,7 +43,6 @@ export const userLogin = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 获取用户详细信息
  */
 export const getUserInfo = payload => createAction({
@@ -58,7 +55,6 @@ export const getUserInfo = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/8
  * @function: 根据用户id获取用户详细信息
  */
 export const getUserInfoById = payload => createAction({
@@ -71,7 +67,6 @@ export const getUserInfoById = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/29
  * @function: 更新用户数据流
  */
 export const updateUserInfo = payload => dispatch => {
@@ -82,7 +77,6 @@ export const updateUserInfo = payload => dispatch => {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 更新用户信息
  */
 export const update = payload => createAction({
@@ -95,7 +89,6 @@ export const update = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @function: 新增建议
  */
 export const suggestionAdd = payload => createAction({
@@ -109,7 +102,6 @@ export const suggestionAdd = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/14
  * @function: 人脉推荐行业和兴趣设置
 */
 export const recommendSetting = payload => createAction({
@@ -122,7 +114,6 @@ export const recommendSetting = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/14
  * @function: 人脉推荐行业和兴趣设置查询
 */
 export const getRecommendSetting = payload => createAction({
@@ -134,7 +125,6 @@ export const getRecommendSetting = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/14
  * @function: 人脉推荐是否设置
  */
 export const recommendSettingStatus = payload => createAction({
@@ -147,7 +137,6 @@ export const recommendSettingStatus = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/14
  * @function: 获取人脉推荐
  */
 export const getRecommend = payload => createAction({
@@ -160,7 +149,6 @@ export const getRecommend = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/14
  * @function: 解密微信小程序手机号
  */
 export const decryptPhone = payload => createAction({
@@ -173,7 +161,6 @@ export const decryptPhone = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/21
  * @function: 查询用户访客和收藏数
 */
 export const getCardHolderVisitorCount = payload => createAction({
@@ -186,7 +173,6 @@ export const getCardHolderVisitorCount = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/21
  * @function: 查询用户访客和收藏数以及浏览用户信息
  */
 export const getCardHolderVisitorRecord = payload => createAction({
@@ -199,7 +185,6 @@ export const getCardHolderVisitorRecord = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/25
  * @function: 更新用户的名片设置信息
 */
 export const userSettingUpdate = payload => createAction({
@@ -212,7 +197,6 @@ export const userSettingUpdate = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/25
  * @function: 获取用户的设置信息
  */
 export const userSettingGet = payload => createAction({
@@ -225,7 +209,6 @@ export const userSettingGet = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/4
  * @function:  获取公司推荐名片
 */
 export const getCompanyCard = payload => createAction({

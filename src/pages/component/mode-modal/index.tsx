@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/9
  * @Description: 选择筛选模式
  */
 import Taro, {PureComponent} from "@tarojs/taro";

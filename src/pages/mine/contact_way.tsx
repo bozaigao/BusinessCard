@@ -2,7 +2,6 @@
  * @filename contact_way.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/19
  * @Description: 联系方式
  */
 import Taro, {Component, Config} from '@tarojs/taro'

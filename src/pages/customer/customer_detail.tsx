@@ -2,7 +2,6 @@
  * @filename customer_ziliao.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/11
  * @Description: 客户详情界面
  */
 import Taro, {Component} from '@tarojs/taro'
@@ -119,7 +118,6 @@ class CustomerDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/4/12
    * @function: 雷达AI分析 兴趣和行为占比
    */
   interestBehaviorActive = () => {
@@ -143,7 +141,6 @@ class CustomerDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/14
    * @function: 获取客户详细资料
    */
   getCustomerDetail = () => {
@@ -178,7 +175,6 @@ class CustomerDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/28
    * @function:
    */
   followUpList = () => {
@@ -197,7 +193,6 @@ class CustomerDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/28
    * @function:雷达详情访问轨迹
    */
   traceList = () => {
@@ -217,7 +212,6 @@ class CustomerDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/14
    * @function: 删除客户
    */
   deleteCustomer = (id) => {

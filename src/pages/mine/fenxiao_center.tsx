@@ -2,7 +2,6 @@
  * @filename fenxiao_center.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/15
  * @Description: 分销中心
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -96,7 +95,6 @@ class FenxiaoCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/16
    * @function: 分销中心主页-我的收益
    */
   userIncome = () => {
@@ -120,7 +118,6 @@ class FenxiaoCenter extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/15
    * @function: 我的新增客户数量
    */
   myCustomerCount = () => {

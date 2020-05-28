@@ -2,7 +2,6 @@
  * @filename perform_info.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/8
  * @Description: 我的
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -89,7 +88,6 @@ class Mine extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 获取用户信息
    */
   getUserInfo = () => {

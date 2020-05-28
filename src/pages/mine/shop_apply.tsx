@@ -2,7 +2,6 @@
  * @filename shop_apply.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/2
  * @Description: 开通店铺
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -94,7 +93,6 @@ class ShopApply extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/2
    * @function: 店铺提交申请
    */
   shopApply = () => {

@@ -2,7 +2,6 @@
  * @filename shop.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/2
  * @Description: 店铺
  */
 import {createAction} from "../utils/redux";
@@ -24,7 +23,6 @@ export default function Shop(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/2
  * @function: 开通店铺申请
  */
 export const shopApply = payload => createAction({
@@ -36,7 +34,6 @@ export const shopApply = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/5/2
  * @function: 查询我的店铺信息
 */
 export const getShop = payload => createAction({

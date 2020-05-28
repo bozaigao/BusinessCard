@@ -2,7 +2,6 @@
  * @filename mingpianjia.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/18
  * @Description: 名片夹
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -39,7 +38,7 @@ class Mingpianjia extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {

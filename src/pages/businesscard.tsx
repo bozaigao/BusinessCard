@@ -2,7 +2,6 @@
  * @filename businesscard.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/8
  * @Description: 名片首页
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -131,7 +130,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/21
    * @function: 查询用户访客和收藏数
    */
   getCardHolderVisitorCount = () => {
@@ -152,7 +150,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/14
    * @function: 获取人脉推荐
    */
   getRecommend = () => {
@@ -170,7 +167,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/14
    * @function: 人脉推荐是否设置
    */
   recommendSettingStatus = () => {
@@ -188,7 +184,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/14
    * @function: 人脉推荐行业和兴趣设置查询
    */
   getRecommendSetting = () => {
@@ -203,7 +198,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/29
    * @function: 更新用户基本资料
    */
   updateUserInfo = (res) => {
@@ -221,7 +215,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 获取用户信息
    */
   getUserInfo = () => {
@@ -251,7 +244,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/16
    * @function: 更新我收藏的名片
    */
   updateMyCollect = (type: number, collectedUserId: number) => {
@@ -273,7 +265,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 获取用户的设置信息
    */
   userSettingGet = (userInfo: User) => {
@@ -298,7 +289,6 @@ class Businesscard extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/5/3
    * @function: 查看人脉套餐状态
    */
   packageStatus = () => {

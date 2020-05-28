@@ -2,7 +2,6 @@
  * @filename add_goods.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/18
  * @Description: 添加商品
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -121,7 +120,6 @@ class AddGoods extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/4
    * @function: 更新商品
    */
   updateGoods = () => {
@@ -175,7 +173,6 @@ class AddGoods extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 添加任务
    */
   addGoods = (status) => {
@@ -225,7 +222,6 @@ class AddGoods extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 文件列表上传
    */
   uploadFileList = (paths, callback) => {
@@ -242,7 +238,6 @@ class AddGoods extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 将文件通过微信Api上传到服务端
    */
   uploadFileTpWx = (path, callback, length) => {

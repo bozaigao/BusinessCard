@@ -2,7 +2,6 @@
  * @filename how_share_card.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @Description: 怎么分享名片
 */
 import Taro, {Component, Config} from '@tarojs/taro'

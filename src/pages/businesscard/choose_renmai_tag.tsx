@@ -2,7 +2,6 @@
  * @filename choose_renmai_tag.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/7
  * @Description: 选择兴趣人脉
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -63,7 +62,7 @@ class ChooseRenmaiTag extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {
@@ -84,7 +83,6 @@ class ChooseRenmaiTag extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/8
    * @function: 获取后台配置标签
    */
   getDictItemList = () => {

@@ -2,7 +2,6 @@
  * @filename file.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @Description: 多媒体文件上传
 */
 import {createAction} from "../utils/redux";
@@ -23,7 +22,6 @@ export default function File(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 上传图片
  */
 export const uploadPicture = payload => createAction({
@@ -36,7 +34,6 @@ export const uploadPicture = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 上传视频
  */
 export const uploadVideo = payload => createAction({
@@ -49,7 +46,6 @@ export const uploadVideo = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 上传声音
  */
 export const uploadVoice = payload => createAction({

@@ -2,7 +2,6 @@
  * @filename goods.ts
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @Description: 用户商品
 */
 import {createAction} from "../utils/redux";
@@ -23,7 +22,6 @@ export default function Goods(state = INITIAL_STATE, action) {
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/9/27
  * @function: 添加商品
  */
 export const addGoods = payload => createAction({
@@ -36,7 +34,6 @@ export const addGoods = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 查询单个商品信息[最好使用本地商品列表数据不单独走查询接口]
  */
 export const getGoods = payload => createAction({
@@ -49,7 +46,6 @@ export const getGoods = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 分页查询商品列表
  */
 export const getGoodsList = payload => createAction({
@@ -62,7 +58,6 @@ export const getGoodsList = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/25
  * @function: 更新商品
  */
 export const updateGoods = payload => createAction({
@@ -75,7 +70,6 @@ export const updateGoods = payload => createAction({
 /**
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/29
  * @function: 批量修改商品
 */
 export const updateBatch = payload => createAction({

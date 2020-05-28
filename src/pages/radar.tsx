@@ -2,7 +2,6 @@
  * @filename radar.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/8
  * @Description: 雷达
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -80,7 +79,6 @@ class Radar extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/10
    * @function: 查询我的雷达数据列表
    */
   getTraceList = (refresh?: boolean) => {
@@ -101,7 +99,6 @@ class Radar extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/21
    * @function: 置为客户
    */
   addCustomer = (userId) => {
@@ -122,7 +119,6 @@ class Radar extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/16
    * @function: 更新我收藏的名片
    */
   updateMyCollect = (type: number, collectedUserId: number) => {

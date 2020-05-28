@@ -2,7 +2,6 @@
  * @filename about_us.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/22
  * @Description: 关于我们
  */
 import Taro, {Component, Config} from '@tarojs/taro'

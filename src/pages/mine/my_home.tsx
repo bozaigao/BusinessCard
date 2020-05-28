@@ -2,7 +2,6 @@
  * @filename my_home.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/8
  * @Description: 我的家乡
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -62,7 +61,7 @@ class MyHome extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
   private viewRef;
   private province;
@@ -95,7 +94,6 @@ class MyHome extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 更新用户信息
    */
   update = () => {

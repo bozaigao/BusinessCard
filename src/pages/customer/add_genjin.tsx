@@ -2,7 +2,6 @@
  * @filename add_genjin.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/1/15
  * @Description: 添加跟进
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -82,7 +81,6 @@ class AddGenJin extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/15
    * @function:添加客户跟进
    */
   addFollowUp = () => {

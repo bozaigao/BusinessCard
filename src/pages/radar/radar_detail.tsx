@@ -2,7 +2,6 @@
  * @filename radar_detail.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/4/12
  * @Description: 雷达详情
  */
 import Taro, {Component} from '@tarojs/taro'
@@ -99,7 +98,6 @@ class RadarDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/14
    * @function: 获取客户详细资料
    */
   getBehaviorTrace = () => {
@@ -123,7 +121,6 @@ class RadarDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/4/12
    * @function: 雷达AI分析 兴趣和行为占比
    */
   interestBehaviorActive = () => {
@@ -156,7 +153,6 @@ class RadarDetail extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/1/28
    * @function:雷达详情访问轨迹
    */
   traceList = () => {

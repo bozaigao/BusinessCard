@@ -2,7 +2,6 @@
  * @filename my_edu.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2019/12/22
  * @Description: 教育经历
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -100,7 +99,6 @@ class MyEdu extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/28
    * @function: 更新用户信息
    */
   update = () => {

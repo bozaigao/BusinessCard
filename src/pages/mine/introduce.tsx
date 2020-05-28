@@ -2,7 +2,6 @@
  * @filename introduce.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/3/1
  * @Description: 小程序介绍
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -36,7 +35,7 @@ class Introduce extends Component<Props, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    
+
   }
 
   constructor(props) {

@@ -50,7 +50,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2019/12/29
    * @function: 获取用户信息
    */
   getUserInfoById = () => {
@@ -69,7 +68,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 获取用户的设置信息
    */
   userSettingGet = (userInfo: User) => {
@@ -104,7 +102,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 样式1商务版
    */
   drawBallStyle1() {
@@ -235,7 +232,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 样式2黑金版
    */
   drawBallStyle2() {
@@ -364,7 +360,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 样式3简约版
    */
   drawBallStyle3() {
@@ -492,7 +487,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 样式4极简版
    */
   drawBallStyle4() {
@@ -621,7 +615,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/25
    * @function: 样式5实景版
    */
   drawBallStyle5() {
@@ -735,7 +728,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/12
    * @function: 绘制圆角填充色矩形
    */
   roundRectColor(context, x, y, w, h, r) { //绘制圆角矩形（纯色填充）
@@ -754,7 +746,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/12
    * @function: 保存存图片
    */
   saveImage() {
@@ -804,7 +795,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/12
    * @function: 文字换行
    */
   fillTextWrap2(ctx, text, x, y, maxWidth, lineHeight, fontSize, color) {
@@ -844,7 +834,6 @@ class MingpianHaibao extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/3/12
    * @function: 文字换行
    */
   fillTextWrap(ctx, text, x, y, maxWidth, lineHeight, fontSize) {

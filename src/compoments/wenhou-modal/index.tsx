@@ -2,7 +2,6 @@
  * @filename add_task.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/19
  * @Description: 问候语显示Modal
  */
 import Taro, {PureComponent} from "@tarojs/taro";

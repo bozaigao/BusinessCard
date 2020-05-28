@@ -2,7 +2,6 @@
  * @filename tixian_recorder.tsx
  * @author 何晏波
  * @QQ 1054539528
- * @date 2020/2/16
  * @Description: 提现记录
  */
 import Taro, {Component, Config} from '@tarojs/taro'
@@ -75,7 +74,6 @@ class TixianRecorder extends Component<Props, State> {
   /**
    * @author 何晏波
    * @QQ 1054539528
-   * @date 2020/2/16
    * @function: 提现记录
    */
   withdrawList = (refresh?: boolean) => {
