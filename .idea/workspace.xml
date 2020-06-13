@@ -2,714 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eae5031e-9586-46a2-9cf3-f66b30de9cb4" name="Default" comment="V">
+      <change afterPath="$PROJECT_DIR$/gh_2371cb04b4b6_258.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/dev.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/dev.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/prod.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/config/prod.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/config/dev.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/config/dev.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/config/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/config/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/config/prod.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/config/prod.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/config/dev.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/config/dev.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/config/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/config/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/config/prod.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/config/prod.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/actions/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/actions/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/app.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/app.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/constants/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/constants/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/class/classpage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/class/classpage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/home/homepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/home/homepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/mine/minepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/mine/minepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/prefecture/prefecturepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/pages/prefecture/prefecturepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/reducers/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/reducers/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/reducers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/reducers/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/lib/src/store/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/actions/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/actions/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/app.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/app.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/constants/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/constants/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/class/classpage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/class/classpage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/home/homepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/home/homepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/mine/minepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/mine/minepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/prefecture/prefecturepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/pages/prefecture/prefecturepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/reducers/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/reducers/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/reducers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/reducers/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lib/src/store/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/business_card.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/business_card.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/customer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/customer.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/dict.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/dict.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/distribution.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/distribution.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/file.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/file.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/goods.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/goods.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/home.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/login.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/poster.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/poster.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/radar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/radar.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/shop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/shop.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/task_center.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/task_center.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/tequan.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/tequan.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/visitor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/actions/visitor.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/api/httpurl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/api/httpurl.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/api/request.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/api/request.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/app.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/app.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/app.weapp.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/app.weapp.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/bottom-buton/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/bottom-buton/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/businesscard-remove-notice/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/businesscard-remove-notice/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style1/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style1/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style3/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style3/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style4/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style4/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style5/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/card-style5/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/collect-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/collect-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/company_card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/company_card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/custom-tag/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/custom-tag/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/data-center-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/data-center-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/date-time-picker/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/date-time-picker/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/date-time-picker/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/date-time-picker/utils.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/delete-notice/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/delete-notice/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/goods-manage-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/goods-manage-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/goods-remove-notice/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/goods-remove-notice/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/goods-shaixuan/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/goods-shaixuan/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/guanlian-customer/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/guanlian-customer/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/help-list-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/help-list-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/level-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/level-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/linear-gradient-view/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/linear-gradient-view/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/linear-gradient-view2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/linear-gradient-view2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/list-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/list-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/list-item2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/list-item2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/loading/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/loading/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/loading/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/loading/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/mingpianjia-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/mingpianjia-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/mode-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/mode-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/multi_line_text/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/multi_line_text/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my-modal/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my-modal/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my-photo/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my-photo/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my_customer_item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/my_customer_item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/navigation_bar/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/navigation_bar/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/qiehuan-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/qiehuan-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.weapp.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/safe-area-view/index.weapp.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/sanjiao/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/sanjiao/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/shai-xuan-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/shai-xuan-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/share-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/share-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/singleline-text/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/singleline-text/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/switch-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/switch-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/taocan-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/taocan-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/task-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/task-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/text/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/text/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/text/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/text/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/tixian-recorder-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/tixian-recorder-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/top-header/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/top-header/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/touchable-button/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/touchable-button/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/touchable-button/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/touchable-button/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/trace-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/trace-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/visitor-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/visitor-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/wenhou-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/compoments/wenhou-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/const/global.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/const/global.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/constants/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/constants/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/custom-tab-bar/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/custom-tab-bar/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/global_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/global_data.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/mock/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/mock/login.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_businesscard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_businesscard.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_goods.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_goods.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/add_task.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/bianjie-tool/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/bianjie-tool/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/business-card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/business-card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/businesscard.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/choose_industry_tag.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/choose_industry_tag.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/choose_renmai_tag.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/choose_renmai_tag.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/jizhi-card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/jizhi-card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/my-business/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/my-business/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/my-goods/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/my-goods/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/other-business-card-guide/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/other-business-card-guide/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/personal-info/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/component/personal-info/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods-manage-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/goods_manage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/haibao.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/haibao.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/home-search-top/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/home-search-top/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/jifen-and-qiandao/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/jifen-and-qiandao/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/jizhi-card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/jizhi-card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/ming_pian_ma.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/ming_pian_ma.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpian_haibao.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpian_haibao.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/mingpianjia.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/more_goods.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/more_goods.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-business/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-business/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-goods/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-goods/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-person/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-person/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-photo/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my-photo/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my_collect.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/my_collect.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/other_businesscard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/other_businesscard.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/personal-info/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/personal-info/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan_businesscard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/qiehuan_businesscard.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/share-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/share-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/sign-alert/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/sign-alert/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/sign-alert/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/sign-alert/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/task_center.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/tool_box.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/businesscard/tool_box.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/class/classpage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/class/classpage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/class/renwu-zhitong-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/class/renwu-zhitong-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card-guide1/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card-guide1/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card-guide2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card-guide2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card-guide3/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card-guide3/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/business-card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/custom-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/custom-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/customer-guide/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/customer-guide/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/leida-guide/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/leida-guide/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/mine_guide1/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/mine_guide1/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/mine_guide2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/mine_guide2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/mode-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/mode-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/my-person/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/my-person/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/radar-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/radar-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/renmai-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/renmai-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/shai-xuan-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/shai-xuan-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/share-invite/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/share-invite/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/share-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/component/share-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/LineChart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/LineChart.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/PieChart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/PieChart.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_customer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_customer.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_genjin.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_genjin.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_tags.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/add_tags.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ai_analysis.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ai_analysis.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/custom-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/custom-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_remark.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_remark.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_ziliao.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/customer_ziliao.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ec-canvas/ec-canvas.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ec-canvas/ec-canvas.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ec-canvas/echarts.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ec-canvas/echarts.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ec-canvas/wx-canvas.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/customer/ec-canvas/wx-canvas.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/PageComponent/HomeSearchTop/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/PageComponent/HomeSearchTop/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/home-search-top/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/home-search-top/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/homepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/homepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/jifen-and-qiandao/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/jifen-and-qiandao/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/sign-alert/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/sign-alert/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/sign-alert/index.rn.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/home/sign-alert/index.rn.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/about_us.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/about_us.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/add_goods.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/add_goods.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/add_task.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/add_task.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/apply_success.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/apply_success.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/audio_recorder.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/audio_recorder.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/choose_customer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/choose_customer.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/company_info.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/company_info.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/component/help-navigation-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/component/help-navigation-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/contact_way.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/contact_way.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/data_center.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/data_center.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/feedback.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/feedback.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/fenxiao_center.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/fenxiao_center.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/get_renmai.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/get_renmai.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/goods_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/goods_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/goods_manage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/goods_manage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/haibao.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/haibao.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/help.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/help.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/how_perform_card.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/how_perform_card.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/how_share_card.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/how_share_card.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/industry_list.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/industry_list.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/introduce.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/introduce.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/jixu_open.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/jixu_open.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/list-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/list-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mine.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/minepage-list-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/minepage-list-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/minepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/minepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mingpian_style.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/mingpian_style.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_customer.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_customer.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_edu.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_edu.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_home.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_home.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_photo.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_photo.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_tags.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_tags.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_video.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/my_video.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/open_message_notice.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/open_message_notice.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/open_shop.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/open_shop.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/perform_info.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/perform_info.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/personal_info.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/personal_info.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/poster_share.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/poster_share.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/radar_gongneng.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/radar_gongneng.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/renmai_taocan_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/renmai_taocan_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/self_intro.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/self_intro.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/setting_page.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/setting_page.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/share_goods.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/share_goods.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/shop_apply.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/shop_apply.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/task_center.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/task_center.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/task_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/task_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tequan.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tequan.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tixian.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tixian.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tixian_page.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tixian_page.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tixian_recorder.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tixian_recorder.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tool_box.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/tool_box.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/update_card_style.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/update_card_style.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/view_card.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/mine/view_card.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card-guide1/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card-guide1/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card-guide2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card-guide2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card-guide3/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card-guide3/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/business-card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/custom-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/custom-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/customer-guide/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/customer-guide/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/help-navigation-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/help-navigation-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/jizhi-card/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/jizhi-card/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/leida-guide/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/leida-guide/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/mine_guide1/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/mine_guide1/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/mine_guide2/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/mine_guide2/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/mode-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/mode-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/my-business/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/my-business/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/my-goods/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/my-goods/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/my-person/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/my-person/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/other-business-card-guide/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/other-business-card-guide/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/personal-info/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/personal-info/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/radar-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/radar-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/renmai-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/renmai-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/shai-xuan-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/shai-xuan-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/share-invite/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/share-invite/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/share-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/pagecomponent/share-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/prefecture/prefecturepage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/prefecture/prefecturepage.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radar.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radar/radar_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radar/radar_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan/radar-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan/radar-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan/radar_detail.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan/radar_detail.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan/radarscan.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/radarscan/radarscan.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/businesscard-remove-notice/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/businesscard-remove-notice/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/collect-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/collect-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/custom-tag/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/custom-tag/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/data-center-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/data-center-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/delete-notice/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/delete-notice/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/goods-manage-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/goods-manage-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/goods-remove-notice/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/goods-remove-notice/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/goods-shaixuan/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/goods-shaixuan/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/guanlian-customer/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/guanlian-customer/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/help-list-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/help-list-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/level-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/level-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/linear-gradient-view/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/linear-gradient-view/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/list-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/list-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/mingpianjia-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/mingpianjia-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/mode-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/mode-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/my-photo/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/my-photo/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/my_customer_item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/my_customer_item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/qiehuan-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/qiehuan-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/shai-xuan-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/shai-xuan-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/share-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/share-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/taocan-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/taocan-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/task-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/task-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/tixian-recorder-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/tixian-recorder-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/trace-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/trace-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/visitor-item/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/visitor-item/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/wenhou-modal/index.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/pages/sub_pagecomponent/wenhou-modal/index.jsx.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/reducers/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/reducers/counter.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/reducers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/reducers/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/reducers/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/reducers/login.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/store/index.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/datatool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/datatool.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/redux.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/redux.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/style.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/utils/style.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/actions/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/actions/home.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/actions/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/api/httpurl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/api/request.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/app.weapp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/app.weapp_styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/app_styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_default.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_doctor_default_head.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_clock.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_comment_gray.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_eye_gray.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_jifen_btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_qiandao_btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_search_bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_search_gray.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_homepage_xinfeng.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_huanzhe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_kefu_btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_loading_bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_arrow_right_white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_class.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_item_arrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_jifen.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_kehu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_shezhi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_shouchang.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_xiaoxi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_minepage_yijian.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_modal_close_btn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_next.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_qiandao_bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_qiandao_tag.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_qiandao_yiqian_gou.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_rwzt_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_rwzt_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_rwzt_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_rwzt_4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_sales_default_head.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_swiper.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_businesscard_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_businesscard_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_class_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_class_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_customer_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_customer_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_home_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_home_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_mine_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_mine_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_prefecture_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_prefecture_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_radarscan_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_radarscan_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_workbench_normal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_tabar_workbench_pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/ico_user_default_head.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/assets/loading.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/loading/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/loading/index.rn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/my-modal/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/my-modal/index.rn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/safe-area-view/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/safe-area-view/index.rn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/safe-area-view/index.weapp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/text/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/text/index.rn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/touchable-button/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/compoments/touchable-button/index.rn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/constants/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/custom-tab-bar/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/businesscard/business-card/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/businesscard/businesscard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/class/classpage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/class/renwu-zhitong-item/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/customer/customer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/home/home-search-top/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/home/homepage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/home/jifen-and-qiandao/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/home/sign-alert/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/home/sign-alert/index.rn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/mine/mine.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/mine/minepage-list-item/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/mine/minepage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/prefecture/prefecturepage.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/pages/radarscan/radarscan.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/reducers/counter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/reducers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/reducers/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/utils/datatool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/utils/redux.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rn_temp/utils/style.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -737,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="businesscard.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="242">
+              <caret line="37" column="66" lean-forward="true" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#93#145#0" expanded="true" />
@@ -787,7 +82,19 @@
         <entry file="file://$PROJECT_DIR$/备份.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="44">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="66">
+                <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -815,7 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>删除后</find>
       <find>查看名片</find>
       <find>客户行为轨迹</find>
       <find>客户详细资料</find>
@@ -845,6 +151,7 @@
       <find>wxLogin</find>
       <find>2020</find>
       <find>@date</find>
+      <find>2019</find>
     </findStrings>
     <replaceStrings>
       <replace>introduction</replace>
@@ -889,7 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/pages/mine/add_goods.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/add_task.tsx" />
         <option value="$PROJECT_DIR$/src/pages/mine/task_detail.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer/ai_analysis.tsx" />
@@ -940,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/compoments/task-item/index.tsx" />
         <option value="$PROJECT_DIR$/src/pages/customer.tsx" />
         <option value="$PROJECT_DIR$/src/api/request.ts" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -959,7 +266,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1920" />
     <option name="height" value="1200" />
   </component>
@@ -977,28 +284,6 @@
             <path>
               <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
               <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BusinessCard " type="b2602c69:ProjectViewProjectNode" />
-              <item name="BusinessCard " type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1030,19 +315,19 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/assets" />
-      <recent name="$PROJECT_DIR$/src/compoments/multi_line_text" />
-      <recent name="$PROJECT_DIR$/src/pages/customer/ec-canvas" />
-      <recent name="$PROJECT_DIR$/src/pages/customer" />
-      <recent name="$PROJECT_DIR$/dist/weapp/pages/customer/ec-canvas" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/mine" />
       <recent name="$PROJECT_DIR$/src/compoments" />
       <recent name="$PROJECT_DIR$/src/pages/businesscard/component/company_card" />
       <recent name="$PROJECT_DIR$/src/pages" />
       <recent name="$PROJECT_DIR$/src/pages/businesscard" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/src/compoments/multi_line_text" />
+      <recent name="$PROJECT_DIR$/src/pages/customer/ec-canvas" />
+      <recent name="$PROJECT_DIR$/src/pages/customer" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1294,12 +579,12 @@
       <workItem from="1590650339493" duration="839000" />
       <workItem from="1591250951104" duration="265000" />
       <workItem from="1591251743323" duration="671000" />
-      <workItem from="1592008661222" duration="892000" />
+      <workItem from="1592008661222" duration="1403000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1314996000" />
+    <option name="totallyTimeSpent" value="1315507000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1311,7 +596,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
+    <frame x="72" y="23" width="1848" height="1177" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32923076" />
@@ -1319,9 +604,9 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.248" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996986" visible="true" weight="0.25833333" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32923076" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.86676216" visible="true" weight="0.32543445" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.86676216" visible="true" weight="0.33825943" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32615384" />
       <window_info id="Structure" order="1" sideWeight="0.13323782" side_tool="true" weight="0.25961033" />
@@ -1401,16 +686,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pages/mine/update_card_style.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#250#299#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/备份.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -1744,13 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/备份.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/compoments/task-item/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -1833,12 +1101,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pages/businesscard.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="242">
+          <caret line="37" column="66" lean-forward="true" selection-start-line="37" selection-start-column="66" selection-end-line="37" selection-end-column="66" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#93#145#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/备份.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="66">
+            <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
