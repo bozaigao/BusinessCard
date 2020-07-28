@@ -1,10 +1,10 @@
 import '@tarojs/async-await'
-import Taro, {Component, Config} from '@tarojs/taro'
-import {Provider} from '@tarojs/redux'
+import Taro, { Component, Config } from '@tarojs/taro'
+import { Provider } from '@tarojs/redux'
 import Index from './pages/businesscard'
 import configStore from './store'
 import './app.scss'
-import {Global} from "./const/global";
+import { Global } from "./const/global";
 
 declare let global: Global;
 // 如果需要在 h5 环境中开启 React Devtools
@@ -20,12 +20,14 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    //获取胶囊按钮位置信息为后面自定义导航条做准备
+    //获取胶囊按钮位置信息为后面自定义导航条做准
+    console.log('呵呵', process.env);
+
     global.menuButton = Taro.getMenuButtonBoundingClientRect();
     global.debug = false;
     Taro.getSystemInfo({
       success: res => {
-        global = Object.assign(global, res, {debug: false});
+        global = Object.assign(global, res, { debug: false });
         if (res.model && res.model.includes('iPhone X')) {
           global.iphoneX = true;
         } else if (res.platform === 'ios' && res.screenHeight === 812 && res.screenWidth === 375 ||
@@ -223,7 +225,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Index/>
+        <Index />
       </Provider>
     )
   }
@@ -231,7 +233,7 @@ class App extends Component {
 
 Taro
   .render(
-    <App/>,
+    <App />,
     document
       .getElementById(
         'app'
